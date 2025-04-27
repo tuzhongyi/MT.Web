@@ -1,13 +1,16 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
+  <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
     <link href="../../../../css/howell.css" rel="stylesheet" />
     <script src="../../../../js/language/chinese.js"></script>
-    <link href="../../../../css/bootstrap/bootstrap-switch.css" rel="stylesheet" />
-    <script src="../../../../js/jquery/jquery-1.10.2.min.js"></script>
+    <link
+      href="../../../../css/bootstrap/bootstrap-switch.css"
+      rel="stylesheet"
+    />
+    <script src="../../../../js/jquery/jquery-3.6.0.min.js"></script>
     <script src="../../../../js/jquery/jquery-ui.js"></script>
     <script src="../../../../js/bootstrap/bootstrap.min.js"></script>
     <script src="../../../../js/bootstrap/bootstrap-switch.min.js"></script>
@@ -24,144 +27,161 @@
     <script src="../../../../js/background/management/device/background_device_video_mediums.js"></script>
     <script src="device_video_medium_details.js"></script>
     <script type="text/javascript">
-        PageEvent.Device.Video.Medium.GroupListChanged = function (medium) {
-            alert("GroupListChanged");
-        }
+      PageEvent.Device.Video.Medium.GroupListChanged = function (medium) {
+        alert('GroupListChanged')
+      }
     </script>
-</head>
-<body>
+  </head>
+  <body>
     <style type="text/css">
-        .device_medium_add_title_ico {
-            color: #007aff;
-            margin-right: 10px;
-            margin-left:10px;
-        }
+      .device_medium_add_title_ico {
+        color: #007aff;
+        margin-right: 10px;
+        margin-left: 10px;
+      }
     </style>
     <div class="container-fluid main-content alert-window-maxdiv">
-        <div class="page-title">
-            <h3 class="list-heading-div">
-                <i class="icon-hdd list-heading-icon mouse_default device_medium_add_title_ico"></i>
-                <!--<img src="../../../../img/icon/department.png" class="alert-window-title-icon"/>-->
-                <label>添加存储媒介</label>
-            </h3>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="widget-content padded">
-                    <form action="#" class="form-horizontal">
-                        <div class="form-group">
-                            <label class="control-label col-md-4">
-                                添加数量
-                            </label>
-                            <div class="col-md-5">
-                                <input class="form-control" placeholder="1" type="text" id="txtCount" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-4">
-                                存储接口编码
-                            </label>
-                            <div class="col-md-5">
-                                <input class="form-control" type="text" placeholder="1" id="txtStoragePort" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-4">
-                                存储容量
-                            </label>
-                            <div class="col-md-5">
-                                <select class="form-control" id="ddlCapacity">
-                                    <option value="1099511627776">1TB</option>
-                                    <option value="2199023255552">2TB</option>
-                                    <option value="3298534883328">3TB</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-4">
-                                媒介类型
-                            </label>
-                            <div class="col-md-5">
-                                <select class="form-control" id="ddlMediumType"></select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-4">
-                                厂商信息
-                            </label>
-                            <div class="col-md-5">
-                                <input class="form-control" type="text" id="txtManufacturer" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-4">
-                                存储媒介型号
-                            </label>
-                            <div class="col-md-5">
-                                <input class="form-control" type="text" id="txtModel" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-4">
-                                存储方式
-                            </label>
-                            <div class="col-md-5">
-                                <select class="form-control" id="ddlStorageType"></select>
-                            </div>
-                        </div>
-                        <div class="form-group" style="margin-top:75px">
-                            <label class="control-label col-md-8">
-                            </label>
-                            <div class="col-md-2">
-                                <a class="btn btn-primary" id="btnAddMediums" onclick="return btnAddMediums_Click(this);">
-                                    确&ensp;&ensp;定
-                                </a>
-                            </div>
-                            <div class="col-md-2">
-                                <a class="btn btn-primary" onclick="return AlertWindow.Close();">
-                                    取&ensp;&ensp;消
-                                </a>
-                            </div>
-                        </div>
-                    </form>
+      <div class="page-title">
+        <h3 class="list-heading-div">
+          <i
+            class="icon-hdd list-heading-icon mouse_default device_medium_add_title_ico"
+          ></i>
+          <!--<img src="../../../../img/icon/department.png" class="alert-window-title-icon"/>-->
+          <label>添加存储媒介</label>
+        </h3>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="widget-content padded">
+            <form action="#" class="form-horizontal">
+              <div class="form-group">
+                <label class="control-label col-md-4"> 添加数量 </label>
+                <div class="col-md-5">
+                  <input
+                    class="form-control"
+                    placeholder="1"
+                    type="text"
+                    id="txtCount"
+                  />
                 </div>
-            </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-4"> 存储接口编码 </label>
+                <div class="col-md-5">
+                  <input
+                    class="form-control"
+                    type="text"
+                    placeholder="1"
+                    id="txtStoragePort"
+                  />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-4"> 存储容量 </label>
+                <div class="col-md-5">
+                  <select class="form-control" id="ddlCapacity">
+                    <option value="1099511627776">1TB</option>
+                    <option value="2199023255552">2TB</option>
+                    <option value="3298534883328">3TB</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-4"> 媒介类型 </label>
+                <div class="col-md-5">
+                  <select class="form-control" id="ddlMediumType"></select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-4"> 厂商信息 </label>
+                <div class="col-md-5">
+                  <input
+                    class="form-control"
+                    type="text"
+                    id="txtManufacturer"
+                  />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-4"> 存储媒介型号 </label>
+                <div class="col-md-5">
+                  <input class="form-control" type="text" id="txtModel" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-4"> 存储方式 </label>
+                <div class="col-md-5">
+                  <select class="form-control" id="ddlStorageType"></select>
+                </div>
+              </div>
+              <div class="form-group" style="margin-top: 75px">
+                <label class="control-label col-md-8"> </label>
+                <div class="col-md-2">
+                  <a
+                    class="btn btn-primary"
+                    id="btnAddMediums"
+                    onclick="return btnAddMediums_Click(this);"
+                  >
+                    确&ensp;&ensp;定
+                  </a>
+                </div>
+                <div class="col-md-2">
+                  <a
+                    class="btn btn-primary"
+                    onclick="return AlertWindow.Close();"
+                  >
+                    取&ensp;&ensp;消
+                  </a>
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
+      </div>
     </div>
 
     <script type="text/javascript">
-        DropDownList.Create("ddlMediumType", ControlModel.EnumAndLanguage, StorageMediumType, Language.Enum.StorageMediumType);
-        DropDownList.Create("ddlStorageType", ControlModel.EnumAndLanguage, StorageType, Language.Enum.StorageType);
-        function btnAddMediums_Click(sender, args) {
-            var count = getTag("txtCount").value ? getTag("txtCount").value : 1;
-            var storagePort = getTag("txtStoragePort").value ? getTag("txtStoragePort").value : 1;
-            var capacity = getTag("ddlCapacity").value;
-            var mediumType = getTag("ddlMediumType").value;
-            var manufacturer = getTag("txtManufacturer").value;
-            var model = getTag("txtModel").value;
-            var storageType = getTag("ddlStorageType").value;
-            for (var i = 0; i < count; i++) {
-                var medium = new StorageMedium();
-                medium.StoragePort = storagePort + i;
-                medium.MediumType = mediumType;
-                medium.Capacity = capacity;
-                medium.Freespace = capacity;
-                medium.Manufacturer = manufacturer;
-                medium.ManufacturerSpecified = true;
-                medium.Model = model;
-                medium.ModelSpecified = true;
-                medium.StorageType = storageType;
-                medium.StorageTypeSpecified = true;
-                try {
-                    Html.Control.PopoverWindow.MediumList.create(medium)
-                } catch (e) {
-
-                }
-
-            }
-            AlertWindow.Close(PageEvent.Device.Medium.BatchAddMediumsToDevice);
-            return false;
+      DropDownList.Create(
+        'ddlMediumType',
+        ControlModel.EnumAndLanguage,
+        StorageMediumType,
+        Language.Enum.StorageMediumType
+      )
+      DropDownList.Create(
+        'ddlStorageType',
+        ControlModel.EnumAndLanguage,
+        StorageType,
+        Language.Enum.StorageType
+      )
+      function btnAddMediums_Click(sender, args) {
+        var count = getTag('txtCount').value ? getTag('txtCount').value : 1
+        var storagePort = getTag('txtStoragePort').value
+          ? getTag('txtStoragePort').value
+          : 1
+        var capacity = getTag('ddlCapacity').value
+        var mediumType = getTag('ddlMediumType').value
+        var manufacturer = getTag('txtManufacturer').value
+        var model = getTag('txtModel').value
+        var storageType = getTag('ddlStorageType').value
+        for (var i = 0; i < count; i++) {
+          var medium = new StorageMedium()
+          medium.StoragePort = storagePort + i
+          medium.MediumType = mediumType
+          medium.Capacity = capacity
+          medium.Freespace = capacity
+          medium.Manufacturer = manufacturer
+          medium.ManufacturerSpecified = true
+          medium.Model = model
+          medium.ModelSpecified = true
+          medium.StorageType = storageType
+          medium.StorageTypeSpecified = true
+          try {
+            Html.Control.PopoverWindow.MediumList.create(medium)
+          } catch (e) {}
         }
+        AlertWindow.Close(PageEvent.Device.Medium.BatchAddMediumsToDevice)
+        return false
+      }
     </script>
-</body>
+  </body>
 </html>

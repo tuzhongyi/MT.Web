@@ -1,11 +1,11 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
+  <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>系统故障报告</title>
     <link href="../css/howell.css" rel="stylesheet" />
-    <script src="../js/jquery/jquery-1.10.2.min.js"></script>
+    <script src="../js/jquery/jquery-3.6.0.min.js"></script>
     <script src="../js/jquery/jquery-ui.js"></script>
     <script src="../js/bootstrap/bootstrap.min.js"></script>
 
@@ -20,318 +20,364 @@
 
     <script src="../js/nav.js"></script>
     <style type="text/css">
-        /*CreationTime
+      /*CreationTime
         FaultType
         ComponentId
         Recovered
         RecoveryTime
         Description
         ComponentName*/
-        .compare-float-heading-tag-div {
-            height: 35px;
-            margin-top: 0px;
-        }
+      .compare-float-heading-tag-div {
+        height: 35px;
+        margin-top: 0px;
+      }
 
-        .background_icon.fault {
-        }
+      .background_icon.fault {
+      }
 
-            .background_icon.fault.Offline {
-                background-image: url(../img/health/OfflineNumber.png);
-                background-size: 30px;
-                background-position: center;
-            }
+      .background_icon.fault.Offline {
+        background-image: url(../img/health/OfflineNumber.png);
+        background-size: 30px;
+        background-position: center;
+      }
 
-            .background_icon.fault.StorageMediumAbnormal {
-                background-image: url(../img/health/StorageMediumAbnormalNumber.png);
-                background-size: 25px;
-                background-position: center;
-            }
+      .background_icon.fault.StorageMediumAbnormal {
+        background-image: url(../img/health/StorageMediumAbnormalNumber.png);
+        background-size: 25px;
+        background-position: center;
+      }
 
-            .background_icon.fault.Videoloss {
-                background-image: url(../img/health/VideolossNumber.png);
-                background-size: 25px;
-                background-position: center;
-            }
+      .background_icon.fault.Videoloss {
+        background-image: url(../img/health/VideolossNumber.png);
+        background-size: 25px;
+        background-position: center;
+      }
 
-        .btn-group {
-            margin: 0 0 !important;
-            width: 60px;
-        }
+      .btn-group {
+        margin: 0 0 !important;
+        width: 60px;
+      }
 
-        .btn.btn-primary-outline {
-            border: none;
-            width: 70px;
-        }
+      .btn.btn-primary-outline {
+        border: none;
+        width: 70px;
+      }
 
-        .dropdown-menu.xsgroupdown-menu-ul {
-            width: 100px;
-            left: 0px;
-        }
+      .dropdown-menu.xsgroupdown-menu-ul {
+        width: 100px;
+        left: 0px;
+      }
 
-        .dropdown-menu > li > a {
-            padding: 15px 0px 10px 0px;
-            margin-right: 10px;
-            margin-left: 10px;
-        }
+      .dropdown-menu > li > a {
+        padding: 15px 0px 10px 0px;
+        margin-right: 10px;
+        margin-left: 10px;
+      }
 
-        .type {
-            width: 75px;
-        }
+      .type {
+        width: 75px;
+      }
 
-        .name {
-            width: 254px;
-        }
+      .name {
+        width: 254px;
+      }
 
-        .create-time {
-            width: 253px;
-        }
+      .create-time {
+        width: 253px;
+      }
 
-        .recovered {
-            width: 255px;
-        }
+      .recovered {
+        width: 255px;
+      }
 
-        .description {
-            width: 253px;
-        }
+      .description {
+        width: 253px;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="heading compare-float-heading-div" id="table_loading_head">
-        <div class="form-group compare-float-heading-title-div" style="margin-bottom:25px">
-            <!--&ensp;<div class="compare-float-heading-icon-div"></div>-->
-            <img src="../img/health/health.png" width="30" />
-            <label style="margin-top:30px">系统故障报告</label>
-        </div>
-        <div class="compare-float-heading-tag-div">
-            <table id="table" class="table table-filters compare-channel-table" style="margin-left:5px;">
-                <thead class="" id="test1">
-                    <tr style="text-align:center;">
-                        <td class="type" style="padding-left:0">
-                            <div class="btn-group  pull-left div-xsgroupdown">
-                                <div class="btn btn-xs btn-primary-outline btn-xsgroupdown dropdown-toggle" data-toggle="dropdown" id="operation">
-                                    类型
-                                    <span class="caret"></span>
-                                </div>
-                                <ul class="dropdown-menu xsgroupdown-menu-ul">
-                                    <li class="mouse_pointer">
-                                        <a class="xsgroupdown-menu-ul-li-a" onclick="TypeChanged(this, SystemFaultType.None)">
-                                            全部
-                                        </a>
-                                    </li>
-                                    <li class="mouse_pointer">
-                                        <a class="xsgroupdown-menu-ul-li-a" onclick="TypeChanged(this, SystemFaultType.Offline)">
-                                            离线
-                                        </a>
-                                    </li>
-                                    <li class="mouse_pointer">
-                                        <a class="xsgroupdown-menu-ul-li-a" onclick="TypeChanged(this, SystemFaultType.StorageMediumAbnormal)">
-                                            存储介质异常
-                                        </a>
-                                    </li>
-                                    <li class="mouse_pointer">
-                                        <a class="xsgroupdown-menu-ul-li-a" onclick="TypeChanged(this, SystemFaultType.Videoloss)">
-                                            视频丢失
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </td>
-                        <td class="name">
-                            故障设备
-                        </td>
-                        <td class="create-time">
-                            故障时间
-                        </td>
-                        <td class="recovered">
-                            是否恢复
-                        </td>
-                        <td class="description">
-                            描述信息
-                        </td>
-                    </tr>
-                </thead>
-                <!--<tbody id="tbody"></tbody>-->
-            </table>
-
-        </div>
+      <div
+        class="form-group compare-float-heading-title-div"
+        style="margin-bottom: 25px"
+      >
+        <!--&ensp;<div class="compare-float-heading-icon-div"></div>-->
+        <img src="../img/health/health.png" width="30" />
+        <label style="margin-top: 30px">系统故障报告</label>
+      </div>
+      <div class="compare-float-heading-tag-div">
+        <table
+          id="table"
+          class="table table-filters compare-channel-table"
+          style="margin-left: 5px"
+        >
+          <thead class="" id="test1">
+            <tr style="text-align: center">
+              <td class="type" style="padding-left: 0">
+                <div class="btn-group pull-left div-xsgroupdown">
+                  <div
+                    class="btn btn-xs btn-primary-outline btn-xsgroupdown dropdown-toggle"
+                    data-toggle="dropdown"
+                    id="operation"
+                  >
+                    类型
+                    <span class="caret"></span>
+                  </div>
+                  <ul class="dropdown-menu xsgroupdown-menu-ul">
+                    <li class="mouse_pointer">
+                      <a
+                        class="xsgroupdown-menu-ul-li-a"
+                        onclick="TypeChanged(this, SystemFaultType.None)"
+                      >
+                        全部
+                      </a>
+                    </li>
+                    <li class="mouse_pointer">
+                      <a
+                        class="xsgroupdown-menu-ul-li-a"
+                        onclick="TypeChanged(this, SystemFaultType.Offline)"
+                      >
+                        离线
+                      </a>
+                    </li>
+                    <li class="mouse_pointer">
+                      <a
+                        class="xsgroupdown-menu-ul-li-a"
+                        onclick="TypeChanged(this, SystemFaultType.StorageMediumAbnormal)"
+                      >
+                        存储介质异常
+                      </a>
+                    </li>
+                    <li class="mouse_pointer">
+                      <a
+                        class="xsgroupdown-menu-ul-li-a"
+                        onclick="TypeChanged(this, SystemFaultType.Videoloss)"
+                      >
+                        视频丢失
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </td>
+              <td class="name">故障设备</td>
+              <td class="create-time">故障时间</td>
+              <td class="recovered">是否恢复</td>
+              <td class="description">描述信息</td>
+            </tr>
+          </thead>
+          <!--<tbody id="tbody"></tbody>-->
+        </table>
+      </div>
     </div>
     <div class="page-main row">
-        <div class="col-md-12">
-            <div class="widget-container fluid-height clearfix list-width padded background-min-height">
-                <div class="heading compare-heading-div page-top" id="test2">
-                    <div class="form-group table-heading-div" style="margin-left:-18px">
-                        &ensp;<img src="../img/health/health.png" width="30" />
-                        系统故障报告
+      <div class="col-md-12">
+        <div
+          class="widget-container fluid-height clearfix list-width padded background-min-height"
+        >
+          <div class="heading compare-heading-div page-top" id="test2">
+            <div
+              class="form-group table-heading-div"
+              style="margin-left: -18px"
+            >
+              &ensp;<img src="../img/health/health.png" width="30" />
+              系统故障报告
+            </div>
+          </div>
+          <table id="table" class="table table-filters compare-channel-table">
+            <thead class="page-top" id="test1">
+              <tr style="text-align: center">
+                <td class="type" style="padding-left: 0">
+                  <div
+                    class="btn-group pull-left div-xsgroupdown"
+                    id="btn-operation"
+                  >
+                    <div
+                      class="btn btn-xs btn-primary-outline btn-xsgroupdown dropdown-toggle"
+                      data-toggle="dropdown"
+                      id="operation"
+                    >
+                      类型
+                      <span class="caret"></span>
                     </div>
-                </div>
-                <table id="table" class="table table-filters compare-channel-table">
-                    <thead class="page-top" id="test1">
-                        <tr style="text-align:center;">
-                            <td class="type" style="padding-left:0">
-                                <div class="btn-group  pull-left div-xsgroupdown" id="btn-operation">
-                                    <div class="btn btn-xs btn-primary-outline btn-xsgroupdown dropdown-toggle" data-toggle="dropdown" id="operation">
-                                        类型
-                                        <span class="caret"></span>
-                                    </div>
-                                    <ul class="dropdown-menu xsgroupdown-menu-ul">
-                                        <li class="mouse_pointer">
-                                            <a class="xsgroupdown-menu-ul-li-a" onclick="TypeChanged(this, SystemFaultType.None)">
-                                                全部
-                                            </a>
-                                        </li>
-                                        <li class="mouse_pointer">
-                                            <a class="xsgroupdown-menu-ul-li-a" onclick="TypeChanged(this, SystemFaultType.Offline)">
-                                                离线
-                                            </a>
-                                        </li>
-                                        <li class="mouse_pointer">
-                                            <a class="xsgroupdown-menu-ul-li-a" onclick="TypeChanged(this, SystemFaultType.StorageMediumAbnormal)">
-                                                存储介质异常
-                                            </a>
-                                        </li>
-                                        <li class="mouse_pointer">
-                                            <a class="xsgroupdown-menu-ul-li-a" onclick="TypeChanged(this, SystemFaultType.Videoloss)">
-                                                视频丢失
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </td>
-                            <td>
-                                故障设备
-                            </td>
-                            <td>
-                                故障时间
-                            </td>
-                            <td>
-                                是否恢复
-                            </td>
-                            <td>
-                                描述信息
-                            </td>
-                        </tr>
-                    </thead>
-                    <tbody id="tbody"></tbody>
-                </table>
-            </div>
-            <div class="col-md-12 lazyload-div" id="lazy">
-
-            </div>
+                    <ul class="dropdown-menu xsgroupdown-menu-ul">
+                      <li class="mouse_pointer">
+                        <a
+                          class="xsgroupdown-menu-ul-li-a"
+                          onclick="TypeChanged(this, SystemFaultType.None)"
+                        >
+                          全部
+                        </a>
+                      </li>
+                      <li class="mouse_pointer">
+                        <a
+                          class="xsgroupdown-menu-ul-li-a"
+                          onclick="TypeChanged(this, SystemFaultType.Offline)"
+                        >
+                          离线
+                        </a>
+                      </li>
+                      <li class="mouse_pointer">
+                        <a
+                          class="xsgroupdown-menu-ul-li-a"
+                          onclick="TypeChanged(this, SystemFaultType.StorageMediumAbnormal)"
+                        >
+                          存储介质异常
+                        </a>
+                      </li>
+                      <li class="mouse_pointer">
+                        <a
+                          class="xsgroupdown-menu-ul-li-a"
+                          onclick="TypeChanged(this, SystemFaultType.Videoloss)"
+                        >
+                          视频丢失
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </td>
+                <td>故障设备</td>
+                <td>故障时间</td>
+                <td>是否恢复</td>
+                <td>描述信息</td>
+              </tr>
+            </thead>
+            <tbody id="tbody"></tbody>
+          </table>
         </div>
+        <div class="col-md-12 lazyload-div" id="lazy"></div>
+      </div>
     </div>
     <a class="to-back" href="../health.htm">
-        <div class="pic"></div>
+      <div class="pic"></div>
     </a>
-
-</body>
+  </body>
 </html>
 <script type="text/javascript">
-    var testEnum = {
-        0: "Offline",
-        1: "StorageMediumAbnormal",
-        2: "Videoloss"
-    }
+  var testEnum = {
+    0: 'Offline',
+    1: 'StorageMediumAbnormal',
+    2: 'Videoloss',
+  }
 
-
-    var Property = {
-        type: SystemFaultType.None,
-        value: new Dictionary(),
-        page: new Page(),
-        load: function (index, size) {
-            var type = this.type != SystemFaultType.None ? this.type : undefined;
-            var response = tryCatch(function () {
-                return Client.Health().Report.Fault(index, size, type);
-            });
-            var result = new Array();
-            if (response) {
-                this.page = response.Page;
-                for (var i = 0; i < response.SystemFaultReport.length; i++) {
-                    var report = response.SystemFaultReport[i];
-                    this.value[report.Id] = report;
-                    result.push(report);
-                }
-            }
-            return result;
+  var Property = {
+    type: SystemFaultType.None,
+    value: new Dictionary(),
+    page: new Page(),
+    load: function (index, size) {
+      var type = this.type != SystemFaultType.None ? this.type : undefined
+      var response = tryCatch(function () {
+        return Client.Health().Report.Fault(index, size, type)
+      })
+      var result = new Array()
+      if (response) {
+        this.page = response.Page
+        for (var i = 0; i < response.SystemFaultReport.length; i++) {
+          var report = response.SystemFaultReport[i]
+          this.value[report.Id] = report
+          result.push(report)
         }
-    };
-    var Html = {
-        init: function () {
-            var uri = new Uri(document.location);
-            if (uri.Query) {
-                Property.type = uri.Querys.type;
-            }
+      }
+      return result
+    },
+  }
+  var Html = {
+    init: function () {
+      var uri = new Uri(document.location)
+      if (uri.Query) {
+        Property.type = uri.Querys.type
+      }
+    },
+    load: function (controlId, index, size) {
+      var color = {
+        Offline: LabelTagColor.Yellow,
+        StorageMediumAbnormal: LabelTagColor.DoderBlue,
+        Videoloss: LabelTagColor.Red,
+      }
+      var control = {
+        details: function (id, name, type) {
+          return new IconColorButton(
+            '',
+            'background_icon fault ' + type,
+            color[type],
+            20,
+            "<div style='margin-top:20px;'>" + name + '</div>'
+          )
         },
-        load: function (controlId, index, size) {
-            var color = {
-                Offline: LabelTagColor.Yellow,
-                StorageMediumAbnormal: LabelTagColor.DoderBlue,
-                Videoloss: LabelTagColor.Red
-            };
-            var control =
-            {
-                details: function (id, name, type) {
-                    return new IconColorButton("", "background_icon fault " + type, color[type], 20, "<div style='margin-top:20px;'>" + name + "</div>");
-                }
-            }
-            var list = Property.load(index, size)
+      }
+      var list = Property.load(index, size)
 
-            var table = getTag(controlId);
-            table.style.textAlign = "center";
-            table.style.verticalAlign = "middle";
-            for (var i = 0; i < list.length; i++) {
+      var table = getTag(controlId)
+      table.style.textAlign = 'center'
+      table.style.verticalAlign = 'middle'
+      for (var i = 0; i < list.length; i++) {
+        var tr = document.createElement('tr')
 
-                var tr = document.createElement("tr");
+        var td = new TableBodyTd(
+          control.details(
+            list[i].Id,
+            list[i].ComponentName,
+            list[i].FaultType
+          ).outerHTML
+        )
+        td.colSpan = 2
+        td.style.padding = '0'
+        tr.appendChild(td)
+        tr.appendChild(new TableBodyTd(list[i].CreationTime.toLocaleString()))
+        tr.appendChild(
+          new TableBodyTd(
+            list[i].Recovered
+              ? "<span class='text-success icon-ok'></span>"
+              : '-'
+          )
+        )
+        tr.appendChild(new TableBodyTd(list[i].Description))
 
-                var td = new TableBodyTd(control.details(list[i].Id, list[i].ComponentName, list[i].FaultType).outerHTML)
-                td.colSpan = 2;
-                td.style.padding = "0";
-                tr.appendChild(td);
-                tr.appendChild(new TableBodyTd(list[i].CreationTime.toLocaleString()));
-                tr.appendChild(new TableBodyTd(list[i].Recovered ? "<span class='text-success icon-ok'></span>" : "-"));
-                tr.appendChild(new TableBodyTd(list[i].Description));
+        table.appendChild(tr)
+      }
+      LazyLoadPage = Property.page
+    },
+  }
 
-                table.appendChild(tr);
-            }
-            LazyLoadPage = Property.page;
-        }
+  function TypeChanged(sender, args) {
+    getTag('tbody').innerHTML = ''
+
+    Property.type = args
+    Html.load('tbody', 1, 20)
+  }
+
+  function health_faults_load() {
+    Html.load('tbody', 1, 20)
+
+    var lazy = getTag('lazy')
+    lazy.appendChild(new LazyLoadControl('load-more', '加载中……', lazyLoad))
+    window.setTimeout(function () {
+      document.documentElement.scrollTop = 0
+      isOnscroll = true
+    }, 100)
+
+    scrollHead = function () {
+      var visibility = 'visible'
+      var display = 'none'
+      if (document.documentElement.scrollTop > 26) {
+        visibility = 'hidden'
+        display = 'block'
+      }
+      $('.page-top').css('visibility', visibility)
+      document.getElementById('table_head').style.display = display
     }
+    window.addEventListener('scroll', scrollHead, false)
+  }
 
-    function TypeChanged(sender, args) {
-        getTag("tbody").innerHTML = "";
+  function lazyLoad(index) {
+    tryCatch(function () {
+      Html.load('tbody', index + 1, 20)
+      Html.Control.GroupList.load(
+        index + 1,
+        Property.PageSize,
+        Property.UserPermission
+      )
+    })
+  }
 
-        Property.type = args;
-        Html.load("tbody", 1, 20);
-    }
-
-    function health_faults_load() {
-        Html.load("tbody", 1, 20);
-
-        var lazy = getTag("lazy");
-        lazy.appendChild(new LazyLoadControl("load-more", "加载中……", lazyLoad));
-        window.setTimeout(function () {
-            document.documentElement.scrollTop = 0;
-            isOnscroll = true;
-        }, 100);
-
-        scrollHead = function () {
-            var visibility = "visible";
-            var display = "none";
-            if (document.documentElement.scrollTop > 26) {
-                visibility = "hidden";
-                display = "block";
-            }
-            $(".page-top").css("visibility", visibility);
-            document.getElementById("table_head").style.display = display;
-        }
-        window.addEventListener("scroll", scrollHead, false);
-    }
-
-    function lazyLoad(index) {
-        tryCatch(function () {
-            Html.load("tbody", index + 1, 20);
-            Html.Control.GroupList.load(index + 1, Property.PageSize, Property.UserPermission);
-        });
-    }
-
-    onload = health_faults_load;
+  onload = health_faults_load
 </script>

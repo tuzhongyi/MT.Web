@@ -1,196 +1,209 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head><meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>设备通道测速比对</title>
     <link rel="stylesheet" type="text/css" href="../../../../css/howell.css" />
-    <script type="text/javascript" src="../../../../js/language/chinese.js"></script>
-    <script type="text/javascript" src="../../../../js/jquery/jquery-1.10.2.min.js"></script>
+    <script
+      type="text/javascript"
+      src="../../../../js/language/chinese.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../../js/jquery/jquery-3.6.0.min.js"
+    ></script>
     <script src="../../../../js/imported.js"></script>
-    <script type="text/javascript" src="../../../../js/jquery/jquery-ui.js"></script>
-    <script type="text/javascript" src="../../../../js/bootstrap/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../../../../js/jquery/jquery.confirm.js"></script>
+    <script
+      type="text/javascript"
+      src="../../../../js/jquery/jquery-ui.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../../js/bootstrap/bootstrap.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../../js/jquery/jquery.confirm.js"
+    ></script>
     <script type="text/javascript" src="../../../../js/nav.js"></script>
-    
-    <script type="text/javascript" src="../../../../js/howell.js/howell.js"></script>
-    <script type="text/javascript" src="../../../../js/client/struct.js"></script>
 
-    <script type="text/javascript" src="../../../../js/howell.js/howell.control.js"></script>
-    <script type="text/javascript" src="../../../../js/modernizr.custom.js"></script>
-    <script type="text/javascript" src="../../../../js/jquery/jquery.sparkline.min.js"></script>
-    <script type="text/javascript" src="../../../../js/howell.js/guid.js"></script>
+    <script
+      type="text/javascript"
+      src="../../../../js/howell.js/howell.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../../js/client/struct.js"
+    ></script>
+
+    <script
+      type="text/javascript"
+      src="../../../../js/howell.js/howell.control.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../../js/modernizr.custom.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../../js/jquery/jquery.sparkline.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../../js/howell.js/guid.js"
+    ></script>
 
     <script src="../../../../js/client/management.js"></script>
     <script src="../../../../js/client/client.js"></script>
     <script src="list.js"></script>
-</head>
-<body>
+  </head>
+  <body>
     <div class="heading compare-float-heading-div" id="table_loading_head">
-        <div class="form-group compare-float-heading-title-div">
-            &ensp;<div class="compare-float-heading-icon-div"></div>
-            <label class="compare-float-heading-title-label">设备通道测速比对</label>
-        </div>
-        <div class="compare-float-heading-tag-div">
-            <label class="compare-float-heading-tag-name-lable">
-                通道名称
-            </label>
-            <label class="compare-float-heading-tag-chart-lable">
-                数据图
-            </label>
-            <label class="compare-float-heading-tag-bitrate-lable">
-                平均码率 Kbps
-            </label>
-            <label class="compare-float-heading-tag-error-lable">
-                错误率
-            </label>
-            <label class="compare-float-heading-tag-lost-lable">
-                丢包率
-            </label>
-            <label class="compare-float-heading-tag-received-lable">
-                收包率
-            </label>
-            <label class="compare-float-heading-tag-total-lable">
-                总包数 Mb
-            </label>
-        </div>
+      <div class="form-group compare-float-heading-title-div">
+        &ensp;
+        <div class="compare-float-heading-icon-div"></div>
+        <label class="compare-float-heading-title-label"
+          >设备通道测速比对</label
+        >
+      </div>
+      <div class="compare-float-heading-tag-div">
+        <label class="compare-float-heading-tag-name-lable"> 通道名称 </label>
+        <label class="compare-float-heading-tag-chart-lable"> 数据图 </label>
+        <label class="compare-float-heading-tag-bitrate-lable">
+          平均码率 Kbps
+        </label>
+        <label class="compare-float-heading-tag-error-lable"> 错误率 </label>
+        <label class="compare-float-heading-tag-lost-lable"> 丢包率 </label>
+        <label class="compare-float-heading-tag-received-lable"> 收包率 </label>
+        <label class="compare-float-heading-tag-total-lable"> 总包数 Mb </label>
+      </div>
     </div>
     <div class="page-main row">
-        <div class="col-md-12">
-            <div class="widget-container fluid-height clearfix list-width padded background-min-height">
-                <div class="heading compare-heading-div page-top" id="test2">
-                    <div class="form-group table-heading-div">
-                        &ensp;<div class="compare-icon-div"></div>
-                        设备通道测速比对
-                    </div>
-                </div>
-                <table class="table table-filters compare-channel-table">
-                    <thead class="page-top" id="test1">
-                        <tr style="text-align:center;">
-                            <td>
-                                通道名称
-                            </td>
-                            <td class="compare-channel-table-chart-td">
-                                数据图
-                            </td>
-                            <td class="compare-channel-table-bitrate-td">
-                                平均码率 Kbps
-                            </td>
-                            <td class="compare-channel-table-percentage-td">
-                                错误率
-                            </td>
-                            <td class="compare-channel-table-percentage-td">
-                                丢包率
-                            </td>
-                            <td class="compare-channel-table-percentage-td">
-                                收包率
-                            </td>
-                            <td class="compare-channel-table-total-td">
-                                总包数 Mb
-                            </td>
-                        </tr>
-                    </thead>
-                    <tbody id="tbody"></tbody>
-                </table>
+      <div class="col-md-12">
+        <div
+          class="widget-container fluid-height clearfix list-width padded background-min-height"
+        >
+          <div class="heading compare-heading-div page-top" id="test2">
+            <div class="form-group table-heading-div">
+              &ensp;
+              <div class="compare-icon-div"></div>
+              设备通道测速比对
             </div>
-            <div class="col-md-12 lazyload-div" id="lazy">
-
-            </div>
+          </div>
+          <table class="table table-filters compare-channel-table">
+            <thead class="page-top" id="test1">
+              <tr style="text-align: center">
+                <td>通道名称</td>
+                <td class="compare-channel-table-chart-td">数据图</td>
+                <td class="compare-channel-table-bitrate-td">平均码率 Kbps</td>
+                <td class="compare-channel-table-percentage-td">错误率</td>
+                <td class="compare-channel-table-percentage-td">丢包率</td>
+                <td class="compare-channel-table-percentage-td">收包率</td>
+                <td class="compare-channel-table-total-td">总包数 Mb</td>
+              </tr>
+            </thead>
+            <tbody id="tbody"></tbody>
+          </table>
         </div>
+        <div class="col-md-12 lazyload-div" id="lazy"></div>
+      </div>
     </div>
-
-
-
-</body>
+  </body>
 </html>
 <script type="text/javascript">
-    
-    function diagnostics_device_video_input_list_load() {
-        var list = Html.create("tbody", 1, 20);
-        if (!list) {
-            return;
+  function diagnostics_device_video_input_list_load() {
+    var list = Html.create('tbody', 1, 20)
+    if (!list) {
+      return
+    }
+    Html.start()
+
+    var lazy = document.getElementById('lazy')
+    lazy.appendChild(new LazyLoadControl('load-more', '加载中……', LazyLoad))
+    sparklineInitialization('.sparkslim')
+
+    window.setTimeout(function () {
+      document.documentElement.scrollTop = 0
+      isOnscroll = true
+    }, 100)
+
+    scrollHead = function () {
+      var visibility = 'visible'
+      var display = 'none'
+      if (document.documentElement.scrollTop > 26) {
+        visibility = 'hidden'
+        display = 'block'
+      }
+      $('.page-top').css('visibility', visibility)
+      document.getElementById('table_head').style.display = display
+    }
+    window.addEventListener('scroll', scrollHead, false)
+  }
+
+  function getBitrateStatus(index, size) {
+    return tryCatch(function () {
+      return Client.Management().Device.Video.Input.Diagnostics.List(
+        index,
+        size
+      )
+    })
+    //var list = new BitrateStatusList();
+    //list.Page.PageIndex = 1;
+    //list.Page.PageCount = 1;
+    //list.Page.PageSize = 20;
+    //list.Page.RecordCount = 20;
+    //list.Page.TotalRecordCount = 20;
+    //for (var i = 0; i < 20; ) {
+    //    var cid = "003101010311111110000010010000" + (++i < 10 ? "0" : "") + i;
+    //    var status = new BitrateStatus();
+    //    status.Id = cid;
+    //    status.Bitrate = Math.floor(Math.random() * 1000000);
+    //    status.ErrorPacket = Math.floor(Math.random() * 1000000);
+
+    //    status.LostPacket = Math.floor(Math.random() * 1000000);
+    //    status.ReceivedPacket = Math.floor(Math.random() * 1000000);
+
+    //    status.TotalPacket = status.ReceivedPacket + status.LostPacket + status.ErrorPacket
+
+    //    list.BitrateStatus.push(status);
+    //}
+    //return list;
+  }
+
+  function LazyLoad(index) {
+    tryCatch(function () {
+      var json = getBitrateStatus(index + 1, 20)
+      LazyLoadPage = json.Page
+      for (var i = 0; i < json.BitrateStatus.length; i++) {
+        var values = new Array()
+        for (var j = 0; j < 30; j++) {
+          values[j] = 0
         }
-        Html.start();
+        list.push(values)
+      }
+      fillTable(json)
+      for (var i = 0; i < json.BitrateStatus.length; i++) {
+        sparklineInitialization(
+          '#' + setId(json.BitrateStatus[i].Id, ControlIdPrefix.chart)
+        )
+      }
+    })
+  }
 
-        var lazy = document.getElementById("lazy");
-        lazy.appendChild(new LazyLoadControl("load-more", "加载中……", LazyLoad));
-        sparklineInitialization(".sparkslim");
+  function sparklineInitialization(id, value) {
+    $(id).sparkline(value, {
+      type: 'line',
+      width: '150',
+      height: '30',
+      lineColor: '#2f7ed8',
+      fillColor: 'rgba(244, 252, 225, 0.0)',
+      lineWidth: 2,
+      spotRadius: 0,
+      chartRangeMin: 0,
+    })
+  }
 
-        window.setTimeout(function () {
-            document.documentElement.scrollTop = 0;
-            isOnscroll = true;
-        }, 100);
-
-        scrollHead = function () {
-            var visibility = "visible";
-            var display = "none";
-            if (document.documentElement.scrollTop > 26) {
-                visibility = "hidden";
-                display = "block";
-            }
-            $(".page-top").css("visibility", visibility);
-            document.getElementById("table_head").style.display = display;
-        }
-        window.addEventListener("scroll", scrollHead, false);
-    }
-
-    
-    function getBitrateStatus(index, size) {
-        return tryCatch(function () { return Client.Management().Device.Video.Input.Diagnostics.List(index, size); });
-        //var list = new BitrateStatusList();
-        //list.Page.PageIndex = 1;
-        //list.Page.PageCount = 1;
-        //list.Page.PageSize = 20;
-        //list.Page.RecordCount = 20;
-        //list.Page.TotalRecordCount = 20;
-        //for (var i = 0; i < 20; ) {
-        //    var cid = "003101010311111110000010010000" + (++i < 10 ? "0" : "") + i;
-        //    var status = new BitrateStatus();
-        //    status.Id = cid;
-        //    status.Bitrate = Math.floor(Math.random() * 1000000);
-        //    status.ErrorPacket = Math.floor(Math.random() * 1000000);
-            
-        //    status.LostPacket = Math.floor(Math.random() * 1000000);
-        //    status.ReceivedPacket = Math.floor(Math.random() * 1000000);
-
-        //    status.TotalPacket = status.ReceivedPacket + status.LostPacket + status.ErrorPacket
-
-        //    list.BitrateStatus.push(status);
-        //}
-        //return list;
-    }
-
-    function LazyLoad(index) {
-        tryCatch(function () {
-            var json = getBitrateStatus(index + 1, 20);
-            LazyLoadPage = json.Page;
-            for (var i = 0; i < json.BitrateStatus.length ; i++) {
-                var values = new Array();
-                for (var j = 0; j < 30; j++) {
-                    values[j] = 0;
-                }
-                list.push(values);
-            }
-            fillTable(json);
-            for (var i = 0; i < json.BitrateStatus.length; i++) {
-                sparklineInitialization("#" + setId(json.BitrateStatus[i].Id, ControlIdPrefix.chart));
-            }
-        });
-    }
-
-
-    function sparklineInitialization(id, value) {
-        $(id).sparkline(value, {
-            type: "line",
-            width: "150",
-            height: "30",
-            lineColor: "#2f7ed8",
-            fillColor: "rgba(244, 252, 225, 0.0)",
-            lineWidth: 2,
-            spotRadius: 0,
-            chartRangeMin: 0
-        });
-    }
-
-    onload = diagnostics_device_video_input_list_load;
-    //onload = init;
+  onload = diagnostics_device_video_input_list_load
+  //onload = init;
 </script>

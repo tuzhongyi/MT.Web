@@ -1,120 +1,219 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head><meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>修改部门关联设备权限</title>
     <link rel="stylesheet" type="text/css" href="../../../css/howell.css" />
-    <link rel="stylesheet" type="text/css" href="../../../css/bootstrap/bootstrap-switch.css" />
-    <script type="text/javascript" src="../../../js/language/chinese.js"></script>
-    <script type="text/javascript" src="../../../js/jquery/jquery-1.10.2.min.js"></script><script src="../../../js/imported.js"></script>
-    <script type="text/javascript" src="../../../js/jquery/jquery-ui.js"></script>
-    <script type="text/javascript" src="../../../js/jquery/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="../../../js/bootstrap/bootstrap.min.js"></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../../css/bootstrap/bootstrap-switch.css"
+    />
+    <script
+      type="text/javascript"
+      src="../../../js/language/chinese.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../js/jquery/jquery-3.6.0.min.js"
+    ></script>
+    <script src="../../../js/imported.js"></script>
+    <script
+      type="text/javascript"
+      src="../../../js/jquery/jquery-ui.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../js/jquery/jquery.dataTables.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../js/bootstrap/bootstrap.min.js"
+    ></script>
     <script type="text/javascript" src="../../../js/nav.js"></script>
-    
-    <script type="text/javascript" src="../../../js/jquery/jquery.confirm.js"></script>
-    <script type="text/javascript" src="../../../js/modernizr.custom.js"></script>
+
+    <script
+      type="text/javascript"
+      src="../../../js/jquery/jquery.confirm.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../js/modernizr.custom.js"
+    ></script>
     <script type="text/javascript" src="../../../js/md5.js"></script>
-    <script type="text/javascript" src="../../../js/howell.js/howell.js"></script>
-    <script type="text/javascript" src="../../../js/howell.js/digest.js"></script>
-    <script type="text/javascript" src="../../../js/howell.js/httpService.js"></script>
-    <script type="text/javascript" src="../../../js/client/security.js"></script>
-    <script type="text/javascript" src="../../../js/client/management.js"></script>
+    <script
+      type="text/javascript"
+      src="../../../js/howell.js/howell.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../js/howell.js/digest.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../js/howell.js/httpService.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../js/client/security.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../js/client/management.js"
+    ></script>
     <script type="text/javascript" src="../../../js/client/enum.js"></script>
     <script type="text/javascript" src="../../../js/client/struct.js"></script>
-    <script type="text/javascript" src="../../../js/howell.js/howell.control.js"></script>
-    <script type="text/javascript" src="../../../js/jquery/jquery.confirm.js"></script>
-    <script type="text/javascript" src="../../../js/bootstrap/bootstrap-switch.min.js"></script>
-    <script type="text/javascript" src="../../../js/background/security/background_department.event.js"></script>
-    <script type="text/javascript" src="../../../js/background/security/background_departments.js"></script>
-    <script type="text/javascript" src="../../../js/background/security/department/device/background_department_devices.js"></script>
-    <script type="text/javascript" src="../../../js/background/security/department/device/background_department_device_details.js"></script>
+    <script
+      type="text/javascript"
+      src="../../../js/howell.js/howell.control.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../js/jquery/jquery.confirm.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../js/bootstrap/bootstrap-switch.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../js/background/security/background_department.event.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../js/background/security/background_departments.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../js/background/security/department/device/background_department_devices.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../js/background/security/department/device/background_department_device_details.js"
+    ></script>
     <script type="text/javascript" src="department_device_details.js"></script>
 
     <script type="text/javascript">
-        Trigger = document.createElement("a");
-        Trigger.href = document.location + "?departmentId=00310101821111111000001000000000&deviceId=00310101031111111000007000000000";
-        Property.DeviceList.Association.value["00310101031111111000007000000000"] = Client.Security().Department.Device.Get("00310101821111111000001000000000", "00310101031111111000007000000000");
-        PageEvent.Department.ModifyDeviceListItem = function () {
-            alert("修改页面事件触发");
-        }
+      Trigger = document.createElement('a')
+      Trigger.href =
+        document.location +
+        '?departmentId=00310101821111111000001000000000&deviceId=00310101031111111000007000000000'
+      Property.DeviceList.Association.value[
+        '00310101031111111000007000000000'
+      ] = Client.Security().Department.Device.Get(
+        '00310101821111111000001000000000',
+        '00310101031111111000007000000000'
+      )
+      PageEvent.Department.ModifyDeviceListItem = function () {
+        alert('修改页面事件触发')
+      }
     </script>
-</head>
-<body>
-    <div style="margin:0 auto; height:290px;width:500px">
-        <div class="row heading" style="color:#007aff;margin-left:10px;margin-top:10px;font-size:24px">
-            修改设备权限
-        </div>
-        <div class="widget-content padded" style="margin-top:15px">
-            <form action="#" class="form-horizontal">
-                <div class="form-group">
-                    <label class="control-label col-md-3">
-                        设备名称
-                    </label>
-                    <div class="col-md-7">
-                        <input class="form-control" type="text" id="txtPermissionName" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label col-md-3">
-                        设备权限
-                    </label>
-                    <div class="col-md-7">
-                        <input class="form-control" type="text" id="txtPermissions" readonly="readonly" style="background-color:white;cursor:default" />
-                        <input type="hidden" id="subvalue" value="None" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label col-md-3">
-                    </label>
-                    <div class="col-md-9">
-                        <div class="checkbox_container">
-                            <label class="checkbox-inline checkbox_control" onclick="makeStop = false; PopoverWindow.CanClose = false;">
-                                <input type="checkbox" id="chkSystem" onchange="getDevicePermissionsCheckBox(this, 'System');" value="System" /><span></span>
-                            </label>
-                            <label class="checkbox_info">
-                                系统
-                            </label>
-                        </div>
-                        <div class="checkbox_container">
-                            <label class="checkbox-inline checkbox_control" onclick="makeStop = false; PopoverWindow.CanClose = false;">
-                                <input type="checkbox" id="chkMedia" onchange="getDevicePermissionsCheckBox(this, 'Media');" value="Media" /><span></span>
-                            </label>
-                            <label class="checkbox_info">
-                                媒体
-                            </label>
-                        </div>
-                        <div class="checkbox_container">
-                            <label class="checkbox-inline checkbox_control" onclick="makeStop = false; PopoverWindow.CanClose = false;">
-                                <input type="checkbox" id="chkLogs" onchange="getDevicePermissionsCheckBox(this, 'Logs');" value="Logs" /><span></span>
-                            </label>
-                            <label class="checkbox_info">
-                                日志
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-        <div class="row">
-            <div class="form-group" style="margin-top:5px">
-                <label class="control-label col-md-6">
-                </label>
-                <div class="col-md-3">
-                    <a class="btn btn-primary" onclick="return btnDetailDepartment_Device_Click();">
-                        确&ensp;&ensp;定
-                    </a>
-                </div>
-                <div class="col-md-2">
-                    <a class="btn btn-primary" onclick="return AlertWindow.Close();">
-                        取&ensp;&ensp;消
-                    </a>
-                </div>
+  </head>
+  <body>
+    <div style="margin: 0 auto; height: 290px; width: 500px">
+      <div
+        class="row heading"
+        style="
+          color: #007aff;
+          margin-left: 10px;
+          margin-top: 10px;
+          font-size: 24px;
+        "
+      >
+        修改设备权限
+      </div>
+      <div class="widget-content padded" style="margin-top: 15px">
+        <form action="#" class="form-horizontal">
+          <div class="form-group">
+            <label class="control-label col-md-3"> 设备名称 </label>
+            <div class="col-md-7">
+              <input class="form-control" type="text" id="txtPermissionName" />
             </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-md-3"> 设备权限 </label>
+            <div class="col-md-7">
+              <input
+                class="form-control"
+                type="text"
+                id="txtPermissions"
+                readonly="readonly"
+                style="background-color: white; cursor: default"
+              />
+              <input type="hidden" id="subvalue" value="None" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-md-3"> </label>
+            <div class="col-md-9">
+              <div class="checkbox_container">
+                <label
+                  class="checkbox-inline checkbox_control"
+                  onclick="makeStop = false; PopoverWindow.CanClose = false;"
+                >
+                  <input
+                    type="checkbox"
+                    id="chkSystem"
+                    onchange="getDevicePermissionsCheckBox(this, 'System');"
+                    value="System"
+                  /><span></span>
+                </label>
+                <label class="checkbox_info"> 系统 </label>
+              </div>
+              <div class="checkbox_container">
+                <label
+                  class="checkbox-inline checkbox_control"
+                  onclick="makeStop = false; PopoverWindow.CanClose = false;"
+                >
+                  <input
+                    type="checkbox"
+                    id="chkMedia"
+                    onchange="getDevicePermissionsCheckBox(this, 'Media');"
+                    value="Media"
+                  /><span></span>
+                </label>
+                <label class="checkbox_info"> 媒体 </label>
+              </div>
+              <div class="checkbox_container">
+                <label
+                  class="checkbox-inline checkbox_control"
+                  onclick="makeStop = false; PopoverWindow.CanClose = false;"
+                >
+                  <input
+                    type="checkbox"
+                    id="chkLogs"
+                    onchange="getDevicePermissionsCheckBox(this, 'Logs');"
+                    value="Logs"
+                  /><span></span>
+                </label>
+                <label class="checkbox_info"> 日志 </label>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="row">
+        <div class="form-group" style="margin-top: 5px">
+          <label class="control-label col-md-6"> </label>
+          <div class="col-md-3">
+            <a
+              class="btn btn-primary"
+              onclick="return btnDetailDepartment_Device_Click();"
+            >
+              确&ensp;&ensp;定
+            </a>
+          </div>
+          <div class="col-md-2">
+            <a class="btn btn-primary" onclick="return AlertWindow.Close();">
+              取&ensp;&ensp;消
+            </a>
+          </div>
         </div>
+      </div>
     </div>
     <script type="text/javascript">
-        department_device_detail_load();
+      department_device_detail_load()
     </script>
-</body>
+  </body>
 </html>

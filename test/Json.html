@@ -1,26 +1,25 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
-    <script src="../js/jquery/jquery-1.10.2.min.js"></script>
+    <script src="../js/jquery/jquery-3.6.0.min.js"></script>
     <script type="text/javascript">
-        var message = "{\"Id\":\"3ac94621e21c4e698132253eb56defe9\",\"DeviceId\":\"00310101031111111000002000000000\",\"Channel\":1,\"Stream\":1,\"CreationTime\":\"2016-06-08T05:32:38.695987Z\",\"BeginTime\":\"2016-06-08T05:10:07Z\",\"EndTime\":\"2016-06-08T05:15:07Z\",\"ExpiredTime\":\"2016-06-08T06:02:38.695987Z\",\"FileFormat\":\"AVI\",\"AvgSpeed\":0,\"URL\":\"D:\\\\Downloads\\\\00310101031111111000002000000000_CH01_S1_2016_06_08_13_10_07_2016_06_08_13_15_07.avi\",\"Status\":{\"ProcessingProgress\":100,\"Speed\":NaN,\"State\":\"Finished\"}}"
-        var NaN = null;
-        function test()
-        {
-            try {
-                var json = $.parseJSON(message);
-                alert(json.Id);
-            } catch (e) {
-                alert(e.message );
-            }
-
+      var message =
+        '{"Id":"3ac94621e21c4e698132253eb56defe9","DeviceId":"00310101031111111000002000000000","Channel":1,"Stream":1,"CreationTime":"2016-06-08T05:32:38.695987Z","BeginTime":"2016-06-08T05:10:07Z","EndTime":"2016-06-08T05:15:07Z","ExpiredTime":"2016-06-08T06:02:38.695987Z","FileFormat":"AVI","AvgSpeed":0,"URL":"D:\\\\Downloads\\\\00310101031111111000002000000000_CH01_S1_2016_06_08_13_10_07_2016_06_08_13_15_07.avi","Status":{"ProcessingProgress":100,"Speed":NaN,"State":"Finished"}}'
+      var NaN = null
+      function test() {
+        try {
+          var json = $.parseJSON(message)
+          alert(json.Id)
+        } catch (e) {
+          alert(e.message)
         }
+      }
     </script>
-</head>
+  </head>
 
-<body>
-    <a onclick="test()" href="#">show</a>
-</body>
+  <body>
+    <a onclick="test()">show</a>
+  </body>
 </html>

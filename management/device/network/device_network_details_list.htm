@@ -1,15 +1,23 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head><meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>网络接口详细列表</title>
     <link href="../../../css/howell.css" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="../../../css/bootstrap/bootstrap-switch.css" />
-    <script src="../../../js/jquery/jquery-1.10.2.min.js"></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../../css/bootstrap/bootstrap-switch.css"
+    />
+    <script src="../../../js/jquery/jquery-3.6.0.min.js"></script>
     <script src="../../../js/jquery/jquery-ui.js"></script>
     <script src="../../../js/bootstrap/bootstrap.min.js"></script>
     <script src="../../../js/modernizr.custom.js"></script>
-    <script type="text/javascript" src="../../../js/bootstrap/bootstrap-switch.min.js"></script>
+    <script
+      type="text/javascript"
+      src="../../../js/bootstrap/bootstrap-switch.min.js"
+    ></script>
     <script src="../../../js/imported.js"></script>
     <script src="../../../js/howell.js/howell.js"></script>
     <script src="../../../js/howell.js/howell.control.js"></script>
@@ -18,258 +26,285 @@
     <script src="../../../js/language/chinese.js"></script>
     <script src="../../../js/client/client.js"></script>
     <script src="../../../js/client/management.js"></script>
-    
+
     <script src="../../../js/nav.js"></script>
-</head>
-<body>
-    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-switch.css" />
+  </head>
+  <body>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="css/bootstrap/bootstrap-switch.css"
+    />
     <script src="js/modernizr.custom.js"></script>
-    <script type="text/javascript" src="js/bootstrap/bootstrap-switch.min.js"></script>
+    <script
+      type="text/javascript"
+      src="js/bootstrap/bootstrap-switch.min.js"
+    ></script>
     <script src="js/client/management.js"></script>
 
     <style type="text/css">
-        .compare-float-heading-tag-div {
-            height: 27px;
-            margin-top: 0px;
-        }
+      .compare-float-heading-tag-div {
+        height: 27px;
+        margin-top: 0px;
+      }
 
-        .interface-port {
-            width: 44px;
-        }
+      .interface-port {
+        width: 44px;
+      }
 
-        .addressing-type {
-            width: 100px;
-        }
+      .addressing-type {
+        width: 100px;
+      }
 
-        .ipv4-address {
-            width: 121px;
-        }
+      .ipv4-address {
+        width: 121px;
+      }
 
-        .ipv6-address {
-            width: 138px;
-        }
+      .ipv6-address {
+        width: 138px;
+      }
 
-        .physcial-address {
-            width: 133px;
-        }
+      .physcial-address {
+        width: 133px;
+      }
 
-        .cable-type {
-            width: 77px;
-        }
+      .cable-type {
+        width: 77px;
+      }
 
-        .speed-duplex {
-            width: 83px;
-        }
+      .speed-duplex {
+        width: 83px;
+      }
 
-        .work-mode {
-            width: 86px;
-        }
+      .work-mode {
+        width: 86px;
+      }
 
-        .mtu {
-            width: 97px;
-        }
+      .mtu {
+        width: 97px;
+      }
 
-        .wireless {
-            width: 44px;
-        }
+      .wireless {
+        width: 44px;
+      }
     </style>
     <div class="heading compare-float-heading-div" id="table_loading_head">
-        <div class="form-group compare-float-heading-title-div">
-            &ensp;<i class="icon-code-fork" style="font-size:22px"></i>
-            <label class="compare-float-heading-title-label">网络接口详细列表</label>
-        </div>
-        <div class="compare-float-heading-tag-div">
-            <table id="table" class="table table-filters compare-channel-table" style="margin-left:15px;">
-                <thead class="" id="test1">
-                    <tr style="text-align:center;">
-                        <td class="interface-port">
-                            编号
-                        </td>
-                        <td class="addressing-type">
-                            地址获取方式
-                        </td>
-                        <td class="ipv4-address">
-                            IPv4地址
-                        </td>
-                        <td class="ipv6-address">
-                            IPv6地址
-                        </td>
-                        <td class="physcial-address">
-                            物理地址
-                        </td>
-                        <td class="cable-type">
-                            接口类型
-                        </td>
-                        <td class="speed-duplex">
-                            速率 Mbps
-                        </td>
-                        <td class="work-mode">
-                            工作模式
-                        </td>
-                        <td class="mtu">
-                            最大传输单元
-                        </td>
-                        <td class="wireless">
-                            wifi
-                        </td>
-                    </tr>
-                </thead>
-                <!--<tbody id="tbody"></tbody>-->
-            </table>
-        </div>
+      <div class="form-group compare-float-heading-title-div">
+        &ensp;<i class="icon-code-fork" style="font-size: 22px"></i>
+        <label class="compare-float-heading-title-label"
+          >网络接口详细列表</label
+        >
+      </div>
+      <div class="compare-float-heading-tag-div">
+        <table
+          id="table"
+          class="table table-filters compare-channel-table"
+          style="margin-left: 15px"
+        >
+          <thead class="" id="test1">
+            <tr style="text-align: center">
+              <td class="interface-port">编号</td>
+              <td class="addressing-type">地址获取方式</td>
+              <td class="ipv4-address">IPv4地址</td>
+              <td class="ipv6-address">IPv6地址</td>
+              <td class="physcial-address">物理地址</td>
+              <td class="cable-type">接口类型</td>
+              <td class="speed-duplex">速率 Mbps</td>
+              <td class="work-mode">工作模式</td>
+              <td class="mtu">最大传输单元</td>
+              <td class="wireless">wifi</td>
+            </tr>
+          </thead>
+          <!--<tbody id="tbody"></tbody>-->
+        </table>
+      </div>
     </div>
     <div class="page-main row">
-        <div class="col-md-12">
-            <div class="widget-container fluid-height clearfix list-width padded background-min-height">
-                <div class="heading compare-heading-div page-top" id="test2">
-                    <div class="form-group table-heading-div">
-                        &ensp;<i class="icon-code-fork" style="font-size:22px"></i>
-                        网络接口详细列表
-                    </div>
-                </div>
-                <table id="table" class="table table-filters compare-channel-table">
-                    <thead class="page-top" id="test1">
-                        <tr style="text-align:center;">
-                            <td class="interface-port">
-                                编号
-                            </td>
-                            <td class="addressing-type">
-                                地址获取方式
-                            </td>
-                            <td class="ipv4-address">
-                                IPv4地址
-                            </td>
-                            <td class="ipv6-address">
-                                IPv6地址
-                            </td>
-                            <td class="physcial-address">
-                                物理地址
-                            </td>
-                            <td class="cable-type">
-                                接口类型
-                            </td>
-                            <td class="speed-duplex">
-                                速率 Mbps
-                            </td>
-                            <td class="work-mode">
-                                工作模式
-                            </td>
-                            <td class="mtu">
-                                最大传输单元
-                            </td>
-                            <td class="wireless">
-                                wifi
-                            </td>
-                        </tr>
-                    </thead>
-                    <tbody id="tbody"></tbody>
-                </table>
+      <div class="col-md-12">
+        <div
+          class="widget-container fluid-height clearfix list-width padded background-min-height"
+        >
+          <div class="heading compare-heading-div page-top" id="test2">
+            <div class="form-group table-heading-div">
+              &ensp;<i class="icon-code-fork" style="font-size: 22px"></i>
+              网络接口详细列表
             </div>
-            <div class="col-md-12 lazyload-div" id="lazy">
-
-            </div>
+          </div>
+          <table id="table" class="table table-filters compare-channel-table">
+            <thead class="page-top" id="test1">
+              <tr style="text-align: center">
+                <td class="interface-port">编号</td>
+                <td class="addressing-type">地址获取方式</td>
+                <td class="ipv4-address">IPv4地址</td>
+                <td class="ipv6-address">IPv6地址</td>
+                <td class="physcial-address">物理地址</td>
+                <td class="cable-type">接口类型</td>
+                <td class="speed-duplex">速率 Mbps</td>
+                <td class="work-mode">工作模式</td>
+                <td class="mtu">最大传输单元</td>
+                <td class="wireless">wifi</td>
+              </tr>
+            </thead>
+            <tbody id="tbody"></tbody>
+          </table>
         </div>
+        <div class="col-md-12 lazyload-div" id="lazy"></div>
+      </div>
     </div>
-    <a class="to-back" href="management/devices.htm" onclick="loadContent(base64encode(this.href)); return false;">
-        <div class="pic"></div>
+    <a
+      class="to-back"
+      href="management/devices.htm"
+      onclick="loadContent(base64encode(this.href)); return false;"
+    >
+      <div class="pic"></div>
     </a>
     <script type="text/javascript">
-
-    var Property = {
+      var Property = {
         deviceId: null,
         value: new Dictionary(),
         page: new Page(),
         load: function (index, size) {
-            var response = tryCatch(function () {
-                return Client.Management().Device.Network.List(Property.deviceId, index, size);
-            });
-            var result = new Array();
-            if (response) {
-                this.page = response.Page;
-                for (var i = 0; i < response.NetworkInterface.length; i++) {
-                    var network = response.NetworkInterface[i];
-                    this.value[network.Id] = network;
-                    result.push(network);
-                }
+          var response = tryCatch(function () {
+            return Client.Management().Device.Network.List(
+              Property.deviceId,
+              index,
+              size
+            )
+          })
+          var result = new Array()
+          if (response) {
+            this.page = response.Page
+            for (var i = 0; i < response.NetworkInterface.length; i++) {
+              var network = response.NetworkInterface[i]
+              this.value[network.Id] = network
+              result.push(network)
             }
-            return result;
-        }
-    };
-    var Html = {
+          }
+          return result
+        },
+      }
+      var Html = {
         init: function () {
-            var uri = new Uri(Trigger.href);
-            if (uri.Query && uri.Querys.deviceId) {
-                Property.deviceId = uri.Querys.deviceId;
-            }
+          var uri = new Uri(Trigger.href)
+          if (uri.Query && uri.Querys.deviceId) {
+            Property.deviceId = uri.Querys.deviceId
+          }
         },
         load: function (controlId, index, size) {
-            var list = Property.load(index, size)
+          var list = Property.load(index, size)
 
-            var table = getTag(controlId);
-            table.style.textAlign = "center";
-            table.style.verticalAlign = "middle";
-            for (var i = 0; i < list.length; i++) {
+          var table = getTag(controlId)
+          table.style.textAlign = 'center'
+          table.style.verticalAlign = 'middle'
+          for (var i = 0; i < list.length; i++) {
+            var tr = document.createElement('tr')
 
-                var tr = document.createElement("tr");
+            tr.appendChild(new TableBodyTd(list[i].InterfacePort))
+            //tr.appendChild(new TableBodyTd("<a id='" + list[i].Id + "' href='device_network_modify.htm?deviceId=" + Property.deviceId + "&networkId=" + list[i].Id + "' onclick='return AlertWindow_Click(this,100)'>" + list[i].InterfacePort + "</a>")[0]);
+            tr.appendChild(
+              new TableBodyTd(
+                Language.Enum.NetworkAddressingType[list[i].AddressingType]
+              )
+            )
+            tr.appendChild(
+              new TableBodyTd(
+                list[i].IPAddress.IPv4Address
+                  ? "<a id='v4_" +
+                    list[i].Id +
+                    "' href='management/device/network/device_network_ipv4_details.htm?networkId=" +
+                    list[i].Id +
+                    "' onclick='return AlertWindow_Click(this,250)'>" +
+                    list[i].IPAddress.IPv4Address.Address +
+                    '</a>'
+                  : '无'
+              )
+            )
+            tr.appendChild(
+              new TableBodyTd(
+                list[i].IPAddress.IPv6Address
+                  ? "<a id='v6_" +
+                    list[i].Id +
+                    "' href='management/device/network/device_network_ipv6_details.htm?networkId=" +
+                    list[i].Id +
+                    "' onclick='return AlertWindow_Click(this,250)'>" +
+                    list[i].IPAddress.IPv6Address.Address +
+                    '</a>'
+                  : '无'
+              )
+            )
 
-                tr.appendChild(new TableBodyTd(list[i].InterfacePort));
-                //tr.appendChild(new TableBodyTd("<a id='" + list[i].Id + "' href='device_network_modify.htm?deviceId=" + Property.deviceId + "&networkId=" + list[i].Id + "' onclick='return AlertWindow_Click(this,100)'>" + list[i].InterfacePort + "</a>")[0]);
-                tr.appendChild(new TableBodyTd(Language.Enum.NetworkAddressingType[list[i].AddressingType]));
-                tr.appendChild(new TableBodyTd(list[i].IPAddress.IPv4Address ? "<a id='v4_" + list[i].Id + "' href='management/device/network/device_network_ipv4_details.htm?networkId=" + list[i].Id + "' onclick='return AlertWindow_Click(this,250)'>" + list[i].IPAddress.IPv4Address.Address + "</a>" : "无"));
-                tr.appendChild(new TableBodyTd(list[i].IPAddress.IPv6Address ? "<a id='v6_" + list[i].Id + "' href='management/device/network/device_network_ipv6_details.htm?networkId=" + list[i].Id + "' onclick='return AlertWindow_Click(this,250)'>" + list[i].IPAddress.IPv6Address.Address + "</a>" : "无"));
+            tr.appendChild(new TableBodyTd(list[i].PhyscialAddress))
+            tr.appendChild(
+              new TableBodyTd(Language.Enum.NetworkCableType[list[i].CableType])
+            )
+            tr.appendChild(
+              new TableBodyTd(
+                Language.Enum.NetworkSpeedDuplex[list[i].SpeedDuplex]
+              )
+            )
+            tr.appendChild(
+              new TableBodyTd(
+                Language.Enum.NetworkInterfaceWorkMode[list[i].WorkMode]
+              )
+            )
+            tr.appendChild(new TableBodyTd(list[i].MTU))
+            tr.appendChild(
+              new TableBodyTd(
+                list[i].Wireless
+                  ? "<a id='wireless_" +
+                    list[i].Id +
+                    "' href='management/device/network/device_network_wireless.htm?networkId=" +
+                    list[i].Id +
+                    "' onclick='return AlertWindow_Click(this)'><div class='icon_wifi'></div></a>"
+                  : '无'
+              )
+            )
 
-                tr.appendChild(new TableBodyTd(list[i].PhyscialAddress));
-                tr.appendChild(new TableBodyTd(Language.Enum.NetworkCableType[list[i].CableType]));
-                tr.appendChild(new TableBodyTd(Language.Enum.NetworkSpeedDuplex[list[i].SpeedDuplex]));
-                tr.appendChild(new TableBodyTd(Language.Enum.NetworkInterfaceWorkMode[list[i].WorkMode]));
-                tr.appendChild(new TableBodyTd(list[i].MTU));
-                tr.appendChild(new TableBodyTd(list[i].Wireless ? "<a id='wireless_" + list[i].Id + "' href='management/device/network/device_network_wireless.htm?networkId=" + list[i].Id + "' onclick='return AlertWindow_Click(this)'><div class='icon_wifi'></div></a>" : "无"));
+            table.appendChild(tr)
+          }
+          LazyLoadPage = Property.page
+        },
+      }
 
-                table.appendChild(tr);
-            }
-            LazyLoadPage = Property.page;
-        }
-    }
+      function device_network_details_list_load() {
+        document.title = '网络接口详细列表'
+        Html.init()
+        Html.load('tbody', 1, 20)
 
-    function device_network_details_list_load() {
-        document.title = "网络接口详细列表";
-        Html.init();
-        Html.load("tbody", 1, 20);
-
-        var lazy = getTag("lazy");
-        lazy.appendChild(new LazyLoadControl("load-more", "加载中……", lazyLoad));
+        var lazy = getTag('lazy')
+        lazy.appendChild(new LazyLoadControl('load-more', '加载中……', lazyLoad))
         window.setTimeout(function () {
-            document.documentElement.scrollTop = 0;
-            isOnscroll = true;
-        }, 100);
+          document.documentElement.scrollTop = 0
+          isOnscroll = true
+        }, 100)
 
         scrollHead = function () {
-            var visibility = "visible";
-            var display = "none";
-            if (document.documentElement.scrollTop > 26) {
-                visibility = "hidden";
-                display = "block";
-            }
-            $(".page-top").css("visibility", visibility);
-            document.getElementById("table_head").style.display = display;
+          var visibility = 'visible'
+          var display = 'none'
+          if (document.documentElement.scrollTop > 26) {
+            visibility = 'hidden'
+            display = 'block'
+          }
+          $('.page-top').css('visibility', visibility)
+          document.getElementById('table_head').style.display = display
         }
-        window.addEventListener("scroll", scrollHead, false);
-    }
+        window.addEventListener('scroll', scrollHead, false)
+      }
 
-    function lazyLoad(index) {
+      function lazyLoad(index) {
         tryCatch(function () {
-            Html.load("tbody", index + 1, 20);
-            //Html.Control.GroupList.load(index + 1, Property.PageSize, Property.UserPermission);
-        });
-    }
+          Html.load('tbody', index + 1, 20)
+          //Html.Control.GroupList.load(index + 1, Property.PageSize, Property.UserPermission);
+        })
+      }
 
-    function AlertWindow_Click(sender, args) {
-        AlertWindow.Show(sender, args);
-        return false;
-    }
-    $(function () {
-        device_network_details_list_load();
-    });
+      function AlertWindow_Click(sender, args) {
+        AlertWindow.Show(sender, args)
+        return false
+      }
+      $(function () {
+        device_network_details_list_load()
+      })
     </script>
-</body>
+  </body>
 </html>

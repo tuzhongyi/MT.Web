@@ -1,109 +1,189 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head><meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>解码通道列表</title>
 
     <link rel="stylesheet" type="text/css" href="../../../css/howell.css" />
     <link href="../../../css/bootstrap/bootstrap-switch.css" rel="stylesheet" />
-    <script type="text/javascript" src="../../../js/language/chinese.js"></script>
-    <script type="text/javascript" src="../../../js/jquery/jquery-1.10.2.min.js"></script>
-    <script type="text/javascript" src="../../../js/jquery/jquery-ui.js"></script>
-    <script type="text/javascript" src="../../../js/jquery/jquery.confirm.js"></script>
-    <script type="text/javascript" src="../../../js/bootstrap/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../../../js/bootstrap/bootstrap-switch.min.js"></script>
+    <script
+      type="text/javascript"
+      src="../../../js/language/chinese.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../js/jquery/jquery-3.6.0.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../js/jquery/jquery-ui.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../js/jquery/jquery.confirm.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../js/bootstrap/bootstrap.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../js/bootstrap/bootstrap-switch.min.js"
+    ></script>
     <script type="text/javascript" src="../../../js/imported.js"></script>
-    <script type="text/javascript" src="../../../js/howell.js/howell.js"></script>
+    <script
+      type="text/javascript"
+      src="../../../js/howell.js/howell.js"
+    ></script>
     <script type="text/javascript" src="../../../js/nav.js"></script>
-    
+
     <script type="text/javascript" src="../../../js/client/struct.js"></script>
-    <script type="text/javascript" src="../../../js/client/management.js"></script>
-    <script type="text/javascript" src="../../../js/client/security.js"></script>
+    <script
+      type="text/javascript"
+      src="../../../js/client/management.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../js/client/security.js"
+    ></script>
     <script type="text/javascript" src="../../../js/client/client.js"></script>
-    <script type="text/javascript" src="../../../js/howell.js/howell.control.js"></script>
-    <script type="text/javascript" src="../../../js/modernizr.custom.js"></script>
-    <script type="text/javascript" src="../../../js/background/management/background_device.event.js"></script>
-    <script type="text/javascript" src="../../../js/background/management/device/background_device_video_decodings.js"></script>
+    <script
+      type="text/javascript"
+      src="../../../js/howell.js/howell.control.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../js/modernizr.custom.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../js/background/management/background_device.event.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../js/background/management/device/background_device_video_decodings.js"
+    ></script>
     <script type="text/javascript" src="device_video_decodings.js"></script>
-    <script type="text/javascript" src="decoding/device_video_decoding_details.js"></script>
+    <script
+      type="text/javascript"
+      src="decoding/device_video_decoding_details.js"
+    ></script>
     <style type="text/css">
-        .presentation {
-            padding-left: 0;
-        }
+      .presentation {
+        padding-left: 0;
+      }
 
-            .presentation li {
-                float: left;
-                margin-right: 15px;
-                list-style: none;
-            }
+      .presentation li {
+        float: left;
+        margin-right: 15px;
+        list-style: none;
+      }
 
-            .presentation [class^="icon-"] {
-                cursor: default;
-            }
+      .presentation [class^='icon-'] {
+        cursor: default;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="page-main row">
-        <div class="col-md-12">
-            <div class="widget-container fluid-height clearfix list-width padded background-min-height">
-                <div class="heading list-heading-maxdiv">
-                    <div class="form-group list-heading-div">
-                        &ensp;&ensp;<i class="icon-dc list-heading-icon mouse_default" style="height:20px;background-size:28px;margin-top:10px;width:30px;margin-left:3px;"></i>
-                        解码通道列表 <label class="list-count-lable">当前<span id="lblCurrentCount">0</span>条/共<span id="lblTotalCount">0</span>条</label>
-                    </div>
-                    <div>
-                        <ul class="presentation pull-left">
-                            <li><div class="icon-circle text-success "></div>已启用</li>
-                            <li><div class="icon-circle text-warning"></div>未启用</li>
-                        </ul>
-                        <div>
-                            <a class='btn btn-xs btn-primary-outline pull-right div-xsgroup' style='font-size:14px;padding-left:14px;' onclick="batchRemoveVideoDecodings_Click(this)" title="删除">
-                                <i class='icon-trash'></i>
-                            </a>
-                            <div id="btnAdd" title="添加解码通道">
-
-                            </div>
-                            <div class="btn-group  pull-right div-xsgroupdown" id="btn-operation">
-                                <div class="btn btn-xs btn-primary btn-xsgroupdown dropdown-toggle" data-toggle="dropdown" id="operation">
-                                    选&ensp;择&ensp;<span class="caret"></span>
-                                </div>
-                                <ul class="dropdown-menu xsgroupdown-menu-ul">
-                                    <li class="mouse_pointer">
-                                        <a class="xsgroupdown-menu-ul-li-a" onclick="GroupList.Select.All(Info.ControlIdPrefix.Device.Video.Decoding.item, GroupListItem_SelectAll);">
-                                            全选
-                                        </a>
-                                    </li>
-                                    <li class="mouse_pointer">
-                                        <a class="xsgroupdown-menu-ul-li-a" onclick="GroupList.Select.Inverse(Info.ControlIdPrefix.Device.Video.Decoding.item);">
-                                            反选
-                                        </a>
-                                    </li>
-                                    <li class="mouse_pointer">
-                                        <a class="xsgroupdown-menu-ul-li-a" onclick="GroupList.Select.Cancel(Info.ControlIdPrefix.Device.Video.Decoding.item, GroupListItem_Cancel);">
-                                            取消
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="glistPanel">
-
-                </div>
+      <div class="col-md-12">
+        <div
+          class="widget-container fluid-height clearfix list-width padded background-min-height"
+        >
+          <div class="heading list-heading-maxdiv">
+            <div class="form-group list-heading-div">
+              &ensp;&ensp;<i
+                class="icon-dc list-heading-icon mouse_default"
+                style="
+                  height: 20px;
+                  background-size: 28px;
+                  margin-top: 10px;
+                  width: 30px;
+                  margin-left: 3px;
+                "
+              ></i>
+              解码通道列表
+              <label class="list-count-lable"
+                >当前<span id="lblCurrentCount">0</span>条/共<span
+                  id="lblTotalCount"
+                  >0</span
+                >条</label
+              >
             </div>
-            <div class="col-md-12 lazyload-div" id="divLazyload">
-
+            <div>
+              <ul class="presentation pull-left">
+                <li>
+                  <div class="icon-circle text-success"></div>
+                  已启用
+                </li>
+                <li>
+                  <div class="icon-circle text-warning"></div>
+                  未启用
+                </li>
+              </ul>
+              <div>
+                <a
+                  class="btn btn-xs btn-primary-outline pull-right div-xsgroup"
+                  style="font-size: 14px; padding-left: 14px"
+                  onclick="batchRemoveVideoDecodings_Click(this)"
+                  title="删除"
+                >
+                  <i class="icon-trash"></i>
+                </a>
+                <div id="btnAdd" title="添加解码通道"></div>
+                <div
+                  class="btn-group pull-right div-xsgroupdown"
+                  id="btn-operation"
+                >
+                  <div
+                    class="btn btn-xs btn-primary btn-xsgroupdown dropdown-toggle"
+                    data-toggle="dropdown"
+                    id="operation"
+                  >
+                    选&ensp;择&ensp;<span class="caret"></span>
+                  </div>
+                  <ul class="dropdown-menu xsgroupdown-menu-ul">
+                    <li class="mouse_pointer">
+                      <a
+                        class="xsgroupdown-menu-ul-li-a"
+                        onclick="GroupList.Select.All(Info.ControlIdPrefix.Device.Video.Decoding.item, GroupListItem_SelectAll);"
+                      >
+                        全选
+                      </a>
+                    </li>
+                    <li class="mouse_pointer">
+                      <a
+                        class="xsgroupdown-menu-ul-li-a"
+                        onclick="GroupList.Select.Inverse(Info.ControlIdPrefix.Device.Video.Decoding.item);"
+                      >
+                        反选
+                      </a>
+                    </li>
+                    <li class="mouse_pointer">
+                      <a
+                        class="xsgroupdown-menu-ul-li-a"
+                        onclick="GroupList.Select.Cancel(Info.ControlIdPrefix.Device.Video.Decoding.item, GroupListItem_Cancel);"
+                      >
+                        取消
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
+          </div>
+          <div id="glistPanel"></div>
         </div>
+        <div class="col-md-12 lazyload-div" id="divLazyload"></div>
+      </div>
     </div>
     <div id="sc"></div>
     <a class="to-back" href="../../devices.htm">
-        <div class="pic"></div>
+      <div class="pic"></div>
     </a>
-</body>
+  </body>
 </html>
 <script type="text/javascript">
-    onload = device_video_decodings_load;
-    
+  onload = device_video_decodings_load
 </script>

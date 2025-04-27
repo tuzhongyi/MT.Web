@@ -1,13 +1,19 @@
-﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head><meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>数据管理中心-设置系统信息</title>
-    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.min.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="css/bootstrap/bootstrap.min.css"
+    />
     <link href="css/bootstrap/bootstrap.wizard.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="css/style.css" />
     <link href="css/howell.css" rel="stylesheet" />
     <script type="text/javascript" src="config.js"></script>
-    <script type="text/javascript" src="js/jquery/jquery-1.10.2.min.js"></script><script src="js/imported.js"></script>
+    <script type="text/javascript" src="js/jquery/jquery-3.6.0.min.js"></script>
+    <script src="js/imported.js"></script>
     <script type="text/javascript" src="js/jquery/jquery-ui.js"></script>
     <script type="text/javascript" src="js/modernizr.custom.js"></script>
     <script type="text/javascript" src="js/bootstrap/bootstrap.min.js"></script>
@@ -21,195 +27,229 @@
     <script type="text/javascript" src="js/client/client.js"></script>
 
     <script type="text/javascript">
-        var gbt = new GBT2260_2007();
+      var gbt = new GBT2260_2007()
 
-        function validate(id) {
-            $(id).removeClass("has-error");
-            if (!$(id).val()) {
-                $(id).focus();
-                $(id).addClass("has-error");
-                return false;
-            }
-            return true;
+      function validate(id) {
+        $(id).removeClass('has-error')
+        if (!$(id).val()) {
+          $(id).focus()
+          $(id).addClass('has-error')
+          return false
         }
+        return true
+      }
 
-        function init() {
-            var xml = loadXML("GBT2260-2007.xml");
-            readXmlByAttributes(xml, gbt);
-            var select = document.getElementById("ddlProvince");
-            var option = document.createElement("option");
-            option.value = "00";
-            option.innerText = "请选择...";
-            select.add(option);
+      function init() {
+        var xml = loadXML('GBT2260-2007.xml')
+        readXmlByAttributes(xml, gbt)
+        var select = document.getElementById('ddlProvince')
+        var option = document.createElement('option')
+        option.value = '00'
+        option.innerText = '请选择...'
+        select.add(option)
 
-            for (var i = 0; i < gbt.country[0].province.length; i++) {
-                option = document.createElement("option");
-                option.value = gbt.country[0].province[i].code.substr(0, 2);
-                option.innerText = gbt.country[0].province[i].name;
-                select.add(option);
-            }
-            ddlProvince_OnChange();
+        for (var i = 0; i < gbt.country[0].province.length; i++) {
+          option = document.createElement('option')
+          option.value = gbt.country[0].province[i].code.substr(0, 2)
+          option.innerText = gbt.country[0].province[i].name
+          select.add(option)
         }
+        ddlProvince_OnChange()
+      }
 
-        function bindCity(provinceCode, gbt) {
-            var select = document.getElementById("ddlCity");
-            select.innerHTML = "";
+      function bindCity(provinceCode, gbt) {
+        var select = document.getElementById('ddlCity')
+        select.innerHTML = ''
 
-            var option = document.createElement("option");
-            option.innerText = "请选择...";
-            option.value = "00";
-            select.add(option);
+        var option = document.createElement('option')
+        option.innerText = '请选择...'
+        option.value = '00'
+        select.add(option)
 
-            for (var i = 0; i < gbt.country[0].province.length; i++) {
-                if (gbt.country[0].province[i].code.indexOf(provinceCode) == 0) {
-                    for (var j = 0; j < gbt.country[0].province[i].city.length; j++) {
-                        option = document.createElement("option");                        
-                        option.value = gbt.country[0].province[i].city[j].code.substr(2, 2);
-                        option.innerText = gbt.country[0].province[i].city[j].name;
-                        select.add(option);
-                    }
+        for (var i = 0; i < gbt.country[0].province.length; i++) {
+          if (gbt.country[0].province[i].code.indexOf(provinceCode) == 0) {
+            for (var j = 0; j < gbt.country[0].province[i].city.length; j++) {
+              option = document.createElement('option')
+              option.value = gbt.country[0].province[i].city[j].code.substr(
+                2,
+                2
+              )
+              option.innerText = gbt.country[0].province[i].city[j].name
+              select.add(option)
+            }
 
-                    return;
+            return
+          }
+        }
+      }
+
+      function bindCounty(provinceCode, cityCode, gbt) {
+        var select = document.getElementById('ddlCounty')
+        select.innerHTML = ''
+
+        var option = document.createElement('option')
+        option.innerText = '请选择...'
+        option.value = '00'
+        select.add(option)
+
+        for (var i = 0; i < gbt.country[0].province.length; i++) {
+          if (gbt.country[0].province[i].code.indexOf(provinceCode) == 0) {
+            for (var j = 0; j < gbt.country[0].province[i].city.length; j++) {
+              if (
+                gbt.country[0].province[i].city[j].code.indexOf(cityCode) ==
+                  2 &&
+                gbt.country[0].province[i].city[j].county != null
+              ) {
+                for (
+                  var k = 0;
+                  k < gbt.country[0].province[i].city[j].county.length;
+                  k++
+                ) {
+                  option = document.createElement('option')
+                  option.value =
+                    gbt.country[0].province[i].city[j].county[k].code.substr(4)
+                  option.innerText =
+                    gbt.country[0].province[i].city[j].county[k].name
+                  select.add(option)
                 }
+              }
             }
+          }
         }
+      }
 
-        function bindCounty(provinceCode, cityCode, gbt) {
-            var select = document.getElementById("ddlCounty");
-            select.innerHTML = "";
+      function ddlProvince_OnChange() {
+        var province = document.getElementById('ddlProvince')
+        bindCity(province.value, gbt)
+        ddlCity_OnChange()
+      }
+      function ddlCity_OnChange() {
+        var city = document.getElementById('ddlCity')
+        var province = document.getElementById('ddlProvince')
+        bindCounty(province.value, city.value, gbt)
+      }
 
-            var option = document.createElement("option");
-            option.innerText = "请选择...";
-            option.value = "00";
-            select.add(option);
+      function setInfo() {
+        if (
+          !validate('#txtProjectNumber') ||
+          !validate('#ddlProvince') ||
+          !validate('#ddlCity')
+        )
+          return false
 
-            for (var i = 0; i < gbt.country[0].province.length; i++) {
-                if (gbt.country[0].province[i].code.indexOf(provinceCode) == 0) {
-                    for (var j = 0; j < gbt.country[0].province[i].city.length; j++) {
-                        if (gbt.country[0].province[i].city[j].code.indexOf(cityCode) == 2 &&
-                            gbt.country[0].province[i].city[j].county != null) {
-                            for (var k = 0; k < gbt.country[0].province[i].city[j].county.length; k++) {
-                                option = document.createElement("option");
-                                option.value = gbt.country[0].province[i].city[j].county[k].code.substr(4);
-                                option.innerText = gbt.country[0].province[i].city[j].county[k].name;
-                                select.add(option);
-                            }
-                        }
-                    }
-                }
-            }
+        if (
+          document.getElementById('ddlCounty').options.length > 1 &&
+          !validate('#ddlCounty')
+        )
+          return false
+
+        var info = new SystemInformation()
+
+        info.Province = parseInt(document.getElementById('ddlProvince').value)
+        info.City = parseInt(document.getElementById('ddlCity').value)
+        info.County = parseInt(document.getElementById('ddlCounty').value)
+        info.ProjectNumber = parseInt(
+          document.getElementById('txtProjectNumber').value
+        )
+        info.ProjectNumberSpecified = true
+        info.ProjectName = document.getElementById('txtProjectName').value
+        info.ProjectNameSpecified = true
+
+        var json = Client.System().setInfo(info)
+
+        if (json.FaultCode != 0) {
+          var div = document.getElementById('divAlert')
+          var lbl = document.getElementById('lblAlert')
+          div.style.display = 'block'
+          lbl.innerText =
+            Language.service.exception.ServiceException[json.FaultReason]
+          $('#divAlert').fadeOut(3000)
+
+          return false
         }
+        document.location = 'init_createAdmin.htm'
+        return true
+      }
 
-        function ddlProvince_OnChange() {
-            var province = document.getElementById("ddlProvince");
-            bindCity(province.value, gbt);
-            ddlCity_OnChange();
-        }
-        function ddlCity_OnChange() {
-            var city = document.getElementById("ddlCity");
-            var province = document.getElementById("ddlProvince");
-            bindCounty(province.value, city.value, gbt);
-        }
-
-
-        function setInfo() {
-
-            if (!validate("#txtProjectNumber") || !validate("#ddlProvince") || !validate("#ddlCity"))
-                return false;
-
-            if (document.getElementById("ddlCounty").options.length > 1 && !validate("#ddlCounty"))
-                return false;
-
-            var info = new SystemInformation();
-
-            info.Province = parseInt(document.getElementById("ddlProvince").value);
-            info.City = parseInt(document.getElementById("ddlCity").value);
-            info.County = parseInt(document.getElementById("ddlCounty").value);
-            info.ProjectNumber = parseInt(document.getElementById("txtProjectNumber").value);
-            info.ProjectNumberSpecified = true;
-            info.ProjectName = document.getElementById("txtProjectName").value;
-            info.ProjectNameSpecified = true;
-
-            var json = Client.System().setInfo(info);
-            
-            if (json.FaultCode != 0) {
-                var div = document.getElementById("divAlert");
-                var lbl = document.getElementById("lblAlert");
-                div.style.display = "block";
-                lbl.innerText = Language.service.exception.ServiceException[json.FaultReason];
-                $("#divAlert").fadeOut(3000);
-
-                return false;
-            }
-            document.location = "init_createAdmin.htm";
-            return true;
-        }
-
-        onload = init;
+      onload = init
     </script>
-</head>
-<body>
-            <div class="page-title">
-                <h1>
-                    初始化向导
-                </h1>
-            </div>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="widget-container fluid-height">
-                <div class="padded">
-                    <div class="row">
-                        <div class="col-md-3">
-                        </div>
-                        <div class="col-md-5">
-                            <center><h3>设置系统信息</h3></center>
-                            <form role="form" class="form-horizontal">
-                                <div class="form-group">
-                                    <label>
-                                        项目编码
-                                    </label><input type="text" placeholder="7位数字" class="form-control" id="txtProjectNumber" />
-                                </div>
-                                <div class="form-group">
-                                    <label>
-                                        项目名称
-                                    </label><input type="text" class="form-control" id="txtProjectName" />
-                                </div>
-                                <div class="form-group">
-                                    <label>
-                                        省(自治区、直辖市、特别行政区)
-                                    </label><select class="form-control" id="ddlProvince" onchange="ddlProvince_OnChange();"></select>
-                                </div>
-                                <div class="form-group">
-                                    <label>
-                                        市(地区、自治州、盟)
-                                    </label><select class="form-control" id="ddlCity" onchange="ddlCity_OnChange();"></select>
-                                </div>
-                                <div class="form-group">
-                                    <label>
-                                        县(自治县、市、市辖区、旗、自治旗)
-                                    </label><select class="form-control" id="ddlCounty"></select>
-                                </div>
-                                <center>
-                                    <div class="btn btn-primary-outline" onclick="return setInfo();">
-                                        下一步
-                                    </div>
-                                </center>
-
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="alert alert-danger navbar-fixed-bottom" style="display:none;" id="divAlert">
-                <div class="row">
-                    <div class="col-md-3">
-                    </div>
-                    <div class="col-md-5">
-                        <center><label id="lblAlert"></label></center>
-                    </div>
-                </div>
-            </div>
-        </div>
+  </head>
+  <body>
+    <div class="page-title">
+      <h1>初始化向导</h1>
     </div>
-</body>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="widget-container fluid-height">
+          <div class="padded">
+            <div class="row">
+              <div class="col-md-3"></div>
+              <div class="col-md-5">
+                <center><h3>设置系统信息</h3></center>
+                <form role="form" class="form-horizontal">
+                  <div class="form-group">
+                    <label> 项目编码 </label
+                    ><input
+                      type="text"
+                      placeholder="7位数字"
+                      class="form-control"
+                      id="txtProjectNumber"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label> 项目名称 </label
+                    ><input
+                      type="text"
+                      class="form-control"
+                      id="txtProjectName"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label> 省(自治区、直辖市、特别行政区) </label
+                    ><select
+                      class="form-control"
+                      id="ddlProvince"
+                      onchange="ddlProvince_OnChange();"
+                    ></select>
+                  </div>
+                  <div class="form-group">
+                    <label> 市(地区、自治州、盟) </label
+                    ><select
+                      class="form-control"
+                      id="ddlCity"
+                      onchange="ddlCity_OnChange();"
+                    ></select>
+                  </div>
+                  <div class="form-group">
+                    <label> 县(自治县、市、市辖区、旗、自治旗) </label
+                    ><select class="form-control" id="ddlCounty"></select>
+                  </div>
+                  <center>
+                    <div
+                      class="btn btn-primary-outline"
+                      onclick="return setInfo();"
+                    >
+                      下一步
+                    </div>
+                  </center>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="alert alert-danger navbar-fixed-bottom"
+          style="display: none"
+          id="divAlert"
+        >
+          <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-5">
+              <center><label id="lblAlert"></label></center>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>

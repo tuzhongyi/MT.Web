@@ -1,105 +1,233 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head><meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>设置报警器</title>
     <link rel="stylesheet" type="text/css" href="../css/howell.css" />
-    <link rel="stylesheet" type="text/css" href="../css/bootstrap/bootstrap-switch.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../css/bootstrap/bootstrap-switch.css"
+    />
     <link rel="stylesheet" href="../css/bootstrap/datatables.css" />
     <script type="text/javascript" src="../js/language/chinese.js"></script>
-    <script type="text/javascript" src="../js/jquery/jquery-1.10.2.min.js"></script>
+    <script
+      type="text/javascript"
+      src="../js/jquery/jquery-3.6.0.min.js"
+    ></script>
     <script src="../js/imported.js"></script>
     <script type="text/javascript" src="../js/jquery/jquery-ui.js"></script>
-    <script type="text/javascript" src="../js/bootstrap/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../js/jquery/jquery.confirm.js"></script>
+    <script
+      type="text/javascript"
+      src="../js/bootstrap/bootstrap.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../js/jquery/jquery.confirm.js"
+    ></script>
     <script src="../js/jquery/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="../js/nav.js"></script>
 
     <script src="../js/howell.js/httpService.js"></script>
     <script type="text/javascript" src="../js/client/enum.js"></script>
     <script type="text/javascript" src="../js/howell.js/howell.js"></script>
-    <script type="text/javascript" src="../js/bootstrap/bootstrap-switch.min.js"></script>
+    <script
+      type="text/javascript"
+      src="../js/bootstrap/bootstrap-switch.min.js"
+    ></script>
     <script type="text/javascript" src="../js/client/struct.js"></script>
     <script type="text/javascript" src="../js/client/client.js"></script>
     <script type="text/javascript" src="../js/client/modbus.js"></script>
-    <script type="text/javascript" src="../js/howell.js/howell.control.js"></script>
+    <script
+      type="text/javascript"
+      src="../js/howell.js/howell.control.js"
+    ></script>
     <script type="text/javascript" src="../js/modernizr.custom.js"></script>
-    <script type="text/javascript" src="../js/background/annunciator/background_modbus.event.js"></script>
-    <script type="text/javascript" src="../js/background/annunciator/background_modbus.js"></script>
+    <script
+      type="text/javascript"
+      src="../js/background/annunciator/background_modbus.event.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../js/background/annunciator/background_modbus.js"
+    ></script>
     <script type="text/javascript" src="modbus.js"></script>
-    <script type="text/javascript" src="../js/background/annunciator/modbus/background_modbus_relays.js"></script>
+    <script
+      type="text/javascript"
+      src="../js/background/annunciator/modbus/background_modbus_relays.js"
+    ></script>
     <script type="text/javascript" src="modbus/modbus_relays.js"></script>
-    <script type="text/javascript" src="../js/background/annunciator/modbus/background_modbus_details.js"></script>
+    <script
+      type="text/javascript"
+      src="../js/background/annunciator/modbus/background_modbus_details.js"
+    ></script>
     <script type="text/javascript" src="modbus/modbus_details.js"></script>
-    <script type="text/javascript" src="../js/background/annunciator/modbus/background_modbus_ultrasonics.js"></script>
+    <script
+      type="text/javascript"
+      src="../js/background/annunciator/modbus/background_modbus_ultrasonics.js"
+    ></script>
     <script type="text/javascript" src="modbus/modbus_ultrasonics.js"></script>
-    <script type="text/javascript" src="../js/background/annunciator/modbus/background_modbus_signals.js"></script>
+    <script
+      type="text/javascript"
+      src="../js/background/annunciator/modbus/background_modbus_signals.js"
+    ></script>
     <script type="text/javascript" src="modbus/modbus_signals.js"></script>
-    <script type="text/javascript" src="../js/background/annunciator/modbus/signal/background_modbus_signal_details.js"></script>
-    <script type="text/javascript" src="modbus/signal/modbus_signal_details.js"></script>
-    <script type="text/javascript" src="../js/background/annunciator/modbus/background_modbus_wifi.js"></script>
+    <script
+      type="text/javascript"
+      src="../js/background/annunciator/modbus/signal/background_modbus_signal_details.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="modbus/signal/modbus_signal_details.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../js/background/annunciator/modbus/background_modbus_wifi.js"
+    ></script>
     <script type="text/javascript" src="modbus/modbus_wifi.js"></script>
-    <script type="text/javascript" src="../js/background/annunciator/modbus/background_modbus_network.js"></script>
+    <script
+      type="text/javascript"
+      src="../js/background/annunciator/modbus/background_modbus_network.js"
+    ></script>
     <script type="text/javascript" src="modbus/modbus_network.js"></script>
-</head>
-<body>
-    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-switch.css" />
+  </head>
+  <body>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="css/bootstrap/bootstrap-switch.css"
+    />
     <link rel="stylesheet" href="css/bootstrap/datatables.css" />
     <script type="text/javascript" src="js/jquery/jquery.confirm.js"></script>
-    <script type="text/javascript" src="js/jquery/jquery.dataTables.min.js"></script>
+    <script
+      type="text/javascript"
+      src="js/jquery/jquery.dataTables.min.js"
+    ></script>
     <script type="text/javascript" src="js/howell.js/httpService.js"></script>
-    <script type="text/javascript" src="js/bootstrap/bootstrap-switch.min.js"></script>
+    <script
+      type="text/javascript"
+      src="js/bootstrap/bootstrap-switch.min.js"
+    ></script>
     <script type="text/javascript" src="js/client/modbus.js"></script>
     <script type="text/javascript" src="js/modernizr.custom.js"></script>
-    <script type="text/javascript" src="js/background/annunciator/background_modbus.event.js"></script>
-    <script type="text/javascript" src="js/background/annunciator/background_modbus.js"></script>
+    <script
+      type="text/javascript"
+      src="js/background/annunciator/background_modbus.event.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="js/background/annunciator/background_modbus.js"
+    ></script>
     <script type="text/javascript" src="annunciator/modbus.js"></script>
-    <script type="text/javascript" src="js/background/annunciator/modbus/background_modbus_relays.js"></script>
-    <script type="text/javascript" src="annunciator/modbus/modbus_relays.js"></script>
-    <script type="text/javascript" src="js/background/annunciator/modbus/background_modbus_details.js"></script>
-    <script type="text/javascript" src="annunciator/modbus/modbus_details.js"></script>
-    <script type="text/javascript" src="js/background/annunciator/modbus/background_modbus_ultrasonics.js"></script>
-    <script type="text/javascript" src="annunciator/modbus/modbus_ultrasonics.js"></script>
-    <script type="text/javascript" src="js/background/annunciator/modbus/background_modbus_signals.js"></script>
-    <script type="text/javascript" src="annunciator/modbus/modbus_signals.js"></script>
-    <script type="text/javascript" src="js/background/annunciator/modbus/signal/background_modbus_signal_details.js"></script>
-    <script type="text/javascript" src="annunciator/modbus/signal/modbus_signal_details.js"></script>
-    <script type="text/javascript" src="js/background/annunciator/modbus/background_modbus_wifi.js"></script>
-    <script type="text/javascript" src="annunciator/modbus/modbus_wifi.js"></script>
-    <script type="text/javascript" src="js/background/annunciator/modbus/background_modbus_network.js"></script>
-    <script type="text/javascript" src="annunciator/modbus/modbus_network.js"></script>
+    <script
+      type="text/javascript"
+      src="js/background/annunciator/modbus/background_modbus_relays.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="annunciator/modbus/modbus_relays.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="js/background/annunciator/modbus/background_modbus_details.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="annunciator/modbus/modbus_details.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="js/background/annunciator/modbus/background_modbus_ultrasonics.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="annunciator/modbus/modbus_ultrasonics.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="js/background/annunciator/modbus/background_modbus_signals.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="annunciator/modbus/modbus_signals.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="js/background/annunciator/modbus/signal/background_modbus_signal_details.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="annunciator/modbus/signal/modbus_signal_details.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="js/background/annunciator/modbus/background_modbus_wifi.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="annunciator/modbus/modbus_wifi.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="js/background/annunciator/modbus/background_modbus_network.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="annunciator/modbus/modbus_network.js"
+    ></script>
     <style type="text/css">
-        .presentation {
-            padding-left: 0;
-        }
+      .presentation {
+        padding-left: 0;
+      }
 
-            .presentation li {
-                float: left;
-                margin-right: 15px;
-                list-style: none;
-            }
+      .presentation li {
+        float: left;
+        margin-right: 15px;
+        list-style: none;
+      }
 
-            .presentation [class^="icon-"] {
-                cursor: default;
-            }
+      .presentation [class^='icon-'] {
+        cursor: default;
+      }
     </style>
     <div class="page-main row">
-        <div class="col-md-12">
-            <div class="widget-container fluid-height clearfix list-width padded background-min-height">
-                <div class="heading list-heading-maxdiv">
-                    <div class="form-group list-heading-div">
-                        <i class="icon_divice_info_list mouse_default"></i>
-                        <span style="margin-left:20px">设置报警器</span><label class="list-count-lable">当前<span id="lblCurrentCount">0</span>条/共<span id="lblTotalCount">0</span>条</label>
-                    </div>
-                    <div>
-                        <ul class="presentation pull-left">
-                            <li><div class="icon-circle text-success "></div>正常</li>
-                            <li><div class="icon-circle text-default "></div>离线</li>
-                            <li><div class="icon-circle text-danger "></div>异常</li>
-                            <li><div class="icon-circle text-warning"></div>节电模式</li>
-                        </ul>
-                        <div>
-                            <!--<a class='btn btn-xs btn-primary-outline pull-right div-xsgroup reboot_btn' onclick="batchRebootDevices_Click(this)" title="重启">
+      <div class="col-md-12">
+        <div
+          class="widget-container fluid-height clearfix list-width padded background-min-height"
+        >
+          <div class="heading list-heading-maxdiv">
+            <div class="form-group list-heading-div">
+              <i class="icon_divice_info_list mouse_default"></i>
+              <span style="margin-left: 20px">设置报警器</span
+              ><label class="list-count-lable"
+                >当前<span id="lblCurrentCount">0</span>条/共<span
+                  id="lblTotalCount"
+                  >0</span
+                >条</label
+              >
+            </div>
+            <div>
+              <ul class="presentation pull-left">
+                <li>
+                  <div class="icon-circle text-success"></div>
+                  正常
+                </li>
+                <li>
+                  <div class="icon-circle text-default"></div>
+                  离线
+                </li>
+                <li>
+                  <div class="icon-circle text-danger"></div>
+                  异常
+                </li>
+                <li>
+                  <div class="icon-circle text-warning"></div>
+                  节电模式
+                </li>
+              </ul>
+              <div>
+                <!--<a class='btn btn-xs btn-primary-outline pull-right div-xsgroup reboot_btn' onclick="batchRebootDevices_Click(this)" title="重启">
                                 <div></div>
                             </a>
                             <a class='btn btn-xs btn-primary-outline pull-right div-xsgroup button-img-size' onclick="batchShutDownDevices_Click(this)" title="关机">
@@ -108,7 +236,7 @@
                             <a class='btn btn-xs btn-primary-outline pull-right div-xsgroup factory-default_btn' onclick="batchFactoryDefaultDevices_Click(this)" title="恢复出厂设置">
                                 <div></div>
                             </a>-->
-                            <!--<div class="btn-group  pull-right div-xsgroupdown" id="btn-operation">
+                <!--<div class="btn-group  pull-right div-xsgroupdown" id="btn-operation">
                                 <a class="btn btn-xs btn-primary-outline div-xsgroup dropdown-toggle save-electricity_btn" data-toggle="dropdown" id="operation" title="节电模式">
                                     <div></div>
                                     <span class="caret" style="margin:-2px 0 7px -2px"></span>
@@ -126,44 +254,56 @@
                                     </li>
                                 </ul>
                             </div>-->
-                            <div class="btn-group  pull-right div-xsgroupdown" id="btn-operation">
-                                <div class="btn btn-xs btn-primary btn-xsgroupdown dropdown-toggle" data-toggle="dropdown" id="operation">
-                                    选&ensp;择&ensp;<span class="caret"></span>
-                                </div>
-                                <ul class="dropdown-menu xsgroupdown-menu-ul">
-                                    <li class="mouse_pointer">
-                                        <a class="xsgroupdown-menu-ul-li-a" onclick="GroupList.Select.All(Info.ControlIdPrefix.GroupListItem, GroupListItem_SelectAll);">
-                                            全选
-                                        </a>
-                                    </li>
-                                    <li class="mouse_pointer">
-                                        <a class="xsgroupdown-menu-ul-li-a" onclick="GroupList.Select.Inverse(Info.ControlIdPrefix.GroupListItem);">
-                                            反选
-                                        </a>
-                                    </li>
-                                    <li class="mouse_pointer">
-                                        <a class="xsgroupdown-menu-ul-li-a" onclick="GroupList.Select.Cancel(Info.ControlIdPrefix.GroupListItem, GroupListItem_Cancel);">
-                                            取消
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                <div
+                  class="btn-group pull-right div-xsgroupdown"
+                  id="btn-operation"
+                >
+                  <div
+                    class="btn btn-xs btn-primary btn-xsgroupdown dropdown-toggle"
+                    data-toggle="dropdown"
+                    id="operation"
+                  >
+                    选&ensp;择&ensp;<span class="caret"></span>
+                  </div>
+                  <ul class="dropdown-menu xsgroupdown-menu-ul">
+                    <li class="mouse_pointer">
+                      <a
+                        class="xsgroupdown-menu-ul-li-a"
+                        onclick="GroupList.Select.All(Info.ControlIdPrefix.GroupListItem, GroupListItem_SelectAll);"
+                      >
+                        全选
+                      </a>
+                    </li>
+                    <li class="mouse_pointer">
+                      <a
+                        class="xsgroupdown-menu-ul-li-a"
+                        onclick="GroupList.Select.Inverse(Info.ControlIdPrefix.GroupListItem);"
+                      >
+                        反选
+                      </a>
+                    </li>
+                    <li class="mouse_pointer">
+                      <a
+                        class="xsgroupdown-menu-ul-li-a"
+                        onclick="GroupList.Select.Cancel(Info.ControlIdPrefix.GroupListItem, GroupListItem_Cancel);"
+                      >
+                        取消
+                      </a>
+                    </li>
+                  </ul>
                 </div>
-                <div id="dList">
-
-                </div>
+              </div>
             </div>
-            <div class="col-md-12 lazyload-div" id="divLazyload">
-
-            </div>
+          </div>
+          <div id="dList"></div>
         </div>
+        <div class="col-md-12 lazyload-div" id="divLazyload"></div>
+      </div>
     </div>
     <script type="text/javascript">
-    $(function () {
-        annunciator_device_list_load();
-    });
+      $(function () {
+        annunciator_device_list_load()
+      })
     </script>
-</body>
+  </body>
 </html>

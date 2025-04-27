@@ -1,368 +1,411 @@
 <html>
-
-<head>
-    <meta charset="UTF-8">
-    <script src="js/jquery-1.8.3.js"></script>
+  <head>
+    <meta charset="UTF-8" />
+    <script src="js/jquery-3.6.0.js"></script>
     <script src="jwplayer.js"></script>
     <script src="howell/jwhelper.js"></script>
     <script src="howell/videotools.js"></script>
 
     <style type="text/css">
-        table td {
-            padding: 10px 10px;
-        }
+      table td {
+        padding: 10px 10px;
+      }
     </style>
 
     <style>
-        .marker {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(200, 200, 200, 0.8);
-            display: none;
-            top: 0;
-            left: 0;
-        }
+      .marker {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(200, 200, 200, 0.8);
+        display: none;
+        top: 0;
+        left: 0;
+      }
 
-        .marker .btn.close {
-            position: absolute;
-            right: 20px;
-            top: 20px;
-            font-size: 30px;
-            font-weight: bold;
-            border: 1px solid transparent;
-            cursor: pointer;
-        }
+      .marker .btn.close {
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        font-size: 30px;
+        font-weight: bold;
+        border: 1px solid transparent;
+        cursor: pointer;
+      }
 
-        .marker .canvas-room {
-            margin: 100px auto;
-            border: 1px solid black;
-            width: 1024px;
-            height: 680px;
-            background-color: black;
-        }
+      .marker .canvas-room {
+        margin: 100px auto;
+        border: 1px solid black;
+        width: 1024px;
+        height: 680px;
+        background-color: black;
+      }
 
-        .marker .canvas-room canvas {
-            width: 100%;
-            height: 100%;
-        }
+      .marker .canvas-room canvas {
+        width: 100%;
+        height: 100%;
+      }
 
-        .marker .btn.close:hover {
-            color: red;
-        }
-        .video-room{
-            width:640px;
-            height: 360px;
-            background-color: black;
-        }
+      .marker .btn.close:hover {
+        color: red;
+      }
+      .video-room {
+        width: 640px;
+        height: 360px;
+        background-color: black;
+      }
     </style>
+  </head>
 
-
-</head>
-
-<body>
+  <body>
     <table>
-        <tr>
-            <td>
-                <div id='myplayer' class="video-room"></div>
-            </td>
-            <td>
-                <div id='myplayer_playback' class="video-room"></div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <button onclick="initPreview()">预览</button>
-            </td>
-            <td>
-                <button onclick="initPlayback()">回放</button>
-            </td>
-        </tr>
+      <tr>
+        <td>
+          <div id="myplayer" class="video-room"></div>
+        </td>
+        <td>
+          <div id="myplayer_playback" class="video-room"></div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button onclick="initPreview()">预览</button>
+        </td>
+        <td>
+          <button onclick="initPlayback()">回放</button>
+        </td>
+      </tr>
     </table>
-
-
 
     <br />
     <table border="1" cellpadding="0" cellspacing="0">
-        <tr>
-            <td>URI</td>
-            <td colspan="2">
-                <!-- rtmp://media stream server/stream?dev_id&slot&stream&mode&user&password -->
+      <tr>
+        <td>URI</td>
+        <td colspan="2">
+          <!-- rtmp://media stream server/stream?dev_id&slot&stream&mode&user&password -->
 
-                http://media stream
-                server/hls/Media/Live/[dev_id]/[channel]/[stream]/live.m3u8?user=[user]&password=[password]
+          http://media stream
+          server/hls/Media/Live/[dev_id]/[channel]/[stream]/live.m3u8?user=[user]&password=[password]
+        </td>
+      </tr>
+      <tr>
+        <td>参数名</td>
+        <td>参数描述</td>
+        <td>参数说明</td>
+      </tr>
+      <tr>
+        <td>dev_id</td>
+        <td>设备ID</td>
+        <td>可以通过以下方法获知：设备列表-[单击]设备名称-设备ID</td>
+      </tr>
 
-            </td>
-        </tr>
-        <tr>
-            <td>参数名</td>
-            <td>参数描述</td>
-            <td>参数说明</td>
-        </tr>
-        <tr>
-            <td>dev_id</td>
-            <td>设备ID</td>
-            <td>可以通过以下方法获知：设备列表-[单击]设备名称-设备ID</td>
-        </tr>
+      <tr>
+        <td>channel</td>
+        <td>通道号</td>
+        <td>1-x</td>
+      </tr>
 
-        <tr>
-            <td>channel</td>
-            <td>通道号</td>
-            <td>1-x</td>
-        </tr>
-
-        <tr>
-            <td>stream</td>
-            <td>主（子）码流</td>
-            <td>主码流：1<br />子码流：2</td>
-        </tr>
-        <tr>
-            <td>user</td>
-            <td>用户名</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>password</td>
-            <td>密码</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>例1：预览</td>
-            <td colspan="2" id="td_preview">
-                <!-- http://192.168.21.240:8800/hls/Media/Live/00310101001111111000002000000000/3/1/live.m3u8?user=howell&password=e10adc3949ba59abbe56e057f20f883e
+      <tr>
+        <td>stream</td>
+        <td>主（子）码流</td>
+        <td>主码流：1<br />子码流：2</td>
+      </tr>
+      <tr>
+        <td>user</td>
+        <td>用户名</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>password</td>
+        <td>密码</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>例1：预览</td>
+        <td colspan="2" id="td_preview">
+          <!-- http://192.168.21.240:8800/hls/Media/Live/00310101001111111000002000000000/3/1/live.m3u8?user=howell&password=e10adc3949ba59abbe56e057f20f883e
                 http://192.168.21.240/hls/Media/Live/00310101011111111000008000000000/1/1/live.m3u8?user=howell&password=e10adc3949ba59abbe56e057f20f883e -->
-                http://192.168.21.240:8800/hls/Media/Live/00310101011111111000008000000000/1/2/live.m3u8?user=howell&password=7338b893f472409b9b1fb31fe6e236c1
-            </td>
-        </tr>
-        <tr>
-            <td>例2：回放</td>
-            <!-- <td colspan="2" id="td_playback">rtmp://192.168.21.240/stream?dev_id=00310101031111111000002000000000&slot=6&stream=1&mode=playback&user=howell&password=e10adc3949ba59abbe56e057f20f883e&beg=2017-09-11T02:36:00.000Z&end=2017-09-11T02:41:00.000Z</td> -->
-            <td colspan="2" id="td_playback">
-                http://192.168.21.240:8800/hls/Media/vod/00310101011111111000008000000000/1/2/2019-12-06T07:00:00.000Z_2019-12-06T07:05:00.000Z/vod.m3u8?user=howell&password=e10adc3949ba59abbe56e057f20f883e
-            </td>
-        </tr>
+          http://192.168.21.240:8800/hls/Media/Live/00310101011111111000008000000000/1/2/live.m3u8?user=howell&password=7338b893f472409b9b1fb31fe6e236c1
+        </td>
+      </tr>
+      <tr>
+        <td>例2：回放</td>
+        <!-- <td colspan="2" id="td_playback">rtmp://192.168.21.240/stream?dev_id=00310101031111111000002000000000&slot=6&stream=1&mode=playback&user=howell&password=e10adc3949ba59abbe56e057f20f883e&beg=2017-09-11T02:36:00.000Z&end=2017-09-11T02:41:00.000Z</td> -->
+        <td colspan="2" id="td_playback">
+          http://192.168.21.240:8800/hls/Media/vod/00310101011111111000008000000000/1/2/2019-12-06T07:00:00.000Z_2019-12-06T07:05:00.000Z/vod.m3u8?user=howell&password=e10adc3949ba59abbe56e057f20f883e
+        </td>
+      </tr>
     </table>
 
     <div class="marker" id="marker">
-        <a class="btn close" onclick="marker.hide()">×</a>
-        <div class="canvas-room" id="canvas">
-        </div>
-        <div>
-            <a href="https://wrappixel.com/demos/admin-templates/material-pro/dark/form-img-cropper.html"
-                target="view_window">画框</a>
-        </div>
+      <a class="btn close" onclick="marker.hide()">×</a>
+      <div class="canvas-room" id="canvas"></div>
+      <div>
+        <a
+          href="https://wrappixel.com/demos/admin-templates/material-pro/dark/form-img-cropper.html"
+          target="view_window"
+          >画框</a
+        >
+      </div>
     </div>
 
+    <script type="text/javascript">
+      jwplayer.key = 'dZKw36bg8QrIT77rSPS8Ds4yxJ5+LCyZ9iEsqg=='
+      //00310101031111111000002000000000 226
+      //00310101031111111000003000000000 222
+      //00310101001111111000001000000000 36.105
 
-    <script type='text/javascript'>
-        jwplayer.key = "dZKw36bg8QrIT77rSPS8Ds4yxJ5+LCyZ9iEsqg==";
-        //00310101031111111000002000000000 226
-        //00310101031111111000003000000000 222
-        //00310101001111111000001000000000 36.105
-
-
-        //00310101001111111000002000000000/3/1/live.m3u8?user=Howell&password=0c5742e7f3d64029a4412e8627d2ca8d
-        var opts = {
-            deviceId: "00310101031111111000003000000000",
-            channel: 10,
-            stream: 1,
-            username: "howell",
-            password: "e10adc3949ba59abbe56e057f20f883e"
-        }
-        //rtmp://192.168.21.240/stream?dev_id=00310101031111111000003000000000&slot=8&stream=1&mode=live&user=howell&password=5d43069a7202441c9e8b58042b6c50ff
-        jwplayer.helper = {
-            events: {
-                onTimeout: function (state, context) {
-                    console.log("timeout");
-                    if (previewPlayer) {
-                        var state = previewPlayer.getState();
-                        if (state == jwhelper.state.playing) {
-                            previewPlayer.play();
-                            return;
-                        }
-                    }
-                    initPreview();
-                }
+      //00310101001111111000002000000000/3/1/live.m3u8?user=Howell&password=0c5742e7f3d64029a4412e8627d2ca8d
+      var opts = {
+        deviceId: '00310101031111111000003000000000',
+        channel: 10,
+        stream: 1,
+        username: 'howell',
+        password: 'e10adc3949ba59abbe56e057f20f883e',
+      }
+      //rtmp://192.168.21.240/stream?dev_id=00310101031111111000003000000000&slot=8&stream=1&mode=live&user=howell&password=5d43069a7202441c9e8b58042b6c50ff
+      jwplayer.helper = {
+        events: {
+          onTimeout: function (state, context) {
+            console.log('timeout')
+            if (previewPlayer) {
+              var state = previewPlayer.getState()
+              if (state == jwhelper.state.playing) {
+                previewPlayer.play()
+                return
+              }
             }
-        }
+            initPreview()
+          },
+        },
+      }
 
-        var previewPlayer;
+      var previewPlayer
 
-        var preview_url = "http://" + document.location.hostname + ":" + document.location.port + "/hls/Media/Live/" + opts.deviceId + "/" + opts.channel + "/" + opts.stream + "/live.m3u8?user=" + opts.username + "&password=" + opts.password;
+      var preview_url =
+        'http://' +
+        document.location.hostname +
+        ':' +
+        document.location.port +
+        '/hls/Media/Live/' +
+        opts.deviceId +
+        '/' +
+        opts.channel +
+        '/' +
+        opts.stream +
+        '/live.m3u8?user=' +
+        opts.username +
+        '&password=' +
+        opts.password
 
+      var preview_opts = {
+        id: 'previewPlayer',
+        height: 360,
+        width: 640,
+        autostart: true,
+        playlist: [
+          {
+            title: '测试视频',
+            sources: [
+              {
+                file: preview_url,
+              },
+            ],
+          },
+        ],
+      }
 
-        var preview_opts = {
-            id: "previewPlayer",
-            height: 360,
-            width: 640,
-            autostart: true,
-            playlist: [{
-                title: "测试视频",
-                sources: [{
-                    file: preview_url,
-                }]
-            }]
-        }
-
-
-        function initPreview() {
-            previewPlayer = jwplayer('myplayer').setup(preview_opts);
-            previewPlayer.on('ready', function () {
-                previewPlayer.setCues([]);
-                //img, tooltip, callback, id, btnClass
-                this.addButton("howell/images/snapshot.svg", "截图", function () {
-                    capture(document.getElementById("myplayer"));
-                }, "snapshot", "video-icon video-snapshot");
-                this.addButton("howell/images/download.svg", "下载截图", function () {
-                    download(document.getElementById("myplayer"));
-                }, "download", "video-icon video-download");
-
-            });
-        }
-
-
-        document.getElementById("td_preview").innerHTML = preview_url;
-
-
-
-
-        var playbackPlayer;
-
-
-        function initPlayback() {
-            var date = new Date();
-            date.setMinutes(date.getMinutes() - 20);
-            var str_begin = date_format(date);
-            date.setMinutes(date.getMinutes() + 15);
-            var str_end = date_format(date);
-            var playback_url = 'http://' + document.location.hostname + ":" + document.location.port + '/hls/Media/vod/' + opts.deviceId + "/" + opts.channel + "/" + opts.stream + '/' + str_begin + '_' + str_end + '/vod.m3u8?user=' + opts.username + '&password=' + opts.password;
-
-            document.getElementById("td_playback").innerHTML = playback_url;
-            playbackPlayer = jwplayer('myplayer_playback').setup({
-                file: playback_url,
-                height: 360,
-                width: 640,
-                autostart: true,
-                stretching: "exactfit",
-                playlist: [{
-                    title: "测试视频",
-                    sources: [{
-                        file: playback_url,
-                    }]
-                }]
-            });
-
-            playbackPlayer.on('ready', function () {
-                //img, tooltip, callback, id, btnClass
-                this.addButton("howell/images/snapshot.svg", "截图", function () { capture(document.getElementById("myplayer_playback")); }, "snapshot", "video-icon video-snapshot");
-
-                this.addButton("howell/images/download.svg", "下载截图", function () { download(document.getElementById("myplayer_playback")); }, "download", "video-icon video-download");
-
-                this.addButton("howell/images/step_next.svg", "单帧进", function () {
-                    setTime(1);
-                    var state = playbackPlayer.getState();
-                    if (state == jwhelper.state.playing)
-                        playbackPlayer.pause();
-                }, "step_next", "video-icon");
-
-                this.addButton("howell/images/step_pre.svg", "单帧退", function () {
-                    setTime(-1);
-                    var state = playbackPlayer.getState();
-                    if (state == jwhelper.state.playing)
-                        playbackPlayer.pause();
-                }, "step_pre", "video-icon");
-            })
-        }
-
-
-
-
-
-
-
-
-
-        var marker = {
-            element: document.getElementById("marker"),
-            show: function () {
-                marker.element.style.display = "block"
+      function initPreview() {
+        previewPlayer = jwplayer('myplayer').setup(preview_opts)
+        previewPlayer.on('ready', function () {
+          previewPlayer.setCues([])
+          //img, tooltip, callback, id, btnClass
+          this.addButton(
+            'howell/images/snapshot.svg',
+            '截图',
+            function () {
+              capture(document.getElementById('myplayer'))
             },
-            hide: function () {
-                marker.element.style.display = ""
-            }
-        };
+            'snapshot',
+            'video-icon video-snapshot'
+          )
+          this.addButton(
+            'howell/images/download.svg',
+            '下载截图',
+            function () {
+              download(document.getElementById('myplayer'))
+            },
+            'download',
+            'video-icon video-download'
+          )
+        })
+      }
 
+      document.getElementById('td_preview').innerHTML = preview_url
 
-        //截图
-        function capture(room) {
-            marker.show();
-            var video = room.getElementsByClassName("jw-video jw-reset")[0];
-            var room = document.getElementById("canvas");
-            canvas.element = VideoTools.Snapshot(video, room);
-            canvas.element.id = "canvas_1";
+      var playbackPlayer
 
+      function initPlayback() {
+        var date = new Date()
+        date.setMinutes(date.getMinutes() - 20)
+        var str_begin = date_format(date)
+        date.setMinutes(date.getMinutes() + 15)
+        var str_end = date_format(date)
+        var playback_url =
+          'http://' +
+          document.location.hostname +
+          ':' +
+          document.location.port +
+          '/hls/Media/vod/' +
+          opts.deviceId +
+          '/' +
+          opts.channel +
+          '/' +
+          opts.stream +
+          '/' +
+          str_begin +
+          '_' +
+          str_end +
+          '/vod.m3u8?user=' +
+          opts.username +
+          '&password=' +
+          opts.password
+
+        document.getElementById('td_playback').innerHTML = playback_url
+        playbackPlayer = jwplayer('myplayer_playback').setup({
+          file: playback_url,
+          height: 360,
+          width: 640,
+          autostart: true,
+          stretching: 'exactfit',
+          playlist: [
+            {
+              title: '测试视频',
+              sources: [
+                {
+                  file: playback_url,
+                },
+              ],
+            },
+          ],
+        })
+
+        playbackPlayer.on('ready', function () {
+          //img, tooltip, callback, id, btnClass
+          this.addButton(
+            'howell/images/snapshot.svg',
+            '截图',
+            function () {
+              capture(document.getElementById('myplayer_playback'))
+            },
+            'snapshot',
+            'video-icon video-snapshot'
+          )
+
+          this.addButton(
+            'howell/images/download.svg',
+            '下载截图',
+            function () {
+              download(document.getElementById('myplayer_playback'))
+            },
+            'download',
+            'video-icon video-download'
+          )
+
+          this.addButton(
+            'howell/images/step_next.svg',
+            '单帧进',
+            function () {
+              setTime(1)
+              var state = playbackPlayer.getState()
+              if (state == jwhelper.state.playing) playbackPlayer.pause()
+            },
+            'step_next',
+            'video-icon'
+          )
+
+          this.addButton(
+            'howell/images/step_pre.svg',
+            '单帧退',
+            function () {
+              setTime(-1)
+              var state = playbackPlayer.getState()
+              if (state == jwhelper.state.playing) playbackPlayer.pause()
+            },
+            'step_pre',
+            'video-icon'
+          )
+        })
+      }
+
+      var marker = {
+        element: document.getElementById('marker'),
+        show: function () {
+          marker.element.style.display = 'block'
+        },
+        hide: function () {
+          marker.element.style.display = ''
+        },
+      }
+
+      //截图
+      function capture(room) {
+        marker.show()
+        var video = room.getElementsByClassName('jw-video jw-reset')[0]
+        var room = document.getElementById('canvas')
+        canvas.element = VideoTools.Snapshot(video, room)
+        canvas.element.id = 'canvas_1'
+      }
+      //下载图片
+      function download(room) {
+        var video = room.getElementsByClassName('jw-video jw-reset')[0]
+        VideoTools.Download(video)
+      }
+      //设置时间
+      function setTime(tValue) {
+        //  if no video is loaded, this throws an exception
+        var room = document.getElementById('myplayer_playback')
+        var video = room.getElementsByClassName('jw-video jw-reset')[0]
+
+        try {
+          if (tValue == 0) {
+            video.currentTime = tValue
+          } else {
+            video.currentTime += tValue
+          }
+        } catch (err) {
+          // errMessage(err) // show exception
+          console.log(err)
         }
-        //下载图片
-        function download(room) {
+      }
 
-            var video = room.getElementsByClassName("jw-video jw-reset")[0];
-            VideoTools.Download(video);
-        }
-        //设置时间
-        function setTime(tValue) {
-            //  if no video is loaded, this throws an exception 
-            var room = document.getElementById("myplayer_playback");
-            var video = room.getElementsByClassName("jw-video jw-reset")[0];
-
-            try {
-                if (tValue == 0) {
-                    video.currentTime = tValue;
-                }
-                else {
-                    video.currentTime += tValue;
-                }
-
-            } catch (err) {
-                // errMessage(err) // show exception
-                console.log(err);
-            }
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        function full_zero(value) {
-            var str = value.toString();
-            if (str.length > 1)
-                return value;
-            return "0" + value;
-        }
-        function date_format(date) {
-            var year = date.getFullYear();
-            var month = date.getMonth() + 1;
-            var day = date.getDate();
-            var hour = date.getHours() - 8;
-            var minute = date.getMinutes();
-            var second = date.getSeconds();
-            return year + "-" + full_zero(month) + "-" +
-                full_zero(day) + "T" +
-                full_zero(hour) + ":" +
-                full_zero(minute) + ":" +
-                full_zero(second) + "Z";
-        }
+      function full_zero(value) {
+        var str = value.toString()
+        if (str.length > 1) return value
+        return '0' + value
+      }
+      function date_format(date) {
+        var year = date.getFullYear()
+        var month = date.getMonth() + 1
+        var day = date.getDate()
+        var hour = date.getHours() - 8
+        var minute = date.getMinutes()
+        var second = date.getSeconds()
+        return (
+          year +
+          '-' +
+          full_zero(month) +
+          '-' +
+          full_zero(day) +
+          'T' +
+          full_zero(hour) +
+          ':' +
+          full_zero(minute) +
+          ':' +
+          full_zero(second) +
+          'Z'
+        )
+      }
     </script>
-
-
-</body>
-
+  </body>
 </html>

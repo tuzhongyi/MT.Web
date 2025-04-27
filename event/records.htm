@@ -1,23 +1,52 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
+  <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>报警记录列表</title>
 
-    <link href="../css/bootstrap/jquery.fancybox.css" type="text/css" rel="stylesheet" />
-    <link href="../css/bootstrap/isotope.css" type="text/css" rel="stylesheet" />
+    <link
+      href="../css/bootstrap/jquery.fancybox.css"
+      type="text/css"
+      rel="stylesheet"
+    />
+    <link
+      href="../css/bootstrap/isotope.css"
+      type="text/css"
+      rel="stylesheet"
+    />
     <link href="../css/howell.css" type="text/css" rel="stylesheet" />
-    <link href="../css/bootstrap/bootstrap-switch.css" type="text/css" rel="stylesheet" />
-    <link href="../css/bootstrap/colorpicker.css" type="text/css" rel="stylesheet" />
+    <link
+      href="../css/bootstrap/bootstrap-switch.css"
+      type="text/css"
+      rel="stylesheet"
+    />
+    <link
+      href="../css/bootstrap/colorpicker.css"
+      type="text/css"
+      rel="stylesheet"
+    />
     <link href="../css/select2.css" type="text/css" rel="stylesheet" />
     <script type="text/javascript" src="../js/language/chinese.js"></script>
-    <script type="text/javascript" src="../js/jquery/jquery-1.10.2.min.js"></script>
+    <script
+      type="text/javascript"
+      src="../js/jquery/jquery-3.6.0.min.js"
+    ></script>
     <script type="text/javascript" src="../js/imported.js"></script>
     <script type="text/javascript" src="../js/jquery/jquery-ui.js"></script>
-    <script type="text/javascript" src="../js/bootstrap/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../../js/bootstrap/bootstrap-datepicker.js" charset="gb2312"></script>
-    <script type="text/javascript" src="../js/jquery/jquery.confirm.js"></script>
+    <script
+      type="text/javascript"
+      src="../js/bootstrap/bootstrap.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../js/bootstrap/bootstrap-datepicker.js"
+      charset="gb2312"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../js/jquery/jquery.confirm.js"
+    ></script>
     <script type="text/javascript" src="../js/nav.js"></script>
     <script type="text/javascript" src="../js/howell.js/howell.js"></script>
     <script type="text/javascript" src="../js/client/struct.js"></script>
@@ -25,17 +54,44 @@
     <script type="text/javascript" src="../js/howell.js/ext.js"></script>
     <script type="text/javascript" src="../js/client/management.js"></script>
     <script type="text/javascript" src="../js/client/client.js"></script>
-    <script type="text/javascript" src="../js/howell.js/howell.control.js"></script>
+    <script
+      type="text/javascript"
+      src="../js/howell.js/howell.control.js"
+    ></script>
     <script type="text/javascript" src="../js/modernizr.custom.js"></script>
-    <script type="text/javascript" src="../js/bootstrap/bootstrap-switch.min.js"></script>
-    <script type="text/javascript" src="../js/bootstrap/bootstrap-timepicker.js"></script>
-    <script type="text/javascript" src="../js/bootstrap/bootstrap-colorpicker.js"></script>
-    <script type="text/javascript" src="../js/jquery/jquery.isotope.min.js"></script>
-    <script type="text/javascript" src="../js/jquery/jquery.fancybox.pack.js"></script>
+    <script
+      type="text/javascript"
+      src="../js/bootstrap/bootstrap-switch.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../js/bootstrap/bootstrap-timepicker.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../js/bootstrap/bootstrap-colorpicker.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../js/jquery/jquery.isotope.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../js/jquery/jquery.fancybox.pack.js"
+    ></script>
     <script type="text/javascript" src="../js/howell.js/image.js"></script>
-    <script type="text/javascript" src="../js/background/event/background_records.js"></script>
-    <script type="text/javascript" src="../js/background/event/record/background_record_pictures.js"></script>
-    <script type="text/javascript" src="../js/background/event/record/background_record_details.js"></script>
+    <script
+      type="text/javascript"
+      src="../js/background/event/background_records.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../js/background/event/record/background_record_pictures.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../js/background/event/record/background_record_details.js"
+    ></script>
     <script type="text/javascript" src="record/record_details.js"></script>
     <script type="text/javascript" src="record/record_pictures.js"></script>
     <script type="text/javascript" src="records.js"></script>
@@ -44,186 +100,268 @@
     <script src="../video/wsplayer/WSPlayer.js"></script>
     <script src="record/record_playback.js"></script>
     <script src="../js/background/event/record/background_record_playback.js"></script>
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
-</head>
-<body>
+    <meta
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+      name="viewport"
+    />
+  </head>
+  <body>
     <link href="css/datepicker.css" rel="stylesheet" />
-    <link href="css/bootstrap/jquery.fancybox.css" type="text/css" rel="stylesheet" />
+    <link
+      href="css/bootstrap/jquery.fancybox.css"
+      type="text/css"
+      rel="stylesheet"
+    />
     <link href="css/bootstrap/isotope.css" type="text/css" rel="stylesheet" />
-    <link href="css/bootstrap/bootstrap-switch.css" type="text/css" rel="stylesheet" />
-    <link href="css/bootstrap/colorpicker.css" type="text/css" rel="stylesheet" />
+    <link
+      href="css/bootstrap/bootstrap-switch.css"
+      type="text/css"
+      rel="stylesheet"
+    />
+    <link
+      href="css/bootstrap/colorpicker.css"
+      type="text/css"
+      rel="stylesheet"
+    />
     <link href="css/select2.css" type="text/css" rel="stylesheet" />
-    <link href="../video/wsplayer/css/player.css" type="text/css" rel="stylesheet" />
-    <script type="text/javascript" src="js/bootstrap/bootstrap-datepicker.js" charset="gb2312"></script>
+    <link
+      href="../video/wsplayer/css/player.css"
+      type="text/css"
+      rel="stylesheet"
+    />
+    <script
+      type="text/javascript"
+      src="js/bootstrap/bootstrap-datepicker.js"
+      charset="gb2312"
+    ></script>
     <script type="text/javascript" src="js/jquery/jquery.confirm.js"></script>
     <script type="text/javascript" src="js/client/management.js"></script>
     <script type="text/javascript" src="js/modernizr.custom.js"></script>
-    <script type="text/javascript" src="js/bootstrap/bootstrap-switch.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap/bootstrap-timepicker.js"></script>
-    <script type="text/javascript" src="js/bootstrap/bootstrap-colorpicker.js"></script>
-    <script type="text/javascript" src="js/jquery/jquery.isotope.min.js"></script>
-    <script type="text/javascript" src="js/jquery/jquery.fancybox.pack.js"></script>
+    <script
+      type="text/javascript"
+      src="js/bootstrap/bootstrap-switch.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="js/bootstrap/bootstrap-timepicker.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="js/bootstrap/bootstrap-colorpicker.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="js/jquery/jquery.isotope.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="js/jquery/jquery.fancybox.pack.js"
+    ></script>
     <script type="text/javascript" src="js/howell.js/image.js"></script>
-    <script type="text/javascript" src="js/background/event/background_records.js"></script>
-    <script type="text/javascript" src="js/background/event/record/background_record_pictures.js"></script>
-    <script type="text/javascript" src="js/background/event/record/background_record_details.js"></script>
-    <script type="text/javascript" src="event/record/record_details.js"></script>
-    <script type="text/javascript" src="event/record/record_pictures.js"></script>
+    <script
+      type="text/javascript"
+      src="js/background/event/background_records.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="js/background/event/record/background_record_pictures.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="js/background/event/record/background_record_details.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="event/record/record_details.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="event/record/record_pictures.js"
+    ></script>
     <script type="text/javascript" src="event/records.js"></script>
     <script type="text/javascript" src="js/jquery/select2.js"></script>
     <!-- <script type="text/javascript" src="jwplayer/jwplayer.js"></script> -->
     <script src="../video/wsplayer/WSPlayer.js"></script>
-    <script type="text/javascript" src="event/record/record_playback.js"></script>
-    <script type="text/javascript" src="js/background/event/record/background_record_playback.js"></script>
+    <script
+      type="text/javascript"
+      src="event/record/record_playback.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="js/background/event/record/background_record_playback.js"
+    ></script>
     <style type="text/css">
-        .records_list_title_ico {
-            font-size: 22px;
-            margin-left: 12px;
-            color: #007aff;
+      .records_list_title_ico {
+        font-size: 22px;
+        margin-left: 12px;
+        color: #007aff;
+      }
+
+      #rdoInactive input[type='radio']:checked + span::after {
+        content: '';
+        width: 8px;
+        height: 8px;
+        position: absolute;
+        top: 6px;
+        left: -15px;
+        background-color: #f0ad4e;
+        border-radius: 50%;
+        display: block;
+      }
+
+      #rdoActive input[type='radio']:checked + span::after {
+        content: '';
+        width: 8px;
+        height: 8px;
+        position: absolute;
+        top: 6px;
+        left: -15px;
+        background-color: #5cb85c;
+        border-radius: 50%;
+        display: block;
+      }
+
+      .widget-container {
+        min-height: 160px;
+      }
+
+      .widget-container .heading {
+        height: 70px;
+      }
+
+      .content {
+        margin-top: -15px;
+      }
+
+      .control-label {
+        height: 34px;
+        padding-top: 7px;
+        text-align: right;
+      }
+
+      .form-group {
+        min-height: 34px;
+      }
+
+      @media (max-width: 767px) {
+        .page-main {
+          width: 100%;
         }
 
-        #rdoInactive input[type='radio']:checked + span::after {
-            content: "";
-            width: 8px;
-            height: 8px;
-            position: absolute;
-            top: 6px;
-            left: -15px;
-            background-color: #f0ad4e;
-            border-radius: 50%;
-            display: block;
+        .to-back {
+          display: none;
         }
 
-        #rdoActive input[type='radio']:checked + span::after {
-            content: "";
-            width: 8px;
-            height: 8px;
-            position: absolute;
-            top: 6px;
-            left: -15px;
-            background-color: #5cb85c;
-            border-radius: 50%;
-            display: block;
-        }
-
-        .widget-container {
-            min-height: 160px;
-        }
-
-            .widget-container .heading {
-                height: 70px;
-            }
-
-        .content {
-            margin-top: -15px;
+        .icon-color-btn-background {
+          display: none !important;
         }
 
         .control-label {
-            height: 34px;
-            padding-top: 7px;
-            text-align: right;
+          float: left;
         }
 
-        .form-group {
-            min-height: 34px;
+        .icon_btn.color {
+          width: 270px;
         }
 
-        @media (max-width: 767px) {
-            .page-main {
-                width: 100%;
-            }
-
-            .to-back {
-                display: none;
-            }
-
-            .icon-color-btn-background {
-                display: none !important;
-            }
-
-            .control-label {
-                float: left;
-            }
-
-            .icon_btn.color {
-                width: 270px;
-            }
-
-            .widget-container {
-                padding-bottom: 5px;
-            }
-
-            .col-md-0 {
-                margin-top: 10px;
-            }
+        .widget-container {
+          padding-bottom: 5px;
         }
 
-        .col-md-0_7 {
-            width: 5.833333333333332%;
+        .col-md-0 {
+          margin-top: 10px;
         }
+      }
+
+      .col-md-0_7 {
+        width: 5.833333333333332%;
+      }
     </style>
     <div class="page-main row">
-        <div class="col-md-12">
-            <div class="widget-container">
-                <div class="heading">
-                    <div class="form-group list-heading-div">
-                        <i class="icon-bell-alt records_list_title_ico" style="font-size:22px;margin-left:12px;"></i>
-                        报警记录列表 <label class="list-count-lable">当前<span id="lblCurrentCount">0</span>条/共<span id="lblTotalCount">0</span>条</label>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-1 control-label">
-                        <label>报警类型:</label>
-                    </div>
-                    <div class="col-md-5">
-                        <select class="form-control" id="ddlEventType" onchange="selectEventType_Click(this.value)"></select>
-                    </div>
-                    <div class="col-md-1 control-label">
-                        <label>
-                            设备名称:
-                        </label>
-                    </div>
-                    <div class="col-md-5">
-                        <select class="select2able" multiple="" id="search_name"></select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-1 control-label">
-                        <label>开始时间:</label>
-                    </div>
-                    <div class="col-md-5">
-                        <input class="form-control datetime" data-date-autoclose="true" data-date-format="yyyy-mm-dd" id="txt_begin_date" type="text">
-                    </div>
-                    <div class="col-md-1 control-label">
-                        <label>结束时间:</label>
-                    </div>
-                    <div class="col-md-4">
-                        <input class="form-control datetime" data-date-autoclose="true" data-date-format="yyyy-mm-dd" id="txt_end_date" type="text">
-                    </div>
-                    <div class="col-md-0" style="text-align:right;">
-                        <a class="btn btn-primary" onclick="_search()">搜索</a>
-                    </div>
-                </div>
+      <div class="col-md-12">
+        <div class="widget-container">
+          <div class="heading">
+            <div class="form-group list-heading-div">
+              <i
+                class="icon-bell-alt records_list_title_ico"
+                style="font-size: 22px; margin-left: 12px"
+              ></i>
+              报警记录列表
+              <label class="list-count-lable"
+                >当前<span id="lblCurrentCount">0</span>条/共<span
+                  id="lblTotalCount"
+                  >0</span
+                >条</label
+              >
             </div>
-        </div>
-        <div class="col-md-12 content ">
-            <div class="widget-container padded background-min-height" id="dList">
-
+          </div>
+          <div class="form-group">
+            <div class="col-md-1 control-label">
+              <label>报警类型:</label>
             </div>
+            <div class="col-md-5">
+              <select
+                class="form-control"
+                id="ddlEventType"
+                onchange="selectEventType_Click(this.value)"
+              ></select>
+            </div>
+            <div class="col-md-1 control-label">
+              <label> 设备名称: </label>
+            </div>
+            <div class="col-md-5">
+              <select class="select2able" multiple="" id="search_name"></select>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-md-1 control-label">
+              <label>开始时间:</label>
+            </div>
+            <div class="col-md-5">
+              <input
+                class="form-control datetime"
+                data-date-autoclose="true"
+                data-date-format="yyyy-mm-dd"
+                id="txt_begin_date"
+                type="text"
+              />
+            </div>
+            <div class="col-md-1 control-label">
+              <label>结束时间:</label>
+            </div>
+            <div class="col-md-4">
+              <input
+                class="form-control datetime"
+                data-date-autoclose="true"
+                data-date-format="yyyy-mm-dd"
+                id="txt_end_date"
+                type="text"
+              />
+            </div>
+            <div class="col-md-0" style="text-align: right">
+              <a class="btn btn-primary" onclick="_search()">搜索</a>
+            </div>
+          </div>
         </div>
-        <div class="btn btn-lg btn-block btn-default-outline hidden-sm">
-            向上拉动加载更多
-        </div>
-        <div class="col-md-12 lazyload-div" id="divLazyload">
-        </div>
+      </div>
+      <div class="col-md-12 content">
+        <div
+          class="widget-container padded background-min-height"
+          id="dList"
+        ></div>
+      </div>
+      <div class="btn btn-lg btn-block btn-default-outline hidden-sm">
+        向上拉动加载更多
+      </div>
+      <div class="col-md-12 lazyload-div" id="divLazyload"></div>
     </div>
-    <a class="to-back" href="../map/center.html" style="display:none">
-        <div class="pic"></div>
+    <a class="to-back" href="../map/center.html" style="display: none">
+      <div class="pic"></div>
     </a>
     <script type="text/javascript">
-        $(function () {
-            record_list_load();
-        });
+      $(function () {
+        record_list_load()
+      })
     </script>
-</body>
+  </body>
 </html>

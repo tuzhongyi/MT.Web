@@ -1,148 +1,226 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head><meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>继电器列表</title>
     <link href="../../../css/howell.css" rel="stylesheet" />
     <link href="../../css/bootstrap/bootstrap-switch.css" rel="stylesheet" />
-    <script type="text/javascript" src="../../../js/language/chinese.js"></script>
-    <script type="text/javascript" src="../../../js/jquery/jquery-1.10.2.min.js"></script>
+    <script
+      type="text/javascript"
+      src="../../../js/language/chinese.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../js/jquery/jquery-3.6.0.min.js"
+    ></script>
     <script src="../../../js/imported.js"></script>
-    <script type="text/javascript" src="../../../js/jquery/jquery-ui.js"></script>
-    <script type="text/javascript" src="../../../js/jquery/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="../../../js/bootstrap/bootstrap.min.js"></script>
+    <script
+      type="text/javascript"
+      src="../../../js/jquery/jquery-ui.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../js/jquery/jquery.dataTables.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../js/bootstrap/bootstrap.min.js"
+    ></script>
     <script type="text/javascript" src="../../../js/nav.js"></script>
-    
-    <script type="text/javascript" src="../../../js/jquery/jquery.confirm.js"></script>
-    <script type="text/javascript" src="../../../js/modernizr.custom.js"></script>
+
+    <script
+      type="text/javascript"
+      src="../../../js/jquery/jquery.confirm.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../js/modernizr.custom.js"
+    ></script>
     <script type="text/javascript" src="../../../js/md5.js"></script>
-    <script type="text/javascript" src="../../../js/howell.js/howell.js"></script>
-    <script type="text/javascript" src="../../../js/howell.js/digest.js"></script>
-    <script type="text/javascript" src="../../../js/howell.js/httpService.js"></script>
-    <script type="text/javascript" src="../../../js/client/management.js"></script>
-    <script type="text/javascript" src="../../../js/client/security.js"></script>
+    <script
+      type="text/javascript"
+      src="../../../js/howell.js/howell.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../js/howell.js/digest.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../js/howell.js/httpService.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../js/client/management.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../js/client/security.js"
+    ></script>
     <script type="text/javascript" src="../../../js/client/enum.js"></script>
     <script type="text/javascript" src="../../../js/client/struct.js"></script>
     <script type="text/javascript" src="../../../js/client/client.js"></script>
-    <script type="text/javascript" src="../../../js/howell.js/howell.control.js"></script>
-    <script type="text/javascript" src="../../../js/jquery/jquery.confirm.js"></script>
-    <script type="text/javascript" src="../../../js/bootstrap/bootstrap-switch.min.js"></script>
-    <script type="text/javascript" src="../../../js/background/management/background_device.event.js"></script>
-    <script type="text/javascript" src="../../../js/background/management/background_devices.js"></script>
-    <script type="text/javascript" src="../../../js/background/management/background_device_mediums.js"></script>
+    <script
+      type="text/javascript"
+      src="../../../js/howell.js/howell.control.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../js/jquery/jquery.confirm.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../js/bootstrap/bootstrap-switch.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../js/background/management/background_device.event.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../js/background/management/background_devices.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../js/background/management/background_device_mediums.js"
+    ></script>
     <script type="text/javascript" src="device_mediums.js"></script>
     <!--<script type="text/javascript" src="../../js/background/management/device/user/background_device_user_permissions.js"></script>
     <script type="text/javascript" src="user/device_user_permissions.js"></script>-->
 
     <script>
-        Trigger = document.createElement("a");;
-        Trigger.href = "medium/item.htm?deviceId=00310101021111111000001000000000";
-        Info.ControlIdPrefix.Medium.AlertUrl.add = "medium/device_medium_permissions.htm";
+      Trigger = document.createElement('a')
+      Trigger.href = 'medium/item.htm?deviceId=00310101021111111000001000000000'
+      Info.ControlIdPrefix.Medium.AlertUrl.add =
+        'medium/device_medium_permissions.htm'
     </script>
-
-</head>
-<body>
+  </head>
+  <body>
     <!--已绑定列表-->
-    <div class="widget-container fluid-height clearfix association-frame mouse_default swith_control">
-        <div class="heading association-heading">
-            <div class="icon-relay simple title"></div>
-            <label>继电器列表</label><div class="association-heading-count-text">共 <label id="lbl_relay_count">0</label> 条</div>
+    <div
+      class="widget-container fluid-height clearfix association-frame mouse_default swith_control"
+    >
+      <div class="heading association-heading">
+        <div class="icon-relay simple title"></div>
+        <label>继电器列表</label>
+        <div class="association-heading-count-text">
+          共 <label id="lbl_relay_count">0</label> 条
         </div>
-        <div class="association-operation-bar">
-            <div class="btn-group  pull-right association-groupdown">
-                <div class="btn btn-xs btn-primary association-btn-xs-groupdown dropdown-toggle control">
-                    开&ensp;&ensp;关<span class="caret"></span>
-                </div>
-                <ul class="dropdown-menu association-groupdown-menu" onmouseover="operationRelayCanClose = false;" onmouseout="operationRelayCanClose = true;">
-                    <li class="mouse_pointer dropdown-menu-li">
-                        <a class="association-groupdown-menu-item"
-                           onclick="Relay_BatchModify(SwitchState.ON)">
-                            打开
-                        </a>
-                    </li>
-                    <li class="mouse_pointer dropdown-menu-li">
-                        <a class="association-groupdown-menu-item"
-                           onclick="Relay_BatchModify(SwitchState.OFF)">
-                            关闭
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <div class="btn-group  pull-right association-groupdown" id="div_bound_selectRelay">
-                <div class="btn btn-xs btn-primary association-btn-xs-groupdown dropdown-toggle control">
-                    选&ensp;择&ensp;<span class="caret"></span>
-                </div>
-                <ul class="dropdown-menu association-groupdown-menu" onmouseover="operationRelayCanClose = false;" onmouseout="operationRelayCanClose = true;">
-                    <li class="mouse_pointer dropdown-menu-li">
-                        <a class="association-groupdown-menu-item"
-                           onclick="GroupList.Select.All('modbus_relay_list_', Relay_SelectedAll);">
-                            全选
-                        </a>
-                    </li>
-                    <li class="mouse_pointer dropdown-menu-li">
-                        <a class="association-groupdown-menu-item"
-                           onclick="GroupList.Select.All('modbus_relay_list_', Relay_SelectedCurrent);">
-                            当前页
-                        </a>
-                    </li>
-                    <li class="mouse_pointer dropdown-menu-li">
-                        <a class="association-groupdown-menu-item"
-                           onclick="GroupList.Select.Inverse('modbus_relay_list_'); Relay_SelectedInverse();">
-                            反选
-                        </a>
-                    </li>
-                    <li class="mouse_pointer dropdown-menu-li">
-                        <a class="association-groupdown-menu-item"
-                           onclick="GroupList.Select.Cancel('modbus_relay_list_', Relay_SelectedCancel);">
-                            取消
-                        </a>
-                    </li>
-                </ul>
-            </div>
+      </div>
+      <div class="association-operation-bar">
+        <div class="btn-group pull-right association-groupdown">
+          <div
+            class="btn btn-xs btn-primary association-btn-xs-groupdown dropdown-toggle control"
+          >
+            开&ensp;&ensp;关<span class="caret"></span>
+          </div>
+          <ul
+            class="dropdown-menu association-groupdown-menu"
+            onmouseover="operationRelayCanClose = false;"
+            onmouseout="operationRelayCanClose = true;"
+          >
+            <li class="mouse_pointer dropdown-menu-li">
+              <a
+                class="association-groupdown-menu-item"
+                onclick="Relay_BatchModify(SwitchState.ON)"
+              >
+                打开
+              </a>
+            </li>
+            <li class="mouse_pointer dropdown-menu-li">
+              <a
+                class="association-groupdown-menu-item"
+                onclick="Relay_BatchModify(SwitchState.OFF)"
+              >
+                关闭
+              </a>
+            </li>
+          </ul>
         </div>
+        <div
+          class="btn-group pull-right association-groupdown"
+          id="div_bound_selectRelay"
+        >
+          <div
+            class="btn btn-xs btn-primary association-btn-xs-groupdown dropdown-toggle control"
+          >
+            选&ensp;择&ensp;<span class="caret"></span>
+          </div>
+          <ul
+            class="dropdown-menu association-groupdown-menu"
+            onmouseover="operationRelayCanClose = false;"
+            onmouseout="operationRelayCanClose = true;"
+          >
+            <li class="mouse_pointer dropdown-menu-li">
+              <a
+                class="association-groupdown-menu-item"
+                onclick="GroupList.Select.All('modbus_relay_list_', Relay_SelectedAll);"
+              >
+                全选
+              </a>
+            </li>
+            <li class="mouse_pointer dropdown-menu-li">
+              <a
+                class="association-groupdown-menu-item"
+                onclick="GroupList.Select.All('modbus_relay_list_', Relay_SelectedCurrent);"
+              >
+                当前页
+              </a>
+            </li>
+            <li class="mouse_pointer dropdown-menu-li">
+              <a
+                class="association-groupdown-menu-item"
+                onclick="GroupList.Select.Inverse('modbus_relay_list_'); Relay_SelectedInverse();"
+              >
+                反选
+              </a>
+            </li>
+            <li class="mouse_pointer dropdown-menu-li">
+              <a
+                class="association-groupdown-menu-item"
+                onclick="GroupList.Select.Cancel('modbus_relay_list_', Relay_SelectedCancel);"
+              >
+                取消
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
 
-        <div class="widget-content padded clearfix association-list-container">
-            <div id="glist_relays">
-
-            </div>
-        </div>
-        <div class="col-md-12">
-            <div id="div_relay_paging">
-
-            </div>
-        </div>
+      <div class="widget-content padded clearfix association-list-container">
+        <div id="glist_relays"></div>
+      </div>
+      <div class="col-md-12">
+        <div id="div_relay_paging"></div>
+      </div>
     </div>
 
     <script>
-        var operationRelayCanClose = true;
-        function modbus_relay_list_load() {
-            Html.Control.PopoverWindow.RelayList.selected = new Array();
-            $(".dropdown-menu-li").click(function () {
-                var node = this.parentElement.parentElement;
-                if (node.className.indexOf("open") > -1)
-                    $(node).removeClass("open");
-            });
-            $(".popover-content .dropdown-toggle.control").click(function () {
-                var node = this.parentElement;
-                if (node.className.indexOf("open") < 0)
-                    $(node).addClass("open");
-                else
-                    $(node).removeClass("open");
-            });
-            $(".popover-content .dropdown-toggle.control").blur(function () {
-                if (operationRelayCanClose) {
-                    var node = this.parentElement;
-                    if (node.className.indexOf("open") > -1)
-                        $(node).removeClass("open");
-                    operationRelayCanClose = true;
-                }
-            });
-            Html.Control.PopoverWindow.RelayList.clearValue();
-            Html.Control.PopoverWindow.RelayList.load(1);
-        }
+      var operationRelayCanClose = true
+      function modbus_relay_list_load() {
+        Html.Control.PopoverWindow.RelayList.selected = new Array()
+        $('.dropdown-menu-li').click(function () {
+          var node = this.parentElement.parentElement
+          if (node.className.indexOf('open') > -1) $(node).removeClass('open')
+        })
+        $('.popover-content .dropdown-toggle.control').click(function () {
+          var node = this.parentElement
+          if (node.className.indexOf('open') < 0) $(node).addClass('open')
+          else $(node).removeClass('open')
+        })
+        $('.popover-content .dropdown-toggle.control').blur(function () {
+          if (operationRelayCanClose) {
+            var node = this.parentElement
+            if (node.className.indexOf('open') > -1) $(node).removeClass('open')
+            operationRelayCanClose = true
+          }
+        })
+        Html.Control.PopoverWindow.RelayList.clearValue()
+        Html.Control.PopoverWindow.RelayList.load(1)
+      }
 
-        modbus_relay_list_load();
+      modbus_relay_list_load()
     </script>
-</body>
+  </body>
 </html>
-

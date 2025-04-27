@@ -48,7 +48,7 @@
 
 
     <script src="./ext.js"></script>
-    <script src="./jquery-1.7.1.min.js"></script>
+    <script src="./jquery-3.6.0.min.js"></script>
     <script src="./base64.js"></script>
     <script src="./WSPlayer.js"></script>
     <script>

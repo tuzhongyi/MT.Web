@@ -1,57 +1,66 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <head>
+    <meta
+      charset="utf-8"
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+    />
     <title></title>
-</head>
+  </head>
 
-<body>
+  <body>
     <style type="text/css">
-        .white-box {
-            margin-bottom: 0px;
-        }
+      .white-box {
+        margin-bottom: 0px;
+      }
     </style>
     <div>
-        <div class="row page-titles">
-            <div class="col-md-5 col-8 align-self-center">
-                <ol class="breadcrumb" id="navDeviceList">
-                    <li class="breadcrumb-item">
-                        <a href="javascript:selectNav(this); loadContent('page', base64encode(setUrlRandomParams(navigation.index.home)))">
-                            <span language="home">主页</span>
-                        </a>
-                    </li>
-                    <li class="breadcrumb-item">
-                        <a>
-                            <span language="back_end">后端</span><span language="device">设备</span>
-                        </a>
-                    </li>
-                </ol>
-            </div>
+      <div class="row page-titles">
+        <div class="col-md-5 col-8 align-self-center">
+          <ol class="breadcrumb" id="navDeviceList">
+            <li class="breadcrumb-item">
+              <a
+                href="javascript:selectNav(this); loadContent('page', base64encode(setUrlRandomParams(navigation.index.home)))"
+              >
+                <span language="home">主页</span>
+              </a>
+            </li>
+            <li class="breadcrumb-item">
+              <a>
+                <span language="back_end">后端</span
+                ><span language="device">设备</span>
+              </a>
+            </li>
+          </ol>
         </div>
-        <div class="page-title-occupying"></div>
-        <div class="row" id="nvrsListDiv">
-            <div class="col-12">
-                <div class="card pull-height fixed">
-                    <div class="card-body">
-                        <div class="card-title">
-                            <h3><span language="back_end">后端</span><span language="device">设备</span></h3>
-                        </div>
-                        <!-- <div class="row m-b-30">
+      </div>
+      <div class="page-title-occupying"></div>
+      <div class="row" id="nvrsListDiv">
+        <div class="col-12">
+          <div class="card pull-height fixed">
+            <div class="card-body">
+              <div class="card-title">
+                <h3>
+                  <span language="back_end">后端</span
+                  ><span language="device">设备</span>
+                </h3>
+              </div>
+              <!-- <div class="row m-b-30">
                             <div class="col-6">
                                 <div class="button-group">
                                     <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <i class="fa fa-check"></i> <span language="choose">选择</span>
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-right" style="min-width:86px;">
-                                        <a class="dropdown-item text-right" href="#" onclick="devicesControl.allSelect()">
+                                        <a class="dropdown-item text-right"  onclick="devicesControl.allSelect()">
                                             <i class="mdi mdi-check-circle-outline pull-left"></i><span language="allselected">全选</span>
                                         </a>
-                                        <a class="dropdown-item text-right" href="#" onclick="devicesControl.unSelect()">
+                                        <a class="dropdown-item text-right"  onclick="devicesControl.unSelect()">
                                             <i class="mdi mdi-check-circle pull-left"></i><span language="inverseselected">反选</span>
                                         </a>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item text-right" href="#" onclick="devicesControl.cancelSelect()">
+                                        <a class="dropdown-item text-right"  onclick="devicesControl.cancelSelect()">
                                             <i class="mdi mdi-checkbox-blank-circle-outline pull-left"></i><span language="cancel">取消</span>
                                         </a>
                                     </div>
@@ -67,26 +76,26 @@
 
                             </div>
                         </div> -->
-                        <div class="row" id="list_body">
-                            <div class="col-12">
-                                <div class="card-group" id="nvrsList"></div>
-                            </div>
-                        </div>
-                    </div>
+              <div class="row" id="list_body">
+                <div class="col-12">
+                  <div class="card-group" id="nvrsList"></div>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
     <script src="fr/device/nvr/nvr.js?update=20180712" charset="UTF-8"></script>
     <script src="js/client/management.js?update=20180712"></script>
     <script type="text/javascript">
-        $(function () {
-            Html.Device.List.create("nvrsList")
-            $('#list_body').slimScroll({
-                height: '80%'
-            });
-            init_language();
-        });
+      $(function () {
+        Html.Device.List.create('nvrsList')
+        $('#list_body').slimScroll({
+          height: '80%',
+        })
+        init_language()
+      })
     </script>
-</body>
+  </body>
 </html>

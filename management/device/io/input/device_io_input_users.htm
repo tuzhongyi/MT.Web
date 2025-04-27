@@ -1,213 +1,333 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
+  <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>报警输入通道用户关联</title>
     <link href="../../../../css/howell.css" rel="stylesheet" />
-    <script type="text/javascript" src="../../../../js/language/chinese.js"></script>
-    <script type="text/javascript" src="../../../../js/jquery/jquery-1.10.2.min.js"></script>
+    <script
+      type="text/javascript"
+      src="../../../../js/language/chinese.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../../js/jquery/jquery-3.6.0.min.js"
+    ></script>
     <script type="text/javascript" src="../../../../js/imported.js"></script>
-    <script type="text/javascript" src="../../../../js/jquery/jquery-ui.js"></script>
-    <script type="text/javascript" src="../../../../js/jquery/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="../../../../js/bootstrap/bootstrap.min.js"></script>
+    <script
+      type="text/javascript"
+      src="../../../../js/jquery/jquery-ui.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../../js/jquery/jquery.dataTables.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../../js/bootstrap/bootstrap.min.js"
+    ></script>
     <script type="text/javascript" src="../../../../js/nav.js"></script>
 
-    <script type="text/javascript" src="../../../../js/jquery/jquery.confirm.js"></script>
-    <script type="text/javascript" src="../../../../js/modernizr.custom.js"></script>
+    <script
+      type="text/javascript"
+      src="../../../../js/jquery/jquery.confirm.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../../js/modernizr.custom.js"
+    ></script>
     <script type="text/javascript" src="../../../../js/md5.js"></script>
-    <script type="text/javascript" src="../../../../js/howell.js/howell.js"></script>
-    <script type="text/javascript" src="../../../../js/howell.js/digest.js"></script>
-    <script type="text/javascript" src="../../../../js/howell.js/httpService.js"></script>
-    <script type="text/javascript" src="../../../../js/client/management.js"></script>
-    <script type="text/javascript" src="../../../../js/client/security.js"></script>
+    <script
+      type="text/javascript"
+      src="../../../../js/howell.js/howell.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../../js/howell.js/digest.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../../js/howell.js/httpService.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../../js/client/management.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../../js/client/security.js"
+    ></script>
     <script type="text/javascript" src="../../../../js/client/enum.js"></script>
-    <script type="text/javascript" src="../../../../js/client/struct.js"></script>
-    <script type="text/javascript" src="../../../../js/howell.js/howell.control.js"></script>
-    <script type="text/javascript" src="../../../../js/jquery/jquery.confirm.js"></script>
-    <script type="text/javascript" src="../../../../js/bootstrap/bootstrap-switch.min.js"></script>
-    <script type="text/javascript" src="../../../../js/background/management/background_device.event.js"></script>
-    <script type="text/javascript" src="../../../../js/background/management/device/background_device_io_inputs.js"></script>
-    <script type="text/javascript" src="../../../../js/background/management/device/io/input/background_device_io_input_users.js"></script>
+    <script
+      type="text/javascript"
+      src="../../../../js/client/struct.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../../js/howell.js/howell.control.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../../js/jquery/jquery.confirm.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../../js/bootstrap/bootstrap-switch.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../../js/background/management/background_device.event.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../../js/background/management/device/background_device_io_inputs.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../../js/background/management/device/io/input/background_device_io_input_users.js"
+    ></script>
     <script type="text/javascript" src="device_io_input_users.js"></script>
-    <script type="text/javascript" src="../../../../js/background/management/device/io/input/user/background_device_io_input_user_permissions.js"></script>
-    <script type="text/javascript" src="user/device_io_input_user_permissions.js"></script>
+    <script
+      type="text/javascript"
+      src="../../../../js/background/management/device/io/input/user/background_device_io_input_user_permissions.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="user/device_io_input_user_permissions.js"
+    ></script>
 
     <script>
-
-        Trigger = document.createElement("a");;
-        Trigger.href = "user/item.htm?inputId=00310101021111111000001000000000";
-        Info.ControlIdPrefix.User.AlertUrl.permissions = "user/device_io_input_user_permissions.htm";
+      Trigger = document.createElement('a')
+      Trigger.href = 'user/item.htm?inputId=00310101021111111000001000000000'
+      Info.ControlIdPrefix.User.AlertUrl.permissions =
+        'user/device_io_input_user_permissions.htm'
     </script>
-
-</head>
-<body>
+  </head>
+  <body>
     <!--已绑定列表-->
-    <div id="div_association_user" class="widget-container fluid-height clearfix association-frame mouse_default swith_control" style="display:block;">
-        <div class="heading association-heading">
-            <i class="icon-user association-heading-icon mouse_default"></i>
-            <label>已绑定用户列表</label><div class="association-heading-count-text">共 <label id="lbl_association_user_count">0</label> 条</div>
+    <div
+      id="div_association_user"
+      class="widget-container fluid-height clearfix association-frame mouse_default swith_control"
+      style="display: block"
+    >
+      <div class="heading association-heading">
+        <i class="icon-user association-heading-icon mouse_default"></i>
+        <label>已绑定用户列表</label>
+        <div class="association-heading-count-text">
+          共 <label id="lbl_association_user_count">0</label> 条
         </div>
-        <div class="association-operation-bar">
-            <div class="association-operation-bar-text-btn pull-left" onclick="To_User_Unassociation_Click(this);">
-                <a class="icon-plus">
-                </a>
-                <span>
-                    添加
-                </span>
-            </div>
-            <div class="btn-group pull-right association-btn-group" id="div_bound_deleteUser">
-                <div class="btn btn-xs btn-primary-outline association-btn-group-icon-btn" onclick="btn_user_batch_remove_Click(this);" title="删除">
-                    <i class="icon-trash">
-                    </i>
-                </div>
-                <div class="btn btn-xs dropdown-toggle control btn-primary-outline btn-xsgroup-toggle">
-                    <span class="caret"></span>
-                </div>
-                <ul class="dropdown-menu association-dropdown-menu" onmouseover="operationUserCanClose = false;" onmouseout="operationUserCanClose = true;">
-                    <li class="dropdown-menu-li">
-                        <a class="association-dropdown-men-item mouse_pointer" onclick="RemoveAllUser_Click(this)">全部删除</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="btn-group  pull-right association-groupdown" id="div_bound_selectUser">
-                <div class="btn btn-xs btn-primary association-btn-xs-groupdown dropdown-toggle control">
-                    选&ensp;择&ensp;<span class="caret"></span>
-                </div>
-                <ul class="dropdown-menu association-groupdown-menu" onmouseover="operationUserCanClose = false;" onmouseout="operationUserCanClose = true;">
-                    <li class="mouse_pointer dropdown-menu-li">
-                        <a class="association-groupdown-menu-item"
-                           onclick="GroupList.Select.All('device_io_input_user_list_', IOInputAssociationUser_SelectedAll);">
-                            全选
-                        </a>
-                    </li>
-                    <li class="mouse_pointer dropdown-menu-li">
-                        <a class="association-groupdown-menu-item"
-                           onclick="GroupList.Select.All('device_io_input_user_list_', IOInputAssociationUser_SelectedCurrent);">
-                            当前页
-                        </a>
-                    </li>
-                    <li class="mouse_pointer dropdown-menu-li">
-                        <a class="association-groupdown-menu-item"
-                           onclick="GroupList.Select.Inverse('device_io_input_user_list_'); IOInputAssociationUser_SelectedInverse()">
-                            反选
-                        </a>
-                    </li>
-                    <li class="mouse_pointer dropdown-menu-li">
-                        <a class="association-groupdown-menu-item"
-                           onclick="GroupList.Select.Cancel('device_io_input_user_list_', IOInputAssociationUser_SelectedCancel);">
-                            取消
-                        </a>
-                    </li>
-                </ul>
-            </div>
+      </div>
+      <div class="association-operation-bar">
+        <div
+          class="association-operation-bar-text-btn pull-left"
+          onclick="To_User_Unassociation_Click(this);"
+        >
+          <a class="icon-plus"> </a>
+          <span> 添加 </span>
         </div>
+        <div
+          class="btn-group pull-right association-btn-group"
+          id="div_bound_deleteUser"
+        >
+          <div
+            class="btn btn-xs btn-primary-outline association-btn-group-icon-btn"
+            onclick="btn_user_batch_remove_Click(this);"
+            title="删除"
+          >
+            <i class="icon-trash"> </i>
+          </div>
+          <div
+            class="btn btn-xs dropdown-toggle control btn-primary-outline btn-xsgroup-toggle"
+          >
+            <span class="caret"></span>
+          </div>
+          <ul
+            class="dropdown-menu association-dropdown-menu"
+            onmouseover="operationUserCanClose = false;"
+            onmouseout="operationUserCanClose = true;"
+          >
+            <li class="dropdown-menu-li">
+              <a
+                class="association-dropdown-men-item mouse_pointer"
+                onclick="RemoveAllUser_Click(this)"
+                >全部删除</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div
+          class="btn-group pull-right association-groupdown"
+          id="div_bound_selectUser"
+        >
+          <div
+            class="btn btn-xs btn-primary association-btn-xs-groupdown dropdown-toggle control"
+          >
+            选&ensp;择&ensp;<span class="caret"></span>
+          </div>
+          <ul
+            class="dropdown-menu association-groupdown-menu"
+            onmouseover="operationUserCanClose = false;"
+            onmouseout="operationUserCanClose = true;"
+          >
+            <li class="mouse_pointer dropdown-menu-li">
+              <a
+                class="association-groupdown-menu-item"
+                onclick="GroupList.Select.All('device_io_input_user_list_', IOInputAssociationUser_SelectedAll);"
+              >
+                全选
+              </a>
+            </li>
+            <li class="mouse_pointer dropdown-menu-li">
+              <a
+                class="association-groupdown-menu-item"
+                onclick="GroupList.Select.All('device_io_input_user_list_', IOInputAssociationUser_SelectedCurrent);"
+              >
+                当前页
+              </a>
+            </li>
+            <li class="mouse_pointer dropdown-menu-li">
+              <a
+                class="association-groupdown-menu-item"
+                onclick="GroupList.Select.Inverse('device_io_input_user_list_'); IOInputAssociationUser_SelectedInverse()"
+              >
+                反选
+              </a>
+            </li>
+            <li class="mouse_pointer dropdown-menu-li">
+              <a
+                class="association-groupdown-menu-item"
+                onclick="GroupList.Select.Cancel('device_io_input_user_list_', IOInputAssociationUser_SelectedCancel);"
+              >
+                取消
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
 
-        <div class="widget-content padded clearfix association-list-container">
-            <div id="glist_association_users">
-
-            </div>
-        </div>
-        <div class="col-md-12">
-            <div id="div_association_user_paging">
-
-            </div>
-        </div>
+      <div class="widget-content padded clearfix association-list-container">
+        <div id="glist_association_users"></div>
+      </div>
+      <div class="col-md-12">
+        <div id="div_association_user_paging"></div>
+      </div>
     </div>
 
     <!--未绑定列表-->
-    <div id="div_unassociation_user" class="widget-container fluid-height clearfix association-frame mouse_default swith_control" style="display:none">
-        <div class="heading association-heading">
-            <i class="icon-user association-heading-icon mouse_default"></i>
-            <label>未绑定用户列表</label><div class="association-heading-count-text">共 <label id="lbl_unassociation_user_count">0</label> 条</div>
+    <div
+      id="div_unassociation_user"
+      class="widget-container fluid-height clearfix association-frame mouse_default swith_control"
+      style="display: none"
+    >
+      <div class="heading association-heading">
+        <i class="icon-user association-heading-icon mouse_default"></i>
+        <label>未绑定用户列表</label>
+        <div class="association-heading-count-text">
+          共 <label id="lbl_unassociation_user_count">0</label> 条
         </div>
-        <div class="association-operation-bar">
-            <div class="association-operation-bar-text-btn pull-left" onclick="To_User_Association_Click(this);">
-                <a class="icon-chevron-left">
-                </a>
-                <span>
-                    返回
-                </span>
-            </div>
-            <a class="btn btn-xs btn-primary pull-right association-operation-bar-ordinary-btn" id="btn_association" onclick="return btn_user_association_Click(this);">
-                完&ensp;成
-            </a>
-            <div class="btn-group  pull-right association-groupdown" id="div_unassociation_selectUser">
-                <div class="btn btn-xs btn-primary association-btn-xs-groupdown dropdown-toggle control">
-                    选&ensp;择&ensp;<span class="caret"></span>
-                </div>
-                <ul class="dropdown-menu association-groupdown-menu" onmouseover="operationUserCanClose = false;" onmouseout="operationUserCanClose = true;">
-                    <li class="mouse_pointer dropdown-menu-li">
-                        <a class="association-groupdown-menu-item"
-                           onclick="GroupList.Select.All('user_list_', IOInputUnassociationUser_SelectedAll);">
-                            全选
-                        </a>
-                    </li>
-                    <li class="mouse_pointer dropdown-menu-li">
-                        <a class="association-groupdown-menu-item"
-                           onclick="GroupList.Select.All('user_list_', IOInputUnassociationUser_SelectedCurrent);">
-                            当前页
-                        </a>
-                    </li>
-                    <li class="mouse_pointer dropdown-menu-li">
-                        <a class="association-groupdown-menu-item"
-                           onclick="GroupList.Select.Inverse('user_list_'); IOInputUnassociationUser_SelectedInverse()">
-                            反选
-                        </a>
-                    </li>
-                    <li class="mouse_pointer dropdown-menu-li">
-                        <a class="association-groupdown-menu-item"
-                           onclick="GroupList.Select.Cancel('user_list_', IOInputUnassociationUser_SelectedCancel);">
-                            取消
-                        </a>
-                    </li>
-                </ul>
-            </div>
+      </div>
+      <div class="association-operation-bar">
+        <div
+          class="association-operation-bar-text-btn pull-left"
+          onclick="To_User_Association_Click(this);"
+        >
+          <a class="icon-chevron-left"> </a>
+          <span> 返回 </span>
         </div>
+        <a
+          class="btn btn-xs btn-primary pull-right association-operation-bar-ordinary-btn"
+          id="btn_association"
+          onclick="return btn_user_association_Click(this);"
+        >
+          完&ensp;成
+        </a>
+        <div
+          class="btn-group pull-right association-groupdown"
+          id="div_unassociation_selectUser"
+        >
+          <div
+            class="btn btn-xs btn-primary association-btn-xs-groupdown dropdown-toggle control"
+          >
+            选&ensp;择&ensp;<span class="caret"></span>
+          </div>
+          <ul
+            class="dropdown-menu association-groupdown-menu"
+            onmouseover="operationUserCanClose = false;"
+            onmouseout="operationUserCanClose = true;"
+          >
+            <li class="mouse_pointer dropdown-menu-li">
+              <a
+                class="association-groupdown-menu-item"
+                onclick="GroupList.Select.All('user_list_', IOInputUnassociationUser_SelectedAll);"
+              >
+                全选
+              </a>
+            </li>
+            <li class="mouse_pointer dropdown-menu-li">
+              <a
+                class="association-groupdown-menu-item"
+                onclick="GroupList.Select.All('user_list_', IOInputUnassociationUser_SelectedCurrent);"
+              >
+                当前页
+              </a>
+            </li>
+            <li class="mouse_pointer dropdown-menu-li">
+              <a
+                class="association-groupdown-menu-item"
+                onclick="GroupList.Select.Inverse('user_list_'); IOInputUnassociationUser_SelectedInverse()"
+              >
+                反选
+              </a>
+            </li>
+            <li class="mouse_pointer dropdown-menu-li">
+              <a
+                class="association-groupdown-menu-item"
+                onclick="GroupList.Select.Cancel('user_list_', IOInputUnassociationUser_SelectedCancel);"
+              >
+                取消
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
 
-        <div class="widget-content padded clearfix association-list-container">
-            <div id="glist_unassociation_users">
-
-            </div>
-        </div>
-        <div class="col-md-12">
-            <div id="div_unassociation_user_paging">
-
-            </div>
-        </div>
+      <div class="widget-content padded clearfix association-list-container">
+        <div id="glist_unassociation_users"></div>
+      </div>
+      <div class="col-md-12">
+        <div id="div_unassociation_user_paging"></div>
+      </div>
     </div>
 
     <script>
-        var operationUserCanClose = true;
-        function device_io_input_user_list_load() {
-            getTag("btn_association").href = Property.Location.User.Details.Value + "?fun=PageEvent.Device.IO.Input.User.BatchAddInputsToUser&inputId=" + Html.Control.AlertWindow.Device.Input.Details.get().Id;
-            Html.Control.PopoverWindow.UserList.Association.selected = new Array();
-            Html.Control.PopoverWindow.UserList.Unassociation.selected = new Array();
-            $(".dropdown-menu-li").click(function () {
-                var node = this.parentElement.parentElement;
-                if (node.className.indexOf("open") > -1)
-                    $(node).removeClass("open");
-            });
-            $(".popover-content .dropdown-toggle.control").click(function () {
-                var node = this.parentElement;
-                if (node.className.indexOf("open") < 0)
-                    $(node).addClass("open");
-                else
-                    $(node).removeClass("open");
-            });
-            $(".popover-content .dropdown-toggle.control").blur(function () {
-                if (operationUserCanClose) {
-                    var node = this.parentElement;
-                    if (node.className.indexOf("open") > -1)
-                        $(node).removeClass("open");
-                    operationUserCanClose = true;
-                }
-            });
-            Html.Control.PopoverWindow.UserList.Association.load(1);
-        }
+      var operationUserCanClose = true
+      function device_io_input_user_list_load() {
+        getTag('btn_association').href =
+          Property.Location.User.Details.Value +
+          '?fun=PageEvent.Device.IO.Input.User.BatchAddInputsToUser&inputId=' +
+          Html.Control.AlertWindow.Device.Input.Details.get().Id
+        Html.Control.PopoverWindow.UserList.Association.selected = new Array()
+        Html.Control.PopoverWindow.UserList.Unassociation.selected = new Array()
+        $('.dropdown-menu-li').click(function () {
+          var node = this.parentElement.parentElement
+          if (node.className.indexOf('open') > -1) $(node).removeClass('open')
+        })
+        $('.popover-content .dropdown-toggle.control').click(function () {
+          var node = this.parentElement
+          if (node.className.indexOf('open') < 0) $(node).addClass('open')
+          else $(node).removeClass('open')
+        })
+        $('.popover-content .dropdown-toggle.control').blur(function () {
+          if (operationUserCanClose) {
+            var node = this.parentElement
+            if (node.className.indexOf('open') > -1) $(node).removeClass('open')
+            operationUserCanClose = true
+          }
+        })
+        Html.Control.PopoverWindow.UserList.Association.load(1)
+      }
 
-        device_io_input_user_list_load();
+      device_io_input_user_list_load()
     </script>
-</body>
+  </body>
 </html>
-

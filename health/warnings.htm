@@ -1,10 +1,11 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head><meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>系统警告报告</title>
     <link href="../css/howell.css" rel="stylesheet" />
-    <script src="../js/jquery/jquery-1.10.2.min.js"></script>
+    <script src="../js/jquery/jquery-3.6.0.min.js"></script>
     <script src="../js/jquery/jquery-ui.js"></script>
     <script src="../js/bootstrap/bootstrap.min.js"></script>
 
@@ -16,418 +17,505 @@
     <script src="../js/client/client.js"></script>
     <script src="../js/client/health.js"></script>
     <script src="../js/imported.js"></script>
-    
+
     <script src="../js/nav.js"></script>
     <style type="text/css">
-        .compare-float-heading-tag-div {
-            height: 35px;
-            margin-top: 27px;
-        }
+      .compare-float-heading-tag-div {
+        height: 35px;
+        margin-top: 27px;
+      }
 
-        .background_icon.warning.CPUUsage {
-            background-image: url(../img/health/CPUUsageNumber.png);
-            background-size: 25px;
-            background-position: center;
-        }
+      .background_icon.warning.CPUUsage {
+        background-image: url(../img/health/CPUUsageNumber.png);
+        background-size: 25px;
+        background-position: center;
+      }
 
-        .background_icon.warning.MemoryUsage {
-            background-image: url(../img/health/MemoryUsageNumber.png);
-            background-size: 25px;
-            background-position: center;
-        }
+      .background_icon.warning.MemoryUsage {
+        background-image: url(../img/health/MemoryUsageNumber.png);
+        background-size: 25px;
+        background-position: center;
+      }
 
-        .background_icon.warning.NetworkUsage {
-            background-image: url(../img/health/NetworkUsageNumber.png);
-            background-size: 25px;
-            background-position: center;
-        }
+      .background_icon.warning.NetworkUsage {
+        background-image: url(../img/health/NetworkUsageNumber.png);
+        background-size: 25px;
+        background-position: center;
+      }
 
-        .background_icon.warning.SuperHeat {
-            background-image: url(../img/health/SuperHeatNumber.png);
-            background-size: 25px;
-            background-position: center;
-        }
+      .background_icon.warning.SuperHeat {
+        background-image: url(../img/health/SuperHeatNumber.png);
+        background-size: 25px;
+        background-position: center;
+      }
 
-        .background_icon.warning.VoltageInstability {
-            background-image: url(../img/health/VoltageInstabilityNumber.png);
-            background-size: 25px;
-            background-position: center;
-        }
+      .background_icon.warning.VoltageInstability {
+        background-image: url(../img/health/VoltageInstabilityNumber.png);
+        background-size: 25px;
+        background-position: center;
+      }
 
-        .background_icon.warning.VideoHighLoad {
-            background-image: url(../img/health/VideoHighLoadNumber.png);
-            background-size: 25px;
-            background-position: center;
-        }
+      .background_icon.warning.VideoHighLoad {
+        background-image: url(../img/health/VideoHighLoadNumber.png);
+        background-size: 25px;
+        background-position: center;
+      }
 
-        .background_icon.warning.VideoNetworkInstability {
-            background-image: url(../img/health/VideoNetworkInstabilityNumber.png);
-            background-size: 25px;
-            background-position: center;
-        }
+      .background_icon.warning.VideoNetworkInstability {
+        background-image: url(../img/health/VideoNetworkInstabilityNumber.png);
+        background-size: 25px;
+        background-position: center;
+      }
 
-        .background_icon.warning.Teardown {
-            background-image: url(../img/health/TeardownNumber.png);
-            background-size: 25px;
-            background-position: center;
-        }
+      .background_icon.warning.Teardown {
+        background-image: url(../img/health/TeardownNumber.png);
+        background-size: 25px;
+        background-position: center;
+      }
 
-        .background_icon.warning.VideoConnectionFailure {
-            background-image: url(../img/health/VideoConnectionFailureNumber.png);
-            background-size: 25px;
-            background-position: center;
-        }
+      .background_icon.warning.VideoConnectionFailure {
+        background-image: url(../img/health/VideoConnectionFailureNumber.png);
+        background-size: 25px;
+        background-position: center;
+      }
 
-        .btn-group {
-            margin: 0 0 !important;
-            width: 60px;
-        }
+      .btn-group {
+        margin: 0 0 !important;
+        width: 60px;
+      }
 
-        .btn.btn-primary-outline {
-            border: none;
-            width: 70px;
-        }
+      .btn.btn-primary-outline {
+        border: none;
+        width: 70px;
+      }
 
-        .dropdown-menu.xsgroupdown-menu-ul {
-            width: 100px;
-            left: 0px;
-        }
+      .dropdown-menu.xsgroupdown-menu-ul {
+        width: 100px;
+        left: 0px;
+      }
 
-        .dropdown-menu > li > a {
-            padding: 15px 0px 10px 0px;
-            margin-right: 10px;
-            margin-left: 10px;
-        }
+      .dropdown-menu > li > a {
+        padding: 15px 0px 10px 0px;
+        margin-right: 10px;
+        margin-left: 10px;
+      }
 
-        .type {
-            width: 75px;
-            padding:0 !important;
-        }
-        .name{
-            width:254px;
-        }
-        .create-time{
-            width:253px;
-        }
-        .recovered{
-            width:255px;
-        }
-        .description{
-            width:253px;
-        }
+      .type {
+        width: 75px;
+        padding: 0 !important;
+      }
+      .name {
+        width: 254px;
+      }
+      .create-time {
+        width: 253px;
+      }
+      .recovered {
+        width: 255px;
+      }
+      .description {
+        width: 253px;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="heading compare-float-heading-div" id="table_loading_head">
-        <div class="form-group compare-float-heading-title-div">
-            <!--&ensp;<div class="compare-float-heading-icon-div"></div>-->
-            <img src="../img/health/health.png" width="30" style="margin-left:2px"/>
-            <label class="compare-float-heading-title-label" style="margin-left:0px">系统警告报告</label>
-        </div>
-        <div class="compare-float-heading-tag-div">
-            <table id="table" class="table table-filters compare-channel-table" style="margin-left:5px;">
-                <thead class="" id="test1">
-                    <tr style="text-align:center;">
-                        <td class="type">
-                            <div class="btn-group  pull-left div-xsgroupdown">
-                                <div class="btn btn-xs btn-primary-outline btn-xsgroupdown dropdown-toggle" data-toggle="dropdown" id="operation">
-                                    类型
-                                    <span class="caret"></span>
-                                </div>
-                                <ul class="dropdown-menu xsgroupdown-menu-ul" style="width:164px">
-                                    <li class="mouse_pointer">
-                                        <a class="xsgroupdown-menu-ul-li-a" onclick="TypeChanged(this, SystemWarningType.None)">
-                                            全部
-                                        </a>
-                                    </li>
-                                    <li class="mouse_pointer">
-                                        <a class="xsgroupdown-menu-ul-li-a" onclick="TypeChanged(this, SystemWarningType.CPUUsage)">
-                                            CPU过高
-                                        </a>
-                                    </li>
-                                    <li class="mouse_pointer">
-                                        <a class="xsgroupdown-menu-ul-li-a" onclick="TypeChanged(this, SystemWarningType.MemoryUsage)">
-                                            内存过高
-                                        </a>
-                                    </li>
-                                    <li class="mouse_pointer">
-                                        <a class="xsgroupdown-menu-ul-li-a" onclick="TypeChanged(this, SystemWarningType.NetworkUsage)">
-                                            网口使用率过高
-                                        </a>
-                                    </li>
-                                    <li class="mouse_pointer">
-                                        <a class="xsgroupdown-menu-ul-li-a" onclick="TypeChanged(this, SystemWarningType.SuperHeat)">
-                                            设备过热
-                                        </a>
-                                    </li>
-                                    <li class="mouse_pointer">
-                                        <a class="xsgroupdown-menu-ul-li-a" onclick="TypeChanged(this, SystemWarningType.VoltageInstability)">
-                                            电压不稳
-                                        </a>
-                                    </li>
-                                    <li class="mouse_pointer">
-                                        <a class="xsgroupdown-menu-ul-li-a" onclick="TypeChanged(this, SystemWarningType.Teardown)">
-                                            异常上下线
-                                        </a>
-                                    </li>
-                                    <li class="mouse_pointer">
-                                        <a class="xsgroupdown-menu-ul-li-a" onclick="TypeChanged(this, SystemWarningType.VideoHighLoad)">
-                                            视频连接负载过高
-                                        </a>
-                                    </li>
-                                    <li class="mouse_pointer">
-                                        <a class="xsgroupdown-menu-ul-li-a" onclick="TypeChanged(this, SystemWarningType.VideoNetworkInstability)">
-                                            视频通道的网络状态不稳定
-                                        </a>
-                                    </li>
-                                    <li class="mouse_pointer">
-                                        <a class="xsgroupdown-menu-ul-li-a" onclick="TypeChanged(this, SystemWarningType.VideoConnectionFailure)">
-                                            视频连接的失败率过高
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </td>
-                        <td class="name">
-                            警告设备
-                        </td>
-                        <td class="create-time">
-                            警告时间
-                        </td>
-                        <td class="recovered">
-                            是否恢复
-                        </td>
-                        <td class="description">
-                            描述信息
-                        </td>
-                    </tr>
-                </thead>
-                <!--<tbody id="tbody"></tbody>-->
-            </table>
-
-        </div>
+      <div class="form-group compare-float-heading-title-div">
+        <!--&ensp;<div class="compare-float-heading-icon-div"></div>-->
+        <img
+          src="../img/health/health.png"
+          width="30"
+          style="margin-left: 2px"
+        />
+        <label
+          class="compare-float-heading-title-label"
+          style="margin-left: 0px"
+          >系统警告报告</label
+        >
+      </div>
+      <div class="compare-float-heading-tag-div">
+        <table
+          id="table"
+          class="table table-filters compare-channel-table"
+          style="margin-left: 5px"
+        >
+          <thead class="" id="test1">
+            <tr style="text-align: center">
+              <td class="type">
+                <div class="btn-group pull-left div-xsgroupdown">
+                  <div
+                    class="btn btn-xs btn-primary-outline btn-xsgroupdown dropdown-toggle"
+                    data-toggle="dropdown"
+                    id="operation"
+                  >
+                    类型
+                    <span class="caret"></span>
+                  </div>
+                  <ul
+                    class="dropdown-menu xsgroupdown-menu-ul"
+                    style="width: 164px"
+                  >
+                    <li class="mouse_pointer">
+                      <a
+                        class="xsgroupdown-menu-ul-li-a"
+                        onclick="TypeChanged(this, SystemWarningType.None)"
+                      >
+                        全部
+                      </a>
+                    </li>
+                    <li class="mouse_pointer">
+                      <a
+                        class="xsgroupdown-menu-ul-li-a"
+                        onclick="TypeChanged(this, SystemWarningType.CPUUsage)"
+                      >
+                        CPU过高
+                      </a>
+                    </li>
+                    <li class="mouse_pointer">
+                      <a
+                        class="xsgroupdown-menu-ul-li-a"
+                        onclick="TypeChanged(this, SystemWarningType.MemoryUsage)"
+                      >
+                        内存过高
+                      </a>
+                    </li>
+                    <li class="mouse_pointer">
+                      <a
+                        class="xsgroupdown-menu-ul-li-a"
+                        onclick="TypeChanged(this, SystemWarningType.NetworkUsage)"
+                      >
+                        网口使用率过高
+                      </a>
+                    </li>
+                    <li class="mouse_pointer">
+                      <a
+                        class="xsgroupdown-menu-ul-li-a"
+                        onclick="TypeChanged(this, SystemWarningType.SuperHeat)"
+                      >
+                        设备过热
+                      </a>
+                    </li>
+                    <li class="mouse_pointer">
+                      <a
+                        class="xsgroupdown-menu-ul-li-a"
+                        onclick="TypeChanged(this, SystemWarningType.VoltageInstability)"
+                      >
+                        电压不稳
+                      </a>
+                    </li>
+                    <li class="mouse_pointer">
+                      <a
+                        class="xsgroupdown-menu-ul-li-a"
+                        onclick="TypeChanged(this, SystemWarningType.Teardown)"
+                      >
+                        异常上下线
+                      </a>
+                    </li>
+                    <li class="mouse_pointer">
+                      <a
+                        class="xsgroupdown-menu-ul-li-a"
+                        onclick="TypeChanged(this, SystemWarningType.VideoHighLoad)"
+                      >
+                        视频连接负载过高
+                      </a>
+                    </li>
+                    <li class="mouse_pointer">
+                      <a
+                        class="xsgroupdown-menu-ul-li-a"
+                        onclick="TypeChanged(this, SystemWarningType.VideoNetworkInstability)"
+                      >
+                        视频通道的网络状态不稳定
+                      </a>
+                    </li>
+                    <li class="mouse_pointer">
+                      <a
+                        class="xsgroupdown-menu-ul-li-a"
+                        onclick="TypeChanged(this, SystemWarningType.VideoConnectionFailure)"
+                      >
+                        视频连接的失败率过高
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </td>
+              <td class="name">警告设备</td>
+              <td class="create-time">警告时间</td>
+              <td class="recovered">是否恢复</td>
+              <td class="description">描述信息</td>
+            </tr>
+          </thead>
+          <!--<tbody id="tbody"></tbody>-->
+        </table>
+      </div>
     </div>
     <div class="page-main row">
-        <div class="col-md-12">
-            <div class="widget-container fluid-height clearfix list-width padded background-min-height">
-                <div class="heading compare-heading-div page-top" id="test2">
-                    <div class="form-group table-heading-div">
-                        &ensp;<img src="../img/health/health.png" width="30" />
-                        系统警告报告
+      <div class="col-md-12">
+        <div
+          class="widget-container fluid-height clearfix list-width padded background-min-height"
+        >
+          <div class="heading compare-heading-div page-top" id="test2">
+            <div class="form-group table-heading-div">
+              &ensp;<img src="../img/health/health.png" width="30" />
+              系统警告报告
+            </div>
+          </div>
+          <table id="table" class="table table-filters compare-channel-table">
+            <thead class="page-top" id="test1">
+              <tr style="text-align: center">
+                <td class="type">
+                  <div
+                    class="btn-group pull-left div-xsgroupdown"
+                    id="btn-operation"
+                  >
+                    <div
+                      class="btn btn-xs btn-primary-outline btn-xsgroupdown dropdown-toggle"
+                      data-toggle="dropdown"
+                      id="operation"
+                    >
+                      类型
+                      <span class="caret" style="margin-top: 0px"></span>
                     </div>
-                </div>
-                <table id="table" class="table table-filters compare-channel-table">
-                    <thead class="page-top" id="test1">
-                        <tr style="text-align:center;">
-                            <td class="type">
-                                <div class="btn-group  pull-left div-xsgroupdown" id="btn-operation">
-                                    <div class="btn btn-xs btn-primary-outline btn-xsgroupdown dropdown-toggle" data-toggle="dropdown" id="operation">
-                                        类型
-                                        <span class="caret" style="margin-top:0px"></span>
-                                    </div>
-                                    <ul class="dropdown-menu xsgroupdown-menu-ul" style="width:164px">
-                                        <li class="mouse_pointer">
-                                            <a class="xsgroupdown-menu-ul-li-a" onclick="TypeChanged(this, SystemWarningType.None)">
-                                                全部
-                                            </a>
-                                        </li>
-                                        <li class="mouse_pointer">
-                                            <a class="xsgroupdown-menu-ul-li-a" onclick="TypeChanged(this, SystemWarningType.CPUUsage)">
-                                                CPU过高
-                                            </a>
-                                        </li>
-                                        <li class="mouse_pointer">
-                                            <a class="xsgroupdown-menu-ul-li-a" onclick="TypeChanged(this, SystemWarningType.MemoryUsage)">
-                                                内存过高
-                                            </a>
-                                        </li>
-                                        <li class="mouse_pointer">
-                                            <a class="xsgroupdown-menu-ul-li-a" onclick="TypeChanged(this, SystemWarningType.NetworkUsage)">
-                                                网口使用率过高
-                                            </a>
-                                        </li>
-                                        <li class="mouse_pointer">
-                                            <a class="xsgroupdown-menu-ul-li-a" onclick="TypeChanged(this, SystemWarningType.SuperHeat)">
-                                                设备过热
-                                            </a>
-                                        </li>
-                                        <li class="mouse_pointer">
-                                            <a class="xsgroupdown-menu-ul-li-a" onclick="TypeChanged(this, SystemWarningType.VoltageInstability)">
-                                                电压不稳
-                                            </a>
-                                        </li>
-                                        <li class="mouse_pointer">
-                                            <a class="xsgroupdown-menu-ul-li-a" onclick="TypeChanged(this, SystemWarningType.Teardown)">
-                                                异常上下线
-                                            </a>
-                                        </li>
-                                        <li class="mouse_pointer">
-                                            <a class="xsgroupdown-menu-ul-li-a" onclick="TypeChanged(this, SystemWarningType.VideoHighLoad)">
-                                                视频连接负载过高
-                                            </a>
-                                        </li>
-                                        <li class="mouse_pointer">
-                                            <a class="xsgroupdown-menu-ul-li-a" onclick="TypeChanged(this, SystemWarningType.VideoNetworkInstability)">
-                                                视频通道的网络状态不稳定
-                                            </a>
-                                        </li>
-                                        <li class="mouse_pointer">
-                                            <a class="xsgroupdown-menu-ul-li-a" onclick="TypeChanged(this, SystemWarningType.VideoConnectionFailure)">
-                                                视频连接的失败率过高
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </td>
-                            <td>
-                                警告设备
-                            </td>
-                            <td>
-                                警告时间
-                            </td>
-                            <td>
-                                是否恢复
-                            </td>
-                            <td>
-                                描述信息
-                            </td>
-                        </tr>
-                    </thead>
-                    <tbody id="tbody"></tbody>
-                </table>
-            </div>
-            <div class="col-md-12 lazyload-div" id="lazy">
-
-            </div>
+                    <ul
+                      class="dropdown-menu xsgroupdown-menu-ul"
+                      style="width: 164px"
+                    >
+                      <li class="mouse_pointer">
+                        <a
+                          class="xsgroupdown-menu-ul-li-a"
+                          onclick="TypeChanged(this, SystemWarningType.None)"
+                        >
+                          全部
+                        </a>
+                      </li>
+                      <li class="mouse_pointer">
+                        <a
+                          class="xsgroupdown-menu-ul-li-a"
+                          onclick="TypeChanged(this, SystemWarningType.CPUUsage)"
+                        >
+                          CPU过高
+                        </a>
+                      </li>
+                      <li class="mouse_pointer">
+                        <a
+                          class="xsgroupdown-menu-ul-li-a"
+                          onclick="TypeChanged(this, SystemWarningType.MemoryUsage)"
+                        >
+                          内存过高
+                        </a>
+                      </li>
+                      <li class="mouse_pointer">
+                        <a
+                          class="xsgroupdown-menu-ul-li-a"
+                          onclick="TypeChanged(this, SystemWarningType.NetworkUsage)"
+                        >
+                          网口使用率过高
+                        </a>
+                      </li>
+                      <li class="mouse_pointer">
+                        <a
+                          class="xsgroupdown-menu-ul-li-a"
+                          onclick="TypeChanged(this, SystemWarningType.SuperHeat)"
+                        >
+                          设备过热
+                        </a>
+                      </li>
+                      <li class="mouse_pointer">
+                        <a
+                          class="xsgroupdown-menu-ul-li-a"
+                          onclick="TypeChanged(this, SystemWarningType.VoltageInstability)"
+                        >
+                          电压不稳
+                        </a>
+                      </li>
+                      <li class="mouse_pointer">
+                        <a
+                          class="xsgroupdown-menu-ul-li-a"
+                          onclick="TypeChanged(this, SystemWarningType.Teardown)"
+                        >
+                          异常上下线
+                        </a>
+                      </li>
+                      <li class="mouse_pointer">
+                        <a
+                          class="xsgroupdown-menu-ul-li-a"
+                          onclick="TypeChanged(this, SystemWarningType.VideoHighLoad)"
+                        >
+                          视频连接负载过高
+                        </a>
+                      </li>
+                      <li class="mouse_pointer">
+                        <a
+                          class="xsgroupdown-menu-ul-li-a"
+                          onclick="TypeChanged(this, SystemWarningType.VideoNetworkInstability)"
+                        >
+                          视频通道的网络状态不稳定
+                        </a>
+                      </li>
+                      <li class="mouse_pointer">
+                        <a
+                          class="xsgroupdown-menu-ul-li-a"
+                          onclick="TypeChanged(this, SystemWarningType.VideoConnectionFailure)"
+                        >
+                          视频连接的失败率过高
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </td>
+                <td>警告设备</td>
+                <td>警告时间</td>
+                <td>是否恢复</td>
+                <td>描述信息</td>
+              </tr>
+            </thead>
+            <tbody id="tbody"></tbody>
+          </table>
         </div>
+        <div class="col-md-12 lazyload-div" id="lazy"></div>
+      </div>
     </div>
     <a class="to-back" href="../health.htm">
-        <div class="pic"></div>
+      <div class="pic"></div>
     </a>
-
-</body>
+  </body>
 </html>
 <script type="text/javascript">
-    var testEnum={
-        0: "CPUUsage",
-        1: "MemoryUsage",
-        2: "NetworkUsage",
-        3: "SuperHeat",
-        4: "VoltageInstability",
-        5: "VideoHighLoad",
-        6: "VideoNetworkInstability",
-        7: "Teardown",
-        8: "VideoConnectionFailure"
-    }
-    var Property = {
-        type: SystemWarningType.None,
-        value: new Dictionary(),
-        page: new Page(),
-        load: function (index, size) {
-            var type = this.type != SystemWarningType.None ? this.type : undefined;
-            var response = tryCatch(function () {
-                return Client.Health().Report.Warning(index, size, type);
-            });
-            var result = new Array();
-            if (response) {
-                this.page = response.Page;
-                for (var i = 0; i < response.SystemWarningReport.length; i++) {
-                    var report = response.SystemWarningReport[i];
-                    this.value[report.Id] = report;
-                    result.push(report);
-                }
-            }
-            return result;
+  var testEnum = {
+    0: 'CPUUsage',
+    1: 'MemoryUsage',
+    2: 'NetworkUsage',
+    3: 'SuperHeat',
+    4: 'VoltageInstability',
+    5: 'VideoHighLoad',
+    6: 'VideoNetworkInstability',
+    7: 'Teardown',
+    8: 'VideoConnectionFailure',
+  }
+  var Property = {
+    type: SystemWarningType.None,
+    value: new Dictionary(),
+    page: new Page(),
+    load: function (index, size) {
+      var type = this.type != SystemWarningType.None ? this.type : undefined
+      var response = tryCatch(function () {
+        return Client.Health().Report.Warning(index, size, type)
+      })
+      var result = new Array()
+      if (response) {
+        this.page = response.Page
+        for (var i = 0; i < response.SystemWarningReport.length; i++) {
+          var report = response.SystemWarningReport[i]
+          this.value[report.Id] = report
+          result.push(report)
         }
-    };
-    var Html = {
-        init: function () {
-            var uri = new Uri(document.location);
-            if (uri.Query) {
-                Property.type = uri.Querys.type;
-            }
+      }
+      return result
+    },
+  }
+  var Html = {
+    init: function () {
+      var uri = new Uri(document.location)
+      if (uri.Query) {
+        Property.type = uri.Querys.type
+      }
+    },
+
+    load: function (controlId, index, size) {
+      var color = {
+        CPUUsage: LabelTagColor.Yellow,
+        MemoryUsage: LabelTagColor.Yellow,
+        NetworkUsage: LabelTagColor.Yellow,
+        SuperHeat: LabelTagColor.Red,
+        VoltageInstability: LabelTagColor.Red,
+        VideoHighLoad: LabelTagColor.DoderBlue,
+        VideoNetworkInstability: LabelTagColor.DoderBlue,
+        Teardown: LabelTagColor.Red,
+        VideoConnectionFailure: LabelTagColor.DoderBlue,
+      }
+      var control = {
+        details: function (id, name, type) {
+          return new IconColorButton(
+            '',
+            'background_icon warning ' + type,
+            color[type],
+            10,
+            "<div style='margin-top:20px;'>" + name + '</div>'
+          )
         },
+      }
+      var list = Property.load(index, size)
 
+      var table = getTag(controlId)
+      table.style.textAlign = 'center'
+      table.style.verticalAlign = 'middle'
+      for (var i = 0; i < list.length; i++) {
+        var tr = document.createElement('tr')
 
+        var td = new TableBodyTd(
+          control.details(
+            list[i].Id,
+            list[i].ComponentName,
+            list[i].WarningType
+          ).outerHTML
+        )
+        td.colSpan = 2
+        td.style.padding = '0'
+        tr.appendChild(td)
+        tr.appendChild(new TableBodyTd(list[i].CreationTime.toLocaleString()))
+        tr.appendChild(
+          new TableBodyTd(
+            list[i].Recovered
+              ? "<span class='text-success icon-ok'></span>"
+              : '-'
+          )
+        )
+        tr.appendChild(new TableBodyTd(list[i].Description))
 
+        table.appendChild(tr)
+      }
+      LazyLoadPage = Property.page
+    },
+  }
 
+  function TypeChanged(sender, args) {
+    getTag('tbody').innerHTML = ''
+    Property.type = args
+    Html.load('tbody', 1, 20)
+  }
 
-        load: function (controlId, index, size) {
-            var color = {
-                CPUUsage: LabelTagColor.Yellow,
-                MemoryUsage: LabelTagColor.Yellow,
-                NetworkUsage: LabelTagColor.Yellow,
-                SuperHeat: LabelTagColor.Red,
-                VoltageInstability: LabelTagColor.Red,
-                VideoHighLoad: LabelTagColor.DoderBlue,
-                VideoNetworkInstability: LabelTagColor.DoderBlue,
-                Teardown: LabelTagColor.Red,
-                VideoConnectionFailure: LabelTagColor.DoderBlue,
-            };
-            var control =
-            {
-                details: function (id, name, type) {
-                    return new IconColorButton("", "background_icon warning " + type, color[type], 10, "<div style='margin-top:20px;'>" + name + "</div>");
-                }
-            }
-            var list = Property.load(index, size)
+  function health_warnings_load() {
+    Html.load('tbody', 1, 20)
 
-            var table = getTag(controlId);
-            table.style.textAlign = "center";
-            table.style.verticalAlign = "middle";
-            for (var i = 0; i < list.length; i++) {
+    var lazy = getTag('lazy')
+    lazy.appendChild(new LazyLoadControl('load-more', '加载中……', lazyLoad))
+    window.setTimeout(function () {
+      document.documentElement.scrollTop = 0
+      isOnscroll = true
+    }, 100)
 
-                var tr = document.createElement("tr");
-
-                var td = new TableBodyTd(control.details(list[i].Id, list[i].ComponentName, list[i].WarningType).outerHTML)
-                td.colSpan = 2;
-                td.style.padding = "0";
-                tr.appendChild(td);
-                tr.appendChild(new TableBodyTd(list[i].CreationTime.toLocaleString()));
-                tr.appendChild(new TableBodyTd(list[i].Recovered ? "<span class='text-success icon-ok'></span>" : "-"));
-                tr.appendChild(new TableBodyTd(list[i].Description));
-
-                table.appendChild(tr);
-            }
-            LazyLoadPage = Property.page;
-        }
+    scrollHead = function () {
+      var visibility = 'visible'
+      var display = 'none'
+      if (document.documentElement.scrollTop > 26) {
+        visibility = 'hidden'
+        display = 'block'
+      }
+      $('.page-top').css('visibility', visibility)
+      document.getElementById('table_head').style.display = display
     }
+    window.addEventListener('scroll', scrollHead, false)
+  }
 
-    function TypeChanged(sender, args) {
-        getTag("tbody").innerHTML = "";
-        Property.type = args;
-        Html.load("tbody", 1, 20);
-    }
+  function lazyLoad(index) {
+    tryCatch(function () {
+      Html.load('tbody', index + 1, 20)
+      Html.Control.GroupList.load(
+        index + 1,
+        Property.PageSize,
+        Property.UserPermission
+      )
+    })
+  }
 
-    function health_warnings_load() {
-        Html.load("tbody", 1, 20);
-
-        var lazy = getTag("lazy");
-        lazy.appendChild(new LazyLoadControl("load-more", "加载中……", lazyLoad));
-        window.setTimeout(function () {
-            document.documentElement.scrollTop = 0;
-            isOnscroll = true;
-        }, 100);
-
-        scrollHead = function () {
-            var visibility = "visible";
-            var display = "none";
-            if (document.documentElement.scrollTop > 26) {
-                visibility = "hidden";
-                display = "block";
-            }
-            $(".page-top").css("visibility", visibility);
-            document.getElementById("table_head").style.display = display;
-        }
-        window.addEventListener("scroll", scrollHead, false);
-    }
-
-    function lazyLoad(index) {
-        tryCatch(function () {
-            Html.load("tbody", index + 1, 20);
-            Html.Control.GroupList.load(index + 1, Property.PageSize, Property.UserPermission);
-        });
-    }
-
-    onload = health_warnings_load;
+  onload = health_warnings_load
 </script>

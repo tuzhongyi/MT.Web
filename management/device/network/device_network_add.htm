@@ -1,13 +1,16 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
+  <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
     <link href="../../../../css/howell.css" rel="stylesheet" />
     <script src="../../../../js/language/chinese.js"></script>
-    <link href="../../../../css/bootstrap/bootstrap-switch.css" rel="stylesheet" />
-    <script src="../../../../js/jquery/jquery-1.10.2.min.js"></script>
+    <link
+      href="../../../../css/bootstrap/bootstrap-switch.css"
+      rel="stylesheet"
+    />
+    <script src="../../../../js/jquery/jquery-3.6.0.min.js"></script>
     <script src="../../../../js/jquery/jquery-ui.js"></script>
     <script src="../../../../js/bootstrap/bootstrap.min.js"></script>
     <script src="../../../../js/bootstrap/bootstrap-switch.min.js"></script>
@@ -24,341 +27,417 @@
     <script src="../../../../js/background/management/device/background_device_video_networks.js"></script>
     <script src="device_video_network_details.js"></script>
     <script type="text/javascript">
-        PageEvent.Device.Video.Medium.GroupListChanged = function (network) {
-            alert("GroupListChanged");
-        }
+      PageEvent.Device.Video.Medium.GroupListChanged = function (network) {
+        alert('GroupListChanged')
+      }
     </script>
-</head>
-<body>
+  </head>
+  <body>
     <style type="text/css">
-        .device_network_add_title_ico {
-            color: #007aff;
-            margin-right: 10px;
-        }
+      .device_network_add_title_ico {
+        color: #007aff;
+        margin-right: 10px;
+      }
     </style>
-    <div class="container-fluid main-content alert-window-maxdiv" style="height:810px;overflow:auto">
-        <div class="page-title">
-            <h3 class="list-heading-div">
-                <i class="icon-code-fork list-heading-icon mouse_default device_network_add_title_ico"></i>
-                <!--<img src="../../../../img/icon/department.png" class="alert-window-title-icon"/>-->
-                <label>添加网络接口</label>
-            </h3>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="widget-content padded">
-                    <form action="#" class="form-horizontal">
-                        <div class="form-group">
-                            <label class="control-label col-md-4">
-                                网口接口编码
-                            </label>
-                            <div class="col-md-5">
-                                <input class="form-control" type="text" placeholder="1" id="txtInterfacePort" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-4">
-                                IP地址
-                            </label>
-                            <div class="col-md-5">
-                                <select class="form-control" id="ddlIPVersion" onchange="IPVersionChange(this);">
-                                    <option value="IPv4">IPv4</option>
-                                    <option value="IPv6">IPv6</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div id="IPv4">
-                            <div class="form-group">
-                                <label class="control-label col-md-4">
-                                    IPv4地址
-                                </label>
-                                <div class="col-md-5">
-                                    <input class="form-control" type="text" id="txtIPv4Address" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-4">
-                                    IPv4子网掩码
-                                </label>
-                                <div class="col-md-5">
-                                    <input class="form-control" type="text" id="txtIPv4Subnetmask" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-4">
-                                    IPv4默认网关
-                                </label>
-                                <div class="col-md-5">
-                                    <input class="form-control" type="text" id="txtIPv4DefaultGateway" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-4">
-                                    IPv4主DNS
-                                </label>
-                                <div class="col-md-5">
-                                    <input class="form-control" type="text" id="txtIPv4PrimaryDNS" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-4">
-                                    IPv4次DNS
-                                </label>
-                                <div class="col-md-5">
-                                    <input class="form-control" type="text" id="txtIPv4SecondaryDNS" />
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div style="display:none" id="IPv6">
-                            <div class="form-group">
-                                <label class="control-label col-md-4">
-                                    IPv6地址
-                                </label>
-                                <div class="col-md-5">
-                                    <input class="form-control" type="text" id="txtIPv6Address" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-4">
-                                    IPv6位掩码
-                                </label>
-                                <div class="col-md-5">
-                                    <input class="form-control" type="text" id="txtIPv6BitMask" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-4">
-                                    IPv6默认网关
-                                </label>
-                                <div class="col-md-5">
-                                    <input class="form-control" type="text" id="txtIPv6DefaultGateway" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-4">
-                                    IPv6主DNS
-                                </label>
-                                <div class="col-md-5">
-                                    <input class="form-control" type="text" id="txtIPv6PrimaryDNS" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-4">
-                                    IPv6次DNS
-                                </label>
-                                <div class="col-md-5">
-                                    <input class="form-control" type="text" id="txtIPv6SecondaryDNS" />
-                                </div>
-                            </div>
-                        </div>
-
-
-
-                        <div class="form-group">
-                            <label class="control-label col-md-4">
-                                地址获取方式
-                            </label>
-                            <div class="col-md-5">
-                                <select class="form-control" id="ddlAddressingType"></select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-4">
-                                物理地址
-                            </label>
-                            <div class="col-md-5">
-                                <input class="form-control" type="text" placeholder="00-00-00-00-00-00" id="txtPhyscialAddress" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-4">
-                                接口类型
-                            </label>
-                            <div class="col-md-5">
-                                <select class="form-control" id="ddlCableType" onchange="cableType_Onchange(this)"></select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-4">
-                                网口速率
-                            </label>
-                            <div class="col-md-5">
-                                <select class="form-control" id="ddlSpeedDuplex"></select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-4">
-                                工作模式
-                            </label>
-                            <div class="col-md-5">
-                                <select class="form-control" id="ddlWorkMode"></select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-4">
-                                最大传输单元
-                            </label>
-                            <div class="col-md-5">
-                                <input class="form-control" type="text" placeholder="1500" id="txtMTU" />
-                            </div>
-                        </div>
-
-                        <div id="wirelessNetwork" style="display:none">
-                            <div class="form-group">
-                                <label class="control-label col-md-12">
-                                    无线网络:-------------------------------------------------------------------------------------------------------------
-                                </label>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-4">
-                                    SSID
-                                </label>
-                                <div class="col-md-5">
-                                    <input class="form-control" type="text" id="txtSSID" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-4">
-                                    信号强度
-                                </label>
-                                <div class="col-md-5">
-                                    <input class="form-control" type="text" id="txtIntensity" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-4">
-                                    频段 GHz
-                                </label>
-                                <div class="col-md-5">
-                                    <input class="form-control" type="text" id="txtFrequency" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-4">
-                                    无线网络通道
-                                </label>
-                                <div class="col-md-5">
-                                    <input class="form-control" type="text" id="txtChannel" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-4">
-                                    是否已建议连接
-                                </label>
-                                <div class="col-md-4">
-                                    <div class="toggle-switch" data-off="warning" data-on="success" data-off-label="否" data-on-label="是" style="width:200px">
-                                        <input id="chkConnected" checked="" type="checkbox">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group" style="margin-top:25px">
-                            <label class="control-label col-md-8">
-                            </label>
-                            <div class="col-md-2">
-                                <a class="btn btn-primary" id="btnAddMediums" onclick="return btnAddMediums_Click(this);">
-                                    确&ensp;&ensp;定
-                                </a>
-                            </div>
-                            <div class="col-md-2">
-                                <a class="btn btn-primary" onclick="return AlertWindow.Close();">
-                                    取&ensp;&ensp;消
-                                </a>
-                            </div>
-                        </div>
-                    </form>
+    <div
+      class="container-fluid main-content alert-window-maxdiv"
+      style="height: 810px; overflow: auto"
+    >
+      <div class="page-title">
+        <h3 class="list-heading-div">
+          <i
+            class="icon-code-fork list-heading-icon mouse_default device_network_add_title_ico"
+          ></i>
+          <!--<img src="../../../../img/icon/department.png" class="alert-window-title-icon"/>-->
+          <label>添加网络接口</label>
+        </h3>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="widget-content padded">
+            <form action="#" class="form-horizontal">
+              <div class="form-group">
+                <label class="control-label col-md-4"> 网口接口编码 </label>
+                <div class="col-md-5">
+                  <input
+                    class="form-control"
+                    type="text"
+                    placeholder="1"
+                    id="txtInterfacePort"
+                  />
                 </div>
-            </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-4"> IP地址 </label>
+                <div class="col-md-5">
+                  <select
+                    class="form-control"
+                    id="ddlIPVersion"
+                    onchange="IPVersionChange(this);"
+                  >
+                    <option value="IPv4">IPv4</option>
+                    <option value="IPv6">IPv6</option>
+                  </select>
+                </div>
+              </div>
+
+              <div id="IPv4">
+                <div class="form-group">
+                  <label class="control-label col-md-4"> IPv4地址 </label>
+                  <div class="col-md-5">
+                    <input
+                      class="form-control"
+                      type="text"
+                      id="txtIPv4Address"
+                    />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-md-4"> IPv4子网掩码 </label>
+                  <div class="col-md-5">
+                    <input
+                      class="form-control"
+                      type="text"
+                      id="txtIPv4Subnetmask"
+                    />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-md-4"> IPv4默认网关 </label>
+                  <div class="col-md-5">
+                    <input
+                      class="form-control"
+                      type="text"
+                      id="txtIPv4DefaultGateway"
+                    />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-md-4"> IPv4主DNS </label>
+                  <div class="col-md-5">
+                    <input
+                      class="form-control"
+                      type="text"
+                      id="txtIPv4PrimaryDNS"
+                    />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-md-4"> IPv4次DNS </label>
+                  <div class="col-md-5">
+                    <input
+                      class="form-control"
+                      type="text"
+                      id="txtIPv4SecondaryDNS"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div style="display: none" id="IPv6">
+                <div class="form-group">
+                  <label class="control-label col-md-4"> IPv6地址 </label>
+                  <div class="col-md-5">
+                    <input
+                      class="form-control"
+                      type="text"
+                      id="txtIPv6Address"
+                    />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-md-4"> IPv6位掩码 </label>
+                  <div class="col-md-5">
+                    <input
+                      class="form-control"
+                      type="text"
+                      id="txtIPv6BitMask"
+                    />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-md-4"> IPv6默认网关 </label>
+                  <div class="col-md-5">
+                    <input
+                      class="form-control"
+                      type="text"
+                      id="txtIPv6DefaultGateway"
+                    />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-md-4"> IPv6主DNS </label>
+                  <div class="col-md-5">
+                    <input
+                      class="form-control"
+                      type="text"
+                      id="txtIPv6PrimaryDNS"
+                    />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-md-4"> IPv6次DNS </label>
+                  <div class="col-md-5">
+                    <input
+                      class="form-control"
+                      type="text"
+                      id="txtIPv6SecondaryDNS"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="control-label col-md-4"> 地址获取方式 </label>
+                <div class="col-md-5">
+                  <select class="form-control" id="ddlAddressingType"></select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-4"> 物理地址 </label>
+                <div class="col-md-5">
+                  <input
+                    class="form-control"
+                    type="text"
+                    placeholder="00-00-00-00-00-00"
+                    id="txtPhyscialAddress"
+                  />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-4"> 接口类型 </label>
+                <div class="col-md-5">
+                  <select
+                    class="form-control"
+                    id="ddlCableType"
+                    onchange="cableType_Onchange(this)"
+                  ></select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-4"> 网口速率 </label>
+                <div class="col-md-5">
+                  <select class="form-control" id="ddlSpeedDuplex"></select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-4"> 工作模式 </label>
+                <div class="col-md-5">
+                  <select class="form-control" id="ddlWorkMode"></select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-4"> 最大传输单元 </label>
+                <div class="col-md-5">
+                  <input
+                    class="form-control"
+                    type="text"
+                    placeholder="1500"
+                    id="txtMTU"
+                  />
+                </div>
+              </div>
+
+              <div id="wirelessNetwork" style="display: none">
+                <div class="form-group">
+                  <label class="control-label col-md-12">
+                    无线网络:-------------------------------------------------------------------------------------------------------------
+                  </label>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-md-4"> SSID </label>
+                  <div class="col-md-5">
+                    <input class="form-control" type="text" id="txtSSID" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-md-4"> 信号强度 </label>
+                  <div class="col-md-5">
+                    <input class="form-control" type="text" id="txtIntensity" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-md-4"> 频段 GHz </label>
+                  <div class="col-md-5">
+                    <input class="form-control" type="text" id="txtFrequency" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-md-4"> 无线网络通道 </label>
+                  <div class="col-md-5">
+                    <input class="form-control" type="text" id="txtChannel" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-md-4"> 是否已建议连接 </label>
+                  <div class="col-md-4">
+                    <div
+                      class="toggle-switch"
+                      data-off="warning"
+                      data-on="success"
+                      data-off-label="否"
+                      data-on-label="是"
+                      style="width: 200px"
+                    >
+                      <input id="chkConnected" checked="" type="checkbox" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group" style="margin-top: 25px">
+                <label class="control-label col-md-8"> </label>
+                <div class="col-md-2">
+                  <a
+                    class="btn btn-primary"
+                    id="btnAddMediums"
+                    onclick="return btnAddMediums_Click(this);"
+                  >
+                    确&ensp;&ensp;定
+                  </a>
+                </div>
+                <div class="col-md-2">
+                  <a
+                    class="btn btn-primary"
+                    onclick="return AlertWindow.Close();"
+                  >
+                    取&ensp;&ensp;消
+                  </a>
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
+      </div>
     </div>
 
     <script type="text/javascript">
-        DropDownList.Create("ddlAddressingType", ControlModel.EnumAndLanguage, NetworkAddressingType, Language.Enum.NetworkAddressingType);
-        DropDownList.Create("ddlCableType", ControlModel.EnumAndLanguage, NetworkCableType, Language.Enum.NetworkCableType);
-        DropDownList.Create("ddlSpeedDuplex", ControlModel.EnumAndLanguage, NetworkSpeedDuplex, Language.Enum.NetworkSpeedDuplex);
-        DropDownList.Create("ddlWorkMode", ControlModel.EnumAndLanguage, NetworkInterfaceWorkMode, Language.Enum.NetworkInterfaceWorkMode);
-        (function ($) { $(function () { $('.toggle-switch')['bootstrapSwitch']() }) })(jQuery);
+      DropDownList.Create(
+        'ddlAddressingType',
+        ControlModel.EnumAndLanguage,
+        NetworkAddressingType,
+        Language.Enum.NetworkAddressingType
+      )
+      DropDownList.Create(
+        'ddlCableType',
+        ControlModel.EnumAndLanguage,
+        NetworkCableType,
+        Language.Enum.NetworkCableType
+      )
+      DropDownList.Create(
+        'ddlSpeedDuplex',
+        ControlModel.EnumAndLanguage,
+        NetworkSpeedDuplex,
+        Language.Enum.NetworkSpeedDuplex
+      )
+      DropDownList.Create(
+        'ddlWorkMode',
+        ControlModel.EnumAndLanguage,
+        NetworkInterfaceWorkMode,
+        Language.Enum.NetworkInterfaceWorkMode
+      )
+      ;(function ($) {
+        $(function () {
+          $('.toggle-switch')['bootstrapSwitch']()
+        })
+      })(jQuery)
 
-        function btnAddMediums_Click(sender, args) {
-            var network = new NetworkInterface();
-            network.InterfacePort = getTag("txtInterfacePort").value ? getTag("txtInterfacePort").value : 1;
+      function btnAddMediums_Click(sender, args) {
+        var network = new NetworkInterface()
+        network.InterfacePort = getTag('txtInterfacePort').value
+          ? getTag('txtInterfacePort').value
+          : 1
 
-            if (getTag("txtIPv6Address").value && getTag("txtIPv4Address").value)
-                network.IPVersion = IPVersion.Dual;
-            else if (getTag("txtIPv6Address").value) 
-                network.IPVersion = IPVersion.IPv6;
-            else if (getTag("txtIPv4Address").value) 
-                network.IPVersion = IPVersion.IPv4;
+        if (getTag('txtIPv6Address').value && getTag('txtIPv4Address').value)
+          network.IPVersion = IPVersion.Dual
+        else if (getTag('txtIPv6Address').value)
+          network.IPVersion = IPVersion.IPv6
+        else if (getTag('txtIPv4Address').value)
+          network.IPVersion = IPVersion.IPv4
 
+        network.AddressingType = getTag('ddlAddressingType').value
 
-            network.AddressingType = getTag("ddlAddressingType").value;
-
-            if (network.IPVersion == IPVersion.Dual || network.IPVersion == IPVersion.IPv4) {
-                network.IPAddress.IPv4Address.Address = getTag("txtIPv4Address").value;
-                network.IPAddress.IPv4Address.Subnetmask = getTag("txtIPv4Subnetmask").value;
-                network.IPAddress.IPv4Address.DefaultGateway = getTag("txtIPv4DefaultGateway").value;
-                network.IPAddress.IPv4Address.DefaultGatewaySpecified = true;
-                network.IPAddress.IPv4Address.PrimaryDNS = getTag("txtIPv4PrimaryDNS").value;
-                network.IPAddress.IPv4Address.PrimaryDNSSpecified = true;
-                network.IPAddress.IPv4Address.SecondaryDNS = getTag("txtIPv4SecondaryDNS").value;
-                network.IPAddress.IPv4Address.SecondaryDNSSpecified = true;
-                network.IPAddress.IPv4AddressSpecified = true;
-            }
-            if (network.IPVersion == IPVersion.Dual || network.IPVersion == IPVersion.IPv6) {
-                network.IPAddress.IPv6Address.Address = getTag("txtIPv6Address").value;
-                network.IPAddress.IPv6Address.BitMask = getTag("txtIPv6BitMask").value;
-                network.IPAddress.IPv6Address.DefaultGateway = getTag("txtIPv6DefaultGateway").value;
-                network.IPAddress.IPv6Address.DefaultGatewaySpecified = true;
-                network.IPAddress.IPv6Address.PrimaryDNS = getTag("txtIPv6PrimaryDNS").value;
-                network.IPAddress.IPv6Address.PrimaryDNSSpecified = true;
-                network.IPAddress.IPv6Address.SecondaryDNS = getTag("txtIPv6SecondaryDNS").value;
-                network.IPAddress.IPv6Address.SecondaryDNSSpecified = true;
-                network.IPAddress.IPv6AddressSpecified = true;
-            }
-            network.PhyscialAddress = getTag("txtPhyscialAddress").value ? getTag("txtPhyscialAddress").value : "00-00-00-00-00-00";
-            network.CableType = getTag("ddlCableType").value;
-            network.CableTypeSpecified = true;
-            network.SpeedDuplex = getTag("ddlSpeedDuplex").value;
-            network.SpeedDuplexSpecified = true;
-            network.WorkMode = getTag("ddlWorkMode").value
-            network.WorkModeSpecified = true;
-            network.MTU = getTag("txtMTU").value && getTag("txtMTU").value != "" ? getTag("txtMTU").value : 1500;
-            network.MTUSpecified = true;
-            if (network.CableType == NetworkCableType.Wireless) {
-                network.WirelessSpecified = true;
-                network.Wireless.SSID = getTag("txtSSID").value;
-                network.Wireless.Connected = getTag("chkConnected").checked;
-                network.Wireless.Intensity = getTag("txtIntensity").value;
-                network.Wireless.Frequency = getTag("txtFrequency").value;
-                network.Wireless.FrequencySpecified = true;
-                network.Wireless.Channel = getTag("txtChannel").value;
-                network.Wireless.ChannelSpecified = true;
-            }
-            try {
-                Html.Control.PopoverWindow.NetworkList.create(network)
-            } catch (e) {
-
-            }
-            AlertWindow.Close(PageEvent.Device.Network.BatchAddNetworksToDevice);
-            return false;
+        if (
+          network.IPVersion == IPVersion.Dual ||
+          network.IPVersion == IPVersion.IPv4
+        ) {
+          network.IPAddress.IPv4Address.Address = getTag('txtIPv4Address').value
+          network.IPAddress.IPv4Address.Subnetmask =
+            getTag('txtIPv4Subnetmask').value
+          network.IPAddress.IPv4Address.DefaultGateway = getTag(
+            'txtIPv4DefaultGateway'
+          ).value
+          network.IPAddress.IPv4Address.DefaultGatewaySpecified = true
+          network.IPAddress.IPv4Address.PrimaryDNS =
+            getTag('txtIPv4PrimaryDNS').value
+          network.IPAddress.IPv4Address.PrimaryDNSSpecified = true
+          network.IPAddress.IPv4Address.SecondaryDNS = getTag(
+            'txtIPv4SecondaryDNS'
+          ).value
+          network.IPAddress.IPv4Address.SecondaryDNSSpecified = true
+          network.IPAddress.IPv4AddressSpecified = true
         }
-
-        function IPVersionChange(sender, args) {
-            document.getElementById("IPv4").style.display = "none";
-            document.getElementById("IPv6").style.display = "none";
-            document.getElementById(sender.value).style.display = "block";
+        if (
+          network.IPVersion == IPVersion.Dual ||
+          network.IPVersion == IPVersion.IPv6
+        ) {
+          network.IPAddress.IPv6Address.Address = getTag('txtIPv6Address').value
+          network.IPAddress.IPv6Address.BitMask = getTag('txtIPv6BitMask').value
+          network.IPAddress.IPv6Address.DefaultGateway = getTag(
+            'txtIPv6DefaultGateway'
+          ).value
+          network.IPAddress.IPv6Address.DefaultGatewaySpecified = true
+          network.IPAddress.IPv6Address.PrimaryDNS =
+            getTag('txtIPv6PrimaryDNS').value
+          network.IPAddress.IPv6Address.PrimaryDNSSpecified = true
+          network.IPAddress.IPv6Address.SecondaryDNS = getTag(
+            'txtIPv6SecondaryDNS'
+          ).value
+          network.IPAddress.IPv6Address.SecondaryDNSSpecified = true
+          network.IPAddress.IPv6AddressSpecified = true
         }
-
-        function cableType_Onchange(sender, args) {
-            var wirelessNetwork = getTag("wirelessNetwork");
-            if (sender.value == NetworkCableType.Wireless)
-                wirelessNetwork.style.display = "block";
-            else
-                wirelessNetwork.style.display = "none";
+        network.PhyscialAddress = getTag('txtPhyscialAddress').value
+          ? getTag('txtPhyscialAddress').value
+          : '00-00-00-00-00-00'
+        network.CableType = getTag('ddlCableType').value
+        network.CableTypeSpecified = true
+        network.SpeedDuplex = getTag('ddlSpeedDuplex').value
+        network.SpeedDuplexSpecified = true
+        network.WorkMode = getTag('ddlWorkMode').value
+        network.WorkModeSpecified = true
+        network.MTU =
+          getTag('txtMTU').value && getTag('txtMTU').value != ''
+            ? getTag('txtMTU').value
+            : 1500
+        network.MTUSpecified = true
+        if (network.CableType == NetworkCableType.Wireless) {
+          network.WirelessSpecified = true
+          network.Wireless.SSID = getTag('txtSSID').value
+          network.Wireless.Connected = getTag('chkConnected').checked
+          network.Wireless.Intensity = getTag('txtIntensity').value
+          network.Wireless.Frequency = getTag('txtFrequency').value
+          network.Wireless.FrequencySpecified = true
+          network.Wireless.Channel = getTag('txtChannel').value
+          network.Wireless.ChannelSpecified = true
         }
+        try {
+          Html.Control.PopoverWindow.NetworkList.create(network)
+        } catch (e) {}
+        AlertWindow.Close(PageEvent.Device.Network.BatchAddNetworksToDevice)
+        return false
+      }
+
+      function IPVersionChange(sender, args) {
+        document.getElementById('IPv4').style.display = 'none'
+        document.getElementById('IPv6').style.display = 'none'
+        document.getElementById(sender.value).style.display = 'block'
+      }
+
+      function cableType_Onchange(sender, args) {
+        var wirelessNetwork = getTag('wirelessNetwork')
+        if (sender.value == NetworkCableType.Wireless)
+          wirelessNetwork.style.display = 'block'
+        else wirelessNetwork.style.display = 'none'
+      }
     </script>
-</body>
+  </body>
 </html>

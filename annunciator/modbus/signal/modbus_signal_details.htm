@@ -1,138 +1,206 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head><meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>修改信号量状态</title>
     <link rel="stylesheet" type="text/css" href="../../../css/howell.css" />
-    <link rel="stylesheet" type="text/css" href="../../../css/bootstrap/bootstrap-switch.css" />
-    <script type="text/javascript" src="../../../js/language/chinese.js"></script>
-    <script type="text/javascript" src="../../../js/jquery/jquery-1.10.2.min.js"></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../../css/bootstrap/bootstrap-switch.css"
+    />
+    <script
+      type="text/javascript"
+      src="../../../js/language/chinese.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../js/jquery/jquery-3.6.0.min.js"
+    ></script>
     <script src="../../../js/imported.js"></script>
-    <script type="text/javascript" src="../../../js/jquery/jquery-ui.js"></script>
-    <script type="text/javascript" src="../../../js/jquery/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="../../../js/bootstrap/bootstrap.min.js"></script>
+    <script
+      type="text/javascript"
+      src="../../../js/jquery/jquery-ui.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../js/jquery/jquery.dataTables.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../js/bootstrap/bootstrap.min.js"
+    ></script>
     <script type="text/javascript" src="../../../js/nav.js"></script>
 
-    <script type="text/javascript" src="../../../js/jquery/jquery.confirm.js"></script>
-    <script type="text/javascript" src="../../../js/modernizr.custom.js"></script>
+    <script
+      type="text/javascript"
+      src="../../../js/jquery/jquery.confirm.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../js/modernizr.custom.js"
+    ></script>
     <script type="text/javascript" src="../../../js/md5.js"></script>
-    <script type="text/javascript" src="../../../js/howell.js/howell.js"></script>
-    <script type="text/javascript" src="../../../js/howell.js/digest.js"></script>
-    <script type="text/javascript" src="../../../js/howell.js/httpService.js"></script>
-    <script type="text/javascript" src="../../../js/client/security.js"></script>
-    <script type="text/javascript" src="../../../js/client/management.js"></script>
+    <script
+      type="text/javascript"
+      src="../../../js/howell.js/howell.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../js/howell.js/digest.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../js/howell.js/httpService.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../js/client/security.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../js/client/management.js"
+    ></script>
     <script type="text/javascript" src="../../../js/client/enum.js"></script>
     <script type="text/javascript" src="../../../js/client/struct.js"></script>
-    <script type="text/javascript" src="../../../js/howell.js/howell.control.js"></script>
-    <script type="text/javascript" src="../../../js/jquery/jquery.confirm.js"></script>
-    <script type="text/javascript" src="../../../js/bootstrap/bootstrap-switch.min.js"></script>
-    <script type="text/javascript" src="../../../js/background/security/background_department.event.js"></script>
-    <script type="text/javascript" src="../../../js/background/security/background_departments.js"></script>
+    <script
+      type="text/javascript"
+      src="../../../js/howell.js/howell.control.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../js/jquery/jquery.confirm.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../js/bootstrap/bootstrap-switch.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../js/background/security/background_department.event.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../js/background/security/background_departments.js"
+    ></script>
     <script src="../../../js/background/security/department/background_department_devices.js"></script>
-    <script type="text/javascript" src="../../../js/background/security/department/device/background_department_device_permissions.js"></script>
-    <script type="text/javascript" src="department_device_permissions.js"></script>
+    <script
+      type="text/javascript"
+      src="../../../js/background/security/department/device/background_department_device_permissions.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="department_device_permissions.js"
+    ></script>
 
-    <script type="text/javascript">
+    <script type="text/javascript"></script>
+  </head>
+  <body>
+    <div style="height: 400px; width: 500px">
+      <div class="page-title">
+        <h3 class="list-heading-div">
+          <i
+            class="signal-icon mouse_default"
+            style="margin-right: 15px; margin-top: -2px"
+          ></i>
+          <label id="lblDeviceName">批量修改信号量状态</label>
+        </h3>
+      </div>
 
-    </script>
-</head>
-<body>
-    <div style="height:400px;width:500px">
-        <div class="page-title">
-            <h3 class="list-heading-div">
-                <i class="signal-icon mouse_default" style="margin-right:15px;margin-top:-2px"></i>
-                <label id="lblDeviceName">批量修改信号量状态</label>
-            </h3>
+      <div class="row bottom" style="margin-top: 50px">
+        <div class="control-label col-md-1"></div>
+        <div class="control-label col-md-4">光信号联动状态</div>
+        <div class="col-md-6">
+          <div
+            class="toggle-switch text-toggle-switch"
+            data-off-label="关"
+            data-off="default"
+            data-on="primary"
+            data-on-label="开"
+            style="width: 200px"
+          >
+            <input type="checkbox" id="chkLight" />
+          </div>
         </div>
+        <div class="control-label col-md-1"></div>
+      </div>
 
-        <div class="row bottom" style="margin-top:50px">
-            <div class="control-label col-md-1">
-
-            </div>
-            <div class="control-label col-md-4">
-                光信号联动状态
-            </div>
-            <div class="col-md-6">
-                <div class="toggle-switch text-toggle-switch" data-off-label="关" data-off="default" data-on="primary" data-on-label="开" style="width:200px">
-                    <input type="checkbox" id="chkLight" />
-                </div>
-            </div>
-            <div class="control-label col-md-1">
-
-            </div>
+      <div class="row">
+        <div class="control-label col-md-1"></div>
+        <div class="control-label col-md-4">音频信号联动状态</div>
+        <div class="col-md-6">
+          <div
+            class="toggle-switch text-toggle-switch"
+            data-off-label="关"
+            data-off="default"
+            data-on="primary"
+            data-on-label="开"
+            style="width: 200px"
+          >
+            <input type="checkbox" id="chkAudio" />
+          </div>
         </div>
+        <div class="control-label col-md-1"></div>
+      </div>
 
-        <div class="row">
-            <div class="control-label col-md-1">
-
-            </div>
-            <div class="control-label col-md-4">
-                音频信号联动状态
-            </div>
-            <div class="col-md-6">
-                <div class="toggle-switch text-toggle-switch" data-off-label="关" data-off="default" data-on="primary" data-on-label="开" style="width:200px">
-                    <input type="checkbox" id="chkAudio" />
-                </div>
-            </div>
-            <div class="control-label col-md-1">
-
-            </div>
+      <div class="row">
+        <div class="control-label col-md-1"></div>
+        <div class="control-label col-md-4">旁路状态</div>
+        <div class="col-md-6">
+          <div
+            class="toggle-switch text-toggle-switch"
+            data-off-label="关"
+            data-off="default"
+            data-on="primary"
+            data-on-label="开"
+            style="width: 200px"
+          >
+            <input type="checkbox" id="chkBypass" />
+          </div>
         </div>
+        <div class="control-label col-md-1"></div>
+      </div>
 
-        <div class="row">
-            <div class="control-label col-md-1">
-
-            </div>
-            <div class="control-label col-md-4">
-                旁路状态
-            </div>
-            <div class="col-md-6">
-                <div class="toggle-switch text-toggle-switch" data-off-label="关" data-off="default" data-on="primary" data-on-label="开" style="width:200px">
-                    <input type="checkbox" id="chkBypass" />
-                </div>
-            </div>
-            <div class="control-label col-md-1">
-
-            </div>
+      <div class="row">
+        <div class="control-label col-md-1"></div>
+        <div class="control-label col-md-4">信号开关量常态</div>
+        <div class="col-md-6">
+          <div
+            class="toggle-switch text-toggle-switch"
+            data-off-label="关"
+            data-off="default"
+            data-on="primary"
+            data-on-label="开"
+            style="width: 200px"
+          >
+            <input type="checkbox" id="chkStationaryState" />
+          </div>
         </div>
+        <div class="control-label col-md-1"></div>
+      </div>
 
-        <div class="row">
-            <div class="control-label col-md-1">
-
-            </div>
-            <div class="control-label col-md-4">
-                信号开关量常态
-            </div>
-            <div class="col-md-6">
-                <div class="toggle-switch text-toggle-switch" data-off-label="关" data-off="default" data-on="primary" data-on-label="开" style="width:200px">
-                    <input type="checkbox" id="chkStationaryState" />
-                </div>
-            </div>
-            <div class="control-label col-md-1">
-
-            </div>
+      <div class="row">
+        <div class="form-group" style="margin-top: 30px">
+          <label class="control-label col-md-7"> </label>
+          <div class="col-md-2">
+            <a
+              class="btn btn-primary"
+              onclick="return btnSignalDetails_Click();"
+            >
+              确&ensp;&ensp;定
+            </a>
+          </div>
+          <div class="col-md-2">
+            <a class="btn btn-primary" onclick="return AlertWindow.Close();">
+              取&ensp;&ensp;消
+            </a>
+          </div>
         </div>
-        
-        <div class="row">
-            <div class="form-group" style="margin-top:30px">
-                <label class="control-label col-md-7">
-                </label>
-                <div class="col-md-2">
-                    <a class="btn btn-primary" onclick="return btnSignalDetails_Click();">
-                        确&ensp;&ensp;定
-                    </a>
-                </div>
-                <div class="col-md-2">
-                    <a class="btn btn-primary" onclick="return AlertWindow.Close();">
-                        取&ensp;&ensp;消
-                    </a>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
     <script type="text/javascript">
-        modbus_signal_details_load();
+      modbus_signal_details_load()
     </script>
-</body>
+  </body>
 </html>
-

@@ -1,367 +1,624 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <head>
+    <meta
+      charset="utf-8"
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+    />
     <title></title>
-</head>
+  </head>
 
-<body>
+  <body>
     <style type="text/css">
-        #uploadImgs{
-            height: -webkit-calc(100% - 170px);
-            height: -moz-calc(100% - 170px);
-            height: calc(100% - 170px);
-            overflow: auto;
-        }
+      #uploadImgs {
+        height: -webkit-calc(100% - 170px);
+        height: -moz-calc(100% - 170px);
+        height: calc(100% - 170px);
+        overflow: auto;
+      }
     </style>
     <div>
-        <div class="row page-titles">
-            <div class="col-md-5 col-8 align-self-center">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item">
-                        <a href="javascript:selectNav(this); loadContent('page', base64encode(setUrlRandomParams(navigation.index.home)))">
-                            <span language="home">主页</span>
-                        </a>
-                    </li>
-                    <li class="breadcrumb-item">
-                        <a id="deviceNavBtn">
-                            <span language="back_end">后端</span><span language="device">设备</span>
-                        </a>
-                    </li>
-                    <li class="breadcrumb-item">
-                        <a id="faceSetNavBtn">
-                            <span language="face_database">人脸库</span><span language="information">信息</span>
-                        </a>
-                    </li>
-                    <li class="breadcrumb-item">
-                        <a>
-                            <span language="setting">设置</span><span language="face_database">人脸库</span>
-                        </a>
-                    </li>
-                </ol>
-            </div>
+      <div class="row page-titles">
+        <div class="col-md-5 col-8 align-self-center">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a
+                href="javascript:selectNav(this); loadContent('page', base64encode(setUrlRandomParams(navigation.index.home)))"
+              >
+                <span language="home">主页</span>
+              </a>
+            </li>
+            <li class="breadcrumb-item">
+              <a id="deviceNavBtn">
+                <span language="back_end">后端</span
+                ><span language="device">设备</span>
+              </a>
+            </li>
+            <li class="breadcrumb-item">
+              <a id="faceSetNavBtn">
+                <span language="face_database">人脸库</span
+                ><span language="information">信息</span>
+              </a>
+            </li>
+            <li class="breadcrumb-item">
+              <a>
+                <span language="setting">设置</span
+                ><span language="face_database">人脸库</span>
+              </a>
+            </li>
+          </ol>
         </div>
-        <div class="page-title-occupying"></div>
-        <div class="row screen-outer">
-            <div class="col-xlg-3 col-lg-3 col-md-3">
-                <div class="card row-span-5">
-                    <div class="card-body">
-                        <h3 class="card-title"><span language="setting">设置</span><span language="face_database">人脸</span></h3>
-                        <form class="form">
-                            <div class="form-group">
-                                <label for="Name" class="form-label">
-                                    <span language="face_database">人脸库</span><span language="name">名称</span>
-                                </label>
-                                <input class="form-control" type="text" value="" id="Name">
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">
-                                    <span language="face_database">人脸库</span><span language="type">类型</span>
-                                </label>
-                                <select class="form-control custom-select" data-placeholder="Choose a Type" tabindex="1" id="Type">
-                                    <option value="None"><span language="all">全部</span></option>
-                                    <option value="WhiteList"><span language="whitelist">白名单</span></option>
-                                    <option value="BlackList"><span language="blacklist">黑名单</span></option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label"><span language="priority">优先级</span></label>
-                                <select class="form-control custom-select" data-placeholder="Choose a priority" tabindex="1" id="Priority">
-                                    <option value="0"><span language="default">默认</span><span language="value">值</span></option>
-                                    <option value="3"><span language="high">高</span></option>
-                                    <option value="2"><span language="middle">中</span></option>
-                                    <option value="1"><span language="low">低</span></option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label"><span language="similar">相似度</span><span language="touch_off">触发</span><span language="threshold">阈值</span></label>
-                                <input id="Threshold" type="text" value="0" name="Threshold" data-bts-button-down-class="btn btn-secondary btn-outline" data-bts-button-up-class="btn btn-secondary btn-outline">
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label"><span language="max">最大</span> <span language="face">人脸</span> <span language="capacity">容量</span></label>
-                                <input id="Capacity" type="text" value="0" name="Capacity" data-bts-button-down-class="btn btn-secondary btn-outline" data-bts-button-up-class="btn btn-secondary btn-outline">
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label"><span language="description">描述信息</span></label>
-                                <textarea rows="3" class="form-control" id="Description"></textarea>
-                            </div>
-                            <div class="card-bottom-btns-group">
-                                <div class="text-center">
-                                    <button onclick="Html.FaceSet.save()" type="button" class="btn btn-success p-l-20 p-r-20">
-                                        <i class="mdi mdi-content-save"></i>
-                                        <span language="save">保存</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+      </div>
+      <div class="page-title-occupying"></div>
+      <div class="row screen-outer">
+        <div class="col-xlg-3 col-lg-3 col-md-3">
+          <div class="card row-span-5">
+            <div class="card-body">
+              <h3 class="card-title">
+                <span language="setting">设置</span
+                ><span language="face_database">人脸</span>
+              </h3>
+              <form class="form">
+                <div class="form-group">
+                  <label for="Name" class="form-label">
+                    <span language="face_database">人脸库</span
+                    ><span language="name">名称</span>
+                  </label>
+                  <input class="form-control" type="text" value="" id="Name" />
                 </div>
-            </div>
-            <div class="col-xlg-9 col-lg-9 col-md-9" id="divFaceList">
-                <div class="row">
-                    <div class="col-xlg-12 col-lg-12 col-md-12">
-                        <div class="card pull-height row-span-5">
-                            <div class="card-body">
-                                <h3 class="card-title"><span language="face">人脸</span><span language="information">信息</span></h3>
-                                <div class="row m-b-30">
-                                    <div class="col-6 hide" id="btns_group">
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="fa fa-check"></i> <span language="choose">选择</span>
-                                            </button>
-                                            <div class="dropdown-menu dropdown-menu-right" style="min-width:86px;">
-                                                <a class="dropdown-item text-right" href="#" onclick="Html.FaceSet.Face.Select.allSelect()">
-                                                    <i class="mdi mdi-check-circle-outline pull-left"></i><span language="allselected">全选</span>
-                                                </a>
-                                                <a class="dropdown-item text-right" href="#" onclick="Html.FaceSet.Face.Select.unSelect()">
-                                                    <i class="mdi mdi-check-circle pull-left"></i><span language="inverseselected">反选</span>
-                                                </a>
-                                                <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item text-right" href="#" onclick="Html.FaceSet.Face.Select.cancelSelect()">
-                                                    <i class="mdi mdi-checkbox-blank-circle-outline pull-left"></i><span language="cancel">取消</span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="btn-group m-l-5">
-                                            <button class="btn btn-success p-r-20 p-l-20" type="button" onclick="addFaceClick()">
-                                                <i class="mdi mdi-account-plus"></i> <span language="add">添加</span>
-                                            </button>
-                                            <button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <span class="sr-only"></span>
-                                            </button>
-                                            <div class="dropdown-menu dropdown-menu-right" style="min-width:112px;">
-                                                <a class="dropdown-item text-right" href="#" onclick="openAddFaces()">
-                                                    <i class="mdi mdi-account-multiple-plus pull-left"></i> 
-                                                    <span>批量添加</span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="btn-group m-l-5">
-                                            <button class="hide btn waves-effect waves-light btn-danger p-r-20 p-l-20" onclick="Html.FaceSet.Face.batchRemove();" id="btn_del">
-                                                <i class="fa fa-trash-o"></i> <span language="delete">删除</span>
-                                            </button>
-                                        </div>
-                                    </div>        
-                                    <div class="col-6 text-right">
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" id="inputFaceSearch" placeholder="输入名称或电话号码">
-                                            <div class="input-group-append search" onclick="faceSearchClick()">
-                                                <span class="input-group-text">
-                                                    <i class="howell-icon-magnifier"></i>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row" id="list_body">
-                                    <div class="col-12">
-                                        <div class="card-group" id="faceAppendDataList"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="form-group">
+                  <label class="control-label">
+                    <span language="face_database">人脸库</span
+                    ><span language="type">类型</span>
+                  </label>
+                  <select
+                    class="form-control custom-select"
+                    data-placeholder="Choose a Type"
+                    tabindex="1"
+                    id="Type"
+                  >
+                    <option value="None">
+                      <span language="all">全部</span>
+                    </option>
+                    <option value="WhiteList">
+                      <span language="whitelist">白名单</span>
+                    </option>
+                    <option value="BlackList">
+                      <span language="blacklist">黑名单</span>
+                    </option>
+                  </select>
                 </div>
-            </div>
-            <div class="col-xlg-3 col-lg-3 col-md-3 hide" id="divFaceInfo">
-                <div class="card row-span-5">
-                    <div class="card-body">
-                        <h3 class="card-title"><span language="setting">设置</span><span language="face">人脸</span><span language="information">信息</span></h3>
-                        <div id="preview" class="text-center">
-                            <img id="imghead" class="upload_img" src="img/upload_picture.png" width="110" height="126" border="0" onclick="$('#previewImg').click();">
-                        </div>
-                        <div class="text-center m-t-5 m-b-10">
-                            <span>点击图片上传</span>
-                        </div>
-                        <input type="file" accept="image/x-png,image/jpeg,image/bmp" onchange="previewImage(this)" style="display: none;" id="previewImg">
-                        <div class="row">
-                            <form class="form col-md-6">
-                                <div class="form-group">
-                                    <label for="face_Name" class="form-label">
-                                        <span language="full_name">名称</span>
-                                    </label>
-                                    <input class="form-control" type="text" value="" id="face_Name">
-                                </div>
-                                <div class="form-group">
-                                    <label for="ipAddress" class="form-label">
-                                        <span language="phone">电话号码</span>
-                                    </label>
-                                    <input class="form-control" type="text" value="" id="face_Phone">
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label">
-                                        <span language="province">省份</span>
-                                    </label>
-                                    <input class="form-control" type="text" value="" id="face_Province">
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label">
-                                        <span language="card_type">证件类型</span>
-                                    </label>
-                                    <input class="form-control" type="text" value="" id="face_CardType">
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label">
-                                        <span language="employee_id">员工ID</span>
-                                    </label>
-                                    <input class="form-control" type="text" value="" id="face_EmployeeId">
-                                </div>
-                            </form>
-                            <form class="form col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label">
-                                        <span language="sex">性别</span>
-                                    </label>
-                                    <select class="form-control custom-select" data-placeholder="Choose a Sex" tabindex="1" id="face_Sex">
-                                        <option value="None"><span language="all">保密</span></option>
-                                        <option value="Male"><span language="whitelist">男性</span></option>
-                                        <option value="Female"><span language="blacklist">女性</span></option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="ipAddress" class="form-label">
-                                        <span language="birthday">出生年月</span>
-                                    </label>
-                                    <div class="input-group">
-                                        <div class="input-group-addon cursor-pointer report-select-label" style="background:rgba(120, 130, 140, 0.5);" onclick="$('#face_BirthDate').datetimepicker('show');" title="开始时间">
-                                            <i class="icon-calendar" style="color: white;"></i>
-                                        </div>
-                                        <input class="form-control cursor-pointer" id="face_BirthDate">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label"><span language="city">城市</span></label>
-                                    <input class="form-control" type="text" value="" id="face_City">
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label"><span language="card_number">证件编号</span></label>
-                                    <input class="form-control" type="text" value="" id="face_CardNumber">
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label"><span language="extend">附加信息</span></label>
-                                    <input class="form-control" type="text" value="" id="face_Extend">
-                                </div>
-                            </form>
-                            <div class="form-group text-center p-t-10" style="margin:auto">
-
-                            </div>
-                        </div>
-                        <div class="row card-bottom-btns-group">
-                            <div class="form-group text-center" style="margin:auto">
-                                <button onclick="Html.FaceSet.Face.FaceInfo.save()" type="button" class="btn btn-success p-l-20 p-r-20 m-r-10">
-                                    <i class="mdi mdi-content-save"></i>
-                                    <span language="save">保存</span>
-                                </button>
-                                <button type="button" class="btn waves-effect waves-light btn-danger p-l-20 p-r-20" onclick="closeFaceInfo()">
-                                    <i class="mdi mdi-close-circle"></i>
-                                    <span language="close">关闭</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+                <div class="form-group">
+                  <label class="control-label"
+                    ><span language="priority">优先级</span></label
+                  >
+                  <select
+                    class="form-control custom-select"
+                    data-placeholder="Choose a priority"
+                    tabindex="1"
+                    id="Priority"
+                  >
+                    <option value="0">
+                      <span language="default">默认</span
+                      ><span language="value">值</span>
+                    </option>
+                    <option value="3"><span language="high">高</span></option>
+                    <option value="2"><span language="middle">中</span></option>
+                    <option value="1"><span language="low">低</span></option>
+                  </select>
                 </div>
-            </div>
-            <div class="col-xlg-3 col-lg-3 col-md-3 hide" id="divAddFaces">
-                <div class="card row-span-5">
-                    <div class="card-body" style="height:100%">
-                        <h3 class="card-title"><span language="batch">批量</span><span language="create">创建</span><span language="face">人脸</span><span language="information">信息</span></h3>
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <button class="btn btn-success p-r-20 p-l-20" type="button" onclick="$('#addFacesInput').click();">
-                                        <i class="fa fa-upload"></i> 
-                                        <span language="upload">上传</span><span language="picture">图片</span>
-                                    </button>
-                                    <input type="file" accept="image/jpeg" onchange="addFacesClick(this)" multiple="multiple" style="display: none;" id="addFacesInput">
-                                </div>
-                            </div>        
-                            <div class="col-6 text-right">
-
-                            </div>
-                        </div>
-                        <div id="uploadImgs">
-                        </div>
-                        <div class="row card-bottom-btns-group">
-                            <div class="form-group text-center" style="margin:auto">
-                                <button type="button" class="btn btn-success p-l-20 p-r-20 m-r-10" onclick="batchCreateFaceInfo()">
-                                    <i class="mdi mdi-content-save"></i>
-                                    <span language="save">保存</span>
-                                </button>
-                                <button type="button" onclick="closeAddFaces()" class="btn waves-effect waves-light btn-danger p-l-20 p-r-20">
-                                    <i class="mdi mdi-close-circle"></i>
-                                    <span language="close">关闭</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+                <div class="form-group">
+                  <label class="control-label"
+                    ><span language="similar">相似度</span
+                    ><span language="touch_off">触发</span
+                    ><span language="threshold">阈值</span></label
+                  >
+                  <input
+                    id="Threshold"
+                    type="text"
+                    value="0"
+                    name="Threshold"
+                    data-bts-button-down-class="btn btn-secondary btn-outline"
+                    data-bts-button-up-class="btn btn-secondary btn-outline"
+                  />
                 </div>
+                <div class="form-group">
+                  <label class="control-label"
+                    ><span language="max">最大</span>
+                    <span language="face">人脸</span>
+                    <span language="capacity">容量</span></label
+                  >
+                  <input
+                    id="Capacity"
+                    type="text"
+                    value="0"
+                    name="Capacity"
+                    data-bts-button-down-class="btn btn-secondary btn-outline"
+                    data-bts-button-up-class="btn btn-secondary btn-outline"
+                  />
+                </div>
+                <div class="form-group">
+                  <label class="control-label"
+                    ><span language="description">描述信息</span></label
+                  >
+                  <textarea
+                    rows="3"
+                    class="form-control"
+                    id="Description"
+                  ></textarea>
+                </div>
+                <div class="card-bottom-btns-group">
+                  <div class="text-center">
+                    <button
+                      onclick="Html.FaceSet.save()"
+                      type="button"
+                      class="btn btn-success p-l-20 p-r-20"
+                    >
+                      <i class="mdi mdi-content-save"></i>
+                      <span language="save">保存</span>
+                    </button>
+                  </div>
+                </div>
+              </form>
             </div>
+          </div>
         </div>
+        <div class="col-xlg-9 col-lg-9 col-md-9" id="divFaceList">
+          <div class="row">
+            <div class="col-xlg-12 col-lg-12 col-md-12">
+              <div class="card pull-height row-span-5">
+                <div class="card-body">
+                  <h3 class="card-title">
+                    <span language="face">人脸</span
+                    ><span language="information">信息</span>
+                  </h3>
+                  <div class="row m-b-30">
+                    <div class="col-6 hide" id="btns_group">
+                      <div class="btn-group">
+                        <button
+                          type="button"
+                          class="btn btn-info dropdown-toggle"
+                          data-toggle="dropdown"
+                          aria-haspopup="true"
+                          aria-expanded="false"
+                        >
+                          <i class="fa fa-check"></i>
+                          <span language="choose">选择</span>
+                        </button>
+                        <div
+                          class="dropdown-menu dropdown-menu-right"
+                          style="min-width: 86px"
+                        >
+                          <a
+                            class="dropdown-item text-right"
+                            onclick="Html.FaceSet.Face.Select.allSelect()"
+                          >
+                            <i
+                              class="mdi mdi-check-circle-outline pull-left"
+                            ></i
+                            ><span language="allselected">全选</span>
+                          </a>
+                          <a
+                            class="dropdown-item text-right"
+                            onclick="Html.FaceSet.Face.Select.unSelect()"
+                          >
+                            <i class="mdi mdi-check-circle pull-left"></i
+                            ><span language="inverseselected">反选</span>
+                          </a>
+                          <div class="dropdown-divider"></div>
+                          <a
+                            class="dropdown-item text-right"
+                            onclick="Html.FaceSet.Face.Select.cancelSelect()"
+                          >
+                            <i
+                              class="mdi mdi-checkbox-blank-circle-outline pull-left"
+                            ></i
+                            ><span language="cancel">取消</span>
+                          </a>
+                        </div>
+                      </div>
+                      <div class="btn-group m-l-5">
+                        <button
+                          class="btn btn-success p-r-20 p-l-20"
+                          type="button"
+                          onclick="addFaceClick()"
+                        >
+                          <i class="mdi mdi-account-plus"></i>
+                          <span language="add">添加</span>
+                        </button>
+                        <button
+                          type="button"
+                          class="btn btn-success dropdown-toggle dropdown-toggle-split"
+                          data-toggle="dropdown"
+                          aria-haspopup="true"
+                          aria-expanded="false"
+                        >
+                          <span class="sr-only"></span>
+                        </button>
+                        <div
+                          class="dropdown-menu dropdown-menu-right"
+                          style="min-width: 112px"
+                        >
+                          <a
+                            class="dropdown-item text-right"
+                            onclick="openAddFaces()"
+                          >
+                            <i
+                              class="mdi mdi-account-multiple-plus pull-left"
+                            ></i>
+                            <span>批量添加</span>
+                          </a>
+                        </div>
+                      </div>
+                      <div class="btn-group m-l-5">
+                        <button
+                          class="hide btn waves-effect waves-light btn-danger p-r-20 p-l-20"
+                          onclick="Html.FaceSet.Face.batchRemove();"
+                          id="btn_del"
+                        >
+                          <i class="fa fa-trash-o"></i>
+                          <span language="delete">删除</span>
+                        </button>
+                      </div>
+                    </div>
+                    <div class="col-6 text-right">
+                      <div class="input-group">
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="inputFaceSearch"
+                          placeholder="输入名称或电话号码"
+                        />
+                        <div
+                          class="input-group-append search"
+                          onclick="faceSearchClick()"
+                        >
+                          <span class="input-group-text">
+                            <i class="howell-icon-magnifier"></i>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row" id="list_body">
+                    <div class="col-12">
+                      <div class="card-group" id="faceAppendDataList"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xlg-3 col-lg-3 col-md-3 hide" id="divFaceInfo">
+          <div class="card row-span-5">
+            <div class="card-body">
+              <h3 class="card-title">
+                <span language="setting">设置</span
+                ><span language="face">人脸</span
+                ><span language="information">信息</span>
+              </h3>
+              <div id="preview" class="text-center">
+                <img
+                  id="imghead"
+                  class="upload_img"
+                  src="img/upload_picture.png"
+                  width="110"
+                  height="126"
+                  border="0"
+                  onclick="$('#previewImg').click();"
+                />
+              </div>
+              <div class="text-center m-t-5 m-b-10">
+                <span>点击图片上传</span>
+              </div>
+              <input
+                type="file"
+                accept="image/x-png,image/jpeg,image/bmp"
+                onchange="previewImage(this)"
+                style="display: none"
+                id="previewImg"
+              />
+              <div class="row">
+                <form class="form col-md-6">
+                  <div class="form-group">
+                    <label for="face_Name" class="form-label">
+                      <span language="full_name">名称</span>
+                    </label>
+                    <input
+                      class="form-control"
+                      type="text"
+                      value=""
+                      id="face_Name"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="ipAddress" class="form-label">
+                      <span language="phone">电话号码</span>
+                    </label>
+                    <input
+                      class="form-control"
+                      type="text"
+                      value=""
+                      id="face_Phone"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label">
+                      <span language="province">省份</span>
+                    </label>
+                    <input
+                      class="form-control"
+                      type="text"
+                      value=""
+                      id="face_Province"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label">
+                      <span language="card_type">证件类型</span>
+                    </label>
+                    <input
+                      class="form-control"
+                      type="text"
+                      value=""
+                      id="face_CardType"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label">
+                      <span language="employee_id">员工ID</span>
+                    </label>
+                    <input
+                      class="form-control"
+                      type="text"
+                      value=""
+                      id="face_EmployeeId"
+                    />
+                  </div>
+                </form>
+                <form class="form col-md-6">
+                  <div class="form-group">
+                    <label class="control-label">
+                      <span language="sex">性别</span>
+                    </label>
+                    <select
+                      class="form-control custom-select"
+                      data-placeholder="Choose a Sex"
+                      tabindex="1"
+                      id="face_Sex"
+                    >
+                      <option value="None">
+                        <span language="all">保密</span>
+                      </option>
+                      <option value="Male">
+                        <span language="whitelist">男性</span>
+                      </option>
+                      <option value="Female">
+                        <span language="blacklist">女性</span>
+                      </option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="ipAddress" class="form-label">
+                      <span language="birthday">出生年月</span>
+                    </label>
+                    <div class="input-group">
+                      <div
+                        class="input-group-addon cursor-pointer report-select-label"
+                        style="background: rgba(120, 130, 140, 0.5)"
+                        onclick="$('#face_BirthDate').datetimepicker('show');"
+                        title="开始时间"
+                      >
+                        <i class="icon-calendar" style="color: white"></i>
+                      </div>
+                      <input
+                        class="form-control cursor-pointer"
+                        id="face_BirthDate"
+                      />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label"
+                      ><span language="city">城市</span></label
+                    >
+                    <input
+                      class="form-control"
+                      type="text"
+                      value=""
+                      id="face_City"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label"
+                      ><span language="card_number">证件编号</span></label
+                    >
+                    <input
+                      class="form-control"
+                      type="text"
+                      value=""
+                      id="face_CardNumber"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label"
+                      ><span language="extend">附加信息</span></label
+                    >
+                    <input
+                      class="form-control"
+                      type="text"
+                      value=""
+                      id="face_Extend"
+                    />
+                  </div>
+                </form>
+                <div
+                  class="form-group text-center p-t-10"
+                  style="margin: auto"
+                ></div>
+              </div>
+              <div class="row card-bottom-btns-group">
+                <div class="form-group text-center" style="margin: auto">
+                  <button
+                    onclick="Html.FaceSet.Face.FaceInfo.save()"
+                    type="button"
+                    class="btn btn-success p-l-20 p-r-20 m-r-10"
+                  >
+                    <i class="mdi mdi-content-save"></i>
+                    <span language="save">保存</span>
+                  </button>
+                  <button
+                    type="button"
+                    class="btn waves-effect waves-light btn-danger p-l-20 p-r-20"
+                    onclick="closeFaceInfo()"
+                  >
+                    <i class="mdi mdi-close-circle"></i>
+                    <span language="close">关闭</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xlg-3 col-lg-3 col-md-3 hide" id="divAddFaces">
+          <div class="card row-span-5">
+            <div class="card-body" style="height: 100%">
+              <h3 class="card-title">
+                <span language="batch">批量</span
+                ><span language="create">创建</span
+                ><span language="face">人脸</span
+                ><span language="information">信息</span>
+              </h3>
+              <div class="row">
+                <div class="col-6">
+                  <div class="form-group">
+                    <button
+                      class="btn btn-success p-r-20 p-l-20"
+                      type="button"
+                      onclick="$('#addFacesInput').click();"
+                    >
+                      <i class="fa fa-upload"></i>
+                      <span language="upload">上传</span
+                      ><span language="picture">图片</span>
+                    </button>
+                    <input
+                      type="file"
+                      accept="image/jpeg"
+                      onchange="addFacesClick(this)"
+                      multiple="multiple"
+                      style="display: none"
+                      id="addFacesInput"
+                    />
+                  </div>
+                </div>
+                <div class="col-6 text-right"></div>
+              </div>
+              <div id="uploadImgs"></div>
+              <div class="row card-bottom-btns-group">
+                <div class="form-group text-center" style="margin: auto">
+                  <button
+                    type="button"
+                    class="btn btn-success p-l-20 p-r-20 m-r-10"
+                    onclick="batchCreateFaceInfo()"
+                  >
+                    <i class="mdi mdi-content-save"></i>
+                    <span language="save">保存</span>
+                  </button>
+                  <button
+                    type="button"
+                    onclick="closeAddFaces()"
+                    class="btn waves-effect waves-light btn-danger p-l-20 p-r-20"
+                  >
+                    <i class="mdi mdi-close-circle"></i>
+                    <span language="close">关闭</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <script src="fr/device/nvr/facesets/faceset_details.js?update=20180712" charset="UTF-8"></script>
+    <script
+      src="fr/device/nvr/facesets/faceset_details.js?update=20180712"
+      charset="UTF-8"
+    ></script>
     <script src="js/client/management.js?update=20180712"></script>
-    <link href="controls/touchspin/jquery.bootstrap-touchspin.min.css?update=20180712" rel="stylesheet" />
+    <link
+      href="controls/touchspin/jquery.bootstrap-touchspin.min.css?update=20180712"
+      rel="stylesheet"
+    />
     <script src="controls/touchspin/jquery.bootstrap-touchspin.min.js?update=20180712"></script>
     <script type="text/javascript">
-        $(function () {
-            var uri = new Uri(jumpHref.href);
-            if (uri.Query && uri.Querys.deviceId){
-                Html.DeviceId = uri.Querys.deviceId;
-            }
-            else{
-                loadContent('page', base64encode(setUrlRandomParams(navigation.device.nvr.list)));
-                return;
-            }
-            if(uri.Query && uri.Querys.faceSetId){
-                Html.FaceSetId = uri.Querys.faceSetId;
-                Html.FaceSet.fill(Html.DeviceId,Html.FaceSetId);
-                Html.FaceSet.Face.createList("faceAppendDataList",Html.DeviceId,Html.FaceSetId);
-                $("#btns_group").removeClass("hide");
-            }
-            if (uri.Query && uri.Querys.type){
-                var deviceNavBtn = document.getElementById("deviceNavBtn");
-                var faceSetNavBtn = document.getElementById("faceSetNavBtn");
-                if(uri.Querys.type=="nvr"){
-                    deviceNavBtn.innerHTML = chinese.back_end + chinese.device;
-                    deviceNavBtn.href="javascript:selectNav(this); loadContent('page', base64encode(setUrlRandomParams(navigation.device.nvr.list)))";
-                    faceSetNavBtn.href ="javascript:selectNav(this);jumpHref.href = navigation.device.nvr.faceset.list + '?deviceId=' + Html.DeviceId + '&type=nvr'; loadContent('page', base64encode(setUrlRandomParams(navigation.device.nvr.faceset.list + '?deviceId=' + Html.DeviceId + '&type=nvr')))";
-                }
-                if(uri.Querys.type=="camera"){
-                    deviceNavBtn.innerHTML = chinese.fore_end + chinese.device;
-                    deviceNavBtn.href="javascript:selectNav(this); loadContent('page', base64encode(setUrlRandomParams(navigation.device.camera.list)))";
-                    faceSetNavBtn.href ="javascript:selectNav(this);jumpHref.href = navigation.device.nvr.faceset.list + '?deviceId=' + Html.DeviceId + '&type=camera'; loadContent('page', base64encode(setUrlRandomParams(navigation.device.nvr.faceset.list + '?deviceId=' + Html.DeviceId + '&type=camera')))";
-                }
-            }
-            $("input[name='Threshold']").TouchSpin({
-                min: 0,
-                max: 100,
-                stepinterval: 1,
-            });
-            $("input[name='Capacity']").TouchSpin({
-                min: 0,
-                max: 1300000000,
-                stepinterval: 1,
-            });
-            // Html.FaceSet.List.create("faceSetsList" , Html.DeviceId)
-            $('#list_body').slimScroll({
-                height: '80%'
-            });
-            // $('#uploadImgs').slimScroll({
-            //     height: '76%'
-            // });
-            $('#face_BirthDate').datetimepicker({
-                format: 'yyyy-mm-dd',
-                weekStart: 1,
-                autoclose: true,
-                startView: 2,
-                minView: 2,
-                forceParse: false,
-                language: 'zh-CN',
-                initialDate: "",
-            });
-            init_language();
-        });
+      $(function () {
+        var uri = new Uri(jumpHref.href)
+        if (uri.Query && uri.Querys.deviceId) {
+          Html.DeviceId = uri.Querys.deviceId
+        } else {
+          loadContent(
+            'page',
+            base64encode(setUrlRandomParams(navigation.device.nvr.list))
+          )
+          return
+        }
+        if (uri.Query && uri.Querys.faceSetId) {
+          Html.FaceSetId = uri.Querys.faceSetId
+          Html.FaceSet.fill(Html.DeviceId, Html.FaceSetId)
+          Html.FaceSet.Face.createList(
+            'faceAppendDataList',
+            Html.DeviceId,
+            Html.FaceSetId
+          )
+          $('#btns_group').removeClass('hide')
+        }
+        if (uri.Query && uri.Querys.type) {
+          var deviceNavBtn = document.getElementById('deviceNavBtn')
+          var faceSetNavBtn = document.getElementById('faceSetNavBtn')
+          if (uri.Querys.type == 'nvr') {
+            deviceNavBtn.innerHTML = chinese.back_end + chinese.device
+            deviceNavBtn.href =
+              "javascript:selectNav(this); loadContent('page', base64encode(setUrlRandomParams(navigation.device.nvr.list)))"
+            faceSetNavBtn.href =
+              "javascript:selectNav(this);jumpHref.href = navigation.device.nvr.faceset.list + '?deviceId=' + Html.DeviceId + '&type=nvr'; loadContent('page', base64encode(setUrlRandomParams(navigation.device.nvr.faceset.list + '?deviceId=' + Html.DeviceId + '&type=nvr')))"
+          }
+          if (uri.Querys.type == 'camera') {
+            deviceNavBtn.innerHTML = chinese.fore_end + chinese.device
+            deviceNavBtn.href =
+              "javascript:selectNav(this); loadContent('page', base64encode(setUrlRandomParams(navigation.device.camera.list)))"
+            faceSetNavBtn.href =
+              "javascript:selectNav(this);jumpHref.href = navigation.device.nvr.faceset.list + '?deviceId=' + Html.DeviceId + '&type=camera'; loadContent('page', base64encode(setUrlRandomParams(navigation.device.nvr.faceset.list + '?deviceId=' + Html.DeviceId + '&type=camera')))"
+          }
+        }
+        $("input[name='Threshold']").TouchSpin({
+          min: 0,
+          max: 100,
+          stepinterval: 1,
+        })
+        $("input[name='Capacity']").TouchSpin({
+          min: 0,
+          max: 1300000000,
+          stepinterval: 1,
+        })
+        // Html.FaceSet.List.create("faceSetsList" , Html.DeviceId)
+        $('#list_body').slimScroll({
+          height: '80%',
+        })
+        // $('#uploadImgs').slimScroll({
+        //     height: '76%'
+        // });
+        $('#face_BirthDate').datetimepicker({
+          format: 'yyyy-mm-dd',
+          weekStart: 1,
+          autoclose: true,
+          startView: 2,
+          minView: 2,
+          forceParse: false,
+          language: 'zh-CN',
+          initialDate: '',
+        })
+        init_language()
+      })
     </script>
-</body>
+  </body>
 </html>

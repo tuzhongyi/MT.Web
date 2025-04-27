@@ -1,17 +1,27 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head><meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
     <link rel="stylesheet" type="text/css" href="../../css/howell.css" />
     <link href="../../css/bootstrap/bootstrap-switch.css" rel="stylesheet" />
     <script type="text/javascript" src="../../js/language/chinese.js"></script>
-    <script type="text/javascript" src="../../js/jquery/jquery-1.10.2.min.js"></script>
+    <script
+      type="text/javascript"
+      src="../../js/jquery/jquery-3.6.0.min.js"
+    ></script>
     <script src="../../js/imported.js"></script>
     <script src="../../js/imported.js"></script>
     <script type="text/javascript" src="../../js/jquery/jquery-ui.js"></script>
-    <script type="text/javascript" src="../../js/bootstrap/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../../js/jquery/jquery.confirm.js"></script>
+    <script
+      type="text/javascript"
+      src="../../js/bootstrap/bootstrap.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../js/jquery/jquery.confirm.js"
+    ></script>
 
     <script type="text/javascript" src="../../js/howell.js/howell.js"></script>
     <script type="text/javascript" src="../../js/client/struct.js"></script>
@@ -19,69 +29,91 @@
     <script type="text/javascript" src="../../js/client/security.js"></script>
     <script type="text/javascript" src="../../js/client/enum.js"></script>
     <script type="text/javascript" src="../../js/client/client.js"></script>
-    <script type="text/javascript" src="../../js/howell.js/howell.control.js"></script>
+    <script
+      type="text/javascript"
+      src="../../js/howell.js/howell.control.js"
+    ></script>
     <script type="text/javascript" src="../../js/modernizr.custom.js"></script>
-    <script type="text/javascript" src="../../js/bootstrap/bootstrap-switch.min.js"></script>
-    <script type="text/javascript" src="../../js/background/linkage/background_linkages.js"></script>
+    <script
+      type="text/javascript"
+      src="../../js/bootstrap/bootstrap-switch.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../js/background/linkage/background_linkages.js"
+    ></script>
     <script type="text/javascript" src="linkage_details.js"></script>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container-fluid main-content alert-window-maxdiv">
-        <div class="page-title">
-            <h3 class="list-heading-div">
-                <i class="icon_linkage_list" style="margin-right:15px;"></i>
-                <label id="lblLinkageDetailTitle">联动详情</label>
-            </h3>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="widget-content padded">
-                    <form action="#" class="form-horizontal">
-                        <div class="form-group">
-                            <label class="control-label col-md-2">
-                                联动名称
-                            </label>
-                            <div class="col-md-9">
-                                <input class="form-control" type="text" id="txtName" readonly="readonly"/>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-2">
-                                事件类型
-                            </label>
-                            <div class="col-md-9">
-                                <select class="form-control" id="ddlDetailEventType" onchange="ddlDetailEventType_OnChanged(this, this.value);"></select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-2">
-                                事件状态
-                            </label>
-                            <div class="col-md-9">
-                                <select class="form-control" id="ddlDetailEventState" onchange="ddlDetailEventState_OnChanged(this, this.value);"></select>
-                            </div>
-                        </div>
-                        <div class="form-group" style="margin-top:35px">
-                            <label class="control-label col-md-7">
-                            </label>
-                            <div class="col-md-2">
-                                <a class="btn btn-primary" id="btnDetailLinkage" onclick="return btnDetailLinkage_Click(this);">
-                                    确&ensp;&ensp;定
-                                </a>
-                            </div>
-                            <div class="col-md-2">
-                                <a class="btn btn-primary" onclick="return AlertWindow.Close();">
-                                    取&ensp;&ensp;消
-                                </a>
-                            </div>
-                        </div>
-                    </form>
+      <div class="page-title">
+        <h3 class="list-heading-div">
+          <i class="icon_linkage_list" style="margin-right: 15px"></i>
+          <label id="lblLinkageDetailTitle">联动详情</label>
+        </h3>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="widget-content padded">
+            <form action="#" class="form-horizontal">
+              <div class="form-group">
+                <label class="control-label col-md-2"> 联动名称 </label>
+                <div class="col-md-9">
+                  <input
+                    class="form-control"
+                    type="text"
+                    id="txtName"
+                    readonly="readonly"
+                  />
                 </div>
-            </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-2"> 事件类型 </label>
+                <div class="col-md-9">
+                  <select
+                    class="form-control"
+                    id="ddlDetailEventType"
+                    onchange="ddlDetailEventType_OnChanged(this, this.value);"
+                  ></select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-2"> 事件状态 </label>
+                <div class="col-md-9">
+                  <select
+                    class="form-control"
+                    id="ddlDetailEventState"
+                    onchange="ddlDetailEventState_OnChanged(this, this.value);"
+                  ></select>
+                </div>
+              </div>
+              <div class="form-group" style="margin-top: 35px">
+                <label class="control-label col-md-7"> </label>
+                <div class="col-md-2">
+                  <a
+                    class="btn btn-primary"
+                    id="btnDetailLinkage"
+                    onclick="return btnDetailLinkage_Click(this);"
+                  >
+                    确&ensp;&ensp;定
+                  </a>
+                </div>
+                <div class="col-md-2">
+                  <a
+                    class="btn btn-primary"
+                    onclick="return AlertWindow.Close();"
+                  >
+                    取&ensp;&ensp;消
+                  </a>
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
+      </div>
     </div>
     <script type="text/javascript">
-        item_load();
+      item_load()
     </script>
-</body>
+  </body>
 </html>

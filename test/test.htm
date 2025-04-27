@@ -1,82 +1,79 @@
 ﻿<!DOCTYPE html>
 <html>
-
-<head>
+  <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-    <title>
-    </title>    
-    <link href="../css/bootstrap/jquery.fancybox.css" rel="stylesheet" />    
+    <title> </title>
+    <link href="../css/bootstrap/jquery.fancybox.css" rel="stylesheet" />
     <link href="../css/howell.css" rel="stylesheet" />
     <link href="../css/bootstrap/isotope.css" rel="stylesheet" />
-    <script src="../js/jquery/jquery-1.10.2.min.js"></script>
+    <script src="../js/jquery/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="../js/jquery/jquery-ui.js"></script>
-    <script type="text/javascript" src="../js/bootstrap/bootstrap.min.js"></script>
+    <script
+      type="text/javascript"
+      src="../js/bootstrap/bootstrap.min.js"
+    ></script>
     <script src="../js/jquery/jquery.confirm.js"></script>
     <script src="../js/jquery/jquery.isotope.min.js"></script>
     <script src="../js/jquery/jquery.fancybox.pack.js"></script>
     <script src="../js/howell.js/howell.js"></script>
-    <script type="text/javascript" src="../js/bootstrap/bootstrap-switch.min.js"></script>
+    <script
+      type="text/javascript"
+      src="../js/bootstrap/bootstrap-switch.min.js"
+    ></script>
     <script src="../js/howell.js/howell.control.js"></script>
     <script type="text/javascript" src="../js/modernizr.custom.js"></script>
-</head>
-<body>
+  </head>
+  <body>
     <!--<a onclick="return test(this);" href="testPage.htm">
         点我弹出
     </a>-->
-</body>
+  </body>
 </html>
 <script type="text/javascript">
-    //function test(sender) {
-    //    stopPropagation();
-    //    AlertWindow.Show(sender, -1);
-    //    return false;
-    //}
-    try {
-        var a = null;
-        a.toString();
-        //throw new TempException();
-    }
-    catch (e) {
-        var text = "";
-        if (e.number || e.number == 0)
-            text += "<div>number:" + e.number + "</div>";
-        if (e.name)
-            text += "<div>name:" + e.name + "</div>";
-        if (e.fileName)
-            text += "<div>fileName:" + e.fileName + "</div>";
-        if (e.lineNumber)
-            text += "<div>lineNumber:" + e.lineNumber + "</div>";
-        if (e.stack)
-            text += "<div>stack:" + e.stack + "</div>";
-        if (e.description && e.message)
-            text += "<div>message:" + e.message + "</div>";
-        else if (e.message)
-            text += "<div>message:" + e.message + "</div>";
-        else if (e.description)
-            text += "<div>description:" + e.description + "</div>";
+  //function test(sender) {
+  //    stopPropagation();
+  //    AlertWindow.Show(sender, -1);
+  //    return false;
+  //}
+  try {
+    var a = null
+    a.toString()
+    //throw new TempException();
+  } catch (e) {
+    var text = ''
+    if (e.number || e.number == 0) text += '<div>number:' + e.number + '</div>'
+    if (e.name) text += '<div>name:' + e.name + '</div>'
+    if (e.fileName) text += '<div>fileName:' + e.fileName + '</div>'
+    if (e.lineNumber) text += '<div>lineNumber:' + e.lineNumber + '</div>'
+    if (e.stack) text += '<div>stack:' + e.stack + '</div>'
+    if (e.description && e.message)
+      text += '<div>message:' + e.message + '</div>'
+    else if (e.message) text += '<div>message:' + e.message + '</div>'
+    else if (e.description)
+      text += '<div>description:' + e.description + '</div>'
 
-        $.confirm({
-            title:"报错了",
-            text: text,
-            okButton: "确定",
-            cancelButton: "取消",
-        });
-        //Error具有下面一些主要属性：
-        //description: 错误描述 (仅IE可用).  
-        //fileName: 出错的文件名 (仅Mozilla可用).  
-        //lineNumber: 出错的行数 (仅Mozilla可用).  
-        //message: 错误信息 (在IE下同description)  
-        //name: 错误类型.  
-        //number: 错误代码 (仅IE可用).  
-        //stack: 像Java中的Stack Trace一样的错误堆栈信息 (仅Mozilla可用).  
-    }
-    function TempException() {
-        this.description = "错误描述";
-        this.fileName = "出错的文件名";
-        this.lineNumber = "出错的行数";
-        this.message = "错误信息";
-        this.name = "错误类型";
-        this.number = "错误代码"
-        this.stack = "错误堆栈信息";
-    }
+    $.confirm({
+      title: '报错了',
+      text: text,
+      okButton: '确定',
+      cancelButton: '取消',
+    })
+    //Error具有下面一些主要属性：
+    //description: 错误描述 (仅IE可用).
+    //fileName: 出错的文件名 (仅Mozilla可用).
+    //lineNumber: 出错的行数 (仅Mozilla可用).
+    //message: 错误信息 (在IE下同description)
+    //name: 错误类型.
+    //number: 错误代码 (仅IE可用).
+    //stack: 像Java中的Stack Trace一样的错误堆栈信息 (仅Mozilla可用).
+  }
+  function TempException() {
+    this.description = '错误描述'
+    this.fileName = '出错的文件名'
+    this.lineNumber = '出错的行数'
+    this.message = '错误信息'
+    this.name = '错误类型'
+    this.number = '错误代码'
+    this.stack = '错误堆栈信息'
+  }
 </script>

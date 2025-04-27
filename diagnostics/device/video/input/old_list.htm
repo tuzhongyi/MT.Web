@@ -1,501 +1,592 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
+  <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
     <link rel="stylesheet" type="text/css" href="../../../../css/howell.css" />
-    <script type="text/javascript" src="../../../../js/language/chinese.js"></script>
-    <script type="text/javascript" src="../../../../js/jquery/jquery-1.10.2.min.js"></script>
+    <script
+      type="text/javascript"
+      src="../../../../js/language/chinese.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../../js/jquery/jquery-3.6.0.min.js"
+    ></script>
     <script src="../../../../js/imported.js"></script>
-    <script type="text/javascript" src="../../../../js/jquery/jquery-ui.js"></script>
-    <script type="text/javascript" src="../../../../js/bootstrap/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../../../../js/jquery/jquery.confirm.js"></script>
+    <script
+      type="text/javascript"
+      src="../../../../js/jquery/jquery-ui.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../../js/bootstrap/bootstrap.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../../js/jquery/jquery.confirm.js"
+    ></script>
     <script type="text/javascript" src="../../../../js/nav.js"></script>
 
-    <script type="text/javascript" src="../../../../js/howell.js/howell.js"></script>
-    <script type="text/javascript" src="../../../../js/client/struct.js"></script>
-    <script type="text/javascript" src="../../../../js/client/management.js"></script>
-    <script type="text/javascript" src="../../../../js/howell.js/howell.control.js"></script>
-    <script type="text/javascript" src="../../../../js/modernizr.custom.js"></script>
-    <script type="text/javascript" src="../../../../js/jquery/jquery.sparkline.min.js"></script>
-    <script type="text/javascript" src="../../../../js/howell.js/guid.js"></script>
-</head>
-<body>
+    <script
+      type="text/javascript"
+      src="../../../../js/howell.js/howell.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../../js/client/struct.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../../js/client/management.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../../js/howell.js/howell.control.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../../js/modernizr.custom.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../../js/jquery/jquery.sparkline.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../../js/howell.js/guid.js"
+    ></script>
+  </head>
+  <body>
     <div id="divNavigation">
-        <div class="navbar navbar-fixed-top scroll-hide">
-            <div class="container-fluid top-bar">
-                <div class="pull-right">
-                    <ul class="nav navbar-nav pull-right">
-                        <li class="dropdown settings hidden-xs">
-                            <a onclick="window.close()" class="dropdown-toggle"
-                               href="#">
-                                <span aria-hidden="true" class="icon exit"></span>
-                                <div class="sr-only">
-                                    Exit
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <a class="logo" href="#" onclick="Goto(Map.security.index);"></a>
-            </div>
-            <div class="container-fluid main-nav clearfix">
-                <div class="nav-collapse">
-                    <ul class="nav">
-                        <li style="width:8px">
-
-                        </li>
-                        <li>
-                            <a href="#" onclick="Goto(Map.index)">
-                                <span aria-hidden="true" class="icon home"></span>主页
-                            </a>
-                        </li>
-                        <li class="dropdown">
-                            <a data-toggle="dropdown" href="#">
-                                <span aria-hidden="true"
-                                      class="icon device"></span>设备管理<b class="caret"></b>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a href="#" onclick="Goto(Map.management.device.list);">
-                                        <p>
-                                            设备列表
-                                        </p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" onclick="Goto(Map.management.device.item);">
-                                        <p>
-                                            添加设备
-                                        </p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a data-toggle="dropdown" href="#">
-                                <span aria-hidden="true"
-                                      class="icon user"></span>用户管理<b class="caret"></b>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a href="#" onclick="Goto(Map.security.user.list)">
-                                        <p>
-                                            用户列表
-                                        </p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" onclick="Goto(Map.security.user.item)">
-                                        <p>
-                                            添加用户
-                                        </p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a data-toggle="dropdown" href="#">
-                                <span aria-hidden="true"
-                                      class="icon department"></span>输入通道管理<b class="caret"></b>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a href="#" onclick="Goto(Map.security.department.list);">
-                                        <p>
-                                            输入通道列表
-                                        </p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" onclick="Goto(Map.security.department.item);">
-                                        <p>
-                                            添加输入通道
-                                        </p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <div class="heading compare-float-heading-div" id="compare-float-heading-div">
-                        <div class="form-group compare-float-heading-title-div">
-                            &ensp;<div class="compare-float-heading-icon-div"></div>
-                            <label class="compare-float-heading-title-label">设备通道测速比对</label>
-                        </div>
-                        <div class="compare-float-heading-tag-div">
-                            <label class="compare-float-heading-tag-name-lable">
-                                通道名称
-                            </label>
-                            <label class="compare-float-heading-tag-chart-lable">
-                                数据图
-                            </label>
-                            <label class="compare-float-heading-tag-bitrate-lable">
-                                平均码率 Kbps
-                            </label>
-                            <label class="compare-float-heading-tag-error-lable">
-                                错误率
-                            </label>
-                            <label class="compare-float-heading-tag-lost-lable">
-                                丢包率
-                            </label>
-                            <label class="compare-float-heading-tag-received-lable">
-                                收包率
-                            </label>
-                            <label class="compare-float-heading-tag-total-lable">
-                                总包数 Mb
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      <div class="navbar navbar-fixed-top scroll-hide">
+        <div class="container-fluid top-bar">
+          <div class="pull-right">
+            <ul class="nav navbar-nav pull-right">
+              <li class="dropdown settings hidden-xs">
+                <a onclick="window.close()" class="dropdown-toggle">
+                  <span aria-hidden="true" class="icon exit"></span>
+                  <div class="sr-only">Exit</div>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <a class="logo" onclick="Goto(Map.security.index);"></a>
         </div>
-        <a class="to-top" onclick="document.documentElement.scrollTop = 0;">
-            <div class="pic"></div>
-        </a>
+        <div class="container-fluid main-nav clearfix">
+          <div class="nav-collapse">
+            <ul class="nav">
+              <li style="width: 8px"></li>
+              <li>
+                <a onclick="Goto(Map.index)">
+                  <span aria-hidden="true" class="icon home"></span>主页
+                </a>
+              </li>
+              <li class="dropdown">
+                <a data-toggle="dropdown">
+                  <span aria-hidden="true" class="icon device"></span>设备管理<b
+                    class="caret"
+                  ></b>
+                </a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a onclick="Goto(Map.management.device.list);">
+                      <p>设备列表</p>
+                    </a>
+                  </li>
+                  <li>
+                    <a onclick="Goto(Map.management.device.item);">
+                      <p>添加设备</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li class="dropdown">
+                <a data-toggle="dropdown">
+                  <span aria-hidden="true" class="icon user"></span>用户管理<b
+                    class="caret"
+                  ></b>
+                </a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a onclick="Goto(Map.security.user.list)">
+                      <p>用户列表</p>
+                    </a>
+                  </li>
+                  <li>
+                    <a onclick="Goto(Map.security.user.item)">
+                      <p>添加用户</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li class="dropdown">
+                <a data-toggle="dropdown">
+                  <span aria-hidden="true" class="icon department"></span
+                  >输入通道管理<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a onclick="Goto(Map.security.department.list);">
+                      <p>输入通道列表</p>
+                    </a>
+                  </li>
+                  <li>
+                    <a onclick="Goto(Map.security.department.item);">
+                      <p>添加输入通道</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            <div
+              class="heading compare-float-heading-div"
+              id="compare-float-heading-div"
+            >
+              <div class="form-group compare-float-heading-title-div">
+                &ensp;
+                <div class="compare-float-heading-icon-div"></div>
+                <label class="compare-float-heading-title-label"
+                  >设备通道测速比对</label
+                >
+              </div>
+              <div class="compare-float-heading-tag-div">
+                <label class="compare-float-heading-tag-name-lable">
+                  通道名称
+                </label>
+                <label class="compare-float-heading-tag-chart-lable">
+                  数据图
+                </label>
+                <label class="compare-float-heading-tag-bitrate-lable">
+                  平均码率 Kbps
+                </label>
+                <label class="compare-float-heading-tag-error-lable">
+                  错误率
+                </label>
+                <label class="compare-float-heading-tag-lost-lable">
+                  丢包率
+                </label>
+                <label class="compare-float-heading-tag-received-lable">
+                  收包率
+                </label>
+                <label class="compare-float-heading-tag-total-lable">
+                  总包数 Mb
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a class="to-top" onclick="document.documentElement.scrollTop = 0;">
+        <div class="pic"></div>
+      </a>
     </div>
     <script type="text/javascript">
-        (function () {
-            $(".navbar.scroll-hide").mouseover(function () {
-                $(".navbar.scroll-hide").removeClass("closed");
-                return setTimeout((function () {
-                    return $(".navbar.scroll-hide").css({
-                        overflow: "visible"
-                    });
-                }), 150);
-            });
-            $(function () {
-                var delta, lastScrollTop;
-                lastScrollTop = 0;
-                delta = 50;
-                return $(window).scroll(function (event) {
-                    var st;
-                    st = $(this).scrollTop();
-                    if (Math.abs(lastScrollTop - st) <= delta) {
-                        return;
-                    }
-                    if (st > lastScrollTop) {
-                        $('.navbar.scroll-hide').addClass("closed");
-                    } else {
-                        $('.navbar.scroll-hide').removeClass("closed");
-                    }
-                    return lastScrollTop = st;
-                });
-            });
-            $('.navbar-toggle').click(function () {
-                return $('body, html').toggleClass("nav-open");
-            });
-        }).call(this);
+      ;(function () {
+        $('.navbar.scroll-hide').mouseover(function () {
+          $('.navbar.scroll-hide').removeClass('closed')
+          return setTimeout(function () {
+            return $('.navbar.scroll-hide').css({
+              overflow: 'visible',
+            })
+          }, 150)
+        })
+        $(function () {
+          var delta, lastScrollTop
+          lastScrollTop = 0
+          delta = 50
+          return $(window).scroll(function (event) {
+            var st
+            st = $(this).scrollTop()
+            if (Math.abs(lastScrollTop - st) <= delta) {
+              return
+            }
+            if (st > lastScrollTop) {
+              $('.navbar.scroll-hide').addClass('closed')
+            } else {
+              $('.navbar.scroll-hide').removeClass('closed')
+            }
+            return (lastScrollTop = st)
+          })
+        })
+        $('.navbar-toggle').click(function () {
+          return $('body, html').toggleClass('nav-open')
+        })
+      }).call(this)
     </script>
     <div class="page-main row">
-        <div class="col-md-12">
-            <div class="widget-container fluid-height clearfix list-width padded background-min-height">
-                <div class="heading compare-heading-div" id="test2">
-                    <div class="form-group table-heading-div">
-                        &ensp;<div class="compare-icon-div"></div>
-                        设备通道测速比对
-                    </div>
-                </div>
-                <table class="table table-filters compare-channel-table">
-                    <thead id="test1">
-                        <tr style="text-align:center;">
-                            <td>
-                                通道名称
-                            </td>
-                            <td class="compare-channel-table-chart-td">
-                                数据图
-                            </td>
-                            <td class="compare-channel-table-bitrate-td">
-                                平均码率 Kbps
-                            </td>
-                            <td class="compare-channel-table-percentage-td">
-                                错误率
-                            </td>
-                            <td class="compare-channel-table-percentage-td">
-                                丢包率
-                            </td>
-                            <td class="compare-channel-table-percentage-td">
-                                收包率
-                            </td>
-                            <td class="compare-channel-table-total-td">
-                                总包数 Mb
-                            </td>
-                        </tr>
-                    </thead>
-                    <tbody id="compare-channel-table"></tbody>
-                </table>
+      <div class="col-md-12">
+        <div
+          class="widget-container fluid-height clearfix list-width padded background-min-height"
+        >
+          <div class="heading compare-heading-div" id="test2">
+            <div class="form-group table-heading-div">
+              &ensp;
+              <div class="compare-icon-div"></div>
+              设备通道测速比对
             </div>
-            <div class="col-md-12 lazyload-div" id="lazy">
-
-            </div>
+          </div>
+          <table class="table table-filters compare-channel-table">
+            <thead id="test1">
+              <tr style="text-align: center">
+                <td>通道名称</td>
+                <td class="compare-channel-table-chart-td">数据图</td>
+                <td class="compare-channel-table-bitrate-td">平均码率 Kbps</td>
+                <td class="compare-channel-table-percentage-td">错误率</td>
+                <td class="compare-channel-table-percentage-td">丢包率</td>
+                <td class="compare-channel-table-percentage-td">收包率</td>
+                <td class="compare-channel-table-total-td">总包数 Mb</td>
+              </tr>
+            </thead>
+            <tbody id="compare-channel-table"></tbody>
+          </table>
         </div>
+        <div class="col-md-12 lazyload-div" id="lazy"></div>
+      </div>
     </div>
-</body>
+  </body>
 </html>
 <script type="text/javascript">
-    var pageSize = 20;
-    var client = new ManagementClient("192.168.18.237", 8800);
-    var list = new Array();
+  var pageSize = 20
+  var client = new ManagementClient('192.168.18.237', 8800)
+  var list = new Array()
 
-    //模拟
-    var listStatus = new Array();
+  //模拟
+  var listStatus = new Array()
 
-    function Status() {
-        this.Id = "";
-        this.Bitrate = 0;
-        this.TotalPacket = 0;
-        this.LostPacket = 0;
-        this.ErrorPacket = 0;
-        this.ReceivedPacket = 0;
-        this.SessionID = "";
+  function Status() {
+    this.Id = ''
+    this.Bitrate = 0
+    this.TotalPacket = 0
+    this.LostPacket = 0
+    this.ErrorPacket = 0
+    this.ReceivedPacket = 0
+    this.SessionID = ''
+  }
+
+  function StatusList() {
+    this.Page = new Page()
+    this.BitrateStatus = new Array()
+  }
+
+  for (var i = 0; i < 60; ) {
+    var cid = '003101010311111110000010010000' + (++i < 10 ? '0' : '') + i
+    var sessionId = Guid.NewGuid()
+    var id = new Id(cid)
+    var deviceId = id.getDeviceId()
+    tryCatch(function () {
+      client.Device.Video.Input.Diagnostics.Start(
+        deviceId,
+        cid,
+        sessionId,
+        0,
+        0
+      )
+    })
+    var obj = new Status()
+    obj.Id = cid
+    obj.SessionID = sessionId
+    listStatus.push(obj)
+  }
+
+  function getBitrateStatus(index, size) {
+    //return tryCatch(function () { return client.Device.Video.Input.Diagnostics.List(index, size); });
+    var list = new StatusList()
+    if (index <= Math.ceil(listStatus.length / size)) {
+      var getList = new Array()
+      var startIndex = index * size - size
+      var count = index * size
+      for (var i = startIndex; i < count; i++) {
+        listStatus[i].Bitrate = Math.floor(Math.random() * 1000000)
+        listStatus[i].ErrorPacket = Math.floor(Math.random() * 1000000)
+        listStatus[i].TotalPacket = Math.floor(Math.random() * 1000000)
+        listStatus[i].LostPacket = Math.floor(Math.random() * 1000000)
+        listStatus[i].ReceivedPacket = Math.floor(Math.random() * 1000000)
+        getList.push(listStatus[i])
+      }
+      list.BitrateStatus = getList
+      list.Page.TotalRecordCount = listStatus.length
+      list.Page.PageSize = size
+      list.Page.PageIndex = index
+      list.Page.PageCount = Math.ceil(list.Page.TotalRecordCount / size)
+      if (list.Page.PageCount == list.Page.PageIndex)
+        list.Page.RecordCount =
+          list.Page.TotalRecordCount - (list.Page.PageCount - 1) * size
+      else list.Page.RecordCount = pageSize
     }
+    return list
+  }
+  //模拟
 
-    function StatusList() {
-        this.Page = new Page();
-        this.BitrateStatus = new Array();
-    }
+  var ControlIdPrefix = {
+    //图
+    chart: 'chart_',
+    //平均码率
+    bitrate: 'bitrate_',
+    //总包数
+    totalPacket: 'totalPacket_',
+    //丢包数
+    lostPacket: 'lostPacket_',
+    //错误包数
+    errorPacket: 'errorPacket',
+    //实收包数
+    receivedPacket: 'receivedPacket_',
+  }
 
-    for (var i = 0; i < 60;) {
-        var cid = "003101010311111110000010010000" + (++i < 10 ? "0" : "") + i;
-        var sessionId = Guid.NewGuid();
-        var id = new Id(cid);
-        var deviceId = id.getDeviceId();
-        tryCatch(function () { client.Device.Video.Input.Diagnostics.Start(deviceId, cid, sessionId, 0, 0); });
-        var obj = new Status();
-        obj.Id = cid;
-        obj.SessionID = sessionId;
-        listStatus.push(obj);
-    }
+  function setId(id, prefix) {
+    return prefix + id
+  }
 
-    function getBitrateStatus(index, size) {
-        //return tryCatch(function () { return client.Device.Video.Input.Diagnostics.List(index, size); });
-        var list = new StatusList();
-        if (index <= Math.ceil(listStatus.length / size)) {
-            var getList = new Array();
-            var startIndex = (index * size) - size;
-            var count = index * size;
-            for (var i = startIndex; i < count; i++) {
-                listStatus[i].Bitrate = Math.floor(Math.random() * 1000000);
-                listStatus[i].ErrorPacket = Math.floor(Math.random() * 1000000);
-                listStatus[i].TotalPacket = Math.floor(Math.random() * 1000000);
-                listStatus[i].LostPacket = Math.floor(Math.random() * 1000000);
-                listStatus[i].ReceivedPacket = Math.floor(Math.random() * 1000000);
-                getList.push(listStatus[i]);
-            }
-            list.BitrateStatus = getList;
-            list.Page.TotalRecordCount = listStatus.length;
-            list.Page.PageSize = size;
-            list.Page.PageIndex = index;
-            list.Page.PageCount = Math.ceil(list.Page.TotalRecordCount / size);
-            if (list.Page.PageCount == list.Page.PageIndex)
-                list.Page.RecordCount = list.Page.TotalRecordCount - ((list.Page.PageCount - 1) * size);
-            else
-                list.Page.RecordCount = pageSize;
+  function getId(id, prefix) {
+    return id.substr(prefix.length)
+  }
+
+  function sparklineInitialization(str) {
+    $(str).sparkline('html', {
+      type: 'line',
+      width: '150',
+      height: '30',
+      lineColor: '#2f7ed8',
+      fillColor: 'rgba(244, 252, 225, 0.0)',
+      lineWidth: 2,
+      spotColor: 'green',
+      minSpotColor: 'red',
+      maxSpotColor: 'blue',
+      highlightSpotColor: '#666',
+      highlightLineColor: '#666',
+      spotRadius: 0,
+      chartRangeMin: 0,
+    })
+  }
+
+  function LazyLoad(index) {
+    tryCatch(function () {
+      var json = getBitrateStatus(index + 1, pageSize)
+      LazyLoadPage = json.Page
+      for (var i = 0; i < json.BitrateStatus.length; i++) {
+        var values = new Array()
+        for (var j = 0; j < 30; j++) {
+          values[j] = 0
         }
-        return list;
-    }
-    //模拟
+        list.push(values)
+      }
+      fillTable(json)
+      for (var i = 0; i < json.BitrateStatus.length; i++) {
+        sparklineInitialization(
+          '#' + setId(json.BitrateStatus[i].Id, ControlIdPrefix.chart)
+        )
+      }
+    })
+  }
 
-    var ControlIdPrefix =
-    {
-        //图
-        chart: "chart_",
+  function startDrawing() {
+    setInterval(function () {
+      var controls = $('.sparkslim')
+      var result = getBitrateStatus(1, controls.length).BitrateStatus
+      for (var i = 0; i < result.length; i++) {
+        var channelId = getId(controls[i].id, ControlIdPrefix.chart)
+        list[i].shift()
+        list[i].push(result[i].Bitrate)
+        $('#' + controls[i].id).sparkline(list[i], {
+          type: 'line',
+          width: '150',
+          height: '30',
+          lineColor: '#2f7ed8',
+          fillColor: 'rgba(244, 252, 225, 0.0)',
+          lineWidth: 2,
+          spotRadius: 0,
+          chartRangeMin: 0,
+        })
+        var lostPacketDiv = document.getElementById(
+          setId(channelId, ControlIdPrefix.lostPacket)
+        )
+        var lostPacket = (
+          (result[i].LostPacket * 100.0) /
+          result[i].TotalPacket
+        ).toFixed(2)
+        lostPacketDiv.appendChild(
+          $(
+            "<div class='" +
+              (lostPacket <= 5 ? 'success' : 'danger') +
+              "'>" +
+              lostPacket +
+              '<span>%</span></div>'
+          )[0]
+        )
+        var errorPacketDiv = document.getElementById(
+          setId(channelId, ControlIdPrefix.errorPacket)
+        )
+        var errorPacket = (
+          (result[i].ErrorPacket * 100.0) /
+          result[i].TotalPacket
+        ).toFixed(2)
+        errorPacketDiv.appendChild(
+          $(
+            "<div class='" +
+              (errorPacket <= 5 ? 'success' : 'danger') +
+              "'>" +
+              errorPacket +
+              '<span>%</span></div>'
+          )[0]
+        )
+        var receivedPacketDiv = document.getElementById(
+          setId(channelId, ControlIdPrefix.receivedPacket)
+        )
+        var receivedPacket = (
+          (result[i].ReceivedPacket * 100.0) /
+          result[i].TotalPacket
+        ).toFixed(2)
+        receivedPacketDiv.appendChild(
+          $(
+            "<div class='" +
+              (receivedPacket > 95 ? 'success' : 'danger') +
+              "'>" +
+              receivedPacket +
+              '<span>%</span></div>'
+          )[0]
+        )
+        var bitrateDiv = document.getElementById(
+          setId(channelId, ControlIdPrefix.bitrate)
+        )
+        var bitrate = result[i].Bitrate
+        bitrateDiv.innerText = bitrate
+        var totalPacketDiv = document.getElementById(
+          setId(channelId, ControlIdPrefix.totalPacket)
+        )
+        var totalPacket = (result[i].TotalPacket / 1024).toFixed(3)
+        totalPacketDiv.innerText = totalPacket
+      }
+    }, 1000)
+  }
+
+  function init() {
+    var bitrateStatus = getBitrateStatus(1, pageSize)
+    LazyLoadPage = bitrateStatus.Page
+    fillTable(bitrateStatus)
+    var lazy = document.getElementById('lazy')
+    lazy.appendChild(new LazyLoadControl('load-more', '加载中……', LazyLoad))
+    sparklineInitialization('.sparkslim')
+
+    window.setTimeout(function () {
+      document.documentElement.scrollTop = 0
+      isOnscroll = true
+    }, 100)
+
+    window.addEventListener(
+      'scroll',
+      function () {
+        if (document.documentElement.scrollTop > 26) {
+          document.getElementById('test1').style.visibility = 'hidden'
+          document.getElementById('test2').style.visibility = 'hidden'
+          document.getElementById('compare-float-heading-div').style.display =
+            'block'
+        } else {
+          document.getElementById('test1').style.visibility = 'visible'
+          document.getElementById('test2').style.visibility = 'visible'
+          document.getElementById('compare-float-heading-div').style.display =
+            'none'
+        }
+      },
+      false
+    )
+
+    for (var i = 0; i < $('.sparkslim').length; i++) {
+      var values = new Array()
+      for (var j = 0; j < 30; j++) {
+        values[j] = 0
+      }
+      list.push(values)
+    }
+    startDrawing()
+  }
+
+  //填充表格函数
+  function fillTable(json) {
+    var page = json.Page
+    var list = json.BitrateStatus
+    if (list) {
+      var table = document.getElementById('compare-channel-table')
+      for (var i = 0; i < list.length; i++) {
+        var id = new Id(list[i].Id)
+        var deviceId = id.getDeviceId()
+        var channel = client.Device.Video.Input.Get(deviceId, list[i].Id)
+        var tr = document.createElement('tr')
+        tr.id = channel.Id
+        tr.className = 'compare-channel-table-tr'
+
+        //通道名称
+        var td = createTd(
+          "<a title='" +
+            channel.Name +
+            "' href='status.htm?deviceId=" +
+            deviceId +
+            '&channelId=' +
+            channel.Id +
+            "'>" +
+            channel.Name +
+            '</a>'
+        )
+        td.className = 'compare-channel-table-name-td'
+        tr.appendChild(td)
+
+        //数据图
+        var td = createTd(
+          "<div class='sparkslim' id='" +
+            setId(channel.Id, ControlIdPrefix.chart) +
+            "'>0,0,0,0,0,0,0,0,0,0,0,0,0</div>"
+        )
+        td.className = 'compare-channel-table-chart-td'
+        tr.appendChild(td)
+
         //平均码率
-        bitrate: "bitrate_",
+        var td = createTd('0', setId(channel.Id, ControlIdPrefix.bitrate))
+        td.className = 'compare-channel-table-bitrate-td'
+        tr.appendChild(td)
+
+        //错包率
+        var td = createTd(
+          "<div class='success'>0<span>%</span></div>",
+          setId(channel.Id, ControlIdPrefix.errorPacket)
+        )
+        td.className = 'compare-channel-table-percentage-td'
+        tr.appendChild(td)
+
+        //丢包率
+        var td = createTd(
+          "<div class='success'>0<span>%</span></div>",
+          setId(channel.Id, ControlIdPrefix.lostPacket)
+        )
+        td.className = 'compare-channel-table-percentage-td'
+        tr.appendChild(td)
+
+        //收包率
+        var td = createTd(
+          "<div class='danger'>0<span>%</span></div>",
+          setId(channel.Id, ControlIdPrefix.receivedPacket)
+        )
+        td.className = 'compare-channel-table-percentage-td'
+        tr.appendChild(td)
+
         //总包数
-        totalPacket: "totalPacket_",
-        //丢包数
-        lostPacket: "lostPacket_",
-        //错误包数
-        errorPacket: "errorPacket",
-        //实收包数
-        receivedPacket: "receivedPacket_",
+        var td = createTd('0', setId(channel.Id, ControlIdPrefix.totalPacket))
+        td.className = 'compare-channel-table-total-td'
+        tr.appendChild(td)
+
+        //填充Tr到table
+        table.appendChild(tr)
+      }
     }
+  }
 
-    function setId(id, prefix) {
-        return prefix + id;
-    }
+  //创建表格Td函数
+  function createTd(inner, id) {
+    var td = document.createElement('td')
+    if (id) td.id = id
+    var reg = /<[\w\"\']+>/
+    if (reg.test(inner)) td.appendChild(inner)
+    else td.innerText = inner
+    return td
+  }
 
-    function getId(id, prefix) {
-        return id.substr(prefix.length);
-    }
-
-    function sparklineInitialization(str) {
-        $(str).sparkline('html', {
-            type: "line",
-            width: "150",
-            height: "30",
-            lineColor: "#2f7ed8",
-            fillColor: "rgba(244, 252, 225, 0.0)",
-            lineWidth: 2,
-            spotColor: "green",
-            minSpotColor: "red",
-            maxSpotColor: "blue",
-            highlightSpotColor: "#666",
-            highlightLineColor: "#666",
-            spotRadius: 0,
-            chartRangeMin: 0
-        });
-    }
-
-    function LazyLoad(index) {
-        tryCatch(function () {
-            var json = getBitrateStatus(index + 1, pageSize);
-            LazyLoadPage = json.Page;
-            for (var i = 0; i < json.BitrateStatus.length ; i++) {
-                var values = new Array();
-                for (var j = 0; j < 30; j++) {
-                    values[j] = 0;
-                }
-                list.push(values);
-            }
-            fillTable(json);
-            for (var i = 0; i < json.BitrateStatus.length; i++) {
-                sparklineInitialization("#" + setId(json.BitrateStatus[i].Id, ControlIdPrefix.chart));
-            }
-        });
-    }
-
-    function startDrawing() {
-        setInterval(function () {
-            var controls = $(".sparkslim");
-            var result = getBitrateStatus(1, controls.length).BitrateStatus;
-            for (var i = 0; i < result.length; i++) {
-                var channelId = getId(controls[i].id, ControlIdPrefix.chart);
-                list[i].shift();
-                list[i].push(result[i].Bitrate);
-                $("#" + controls[i].id).sparkline(list[i], {
-                    type: "line",
-                    width: "150",
-                    height: "30",
-                    lineColor: "#2f7ed8",
-                    fillColor: "rgba(244, 252, 225, 0.0)",
-                    lineWidth: 2,
-                    spotRadius: 0,
-                    chartRangeMin: 0
-                });
-                var lostPacketDiv = document.getElementById(setId(channelId, ControlIdPrefix.lostPacket));
-                var lostPacket = ((result[i].LostPacket * 100.0) / result[i].TotalPacket).toFixed(2);
-                lostPacketDiv.appendChild($("<div class='" + (lostPacket <= 5 ? "success" : "danger") + "'>" + lostPacket + "<span>%</span></div>")[0]);
-                var errorPacketDiv = document.getElementById(setId(channelId, ControlIdPrefix.errorPacket));
-                var errorPacket = ((result[i].ErrorPacket * 100.0) / result[i].TotalPacket).toFixed(2);
-                errorPacketDiv.appendChild($("<div class='" + (errorPacket <= 5 ? "success" : "danger") + "'>" + errorPacket + "<span>%</span></div>")[0]);
-                var receivedPacketDiv = document.getElementById(setId(channelId, ControlIdPrefix.receivedPacket));
-                var receivedPacket = ((result[i].ReceivedPacket * 100.0) / result[i].TotalPacket).toFixed(2);
-                receivedPacketDiv.appendChild($("<div class='" + (receivedPacket > 95 ? "success" : "danger") + "'>" + receivedPacket + "<span>%</span></div>")[0]);
-                var bitrateDiv = document.getElementById(setId(channelId, ControlIdPrefix.bitrate));
-                var bitrate = result[i].Bitrate;
-                bitrateDiv.innerText = bitrate;
-                var totalPacketDiv = document.getElementById(setId(channelId, ControlIdPrefix.totalPacket));
-                var totalPacket = (result[i].TotalPacket / 1024).toFixed(3);
-                totalPacketDiv.innerText = totalPacket;
-            }
-        }, 1000);
-    }
-
-    function init() {
-        var bitrateStatus = getBitrateStatus(1, pageSize);
-        LazyLoadPage = bitrateStatus.Page;
-        fillTable(bitrateStatus);
-        var lazy = document.getElementById("lazy");
-        lazy.appendChild(new LazyLoadControl("load-more", "加载中……", LazyLoad));
-        sparklineInitialization(".sparkslim");
-
-        window.setTimeout(function () {
-            document.documentElement.scrollTop = 0;
-            isOnscroll = true;
-        }, 100);
-
-        window.addEventListener("scroll", function () {
-            if (document.documentElement.scrollTop > 26) {
-                document.getElementById("test1").style.visibility = "hidden";
-                document.getElementById("test2").style.visibility = "hidden";
-                document.getElementById("compare-float-heading-div").style.display = "block";
-            }
-            else {
-                document.getElementById("test1").style.visibility = "visible";
-                document.getElementById("test2").style.visibility = "visible";
-                document.getElementById("compare-float-heading-div").style.display = "none";
-            }
-        }, false);
-
-        for (var i = 0; i < $(".sparkslim").length ; i++) {
-            var values = new Array();
-            for (var j = 0; j < 30; j++) {
-                values[j] = 0;
-            }
-            list.push(values);
-        }
-        startDrawing();
-    }
-
-    //填充表格函数
-    function fillTable(json) {
-        var page = json.Page;
-        var list = json.BitrateStatus;
-        if (list) {
-            var table = document.getElementById("compare-channel-table");
-            for (var i = 0; i < list.length; i++) {
-                var id = new Id(list[i].Id);
-                var deviceId = id.getDeviceId();
-                var channel = client.Device.Video.Input.Get(deviceId, list[i].Id);
-                var tr = document.createElement("tr");
-                tr.id = channel.Id;
-                tr.className = "compare-channel-table-tr";
-
-                //通道名称
-                var td = createTd("<a title='" + channel.Name + "' href='status.htm?deviceId=" + deviceId + "&channelId=" + channel.Id + "'>" + channel.Name + "</a>");
-                td.className = "compare-channel-table-name-td";
-                tr.appendChild(td);
-
-                //数据图
-                var td = createTd("<div class='sparkslim' id='" + setId(channel.Id, ControlIdPrefix.chart) + "'>0,0,0,0,0,0,0,0,0,0,0,0,0</div>")
-                td.className = "compare-channel-table-chart-td";
-                tr.appendChild(td);
-
-                //平均码率
-                var td = createTd("0", setId(channel.Id, ControlIdPrefix.bitrate));
-                td.className = "compare-channel-table-bitrate-td";
-                tr.appendChild(td);
-
-                //错包率
-                var td = createTd("<div class='success'>0<span>%</span></div>", setId(channel.Id, ControlIdPrefix.errorPacket));
-                td.className = "compare-channel-table-percentage-td";
-                tr.appendChild(td);
-
-                //丢包率
-                var td = createTd("<div class='success'>0<span>%</span></div>", setId(channel.Id, ControlIdPrefix.lostPacket));
-                td.className = "compare-channel-table-percentage-td";
-                tr.appendChild(td);
-
-                //收包率
-                var td = createTd("<div class='danger'>0<span>%</span></div>", setId(channel.Id, ControlIdPrefix.receivedPacket));
-                td.className = "compare-channel-table-percentage-td";
-                tr.appendChild(td);
-
-                //总包数
-                var td = createTd("0", setId(channel.Id, ControlIdPrefix.totalPacket));
-                td.className = "compare-channel-table-total-td";
-                tr.appendChild(td);
-
-                //填充Tr到table
-                table.appendChild(tr);
-            }
-        }
-    }
-
-    //创建表格Td函数
-    function createTd(inner, id) {
-        var td = document.createElement("td");
-        if (id)
-            td.id = id;
-        var reg = /<[\w\"\']+>/;
-        if (reg.test(inner))
-            td.appendChild(inner);
-        else
-            td.innerText = inner;
-        return td;
-    }
-
-    onload = init;
+  onload = init
 </script>

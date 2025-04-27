@@ -1,6 +1,6 @@
-﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
-<head>
+  <head>
     <title>视频</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -11,8 +11,14 @@
     <script type="text/javascript" src="../config.js"></script>
     <script type="text/javascript" src="../js/imported.js"></script>
 
-    <script type="text/javascript" src="../js/jquery/jquery-1.10.2.min.js"></script>
-    <script type="text/javascript" src="../js/bootstrap/bootstrap.min.js"></script>
+    <script
+      type="text/javascript"
+      src="../js/jquery/jquery-3.6.0.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../js/bootstrap/bootstrap.min.js"
+    ></script>
 
     <script type="text/javascript" src="../js/howell.js/guid.js"></script>
     <script type="text/javascript" src="../js/md5.js"></script>
@@ -21,72 +27,74 @@
     <script type="text/javascript" src="../js/client/struct.js"></script>
 
     <script type="text/javascript" src="../js/client/security.js"></script>
-    <script type="text/javascript" src="../js/client/authentication.js"></script>
+    <script
+      type="text/javascript"
+      src="../js/client/authentication.js"
+    ></script>
     <script type="text/javascript" src="../js/client/client.js"></script>
     <script type="text/javascript" src="../js/nav.js"></script>
 
     <style type="text/css">
-        @media(max-width: 767px) {
-            .navbar .container-fluid.top-bar .logo {
-                float: left;
-                margin: 3px;
-                background-image: url("../img/logo.png");
-                background-size: cover;
-            }
-
-            .navbar .container-fluid.top-bar .nav {
-                margin: 0;
-            }
-
-            .container-fluid.main-content {
-                padding-top: 46px;
-            }
+      @media (max-width: 767px) {
+        .navbar .container-fluid.top-bar .logo {
+          float: left;
+          margin: 3px;
+          background-image: url('../img/logo.png');
+          background-size: cover;
         }
 
-
-        body {
-            padding: 5px 0;
+        .navbar .container-fluid.top-bar .nav {
+          margin: 0;
         }
 
-        .main-content {
-            padding: 5px 5px;
+        .container-fluid.main-content {
+          padding-top: 46px;
         }
+      }
 
-        .widget-container {
-            min-height: 0;
-        }
+      body {
+        padding: 5px 0;
+      }
 
-        .item {
-            margin-bottom: 5px;
-        }
+      .main-content {
+        padding: 5px 5px;
+      }
 
-        .heading .text {
-            font-size: 21px;
-        }
+      .widget-container {
+        min-height: 0;
+      }
 
-        .pic {
-            background-color: #BFD1E6;
-            width: 60%;
-            text-align: center;
-            margin: 0 auto;
-        }
+      .item {
+        margin-bottom: 5px;
+      }
 
-        img {
-            width: 150px;
-        }
+      .heading .text {
+        font-size: 21px;
+      }
 
-        #example {
-            display: none;
-        }
+      .pic {
+        background-color: #bfd1e6;
+        width: 60%;
+        text-align: center;
+        margin: 0 auto;
+      }
 
-        .navbar .container-fluid.top-bar .nav > li > a > .order {
-            color: #007aff;
-        }
+      img {
+        width: 150px;
+      }
+
+      #example {
+        display: none;
+      }
+
+      .navbar .container-fluid.top-bar .nav > li > a > .order {
+        color: #007aff;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container-fluid main-content">
-        <!--<div class="item" id="example">
+      <!--<div class="item" id="example">
             <div class="video-content">
                 <div class="video-tag">
                     <a class="abgd">
@@ -105,153 +113,163 @@
             </div>
         </div>-->
     </div>
-    <div class="row " id="example">
-        <div class="col-md-12">
-            <div class="widget-container item">
-                <div class="heading">
-                    <i class="icon-facetime-video"></i><a class="text"></a>
-                </div>
-                <div class="pic">
-                    <img src="default_camera.png" />
-                </div>
-                <div class="pager">
-                    <a class="btn btn-primary-outline preview" href="preview.htm">实时监控</a>
-                    <a class="btn btn-default-outline playback" href="playback.htm">录像回放</a>
-                </div>
-            </div>
+    <div class="row" id="example">
+      <div class="col-md-12">
+        <div class="widget-container item">
+          <div class="heading">
+            <i class="icon-facetime-video"></i><a class="text"></a>
+          </div>
+          <div class="pic">
+            <img src="default_camera.png" />
+          </div>
+          <div class="pager">
+            <a class="btn btn-primary-outline preview" href="preview.htm"
+              >实时监控</a
+            >
+            <a class="btn btn-default-outline playback" href="playback.htm"
+              >录像回放</a
+            >
+          </div>
         </div>
+      </div>
     </div>
-</body>
+  </body>
 </html>
 <script type="text/javascript">
-    var username = "admin";
-    var password = "12345";
-    var inputs = null;
-    function _load() {
-        tryCatch(function () {
-            inputs = new ios_video_inputs();
-            //inputs.toHtml();
-            var name = getCookie("isoorderkey") ? getCookie("isoorderkey") : "Id";
-            var order = getCookie("isoorder") ? getCookie("isoorder") : "asce";
-            initializationOrder(name, order);
-        });
+  var username = 'admin'
+  var password = '12345'
+  var inputs = null
+  function _load() {
+    tryCatch(function () {
+      inputs = new ios_video_inputs()
+      //inputs.toHtml();
+      var name = getCookie('isoorderkey') ? getCookie('isoorderkey') : 'Id'
+      var order = getCookie('isoorder') ? getCookie('isoorder') : 'asce'
+      initializationOrder(name, order)
+    })
+  }
+
+  function login(username, password) {
+    try {
+      Client.Authentication().login(username, password)
+    } catch (e) {
+      setTimeout(_load, 0)
     }
+  }
 
-    function login(username, password) {
-        try {
-            Client.Authentication().login(username, password);
-        }
-        catch (e) {
-            setTimeout(_load, 0);
-        }
+  function ios_video_inputs() {
+    this.OrderClass = {
+      Id: {
+        desc: 'icon-sort-by-order-alt',
+        asce: 'icon-sort-by-order',
+      },
+      Name: {
+        desc: 'icon-sort-by-alphabet-alt',
+        asce: 'icon-sort-by-alphabet',
+      },
     }
+    this.Channels = getChannelList()
+    function getChannelList() {
+      var result = new Dictionary()
 
-    function ios_video_inputs() {
-        this.OrderClass = {
-            Id: {
-                desc: "icon-sort-by-order-alt",
-                asce: "icon-sort-by-order"
-            },
-            Name: {
-                desc: "icon-sort-by-alphabet-alt",
-                asce: "icon-sort-by-alphabet"
-            }
-        }
-        this.Channels = getChannelList();
-        function getChannelList() {
-            var result = new Dictionary();
-
-            var inputs;
-            var userId = getCookie("uid");
-            inputs = Client.Security().User.Video.Input.List(userId);
-            for (var i = 0; i < inputs.VideoInputChannelPermission.length; i++) {
-                var channelPermission = inputs.VideoInputChannelPermission[i];
-                result[channelPermission.Id] = channelPermission;
-            }
-            return result;
-        }
-        this.order = function (name, desc) {
-            var arr = this.Channels.order(name, desc);
-            this.Channels = new Dictionary();
-            for (var i = 0; i < arr.length; i++) {
-                this.Channels[arr[i].Id] = arr[i];
-            }
-            this.clearHtml();
-            this.toHtml();
-            setCookie("isoorderkey", name, null, 365);
-            setCookie("isoorder", desc ? "desc" : "asce", null, 365);
-        },
-        this.clearHtml = function () {
-            $(".main-content").html("");
-        }
-
-        this.toHtml = function () {
-            if (this.Channels) {
-                var example = $("#example");
-                this.Channels.forIn(function (channelId, value) {
-
-                    var div = document.createElement("div");
-                    div.innerHTML = example[0].innerHTML;
-                    div.className = "item";
-                    div.id = channelId;
-
-                    $div = $(div);
-                    $div.find(".text").text(value.Name);
-
-                    var current = document.location.toString().substr(0, document.location.toString().lastIndexOf("/") + 1)
-
-
-
-                    var previewUrl = new Uri(current + "preview.htm");
-
-                    previewUrl.Querys.id = channelId;
-                    $div.find(".preview").attr("href", previewUrl.toString());
-
-                    var playbackUrl = new Uri(current + "playback.htm");
-                    playbackUrl.Querys.id = channelId;
-                    $div.find(".playback").attr("href", playbackUrl.toString());
-
-                    $(".main-content").append($div);
-
-                });
-            }
-        }
+      var inputs
+      var userId = getCookie('uid')
+      inputs = Client.Security().User.Video.Input.List(userId)
+      for (var i = 0; i < inputs.VideoInputChannelPermission.length; i++) {
+        var channelPermission = inputs.VideoInputChannelPermission[i]
+        result[channelPermission.Id] = channelPermission
+      }
+      return result
     }
+    ;(this.order = function (name, desc) {
+      var arr = this.Channels.order(name, desc)
+      this.Channels = new Dictionary()
+      for (var i = 0; i < arr.length; i++) {
+        this.Channels[arr[i].Id] = arr[i]
+      }
+      this.clearHtml()
+      this.toHtml()
+      setCookie('isoorderkey', name, null, 365)
+      setCookie('isoorder', desc ? 'desc' : 'asce', null, 365)
+    }),
+      (this.clearHtml = function () {
+        $('.main-content').html('')
+      })
 
+    this.toHtml = function () {
+      if (this.Channels) {
+        var example = $('#example')
+        this.Channels.forIn(function (channelId, value) {
+          var div = document.createElement('div')
+          div.innerHTML = example[0].innerHTML
+          div.className = 'item'
+          div.id = channelId
 
-    function orderClick(name, element) {
-        var desc = false;
-        var addCss = inputs.OrderClass[name].asce;
-        var removeCss = inputs.OrderClass[name].desc;
-        if ($(element).find(".order-icon").hasClass("order")) {
-            if ($(element).find(".order-icon").hasClass(inputs.OrderClass[name].asce)) {
-                desc = true;
-                addCss = inputs.OrderClass[name].desc;
-                removeCss = inputs.OrderClass[name].asce;
-            }
-            $(element).find(".order-icon").removeClass(removeCss);
-            $(element).find(".order-icon").addClass(addCss);
-        }
-        else {
-            $(".nav-order-bar").find(".order-icon").removeClass("order");
-            $(element).find(".order-icon").addClass("order");
-            for (var key in inputs.OrderClass) {
-                $(".nav-order-bar").find(".order-icon-" + key).addClass(inputs.OrderClass[key].asce);
-                $(".nav-order-bar").find(".order-icon-" + key).removeClass(inputs.OrderClass[key].desc);
-            }
-        }
-        inputs.order(name, desc);
+          $div = $(div)
+          $div.find('.text').text(value.Name)
+
+          var current = document.location
+            .toString()
+            .substr(0, document.location.toString().lastIndexOf('/') + 1)
+
+          var previewUrl = new Uri(current + 'preview.htm')
+
+          previewUrl.Querys.id = channelId
+          $div.find('.preview').attr('href', previewUrl.toString())
+
+          var playbackUrl = new Uri(current + 'playback.htm')
+          playbackUrl.Querys.id = channelId
+          $div.find('.playback').attr('href', playbackUrl.toString())
+
+          $('.main-content').append($div)
+        })
+      }
     }
+  }
 
-    function initializationOrder(name, order) {
-        var desc = false;
-        if (order == "desc")
-            desc = true;
-        $(".nav-order-bar").find(".order-icon-" + name).removeClass(inputs.OrderClass[name].desc);
-        $(".nav-order-bar").find(".order-icon-" + name).addClass(inputs.OrderClass[name][order]);
-        $(".nav-order-bar").find(".order-icon-" + name).addClass("order");
-        inputs.order(name, desc);
+  function orderClick(name, element) {
+    var desc = false
+    var addCss = inputs.OrderClass[name].asce
+    var removeCss = inputs.OrderClass[name].desc
+    if ($(element).find('.order-icon').hasClass('order')) {
+      if (
+        $(element).find('.order-icon').hasClass(inputs.OrderClass[name].asce)
+      ) {
+        desc = true
+        addCss = inputs.OrderClass[name].desc
+        removeCss = inputs.OrderClass[name].asce
+      }
+      $(element).find('.order-icon').removeClass(removeCss)
+      $(element).find('.order-icon').addClass(addCss)
+    } else {
+      $('.nav-order-bar').find('.order-icon').removeClass('order')
+      $(element).find('.order-icon').addClass('order')
+      for (var key in inputs.OrderClass) {
+        $('.nav-order-bar')
+          .find('.order-icon-' + key)
+          .addClass(inputs.OrderClass[key].asce)
+        $('.nav-order-bar')
+          .find('.order-icon-' + key)
+          .removeClass(inputs.OrderClass[key].desc)
+      }
     }
+    inputs.order(name, desc)
+  }
 
-    onload = _load;
+  function initializationOrder(name, order) {
+    var desc = false
+    if (order == 'desc') desc = true
+    $('.nav-order-bar')
+      .find('.order-icon-' + name)
+      .removeClass(inputs.OrderClass[name].desc)
+    $('.nav-order-bar')
+      .find('.order-icon-' + name)
+      .addClass(inputs.OrderClass[name][order])
+    $('.nav-order-bar')
+      .find('.order-icon-' + name)
+      .addClass('order')
+    inputs.order(name, desc)
+  }
+
+  onload = _load
 </script>

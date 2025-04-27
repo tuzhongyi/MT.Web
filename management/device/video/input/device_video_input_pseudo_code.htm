@@ -1,12 +1,12 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
+  <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>设置视频通道伪码</title>
     <link href="../../../../css/howell.css" rel="stylesheet" />
     <script src="../../../../js/imported.js"></script>
-    <script src="../../../../js/jquery/jquery-1.10.2.min.js"></script>
+    <script src="../../../../js/jquery/jquery-3.6.0.min.js"></script>
     <script src="../../../../js/jquery/jquery-ui.js"></script>
     <script src="../../../../js/bootstrap/bootstrap.min.js"></script>
     <script src="../../../../js/howell.js/howell.js"></script>
@@ -17,942 +17,1216 @@
     <script src="../../../../js/nav.js"></script>
     <script src="../../../../js/client/management.js"></script>
     <script src="../../../../js/client/client.js"></script>
-</head>
-<body>
+  </head>
+  <body>
     <script src="js/client/management.js"></script>
     <style type="text/css">
-        .dropdown-toggle {
-            height: 25px;
-            padding-top: 1px;
-        }
+      .dropdown-toggle {
+        height: 25px;
+        padding-top: 1px;
+      }
 
-        .association-title {
-            margin-left: -30px;
-        }
+      .association-title {
+        margin-left: -30px;
+      }
 
-        .association_list_title_ico {
-            font-size: 22px !important;
-            color: #007aff;
-        }
+      .association_list_title_ico {
+        font-size: 22px !important;
+        color: #007aff;
+      }
 
-        #dListPseudoCode {
-            height: 633px;
-            overflow-y: auto;
-            border: 1px solid #ddd;
-            padding: 2px 2px 2px 2px;
-        }
+      #dListPseudoCode {
+        height: 633px;
+        overflow-y: auto;
+        border: 1px solid #ddd;
+        padding: 2px 2px 2px 2px;
+      }
 
-        #dListVideoInput {
-            height: 589px;
-            overflow-y: auto;
-            border: 1px solid #ddd;
-            padding: 2px 2px 2px 2px;
-        }
+      #dListVideoInput {
+        height: 589px;
+        overflow-y: auto;
+        border: 1px solid #ddd;
+        padding: 2px 2px 2px 2px;
+      }
 
-        .group-list-tag {
-            height: 40px;
-            float: left;
-            margin-top: -9px;
-            margin-right: 5px;
-            margin-left: -15px;
-            width: 5px;
-            background-color: #f0ad4e;
-        }
+      .group-list-tag {
+        height: 40px;
+        float: left;
+        margin-top: -9px;
+        margin-right: 5px;
+        margin-left: -15px;
+        width: 5px;
+        background-color: #f0ad4e;
+      }
 
-            .group-list-tag.associated {
-                background-color: #60c560;
-            }
+      .group-list-tag.associated {
+        background-color: #60c560;
+      }
 
-            .group-list-tag.unassociated {
-                background-color: #c09853;
-            }
+      .group-list-tag.unassociated {
+        background-color: #c09853;
+      }
 
-            .group-list-tag.double {
-                margin-top: -2px;
-                height: 41px;
-            }
+      .group-list-tag.double {
+        margin-top: -2px;
+        height: 41px;
+      }
 
-        .list-group-item p {
-            margin-bottom: 0;
-            padding: 2px 15px 0px 0;
-            border-bottom: 0;
-            height: 41px;
-        }
+      .list-group-item p {
+        margin-bottom: 0;
+        padding: 2px 15px 0px 0;
+        border-bottom: 0;
+        height: 41px;
+      }
 
-        .list-group-item {
-            border-bottom: 1px solid #dddddd;
-        }
+      .list-group-item {
+        border-bottom: 1px solid #dddddd;
+      }
 
-            .list-group-item .first-line {
-                height: 20px;
-                font-size: 14px;
-            }
+      .list-group-item .first-line {
+        height: 20px;
+        font-size: 14px;
+      }
 
-            .list-group-item .second-line {
-                height: 20px;
-                font-size: 11px;
-                color: #888888;
-            }
+      .list-group-item .second-line {
+        height: 20px;
+        font-size: 11px;
+        color: #888888;
+      }
 
-        .input-name {
-            width: 60%;
-        }
+      .input-name {
+        width: 60%;
+      }
 
-        .device-ip {
-            width: 40%;
-        }
+      .device-ip {
+        width: 40%;
+      }
 
-        .device-classification {
-            width: 40%;
-            text-align: right;
-        }
+      .device-classification {
+        width: 40%;
+        text-align: right;
+      }
 
-        .device-name {
-            width: 40%;
-            text-align: right;
-        }
+      .device-name {
+        width: 40%;
+        text-align: right;
+      }
 
-        #dListPseudoCode .list-group-item p {
-            padding: 2px 15px 10px 0;
-            height: 41px;
-        }
+      #dListPseudoCode .list-group-item p {
+        padding: 2px 15px 10px 0;
+        height: 41px;
+      }
 
-        #dListPseudoCode .input-info {
-            width: 88%;
-        }
+      #dListPseudoCode .input-info {
+        width: 88%;
+      }
 
-        #dListPseudoCode .pseudo-code {
-            margin-top: 7px;
-        }
+      #dListPseudoCode .pseudo-code {
+        margin-top: 7px;
+      }
 
-        #btnUnassociatedAll {
-            margin-right: -18px;
-        }
+      #btnUnassociatedAll {
+        margin-right: -18px;
+      }
 
-        .small-btn {
-            height: 25px;
-            padding-top: 1px;
-        }
+      .small-btn {
+        height: 25px;
+        padding-top: 1px;
+      }
 
-            .small-btn i {
-                margin-right: 8px !important;
-            }
+      .small-btn i {
+        margin-right: 8px !important;
+      }
 
-        .hasNotOrder {
-            color: gray;
-        }
+      .hasNotOrder {
+        color: gray;
+      }
 
-        #All.btn-primary:hover {
-            background: #007aff;
-            border-color: #007aff;
-            color: white;
-        }
+      #All.btn-primary:hover {
+        background: #007aff;
+        border-color: #007aff;
+        color: white;
+      }
 
-        #All.btn-primary-outline:hover {
-            color: #007aff;
-            background: white;
-            border: 1px solid #007aff;
-        }
+      #All.btn-primary-outline:hover {
+        color: #007aff;
+        background: white;
+        border: 1px solid #007aff;
+      }
 
-        #Anonymous.btn-success:hover {
-            background: #60c560;
-            border-color: #60c560;
-            color: white;
-        }
+      #Anonymous.btn-success:hover {
+        background: #60c560;
+        border-color: #60c560;
+        color: white;
+      }
 
-        #Anonymous.btn-success-outline:hover {
-            color: #60c560;
-            border: 1px solid #60c560;
-            background: white;
-        }
+      #Anonymous.btn-success-outline:hover {
+        color: #60c560;
+        border: 1px solid #60c560;
+        background: white;
+      }
 
-        #Operator.btn-warning:hover {
-            background: #f0ad4e;
-            border-color: #f0ad4e;
-            color: white;
-        }
+      #Operator.btn-warning:hover {
+        background: #f0ad4e;
+        border-color: #f0ad4e;
+        color: white;
+      }
 
-        #Operator.btn-warning-outline:hover {
-            background: white;
-            color: #f0ad4e;
-            border: 1px solid #f0ad4e;
-        }
+      #Operator.btn-warning-outline:hover {
+        background: white;
+        color: #f0ad4e;
+        border: 1px solid #f0ad4e;
+      }
     </style>
     <div class="page-main row">
-        <div class="col-md-12">
-            <div class="widget-container fluid-height clearfix list-width padded background-min-height">
-                <div class="heading list-heading-maxdiv">
-                    <div class="form-group list-heading-div association-title">
-                        &ensp;&ensp;<i class="icon-random mouse_default association_list_title_ico"></i>
-                        设置视频通道伪码
-                    </div>
-                    <div class="row">
-                        <div class="col-md-5">
-                            <div>
-                                <div style="height:39px">
-                                    <div class="pull-left" style="font-size:20px;line-height:32px;color:#5e5e5e;margin-left:-10px">视频输入通道</div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div>
-                                    <div id="videoInputHead">
-                                        <div class="pull-left">
-                                            <div class="select-div" style="margin-left:0px">
-                                                <select class="form-control" id="ddlClassification" onchange="selectClassification_Click(this.value)" style="margin-top:3px;width:158px"></select>
-                                            </div>
-                                        </div>
-                                        <div class="btn-group  pull-left div-xsgroupdown" style="margin-left:10px">
-                                            <div class="btn btn-xs btn-primary btn-xsgroupdown dropdown-toggle" data-toggle="dropdown">
-                                                选&ensp;择&ensp;<span class="caret"></span>
-                                            </div>
-                                            <ul class="dropdown-menu xsgroupdown-menu-ul">
-                                                <li class="mouse_pointer">
-                                                    <a class="xsgroupdown-menu-ul-li-a" onclick="GroupList.Select.All(Info.ControlIdPrefix.videoInput, Video_Input_SelectAll)('All');">
-                                                        全选
-                                                    </a>
-                                                </li>
-                                                <li class="mouse_pointer">
-                                                    <a class="xsgroupdown-menu-ul-li-a" onclick="GroupList.Select.Inverse(Info.ControlIdPrefix.videoInput, null, VideoInput_BatchSelect,Video_Input_SelectInverse)('Inverse');">
-                                                        反选
-                                                    </a>
-                                                </li>
-                                                <li class="mouse_pointer">
-                                                    <a class="xsgroupdown-menu-ul-li-a" onclick="GroupList.Select.Cancel(Info.ControlIdPrefix.videoInput,Video_Input_SelectCancel);">
-                                                        取消
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <a class="btn btn-xs btn-default pull-left div-xsgroup button-img-size" style="margin-right:0px" id="btnUnassociatedSelected" onclick="ToSelectedUnassociated()" title="删除选中通道的伪码">
-                                        <i class="icon-trash"></i>
-                                    </a>
-                                    <div style="clear:both"></div>
-                                </div>
-                                <div style="border:1px solid #ddd;">
-                                    <div style="text-align:center;padding-top:9px;padding-bottom:9px;border-bottom:3px solid #ddd;">
-                                        <div class="pull-left" style="width:25%">
-                                            <div class="mouse_pointer orderBtn" onclick="VideoInputOrder('Id')">
-                                                通道编号<i class="icon-long-arrow-up" id="IdIcon" style="margin-left:5px"></i>
-                                            </div>
-                                        </div>
-                                        <div class="pull-left" style="width:25%">
-                                            <div class="mouse_pointer orderBtn hasNotOrder" onclick="VideoInputOrder('deviceUri')">
-                                                访问地址<i class="icon-long-arrow-up" id="deviceUriIcon" style="margin-left:5px"></i>
-                                            </div>
-                                        </div>
-                                        <div class="pull-left" style="width:25%">
-                                            <div class="mouse_pointer orderBtn hasNotOrder" onclick="VideoInputOrder('Name')">
-                                                通道名称<i class="icon-long-arrow-up" id="NameIcon" style="margin-left:5px"></i>
-                                            </div>
-                                        </div>
-                                        <div class="pull-left" style="width:25%">
-                                            <div class="mouse_pointer orderBtn hasNotOrder" onclick="VideoInputOrder('deviceName')">
-                                                设备名称<i class="icon-long-arrow-up" id="deviceNameIcon" style="margin-left:5px"></i>
-                                            </div>
-                                        </div>
-                                        <div style="clear:both"></div>
-                                    </div>
-                                    <div id="dListVideoInput" class="scrollable" style="border:0">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div style="margin:335px auto 0px auto;text-align:center;">
-                                <div class="btn-group">
-                                    <div class="btn btn-default icon-long-arrow-right" title="关联" onclick="ToAssociated();" style="margin-right:0" id="btnAssociated"></div>
-                                </div>
-                            </div>
-                            <div style="margin:0px auto 50px auto;text-align:center;">
-                                <div class="btn-group">
-                                    <div class="btn btn-default icon-long-arrow-left" title="删除关联" onclick="ToUnassociated(this);" style="margin-right:0" id="btnUnassociated"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-5">
-                            <div>
-                                <div style="height:40px">
-                                    <div class="pull-left" style="font-size:20px;line-height:32px;color:#5e5e5e;margin-left:-10px">
-                                        伪码
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div>
-                                    <div id="pseudoCodeHead">
-                                        <div class="pull-left">
-                                            <a class="btn btn-xs main list-permission-btn btn-primary" id="All" onclick="return Association_OnClick(this, 'btn-primary','All');">
-                                                全部
-                                            </a>
-                                            <a class="btn btn-xs main list-permission-btn btn-success-outline" id="Anonymous" onclick="return Association_OnClick(this, 'btn-success', 'Association');">
-                                                已关联
-                                            </a>
-                                            <a class="btn btn-xs main list-permission-btn btn-warning-outline" id="Operator" onclick="return Association_OnClick(this, 'btn-warning', 'Unssociation');">
-                                                未关联
-                                            </a>
-                                        </div>
-                                        <div class="pull-left" onclick="ToAllUnassociated(this)" style="margin-left:2px">
-                                            <a class="btn btn-group btn-default div-xsgroup small-btn" id="btnUnassociatedAll">全部清空</a>
-                                        </div>
-                                    </div>
-                                    <div style="clear:both"></div>
-                                </div>
-                                <div id="dListPseudoCode" class="scrollable" style="position:relative">
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+      <div class="col-md-12">
+        <div
+          class="widget-container fluid-height clearfix list-width padded background-min-height"
+        >
+          <div class="heading list-heading-maxdiv">
+            <div class="form-group list-heading-div association-title">
+              &ensp;&ensp;<i
+                class="icon-random mouse_default association_list_title_ico"
+              ></i>
+              设置视频通道伪码
             </div>
+            <div class="row">
+              <div class="col-md-5">
+                <div>
+                  <div style="height: 39px">
+                    <div
+                      class="pull-left"
+                      style="
+                        font-size: 20px;
+                        line-height: 32px;
+                        color: #5e5e5e;
+                        margin-left: -10px;
+                      "
+                    >
+                      视频输入通道
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div>
+                    <div id="videoInputHead">
+                      <div class="pull-left">
+                        <div class="select-div" style="margin-left: 0px">
+                          <select
+                            class="form-control"
+                            id="ddlClassification"
+                            onchange="selectClassification_Click(this.value)"
+                            style="margin-top: 3px; width: 158px"
+                          ></select>
+                        </div>
+                      </div>
+                      <div
+                        class="btn-group pull-left div-xsgroupdown"
+                        style="margin-left: 10px"
+                      >
+                        <div
+                          class="btn btn-xs btn-primary btn-xsgroupdown dropdown-toggle"
+                          data-toggle="dropdown"
+                        >
+                          选&ensp;择&ensp;<span class="caret"></span>
+                        </div>
+                        <ul class="dropdown-menu xsgroupdown-menu-ul">
+                          <li class="mouse_pointer">
+                            <a
+                              class="xsgroupdown-menu-ul-li-a"
+                              onclick="GroupList.Select.All(Info.ControlIdPrefix.videoInput, Video_Input_SelectAll)('All');"
+                            >
+                              全选
+                            </a>
+                          </li>
+                          <li class="mouse_pointer">
+                            <a
+                              class="xsgroupdown-menu-ul-li-a"
+                              onclick="GroupList.Select.Inverse(Info.ControlIdPrefix.videoInput, null, VideoInput_BatchSelect,Video_Input_SelectInverse)('Inverse');"
+                            >
+                              反选
+                            </a>
+                          </li>
+                          <li class="mouse_pointer">
+                            <a
+                              class="xsgroupdown-menu-ul-li-a"
+                              onclick="GroupList.Select.Cancel(Info.ControlIdPrefix.videoInput,Video_Input_SelectCancel);"
+                            >
+                              取消
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <a
+                      class="btn btn-xs btn-default pull-left div-xsgroup button-img-size"
+                      style="margin-right: 0px"
+                      id="btnUnassociatedSelected"
+                      onclick="ToSelectedUnassociated()"
+                      title="删除选中通道的伪码"
+                    >
+                      <i class="icon-trash"></i>
+                    </a>
+                    <div style="clear: both"></div>
+                  </div>
+                  <div style="border: 1px solid #ddd">
+                    <div
+                      style="
+                        text-align: center;
+                        padding-top: 9px;
+                        padding-bottom: 9px;
+                        border-bottom: 3px solid #ddd;
+                      "
+                    >
+                      <div class="pull-left" style="width: 25%">
+                        <div
+                          class="mouse_pointer orderBtn"
+                          onclick="VideoInputOrder('Id')"
+                        >
+                          通道编号<i
+                            class="icon-long-arrow-up"
+                            id="IdIcon"
+                            style="margin-left: 5px"
+                          ></i>
+                        </div>
+                      </div>
+                      <div class="pull-left" style="width: 25%">
+                        <div
+                          class="mouse_pointer orderBtn hasNotOrder"
+                          onclick="VideoInputOrder('deviceUri')"
+                        >
+                          访问地址<i
+                            class="icon-long-arrow-up"
+                            id="deviceUriIcon"
+                            style="margin-left: 5px"
+                          ></i>
+                        </div>
+                      </div>
+                      <div class="pull-left" style="width: 25%">
+                        <div
+                          class="mouse_pointer orderBtn hasNotOrder"
+                          onclick="VideoInputOrder('Name')"
+                        >
+                          通道名称<i
+                            class="icon-long-arrow-up"
+                            id="NameIcon"
+                            style="margin-left: 5px"
+                          ></i>
+                        </div>
+                      </div>
+                      <div class="pull-left" style="width: 25%">
+                        <div
+                          class="mouse_pointer orderBtn hasNotOrder"
+                          onclick="VideoInputOrder('deviceName')"
+                        >
+                          设备名称<i
+                            class="icon-long-arrow-up"
+                            id="deviceNameIcon"
+                            style="margin-left: 5px"
+                          ></i>
+                        </div>
+                      </div>
+                      <div style="clear: both"></div>
+                    </div>
+                    <div
+                      id="dListVideoInput"
+                      class="scrollable"
+                      style="border: 0"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div style="margin: 335px auto 0px auto; text-align: center">
+                  <div class="btn-group">
+                    <div
+                      class="btn btn-default icon-long-arrow-right"
+                      title="关联"
+                      onclick="ToAssociated();"
+                      style="margin-right: 0"
+                      id="btnAssociated"
+                    ></div>
+                  </div>
+                </div>
+                <div style="margin: 0px auto 50px auto; text-align: center">
+                  <div class="btn-group">
+                    <div
+                      class="btn btn-default icon-long-arrow-left"
+                      title="删除关联"
+                      onclick="ToUnassociated(this);"
+                      style="margin-right: 0"
+                      id="btnUnassociated"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-5">
+                <div>
+                  <div style="height: 40px">
+                    <div
+                      class="pull-left"
+                      style="
+                        font-size: 20px;
+                        line-height: 32px;
+                        color: #5e5e5e;
+                        margin-left: -10px;
+                      "
+                    >
+                      伪码
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div>
+                    <div id="pseudoCodeHead">
+                      <div class="pull-left">
+                        <a
+                          class="btn btn-xs main list-permission-btn btn-primary"
+                          id="All"
+                          onclick="return Association_OnClick(this, 'btn-primary','All');"
+                        >
+                          全部
+                        </a>
+                        <a
+                          class="btn btn-xs main list-permission-btn btn-success-outline"
+                          id="Anonymous"
+                          onclick="return Association_OnClick(this, 'btn-success', 'Association');"
+                        >
+                          已关联
+                        </a>
+                        <a
+                          class="btn btn-xs main list-permission-btn btn-warning-outline"
+                          id="Operator"
+                          onclick="return Association_OnClick(this, 'btn-warning', 'Unssociation');"
+                        >
+                          未关联
+                        </a>
+                      </div>
+                      <div
+                        class="pull-left"
+                        onclick="ToAllUnassociated(this)"
+                        style="margin-left: 2px"
+                      >
+                        <a
+                          class="btn btn-group btn-default div-xsgroup small-btn"
+                          id="btnUnassociatedAll"
+                          >全部清空</a
+                        >
+                      </div>
+                    </div>
+                    <div style="clear: both"></div>
+                  </div>
+                  <div
+                    id="dListPseudoCode"
+                    class="scrollable"
+                    style="position: relative"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
     <script type="text/javascript">
-        var Info = {
-            ControlIdPrefix: {
-                pseudoCode: "pseudo_code_",
-                videoInput: "video_input_",
-                getId: function (id, prefix) {
-                    return id.substr(prefix.length);
+      var Info = {
+        ControlIdPrefix: {
+          pseudoCode: 'pseudo_code_',
+          videoInput: 'video_input_',
+          getId: function (id, prefix) {
+            return id.substr(prefix.length)
+          },
+        },
+      }
+      var Property = {
+        Device: {
+          value: new Dictionary(),
+          list: function () {
+            return tryCatch(function () {
+              return Client.Management().Device.List()
+            })
+          },
+        },
+        VideoInput: {
+          value: new Dictionary(),
+          list: function (deviceId) {
+            return tryCatch(function () {
+              return Client.Management().Device.Video.Input.List(deviceId)
+            })
+          },
+          load: function () {
+            var response = Property.Device.list()
+            //var index = 1;
+            if (response && response.Device) {
+              for (var i = 0; i < response.Device.length; i++) {
+                var device = response.Device[i]
+                Property.Device.value[device.Id] = device
+                var result = this.list(device.Id)
+                if (result && result.VideoInputChannel) {
+                  for (var j = 0; j < result.VideoInputChannel.length; j++) {
+                    result.VideoInputChannel[j].deviceId = device.Id
+                    result.VideoInputChannel[j].deviceUri = device.Uri
+                    result.VideoInputChannel[j].deviceName = device.Name
+                    Property.VideoInput.value[result.VideoInputChannel[j].Id] =
+                      result.VideoInputChannel[j]
+                    //if (!Property.PseudoCode.value[index])
+                    //    Property.PseudoCode.value[index] = 0;
+                    if (result.VideoInputChannel[j].PseudoCode) {
+                      Property.PseudoCode.value[
+                        result.VideoInputChannel[j].PseudoCode
+                      ] = result.VideoInputChannel[j].Id
+                      if (!Property.PseudoCode.maxValue)
+                        Property.PseudoCode.maxValue =
+                          result.VideoInputChannel[j].PseudoCode
+                      else
+                        Property.PseudoCode.maxValue =
+                          Property.PseudoCode.maxValue >
+                          result.VideoInputChannel[j].PseudoCode
+                            ? Property.PseudoCode.maxValue
+                            : result.VideoInputChannel[j].PseudoCode
+                    }
+                    //index++
+                  }
                 }
+              }
             }
-        }
-        var Property = {
-            Device: {
-                value: new Dictionary(),
-                list: function () {
-                    return tryCatch(function () {
-                        return Client.Management().Device.List();
-                    });
-                }
-            },
-            VideoInput: {
-                value: new Dictionary(),
-                list: function (deviceId) {
-                    return tryCatch(function () {
-                        return Client.Management().Device.Video.Input.List(deviceId);
-                    })
-                },
-                load: function () {
-                    var response = Property.Device.list();
-                    //var index = 1;
-                    if (response && response.Device) {
-                        for (var i = 0; i < response.Device.length; i++) {
-                            var device = response.Device[i];
-                            Property.Device.value[device.Id] = device;
-                            var result = this.list(device.Id);
-                            if (result && result.VideoInputChannel) {
-                                for (var j = 0; j < result.VideoInputChannel.length; j++) {
-                                    result.VideoInputChannel[j].deviceId = device.Id;
-                                    result.VideoInputChannel[j].deviceUri = device.Uri;
-                                    result.VideoInputChannel[j].deviceName = device.Name;
-                                    Property.VideoInput.value[result.VideoInputChannel[j].Id] = result.VideoInputChannel[j];
-                                    //if (!Property.PseudoCode.value[index])
-                                    //    Property.PseudoCode.value[index] = 0;
-                                    if (result.VideoInputChannel[j].PseudoCode) {
-                                        Property.PseudoCode.value[result.VideoInputChannel[j].PseudoCode] = result.VideoInputChannel[j].Id;
-                                        if (!Property.PseudoCode.maxValue)
-                                            Property.PseudoCode.maxValue = result.VideoInputChannel[j].PseudoCode;
-                                        else
-                                            Property.PseudoCode.maxValue = Property.PseudoCode.maxValue > result.VideoInputChannel[j].PseudoCode ? Property.PseudoCode.maxValue : result.VideoInputChannel[j].PseudoCode;
-                                    }
-                                    //index++
-                                }
-                            }
-                        }
-                    }
-                    return Property.VideoInput.value.toArray();
-                },
-                order: function (name, desc) {
-                    var arr = this.value.order(name, desc);
-                    this.value = new Dictionary();
-                    for (var i = 0; i < arr.length; i++) {
-                        this.value[arr[i].Id] = arr[i];
-                    }
-                }
-            },
-            PseudoCode: {
-                maxValue: null,
-                maxCount: 9999,
-                pageSize: 50,
-                value: new Dictionary(),
-                load: function () {
-                    var pageIndex;
-                    if (!this.maxValue)
-                        pageIndex = 1;
-                    else
-                        pageIndex = Math.ceil(this.maxValue / this.pageSize);
-                    var count = (pageIndex * this.pageSize) + 1;
-                    if (count > 10000)
-                        count = 10000;
-                    for (var i = 1; i < count; i++) {
-                        if (this.value[i])
-                            continue;
-                        this.value[i] = 0;
-                    }
-                },
-                remove: function (code) {
-                    tryCatch(function () {
-                        Client.Management().Device.Video.Input.PseudoCode.Delete(code);
-                    });
-                },
-                set: function (code, channelId) {
-                    tryCatch(function () {
-                        Client.Management().Device.Video.Input.PseudoCode.Set(code, channelId);
-                    });
-                }
+            return Property.VideoInput.value.toArray()
+          },
+          order: function (name, desc) {
+            var arr = this.value.order(name, desc)
+            this.value = new Dictionary()
+            for (var i = 0; i < arr.length; i++) {
+              this.value[arr[i].Id] = arr[i]
             }
-        }
+          },
+        },
+        PseudoCode: {
+          maxValue: null,
+          maxCount: 9999,
+          pageSize: 50,
+          value: new Dictionary(),
+          load: function () {
+            var pageIndex
+            if (!this.maxValue) pageIndex = 1
+            else pageIndex = Math.ceil(this.maxValue / this.pageSize)
+            var count = pageIndex * this.pageSize + 1
+            if (count > 10000) count = 10000
+            for (var i = 1; i < count; i++) {
+              if (this.value[i]) continue
+              this.value[i] = 0
+            }
+          },
+          remove: function (code) {
+            tryCatch(function () {
+              Client.Management().Device.Video.Input.PseudoCode.Delete(code)
+            })
+          },
+          set: function (code, channelId) {
+            tryCatch(function () {
+              Client.Management().Device.Video.Input.PseudoCode.Set(
+                code,
+                channelId
+              )
+            })
+          },
+        },
+      }
 
-        var Html = {
-            GroupList: {
-                PseudoCode: {
-                    isAssociation: "All",
-                    SelectedId: null,
-                    load: function () {
-                        Property.PseudoCode.load();
-                        this.create();
-                    },
-                    create: function () {
-                        var pseudoCodes = Property.PseudoCode.value.toArray();
-                        var list = document.getElementById("dListPseudoCode");
-                        var array = new Array();
-                        for (var i = 1; i < pseudoCodes.length + 1; i++) {
-                            if (Property.PseudoCode.value[i] || Property.PseudoCode.value[i] == 0) {
-                                if (Html.GroupList.PseudoCode.isAssociation == "Association" && Property.PseudoCode.value[i] == 0)
-                                    continue;
-                                if (Html.GroupList.PseudoCode.isAssociation == "Unssociation" && Property.PseudoCode.value[i])
-                                    continue;
-                                var item = this.createItem(i);
-                                array.push(item);
-                            }
-                        }
-                        list.appendChild(new GroupList(Info.ControlIdPrefix.pseudoCode, array));
-                        if (Html.GroupList.PseudoCode.isAssociation == "Unssociation" && array.length < 50)
-                            this.loadMore();
-                    },
-                    createItem: function (code) {
-                        var item = new GroupListItem(Info.ControlIdPrefix.pseudoCode, PseudoCode_OnClick);
-                        item.id = code;
-                        item.className = item.className + " mouse_pointer";
-                        $(item.Content).append($("<div class='group-list-tag double " + (Property.PseudoCode.value[code] ? "associated" : "") + "'></div>" + "<div class='pull-left pseudo-code' title='" + code + "'>" + code + ":" + "</div>"));
-                        if (Property.PseudoCode.value[code]) {
-                            var input = Property.VideoInput.value[Property.PseudoCode.value[code]];
-                            var inputName = input.Name;
-                            var device = Property.Device.value[input.deviceId];
-                            var deviceClassification = Language.Display.DeviceClassification[device.Classification];
-                            var deviceName = device.Name;
-                            var ip = device.Uri;
-                            ip = new Uri(ip);
-                            $(item.Content).append($("<div class='pull-right input-info' style='width:88%'><div class='first-line'><div class='pull-left input-name text-ellipsis' title='" + inputName + "'>" + inputName + "</div><div class='pull-right device-name text-ellipsis' title='" + deviceName + "'>" + deviceName + "</div></div><div class='second-line'><div class='pull-left device-ip text-ellipsis' title='IP地址'>" + ip.Host + "</div><div class='pull-right device-classification' title='设备类型'>" + deviceClassification + "</div></div></div>"));
-                        }
-                        return item;
-                    },
-                    clear: function () {
-                        var control = document.getElementById("dListPseudoCode");
-                        var list = document.getElementById(Info.ControlIdPrefix.pseudoCode);
-                        if (control && list)
-                            control.removeChild(list);
-                        this.SelectedId = null;
-                        var btnUnassociated = document.getElementById("btnUnassociated");
-                        $(btnUnassociated).removeClass("btn-default");
-                        $(btnUnassociated).removeClass("btn-primary-outline");
-                        $(btnUnassociated).addClass("btn-default");
-                    },
-                    select: function (id) {
-                        var btnUnassociated = document.getElementById("btnUnassociated");
-                        var btnAssociated = document.getElementById("btnAssociated");
-                        $(btnAssociated).removeClass("btn-default");
-                        $(btnAssociated).removeClass("btn-primary-outline");
-                        $(btnUnassociated).removeClass("btn-default");
-                        $(btnUnassociated).removeClass("btn-primary-outline");
-                        if (id == this.SelectedId) {
-                            this.SelectedId = null;
-                            $(btnUnassociated).addClass("btn-default");
-                            $(btnAssociated).addClass("btn-default");
-                            return;
-                        }
-                        var tag = document.getElementById(this.SelectedId);
-                        if (tag)
-                            tag.click();
-                        this.SelectedId = parseInt(id);
-                        if (Property.PseudoCode.value[this.SelectedId])
-                            $(btnUnassociated).addClass("btn-primary-outline");
-                        else
-                            $(btnUnassociated).addClass("btn-default");
-                        if (Html.GroupList.VideoInput.selectListControl.Selected.toArray().length > 0)
-                            $(btnAssociated).addClass("btn-primary-outline");
-                        else
-                            $(btnAssociated).addClass("btn-default");
-                    },
-                    loadMore: function () {
-                        var valueLength = Property.PseudoCode.value.toArray().length;
-                        var array = new Array();
-                        var list = document.getElementById(Info.ControlIdPrefix.pseudoCode);
-                        for (var i = 1; i < Property.PseudoCode.pageSize + 1; i++) {
-                            Property.PseudoCode.value[valueLength + i] = 0;
-                            var item = this.createItem(valueLength + i);
-                            list.appendChild(item);
-                        }
-                    }
-                },
-                VideoInput: {
-                    selectListControl: null,
-                    order: {
-                        deviceUri: false,
-                        deviceName: false,
-                        Id: false,
-                        Name: false
-                    },
-                    SearchClassification: null,
-                    SearchStr: "",
-                    load: function () {
-                        Property.VideoInput.load();
-                        this.create();
-                    },
-                    search: function (str, classification) {
-                        var inputs = Property.VideoInput.value.toArray();
-                        var arr = new Array();
-                        if (!str && !classification)
-                            arr = inputs;
-                        else {
-                            for (var i = 0; i < inputs.length; i++) {
-                                var rightStr = false;
-                                var rightClassification = false;
-                                if (str) {
-                                    var mosaicStr = inputs[i].Name + "," + Property.Device.value[inputs[i].deviceId].Name + "," + Property.Device.value[inputs[i].deviceId].Uri;
-                                    if (mosaicStr.toUpperCase().indexOf(str.toUpperCase()) >= 0) {
-                                        rightStr = true;
-                                    }
-                                }
-                                else {
-                                    rightStr = true;
-                                }
-                                if (classification) {
-                                    if (Property.Device.value[inputs[i].deviceId].Classification == classification) {
-                                        rightClassification = true;
-                                    }
-                                }
-                                else {
-                                    rightClassification = true;
-                                }
-                                if (rightStr && rightClassification) {
-                                    arr.push(inputs[i]);
-                                }
-                            }
-                        }
-                        return arr;
-                    },
-                    selectedFn: function () {
-                        var btnAssociated = document.getElementById("btnAssociated");
-                        $(btnAssociated).removeClass("btn-default");
-                        $(btnAssociated).removeClass("btn-primary-outline");
-                        var btnUnassociatedSelected = document.getElementById("btnUnassociatedSelected");
-                        $(btnUnassociatedSelected).removeClass("btn-default");
-                        $(btnUnassociatedSelected).removeClass("btn-primary-outline");
-
-                        selectedInputs = this.Selected.toArray();
-                        var hasPseudoCodeInput = false;
-                        for (var i = 0; i < selectedInputs.length; i++) {
-                            if (Property.VideoInput.value[selectedInputs[i]].PseudoCode) {
-                                hasPseudoCodeInput = true;
-                                break;
-                            }
-                        }
-                        if (hasPseudoCodeInput)
-                            $(btnUnassociatedSelected).addClass("btn-primary-outline");
-                        else
-                            $(btnUnassociatedSelected).addClass("btn-default");
-                        if (selectedInputs.length > 0 && Html.GroupList.PseudoCode.SelectedId)
-                            $(btnAssociated).addClass("btn-primary-outline");
-                        else
-                            $(btnAssociated).addClass("btn-default");
-                    },
-                    create: function (str, classification) {
-                        this.selectListControl = new SelectList(Info.ControlIdPrefix.videoInput);
-                        this.selectListControl.EventAfterItemOnclick = this.selectedFn;
-                        var inputs = this.search(str, classification);
-                        var array = new Array();
-                        var list = document.getElementById("dListVideoInput");
-                        for (var i = 0; i < inputs.length; i++) {
-                            var item = this.createItem(inputs[i], i);
-                            array.push(item);
-                        }
-                        list.appendChild(new GroupList(Info.ControlIdPrefix.videoInput, array));
-                    },
-                    createItem: function (input, index) {
-                        var item = GroupListIndexItem(Info.ControlIdPrefix.videoInput, index);
-                        item = this.selectListControl.bindShortcutKeySelectClick(item);
-                        item.id = input.Id;
-                        item.className = item.className + " mouse_pointer";
-                        var inputName = input.Name;
-                        var device = Property.Device.value[input.deviceId];
-                        var deviceClassification = Language.Display.DeviceClassification[device.Classification];
-                        var deviceName = device.Name;
-                        var ip = device.Uri;
-                        ip = new Uri(ip);
-                        $(item.Content).append($("<div class='group-list-tag double " + (input.PseudoCode ? "associated" : "") + "'></div><div class='first-line'><div class='pull-left input-name text-ellipsis' title='" + inputName + "'>" + inputName + "</div><div class='pull-right device-name text-ellipsis' title='" + deviceName + "'>" + deviceName + "</div></div><div class='second-line'><div class='pull-left device-ip text-ellipsis' title='IP地址'>" + ip.Host + "</div><div class='pull-left' style='width:20%;text-align:center'>" + (input.PseudoCode ? "- " + input.PseudoCode + " -" : "") + "</div><div class='pull-right device-classification' title='设备类型'>" + deviceClassification + "</div></div>"));
-                        return item;
-                    },
-                    clear: function () {
-                        var control = document.getElementById("dListVideoInput");
-                        if (control)
-                            control.innerText = "";
-                        this.selectListControl = null;
-                        var btnAssociated = document.getElementById("btnAssociated");
-                        $(btnAssociated).removeClass("btn-default");
-                        $(btnAssociated).removeClass("btn-primary-outline");
-                        $(btnAssociated).addClass("btn-default");
-                        var btnUnassociatedSelected = document.getElementById("btnUnassociatedSelected");
-                        $(btnUnassociatedSelected).removeClass("btn-default");
-                        $(btnUnassociatedSelected).removeClass("btn-primary-outline");
-                        $(btnUnassociatedSelected).addClass("btn-default");
-                    },
-                    orderList: function (name, desc) {
-                        Property.VideoInput.order(name, desc);
-                        this.clear();
-                        this.create(this.SearchStr, this.SearchClassification);
-                    }
+      var Html = {
+        GroupList: {
+          PseudoCode: {
+            isAssociation: 'All',
+            SelectedId: null,
+            load: function () {
+              Property.PseudoCode.load()
+              this.create()
+            },
+            create: function () {
+              var pseudoCodes = Property.PseudoCode.value.toArray()
+              var list = document.getElementById('dListPseudoCode')
+              var array = new Array()
+              for (var i = 1; i < pseudoCodes.length + 1; i++) {
+                if (
+                  Property.PseudoCode.value[i] ||
+                  Property.PseudoCode.value[i] == 0
+                ) {
+                  if (
+                    Html.GroupList.PseudoCode.isAssociation == 'Association' &&
+                    Property.PseudoCode.value[i] == 0
+                  )
+                    continue
+                  if (
+                    Html.GroupList.PseudoCode.isAssociation == 'Unssociation' &&
+                    Property.PseudoCode.value[i]
+                  )
+                    continue
+                  var item = this.createItem(i)
+                  array.push(item)
                 }
-            }
-        }
+              }
+              list.appendChild(
+                new GroupList(Info.ControlIdPrefix.pseudoCode, array)
+              )
+              if (
+                Html.GroupList.PseudoCode.isAssociation == 'Unssociation' &&
+                array.length < 50
+              )
+                this.loadMore()
+            },
+            createItem: function (code) {
+              var item = new GroupListItem(
+                Info.ControlIdPrefix.pseudoCode,
+                PseudoCode_OnClick
+              )
+              item.id = code
+              item.className = item.className + ' mouse_pointer'
+              $(item.Content).append(
+                $(
+                  "<div class='group-list-tag double " +
+                    (Property.PseudoCode.value[code] ? 'associated' : '') +
+                    "'></div>" +
+                    "<div class='pull-left pseudo-code' title='" +
+                    code +
+                    "'>" +
+                    code +
+                    ':' +
+                    '</div>'
+                )
+              )
+              if (Property.PseudoCode.value[code]) {
+                var input =
+                  Property.VideoInput.value[Property.PseudoCode.value[code]]
+                var inputName = input.Name
+                var device = Property.Device.value[input.deviceId]
+                var deviceClassification =
+                  Language.Display.DeviceClassification[device.Classification]
+                var deviceName = device.Name
+                var ip = device.Uri
+                ip = new Uri(ip)
+                $(item.Content).append(
+                  $(
+                    "<div class='pull-right input-info' style='width:88%'><div class='first-line'><div class='pull-left input-name text-ellipsis' title='" +
+                      inputName +
+                      "'>" +
+                      inputName +
+                      "</div><div class='pull-right device-name text-ellipsis' title='" +
+                      deviceName +
+                      "'>" +
+                      deviceName +
+                      "</div></div><div class='second-line'><div class='pull-left device-ip text-ellipsis' title='IP地址'>" +
+                      ip.Host +
+                      "</div><div class='pull-right device-classification' title='设备类型'>" +
+                      deviceClassification +
+                      '</div></div></div>'
+                  )
+                )
+              }
+              return item
+            },
+            clear: function () {
+              var control = document.getElementById('dListPseudoCode')
+              var list = document.getElementById(
+                Info.ControlIdPrefix.pseudoCode
+              )
+              if (control && list) control.removeChild(list)
+              this.SelectedId = null
+              var btnUnassociated = document.getElementById('btnUnassociated')
+              $(btnUnassociated).removeClass('btn-default')
+              $(btnUnassociated).removeClass('btn-primary-outline')
+              $(btnUnassociated).addClass('btn-default')
+            },
+            select: function (id) {
+              var btnUnassociated = document.getElementById('btnUnassociated')
+              var btnAssociated = document.getElementById('btnAssociated')
+              $(btnAssociated).removeClass('btn-default')
+              $(btnAssociated).removeClass('btn-primary-outline')
+              $(btnUnassociated).removeClass('btn-default')
+              $(btnUnassociated).removeClass('btn-primary-outline')
+              if (id == this.SelectedId) {
+                this.SelectedId = null
+                $(btnUnassociated).addClass('btn-default')
+                $(btnAssociated).addClass('btn-default')
+                return
+              }
+              var tag = document.getElementById(this.SelectedId)
+              if (tag) tag.click()
+              this.SelectedId = parseInt(id)
+              if (Property.PseudoCode.value[this.SelectedId])
+                $(btnUnassociated).addClass('btn-primary-outline')
+              else $(btnUnassociated).addClass('btn-default')
+              if (
+                Html.GroupList.VideoInput.selectListControl.Selected.toArray()
+                  .length > 0
+              )
+                $(btnAssociated).addClass('btn-primary-outline')
+              else $(btnAssociated).addClass('btn-default')
+            },
+            loadMore: function () {
+              var valueLength = Property.PseudoCode.value.toArray().length
+              var array = new Array()
+              var list = document.getElementById(
+                Info.ControlIdPrefix.pseudoCode
+              )
+              for (var i = 1; i < Property.PseudoCode.pageSize + 1; i++) {
+                Property.PseudoCode.value[valueLength + i] = 0
+                var item = this.createItem(valueLength + i)
+                list.appendChild(item)
+              }
+            },
+          },
+          VideoInput: {
+            selectListControl: null,
+            order: {
+              deviceUri: false,
+              deviceName: false,
+              Id: false,
+              Name: false,
+            },
+            SearchClassification: null,
+            SearchStr: '',
+            load: function () {
+              Property.VideoInput.load()
+              this.create()
+            },
+            search: function (str, classification) {
+              var inputs = Property.VideoInput.value.toArray()
+              var arr = new Array()
+              if (!str && !classification) arr = inputs
+              else {
+                for (var i = 0; i < inputs.length; i++) {
+                  var rightStr = false
+                  var rightClassification = false
+                  if (str) {
+                    var mosaicStr =
+                      inputs[i].Name +
+                      ',' +
+                      Property.Device.value[inputs[i].deviceId].Name +
+                      ',' +
+                      Property.Device.value[inputs[i].deviceId].Uri
+                    if (
+                      mosaicStr.toUpperCase().indexOf(str.toUpperCase()) >= 0
+                    ) {
+                      rightStr = true
+                    }
+                  } else {
+                    rightStr = true
+                  }
+                  if (classification) {
+                    if (
+                      Property.Device.value[inputs[i].deviceId]
+                        .Classification == classification
+                    ) {
+                      rightClassification = true
+                    }
+                  } else {
+                    rightClassification = true
+                  }
+                  if (rightStr && rightClassification) {
+                    arr.push(inputs[i])
+                  }
+                }
+              }
+              return arr
+            },
+            selectedFn: function () {
+              var btnAssociated = document.getElementById('btnAssociated')
+              $(btnAssociated).removeClass('btn-default')
+              $(btnAssociated).removeClass('btn-primary-outline')
+              var btnUnassociatedSelected = document.getElementById(
+                'btnUnassociatedSelected'
+              )
+              $(btnUnassociatedSelected).removeClass('btn-default')
+              $(btnUnassociatedSelected).removeClass('btn-primary-outline')
+
+              selectedInputs = this.Selected.toArray()
+              var hasPseudoCodeInput = false
+              for (var i = 0; i < selectedInputs.length; i++) {
+                if (Property.VideoInput.value[selectedInputs[i]].PseudoCode) {
+                  hasPseudoCodeInput = true
+                  break
+                }
+              }
+              if (hasPseudoCodeInput)
+                $(btnUnassociatedSelected).addClass('btn-primary-outline')
+              else $(btnUnassociatedSelected).addClass('btn-default')
+              if (
+                selectedInputs.length > 0 &&
+                Html.GroupList.PseudoCode.SelectedId
+              )
+                $(btnAssociated).addClass('btn-primary-outline')
+              else $(btnAssociated).addClass('btn-default')
+            },
+            create: function (str, classification) {
+              this.selectListControl = new SelectList(
+                Info.ControlIdPrefix.videoInput
+              )
+              this.selectListControl.EventAfterItemOnclick = this.selectedFn
+              var inputs = this.search(str, classification)
+              var array = new Array()
+              var list = document.getElementById('dListVideoInput')
+              for (var i = 0; i < inputs.length; i++) {
+                var item = this.createItem(inputs[i], i)
+                array.push(item)
+              }
+              list.appendChild(
+                new GroupList(Info.ControlIdPrefix.videoInput, array)
+              )
+            },
+            createItem: function (input, index) {
+              var item = GroupListIndexItem(
+                Info.ControlIdPrefix.videoInput,
+                index
+              )
+              item = this.selectListControl.bindShortcutKeySelectClick(item)
+              item.id = input.Id
+              item.className = item.className + ' mouse_pointer'
+              var inputName = input.Name
+              var device = Property.Device.value[input.deviceId]
+              var deviceClassification =
+                Language.Display.DeviceClassification[device.Classification]
+              var deviceName = device.Name
+              var ip = device.Uri
+              ip = new Uri(ip)
+              $(item.Content).append(
+                $(
+                  "<div class='group-list-tag double " +
+                    (input.PseudoCode ? 'associated' : '') +
+                    "'></div><div class='first-line'><div class='pull-left input-name text-ellipsis' title='" +
+                    inputName +
+                    "'>" +
+                    inputName +
+                    "</div><div class='pull-right device-name text-ellipsis' title='" +
+                    deviceName +
+                    "'>" +
+                    deviceName +
+                    "</div></div><div class='second-line'><div class='pull-left device-ip text-ellipsis' title='IP地址'>" +
+                    ip.Host +
+                    "</div><div class='pull-left' style='width:20%;text-align:center'>" +
+                    (input.PseudoCode ? '- ' + input.PseudoCode + ' -' : '') +
+                    "</div><div class='pull-right device-classification' title='设备类型'>" +
+                    deviceClassification +
+                    '</div></div>'
+                )
+              )
+              return item
+            },
+            clear: function () {
+              var control = document.getElementById('dListVideoInput')
+              if (control) control.innerText = ''
+              this.selectListControl = null
+              var btnAssociated = document.getElementById('btnAssociated')
+              $(btnAssociated).removeClass('btn-default')
+              $(btnAssociated).removeClass('btn-primary-outline')
+              $(btnAssociated).addClass('btn-default')
+              var btnUnassociatedSelected = document.getElementById(
+                'btnUnassociatedSelected'
+              )
+              $(btnUnassociatedSelected).removeClass('btn-default')
+              $(btnUnassociatedSelected).removeClass('btn-primary-outline')
+              $(btnUnassociatedSelected).addClass('btn-default')
+            },
+            orderList: function (name, desc) {
+              Property.VideoInput.order(name, desc)
+              this.clear()
+              this.create(this.SearchStr, this.SearchClassification)
+            },
+          },
+        },
+      }
     </script>
     <script type="text/javascript">
-        //页面加载
-        var videoInputSearchControl;
-        var pseudoCodeHeadSearchControl;
-        function createEnum() {
-            var NewDeviceClassification = new Object();
-            NewDeviceClassification["All"] = "All";
-            for (var key in DeviceClassification) {
-                NewDeviceClassification[key] = DeviceClassification[key];
+      //页面加载
+      var videoInputSearchControl
+      var pseudoCodeHeadSearchControl
+      function createEnum() {
+        var NewDeviceClassification = new Object()
+        NewDeviceClassification['All'] = 'All'
+        for (var key in DeviceClassification) {
+          NewDeviceClassification[key] = DeviceClassification[key]
+        }
+        return NewDeviceClassification
+      }
+      function device_video_input_pseudo_code_load() {
+        delete DeviceClassification['None']
+        delete Language.Display.DeviceClassification['None']
+        var classification = createEnum()
+        DropDownList.Create(
+          'ddlClassification',
+          ControlModel.Language,
+          classification,
+          Language.Display.DeviceClassification
+        )
+        var tag = document.getElementById('dListPseudoCode')
+        var scrollSource = document.getElementById('dListPseudoCode')
+        tag.onscroll = function () {
+          var scrollTop = 0
+          if (scrollSource.scrollTop > 0) scrollTop = scrollSource.scrollTop
+          if (
+            scrollSource.clientHeight + scrollTop >=
+              scrollSource.scrollHeight &&
+            Html.GroupList.PseudoCode.isAssociation != 'Association'
+          ) {
+            Html.GroupList.PseudoCode.loadMore()
+          }
+        }
+        videoInputSearchControl = new SearchControl(
+          'divVideoInputSearchContent',
+          btnVideoInputSearchClick
+        )
+        videoInputSearchControl.Div.className += ' pull-right'
+        videoInputSearchControl.Div.style.width = '31%'
+        videoInputSearchControl.Input.placeholder =
+          '访问地址、通道名称、设备名称'
+        videoInputSearchControl.Input.title = '访问地址、通道名称、设备名称'
+        getTag('videoInputHead').appendChild(videoInputSearchControl.Div)
+        pseudoCodeHeadSearchControl = new SearchControl(
+          'divPseudoCodeSearchContent',
+          btnPseudoCodeSearchClick
+        )
+        pseudoCodeHeadSearchControl.Div.className += ' pull-right'
+        pseudoCodeHeadSearchControl.Div.style.width = '37.4%'
+        pseudoCodeHeadSearchControl.Input.placeholder = '伪码号'
+        getTag('pseudoCodeHead').appendChild(pseudoCodeHeadSearchControl.Div)
+
+        Html.GroupList.VideoInput.load()
+        Html.GroupList.PseudoCode.load()
+        checkToAllUnassociatedBtn(hasPseudoCode())
+      }
+
+      function VideoInput_OnClick(sender) {
+        return Html.GroupList.VideoInput.select(sender.id)
+      }
+
+      function VideoInput_BatchSelect() {
+        var btnAssociated = document.getElementById('btnAssociated')
+        $(btnAssociated).removeClass('btn-default')
+        $(btnAssociated).removeClass('btn-primary-outline')
+        var btnUnassociatedSelected = document.getElementById(
+          'btnUnassociatedSelected'
+        )
+        $(btnUnassociatedSelected).removeClass('btn-default')
+        $(btnUnassociatedSelected).removeClass('btn-primary-outline')
+
+        selectedInputs =
+          Html.GroupList.VideoInput.selectListControl.Selected.toArray()
+
+        var hasPseudoCodeInput = false
+        for (var i = 0; i < selectedInputs.length; i++) {
+          if (Property.VideoInput.value[selectedInputs[i]].PseudoCode) {
+            hasPseudoCodeInput = true
+            break
+          }
+        }
+        if (hasPseudoCodeInput)
+          $(btnUnassociatedSelected).addClass('btn-primary-outline')
+        else $(btnUnassociatedSelected).addClass('btn-default')
+
+        if (selectedInputs.length > 0 && Html.GroupList.PseudoCode.SelectedId)
+          $(btnAssociated).addClass('btn-primary-outline')
+        else $(btnAssociated).addClass('btn-default')
+      }
+
+      function PseudoCode_OnClick(sender) {
+        Html.GroupList.PseudoCode.select(sender.id)
+      }
+      function PseudoCode_SelectAll(items) {
+        if (items) {
+          for (var i = 0; i < items.length; i++) {
+            Html.GroupList.PseudoCode.select(items[i].id, true)
+          }
+        }
+      }
+      function PseudoCode_SelectCancel(items) {
+        if (items) {
+          for (var i = 0; i < items.length; i++) {
+            Html.GroupList.PseudoCode.select(items[i].id, false)
+          }
+        }
+      }
+
+      function Video_Input_SelectAll(items) {
+        if (items) {
+          for (var i = 0; i < items.length; i++) {
+            if (
+              !Html.GroupList.VideoInput.selectListControl.Selected[items[i].id]
+            ) {
+              Html.GroupList.VideoInput.selectListControl.Selected[
+                items[i].id
+              ] = items[i].id
             }
-            return NewDeviceClassification;
+          }
         }
-        function device_video_input_pseudo_code_load() {
-            delete DeviceClassification["None"];
-            delete Language.Display.DeviceClassification["None"];
-            var classification = createEnum();
-            DropDownList.Create("ddlClassification", ControlModel.Language, classification, Language.Display.DeviceClassification);
-            var tag = document.getElementById("dListPseudoCode");
-            var scrollSource = document.getElementById("dListPseudoCode");
-            tag.onscroll = function () {
-                var scrollTop = 0;
-                if (scrollSource.scrollTop > 0)
-                    scrollTop = scrollSource.scrollTop;
-                if ((scrollSource.clientHeight + scrollTop) >= scrollSource.scrollHeight && Html.GroupList.PseudoCode.isAssociation != "Association") {
-                    Html.GroupList.PseudoCode.loadMore();
-                }
-            };
-            videoInputSearchControl = new SearchControl("divVideoInputSearchContent", btnVideoInputSearchClick);
-            videoInputSearchControl.Div.className += " pull-right";
-            videoInputSearchControl.Div.style.width = "31%";
-            videoInputSearchControl.Input.placeholder = "访问地址、通道名称、设备名称";
-            videoInputSearchControl.Input.title = "访问地址、通道名称、设备名称";
-            getTag("videoInputHead").appendChild(videoInputSearchControl.Div);
-            pseudoCodeHeadSearchControl = new SearchControl("divPseudoCodeSearchContent", btnPseudoCodeSearchClick);
-            pseudoCodeHeadSearchControl.Div.className += " pull-right";
-            pseudoCodeHeadSearchControl.Div.style.width = "37.4%";
-            pseudoCodeHeadSearchControl.Input.placeholder = "伪码号"
-            getTag("pseudoCodeHead").appendChild(pseudoCodeHeadSearchControl.Div);
-
-            Html.GroupList.VideoInput.load();
-            Html.GroupList.PseudoCode.load();
-            checkToAllUnassociatedBtn(hasPseudoCode());
-        }
-
-        function VideoInput_OnClick(sender) {
-            return Html.GroupList.VideoInput.select(sender.id);
-        }
-
-        function VideoInput_BatchSelect() {
-            var btnAssociated = document.getElementById("btnAssociated");
-            $(btnAssociated).removeClass("btn-default");
-            $(btnAssociated).removeClass("btn-primary-outline");
-            var btnUnassociatedSelected = document.getElementById("btnUnassociatedSelected");
-            $(btnUnassociatedSelected).removeClass("btn-default");
-            $(btnUnassociatedSelected).removeClass("btn-primary-outline");
-
-            selectedInputs = Html.GroupList.VideoInput.selectListControl.Selected.toArray();
-
-            var hasPseudoCodeInput = false;
-            for (var i = 0; i < selectedInputs.length; i++) {
-                if (Property.VideoInput.value[selectedInputs[i]].PseudoCode) {
-                    hasPseudoCodeInput = true;
-                    break;
-                }
+        VideoInput_BatchSelect()
+      }
+      function Video_Input_SelectCancel(items) {
+        if (items) {
+          for (var i = 0; i < items.length; i++) {
+            if (
+              Html.GroupList.VideoInput.selectListControl.Selected[items[i].id]
+            ) {
+              delete Html.GroupList.VideoInput.selectListControl.Selected[
+                items[i].id
+              ]
             }
-            if (hasPseudoCodeInput)
-                $(btnUnassociatedSelected).addClass("btn-primary-outline");
-            else
-                $(btnUnassociatedSelected).addClass("btn-default");
-
-            if (selectedInputs.length > 0 && Html.GroupList.PseudoCode.SelectedId)
-                $(btnAssociated).addClass("btn-primary-outline");
-            else
-                $(btnAssociated).addClass("btn-default");
+          }
         }
+        VideoInput_BatchSelect()
+      }
 
-        function PseudoCode_OnClick(sender) {
-            Html.GroupList.PseudoCode.select(sender.id);
+      function Video_Input_SelectInverse(item) {
+        if (item) {
+          if (Html.GroupList.VideoInput.selectListControl.Selected[item.id]) {
+            delete Html.GroupList.VideoInput.selectListControl.Selected[item.id]
+            if (item.className.indexOf('selected') >= 0)
+              $(item).removeClass('selected')
+          } else {
+            Html.GroupList.VideoInput.selectListControl.Selected[item.id] =
+              item.id
+            if (item.className.indexOf('selected') < 0)
+              $(item).addClass('selected')
+          }
         }
-        function PseudoCode_SelectAll(items) {
-            if (items) {
-                for (var i = 0; i < items.length; i++) {
-                    Html.GroupList.PseudoCode.select(items[i].id, true);
+      }
+
+      function ToAssociated() {
+        var inputs =
+          Html.GroupList.VideoInput.selectListControl.Selected.toArray()
+        var selectCode = Html.GroupList.PseudoCode.SelectedId
+        if (inputs.length < 1 || !selectCode) return
+        for (var i = 0; i < inputs.length; i++) {
+          tryCatch(function () {
+            var input = Property.VideoInput.value[inputs[i]]
+            var code = selectCode + i
+            var tag = document.getElementById(code)
+            if (!tag) Html.GroupList.PseudoCode.loadMore()
+            Property.PseudoCode.set(code, input.Id)
+            if (Property.VideoInput.value[input.Id].PseudoCode)
+              Property.PseudoCode.value[
+                Property.VideoInput.value[input.Id].PseudoCode
+              ] = 0
+            if (Property.PseudoCode.value[code])
+              Property.VideoInput.value[
+                Property.PseudoCode.value[code]
+              ].PseudoCode = null
+            Property.VideoInput.value[input.Id].PseudoCode = code
+            Property.PseudoCode.value[code] = input.Id
+          })
+        }
+        reCreate()
+        checkToAllUnassociatedBtn(hasPseudoCode())
+      }
+
+      function Association_OnClick(tag, css, type) {
+        if (tag.className.indexOf(css + '-outline') < 0) return
+        clearAssociationBtn('All', 'btn-primary', 'btn-primary-outline')
+        clearAssociationBtn('Anonymous', 'btn-success', 'btn-success-outline')
+        clearAssociationBtn('Operator', 'btn-warning', 'btn-warning-outline')
+        $(tag).removeClass(css + '-outline')
+        $(tag).addClass(css)
+        Html.GroupList.PseudoCode.isAssociation = type
+        Html.GroupList.PseudoCode.clear()
+        Html.GroupList.PseudoCode.create()
+      }
+
+      function clearAssociationBtn(id, removeCss, addCss) {
+        var btn = document.getElementById(id)
+        $(btn).removeClass(removeCss)
+        if (btn.className.indexOf(addCss) < 0) $(btn).addClass(addCss)
+      }
+
+      function ToAllUnassociated(sender) {
+        if (!hasPseudoCode()) return
+        $.confirm({
+          text: '确定要清空所有伪码吗？',
+          okButton: '确定',
+          cancelButton: '取消',
+          confirm: function () {
+            var tags = document.getElementsByName(
+              Info.ControlIdPrefix.pseudoCode
+            )
+            for (var i = 0; i < tags.length; i++) {
+              tryCatch(function () {
+                var code = parseInt(tags[i].id)
+                if (Property.PseudoCode.value[code]) {
+                  Property.PseudoCode.remove(code)
+                  Property.VideoInput.value[
+                    Property.PseudoCode.value[code]
+                  ].PseudoCode = null
+                  Property.PseudoCode.value[code] = 0
                 }
+              })
             }
+            reCreate()
+            checkToAllUnassociatedBtn(false)
+          },
+        })
+      }
+
+      function ToSelectedUnassociated() {
+        var inputs =
+          Html.GroupList.VideoInput.selectListControl.Selected.toArray()
+        var hasPseudoCodeInputs = new Array()
+        for (var i = 0; i < inputs.length; i++) {
+          if (Property.VideoInput.value[inputs[i]].PseudoCode)
+            hasPseudoCodeInputs.push(inputs[i])
         }
-        function PseudoCode_SelectCancel(items) {
-            if (items) {
-                for (var i = 0; i < items.length; i++) {
-                    Html.GroupList.PseudoCode.select(items[i].id, false);
-                }
+        if (hasPseudoCodeInputs.length < 1) return
+        $.confirm({
+          text: '确定要删除选中的视频通道的伪码吗？',
+          okButton: '确定',
+          cancelButton: '取消',
+          confirm: function () {
+            for (var i = 0; i < hasPseudoCodeInputs.length; i++) {
+              tryCatch(function () {
+                var code =
+                  Property.VideoInput.value[hasPseudoCodeInputs[i]].PseudoCode
+                Property.PseudoCode.remove(code)
+                Property.VideoInput.value[
+                  Property.PseudoCode.value[code]
+                ].PseudoCode = null
+                Property.PseudoCode.value[code] = 0
+              })
             }
-        }
+            reCreate()
+            checkToAllUnassociatedBtn(hasPseudoCode())
+          },
+        })
+      }
 
-        function Video_Input_SelectAll(items) {
-            if (items) {
-                for (var i = 0; i < items.length; i++) {
-                    if (!Html.GroupList.VideoInput.selectListControl.Selected[items[i].id]) {
-                        Html.GroupList.VideoInput.selectListControl.Selected[items[i].id] = items[i].id;
-                    }
-                }
-            }
-            VideoInput_BatchSelect();
-        }
-        function Video_Input_SelectCancel(items) {
-            if (items) {
-                for (var i = 0; i < items.length; i++) {
-                    if (Html.GroupList.VideoInput.selectListControl.Selected[items[i].id]) {
-                        delete Html.GroupList.VideoInput.selectListControl.Selected[items[i].id];
-                    }
-                }
-            }
-            VideoInput_BatchSelect();
-        }
-
-        function Video_Input_SelectInverse(item) {
-            if (item) {
-                if (Html.GroupList.VideoInput.selectListControl.Selected[item.id]) {
-                    delete Html.GroupList.VideoInput.selectListControl.Selected[item.id];
-                    if (item.className.indexOf("selected") >= 0)
-                        $(item).removeClass("selected");
-                }
-                else {
-                    Html.GroupList.VideoInput.selectListControl.Selected[item.id] = item.id;
-                    if (item.className.indexOf("selected") < 0)
-                        $(item).addClass("selected");
-                }
-            }
-        }
-
-        function ToAssociated() {
-            var inputs = Html.GroupList.VideoInput.selectListControl.Selected.toArray();
-            var selectCode = Html.GroupList.PseudoCode.SelectedId;
-            if (inputs.length < 1 || !selectCode)
-                return;
-            for (var i = 0; i < inputs.length; i++) {
-                tryCatch(function () {
-                    var input = Property.VideoInput.value[inputs[i]];
-                    var code = selectCode + i;
-                    var tag = document.getElementById(code);
-                    if (!tag)
-                        Html.GroupList.PseudoCode.loadMore();
-                    Property.PseudoCode.set(code, input.Id);
-                    if (Property.VideoInput.value[input.Id].PseudoCode)
-                        Property.PseudoCode.value[Property.VideoInput.value[input.Id].PseudoCode] = 0;
-                    if (Property.PseudoCode.value[code])
-                        Property.VideoInput.value[Property.PseudoCode.value[code]].PseudoCode = null;
-                    Property.VideoInput.value[input.Id].PseudoCode = code;
-                    Property.PseudoCode.value[code] = input.Id;
-                });
-            }
-            reCreate();
-            checkToAllUnassociatedBtn(hasPseudoCode());
-        }
-
-        function Association_OnClick(tag, css, type) {
-            if (tag.className.indexOf(css + "-outline") < 0)
-                return;
-            clearAssociationBtn("All", "btn-primary", "btn-primary-outline");
-            clearAssociationBtn("Anonymous", "btn-success", "btn-success-outline");
-            clearAssociationBtn("Operator", "btn-warning", "btn-warning-outline");
-            $(tag).removeClass(css + "-outline");
-            $(tag).addClass(css);
-            Html.GroupList.PseudoCode.isAssociation = type;
-            Html.GroupList.PseudoCode.clear();
-            Html.GroupList.PseudoCode.create();
-        }
-
-        function clearAssociationBtn(id, removeCss, addCss) {
-            var btn = document.getElementById(id);
-            $(btn).removeClass(removeCss);
-            if (btn.className.indexOf(addCss) < 0)
-                $(btn).addClass(addCss);
-        }
-
-        function ToAllUnassociated(sender) {
-            if (!hasPseudoCode())
-                return;
-            $.confirm({
-                text: "确定要清空所有伪码吗？",
-                okButton: "确定",
-                cancelButton: "取消",
-                confirm: function () {
-                    var tags = document.getElementsByName(Info.ControlIdPrefix.pseudoCode);
-                    for (var i = 0; i < tags.length; i++) {
-                        tryCatch(function () {
-                            var code = parseInt(tags[i].id);
-                            if (Property.PseudoCode.value[code]) {
-                                Property.PseudoCode.remove(code);
-                                Property.VideoInput.value[Property.PseudoCode.value[code]].PseudoCode = null;
-                                Property.PseudoCode.value[code] = 0;
-                            }
-                        });
-                    }
-                    reCreate();
-                    checkToAllUnassociatedBtn(false);
-                }
-            });
-        }
-
-        function ToSelectedUnassociated() {
-            var inputs = Html.GroupList.VideoInput.selectListControl.Selected.toArray();
-            var hasPseudoCodeInputs = new Array();
-            for (var i = 0; i < inputs.length; i++) {
-                if (Property.VideoInput.value[inputs[i]].PseudoCode)
-                    hasPseudoCodeInputs.push(inputs[i]);
-            }
-            if (hasPseudoCodeInputs.length < 1)
-                return;
-            $.confirm({
-                text: "确定要删除选中的视频通道的伪码吗？",
-                okButton: "确定",
-                cancelButton: "取消",
-                confirm: function () {
-                    for (var i = 0; i < hasPseudoCodeInputs.length; i++) {
-                        tryCatch(function () {
-                            var code = Property.VideoInput.value[hasPseudoCodeInputs[i]].PseudoCode;
-                            Property.PseudoCode.remove(code);
-                            Property.VideoInput.value[Property.PseudoCode.value[code]].PseudoCode = null;
-                            Property.PseudoCode.value[code] = 0;
-                        });
-                    }
-                    reCreate();
-                    checkToAllUnassociatedBtn(hasPseudoCode());
-                }
-            });
-        }
-
-        function ToUnassociated(sender) {
-            if (!Html.GroupList.PseudoCode.SelectedId || !Property.PseudoCode.value[Html.GroupList.PseudoCode.SelectedId])
-                return;
-            $.confirm({
-                text: "确定要解除吗？",
-                okButton: "确定",
-                cancelButton: "取消",
-                confirm: function () {
-                    tryCatch(function () {
-                        var code = Html.GroupList.PseudoCode.SelectedId;
-                        Property.PseudoCode.remove(Html.GroupList.PseudoCode.SelectedId);
-                        Property.VideoInput.value[Property.PseudoCode.value[code]].PseudoCode = null;
-                        Property.PseudoCode.value[code] = 0;
-
-                    });
-                    reCreate();
-                    checkToAllUnassociatedBtn(hasPseudoCode());
-                }
-            });
-        }
-
-        function reCreate() {
-            Html.GroupList.PseudoCode.clear();
-            Html.GroupList.VideoInput.clear();
-            Html.GroupList.VideoInput.create();
-            Html.GroupList.PseudoCode.create();
-            videoInputSearchControl.Input.value = "";
-            Html.GroupList.VideoInput.SearchStr = "";
-            Html.GroupList.VideoInput.SearchClassification = null;
-            document.getElementById("ddlClassification").options[0].selected = true
-        }
-
-        function hasPseudoCode() {
-            var inputs = Property.VideoInput.value.toArray();
-            for (var i = 0; i < inputs.length; i++) {
-                if (inputs[i].PseudoCode) {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        function checkToAllUnassociatedBtn(value) {
-            var btn = document.getElementById("btnUnassociatedAll");
-            $(btn).removeClass("btn-primary");
-            $(btn).removeClass("btn-default");
-            var css = value ? "btn-primary" : "btn-default";
-            $(btn).addClass(css);
-        }
-
-        function btnVideoInputSearchClick() {
-            Html.GroupList.VideoInput.clear();
-            Html.GroupList.VideoInput.SearchStr = videoInputSearchControl.Input.value;
-            Html.GroupList.VideoInput.create(Html.GroupList.VideoInput.SearchStr, Html.GroupList.VideoInput.SearchClassification);
-        }
-
-        function btnPseudoCodeSearchClick() {
-            var re = /^[0-9]*[1-9][0-9]*$/;
-            if (!re.test(pseudoCodeHeadSearchControl.Input.value) || parseInt(pseudoCodeHeadSearchControl.Input.value) > 9999)
-                return
-            var tag = document.getElementById(pseudoCodeHeadSearchControl.Input.value);
-            var codes = Property.PseudoCode.value.toArray();
-            if (!tag && Html.GroupList.PseudoCode.isAssociation != "Association" && parseInt(pseudoCodeHeadSearchControl.Input.value) > codes.length) {
-                while (!document.getElementById(pseudoCodeHeadSearchControl.Input.value)) {
-                    Html.GroupList.PseudoCode.loadMore();
-                }
-            }
-            tag = document.getElementById(pseudoCodeHeadSearchControl.Input.value);
-            $("#dListPseudoCode").animate({ scrollTop: tag.offsetTop }, "fast");
-        }
-
-        function selectClassification_Click(args) {
+      function ToUnassociated(sender) {
+        if (
+          !Html.GroupList.PseudoCode.SelectedId ||
+          !Property.PseudoCode.value[Html.GroupList.PseudoCode.SelectedId]
+        )
+          return
+        $.confirm({
+          text: '确定要解除吗？',
+          okButton: '确定',
+          cancelButton: '取消',
+          confirm: function () {
             tryCatch(function () {
-                if (args == "All")
-                    args = null;
-                if (Html.GroupList.VideoInput.SearchClassification == args)
-                    return false;
-                Html.GroupList.VideoInput.SearchClassification = args ? args : null;
-                Html.GroupList.VideoInput.clear();
-                Html.GroupList.VideoInput.create(Html.GroupList.VideoInput.SearchStr, Html.GroupList.VideoInput.SearchClassification);
-            });
-            return false;
-        };
+              var code = Html.GroupList.PseudoCode.SelectedId
+              Property.PseudoCode.remove(Html.GroupList.PseudoCode.SelectedId)
+              Property.VideoInput.value[
+                Property.PseudoCode.value[code]
+              ].PseudoCode = null
+              Property.PseudoCode.value[code] = 0
+            })
+            reCreate()
+            checkToAllUnassociatedBtn(hasPseudoCode())
+          },
+        })
+      }
 
-        function VideoInputOrder(name, desc) {
-            var btns = document.getElementsByClassName("orderBtn");
-            for (var i = 0; i < btns.length; i++) {
-                if (btns[i].className.indexOf("hasNotOrder") < 0) {
-                    $(btns[i]).addClass("hasNotOrder");
-                }
-            }
-            var icon = document.getElementById(name + "Icon");
-            Html.GroupList.VideoInput.order[name] = !Html.GroupList.VideoInput.order[name];
-            if (icon) {
-                if (icon.parentNode.className.indexOf("hasNotOrder") > -1)
-                    $(icon.parentNode).removeClass("hasNotOrder");
-                $(icon).removeClass("icon-long-arrow-up");
-                $(icon).removeClass("icon-long-arrow-down");
-                var css = Html.GroupList.VideoInput.order[name] ? "icon-long-arrow-down" : "icon-long-arrow-up";
-                $(icon).addClass(css);
-            }
-            Html.GroupList.VideoInput.orderList(name, Html.GroupList.VideoInput.order[name]);
+      function reCreate() {
+        Html.GroupList.PseudoCode.clear()
+        Html.GroupList.VideoInput.clear()
+        Html.GroupList.VideoInput.create()
+        Html.GroupList.PseudoCode.create()
+        videoInputSearchControl.Input.value = ''
+        Html.GroupList.VideoInput.SearchStr = ''
+        Html.GroupList.VideoInput.SearchClassification = null
+        document.getElementById('ddlClassification').options[0].selected = true
+      }
+
+      function hasPseudoCode() {
+        var inputs = Property.VideoInput.value.toArray()
+        for (var i = 0; i < inputs.length; i++) {
+          if (inputs[i].PseudoCode) {
+            return true
+          }
         }
+        return false
+      }
 
-        $(function () {
-            device_video_input_pseudo_code_load();
-        });
+      function checkToAllUnassociatedBtn(value) {
+        var btn = document.getElementById('btnUnassociatedAll')
+        $(btn).removeClass('btn-primary')
+        $(btn).removeClass('btn-default')
+        var css = value ? 'btn-primary' : 'btn-default'
+        $(btn).addClass(css)
+      }
+
+      function btnVideoInputSearchClick() {
+        Html.GroupList.VideoInput.clear()
+        Html.GroupList.VideoInput.SearchStr =
+          videoInputSearchControl.Input.value
+        Html.GroupList.VideoInput.create(
+          Html.GroupList.VideoInput.SearchStr,
+          Html.GroupList.VideoInput.SearchClassification
+        )
+      }
+
+      function btnPseudoCodeSearchClick() {
+        var re = /^[0-9]*[1-9][0-9]*$/
+        if (
+          !re.test(pseudoCodeHeadSearchControl.Input.value) ||
+          parseInt(pseudoCodeHeadSearchControl.Input.value) > 9999
+        )
+          return
+        var tag = document.getElementById(
+          pseudoCodeHeadSearchControl.Input.value
+        )
+        var codes = Property.PseudoCode.value.toArray()
+        if (
+          !tag &&
+          Html.GroupList.PseudoCode.isAssociation != 'Association' &&
+          parseInt(pseudoCodeHeadSearchControl.Input.value) > codes.length
+        ) {
+          while (
+            !document.getElementById(pseudoCodeHeadSearchControl.Input.value)
+          ) {
+            Html.GroupList.PseudoCode.loadMore()
+          }
+        }
+        tag = document.getElementById(pseudoCodeHeadSearchControl.Input.value)
+        $('#dListPseudoCode').animate({ scrollTop: tag.offsetTop }, 'fast')
+      }
+
+      function selectClassification_Click(args) {
+        tryCatch(function () {
+          if (args == 'All') args = null
+          if (Html.GroupList.VideoInput.SearchClassification == args)
+            return false
+          Html.GroupList.VideoInput.SearchClassification = args ? args : null
+          Html.GroupList.VideoInput.clear()
+          Html.GroupList.VideoInput.create(
+            Html.GroupList.VideoInput.SearchStr,
+            Html.GroupList.VideoInput.SearchClassification
+          )
+        })
+        return false
+      }
+
+      function VideoInputOrder(name, desc) {
+        var btns = document.getElementsByClassName('orderBtn')
+        for (var i = 0; i < btns.length; i++) {
+          if (btns[i].className.indexOf('hasNotOrder') < 0) {
+            $(btns[i]).addClass('hasNotOrder')
+          }
+        }
+        var icon = document.getElementById(name + 'Icon')
+        Html.GroupList.VideoInput.order[name] =
+          !Html.GroupList.VideoInput.order[name]
+        if (icon) {
+          if (icon.parentNode.className.indexOf('hasNotOrder') > -1)
+            $(icon.parentNode).removeClass('hasNotOrder')
+          $(icon).removeClass('icon-long-arrow-up')
+          $(icon).removeClass('icon-long-arrow-down')
+          var css = Html.GroupList.VideoInput.order[name]
+            ? 'icon-long-arrow-down'
+            : 'icon-long-arrow-up'
+          $(icon).addClass(css)
+        }
+        Html.GroupList.VideoInput.orderList(
+          name,
+          Html.GroupList.VideoInput.order[name]
+        )
+      }
+
+      $(function () {
+        device_video_input_pseudo_code_load()
+      })
     </script>
-</body>
+  </body>
 </html>

@@ -1,13 +1,12 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
+  <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>网络环境</title>
     <link href="css/howell.css" rel="stylesheet" />
-    
 
-    <script src="js/jquery/jquery-1.10.2.min.js"></script>
+    <script src="js/jquery/jquery-3.6.0.min.js"></script>
     <!--<script src="js/jquery/jquery-1.10.0.js"></script>-->
     <script src="js/jquery/jquery-ui.js"></script>
     <script src="js/bootstrap/bootstrap.min.js"></script>
@@ -23,266 +22,316 @@
     <script src="js/nav.js"></script>
     <script src="js/client/client.js"></script>
     <script src="js/client/health.js"></script>
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
-</head>
-<body>
+    <meta
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+      name="viewport"
+    />
+  </head>
+  <body>
     <!--[if IE 8]>
-    <style type="text/css">
+      <style type="text/css">
         .widget-container {
-            box-shadow:0px 1px 2px #E6E6E6;
-            behavior: url(css/PIE.htc);
+          box-shadow: 0px 1px 2px #e6e6e6;
+          behavior: url(css/PIE.htc);
         }
-    </style>
+      </style>
     <![endif]-->
     <div class="page-main row">
-        <!-- Donut Charts -->
-        <div class="col-md-12">
-            <div class="widget-container" style="padding-bottom:50px;">
-                <div class="row" style="padding-top:50px;padding-left:50px;">
-                    <div class="col-md-4">
-                        <div id="divPercentage" class="pie-chart pie-number" data-percent="100">
-                            100%
-                        </div>
-                    </div>
-                    <div class="col-xs-6">
-                        <div class="description" id="divDescription">您的网络环境安全、可靠</div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div id="divSubDesc" class="col-md-12 prompt">
-
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="widget-container stats-container">
-                        <div class="col-md-2">
-                            <a href="#" onclick="check_details_reports(this, ['fault', 'OfflineNumber'])">
-                                <div class="cpanel OfflineNumber"></div>
-                                <div class="text-danger">离线设备</div>
-                                <div id="divOfflineNumber">0</div>
-                            </a>
-                        </div>
-                        <div class="col-md-2">
-                            <a href="#" onclick="check_details_reports(this, ['fault', 'StorageMediumAbnormalNumber'])">
-                                <div class="cpanel StorageMediumAbnormalNumber"></div>
-                                <div class="text-danger">出错的存储媒介</div>
-                                <div id="divStorageMediumAbnormalNumber">0</div>
-                            </a>
-                        </div>
-                        <div class="col-md-2">
-                            <a href="#" onclick="check_details_reports(this, ['fault', 'VideolossNumber'])">
-                                <div class="cpanel VideolossNumber"></div>
-                                <div class="text-danger">视频丢失通道</div>
-                                <div id="divVideolossNumber">0</div>
-                            </a>
-                        </div>
-                        <div class="col-md-2">
-                            <a href="#" onclick="check_details_reports(this, ['warning', 'CPUUsageNumber'])">
-                                <div class="cpanel CPUUsageNumber"></div>
-                                <div class="text-danger">CPU占用过高</div>
-                                <div id="divCPUUsageNumber">0</div>
-                            </a>
-                        </div>
-                        <div class="col-md-2">
-                            <a href="#" onclick="check_details_reports(this, ['warning', 'MemoryUsageNumber'])">
-                                <div class="cpanel MemoryUsageNumber"></div>
-                                <div class="text-danger">内存占用过高</div>
-                                <div id="divMemoryUsageNumber">0</div>
-                            </a>
-                        </div>
-                        <div class="col-md-2">
-                            <a href="#" onclick="check_details_reports(this, ['warning', 'NetworkUsageNumber'])">
-                                <div class="cpanel NetworkUsageNumber"></div>
-                                <div class="text-danger">网口使用率过高</div>
-                                <div id="divNetworkUsageNumber">0</div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="widget-container stats-container">
-                        <div class="col-md-2">
-                            <a href="#" onclick="check_details_reports(this, ['warning', 'SuperHeatNumber'])">
-                                <div class="cpanel SuperHeatNumber"></div>
-                                <div class="text-danger">设备过热</div>
-                                <div id="divSuperHeat">0</div>
-                            </a>
-                        </div>
-                        <div class="col-md-2">
-                            <a href="#" onclick="check_details_reports(this, ['warning', 'VoltageInstabilityNumber'])">
-                                <div class="cpanel VoltageInstabilityNumber"></div>
-                                <div class="text-danger">电压不稳</div>
-                                <div id="divVoltageInstabilityNumber">0</div>
-                            </a>
-                        </div>
-                        <div class="col-md-2">
-                            <a href="#" onclick="check_details_reports(this, ['warning', 'VideoHighLoadNumber'])">
-                                <div class="cpanel VideoHighLoadNumber"></div>
-                                <div class="text-danger">设备视频负载过高</div>
-                                <div id="divVideoHighLoadNumber">0</div>
-                            </a>
-                        </div>
-                        <div class="col-md-2">
-                            <a href="#" onclick="check_details_reports(this, ['warning', 'VideoNetworkInstabilityNumber'])">
-                                <div class="cpanel VideoNetworkInstabilityNumber"></div>
-                                <div class="text-danger">视频网络状态不稳定</div>
-                                <div id="divVideoNetworkInstabilityNumber">0</div>
-                            </a>
-                        </div>
-                        <div class="col-md-2">
-                            <a href="#" onclick="check_details_reports(this, ['warning', 'TeardownNumber'])">
-                                <div class="cpanel TeardownNumber"></div>
-                                <div class="text-danger">异常上下线</div>
-                                <div id="divTeardownNumber">0</div>
-                            </a>
-                        </div>
-                        <div class="col-md-2">
-                            <a href="#" onclick="check_details_reports(this, ['warning', 'VideoConnectionFailureNumber'])">
-                                <div class="cpanel VideoConnectionFailureNumber"></div>
-                                <div class="text-danger">视频连接失败率过高</div>
-                                <div id="divVideoConnectionFailureNumber">0</div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+      <!-- Donut Charts -->
+      <div class="col-md-12">
+        <div class="widget-container" style="padding-bottom: 50px">
+          <div class="row" style="padding-top: 50px; padding-left: 50px">
+            <div class="col-md-4">
+              <div
+                id="divPercentage"
+                class="pie-chart pie-number"
+                data-percent="100"
+              >
+                100%
+              </div>
             </div>
+            <div class="col-xs-6">
+              <div class="description" id="divDescription">
+                您的网络环境安全、可靠
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div id="divSubDesc" class="col-md-12 prompt"></div>
+          </div>
+          <div class="row">
+            <div class="widget-container stats-container">
+              <div class="col-md-2">
+                <a
+                  onclick="check_details_reports(this, ['fault', 'OfflineNumber'])"
+                >
+                  <div class="cpanel OfflineNumber"></div>
+                  <div class="text-danger">离线设备</div>
+                  <div id="divOfflineNumber">0</div>
+                </a>
+              </div>
+              <div class="col-md-2">
+                <a
+                  onclick="check_details_reports(this, ['fault', 'StorageMediumAbnormalNumber'])"
+                >
+                  <div class="cpanel StorageMediumAbnormalNumber"></div>
+                  <div class="text-danger">出错的存储媒介</div>
+                  <div id="divStorageMediumAbnormalNumber">0</div>
+                </a>
+              </div>
+              <div class="col-md-2">
+                <a
+                  onclick="check_details_reports(this, ['fault', 'VideolossNumber'])"
+                >
+                  <div class="cpanel VideolossNumber"></div>
+                  <div class="text-danger">视频丢失通道</div>
+                  <div id="divVideolossNumber">0</div>
+                </a>
+              </div>
+              <div class="col-md-2">
+                <a
+                  onclick="check_details_reports(this, ['warning', 'CPUUsageNumber'])"
+                >
+                  <div class="cpanel CPUUsageNumber"></div>
+                  <div class="text-danger">CPU占用过高</div>
+                  <div id="divCPUUsageNumber">0</div>
+                </a>
+              </div>
+              <div class="col-md-2">
+                <a
+                  onclick="check_details_reports(this, ['warning', 'MemoryUsageNumber'])"
+                >
+                  <div class="cpanel MemoryUsageNumber"></div>
+                  <div class="text-danger">内存占用过高</div>
+                  <div id="divMemoryUsageNumber">0</div>
+                </a>
+              </div>
+              <div class="col-md-2">
+                <a
+                  onclick="check_details_reports(this, ['warning', 'NetworkUsageNumber'])"
+                >
+                  <div class="cpanel NetworkUsageNumber"></div>
+                  <div class="text-danger">网口使用率过高</div>
+                  <div id="divNetworkUsageNumber">0</div>
+                </a>
+              </div>
+            </div>
+            <div class="widget-container stats-container">
+              <div class="col-md-2">
+                <a
+                  onclick="check_details_reports(this, ['warning', 'SuperHeatNumber'])"
+                >
+                  <div class="cpanel SuperHeatNumber"></div>
+                  <div class="text-danger">设备过热</div>
+                  <div id="divSuperHeat">0</div>
+                </a>
+              </div>
+              <div class="col-md-2">
+                <a
+                  onclick="check_details_reports(this, ['warning', 'VoltageInstabilityNumber'])"
+                >
+                  <div class="cpanel VoltageInstabilityNumber"></div>
+                  <div class="text-danger">电压不稳</div>
+                  <div id="divVoltageInstabilityNumber">0</div>
+                </a>
+              </div>
+              <div class="col-md-2">
+                <a
+                  onclick="check_details_reports(this, ['warning', 'VideoHighLoadNumber'])"
+                >
+                  <div class="cpanel VideoHighLoadNumber"></div>
+                  <div class="text-danger">设备视频负载过高</div>
+                  <div id="divVideoHighLoadNumber">0</div>
+                </a>
+              </div>
+              <div class="col-md-2">
+                <a
+                  onclick="check_details_reports(this, ['warning', 'VideoNetworkInstabilityNumber'])"
+                >
+                  <div class="cpanel VideoNetworkInstabilityNumber"></div>
+                  <div class="text-danger">视频网络状态不稳定</div>
+                  <div id="divVideoNetworkInstabilityNumber">0</div>
+                </a>
+              </div>
+              <div class="col-md-2">
+                <a
+                  onclick="check_details_reports(this, ['warning', 'TeardownNumber'])"
+                >
+                  <div class="cpanel TeardownNumber"></div>
+                  <div class="text-danger">异常上下线</div>
+                  <div id="divTeardownNumber">0</div>
+                </a>
+              </div>
+              <div class="col-md-2">
+                <a
+                  onclick="check_details_reports(this, ['warning', 'VideoConnectionFailureNumber'])"
+                >
+                  <div class="cpanel VideoConnectionFailureNumber"></div>
+                  <div class="text-danger">视频连接失败率过高</div>
+                  <div id="divVideoConnectionFailureNumber">0</div>
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
     <a href="health/faults.htm"></a>
     <script type="text/javascript">
-
-    var Health = {
+      var Health = {
         fault: new SystemFaultStatistics(),
         warning: new SystemWarningStatistics(),
         value: 100,
         threshold: {
-            A: 80,
-            B: 60,
+          A: 80,
+          B: 60,
         },
         fault: false,
         warning: false,
         description: function () {
-            var result = "您的网络环境安全、可靠"
-            if (this.value < this.threshold.B || (this.fault && this.fault.FaultNumber > 0))
-                result = "您的网络环境存在故障，需要检查";//红色
-            else if (this.value < this.threshold.A)
-                result = "您的网络环境存在风险";//黄色
-            return result;
+          var result = '您的网络环境安全、可靠'
+          if (
+            this.value < this.threshold.B ||
+            (this.fault && this.fault.FaultNumber > 0)
+          )
+            result = '您的网络环境存在故障，需要检查' //红色
+          else if (this.value < this.threshold.A)
+            result = '您的网络环境存在风险' //黄色
+          return result
         },
         subDesc: function (fault, warning) {
+          function AnchorFault() {
+            var a = document.createElement('a')
+            a.href = 'health/faults.htm'
+            a.title = '查看所有故障信息'
+            a.innerHTML = '故障'
+            a.style.color = '#f46f50'
+            return a
+          }
+          function AnchorWarning() {
+            var a = document.createElement('a')
+            a.href = 'health/warnings.htm'
+            a.title = '查看所有警告信息'
+            a.innerHTML = '警告'
+            a.style.color = '#fab43b'
+            return a
+          }
+          if (fault > 0 && warning > 0)
+            return (
+              "<span class='icon-exclamation-sign'></span>发现" +
+              fault +
+              '个' +
+              AnchorFault().outerHTML +
+              '和' +
+              warning +
+              '个' +
+              AnchorWarning().outerHTML
+            )
 
-            function AnchorFault() {
-                var a = document.createElement("a");
-                a.href = "health/faults.htm";
-                a.title = "查看所有故障信息";
-                a.innerHTML = "故障";
-                a.style.color = "#f46f50";
-                return a;
-            }
-            function AnchorWarning() {
-                var a = document.createElement("a");
-                a.href = "health/warnings.htm";
-                a.title = "查看所有警告信息";
-                a.innerHTML = "警告";
-                a.style.color = "#fab43b";
-                return a;
-            }
-            if (fault > 0 && warning > 0)
-                return "<span class='icon-exclamation-sign'></span>发现" + fault + "个" + AnchorFault().outerHTML + "和" + warning + "个" + AnchorWarning().outerHTML;
+          if (fault > 0)
+            return (
+              "<span class='icon-exclamation-sign'></span>发现" +
+              fault +
+              '个' +
+              AnchorFault().outerHTML
+            )
 
-            if (fault > 0)
-                return "<span class='icon-exclamation-sign'></span>发现" + fault + "个" + AnchorFault().outerHTML;
+          if (warning > 0)
+            return (
+              "<span class='icon-exclamation-sign'></span>发现" +
+              fault +
+              '个' +
+              AnchorWarning().outerHTML
+            )
 
-            if (warning > 0)
-                return "<span class='icon-exclamation-sign'></span>发现" + fault + "个" + AnchorWarning().outerHTML;
-
-            return "<span class='icon-ok'></span>没有发现异常";
+          return "<span class='icon-ok'></span>没有发现异常"
         },
         color: function () {
-            var result = "#81e970"//绿色
-            if (this.value < this.threshold.B || (this.fault && this.fault.FaultNumber > 0))
-                result = "#f46f50";//红色
-            else if (this.value < this.threshold.A)
-                result = "#fab43b";//黄色
-            return result;
+          var result = '#81e970' //绿色
+          if (
+            this.value < this.threshold.B ||
+            (this.fault && this.fault.FaultNumber > 0)
+          )
+            result = '#f46f50' //红色
+          else if (this.value < this.threshold.A) result = '#fab43b' //黄色
+          return result
         },
         load_chart: function (id) {
-            var p = getTag(id);
-            p.innerText = this.value + "%";
+          var p = getTag(id)
+          p.innerText = this.value + '%'
 
-            p.setAttribute("data-percent", this.value);
+          p.setAttribute('data-percent', this.value)
 
-            $("#" + id).easyPieChart({
-                size: 200,
-                lineWidth: 12,
-                lineCap: "square",
-                barColor: this.color(),
-                animate: 800,
-                scaleColor: false,
-            });
-        }
-    }
+          $('#' + id).easyPieChart({
+            size: 200,
+            lineWidth: 12,
+            lineCap: 'square',
+            barColor: this.color(),
+            animate: 800,
+            scaleColor: false,
+          })
+        },
+      }
 
-    function check_details_reports(sender, args) {
-        var key = args[0];
-        var type = args[1];
+      function check_details_reports(sender, args) {
+        var key = args[0]
+        var type = args[1]
 
         if (Health[key][type] > 0)
-            document.location = "health/" + key + "s.htm?type=" + type;
-    }
+          document.location = 'health/' + key + 's.htm?type=' + type
+      }
 
-    function health_load() {
-
+      function health_load() {
         var statics = tryCatch(function () {
-            return Client.Health().Health();
-        });
+          return Client.Health().Health()
+        })
 
-        Health.fault = statics.Faults;
-        Health.warning = statics.Warnings;
+        Health.fault = statics.Faults
+        Health.warning = statics.Warnings
 
-        $(".fault").removeClass("fault");
-        $(".warning").removeClass("warning");
-
-
+        $('.fault').removeClass('fault')
+        $('.warning').removeClass('warning')
 
         for (var key in statics.Faults) {
-            var value = statics.Faults[key];
-            var div = getTag("div" + key);
-            if (div) {
-                div.innerHTML = statics.Faults[key];
-            }
-            if (value > 0) {
-                div = getTag(key, getTagType.Class);
-                if (div.length > 0)
-                    div.item(0).className += " fault";
-            }
+          var value = statics.Faults[key]
+          var div = getTag('div' + key)
+          if (div) {
+            div.innerHTML = statics.Faults[key]
+          }
+          if (value > 0) {
+            div = getTag(key, getTagType.Class)
+            if (div.length > 0) div.item(0).className += ' fault'
+          }
         }
         for (var key in statics.Warnings) {
-            var value = statics.Warnings[key];
-            var div = getTag("div" + key);
-            if (div) {
-                div.innerHTML = value;
-            }
-            if (value > 0) {
-                div = getTag(key, getTagType.Class);
-                if (div.length > 0)
-                    div.item(0).className += " warning";
-            }
+          var value = statics.Warnings[key]
+          var div = getTag('div' + key)
+          if (div) {
+            div.innerHTML = value
+          }
+          if (value > 0) {
+            div = getTag(key, getTagType.Class)
+            if (div.length > 0) div.item(0).className += ' warning'
+          }
         }
 
-
         Health.value = statics.Percentage
-        getTag("divDescription").innerHTML = Health.description();
-        getTag("divSubDesc").innerHTML = Health.subDesc(statics.Faults.FaultNumber, statics.Warnings.WarningNumber);
-        Health.load_chart("divPercentage");
-    }
-    var urls = new Array();
-    urls.push("js/jquery/jquery.sparkline.min.js");
-    urls.push("js/jquery/jquery.easy-pie-chart.js");
-    urls.push("js/highcharts/highcharts.js");
-    urls.push("js/modernizr.custom.js");
-    urls.push("js/client/health.js");
-    loadScripts(urls, function () {
-        health_load();
-    });
+        getTag('divDescription').innerHTML = Health.description()
+        getTag('divSubDesc').innerHTML = Health.subDesc(
+          statics.Faults.FaultNumber,
+          statics.Warnings.WarningNumber
+        )
+        Health.load_chart('divPercentage')
+      }
+      var urls = new Array()
+      urls.push('js/jquery/jquery.sparkline.min.js')
+      urls.push('js/jquery/jquery.easy-pie-chart.js')
+      urls.push('js/highcharts/highcharts.js')
+      urls.push('js/modernizr.custom.js')
+      urls.push('js/client/health.js')
+      loadScripts(urls, function () {
+        health_load()
+      })
     </script>
-</body>
+  </body>
 </html>

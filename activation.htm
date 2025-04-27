@@ -1,13 +1,13 @@
 ﻿<!DOCTYPE html>
 <html>
-<head>
+  <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
     <meta charset="utf-8" />
     <link href="css/howell.css" rel="stylesheet" />
     <link href="css/jquery.fileupload.css" rel="stylesheet" />
     <script src="config.js"></script>
-    <script src="js/jquery/jquery-1.10.2.min.js"></script>
+    <script src="js/jquery/jquery-3.6.0.min.js"></script>
     <script src="js/bootstrap/bootstrap.min.js"></script>
     <script src="js/howell.js/howell.js"></script>
     <script src="js/bootstrap/bootstrap-fileupload.js"></script>
@@ -22,185 +22,184 @@
     <script src="js/howell.js/howell.convert.js"></script>
 
     <script type="text/javascript">
+      function readAsBinaryString() {
+        var file = document.getElementById('file').files[0]
+        var reader = new FileReader()
+        //将文件以二进制形式读入页面
 
-
-
-        function readAsBinaryString() {
-            var file = document.getElementById("file").files[0];
-            var reader = new FileReader();
-            //将文件以二进制形式读入页面
-
-            reader.onload = function (f) {
-                var result = document.getElementById("result");
-                //显示文件
-                result.innerText = this.result;
-            }
+        reader.onload = function (f) {
+          var result = document.getElementById('result')
+          //显示文件
+          result.innerText = this.result
         }
+      }
 
-        var data = "";
-        var reader = new FileReader();
-        reader.onload = function (file) {
-            data = this.result;
+      var data = ''
+      var reader = new FileReader()
+      reader.onload = function (file) {
+        data = this.result
 
+        var xhr = new XMLHttpRequest()
 
-            var xhr = new XMLHttpRequest();
+        xhr.upload.addEventListener('progress', uploadProgress, false)
+        xhr.addEventListener('load', uploadComplete, false)
+        xhr.addEventListener('error', uploadFailed, false)
+        xhr.addEventListener('abort', uploadCanceled, false)
+        xhr.open('POST', Client.Authentication().Activation())
+        xhr.setRequestHeader('Content-Type', 'application/octet-stream')
+        xhr.send(data)
+      }
 
-            xhr.upload.addEventListener("progress", uploadProgress, false);
-            xhr.addEventListener("load", uploadComplete, false);
-            xhr.addEventListener("error", uploadFailed, false);
-            xhr.addEventListener("abort", uploadCanceled, false);
-            xhr.open("POST", Client.Authentication().Activation());
-            xhr.setRequestHeader("Content-Type", "application/octet-stream");
-            xhr.send(data);
+      function uploadFile() {
+        $('.progress-bar').css('width', 0 + '%')
+        var file = document.getElementById('file').files[0]
+        if (file) {
+          reader.readAsArrayBuffer(file)
         }
+      }
 
-        function uploadFile() {
-            $(".progress-bar").css("width", 0 + "%");
-            var file = document.getElementById('file').files[0];
-            if (file) {
-                reader.readAsArrayBuffer(file);
-            }
+      function uploadProgress(evt) {
+        if (evt.lengthComputable) {
+          var percentComplete = Math.round((evt.loaded * 100) / evt.total)
+          document.getElementById('progressNumber').innerHTML =
+            percentComplete.toString() + '%'
+          //document.getElementById('progressNumberBar').style.width =  + "%";
+          $('.progress-bar').css('width', percentComplete + '%')
+        } else {
+          document.getElementById('progressNumber').innerHTML =
+            'unable to compute'
         }
+      }
 
+      function uploadComplete(evt) {
+        /* This event is raised when the server send back a response */
+        if (evt && evt.currentTarget) {
+          if (evt.currentTarget.status == 200) {
+            var response = JSONDeserialization(evt.currentTarget.responseText)
+            response.CreationTime = Convert.ToDate(response.CreationTime)
+            response.ExpiredTime = Convert.ToDate(response.ExpiredTime)
+            var date = new Date()
 
+            var example = document.getElementById('example')
+            example.getElementsByClassName('CreationTime')[0].innerHTML =
+              response.CreationTime.format('yyyy-MM-dd')
+            example.getElementsByClassName('ExpiredTime')[0].innerHTML =
+              response.ExpiredTime.format('yyyy-MM-dd')
+            example.getElementsByClassName('SerialNumber')[0].innerHTML =
+              response.SerialNumber
 
-        function uploadProgress(evt) {
-            if (evt.lengthComputable) {
-                var percentComplete = Math.round(evt.loaded * 100 / evt.total);
-                document.getElementById('progressNumber').innerHTML = percentComplete.toString() + '%';
-                //document.getElementById('progressNumberBar').style.width =  + "%";
-                $(".progress-bar").css("width", percentComplete + "%");
-            }
-            else {
-                document.getElementById('progressNumber').innerHTML = 'unable to compute';
-            }
+            $.confirm({
+              text: example.innerHTML,
+              cancelButton: '关闭',
+              okButton: '去登录',
+              confirm: function () {
+                document.location = '/manager.htm'
+              },
+            })
+          } else {
+            tryCatch(function () {
+              throw new howellException(
+                evt.currentTarget.status,
+                evt.currentTarget.responseText
+              )
+            })
+          }
         }
+      }
 
-        function uploadComplete(evt) {
-            /* This event is raised when the server send back a response */
-            if (evt && evt.currentTarget) {
-                if (evt.currentTarget.status == 200) {
-                    var response = JSONDeserialization(evt.currentTarget.responseText)
-                    response.CreationTime = Convert.ToDate(response.CreationTime);
-                    response.ExpiredTime = Convert.ToDate(response.ExpiredTime);
-                    var date = new Date();
+      function uploadFailed(evt) {
+        alert('There was an error attempting to upload the file.')
+      }
 
-                    var example = document.getElementById("example");
-                    example.getElementsByClassName("CreationTime")[0].innerHTML = response.CreationTime.format("yyyy-MM-dd");
-                    example.getElementsByClassName("ExpiredTime")[0].innerHTML = response.ExpiredTime.format("yyyy-MM-dd");
-                    example.getElementsByClassName("SerialNumber")[0].innerHTML = response.SerialNumber;
-
-                    $.confirm({
-                        text: example.innerHTML, cancelButton: "关闭", okButton: "去登录", confirm: function () {
-                            document.location = "/manager.htm";
-                        }
-                    });
-                }
-                else {
-
-                    tryCatch(function () {
-                        throw new howellException(evt.currentTarget.status, evt.currentTarget.responseText);
-                    });
-                }
-            }
-        }
-
-        function uploadFailed(evt) {
-            alert("There was an error attempting to upload the file.");
-        }
-
-        function uploadCanceled(evt) {
-            alert("The upload has been canceled by the user or the browser dropped the connection.");
-        }
-
-
+      function uploadCanceled(evt) {
+        alert(
+          'The upload has been canceled by the user or the browser dropped the connection.'
+        )
+      }
     </script>
-
-
-</head>
-<body class="login2" style="padding-top:350px;">
-
-
-
-
+  </head>
+  <body class="login2" style="padding-top: 350px">
     <div class="login-wrapper">
-        <div class="login-container">
+      <div class="login-container">
+        <h1 class="">上传激活文件</h1>
 
-
-            <h1 class="">上传激活文件</h1>
-
-            <div class="form-group">
-
-                <div class="fileupload fileupload-new" data-provides="fileupload">
-                    <div class="input-group">
-                        <div class="form-control">
-                            <i class="icon-file fileupload-exists"></i><span class="fileupload-preview"></span>
-                        </div>
-                        <div class="input-group-btn">
-                            <a class="btn btn-default fileupload-exists" data-dismiss="fileupload" href="#">移除</a>
-                            <span class="btn btn-default btn-file">
-                                <span class="fileupload-new">选择文件</span><span class="fileupload-exists">重新选择</span>
-                                <input id="file" type="file">
-                            </span>
-                        </div>
-                    </div>
-                </div>
+        <div class="form-group">
+          <div class="fileupload fileupload-new" data-provides="fileupload">
+            <div class="input-group">
+              <div class="form-control">
+                <i class="icon-file fileupload-exists"></i
+                ><span class="fileupload-preview"></span>
+              </div>
+              <div class="input-group-btn">
+                <a
+                  class="btn btn-default fileupload-exists"
+                  data-dismiss="fileupload"
+                  >移除</a
+                >
+                <span class="btn btn-default btn-file">
+                  <span class="fileupload-new">选择文件</span
+                  ><span class="fileupload-exists">重新选择</span>
+                  <input id="file" type="file" />
+                </span>
+              </div>
             </div>
-            <div class="form-group center">
-                <button class="btn btn-primary col-md-push-3" type="button" onclick="uploadFile()">上传</button>
-                <a class="btn btn-primary-outline col-md-pull-3" href="manager.htm">返回</a>
-
-            </div>
-
-
-
-            <div class="form-group">
-                <div id="progress" class="progress">
-                    <div class="progress-bar progress-bar-success"></div>
-                </div>
-            </div>
-            <div id="progressNumber"></div>
+          </div>
         </div>
-    </div>    
-    <div id="example" style="display:none;border:1px solid">
-        <div class="page-title">
-            <h3 class="list-heading-div">
-                <i class="icon-key title mouse_default" style="margin-right:30px;margin-left:10px"></i>
-                <label>激活信息</label>
-            </h3>
+        <div class="form-group center">
+          <button
+            class="btn btn-primary col-md-push-3"
+            type="button"
+            onclick="uploadFile()"
+          >
+            上传
+          </button>
+          <a class="btn btn-primary-outline col-md-pull-3" href="manager.htm"
+            >返回</a
+          >
         </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="widget-content padded">
 
-                    <div class="form-group">
-                        <label class="control-label col-md-2">
-                            创建时间
-                        </label>
-                        <div class="col-md-9">
-                            <label class="form-control CreationTime" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-2">
-                            过期时间
-                        </label>
-                        <div class="col-md-9">
-                            <label class="form-control ExpiredTime" />
-                        </div>
-                    </div>
-                    <div class="form-group" style="margin-bottom:100px;">
-                        <label class="control-label col-md-2">
-                            序列号
-                        </label>
-                        <div class="col-md-9">
-                            <label class="form-control SerialNumber" />
-                        </div>
-                    </div>
-
-                </div>
-            </div>
+        <div class="form-group">
+          <div id="progress" class="progress">
+            <div class="progress-bar progress-bar-success"></div>
+          </div>
         </div>
+        <div id="progressNumber"></div>
+      </div>
     </div>
-</body>
+    <div id="example" style="display: none; border: 1px solid">
+      <div class="page-title">
+        <h3 class="list-heading-div">
+          <i
+            class="icon-key title mouse_default"
+            style="margin-right: 30px; margin-left: 10px"
+          ></i>
+          <label>激活信息</label>
+        </h3>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="widget-content padded">
+            <div class="form-group">
+              <label class="control-label col-md-2"> 创建时间 </label>
+              <div class="col-md-9">
+                <label class="form-control CreationTime" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-md-2"> 过期时间 </label>
+              <div class="col-md-9">
+                <label class="form-control ExpiredTime" />
+              </div>
+            </div>
+            <div class="form-group" style="margin-bottom: 100px">
+              <label class="control-label col-md-2"> 序列号 </label>
+              <div class="col-md-9">
+                <label class="form-control SerialNumber" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>

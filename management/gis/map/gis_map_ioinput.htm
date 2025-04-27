@@ -1,68 +1,81 @@
-﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
+  <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>在线状态</title>
     <link rel="stylesheet" type="text/css" href="../css/howell.css" />
     <script type="text/javascript" src="../js/language/chinese.js"></script>
-    <script type="text/javascript" src="../js/jquery/jquery-1.10.2.min.js"></script>
+    <script
+      type="text/javascript"
+      src="../js/jquery/jquery-3.6.0.min.js"
+    ></script>
     <script type="text/javascript" src="../js/imported.js"></script>
     <script type="text/javascript" src="../js/jquery/jquery-ui.js"></script>
-    <script type="text/javascript" src="../js/bootstrap/bootstrap.min.js"></script>
+    <script
+      type="text/javascript"
+      src="../js/bootstrap/bootstrap.min.js"
+    ></script>
     <script type="text/javascript" src="../js/modernizr.custom.js"></script>
     <script type="text/javascript" src="../js/howell.js/howell.js"></script>
-    <script type="text/javascript" src="../js/howell.js/howell.control.js"></script>
+    <script
+      type="text/javascript"
+      src="../js/howell.js/howell.control.js"
+    ></script>
     <script type="text/javascript" src="../js/client/enum.js"></script>
     <script type="text/javascript" src="../js/base64.js"></script>
     <script type="text/javascript" src="../js/client/struct.js"></script>
     <script type="text/javascript" src="../js/client/management.js"></script>
     <script type="text/javascript" src="../js/client/client.js"></script>
-    <script type="text/javascript" src="../js/howell.js/howell.convert.js"></script>
-</head>
-<body>
+    <script
+      type="text/javascript"
+      src="../js/howell.js/howell.convert.js"
+    ></script>
+  </head>
+  <body>
     <style type="text/css">
-        .icon_btn {
-            margin-left: 0px;
-            width: 200px;
-        }
+      .icon_btn {
+        margin-left: 0px;
+        width: 200px;
+      }
 
-        .gis_map_io_input_list_title_ico {
-            color: #007aff;
-        }
+      .gis_map_io_input_list_title_ico {
+        color: #007aff;
+      }
 
-        #gis_map_ioinput_list p {
-            padding-top: 0;
-            padding-bottom: 0;
-        }
+      #gis_map_ioinput_list p {
+        padding-top: 0;
+        padding-bottom: 0;
+      }
 
-        #gis_map_ioinput_list .firstLineDiv {
-            height: 18px;
-            font-size: 14px;
-        }
+      #gis_map_ioinput_list .firstLineDiv {
+        height: 18px;
+        font-size: 14px;
+      }
 
-        #gis_map_ioinput_list .secondLineDiv {
-            height: 18px;
-            font-size: 11px;
-        }
+      #gis_map_ioinput_list .secondLineDiv {
+        height: 18px;
+        font-size: 11px;
+      }
 
-        #gis_map_ioinput_list .removeBtn {
-            line-height: 38px;
-        }
+      #gis_map_ioinput_list .removeBtn {
+        line-height: 38px;
+      }
 
-        #gis_map_ioinput_list .iconBtn {
-            line-height: 38px;
-        }
+      #gis_map_ioinput_list .iconBtn {
+        line-height: 38px;
+      }
     </style>
-    <div class="widget-container fluid-height clearfix association-frame mouse_default swith_control"
-         style="display: block; width: 307px; height: 100%  !important;" onclick="stopPropagation()">
-        <div class="heading">
-            <i class="icon-linkedin-sign gis_map_io_input_list_title_ico"></i>
-            <span>
-                报警器
-            </span>
-            <!--<a class="icon-list-ul mouse_pointer" style="margin-left:30px;font-size:16px;" href="notice_list.htm"></a>-->
-        </div>
-        <!--<div class="association-operation-bar">
+    <div
+      class="widget-container fluid-height clearfix association-frame mouse_default swith_control"
+      style="display: block; width: 307px; height: 100% !important"
+      onclick="stopPropagation()"
+    >
+      <div class="heading">
+        <i class="icon-linkedin-sign gis_map_io_input_list_title_ico"></i>
+        <span> 报警器 </span>
+        <!--<a class="icon-list-ul mouse_pointer" style="margin-left:30px;font-size:16px;" href="notice_list.htm"></a>-->
+      </div>
+      <!--<div class="association-operation-bar">
             <div class="pull-left">
                 <a class="btn btn-xs btn-permission main list-permission-btn" onclick="return show_Click(this,'All');">
                     全部
@@ -73,126 +86,164 @@
                 </a>
             </div>
         </div>-->
-        <div class="widget-content padded clearfix association-list-container" style="overflow-y: auto;
-            height: 80%;">
-            <div id="glist_content">
-            </div>
-        </div>
+      <div
+        class="widget-content padded clearfix association-list-container"
+        style="overflow-y: auto; height: 80%"
+      >
+        <div id="glist_content"></div>
+      </div>
     </div>
     <script type="text/javascript">
-        var GIS_Map_IO_Input_Property = {
-            value: new Dictionary(),
-            load: function (index, size) {
-                var devices = tryCatch(function () {
-                    return Client.Management().Device.List();
-                });
-                if (devices && devices.Device) {
-                    for (var i = 0; i < devices.Device.length; i++) {
-                        var result = tryCatch(function () {
-                            return Client.Management().Device.IO.Input.List(devices.Device[i].Id);
-                        });
-                        if (result && result.IOInputChannel) {
-                            for (var j = 0; j < result.IOInputChannel.length; j++) {
-                                result.IOInputChannel[j].deviceName = devices.Device[i].Name;
-                                this.value[result.IOInputChannel[j].Id] = result.IOInputChannel[j];
-                            }
-                        }
-                    }
-                    return this.value.toArray();
+      var GIS_Map_IO_Input_Property = {
+        value: new Dictionary(),
+        load: function (index, size) {
+          var devices = tryCatch(function () {
+            return Client.Management().Device.List()
+          })
+          if (devices && devices.Device) {
+            for (var i = 0; i < devices.Device.length; i++) {
+              var result = tryCatch(function () {
+                return Client.Management().Device.IO.Input.List(
+                  devices.Device[i].Id
+                )
+              })
+              if (result && result.IOInputChannel) {
+                for (var j = 0; j < result.IOInputChannel.length; j++) {
+                  result.IOInputChannel[j].deviceName = devices.Device[i].Name
+                  this.value[result.IOInputChannel[j].Id] =
+                    result.IOInputChannel[j]
                 }
-                return null;
+              }
             }
+            return this.value.toArray()
+          }
+          return null
+        },
+      }
+      var GIS_Map_IO_Input_Html = {
+        create: function () {
+          var items = new GroupListItemArray()
+          var result = GIS_Map_IO_Input_Property.load()
+          for (var i = 0; i < result.length; i++) {
+            items.push(this.createItem(result[i]))
+          }
+          var gl = new GroupList('gis_map_ioinput_list', items)
+          document.getElementById('glist_content').innerHTML = '\n '
+          document.getElementById('glist_content').appendChild(gl)
+        },
+        createItem: function (input) {
+          var div = document.createElement('div')
+          var firstLineDiv = document.createElement('div')
+          firstLineDiv.className = 'firstLineDiv'
+          var secondLineDiv = document.createElement('div')
+          secondLineDiv.className = 'secondLineDiv'
+          firstLineDiv.innerText = input.Name
+          firstLineDiv.title = input.Name
+          secondLineDiv.innerText = input.deviceName
+          secondLineDiv.title = input.deviceName
+          div.appendChild(firstLineDiv)
+          div.appendChild(secondLineDiv)
+          div.className = 'pull-left'
+          var btn = new IconButton(
+            input.Id,
+            'icon-linkedin-sign pull-left iconBtn',
+            11,
+            div
+          )
+          var item = new GroupListItem()
+          item.id = input.Id
+          item.onclick = null
+          item.Content.appendChild(btn)
+          var removeBtn = document.createElement('a')
+          removeBtn.setAttribute(
+            'onclick',
+            "setIOInputItemDetailsClick(this, '" +
+              input.Id +
+              "','" +
+              input.Name +
+              "')"
+          )
+          removeBtn.title = '添加'
+          removeBtn.className =
+            'icon-plus-sign mouse_pointer pull-right removeBtn'
+
+          item.Content.appendChild(removeBtn)
+          //var info = document.createElement("div");
+          //info.className = "text-ellipsis notice-info";
+          //info.innerText = notice.Message;
+          //info.title = notice.Message;
+          //item.Content.appendChild(info);
+
+          //var time = document.createElement("div");
+
+          //var date = Convert.ToDate(notice.CreationTime);
+          ////time.innerText = date.toLocaleString();
+          //time.innerText = date.format("MM-dd HH:mm:ss");
+
+          //item.Content.appendChild(time);
+
+          //item.onclick = function (e) {
+          //    var a = document.createElement("a");
+          //    a.href = "AlertProcess.htm";
+          //    var result = Client.Management().Notice.Get(this.id);
+          //    result.Time = result.CreationTime;
+          //    result.Message = base64encode(utf16to8(result.Message));
+          //    var str = JSONstringify(result);
+          //    a.href += "?notice=" + encodeURI(str);
+          //    AlertWindow.Show(a);
+          //}
+          return item
+        },
+      }
+
+      function setIOInputItemDetailsClick(sender, args, name) {
+        var seletcId = GIS_Dispatch_Html.getSelectId()
+        if (
+          seletcId &&
+          (GIS_Dispatch_Property.MapList.LayerList.value[seletcId] ||
+            GIS_Dispatch_Property.MapList.ItemList.value[seletcId])
+        ) {
+          if (
+            GIS_Dispatch_Html.Pos.Longitude &&
+            GIS_Dispatch_Html.Pos.Latitude
+          ) {
+            var mapId
+            var parentId
+            if (GIS_Dispatch_Property.MapList.ItemList.value[seletcId]) {
+              mapId =
+                GIS_Dispatch_Property.MapList.ItemList.value[seletcId].mapId
+              parentId =
+                GIS_Dispatch_Property.MapList.ItemList.value[seletcId]
+                  .ParentLayerId
+            }
+            if (GIS_Dispatch_Property.MapList.LayerList.value[seletcId]) {
+              mapId =
+                GIS_Dispatch_Property.MapList.LayerList.value[seletcId].mapId
+              parentId = seletcId
+            }
+            Trigger = document.createElement('a')
+            Trigger.href =
+              'management/gis/map/item/gis_map_item_details.htm?iconType=4&mapId=' +
+              mapId +
+              '&parentId=' +
+              parentId +
+              '&longitude=' +
+              GIS_Dispatch_Html.Pos.Longitude +
+              '&latitude=' +
+              GIS_Dispatch_Html.Pos.Latitude +
+              '&componentId=' +
+              args +
+              '&componentName=' +
+              name
+            AlertWindow.Show(Trigger, -1)
+          } else {
+            alertPrompt('请选择一个点位')
+          }
+        } else {
+          alertPrompt('请选择一张图层')
         }
-        var GIS_Map_IO_Input_Html = {
-            create: function () {
-                var items = new GroupListItemArray();
-                var result = GIS_Map_IO_Input_Property.load();
-                for (var i = 0; i < result.length; i++) {
-                    items.push(this.createItem(result[i]));
-                }
-                var gl = new GroupList("gis_map_ioinput_list", items);
-                document.getElementById("glist_content").innerHTML = "\n ";
-                document.getElementById("glist_content").appendChild(gl);
-            },
-            createItem: function (input) {
-                var div = document.createElement("div");
-                var firstLineDiv = document.createElement("div");
-                firstLineDiv.className = "firstLineDiv";
-                var secondLineDiv = document.createElement("div");
-                secondLineDiv.className = "secondLineDiv";
-                firstLineDiv.innerText = input.Name;
-                firstLineDiv.title = input.Name;
-                secondLineDiv.innerText = input.deviceName;
-                secondLineDiv.title = input.deviceName;
-                div.appendChild(firstLineDiv);
-                div.appendChild(secondLineDiv);
-                div.className = "pull-left";
-                var btn = new IconButton(input.Id, "icon-linkedin-sign pull-left iconBtn", 11, div);
-                var item = new GroupListItem();
-                item.id = input.Id;
-                item.onclick = null;
-                item.Content.appendChild(btn);
-                var removeBtn = document.createElement("a");
-                removeBtn.setAttribute("onclick", "setIOInputItemDetailsClick(this, '" + input.Id + "','" + input.Name + "')");
-                removeBtn.title = "添加";
-                removeBtn.className = "icon-plus-sign mouse_pointer pull-right removeBtn";
-
-                item.Content.appendChild(removeBtn);
-                //var info = document.createElement("div");
-                //info.className = "text-ellipsis notice-info";
-                //info.innerText = notice.Message;
-                //info.title = notice.Message;
-                //item.Content.appendChild(info);
-
-                //var time = document.createElement("div");
-
-                //var date = Convert.ToDate(notice.CreationTime);
-                ////time.innerText = date.toLocaleString();
-                //time.innerText = date.format("MM-dd HH:mm:ss");
-
-                //item.Content.appendChild(time);
-
-                //item.onclick = function (e) {
-                //    var a = document.createElement("a");
-                //    a.href = "AlertProcess.htm";
-                //    var result = Client.Management().Notice.Get(this.id);
-                //    result.Time = result.CreationTime;
-                //    result.Message = base64encode(utf16to8(result.Message));
-                //    var str = JSONstringify(result);
-                //    a.href += "?notice=" + encodeURI(str);
-                //    AlertWindow.Show(a);
-                //}
-                return item;
-            }
-        }
-
-        function setIOInputItemDetailsClick(sender, args, name) {
-            var seletcId = GIS_Dispatch_Html.getSelectId();
-            if (seletcId && (GIS_Dispatch_Property.MapList.LayerList.value[seletcId] || GIS_Dispatch_Property.MapList.ItemList.value[seletcId])) {
-                if (GIS_Dispatch_Html.Pos.Longitude && GIS_Dispatch_Html.Pos.Latitude) {
-                    var mapId;
-                    var parentId;
-                    if (GIS_Dispatch_Property.MapList.ItemList.value[seletcId]) {
-                        mapId = GIS_Dispatch_Property.MapList.ItemList.value[seletcId].mapId;
-                        parentId = GIS_Dispatch_Property.MapList.ItemList.value[seletcId].ParentLayerId;
-                    }
-                    if (GIS_Dispatch_Property.MapList.LayerList.value[seletcId]) {
-                        mapId = GIS_Dispatch_Property.MapList.LayerList.value[seletcId].mapId;
-                        parentId = seletcId;
-                    }
-                    Trigger = document.createElement("a");
-                    Trigger.href = "management/gis/map/item/gis_map_item_details.htm?iconType=4&mapId=" + mapId + "&parentId=" + parentId + "&longitude=" + GIS_Dispatch_Html.Pos.Longitude + "&latitude=" + GIS_Dispatch_Html.Pos.Latitude + "&componentId=" + args + "&componentName=" + name;
-                    AlertWindow.Show(Trigger, -1);
-                }
-                else {
-                    alertPrompt("请选择一个点位");
-                }
-            }
-            else {
-                alertPrompt("请选择一张图层");
-            }
-        }
-        GIS_Map_IO_Input_Html.create();
+      }
+      GIS_Map_IO_Input_Html.create()
     </script>
-</body>
+  </body>
 </html>

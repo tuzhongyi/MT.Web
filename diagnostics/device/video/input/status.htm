@@ -1,386 +1,504 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head><meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>视频源测速</title>
     <link href="../../../../css/howell.css" rel="stylesheet" />
-    <script type="text/javascript" src="../../../../js/language/chinese.js"></script>
-    <script type="text/javascript" src="../../../../js/jquery/jquery-1.10.2.min.js"></script><script src="../../../../js/imported.js"></script>
-    <script type="text/javascript" src="../../../../js/jquery/jquery-ui.js"></script>
-    <script type="text/javascript" src="../../../../js/jquery/jquery.confirm.js"></script>
-    <script type="text/javascript" src="../../../../js/bootstrap/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../../../../js/modernizr.custom.js"></script>
+    <script
+      type="text/javascript"
+      src="../../../../js/language/chinese.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../../js/jquery/jquery-3.6.0.min.js"
+    ></script>
+    <script src="../../../../js/imported.js"></script>
+    <script
+      type="text/javascript"
+      src="../../../../js/jquery/jquery-ui.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../../js/jquery/jquery.confirm.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../../js/bootstrap/bootstrap.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../../js/modernizr.custom.js"
+    ></script>
 
-    <script type="text/javascript" src="../../../../js/howell.js/howell.js"></script>
+    <script
+      type="text/javascript"
+      src="../../../../js/howell.js/howell.js"
+    ></script>
     <script type="text/javascript" src="../../../../js/nav.js"></script>
-    
+
     <script type="text/javascript" src="../../../../js/highcharts.js"></script>
-    <script type="text/javascript" src="../../../../js/client/management.js"></script>
+    <script
+      type="text/javascript"
+      src="../../../../js/client/management.js"
+    ></script>
     <script type="text/javascript" src="../../../../js/client/enum.js"></script>
-    <script type="text/javascript" src="../../../../js/client/struct.js"></script>
-    <script type="text/javascript" src="../../../../js/client/client.js"></script>
-    <script type="text/javascript" src="../../../../js/howell.js/howell.control.js"></script>
-    <script type="text/javascript" src="../../../../js/howell.js/guid.js"></script>
+    <script
+      type="text/javascript"
+      src="../../../../js/client/struct.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../../js/client/client.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../../js/howell.js/howell.control.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../../js/howell.js/guid.js"
+    ></script>
 
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-          name="viewport" />
-</head>
-<body>
+    <meta
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+      name="viewport"
+    />
+  </head>
+  <body>
     <div class="container-fluid main-content status-maxdiv">
+      <div class="row">
         <div class="row">
-            <div class="row">
-                <div class="widget-container fluid-height clearfix">
-                    <div class="status-title-div">
-                        <div class="status-title-div-icon-div">
-                        </div>
-                        <span class="status-title-div-span">
-                            视频源测速
-                        </span>
-                    </div>
-                    <div class="status-deviceinfo-div">
-                        <div class="status-devicename-div">
-                            <div class="howell-icon-device" style="margin-top:3px;float:left"></div>
-                            <label class="text-ellipsis" id="deviceName-lable">
-
-                            </label>
-                        </div>
-                        <div class="status-channelname-div">
-                            <div class="icon-facetime-video" style="line-height: 28px; float: left;"></div>
-                            <label class="text-ellipsis" id="channelName-lable">
-
-                            </label>
-                        </div>
-                        <div class="status-bitrate-div">
-                            网络平均码率：<label id="lblBitrate" class="status-bitrate-lable">0</label> Kbps
-                        </div>
-                    </div>
-                    <div id="containerBitrate" class="col-md-12 center status-container-bitrate-div">
-                    </div>
-                    <div class="row status-bitrateinfo-div">
-                        <div class="col-md-3 center">
-                            总数据包数目：<label id="lblTotalPacket">0</label>
-                        </div>
-                        <div class="col-md-3 center">
-                            实际接收到的包数目 ：<label id="lblReceivedPacket">0</label>%
-                        </div>
-                        <div class="col-md-3 center">
-                            丢包数目  ：<label id="lblLostPacket">0</label>%
-                        </div>
-                        <div class="col-md-3 center">
-                            错误包数目：<label id="lblErrorPacket">0</label>%
-                        </div>
-                    </div>
-                    <div class="row status-slider-div">
-                        <label class="control-label status-slider-label">
-                            持续时间
-                        </label>
-                        <div class="status-slider-div-div">
-                            <div id="status-duration-shell-div" class="status-shell-div">
-                            </div>
-                            <div class="widget-content padded">
-                                <div class="slider-container">
-                                    <div class="slider-basic ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" aria-disabled="false" id="status-duration-div">
-                                        <div class="ui-slider-range ui-widget-header ui-corner-all ui-slider-range-min"></div><a class="ui-slider-handle ui-state-default ui-corner-all" href="#" id="status-duration-a"></a>
-                                    </div>
-                                    <div>
-                                        <p>
-                                            <span class="slider-basic-amount pull-right" id="status-duration-div-span">0</span>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <label class="control-label status-slider-label">
-                            测试速度
-                        </label>
-                        <div class="status-slider-div-div">
-                            <div id="status-bandwidth-shell-div" class="status-shell-div">
-                            </div>
-                            <div class="widget-content padded">
-                                <div class="slider-container">
-                                    <div class="slider-basic ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" aria-disabled="false" id="status-bandwidth-div">
-                                        <div class="ui-slider-range ui-widget-header ui-corner-all ui-slider-range-min"></div><a class="ui-slider-handle ui-state-default ui-corner-all" href="#" id="status-bandwidth-a"></a>
-                                    </div>
-                                    <div>
-                                        <p>
-                                            <span class="slider-basic-amount pull-right" id="status-bandwidth-div-span">0</span>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row status-btn-div">
-                        <div class="form-group">
-                            <label class="control-label">
-                            </label>
-                            <div>
-                                <a class="btn btn-danger-outline" id="btn-start" onclick="statusStart();">
-                                    停止测速
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+          <div class="widget-container fluid-height clearfix">
+            <div class="status-title-div">
+              <div class="status-title-div-icon-div"></div>
+              <span class="status-title-div-span"> 视频源测速 </span>
             </div>
+            <div class="status-deviceinfo-div">
+              <div class="status-devicename-div">
+                <div
+                  class="howell-icon-device"
+                  style="margin-top: 3px; float: left"
+                ></div>
+                <label class="text-ellipsis" id="deviceName-lable"> </label>
+              </div>
+              <div class="status-channelname-div">
+                <div
+                  class="icon-facetime-video"
+                  style="line-height: 28px; float: left"
+                ></div>
+                <label class="text-ellipsis" id="channelName-lable"> </label>
+              </div>
+              <div class="status-bitrate-div">
+                网络平均码率：<label
+                  id="lblBitrate"
+                  class="status-bitrate-lable"
+                  >0</label
+                >
+                Kbps
+              </div>
+            </div>
+            <div
+              id="containerBitrate"
+              class="col-md-12 center status-container-bitrate-div"
+            ></div>
+            <div class="row status-bitrateinfo-div">
+              <div class="col-md-3 center">
+                总数据包数目：<label id="lblTotalPacket">0</label>
+              </div>
+              <div class="col-md-3 center">
+                实际接收到的包数目 ：<label id="lblReceivedPacket">0</label>%
+              </div>
+              <div class="col-md-3 center">
+                丢包数目 ：<label id="lblLostPacket">0</label>%
+              </div>
+              <div class="col-md-3 center">
+                错误包数目：<label id="lblErrorPacket">0</label>%
+              </div>
+            </div>
+            <div class="row status-slider-div">
+              <label class="control-label status-slider-label">
+                持续时间
+              </label>
+              <div class="status-slider-div-div">
+                <div
+                  id="status-duration-shell-div"
+                  class="status-shell-div"
+                ></div>
+                <div class="widget-content padded">
+                  <div class="slider-container">
+                    <div
+                      class="slider-basic ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"
+                      aria-disabled="false"
+                      id="status-duration-div"
+                    >
+                      <div
+                        class="ui-slider-range ui-widget-header ui-corner-all ui-slider-range-min"
+                      ></div>
+                      <a
+                        class="ui-slider-handle ui-state-default ui-corner-all"
+                        id="status-duration-a"
+                      ></a>
+                    </div>
+                    <div>
+                      <p>
+                        <span
+                          class="slider-basic-amount pull-right"
+                          id="status-duration-div-span"
+                          >0</span
+                        >
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <label class="control-label status-slider-label">
+                测试速度
+              </label>
+              <div class="status-slider-div-div">
+                <div
+                  id="status-bandwidth-shell-div"
+                  class="status-shell-div"
+                ></div>
+                <div class="widget-content padded">
+                  <div class="slider-container">
+                    <div
+                      class="slider-basic ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"
+                      aria-disabled="false"
+                      id="status-bandwidth-div"
+                    >
+                      <div
+                        class="ui-slider-range ui-widget-header ui-corner-all ui-slider-range-min"
+                      ></div>
+                      <a
+                        class="ui-slider-handle ui-state-default ui-corner-all"
+                        id="status-bandwidth-a"
+                      ></a>
+                    </div>
+                    <div>
+                      <p>
+                        <span
+                          class="slider-basic-amount pull-right"
+                          id="status-bandwidth-div-span"
+                          >0</span
+                        >
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row status-btn-div">
+              <div class="form-group">
+                <label class="control-label"> </label>
+                <div>
+                  <a
+                    class="btn btn-danger-outline"
+                    id="btn-start"
+                    onclick="statusStart();"
+                  >
+                    停止测速
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
-</body>
+  </body>
 </html>
 
 <script type="text/javascript">
-    var url = new Uri(document.location);
-    
-    var deviceId, inputId, sessionId;
-    var publicSeries;
-    var canClear = false;
-    var canStart = true;
-    if (!url.Query) {
-        history.back();
+  var url = new Uri(document.location)
+
+  var deviceId, inputId, sessionId
+  var publicSeries
+  var canClear = false
+  var canStart = true
+  if (!url.Query) {
+    history.back()
+  }
+
+  deviceId = url.Querys.deviceId
+  inputId = url.Querys.inputId
+  sessionId = Guid.NewGuid().ToString()
+
+  function init() {
+    document.getElementById('deviceName-lable').innerText = tryCatch(
+      function () {
+        return Client.Management().Device.Get(deviceId).Name
+      }
+    )
+    document.getElementById('channelName-lable').innerText = tryCatch(
+      function () {
+        return Client.Management().Device.Video.Input.Get(deviceId, inputId)
+          .Name
+      }
+    )
+    initializationSlider(
+      'status-duration-div',
+      'status-duration-div-span',
+      60,
+      0,
+      0
+    )
+    initializationSlider(
+      'status-bandwidth-div',
+      'status-bandwidth-div-span',
+      1024,
+      0,
+      0
+    )
+    document.getElementById('status-duration-div-span').innerText = '无限制'
+    document.getElementById('status-bandwidth-div-span').innerText = '无限制'
+    document.getElementById('status-duration-a').style.backgroundColor = 'gray'
+    document.getElementById('status-bandwidth-a').style.backgroundColor = 'gray'
+    $(function () {
+      try {
+        Client.Management().Device.Video.Input.Diagnostics.Start(
+          deviceId,
+          inputId,
+          sessionId,
+          0,
+          0
+        )
+        canStart = true
+      } catch (e) {
+        statusStart()
+        canStart = false
+        $.confirm({
+          text: e.name,
+          alert: true,
+          okButton: '确定',
+        })
+      }
+      Highcharts.setOptions({
+        global: {
+          useUTC: false,
+        },
+      })
+      initializationDrawing()
+    })
+  }
+
+  function initializationSlider(id, valueId, maxValue, minValue, value) {
+    $('#' + id).slider({
+      range: 'min',
+      max: maxValue,
+      min: minValue,
+      value: value,
+      slide: function (event, ui) {
+        if (ui.value == 0) return $('#' + valueId).html('无限制')
+        return $('#' + valueId).html(+ui.value)
+      },
+    })
+    $('#' + valueId).html($('#' + id).slider('value'))
+  }
+
+  function statusStart() {
+    var durationShell = document.getElementById('status-duration-shell-div')
+    var durationBtn = document.getElementById('status-duration-a')
+    var bandwidthShell = document.getElementById('status-bandwidth-shell-div')
+    var bandwidthBtn = document.getElementById('status-bandwidth-a')
+    var btn = document.getElementById('btn-start')
+    if (btn.className.indexOf('btn-primary') > -1) {
+      canClear = false
+      durationBtn.style.backgroundColor = 'gray'
+      bandwidthBtn.style.backgroundColor = 'gray'
+      bandwidthShell.style.display = 'block'
+      durationShell.style.display = 'block'
+      btn.className = btn.className.replace('btn-primary', 'btn-danger-outline')
+      btn.innerText = '停止测速'
+      var durationVal = document.getElementById(
+        'status-duration-div-span'
+      ).innerText
+      if (durationVal == '无限制') durationVal = 0
+      var bandwidthVal = document.getElementById(
+        'status-bandwidth-div-span'
+      ).innerText
+      if (bandwidthVal == '无限制') bandwidthVal = 0
+      try {
+        Client.Management().Device.Video.Input.Diagnostics.Start(
+          deviceId,
+          inputId,
+          sessionId,
+          parseInt(durationVal),
+          parseInt(bandwidthVal)
+        )
+        canStart = true
+      } catch (e) {
+        statusStart()
+        canStart = false
+        $.confirm({
+          text: e.name,
+          alert: true,
+          okButton: '确定',
+        })
+      }
+      initializationDrawing()
+    } else {
+      canClear = true
+      var durationVal = document.getElementById('status-duration-div-span')
+      $('#status-duration-div').slider({
+        value: 0,
+      })
+      durationVal.innerText = '无限制'
+      durationBtn.style.backgroundColor = 'white'
+      bandwidthBtn.style.backgroundColor = 'white'
+      bandwidthShell.style.display = 'none'
+      durationShell.style.display = 'none'
+      btn.className = btn.className.replace('btn-danger-outline', 'btn-primary')
+      btn.innerText = '开始测速'
     }
+  }
 
-    deviceId = url.Querys.deviceId;
-    inputId = url.Querys.inputId;
-    sessionId = Guid.NewGuid().ToString();
+  function drawing() {
+    var series = publicSeries
+    var timer = setInterval(function () {
+      var result = null
+      try {
+        result = Client.Management().Device.Video.Input.Diagnostics.Get(
+          deviceId,
+          inputId,
+          sessionId
+        )
+      } catch (e) {
+        statusStart()
+        $.confirm({
+          text: e.name,
+          alert: true,
+          okButton: '确定',
+        })
+      }
+      var x = new Date().getTime()
+      var y = new Array()
+      if (result) {
+        y[0] = result.Bitrate
+        document.getElementById('lblTotalPacket').innerText = result.TotalPacket
+        document.getElementById('lblReceivedPacket').innerText = (
+          (result.ReceivedPacket * 100.0) /
+          result.TotalPacket
+        ).toFixed(2)
+        document.getElementById('lblErrorPacket').innerText = (
+          (result.ErrorPacket * 100.0) /
+          result.TotalPacket
+        ).toFixed(2)
+        document.getElementById('lblLostPacket').innerText = (
+          (result.LostPacket * 100.0) /
+          result.TotalPacket
+        ).toFixed(2)
+        document.getElementById('lblBitrate').innerText = result.Bitrate
+      }
 
-    function init() {
-        document.getElementById("deviceName-lable").innerText = tryCatch(function () { return Client.Management().Device.Get(deviceId).Name; });
-        document.getElementById("channelName-lable").innerText = tryCatch(function () { return Client.Management().Device.Video.Input.Get(deviceId, inputId).Name; });
-        initializationSlider("status-duration-div", "status-duration-div-span", 60, 0, 0);
-        initializationSlider("status-bandwidth-div", "status-bandwidth-div-span", 1024, 0, 0);
-        document.getElementById("status-duration-div-span").innerText="无限制";
-        document.getElementById("status-bandwidth-div-span").innerText = "无限制";
-        document.getElementById("status-duration-a").style.backgroundColor = "gray";
-        document.getElementById("status-bandwidth-a").style.backgroundColor = "gray";
-        $(function () {
-            try {
-                Client.Management().Device.Video.Input.Diagnostics.Start(deviceId, inputId, sessionId, 0, 0);
-                canStart = true;
-            }
-            catch (e) {
-                statusStart();
-                canStart = false;
-                $.confirm({
-                    text: e.name,
-                    alert: true,
-                    okButton: "确定"
-                });
-            }
-            Highcharts.setOptions({
-                global: {
-                    useUTC: false
-                }
-            });
-            initializationDrawing();
-        });
-    }
-
-    function initializationSlider(id, valueId, maxValue, minValue, value) {
-        $("#" + id).slider({
-            range: "min",
-            max: maxValue,
-            min: minValue,
-            value: value,
-            slide: function (event, ui) {
-                if (ui.value == 0)
-                    return $("#" + valueId).html("无限制");
-                return $("#" + valueId).html(+ui.value);
-            }
-        });
-        $("#" + valueId).html($("#" + id).slider("value"));
-    }
-
-    function statusStart() {
-        var durationShell = document.getElementById("status-duration-shell-div");
-        var durationBtn = document.getElementById("status-duration-a");
-        var bandwidthShell = document.getElementById("status-bandwidth-shell-div");
-        var bandwidthBtn = document.getElementById("status-bandwidth-a");
-        var btn = document.getElementById("btn-start");
-        if (btn.className.indexOf("btn-primary") > -1) {
-            canClear = false;
-            durationBtn.style.backgroundColor = "gray";
-            bandwidthBtn.style.backgroundColor = "gray";
-            bandwidthShell.style.display = "block";
-            durationShell.style.display = "block";
-            btn.className = btn.className.replace("btn-primary", "btn-danger-outline");
-            btn.innerText = "停止测速";
-            var durationVal = document.getElementById("status-duration-div-span").innerText;
-            if (durationVal == "无限制")
-                durationVal = 0;  
-            var bandwidthVal = document.getElementById("status-bandwidth-div-span").innerText;
-            if (bandwidthVal == "无限制")
-                bandwidthVal = 0;
-            try{ 
-                Client.Management().Device.Video.Input.Diagnostics.Start(deviceId, inputId, sessionId, parseInt(durationVal), parseInt(bandwidthVal));
-                canStart = true;
-            }
-            catch (e) {
-                statusStart();
-                canStart = false;
-                $.confirm({
-                    text: e.name,
-                    alert: true,
-                    okButton: "确定"
-                });
-            }
-            initializationDrawing();
+      for (var i = 0; i < series.length; i++) {
+        series[i].addPoint([x, y[i]], true, true)
+      }
+      var duration = document.getElementById('status-duration-div-span')
+      if (duration.innerText != '无限制') {
+        var time = parseInt(duration.innerText)
+        time--
+        $('#status-duration-div').slider({
+          value: time,
+        })
+        duration.innerText = time
+        if (time == 0) {
+          canClear = true
+          duration.innerText = '无限制'
+          statusStart()
         }
-        else {
-            canClear = true;
-            var durationVal = document.getElementById("status-duration-div-span");
-            $("#status-duration-div").slider({
-                value: 0,
-            });
-            durationVal.innerText = "无限制";
-            durationBtn.style.backgroundColor = "white";
-            bandwidthBtn.style.backgroundColor = "white";
-            bandwidthShell.style.display = "none";
-            durationShell.style.display = "none";
-            btn.className = btn.className.replace("btn-danger-outline", "btn-primary");
-            btn.innerText = "开始测速";
-        }
-    }
+      }
+      if (canClear) {
+        clearInterval(timer)
+        tryCatch(function () {
+          Client.Management().Device.Video.Input.Diagnostics.Stop(
+            deviceId,
+            inputId,
+            sessionId
+          )
+        })
+      }
+    }, 1000)
+  }
 
-    function drawing() {
-        var series = publicSeries;
-        var timer = setInterval(function () {
-            var result = null;
-            try {
-                result = Client.Management().Device.Video.Input.Diagnostics.Get(deviceId, inputId, sessionId);
-            }
-            catch (e) {
-                statusStart();
-                $.confirm({
-                    text: e.name,
-                    alert: true,
-                    okButton: "确定"
-                });
-            }
-            var x = (new Date()).getTime();
-            var y = new Array();
-            if (result) {
-                y[0] = result.Bitrate;
-                document.getElementById("lblTotalPacket").innerText = result.TotalPacket;
-                document.getElementById("lblReceivedPacket").innerText = ((result.ReceivedPacket * 100.0) / result.TotalPacket).toFixed(2);
-                document.getElementById("lblErrorPacket").innerText = ((result.ErrorPacket * 100.0) / result.TotalPacket).toFixed(2);
-                document.getElementById("lblLostPacket").innerText = ((result.LostPacket * 100.0) / result.TotalPacket).toFixed(2);
-                document.getElementById("lblBitrate").innerText = result.Bitrate;
-            }
+  function initializationDrawing() {
+    $('#containerBitrate').highcharts({
+      chart: {
+        type: 'spline',
+        events: {
+          load: function () {
+            publicSeries = this.series
+            if (canStart) drawing()
+          },
+        },
+      },
+      title: {
+        text: '',
+      },
+      xAxis: {
+        type: 'datetime',
+        tickPixelInterval: 120,
+      },
+      yAxis: {
+        title: {
+          text: '',
+        },
+        labels: {
+          formatter: function () {
+            return this.value
+          },
+        },
+        minorGridLineWidth: 0,
+        alternateGridColor: null,
+      },
+      tooltip: {
+        crosshairs: true,
+        shared: true,
+      },
 
-            for (var i = 0; i < series.length; i++) {
-                series[i].addPoint([x, y[i]], true, true);
-            }
-            var duration = document.getElementById("status-duration-div-span");
-            if (duration.innerText != "无限制") {
-                var time = parseInt(duration.innerText);
-                time--;
-                $("#status-duration-div").slider({
-                    value: time,
-                });
-                duration.innerText = time;
-                if (time == 0) {
-                    canClear = true;
-                    duration.innerText = "无限制";
-                    statusStart();
-                }
-            }
-            if (canClear) {
-                clearInterval(timer);
-                tryCatch(function () { Client.Management().Device.Video.Input.Diagnostics.Stop(deviceId, inputId, sessionId); });
-            }
-        }, 1000);
-    }
+      legend: {
+        enabled: 1,
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'middle',
+        borderWidth: 0,
+      },
+      exporting: {
+        enabled: false,
+      },
+      plotOptions: {
+        spline: {
+          lineWidth: 1,
+          states: {
+            hover: {
+              lineWidth: 2,
+            },
+          },
+          marker: {
+            enabled: false,
+          },
+        },
+      },
+      series: [
+        {
+          name: '网络平均码率 单位:Kbps',
+          data: (function () {
+            var data = []
+            var time = new Date().getTime()
 
-    function initializationDrawing() {
-        $('#containerBitrate').highcharts(
-            {
-                chart:
-                {
-                    type: 'spline',
-                    events:
-                    {
-                        load: function () {
-                            publicSeries = this.series;
-                            if (canStart)
-                                drawing();
-                        }
-                    }
-                },
-                title:
-                    {
-                        text: ''
-                    },
-                xAxis:
-                    {
-                        type: 'datetime',
-                        tickPixelInterval: 120
-                    },
-                yAxis:
-                    {
-                        title:
-                            {
-                                text: ''
-                            },
-                        labels: {
-                            formatter: function () {
-                                return this.value;
-                            }
-                        },
-                        minorGridLineWidth: 0,
-                        alternateGridColor: null,
-                    },
-                tooltip:
-                    {
-                        crosshairs: true,
-                        shared: true
-                    },
-
-                legend: {
-                    enabled: 1,
-                    layout: 'vertical',
-                    align: 'right',
-                    verticalAlign: 'middle',
-                    borderWidth: 0
-                },
-                exporting: {
-                    enabled: false
-                },
-                plotOptions: {
-                    spline: {
-                        lineWidth: 1,
-                        states: {
-                            hover: {
-                                lineWidth: 2
-                            }
-                        },
-                        marker: {
-                            enabled: false
-                        }
-
-                    }
-                },
-                series:
-                    [
-                        {
-                            name: '网络平均码率 单位:Kbps',
-                            data: (function () {
-                                var data = [];
-                                var time = (new Date()).getTime();
-
-                                for (var i = -99; i <= 0; i++) {
-                                    data.push({
-                                        x: time + i * 1000,
-                                        y: 0
-                                    });
-                                }
-                                return data;
-                            })()
-                        }
-                    ]
+            for (var i = -99; i <= 0; i++) {
+              data.push({
+                x: time + i * 1000,
+                y: 0,
+              })
             }
-        );
-    }
-    onload = init;
+            return data
+          })(),
+        },
+      ],
+    })
+  }
+  onload = init
 </script>

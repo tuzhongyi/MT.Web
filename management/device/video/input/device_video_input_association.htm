@@ -1,12 +1,12 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
+  <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>关联设备</title>
     <link href="../../../../css/howell.css" rel="stylesheet" />
     <script src="../../../../js/imported.js"></script>
-    <script src="../../../../js/jquery/jquery-1.10.2.min.js"></script>
+    <script src="../../../../js/jquery/jquery-3.6.0.min.js"></script>
     <script src="../../../../js/jquery/jquery-ui.js"></script>
     <script src="../../../../js/bootstrap/bootstrap.min.js"></script>
     <script src="../../../../js/howell.js/howell.js"></script>
@@ -17,623 +17,779 @@
     <script src="../../../../js/nav.js"></script>
     <script src="../../../../js/client/management.js"></script>
     <script src="../../../../js/client/client.js"></script>
-</head>
-<body>
+  </head>
+  <body>
     <script src="js/client/management.js"></script>
     <style type="text/css">
-        .group-list-tag {
-            height: 40px;
-            float: left;
-            margin-top: -9px;
-            margin-right: 5px;
-            margin-left: -15px;
-            width: 5px;
-            background-color: #f0ad4e;
-        }
+      .group-list-tag {
+        height: 40px;
+        float: left;
+        margin-top: -9px;
+        margin-right: 5px;
+        margin-left: -15px;
+        width: 5px;
+        background-color: #f0ad4e;
+      }
 
-            .group-list-tag.associated {
-                background-color: #60c560;
-            }
+      .group-list-tag.associated {
+        background-color: #60c560;
+      }
 
-            .group-list-tag.unassociated {
-                background-color: #c09853;
-            }
+      .group-list-tag.unassociated {
+        background-color: #c09853;
+      }
 
-        .dropdown-toggle {
-            height: 25px;
-            padding-top: 1px;
-        }
+      .dropdown-toggle {
+        height: 25px;
+        padding-top: 1px;
+      }
 
-        .list-group-item p {
-            height: 40px;
-        }
+      .list-group-item p {
+        height: 40px;
+      }
 
-            .list-group-item p lable {
-                width: 350px;
-            }
+      .list-group-item p lable {
+        width: 350px;
+      }
 
-            .list-group-item p .input-name {
-                width: 245px;
-            }
+      .list-group-item p .input-name {
+        width: 245px;
+      }
 
-        .association-title {
-            margin-left: -30px;
-        }
+      .association-title {
+        margin-left: -30px;
+      }
 
-        .association-btn {
-            height: 29px;
-        }
+      .association-btn {
+        height: 29px;
+      }
 
-            .association-btn .caret {
-                margin-top: 5px !important;
-            }
+      .association-btn .caret {
+        margin-top: 5px !important;
+      }
 
-        .association_list_title_ico {
-            font-size: 22px !important;
-            color: #007aff;
-        }
+      .association_list_title_ico {
+        font-size: 22px !important;
+        color: #007aff;
+      }
 
-        #dListCamera {
-            height: 600px;
-            overflow-y: auto;
-            border: 1px solid #ddd;
-            padding: 2px 2px 2px 2px;
-        }
+      #dListCamera {
+        height: 600px;
+        overflow-y: auto;
+        border: 1px solid #ddd;
+        padding: 2px 2px 2px 2px;
+      }
 
-        #dListInput {
-            height: 600px;
-            overflow-y: auto;
-            border: 1px solid #ddd;
-            padding: 2px 2px 2px 2px;
-        }
+      #dListInput {
+        height: 600px;
+        overflow-y: auto;
+        border: 1px solid #ddd;
+        padding: 2px 2px 2px 2px;
+      }
 
-        #All {
-            margin-left: -20px;
-        }
+      #All {
+        margin-left: -20px;
+      }
 
-        #ddlNVRList {
-            max-width: 200px;
-            margin-left: -8px;
-        }
+      #ddlNVRList {
+        max-width: 200px;
+        margin-left: -8px;
+      }
     </style>
     <div class="page-main row">
-        <div class="col-md-12">
-            <div class="widget-container fluid-height clearfix list-width padded background-min-height">
-                <div class="heading list-heading-maxdiv">
-                    <div class="form-group list-heading-div association-title">
-                        &ensp;&ensp;<i class="icon-group mouse_default association_list_title_ico"></i>
-                        关联设备
-                    </div>
-                    <div>
-                        <div class="col-md-5">
-                            <div class="pull-left">
-                                <a class="btn btn-xs btn-permission main list-permission-btn selected" id="All" onclick="return Association_OnClick(this);">
-                                    全部
-                                </a>
-                                <a class="btn btn-xs btn-permission main list-permission-btn Operator" id="Anonymous" onclick="return Association_OnClick(this, true);">
-                                    已关联
-                                </a>
-                                <a class="btn btn-xs btn-permission main list-permission-btn Anonymous" id="Operator" onclick="return Association_OnClick(this, false);">
-                                    未关联
-                                </a>
-                            </div>
-
-                            <div class="btn-group  pull-left div-xsgroupdown" style="margin-left:4px">
-                                <div class="btn btn-xs btn-primary btn-xsgroupdown dropdown-toggle" data-toggle="dropdown">
-                                    选&ensp;择&ensp;<span class="caret"></span>
-                                </div>
-                                <ul class="dropdown-menu xsgroupdown-menu-ul">
-                                    <li class="mouse_pointer">
-                                        <a class="xsgroupdown-menu-ul-li-a" onclick="GroupList.Select.All(Info.ControlIdPrefix.ipCamera, IPCamera_SelectAll);">
-                                            全选
-                                        </a>
-                                    </li>
-                                    <li class="mouse_pointer">
-                                        <a class="xsgroupdown-menu-ul-li-a" onclick="GroupList.Select.Inverse(Info.ControlIdPrefix.ipCamera);">
-                                            反选
-                                        </a>
-                                    </li>
-                                    <li class="mouse_pointer">
-                                        <a class="xsgroupdown-menu-ul-li-a" onclick="GroupList.Select.Cancel(Info.ControlIdPrefix.ipCamera, IPCamera_SelectCancel);">
-                                            取消
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="row" id="CameraSearch">
-
-                            </div>
-                        </div>
-                        <div class="col-md-2"></div>
-                        <div class="col-md-5">
-                            <div class="pull-left">
-                                <select class="form-control" id="ddlNVRList" onchange="ddlNVRList_Changed(this)"></select>
-                            </div>
-                            <div class="btn-group  pull-left div-xsgroupdown">
-                                <div class="btn btn-xs btn-primary btn-xsgroupdown dropdown-toggle" data-toggle="dropdown">
-                                    选&ensp;择&ensp;<span class="caret"></span>
-                                </div>
-                                <ul class="dropdown-menu xsgroupdown-menu-ul">
-                                    <li class="mouse_pointer">
-                                        <a class="xsgroupdown-menu-ul-li-a" onclick="GroupList.Select.All(Info.ControlIdPrefix.input, Input_SelectAll);">
-                                            全选
-                                        </a>
-                                    </li>
-                                    <li class="mouse_pointer">
-                                        <a class="xsgroupdown-menu-ul-li-a" onclick="GroupList.Select.Inverse(Info.ControlIdPrefix.input);">
-                                            反选
-                                        </a>
-                                    </li>
-                                    <li class="mouse_pointer">
-                                        <a class="xsgroupdown-menu-ul-li-a" onclick="GroupList.Select.Cancel(Info.ControlIdPrefix.input, Input_SelectCancel);">
-                                            取消
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="pull-left" onclick="ToUnassociated(this)">
-                                <a class="btn btn-group btn-primary-outline icon-unlink div-xsgroup" title="删除关联" style="height:25px;padding-top:2px"></a>
-                            </div>
-                            <div class="row" id="NVRSearchDiv">
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div id="dListCamera" class="col-md-5 scrollable">
-                        </div>
-                        <div class="col-md-2">
-                            <div style="margin:225px auto 50px auto;text-align:center;">
-                                <div class="btn-group">
-                                    <div class="btn btn-primary-outline icon-link" title="关联" onclick="ToAssociated();" style="margin-right:0"></div>
-                                    <div class="btn btn-primary-outline dropdown-toggle association-btn" data-toggle="dropdown" style="padding-top:10px;padding-bottom:22px"><span class="caret"></span></div>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <a onclick="AutoAssociated()">
-                                                自动关联
-                                            </a>
-                                        </li>
-
-                                    </ul>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div id="dListInput" class="col-md-5 scrollable">
-
-                        </div>
-                    </div>
-                </div>
+      <div class="col-md-12">
+        <div
+          class="widget-container fluid-height clearfix list-width padded background-min-height"
+        >
+          <div class="heading list-heading-maxdiv">
+            <div class="form-group list-heading-div association-title">
+              &ensp;&ensp;<i
+                class="icon-group mouse_default association_list_title_ico"
+              ></i>
+              关联设备
             </div>
+            <div>
+              <div class="col-md-5">
+                <div class="pull-left">
+                  <a
+                    class="btn btn-xs btn-permission main list-permission-btn selected"
+                    id="All"
+                    onclick="return Association_OnClick(this);"
+                  >
+                    全部
+                  </a>
+                  <a
+                    class="btn btn-xs btn-permission main list-permission-btn Operator"
+                    id="Anonymous"
+                    onclick="return Association_OnClick(this, true);"
+                  >
+                    已关联
+                  </a>
+                  <a
+                    class="btn btn-xs btn-permission main list-permission-btn Anonymous"
+                    id="Operator"
+                    onclick="return Association_OnClick(this, false);"
+                  >
+                    未关联
+                  </a>
+                </div>
+
+                <div
+                  class="btn-group pull-left div-xsgroupdown"
+                  style="margin-left: 4px"
+                >
+                  <div
+                    class="btn btn-xs btn-primary btn-xsgroupdown dropdown-toggle"
+                    data-toggle="dropdown"
+                  >
+                    选&ensp;择&ensp;<span class="caret"></span>
+                  </div>
+                  <ul class="dropdown-menu xsgroupdown-menu-ul">
+                    <li class="mouse_pointer">
+                      <a
+                        class="xsgroupdown-menu-ul-li-a"
+                        onclick="GroupList.Select.All(Info.ControlIdPrefix.ipCamera, IPCamera_SelectAll);"
+                      >
+                        全选
+                      </a>
+                    </li>
+                    <li class="mouse_pointer">
+                      <a
+                        class="xsgroupdown-menu-ul-li-a"
+                        onclick="GroupList.Select.Inverse(Info.ControlIdPrefix.ipCamera);"
+                      >
+                        反选
+                      </a>
+                    </li>
+                    <li class="mouse_pointer">
+                      <a
+                        class="xsgroupdown-menu-ul-li-a"
+                        onclick="GroupList.Select.Cancel(Info.ControlIdPrefix.ipCamera, IPCamera_SelectCancel);"
+                      >
+                        取消
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="row" id="CameraSearch"></div>
+              </div>
+              <div class="col-md-2"></div>
+              <div class="col-md-5">
+                <div class="pull-left">
+                  <select
+                    class="form-control"
+                    id="ddlNVRList"
+                    onchange="ddlNVRList_Changed(this)"
+                  ></select>
+                </div>
+                <div class="btn-group pull-left div-xsgroupdown">
+                  <div
+                    class="btn btn-xs btn-primary btn-xsgroupdown dropdown-toggle"
+                    data-toggle="dropdown"
+                  >
+                    选&ensp;择&ensp;<span class="caret"></span>
+                  </div>
+                  <ul class="dropdown-menu xsgroupdown-menu-ul">
+                    <li class="mouse_pointer">
+                      <a
+                        class="xsgroupdown-menu-ul-li-a"
+                        onclick="GroupList.Select.All(Info.ControlIdPrefix.input, Input_SelectAll);"
+                      >
+                        全选
+                      </a>
+                    </li>
+                    <li class="mouse_pointer">
+                      <a
+                        class="xsgroupdown-menu-ul-li-a"
+                        onclick="GroupList.Select.Inverse(Info.ControlIdPrefix.input);"
+                      >
+                        反选
+                      </a>
+                    </li>
+                    <li class="mouse_pointer">
+                      <a
+                        class="xsgroupdown-menu-ul-li-a"
+                        onclick="GroupList.Select.Cancel(Info.ControlIdPrefix.input, Input_SelectCancel);"
+                      >
+                        取消
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="pull-left" onclick="ToUnassociated(this)">
+                  <a
+                    class="btn btn-group btn-primary-outline icon-unlink div-xsgroup"
+                    title="删除关联"
+                    style="height: 25px; padding-top: 2px"
+                  ></a>
+                </div>
+                <div class="row" id="NVRSearchDiv"></div>
+              </div>
+            </div>
+            <div class="row">
+              <div id="dListCamera" class="col-md-5 scrollable"></div>
+              <div class="col-md-2">
+                <div style="margin: 225px auto 50px auto; text-align: center">
+                  <div class="btn-group">
+                    <div
+                      class="btn btn-primary-outline icon-link"
+                      title="关联"
+                      onclick="ToAssociated();"
+                      style="margin-right: 0"
+                    ></div>
+                    <div
+                      class="btn btn-primary-outline dropdown-toggle association-btn"
+                      data-toggle="dropdown"
+                      style="padding-top: 10px; padding-bottom: 22px"
+                    >
+                      <span class="caret"></span>
+                    </div>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <a onclick="AutoAssociated()"> 自动关联 </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div id="dListInput" class="col-md-5 scrollable"></div>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
     <script type="text/javascript">
-        var Info = {
-            ControlIdPrefix: {
-                ipCamera: "ip_camera_",
-                input: "input_",
-                getId: function (id, prefix) {
-                    return id.substr(prefix.length);
-                }
+      var Info = {
+        ControlIdPrefix: {
+          ipCamera: 'ip_camera_',
+          input: 'input_',
+          getId: function (id, prefix) {
+            return id.substr(prefix.length)
+          },
+        },
+      }
+      var Property = {
+        IPCamera: {
+          search: null,
+          associated: null,
+          value: new Dictionary(),
+          searchValue: new Dictionary(),
+          load: function () {
+            function getSingleChannel(deviceId) {
+              var response = Client.Management().Device.Video.Input.List(
+                deviceId,
+                null,
+                null
+              )
+              return response.VideoInputChannel[0]
             }
-        }
-        var Property = {
-            IPCamera: {
-                search: null,
-                associated: null,
-                value: new Dictionary(),
-                searchValue: new Dictionary(),
-                load: function () {
-                    function getSingleChannel(deviceId) {
-                        var response = Client.Management().Device.Video.Input.List(deviceId, null, null);
-                        return response.VideoInputChannel[0];
-                    }
-                    var response = tryCatch(function () {
-                        return Client.Management().Device.List(null, null, DeviceClassification.IPCamera, Property.IPCamera.search)
-                    });
-                    if (response && response.Device) {
-                        for (var i = 0; i < response.Device.length; i++) {
-                            var device = response.Device[i];
+            var response = tryCatch(function () {
+              return Client.Management().Device.List(
+                null,
+                null,
+                DeviceClassification.IPCamera,
+                Property.IPCamera.search
+              )
+            })
+            if (response && response.Device) {
+              for (var i = 0; i < response.Device.length; i++) {
+                var device = response.Device[i]
 
-                            var channel = getSingleChannel(device.Id);
-                            if (!channel) continue;
-                            device.ChannelId = channel.Id;
-                            //device.Networked = channel.Networked;
-                            this.value[device.Id] = device;
-                            this.searchValue[device.Id] = device;
-                        }
-                    }
-                    return this.searchValue.toArray();
+                var channel = getSingleChannel(device.Id)
+                if (!channel) continue
+                device.ChannelId = channel.Id
+                //device.Networked = channel.Networked;
+                this.value[device.Id] = device
+                this.searchValue[device.Id] = device
+              }
+            }
+            return this.searchValue.toArray()
+          },
+        },
+        NVR: {
+          value: new Dictionary(),
+          load: function () {
+            var response = tryCatch(function () {
+              return Client.Management().Device.List(
+                null,
+                null,
+                DeviceClassification.NVR
+              )
+            })
+            if (response && response.Device) {
+              for (var i = 0; i < response.Device.length; i++) {
+                var device = response.Device[i]
+                this.value[device.Id] = device
+              }
+            }
+            return this.value.toArray()
+          },
+          Input: {
+            search: null,
+            value: new Dictionary(),
+            load: function (nvrId) {
+              var response = tryCatch(function () {
+                return Client.Management().Device.Video.Input.List(
+                  nvrId,
+                  null,
+                  null,
+                  Property.NVR.Input.search
+                )
+              })
+              var result = new Array()
+              if (response && response.VideoInputChannel) {
+                for (var i = 0; i < response.VideoInputChannel.length; i++) {
+                  var input = response.VideoInputChannel[i]
+                  input.DeviceId = nvrId
+                  this.value[input.Id] = input
+                  result.push(input)
                 }
+              }
+              return result
             },
-            NVR: {
-                value: new Dictionary(),
-                load: function () {
-                    var response = tryCatch(function () {
-                        return Client.Management().Device.List(null, null, DeviceClassification.NVR);
-                    });
-                    if (response && response.Device) {
-                        for (var i = 0; i < response.Device.length; i++) {
-                            var device = response.Device[i];
-                            this.value[device.Id] = device;
-                        }
-                    }
-                    return this.value.toArray();
-                },
-                Input: {
-                    search: null,
-                    value: new Dictionary(),
-                    load: function (nvrId) {
-                        var response = tryCatch(function () {
-                            return Client.Management().Device.Video.Input.List(nvrId, null, null, Property.NVR.Input.search);
-                        });
-                        var result = new Array();
-                        if (response && response.VideoInputChannel) {
-                            for (var i = 0; i < response.VideoInputChannel.length; i++) {
-                                var input = response.VideoInputChannel[i];
-                                input.DeviceId = nvrId;
-                                this.value[input.Id] = input;
-                                result.push(input);
-                            }
-                        }
-                        return result;
-                    },
-                    associate: function (camera, input) {
-                        var association = new VideoInputAssociation();
+            associate: function (camera, input) {
+              var association = new VideoInputAssociation()
 
-                        association.FromId = camera.ChannelId;
+              association.FromId = camera.ChannelId
 
-                        association.Password = camera.Password;
-                        association.PasswordSpecified = isObjectExist(camera.Password);
+              association.Password = camera.Password
+              association.PasswordSpecified = isObjectExist(camera.Password)
 
-                        association.Username = camera.Username;
-                        association.UsernameSpecified = isObjectExist(camera.Username);
+              association.Username = camera.Username
+              association.UsernameSpecified = isObjectExist(camera.Username)
 
-                        association.Url = camera.Uri;
-                        association.UrlSpecified = isObjectExist(camera.Uri);
+              association.Url = camera.Uri
+              association.UrlSpecified = isObjectExist(camera.Uri)
 
-                        return tryCatch(function () {
-                            return Client.Management().Device.Video.Input.Association.Set(input.DeviceId, input.Id, association)
-                        });
-
-                    },
-                    unassociate: function (deviceId, inputId) {
-                        return tryCatch(function () {
-                            return Client.Management().Device.Video.Input.Association.Delete(deviceId, inputId);
-                        });
-                    }
-                },
-                associate: function () {
-
-                }
-            }
-        }
-
-        var Html = {
-            DropDownList: {
-                SelectedId: "", //Id
-                NvrCount: function () {
-                    return Property.NVR.value.toArray().length;
-                },
-                load: function (controlId) {
-                    var list = Property.NVR.load();
-                    var ddl = getTag(controlId);
-
-                    for (var i = 0; i < list.length; i++) {
-                        var nvr = list[i]
-                        var item = document.createElement("option");
-                        item.innerHTML = nvr.Name;
-                        item.value = nvr.Id;
-                        item.id = nvr.Id;
-                        ddl.appendChild(item);
-                    }
-                },
-                associate: function () {
-                    var cameras = Property.IPCamera.value.toArray();
-                    var nvrs = Property.NVR.value.toArray();
-
-                    for (var i = -1; i < nvrs.length; i++) {                        //从-1开始循环，多一次循环用来添加当前选中的nvr
-                        var id = i < 0 ? id = this.SelectedId : nvrs[i].Id;         //给id赋值，如果是第一次进入，那么id为选中的id
-                        if (i >= 0 && id == this.SelectedId)                        //如果非第一次循环，并且id和选中Id相同，那么就跳过当前的操作
-                            continue;
-                        var inputs = Property.NVR.Input.load(id);                   //获取nvr下所有的通道
-                        for (var j = 0; j < inputs.length ; j++) {                          //遍历通道
-                            if (!inputs[j].Association || !inputs[j].Association.FromId)                                     //如果当前通道没有关联关系
-                                Property.NVR.Input.associate(cameras.shift(), inputs[j]);   //关联摄像机数组中第一个对象，并从数组中删除
-                            if (cameras.length <= 0)                                        //如果摄像机数组中没有对象，就结束关联
-                                return;
-                        }
-                    }
-                }
+              return tryCatch(function () {
+                return Client.Management().Device.Video.Input.Association.Set(
+                  input.DeviceId,
+                  input.Id,
+                  association
+                )
+              })
             },
-            GroupList: {
-                IPCamera: {
-                    Selected: new Dictionary(),
-                    create: function (controlId, associated) {
-                        this.Selected = new Dictionary();
-                        var list = Property.IPCamera.load();
-                        var array = new GroupListItemArray();
-                        for (var i = 0; i < list.length; i++) {
-                            var item = new GroupListItem(Info.ControlIdPrefix.ipCamera, IPCamera_OnClick);
-                            item.id = list[i].Id
-                            item.className = item.className + " mouse_pointer";
+            unassociate: function (deviceId, inputId) {
+              return tryCatch(function () {
+                return Client.Management().Device.Video.Input.Association.Delete(
+                  deviceId,
+                  inputId
+                )
+              })
+            },
+          },
+          associate: function () {},
+        },
+      }
 
-                            if (is.Boolean(associated)) {
-                                if (Html.GroupList.Input.association.indexOf(list[i].Id) > -1 == associated)
-                                    $(item.Content).append($("<div class='group-list-tag " + (Html.GroupList.Input.association.indexOf(list[i].Id) > -1 ? "associated" : "") + "'></div>" + "<lable class='text-ellipsis' title='" + list[i].Name + "'>" + list[i].Name + "</lable>"));
-                                else
-                                    continue;
-                            }
-                            else
-                                $(item.Content).append($("<div class='group-list-tag " + (Html.GroupList.Input.association.indexOf(list[i].Id) > -1 ? "associated" : "") + "'></div>" + "<lable class='text-ellipsis'  title='" + list[i].Name + "'>" + list[i].Name + "</lable>"));
-                            array.push(item);
-                        }
-                        getTag(controlId).appendChild(new GroupList(Info.ControlIdPrefix.ipCamera, array));
-                    },
-                    clear: function () {
-                        var control = getTag(Info.ControlIdPrefix.ipCamera);
-                        if (control)
-                            control.innerText = "";
-                    },
-                    select: function (id, value) {
-                        if (is.Boolean(value)) {
-                            if (value) {
-                                this.Selected[id] = Property.IPCamera.value[id];
-                            }
-                            else {
-                                delete this.Selected[id];
-                            }
-                            return;
-                        }
-                        if (this.Selected[id]) {
-                            delete this.Selected[id];
-                            return;
-                        }
-                        this.Selected[id] = Property.IPCamera.value[id];
-                    },
-                },
-                Input: {
-                    Selected: new Dictionary(),
-                    association: new Array(),
-                    load: function (controlId, id) {
-                        this.association = new Array();
-                        Html.DropDownList.SelectedId = id;
-                        var list = Property.NVR.Input.load(id);
-                        var array = new GroupListItemArray();
-                        for (var i = 0; i < list.length; i++) {
-                            var item = new GroupListItem(Info.ControlIdPrefix.input, Input_OnClick);
-                            item.id = list[i].Id
-                            item.className = item.className + " mouse_pointer";
-                            $(item.Content).append($("<div class='group-list-tag " + (list[i].Association ? "associated" : "") + "'></div>" + "<lable class='text-ellipsis input-name' style='width:235px;' title='" + list[i].Name + "'>" + list[i].Name + "</lable>"));
+      var Html = {
+        DropDownList: {
+          SelectedId: '', //Id
+          NvrCount: function () {
+            return Property.NVR.value.toArray().length
+          },
+          load: function (controlId) {
+            var list = Property.NVR.load()
+            var ddl = getTag(controlId)
 
-                            if (list[i].Association && list[i].Association.FromId) {
-                                var fromId = list[i].Association.FromId;
-                                var id = new Id(fromId);
-                                if (this.association.indexOf(id.getDeviceId()) < 0) {
-                                    this.association.push(id.getDeviceId());
-                                }
-                                $(item.Content).append($("<div class='pull-right text-ellipsis' style='width:147px;' title='" + Property.IPCamera.value[id.getDeviceId()].Name + "'><span class='icon-link'></span>" + Property.IPCamera.value[id.getDeviceId()].Name + "</div>"));
-                            }
-                            array.push(item);
-                        }
-                        Html.GroupList.IPCamera.create("dListCamera");
-                        getTag(controlId).appendChild(new GroupList(Info.ControlIdPrefix.input, array));
-                    },
-                    select: function (id, value) {
-                        if (is.Boolean(value)) {
-                            if (value) {
-                                this.Selected[id] = Property.NVR.Input.value[id];
-                            }
-                            else {
-                                delete this.Selected[id];
-                            }
-                            return;
-                        }
-                        if (this.Selected[id]) {
-                            delete this.Selected[id];
-                            return;
-                        }
-                        this.Selected[id] = Property.NVR.Input.value[id];
-                    },
-                    clear: function () {
-                        var control = getTag(Info.ControlIdPrefix.input);
-                        if (control)
-                            control.innerText = "";
-                        this.Selected = new Dictionary();
-                    },
-                    associate: function (camera, input) {
-                        return Property.NVR.Input.associate(camera, input);
-                    },
-                    unassociate: function () {
-                        var inputs = this.Selected.toArray();
-                        for (var i = 0; i < inputs.length; i++) {
-                            Property.NVR.Input.unassociate(inputs[i].DeviceId, inputs[i].Id)
-                        }
-                    }
-                }
+            for (var i = 0; i < list.length; i++) {
+              var nvr = list[i]
+              var item = document.createElement('option')
+              item.innerHTML = nvr.Name
+              item.value = nvr.Id
+              item.id = nvr.Id
+              ddl.appendChild(item)
             }
-        }
+          },
+          associate: function () {
+            var cameras = Property.IPCamera.value.toArray()
+            var nvrs = Property.NVR.value.toArray()
+
+            for (var i = -1; i < nvrs.length; i++) {
+              //从-1开始循环，多一次循环用来添加当前选中的nvr
+              var id = i < 0 ? (id = this.SelectedId) : nvrs[i].Id //给id赋值，如果是第一次进入，那么id为选中的id
+              if (i >= 0 && id == this.SelectedId)
+                //如果非第一次循环，并且id和选中Id相同，那么就跳过当前的操作
+                continue
+              var inputs = Property.NVR.Input.load(id) //获取nvr下所有的通道
+              for (var j = 0; j < inputs.length; j++) {
+                //遍历通道
+                if (!inputs[j].Association || !inputs[j].Association.FromId)
+                  //如果当前通道没有关联关系
+                  Property.NVR.Input.associate(cameras.shift(), inputs[j]) //关联摄像机数组中第一个对象，并从数组中删除
+                if (cameras.length <= 0)
+                  //如果摄像机数组中没有对象，就结束关联
+                  return
+              }
+            }
+          },
+        },
+        GroupList: {
+          IPCamera: {
+            Selected: new Dictionary(),
+            create: function (controlId, associated) {
+              this.Selected = new Dictionary()
+              var list = Property.IPCamera.load()
+              var array = new GroupListItemArray()
+              for (var i = 0; i < list.length; i++) {
+                var item = new GroupListItem(
+                  Info.ControlIdPrefix.ipCamera,
+                  IPCamera_OnClick
+                )
+                item.id = list[i].Id
+                item.className = item.className + ' mouse_pointer'
+
+                if (is.Boolean(associated)) {
+                  if (
+                    Html.GroupList.Input.association.indexOf(list[i].Id) > -1 ==
+                    associated
+                  )
+                    $(item.Content).append(
+                      $(
+                        "<div class='group-list-tag " +
+                          (Html.GroupList.Input.association.indexOf(
+                            list[i].Id
+                          ) > -1
+                            ? 'associated'
+                            : '') +
+                          "'></div>" +
+                          "<lable class='text-ellipsis' title='" +
+                          list[i].Name +
+                          "'>" +
+                          list[i].Name +
+                          '</lable>'
+                      )
+                    )
+                  else continue
+                } else
+                  $(item.Content).append(
+                    $(
+                      "<div class='group-list-tag " +
+                        (Html.GroupList.Input.association.indexOf(list[i].Id) >
+                        -1
+                          ? 'associated'
+                          : '') +
+                        "'></div>" +
+                        "<lable class='text-ellipsis'  title='" +
+                        list[i].Name +
+                        "'>" +
+                        list[i].Name +
+                        '</lable>'
+                    )
+                  )
+                array.push(item)
+              }
+              getTag(controlId).appendChild(
+                new GroupList(Info.ControlIdPrefix.ipCamera, array)
+              )
+            },
+            clear: function () {
+              var control = getTag(Info.ControlIdPrefix.ipCamera)
+              if (control) control.innerText = ''
+            },
+            select: function (id, value) {
+              if (is.Boolean(value)) {
+                if (value) {
+                  this.Selected[id] = Property.IPCamera.value[id]
+                } else {
+                  delete this.Selected[id]
+                }
+                return
+              }
+              if (this.Selected[id]) {
+                delete this.Selected[id]
+                return
+              }
+              this.Selected[id] = Property.IPCamera.value[id]
+            },
+          },
+          Input: {
+            Selected: new Dictionary(),
+            association: new Array(),
+            load: function (controlId, id) {
+              this.association = new Array()
+              Html.DropDownList.SelectedId = id
+              var list = Property.NVR.Input.load(id)
+              var array = new GroupListItemArray()
+              for (var i = 0; i < list.length; i++) {
+                var item = new GroupListItem(
+                  Info.ControlIdPrefix.input,
+                  Input_OnClick
+                )
+                item.id = list[i].Id
+                item.className = item.className + ' mouse_pointer'
+                $(item.Content).append(
+                  $(
+                    "<div class='group-list-tag " +
+                      (list[i].Association ? 'associated' : '') +
+                      "'></div>" +
+                      "<lable class='text-ellipsis input-name' style='width:235px;' title='" +
+                      list[i].Name +
+                      "'>" +
+                      list[i].Name +
+                      '</lable>'
+                  )
+                )
+
+                if (list[i].Association && list[i].Association.FromId) {
+                  var fromId = list[i].Association.FromId
+                  var id = new Id(fromId)
+                  if (this.association.indexOf(id.getDeviceId()) < 0) {
+                    this.association.push(id.getDeviceId())
+                  }
+                  $(item.Content).append(
+                    $(
+                      "<div class='pull-right text-ellipsis' style='width:147px;' title='" +
+                        Property.IPCamera.value[id.getDeviceId()].Name +
+                        "'><span class='icon-link'></span>" +
+                        Property.IPCamera.value[id.getDeviceId()].Name +
+                        '</div>'
+                    )
+                  )
+                }
+                array.push(item)
+              }
+              Html.GroupList.IPCamera.create('dListCamera')
+              getTag(controlId).appendChild(
+                new GroupList(Info.ControlIdPrefix.input, array)
+              )
+            },
+            select: function (id, value) {
+              if (is.Boolean(value)) {
+                if (value) {
+                  this.Selected[id] = Property.NVR.Input.value[id]
+                } else {
+                  delete this.Selected[id]
+                }
+                return
+              }
+              if (this.Selected[id]) {
+                delete this.Selected[id]
+                return
+              }
+              this.Selected[id] = Property.NVR.Input.value[id]
+            },
+            clear: function () {
+              var control = getTag(Info.ControlIdPrefix.input)
+              if (control) control.innerText = ''
+              this.Selected = new Dictionary()
+            },
+            associate: function (camera, input) {
+              return Property.NVR.Input.associate(camera, input)
+            },
+            unassociate: function () {
+              var inputs = this.Selected.toArray()
+              for (var i = 0; i < inputs.length; i++) {
+                Property.NVR.Input.unassociate(inputs[i].DeviceId, inputs[i].Id)
+              }
+            },
+          },
+        },
+      }
     </script>
     <script type="text/javascript">
-        //页面加载
-        var CameraSearchControl = null;
-        var NVRSearchControl = null;
-        var CameraSearchMode = "normal";
-        var NVRSearchMode = "normal";
-        function device_video_input_association_load() {
-            //CameraSearchControl = new SearchControl("CameraSearchControl", CameraSearchClick);
+      //页面加载
+      var CameraSearchControl = null
+      var NVRSearchControl = null
+      var CameraSearchMode = 'normal'
+      var NVRSearchMode = 'normal'
+      function device_video_input_association_load() {
+        //CameraSearchControl = new SearchControl("CameraSearchControl", CameraSearchClick);
 
-            var li = new Object();
-            li["模糊搜索"] = changeCameraSearchMode;
-            CameraSearchControl = new DropDownListSearchControl("CameraSearchControl", CameraSearchClick, new DropDownListAttributes("cameraSearch", "camerasSearch", li, "search-drop-down-ul"));
-            CameraSearchControl.Div.style.width = "100%";
+        var li = new Object()
+        li['模糊搜索'] = changeCameraSearchMode
+        CameraSearchControl = new DropDownListSearchControl(
+          'CameraSearchControl',
+          CameraSearchClick,
+          new DropDownListAttributes(
+            'cameraSearch',
+            'camerasSearch',
+            li,
+            'search-drop-down-ul'
+          )
+        )
+        CameraSearchControl.Div.style.width = '100%'
 
-            var li = new Object();
-            li["模糊搜索"] = changeNVRSearchMode;
-            NVRSearchControl = new DropDownListSearchControl("NVRSearchControl", NVRSearchClick, new DropDownListAttributes("nvrSearch", "nvrsSearch", li, "search-drop-down-ul"));
-            //NVRSearchControl = new SearchControl("NVRSearchControl", NVRSearchClick);
-            NVRSearchControl.Div.style.width = "100%"
-            getTag("NVRSearchDiv").appendChild(NVRSearchControl.Div);
-            getTag("CameraSearch").appendChild(CameraSearchControl.Div);
-            //var devices = Client.Management().Device.List(null, null, DeviceClassification.NVR);
-            //for (var i = 0; i < devices.Device.length; i++) {
-            //    var nvr = devices.Device[i];
-            //    var inputs = Client.Management().Device.Video.Input.List(nvr.Id);
-            //    for (var j = 0; j < inputs.VideoInputChannel.length; j++) {
-            //        var input = inputs.VideoInputChannel[j];
-            //        Client.Management().Device.Video.Input.Association.Delete(nvr.Id, input.Id);
-            //    }
-            //}
+        var li = new Object()
+        li['模糊搜索'] = changeNVRSearchMode
+        NVRSearchControl = new DropDownListSearchControl(
+          'NVRSearchControl',
+          NVRSearchClick,
+          new DropDownListAttributes(
+            'nvrSearch',
+            'nvrsSearch',
+            li,
+            'search-drop-down-ul'
+          )
+        )
+        //NVRSearchControl = new SearchControl("NVRSearchControl", NVRSearchClick);
+        NVRSearchControl.Div.style.width = '100%'
+        getTag('NVRSearchDiv').appendChild(NVRSearchControl.Div)
+        getTag('CameraSearch').appendChild(CameraSearchControl.Div)
+        //var devices = Client.Management().Device.List(null, null, DeviceClassification.NVR);
+        //for (var i = 0; i < devices.Device.length; i++) {
+        //    var nvr = devices.Device[i];
+        //    var inputs = Client.Management().Device.Video.Input.List(nvr.Id);
+        //    for (var j = 0; j < inputs.VideoInputChannel.length; j++) {
+        //        var input = inputs.VideoInputChannel[j];
+        //        Client.Management().Device.Video.Input.Association.Delete(nvr.Id, input.Id);
+        //    }
+        //}
 
-            //alert("ok");
+        //alert("ok");
 
-            Html.DropDownList.load("ddlNVRList");
-            Html.GroupList.IPCamera.create("dListCamera");
-            getTag("ddlNVRList").selectedIndex = 0;
-            if (Html.DropDownList.NvrCount() > 0) {
-                getTag("ddlNVRList").onchange();
-            }
+        Html.DropDownList.load('ddlNVRList')
+        Html.GroupList.IPCamera.create('dListCamera')
+        getTag('ddlNVRList').selectedIndex = 0
+        if (Html.DropDownList.NvrCount() > 0) {
+          getTag('ddlNVRList').onchange()
+        }
+      }
+
+      function Association_OnClick(sender, args) {
+        //Html.GroupList.IPCamera.clear();
+        Property.IPCamera.associated = args
+        Html.GroupList.IPCamera.create('dListCamera', args)
+      }
+
+      //NVR下拉菜单改变事件
+      function ddlNVRList_Changed(sender, args) {
+        Html.GroupList.Input.clear()
+        Html.GroupList.Input.load('dListInput', sender.value)
+        return false
+      }
+
+      function NVRSearchClick() {
+        Property.NVR.Input.search = null
+        if (NVRSearchControl.Input.value) {
+          Property.NVR.Input.search = new Object()
+          var key = NVRSearchMode == 'normal' ? 'Name' : 'All'
+          Property.NVR.Input.search[key] = NVRSearchControl.Input.value
+        }
+        getTag('ddlNVRList').onchange()
+      }
+
+      function CameraSearchClick() {
+        Property.IPCamera.search = null
+        if (CameraSearchControl.Input.value) {
+          Property.IPCamera.search = new Object()
+          var key = CameraSearchMode == 'normal' ? 'Name' : 'All'
+          Property.IPCamera.search[key] = CameraSearchControl.Input.value
+        }
+        Property.IPCamera.searchValue = new Dictionary()
+        Html.GroupList.IPCamera.clear()
+        Html.GroupList.IPCamera.create(
+          'dListCamera',
+          Property.IPCamera.associated
+        )
+      }
+
+      function changeNVRSearchMode(a) {
+        if (NVRSearchMode == 'normal') {
+          NVRSearchMode = 'fuzzy'
+          a.innerText = '普通搜索'
+          NVRSearchControl.Icon.className =
+            'howell-icon-search fuzzy-search-btn'
+          return
+        }
+        NVRSearchControl.Icon.className = 'icon-search'
+        NVRSearchMode = 'normal'
+        a.innerText = '模糊搜索'
+      }
+
+      function changeCameraSearchMode(a) {
+        if (CameraSearchMode == 'normal') {
+          CameraSearchMode = 'fuzzy'
+          a.innerText = '普通搜索'
+          CameraSearchControl.Icon.className =
+            'howell-icon-search fuzzy-search-btn'
+          return
+        }
+        CameraSearchControl.Icon.className = 'icon-search'
+        CameraSearchMode = 'normal'
+        a.innerText = '模糊搜索'
+      }
+
+      function IPCamera_OnClick(sender) {
+        Html.GroupList.IPCamera.select(sender.id)
+      }
+      function IPCamera_SelectAll(items) {
+        if (items) {
+          for (var i = 0; i < items.length; i++) {
+            Html.GroupList.IPCamera.select(items[i].id, true)
+          }
+        }
+      }
+      function IPCamera_SelectCancel(items) {
+        if (items) {
+          for (var i = 0; i < items.length; i++) {
+            Html.GroupList.IPCamera.select(items[i].id, false)
+          }
+        }
+      }
+      function Input_OnClick(sender) {
+        Html.GroupList.Input.select(sender.id)
+      }
+      function Input_SelectAll(items) {
+        if (items) {
+          for (var i = 0; i < items.length; i++) {
+            Html.GroupList.Input.select(items[i].id, true)
+          }
+        }
+      }
+      function Input_SelectCancel(items) {
+        if (items) {
+          for (var i = 0; i < items.length; i++) {
+            Html.GroupList.Input.select(items[i].id, false)
+          }
+        }
+      }
+
+      function ToAssociated() {
+        var cameras = Html.GroupList.IPCamera.Selected.toArray()
+        var inputs = Html.GroupList.Input.Selected.toArray()
+
+        var minLength = Math.min(cameras.length, inputs.length)
+
+        for (var i = 0; i < minLength; i++) {
+          tryCatch(function () {
+            Property.NVR.Input.associate(cameras[i], inputs[i])
+          })
         }
 
-        function Association_OnClick(sender, args) {
-            //Html.GroupList.IPCamera.clear();
-            Property.IPCamera.associated = args;
-            Html.GroupList.IPCamera.create("dListCamera", args);
-        }
+        Html.GroupList.Input.clear()
+        Html.GroupList.Input.load('dListInput', getTag('ddlNVRList').value)
+      }
 
-        //NVR下拉菜单改变事件
-        function ddlNVRList_Changed(sender, args) {
-            Html.GroupList.Input.clear();
-            Html.GroupList.Input.load("dListInput", sender.value);
-            return false;
-        }
+      function AutoAssociated() {
+        Html.DropDownList.associate()
+        Html.GroupList.Input.clear()
+        Html.GroupList.Input.load('dListInput', getTag('ddlNVRList').value)
+      }
 
-        function NVRSearchClick() {
-            Property.NVR.Input.search = null;
-            if (NVRSearchControl.Input.value) {
-                Property.NVR.Input.search = new Object();
-                var key = NVRSearchMode == "normal" ? "Name" : "All";
-                Property.NVR.Input.search[key] = NVRSearchControl.Input.value;
-            }
-            getTag("ddlNVRList").onchange();
-        }
+      function OnlyOneAssociated() {}
 
-        function CameraSearchClick() {
-            Property.IPCamera.search = null;
-            if (CameraSearchControl.Input.value) {
-                Property.IPCamera.search = new Object();
-                var key = CameraSearchMode == "normal" ? "Name" : "All";
-                Property.IPCamera.search[key] = CameraSearchControl.Input.value
-            }
-            Property.IPCamera.searchValue = new Dictionary();
-            Html.GroupList.IPCamera.clear();
-            Html.GroupList.IPCamera.create("dListCamera", Property.IPCamera.associated);
+      function ToUnassociated(sender) {
+        if (Html.GroupList.Input.Selected.toArray().length > 0) {
+          $.confirm({
+            text: '确定要解除关联吗？',
+            okButton: '确定',
+            cancelButton: '取消',
+            confirm: function () {
+              Html.GroupList.Input.unassociate()
+              Html.GroupList.Input.clear()
+              Html.GroupList.Input.load(
+                'dListInput',
+                getTag('ddlNVRList').value
+              )
+            },
+          })
         }
+      }
 
-        function changeNVRSearchMode(a) {
-            if (NVRSearchMode == "normal") {
-                NVRSearchMode = "fuzzy";
-                a.innerText = "普通搜索";
-                NVRSearchControl.Icon.className = "howell-icon-search fuzzy-search-btn";
-                return;
-            }
-            NVRSearchControl.Icon.className = "icon-search";
-            NVRSearchMode = "normal";
-            a.innerText = "模糊搜索";
-        }
-
-        function changeCameraSearchMode(a) {
-            if (CameraSearchMode == "normal") {
-                CameraSearchMode = "fuzzy";
-                a.innerText = "普通搜索";
-                CameraSearchControl.Icon.className = "howell-icon-search fuzzy-search-btn";
-                return;
-            }
-            CameraSearchControl.Icon.className = "icon-search";
-            CameraSearchMode = "normal";
-            a.innerText = "模糊搜索";
-        }
-
-        function IPCamera_OnClick(sender) {
-            Html.GroupList.IPCamera.select(sender.id);
-        }
-        function IPCamera_SelectAll(items) {
-
-            if (items) {
-                for (var i = 0; i < items.length; i++) {
-                    Html.GroupList.IPCamera.select(items[i].id, true);
-                }
-            }
-        }
-        function IPCamera_SelectCancel(items) {
-            if (items) {
-                for (var i = 0; i < items.length; i++) {
-                    Html.GroupList.IPCamera.select(items[i].id, false);
-                }
-            }
-        }
-        function Input_OnClick(sender) {
-            Html.GroupList.Input.select(sender.id);
-        }
-        function Input_SelectAll(items) {
-            if (items) {
-                for (var i = 0; i < items.length; i++) {
-                    Html.GroupList.Input.select(items[i].id, true);
-                }
-            }
-        }
-        function Input_SelectCancel(items) {
-            if (items) {
-                for (var i = 0; i < items.length; i++) {
-                    Html.GroupList.Input.select(items[i].id, false);
-                }
-            }
-        }
-
-        function ToAssociated() {
-            var cameras = Html.GroupList.IPCamera.Selected.toArray();
-            var inputs = Html.GroupList.Input.Selected.toArray();
-
-            var minLength = Math.min(cameras.length, inputs.length)
-
-            for (var i = 0; i < minLength; i++) {
-                tryCatch(function () {
-                    Property.NVR.Input.associate(cameras[i], inputs[i])
-                })
-            }
-
-            Html.GroupList.Input.clear();
-            Html.GroupList.Input.load("dListInput", getTag("ddlNVRList").value);
-        }
-
-        function AutoAssociated() {
-            Html.DropDownList.associate();
-            Html.GroupList.Input.clear();
-            Html.GroupList.Input.load("dListInput", getTag("ddlNVRList").value);
-        }
-
-        function OnlyOneAssociated() {
-
-        }
-
-        function ToUnassociated(sender) {
-            if (Html.GroupList.Input.Selected.toArray().length > 0) {
-                $.confirm({
-                    text: "确定要解除关联吗？",
-                    okButton: "确定",
-                    cancelButton: "取消",
-                    confirm: function () {
-                        Html.GroupList.Input.unassociate();
-                        Html.GroupList.Input.clear();
-                        Html.GroupList.Input.load("dListInput", getTag("ddlNVRList").value);
-                    }
-                });
-            }
-        }
-
-        $(function () {
-            device_video_input_association_load();
-        });
+      $(function () {
+        device_video_input_association_load()
+      })
     </script>
-</body>
+  </body>
 </html>

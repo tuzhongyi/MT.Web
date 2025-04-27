@@ -1,216 +1,321 @@
-﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head><meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>设置用户</title>
     <link rel="stylesheet" type="text/css" href="../../css/howell.css" />
     <script type="text/javascript" src="../../js/language/chinese.js"></script>
-    <script type="text/javascript" src="../../js/jquery/jquery-1.10.2.min.js"></script>
+    <script
+      type="text/javascript"
+      src="../../js/jquery/jquery-3.6.0.min.js"
+    ></script>
     <script src="../../js/imported.js"></script>
     <script type="text/javascript" src="../../js/jquery/jquery-ui.js"></script>
-    <script type="text/javascript" src="../../js/bootstrap/bootstrap.min.js"></script>
+    <script
+      type="text/javascript"
+      src="../../js/bootstrap/bootstrap.min.js"
+    ></script>
     <script type="text/javascript" src="../../js/modernizr.custom.js"></script>
     <script type="text/javascript" src="../../js/howell.js/howell.js"></script>
-    <script type="text/javascript" src="../../js/howell.js/howell.control.js"></script>
+    <script
+      type="text/javascript"
+      src="../../js/howell.js/howell.control.js"
+    ></script>
     <script type="text/javascript" src="../../js/client/enum.js"></script>
     <script type="text/javascript" src="../../js/md5.js"></script>
     <script type="text/javascript" src="../../js/client/struct.js"></script>
-    <script type="text/javascript" src="../../js/howell.js/httpService.js"></script>
+    <script
+      type="text/javascript"
+      src="../../js/howell.js/httpService.js"
+    ></script>
     <script type="text/javascript" src="../../js/client/security.js"></script>
-    <script type="text/javascript" src="../../js/jquery/jquery.confirm.js"></script>
-    <script type="text/javascript" src="../../js/background/security/background_user.event.js"></script>
-    <script type="text/javascript" src="../../js/background/security/background_users.js"></script>
-    <script type="text/javascript" src="../../js/background/security/user/background_user_details.js"></script>
+    <script
+      type="text/javascript"
+      src="../../js/jquery/jquery.confirm.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../js/background/security/background_user.event.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../js/background/security/background_users.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../js/background/security/user/background_user_details.js"
+    ></script>
     <script type="text/javascript" src="user_details.js"></script>
     <script type="text/javascript">
-        Trigger = document.createElement("a");
-        Trigger.href = "http://location/item.htm";
-
+      Trigger = document.createElement('a')
+      Trigger.href = 'http://location/item.htm'
     </script>
-</head>
-<body>
+  </head>
+  <body>
     <style type="text/css">
-        .user_deteils_title_ico {
-            color: #007aff;
-            margin-right: 10px;
-        }
+      .user_deteils_title_ico {
+        color: #007aff;
+        margin-right: 10px;
+      }
     </style>
 
     <div class="container-fluid main-content alert-window-maxdiv">
-        <div class="page-title">
-            <h3 class="list-heading-div">
-                <i class="icon-user list-heading-icon mouse_default user_deteils_title_ico"></i>
-                <label id="lblUserDetailTitle">添加用户</label>
-            </h3>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="widget-content padded">
-                    <form action="#" class="form-horizontal">
-                        <div id="page1" style="margin-bottom:44px">
-                            <div class="form-group" style="margin-bottom:0px">
-                                <label class="control-label col-md-2">
-                                    用户名称
-                                </label>
-                                <div class="col-md-9">
-                                    <input class="form-control" type="text" id="txtName"/>
-                                </div>
-                                <label class="lable-required">*</label>
-                            </div>
-                            <div class="text-prompt" id="namePrompt">
-                                6~32个字符，可使用字母、数字、下划线，需以字母开头
-                            </div>
-                            <div class="form-group" style="margin-bottom:0px">
-                                <label class="control-label col-md-2">
-                                    用户昵称
-                                </label>
-                                <div class="col-md-9">
-                                    <input class="form-control" type="text" id="txtNickname" />
-                                </div>
-                                <label class="lable-required">*</label>
-                            </div>
-                            <div class="text-prompt" id="namePrompt">
-                                可使用汉字、字母、数字、下划线
-                            </div>
-                            <div class="form-group" id="divPassword" style="margin-bottom:0px">
-                                <label class="control-label col-md-2">
-                                    密码
-                                </label>
-                                <div class="col-md-9">
-                                    <input class="form-control" type="password" id="txtPassword" />
-                                </div>
-                                <label class="lable-required">*</label>
-                            </div>
-                            <div class="text-prompt" id="passwordPrompt">
-                                6~32个字符，区分大小写
-                            </div>
-                            <div class="form-group" id="divConfirmPassword" style="margin-bottom:30px">
-                                <label class="control-label col-md-2">
-                                    确认密码
-                                </label>
-                                <div class="col-md-9">
-                                    <input class="form-control" type="password" id="txtConfirmPassword" />
-                                </div>
-                                <label class="lable-required">*</label>
-                            </div>
-                            <div class="form-group" style="margin-bottom:30px">
-                                <label class="control-label col-md-2">
-                                    权限
-                                </label>
-                                <div class="col-md-9">
-                                    <select class="form-control" id="ddlPermission" onchange="ddlPermission_OnChanged(this, this.value);"></select>
-                                </div>
-                            </div>
-                            <div class="form-group" style="display:none" id="divTitleDetailPermission">
-                                <label class="control-label col-md-2">
-                                    详细权限
-                                </label>
-                                <div class="col-md-9">
-                                    <input class="form-control readonly-txt" type="text" id="txtDetailPermission" readonly="readonly" />
-                                    <input type="hidden" id="subvalue" value="None" />
-                                </div>
-                            </div>
-                            <div class="form-group" style="display:none" id="divDetailPermission">
-                                <label class="control-label col-md-2">
-                                </label>
-                                <div class="col-md-9">
-                                    <label class="checkbox-inline" onclick="makeStop = false; PopoverWindow.CanClose = false;">
-                                        <input type="checkbox" name="DetailPermission" id="chkInformation" onchange="chkDetailPermission_Click(this, 'Information');" value="Information" /><span> 系统信息 </span>
-                                    </label>
-                                    <label class="checkbox-inline" onclick="makeStop = false; PopoverWindow.CanClose = false;">
-                                        <input type="checkbox" name="DetailPermission" id="chkSystem" onchange="chkDetailPermission_Click(this, 'System');" value="System" /><span> 系统设置 </span>
-                                    </label>
-                                    <label class="checkbox-inline" onclick="makeStop = false; PopoverWindow.CanClose = false;">
-                                        <input type="checkbox" name="DetailPermission" id="chkUser" onchange="chkDetailPermission_Click(this, 'User');;" value="User" /><span> 用户管理 </span>
-                                    </label>
-                                    <label class="checkbox-inline" onclick="makeStop = false; PopoverWindow.CanClose = false;">
-                                        <input type="checkbox" name="DetailPermission" id="chkDevice" onchange="chkDetailPermission_Click(this, 'Device');" value="Device" /><span> 操作权限</span>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="page2" style="display:none;margin-bottom:30px;">
-                            <div class="form-group">
-                                <label class="control-label col-md-2">
-                                    手机号码
-                                </label>
-                                <div class="col-md-9">
-                                    <input class="form-control" type="text" id="txtMobile" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-2">
-                                    固话号码
-                                </label>
-                                <div class="col-md-9">
-                                    <input class="form-control" type="text" id="txtPhone" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-2">
-                                    性别
-                                </label>
-                                <div class="col-md-9">
-                                    <label class="radio-inline" onclick="makeStop = false; PopoverWindow.CanClose = false;">
-                                        <input id="rdoMale" name="Sex" type="radio" /><span>男</span>
-                                    </label>
-                                    <label class="radio-inline" onclick="makeStop = false; PopoverWindow.CanClose = false;">
-                                        <input id="rdoFemale" name="Sex" type="radio" /><span>女</span>
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-2">
-                                    制服编号
-                                </label>
-                                <div class="col-md-9">
-                                    <input class="form-control" type="text" id="txtUniformedId" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-2">
-                                    用户职责
-                                </label>
-                                <div class="col-md-9">
-                                    <input class="form-control" id="txtDuty" type="text" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-2">
-                                    描述
-                                </label><div class="col-md-9">
-                                    <textarea class="form-control" id="txtInformation" rows="4"></textarea>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-5">
-                            </label>
-                            <div class="col-md-2">
-                                <a class="btn btn-primary" id="btnLastStep" onclick="btnLastStep_Click();" style="display:none;">
-                                    上一步
-                                </a>
-                            </div>
-                            <div class="col-md-2">
-                                <a class="btn btn-primary" id="btnDetailUser" onclick="return btnDetailUser_Click(this);" style="display:none">
-                                    完&ensp;&ensp;成
-                                </a>
-                                <a class="btn btn-primary" id="btnNextStep" onclick="btnNextStep_Click();">
-                                    下一步
-                                </a>
-                            </div>
-                            <div class="col-md-2">
-                                <a class="btn btn-primary" onclick="return AlertWindow.Close();">
-                                    取&ensp;&ensp;消
-                                </a>
-                            </div>
-                        </div>
-                    </form>
+      <div class="page-title">
+        <h3 class="list-heading-div">
+          <i
+            class="icon-user list-heading-icon mouse_default user_deteils_title_ico"
+          ></i>
+          <label id="lblUserDetailTitle">添加用户</label>
+        </h3>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="widget-content padded">
+            <form action="#" class="form-horizontal">
+              <div id="page1" style="margin-bottom: 44px">
+                <div class="form-group" style="margin-bottom: 0px">
+                  <label class="control-label col-md-2"> 用户名称 </label>
+                  <div class="col-md-9">
+                    <input class="form-control" type="text" id="txtName" />
+                  </div>
+                  <label class="lable-required">*</label>
                 </div>
-            </div>
+                <div class="text-prompt" id="namePrompt">
+                  6~32个字符，可使用字母、数字、下划线，需以字母开头
+                </div>
+                <div class="form-group" style="margin-bottom: 0px">
+                  <label class="control-label col-md-2"> 用户昵称 </label>
+                  <div class="col-md-9">
+                    <input class="form-control" type="text" id="txtNickname" />
+                  </div>
+                  <label class="lable-required">*</label>
+                </div>
+                <div class="text-prompt" id="namePrompt">
+                  可使用汉字、字母、数字、下划线
+                </div>
+                <div
+                  class="form-group"
+                  id="divPassword"
+                  style="margin-bottom: 0px"
+                >
+                  <label class="control-label col-md-2"> 密码 </label>
+                  <div class="col-md-9">
+                    <input
+                      class="form-control"
+                      type="password"
+                      id="txtPassword"
+                    />
+                  </div>
+                  <label class="lable-required">*</label>
+                </div>
+                <div class="text-prompt" id="passwordPrompt">
+                  6~32个字符，区分大小写
+                </div>
+                <div
+                  class="form-group"
+                  id="divConfirmPassword"
+                  style="margin-bottom: 30px"
+                >
+                  <label class="control-label col-md-2"> 确认密码 </label>
+                  <div class="col-md-9">
+                    <input
+                      class="form-control"
+                      type="password"
+                      id="txtConfirmPassword"
+                    />
+                  </div>
+                  <label class="lable-required">*</label>
+                </div>
+                <div class="form-group" style="margin-bottom: 30px">
+                  <label class="control-label col-md-2"> 权限 </label>
+                  <div class="col-md-9">
+                    <select
+                      class="form-control"
+                      id="ddlPermission"
+                      onchange="ddlPermission_OnChanged(this, this.value);"
+                    ></select>
+                  </div>
+                </div>
+                <div
+                  class="form-group"
+                  style="display: none"
+                  id="divTitleDetailPermission"
+                >
+                  <label class="control-label col-md-2"> 详细权限 </label>
+                  <div class="col-md-9">
+                    <input
+                      class="form-control readonly-txt"
+                      type="text"
+                      id="txtDetailPermission"
+                      readonly="readonly"
+                    />
+                    <input type="hidden" id="subvalue" value="None" />
+                  </div>
+                </div>
+                <div
+                  class="form-group"
+                  style="display: none"
+                  id="divDetailPermission"
+                >
+                  <label class="control-label col-md-2"> </label>
+                  <div class="col-md-9">
+                    <label
+                      class="checkbox-inline"
+                      onclick="makeStop = false; PopoverWindow.CanClose = false;"
+                    >
+                      <input
+                        type="checkbox"
+                        name="DetailPermission"
+                        id="chkInformation"
+                        onchange="chkDetailPermission_Click(this, 'Information');"
+                        value="Information"
+                      /><span> 系统信息 </span>
+                    </label>
+                    <label
+                      class="checkbox-inline"
+                      onclick="makeStop = false; PopoverWindow.CanClose = false;"
+                    >
+                      <input
+                        type="checkbox"
+                        name="DetailPermission"
+                        id="chkSystem"
+                        onchange="chkDetailPermission_Click(this, 'System');"
+                        value="System"
+                      /><span> 系统设置 </span>
+                    </label>
+                    <label
+                      class="checkbox-inline"
+                      onclick="makeStop = false; PopoverWindow.CanClose = false;"
+                    >
+                      <input
+                        type="checkbox"
+                        name="DetailPermission"
+                        id="chkUser"
+                        onchange="chkDetailPermission_Click(this, 'User');;"
+                        value="User"
+                      /><span> 用户管理 </span>
+                    </label>
+                    <label
+                      class="checkbox-inline"
+                      onclick="makeStop = false; PopoverWindow.CanClose = false;"
+                    >
+                      <input
+                        type="checkbox"
+                        name="DetailPermission"
+                        id="chkDevice"
+                        onchange="chkDetailPermission_Click(this, 'Device');"
+                        value="Device"
+                      /><span> 操作权限</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div id="page2" style="display: none; margin-bottom: 30px">
+                <div class="form-group">
+                  <label class="control-label col-md-2"> 手机号码 </label>
+                  <div class="col-md-9">
+                    <input class="form-control" type="text" id="txtMobile" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-md-2"> 固话号码 </label>
+                  <div class="col-md-9">
+                    <input class="form-control" type="text" id="txtPhone" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-md-2"> 性别 </label>
+                  <div class="col-md-9">
+                    <label
+                      class="radio-inline"
+                      onclick="makeStop = false; PopoverWindow.CanClose = false;"
+                    >
+                      <input id="rdoMale" name="Sex" type="radio" /><span
+                        >男</span
+                      >
+                    </label>
+                    <label
+                      class="radio-inline"
+                      onclick="makeStop = false; PopoverWindow.CanClose = false;"
+                    >
+                      <input id="rdoFemale" name="Sex" type="radio" /><span
+                        >女</span
+                      >
+                    </label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-md-2"> 制服编号 </label>
+                  <div class="col-md-9">
+                    <input
+                      class="form-control"
+                      type="text"
+                      id="txtUniformedId"
+                    />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-md-2"> 用户职责 </label>
+                  <div class="col-md-9">
+                    <input class="form-control" id="txtDuty" type="text" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-md-2"> 描述 </label>
+                  <div class="col-md-9">
+                    <textarea
+                      class="form-control"
+                      id="txtInformation"
+                      rows="4"
+                    ></textarea>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-5"> </label>
+                <div class="col-md-2">
+                  <a
+                    class="btn btn-primary"
+                    id="btnLastStep"
+                    onclick="btnLastStep_Click();"
+                    style="display: none"
+                  >
+                    上一步
+                  </a>
+                </div>
+                <div class="col-md-2">
+                  <a
+                    class="btn btn-primary"
+                    id="btnDetailUser"
+                    onclick="return btnDetailUser_Click(this);"
+                    style="display: none"
+                  >
+                    完&ensp;&ensp;成
+                  </a>
+                  <a
+                    class="btn btn-primary"
+                    id="btnNextStep"
+                    onclick="btnNextStep_Click();"
+                  >
+                    下一步
+                  </a>
+                </div>
+                <div class="col-md-2">
+                  <a
+                    class="btn btn-primary"
+                    onclick="return AlertWindow.Close();"
+                  >
+                    取&ensp;&ensp;消
+                  </a>
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
+      </div>
     </div>
-    <script type="text/javascript">    
-        item_load();
+    <script type="text/javascript">
+      item_load()
     </script>
-</body>
+  </body>
 </html>

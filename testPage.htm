@@ -1,26 +1,23 @@
 ﻿<!DOCTYPE html>
 <html>
-
-<head>
+  <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-    <title>
-        se7en - Dashboard
-    </title>
+    <title>se7en - Dashboard</title>
     <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
     <link href="css/bootstrap/font-awesome.css" rel="stylesheet" />
     <link href="css/bootstrap/jquery.fancybox.css" rel="stylesheet" />
     <link href="css/style.css" rel="stylesheet" />
     <link href="css/bootstrap/isotope.css" rel="stylesheet" />
-    <script src="js/jquery/jquery-1.10.2.min.js"></script>
+    <script src="js/jquery/jquery-3.6.0.min.js"></script>
     <script src="js/jquery/jquery.isotope.min.js"></script>
     <script src="js/jquery/jquery.fancybox.pack.js"></script>
-</head>
-<body>
-    <div id="test" style="width:1200px;">
-        <div id="heading">
-            <input type="text"/>
-        </div>
-        <!--<div class="widget-content padded" style="height:1000px">
+  </head>
+  <body>
+    <div id="test" style="width: 1200px">
+      <div id="heading">
+        <input type="text" />
+      </div>
+      <!--<div class="widget-content padded" style="height:1000px">
             <div class="gallery-container isotope" id="container" style="width: 880px;  overflow: hidden; position: relative;border:1px red solid">
                 <a title="This is a caption" class="gallery-item filter1 fancybox isotope-item" style="left: 0px; top: 0px; position: absolute; transform: translate(0px, 0px);" href="images/image-iso5.png" rel="gallery1 filter1">
                     <img src="images/image-iso1.png">
@@ -53,383 +50,365 @@
         </div>-->
     </div>
     <script type="text/javascript">
-    function ImageFilter(filter, innerText) {
-        var btn = document.createElement("a");
-        btn.className = "btn btn-sm btn-primary-outline";
-        btn.href = "#";
-        btn.innerHTML = innerText;
-        btn.dataset.filter = filter;
-        return btn;
-    }
-    function ImageFilterList(id, Enum, isAll) {
-        var filterDiv = document.createElement("div");
-        filterDiv.className = "gallery-filters list-inline btn-group";
+      function ImageFilter(filter, innerText) {
+        var btn = document.createElement('a')
+        btn.className = 'btn btn-sm btn-primary-outline'
+        btn.href = '#'
+        btn.innerHTML = innerText
+        btn.dataset.filter = filter
+        return btn
+      }
+      function ImageFilterList(id, Enum, isAll) {
+        var filterDiv = document.createElement('div')
+        filterDiv.className = 'gallery-filters list-inline btn-group'
         if (isAll) {
-            var btnAll = ImageFilter("*", "全部");
-            filterDiv.appendChild(btnAll);
+          var btnAll = ImageFilter('*', '全部')
+          filterDiv.appendChild(btnAll)
         }
         for (var key in Enum) {
-            var type = key;
-            var filterBtn = ImageFilter("." + type, Enum[key]);
-            filterDiv.appendChild(filterBtn);
+          var type = key
+          var filterBtn = ImageFilter('.' + type, Enum[key])
+          filterDiv.appendChild(filterBtn)
         }
-        document.getElementById(id).appendChild(filterDiv);
-        $container = $(".gallery-container");
+        document.getElementById(id).appendChild(filterDiv)
+        $container = $('.gallery-container')
         //$container.isotope({});
-        $(".gallery-filters a").click(function () {
-            var selector;
-            selector = $(this).attr("data-filter");
-            $(".gallery-filters a.selected").removeClass("selected");
-            $(this).addClass("selected");
+        $('.gallery-filters a').click(function () {
+          var selector
+          selector = $(this).attr('data-filter')
+          $('.gallery-filters a.selected').removeClass('selected')
+          $(this).addClass('selected')
 
-            $container.isotope({
-                filter: selector
-            });
+          $container.isotope({
+            filter: selector,
+          })
 
-            var name = selector;
-            var rel = selector;
-            if (selector == "*") {
-                name = ".gallery-item";
-                rel = "all";
+          var name = selector
+          var rel = selector
+          if (selector == '*') {
+            name = '.gallery-item'
+            rel = 'all'
+          }
+          var tags = $(name)
+          var changeRel = function (_tags) {
+            for (var i = 0; i < _tags.childNodes.length; i++) {
+              changeRel(_tags.childNodes[i])
             }
-            var tags = $(name);
-            var changeRel = function (_tags) {
-                for (var i = 0; i < _tags.childNodes.length; i++) {
-                    changeRel(_tags.childNodes[i]);
-                }
-                if (_tags.className.indexOf("details") > -1)
-                    $(_tags).attr("rel", rel);
-            }
-            for (var i = 0; i < tags.length; i++) {
-                changeRel(tags[i]);
-            }
-            return false;
-        });
+            if (_tags.className.indexOf('details') > -1)
+              $(_tags).attr('rel', rel)
+          }
+          for (var i = 0; i < tags.length; i++) {
+            changeRel(tags[i])
+          }
+          return false
+        })
         //if (filterDiv.childNodes.length > 0)
         //    filterDiv.childNodes[0].click();
-        return filterDiv;
-    }
+        return filterDiv
+      }
 
-    function ImageBoxObject() {
-        this.Id = "";
-        this.Src = "";
-        this.Rel = "default";
-        this.OtherBtns = new Array();
-    }
-    function ImageBoxActionBtn(btnClassName) {
-        var a = document.createElement("a");
-        var i = document.createElement("i");
-        i.className = btnClassName;
-        a.appendChild(i);
-        return a;
-    }
+      function ImageBoxObject() {
+        this.Id = ''
+        this.Src = ''
+        this.Rel = 'default'
+        this.OtherBtns = new Array()
+      }
+      function ImageBoxActionBtn(btnClassName) {
+        var a = document.createElement('a')
+        var i = document.createElement('i')
+        i.className = btnClassName
+        a.appendChild(i)
+        return a
+      }
 
-    function ImageZoomBtn(imgObj) {
-        var zoom_in = ImageBoxActionBtn("icon-zoom-in");
-        zoom_in.href = imgObj.Src;
-        zoom_in.rel = imgObj.Rel;
-        zoom_in.className = "details";
-        return zoom_in;
-    }
+      function ImageZoomBtn(imgObj) {
+        var zoom_in = ImageBoxActionBtn('icon-zoom-in')
+        zoom_in.href = imgObj.Src
+        zoom_in.rel = imgObj.Rel
+        zoom_in.className = 'details'
+        return zoom_in
+      }
 
-    function ImageBox(imgObj, fancybox_options) {
-        var result = document.createElement("a");
-        result.className = "gallery-item";
-        if (imgObj.Rel != "default")
-            $(result).addClass(imgObj.Rel);
-        result.id = imgObj.Id;
+      function ImageBox(imgObj, fancybox_options) {
+        var result = document.createElement('a')
+        result.className = 'gallery-item'
+        if (imgObj.Rel != 'default') $(result).addClass(imgObj.Rel)
+        result.id = imgObj.Id
 
-        var img = document.createElement("img");
-        img.src = imgObj.Src;
+        var img = document.createElement('img')
+        img.src = imgObj.Src
 
-        result.appendChild(img);
+        result.appendChild(img)
 
-        var actions = document.createElement("div");
-        actions.className = "actions";
+        var actions = document.createElement('div')
+        actions.className = 'actions'
 
-        actions.appendChild(new ImageZoomBtn(imgObj));
+        actions.appendChild(new ImageZoomBtn(imgObj))
 
         if (imgObj.OtherBtns.length > 0) {
-            for (var i = 0; i < imgObj.OtherBtns.length; i++) {
-                actions.appendChild(imgObj.OtherBtns[i]);
-            }
+          for (var i = 0; i < imgObj.OtherBtns.length; i++) {
+            actions.appendChild(imgObj.OtherBtns[i])
+          }
         }
         result.appendChild(actions)
 
-        if (fancybox_options)
-            $(zoom_in).fancybox(fancybox_options);
+        if (fancybox_options) $(zoom_in).fancybox(fancybox_options)
 
-        return result;
-    }
+        return result
+      }
 
-    function ImageBoxList(id, objArray, fancybox_options) {
-        var result = document.createElement("div");
-        result.className = "gallery-container";
-        result.id = id;
+      function ImageBoxList(id, objArray, fancybox_options) {
+        var result = document.createElement('div')
+        result.className = 'gallery-container'
+        result.id = id
         for (var i = 0; i < objArray.length; i++) {
-            var box = new ImageBoxObject()
-            for (var key in objArray[i]) {
-                if (objArray[i][key])
-                    box[key] = objArray[i][key];
-            }
-            result.appendChild(new ImageBox(box));
+          var box = new ImageBoxObject()
+          for (var key in objArray[i]) {
+            if (objArray[i][key]) box[key] = objArray[i][key]
+          }
+          result.appendChild(new ImageBox(box))
         }
-        $("#" + id + " .details").fancybox(fancybox_options);
-        return result;
-    }
+        $('#' + id + ' .details').fancybox(fancybox_options)
+        return result
+      }
 
-    function _load() {
+      function _load() {
         var ImageType = {
-            type1: "类型1",
-            type2: "类型2",
-            type3: "类型3",
+          type1: '类型1',
+          type2: '类型2',
+          type3: '类型3',
         }
-        var imgs = new Array();
+        var imgs = new Array()
         for (var i = 0; i < 9; i++) {
-            (function () {
-                var img = new ImageBoxObject();
-                img.Id = i.toString();
-                img.Src = "images/image-iso" + i + ".png";
-                img.Rel = "type" + (i % 3 + 1);
+          ;(function () {
+            var img = new ImageBoxObject()
+            img.Id = i.toString()
+            img.Src = 'images/image-iso' + i + '.png'
+            img.Rel = 'type' + ((i % 3) + 1)
 
-                var trashBtn = new ImageBoxActionBtn("icon-trash");
-                trashBtn.onclick = (function () {
-                    alert("删除:" + img.Src);
-                });
-                img.OtherBtns.push(trashBtn);
-
-                var pencilBtn = new ImageBoxActionBtn("icon-pencil");
-                pencilBtn.onclick = (function () {
-                    alert("修改:" + img.Src);
-                });
-                img.OtherBtns.push(pencilBtn);
-
-                imgs.push(img);
-            })();
-        }
-        var test = document.getElementById("test");
-        var imglist = new ImageBoxList("img_box", imgs, {
-            maxWidth: 700,
-            height: 'auto',
-            fitToView: false,
-            autoSize: false,
-            padding: 15,
-            nextEffect: 'fade',
-            prevEffect: 'fade',
-            helpers: {
-                title: {
-                    type: "outside"
-                }
+            var trashBtn = new ImageBoxActionBtn('icon-trash')
+            trashBtn.onclick = function () {
+              alert('删除:' + img.Src)
             }
-        });
-        test.appendChild(imglist);
-        
-        var filter = new ImageFilterList("heading", ImageType, true);
-        setTimeout(function () { $(".gallery-container").isotope({}); }, 150);
-        $(".gallery-container").isotope({
-            layoutMode: 'fitRows'
-        });
-    }
-    _load();
+            img.OtherBtns.push(trashBtn)
+
+            var pencilBtn = new ImageBoxActionBtn('icon-pencil')
+            pencilBtn.onclick = function () {
+              alert('修改:' + img.Src)
+            }
+            img.OtherBtns.push(pencilBtn)
+
+            imgs.push(img)
+          })()
+        }
+        var test = document.getElementById('test')
+        var imglist = new ImageBoxList('img_box', imgs, {
+          maxWidth: 700,
+          height: 'auto',
+          fitToView: false,
+          autoSize: false,
+          padding: 15,
+          nextEffect: 'fade',
+          prevEffect: 'fade',
+          helpers: {
+            title: {
+              type: 'outside',
+            },
+          },
+        })
+        test.appendChild(imglist)
+
+        var filter = new ImageFilterList('heading', ImageType, true)
+        setTimeout(function () {
+          $('.gallery-container').isotope({})
+        }, 150)
+        $('.gallery-container').isotope({
+          layoutMode: 'fitRows',
+        })
+      }
+      _load()
     </script>
-</body>
+  </body>
 </html>
 <script>
-    //$(function () {
+  //$(function () {
 
-    //    var $container = $('#container');
+  //    var $container = $('#container');
 
-    //    $container.isotope({
-    //        itemSelector: '.gallery-item',
-    //        masonry: {
-    //            columnWidth: 10,
-    //        },
-    //        masonryHorizontal: {
-    //            rowHeight: 10
-    //        },
-    //        cellsByRow: {
-    //            columnWidth: 240,
-    //            rowHeight: 240
-    //        },
-    //        cellsByColumn: {
-    //            columnWidth: 240,
-    //            rowHeight: 240
-    //        },
-    //        getSortData: {
-    //            symbol: function ($elem) {
-    //                return $elem.attr('data-symbol');
-    //            },
-    //            category: function ($elem) {
-    //                return $elem.attr('data-category');
-    //            },
-    //            number: function ($elem) {
-    //                return parseInt($elem.find('.number').text(), 10);
-    //            },
-    //            weight: function ($elem) {
-    //                return parseFloat($elem.find('.weight').text().replace(/[\(\)]/g, ''));
-    //            },
-    //            name: function ($elem) {
-    //                return $elem.find('.name').text();
-    //            }
-    //        }
-    //    });
+  //    $container.isotope({
+  //        itemSelector: '.gallery-item',
+  //        masonry: {
+  //            columnWidth: 10,
+  //        },
+  //        masonryHorizontal: {
+  //            rowHeight: 10
+  //        },
+  //        cellsByRow: {
+  //            columnWidth: 240,
+  //            rowHeight: 240
+  //        },
+  //        cellsByColumn: {
+  //            columnWidth: 240,
+  //            rowHeight: 240
+  //        },
+  //        getSortData: {
+  //            symbol: function ($elem) {
+  //                return $elem.attr('data-symbol');
+  //            },
+  //            category: function ($elem) {
+  //                return $elem.attr('data-category');
+  //            },
+  //            number: function ($elem) {
+  //                return parseInt($elem.find('.number').text(), 10);
+  //            },
+  //            weight: function ($elem) {
+  //                return parseFloat($elem.find('.weight').text().replace(/[\(\)]/g, ''));
+  //            },
+  //            name: function ($elem) {
+  //                return $elem.find('.name').text();
+  //            }
+  //        }
+  //    });
 
+  //hacky way of adding random size classes
+  //$container.find('.gallery-item').each(function () {
+  //    if (Math.random() > 0.6) {
+  //        $(this).addClass('width2');
+  //    }
+  //    if (Math.random() > 0.6) {
+  //        $(this).addClass('height2');
+  //    }
+  //});
 
-         //hacky way of adding random size classes
-        //$container.find('.gallery-item').each(function () {
-        //    if (Math.random() > 0.6) {
-        //        $(this).addClass('width2');
-        //    }
-        //    if (Math.random() > 0.6) {
-        //        $(this).addClass('height2');
-        //    }
-        //});
+  //$container.isotope({
+  //    itemSelector: '.gallery-item',
+  //    masonry: {
+  //        columnWidth: 120,
+  //    },
+  //    masonryHorizontal: {
+  //        rowHeight: 120
+  //    },
+  //    cellsByRow: {
+  //        columnWidth: 240,
+  //        rowHeight: 240
+  //    },
+  //    cellsByColumn: {
+  //        columnWidth: 240,
+  //        rowHeight: 240
+  //    },
+  //    getSortData: {
+  //        symbol: function ($elem) {
+  //            return $elem.attr('data-symbol');
+  //        },
+  //        category: function ($elem) {
+  //            return $elem.attr('data-category');
+  //        },
+  //        number: function ($elem) {
+  //            return parseInt($elem.find('.number').text(), 10);
+  //        },
+  //        weight: function ($elem) {
+  //            return parseFloat($elem.find('.weight').text().replace(/[\(\)]/g, ''));
+  //        },
+  //        name: function ($elem) {
+  //            return $elem.find('.name').text();
+  //        }
+  //    }
+  //});
 
-        //$container.isotope({
-        //    itemSelector: '.gallery-item',
-        //    masonry: {
-        //        columnWidth: 120,
-        //    },
-        //    masonryHorizontal: {
-        //        rowHeight: 120
-        //    },
-        //    cellsByRow: {
-        //        columnWidth: 240,
-        //        rowHeight: 240
-        //    },
-        //    cellsByColumn: {
-        //        columnWidth: 240,
-        //        rowHeight: 240
-        //    },
-        //    getSortData: {
-        //        symbol: function ($elem) {
-        //            return $elem.attr('data-symbol');
-        //        },
-        //        category: function ($elem) {
-        //            return $elem.attr('data-category');
-        //        },
-        //        number: function ($elem) {
-        //            return parseInt($elem.find('.number').text(), 10);
-        //        },
-        //        weight: function ($elem) {
-        //            return parseFloat($elem.find('.weight').text().replace(/[\(\)]/g, ''));
-        //        },
-        //        name: function ($elem) {
-        //            return $elem.find('.name').text();
-        //        }
-        //    }
-        //});
+  //var $optionSets = $('#options .option-set'),
+  //    $optionLinks = $optionSets.find('a');
 
+  //$optionLinks.click(function () {
+  //    var $this = $(this);
+  //    // don't proceed if already selected
+  //    if ($this.hasClass('selected')) {
+  //        return false;
+  //    }
+  //    var $optionSet = $this.parents('.option-set');
+  //    $optionSet.find('.selected').removeClass('selected');
+  //    $this.addClass('selected');
 
-        //var $optionSets = $('#options .option-set'),
-        //    $optionLinks = $optionSets.find('a');
+  //    // make option object dynamically, i.e. { filter: '.my-filter-class' }
+  //    var options = {},
+  //        key = $optionSet.attr('data-option-key'),
+  //        value = $this.attr('data-option-value');
+  //    // parse 'false' as false boolean
+  //    value = value === 'false' ? false : value;
+  //    options[key] = value;
+  //    if (key === 'layoutMode' && typeof changeLayoutMode === 'function') {
+  //        // changes in layout modes need extra logic
+  //        changeLayoutMode($this, options)
+  //    } else {
+  //        // otherwise, apply new options
+  //        $container.isotope(options);
+  //    }
 
-        //$optionLinks.click(function () {
-        //    var $this = $(this);
-        //    // don't proceed if already selected
-        //    if ($this.hasClass('selected')) {
-        //        return false;
-        //    }
-        //    var $optionSet = $this.parents('.option-set');
-        //    $optionSet.find('.selected').removeClass('selected');
-        //    $this.addClass('selected');
+  //    return false;
+  //});
 
-        //    // make option object dynamically, i.e. { filter: '.my-filter-class' }
-        //    var options = {},
-        //        key = $optionSet.attr('data-option-key'),
-        //        value = $this.attr('data-option-value');
-        //    // parse 'false' as false boolean
-        //    value = value === 'false' ? false : value;
-        //    options[key] = value;
-        //    if (key === 'layoutMode' && typeof changeLayoutMode === 'function') {
-        //        // changes in layout modes need extra logic
-        //        changeLayoutMode($this, options)
-        //    } else {
-        //        // otherwise, apply new options
-        //        $container.isotope(options);
-        //    }
+  //// change layout
+  //var isHorizontal = false;
+  //function changeLayoutMode($link, options) {
+  //    var wasHorizontal = isHorizontal;
+  //    isHorizontal = $link.hasClass('horizontal');
 
-        //    return false;
-        //});
+  //    if (wasHorizontal !== isHorizontal) {
+  //        // orientation change
+  //        // need to do some clean up for transitions and sizes
+  //        var style = isHorizontal ?
+  //    { height: '80%', width: $container.width() } :
+  //    { width: 'auto' };
+  //        // stop any animation on container height / width
+  //        $container.filter(':animated').stop();
+  //        // disable transition, apply revised style
+  //        $container.addClass('no-transition').css(style);
+  //        setTimeout(function () {
+  //            $container.removeClass('no-transition').isotope(options);
+  //        }, 100)
+  //    } else {
+  //        $container.isotope(options);
+  //    }
+  //}
 
+  //// change size of clicked element
+  //$container.delegate('.element', 'click', function () {
+  //    $(this).toggleClass('large');
+  //    $container.isotope('reLayout');
+  //});
 
+  //// toggle variable sizes of all elements
+  //$('#toggle-sizes').find('a').click(function () {
+  //    $container
+  //      .toggleClass('variable-sizes')
+  //      .isotope('reLayout');
+  //    return false;
+  //});
 
-        //// change layout
-        //var isHorizontal = false;
-        //function changeLayoutMode($link, options) {
-        //    var wasHorizontal = isHorizontal;
-        //    isHorizontal = $link.hasClass('horizontal');
+  //$('#insert a').click(function () {
+  //    var $newEls = $(fakeElement.getGroup());
+  //    $container.isotope('insert', $newEls);
 
-        //    if (wasHorizontal !== isHorizontal) {
-        //        // orientation change
-        //        // need to do some clean up for transitions and sizes
-        //        var style = isHorizontal ?
-        //    { height: '80%', width: $container.width() } :
-        //    { width: 'auto' };
-        //        // stop any animation on container height / width
-        //        $container.filter(':animated').stop();
-        //        // disable transition, apply revised style
-        //        $container.addClass('no-transition').css(style);
-        //        setTimeout(function () {
-        //            $container.removeClass('no-transition').isotope(options);
-        //        }, 100)
-        //    } else {
-        //        $container.isotope(options);
-        //    }
-        //}
+  //    return false;
+  //});
 
+  //$('#append a').click(function () {
+  //    var $newEls = $(fakeElement.getGroup());
+  //    $container.append($newEls).isotope('appended', $newEls);
 
+  //    return false;
+  //});
 
-        //// change size of clicked element
-        //$container.delegate('.element', 'click', function () {
-        //    $(this).toggleClass('large');
-        //    $container.isotope('reLayout');
-        //});
+  //$('#shuffle a').click(function () {
+  //    $container.isotope('shuffle');
+  //    return false;
+  //});
 
-        //// toggle variable sizes of all elements
-        //$('#toggle-sizes').find('a').click(function () {
-        //    $container
-        //      .toggleClass('variable-sizes')
-        //      .isotope('reLayout');
-        //    return false;
-        //});
+  //});
 
-
-
-        //$('#insert a').click(function () {
-        //    var $newEls = $(fakeElement.getGroup());
-        //    $container.isotope('insert', $newEls);
-
-        //    return false;
-        //});
-
-        //$('#append a').click(function () {
-        //    var $newEls = $(fakeElement.getGroup());
-        //    $container.append($newEls).isotope('appended', $newEls);
-
-        //    return false;
-        //});
-
-
-        //$('#shuffle a').click(function () {
-        //    $container.isotope('shuffle');
-        //    return false;
-        //});
-
-
-
-
-    //});
-
-
-
-
-
-    //'.a, .b' 将显示 .a 和 .b 项。
-    //'.a.b' 将显示同时具有 .a 和 .b class 的项。
-    //'*' 将显示所有的items。
-    //'.a:not(.b)' 将显示不带.b class的 .a元素项。
-    //':not(.b)' 将显示不带.b class的元素项。
-    //$container.isotope({ filter: '.a, .b' })
-
+  //'.a, .b' 将显示 .a 和 .b 项。
+  //'.a.b' 将显示同时具有 .a 和 .b class 的项。
+  //'*' 将显示所有的items。
+  //'.a:not(.b)' 将显示不带.b class的 .a元素项。
+  //':not(.b)' 将显示不带.b class的元素项。
+  //$container.isotope({ filter: '.a, .b' })
 </script>

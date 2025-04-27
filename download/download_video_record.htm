@@ -1,6 +1,6 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
+  <head>
     <!--<meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>视频下载记录</title>
@@ -18,11 +18,17 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>视频下载记录</title>
     <link href="../css/howell.css" rel="stylesheet" />
-    <link href="../css/bootstrap/bootstrap-progressbar-3.3.4.css" rel="stylesheet" />
-    <script src="../js/jquery/jquery-1.10.2.min.js"></script>
+    <link
+      href="../css/bootstrap/bootstrap-progressbar-3.3.4.css"
+      rel="stylesheet"
+    />
+    <script src="../js/jquery/jquery-3.6.0.min.js"></script>
     <script src="../js/jquery/jquery-ui.js"></script>
     <script src="../js/bootstrap/bootstrap.min.js"></script>
-    <script src="../../js/bootstrap/bootstrap-datepicker.js" charset="gb2312"></script>
+    <script
+      src="../../js/bootstrap/bootstrap-datepicker.js"
+      charset="gb2312"
+    ></script>
     <script src="../js/howell.js/ext.js"></script>
     <!--<script src="../js/modernizr.custom.js"></script>-->
     <script src="../js/bootstrap/bootstrap-progressbar.js"></script>
@@ -38,546 +44,675 @@
     <script src="../js/client/client.js"></script>
     <script src="download_tasks.js"></script>
     <script src="../js/nav.js"></script>
-</head>
-<body>
+  </head>
+  <body>
     <link href="css/datepicker.css" rel="stylesheet" />
-    <link href="css/bootstrap/bootstrap-progressbar-3.3.4.css" rel="stylesheet" />
-    <script src="js/bootstrap/bootstrap-datepicker.js" charset="gb2312"></script>
+    <link
+      href="css/bootstrap/bootstrap-progressbar-3.3.4.css"
+      rel="stylesheet"
+    />
+    <script
+      src="js/bootstrap/bootstrap-datepicker.js"
+      charset="gb2312"
+    ></script>
     <script src="js/bootstrap/bootstrap-progressbar.js"></script>
     <script src="js/howell.js/guid.js"></script>
     <script src="js/client/management.js"></script>
     <script src="js/client/download.js"></script>
     <script src="download/download_tasks.js"></script>
     <style type="text/css">
-        .compare-float-heading-tag-div {
-            height: 27px;
-            margin-top: 0px;
-        }
+      .compare-float-heading-tag-div {
+        height: 27px;
+        margin-top: 0px;
+      }
 
-        .background_icon.fault {
-        }
+      .background_icon.fault {
+      }
 
-            .background_icon.fault.Offline {
-                background-image: url(img/health/OfflineNumber.png);
-                background-size: 30px;
-                background-position: center;
-            }
+      .background_icon.fault.Offline {
+        background-image: url(img/health/OfflineNumber.png);
+        background-size: 30px;
+        background-position: center;
+      }
 
-            .background_icon.fault.StorageMediumAbnormal {
-                background-image: url(img/health/StorageMediumAbnormalNumber.png);
-                background-size: 25px;
-                background-position: center;
-            }
+      .background_icon.fault.StorageMediumAbnormal {
+        background-image: url(img/health/StorageMediumAbnormalNumber.png);
+        background-size: 25px;
+        background-position: center;
+      }
 
-            .background_icon.fault.Videoloss {
-                background-image: url(img/health/VideolossNumber.png);
-                background-size: 25px;
-                background-position: center;
-            }
+      .background_icon.fault.Videoloss {
+        background-image: url(img/health/VideolossNumber.png);
+        background-size: 25px;
+        background-position: center;
+      }
 
-        .btn-group {
-            margin: 0 0 !important;
-            width: 60px;
-        }
+      .btn-group {
+        margin: 0 0 !important;
+        width: 60px;
+      }
 
-        .btn.btn-primary-outline {
-            border: none;
-            width: 70px;
-        }
+      .btn.btn-primary-outline {
+        border: none;
+        width: 70px;
+      }
 
-        .task-serialnumber {
-            width: 60px;
-        }
+      .task-serialnumber {
+        width: 60px;
+      }
 
-        .task-recordname {
-            width: 290px;
-        }
+      .task-recordname {
+        width: 290px;
+      }
 
-        .td-name {
-            text-align: left;
-        }
+      .td-name {
+        text-align: left;
+      }
 
-        .task-username {
-            width: 218px;
-        }
+      .task-username {
+        width: 218px;
+      }
 
-        .task-format {
-            width: 76px;
-        }
+      .task-format {
+        width: 76px;
+      }
 
-        .task-time {
-            width: 155px;
-        }
+      .task-time {
+        width: 155px;
+      }
 
-        .task-state {
-            width: 76px;
-        }
+      .task-state {
+        width: 76px;
+      }
 
-        .task-ellipsis {
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
+      .task-ellipsis {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
 
-            .task-ellipsis a {
-                color: #666666;
-            }
+      .task-ellipsis a {
+        color: #666666;
+      }
 
-        .task-redownload {
-            width: 60px;
-        }
+      .task-redownload {
+        width: 60px;
+      }
 
-        .heading .icon-file-text {
-            font-size: 24px !important;
-        }
+      .heading .icon-file-text {
+        font-size: 24px !important;
+      }
 
-        .div_download_list {
-            position: fixed;
-            bottom: 70px;
-            right: 20px;
-            width: 860px;
-            height: 750px;
-            background-color: white;
-            display: block;
-            z-index: 1039;
-            border: #909090 1px solid;
-            filter: progid:DXImageTransform.Microsoft.Shadow(color=#909090,direction=120,strength=3);
-            -moz-box-shadow: 2px 2px 10px #909090;
-            -webkit-box-shadow: 2px 2px 10px #909090;
-            box-shadow: 2px 2px 10px #909090;
-        }
+      .div_download_list {
+        position: fixed;
+        bottom: 70px;
+        right: 20px;
+        width: 860px;
+        height: 750px;
+        background-color: white;
+        display: block;
+        z-index: 1039;
+        border: #909090 1px solid;
+        filter: progid:DXImageTransform.Microsoft.Shadow(color=#909090,direction=120,strength=3);
+        -moz-box-shadow: 2px 2px 10px #909090;
+        -webkit-box-shadow: 2px 2px 10px #909090;
+        box-shadow: 2px 2px 10px #909090;
+      }
 
-            .div_download_list .icon_btn {
-                margin-left: 0px;
-                width: 215px;
-            }
+      .div_download_list .icon_btn {
+        margin-left: 0px;
+        width: 215px;
+      }
 
-                .div_download_list .icon_btn.notice {
-                    width: 121.5px;
-                    margin-right: 5px;
-                }
+      .div_download_list .icon_btn.notice {
+        width: 121.5px;
+        margin-right: 5px;
+      }
 
-        .status {
-            position: fixed;
-            bottom: 17px;
-            height: 40px;
-            background-color: rgb(255,255,255);
-            filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
-            background: rgba(255, 255, 255, 0.7);
-            padding: 10px 10px;
-            cursor: pointer;
-            z-index: 1000;
-        }
+      .status {
+        position: fixed;
+        bottom: 17px;
+        height: 40px;
+        background-color: rgb(255, 255, 255);
+        filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
+        background: rgba(255, 255, 255, 0.7);
+        padding: 10px 10px;
+        cursor: pointer;
+        z-index: 1000;
+      }
 
-            .status.download {
-                right: 20px;
-                width: 60px;
-                border: #909090 1px solid;
-                filter: progid:DXImageTransform.Microsoft.Shadow(color=#909090,direction=120,strength=3);
-                -moz-box-shadow: 2px 2px 10px #909090;
-                -webkit-box-shadow: 2px 2px 10px #909090;
-                box-shadow: 2px 2px 10px #909090;
-            }
+      .status.download {
+        right: 20px;
+        width: 60px;
+        border: #909090 1px solid;
+        filter: progid:DXImageTransform.Microsoft.Shadow(color=#909090,direction=120,strength=3);
+        -moz-box-shadow: 2px 2px 10px #909090;
+        -webkit-box-shadow: 2px 2px 10px #909090;
+        box-shadow: 2px 2px 10px #909090;
+      }
 
-            .status .icon {
-                text-align: right;
-                padding-right: 5px;
-            }
+      .status .icon {
+        text-align: right;
+        padding-right: 5px;
+      }
 
-        #task_list {
-            margin-top: 30px;
-            height: 700px;
-            overflow: auto;
-        }
+      #task_list {
+        margin-top: 30px;
+        height: 700px;
+        overflow: auto;
+      }
 
-        .task-list-heading {
-            padding: 20px 0 0 0;
-        }
+      .task-list-heading {
+        padding: 20px 0 0 0;
+      }
 
-            .task-list-heading .task-name {
-                text-align: center;
-                width: 330px;
-            }
+      .task-list-heading .task-name {
+        text-align: center;
+        width: 330px;
+      }
 
-            .task-list-heading .div-fileformat {
-                width: 28px;
-                margin-left: 16px;
-            }
+      .task-list-heading .div-fileformat {
+        width: 28px;
+        margin-left: 16px;
+      }
 
-            .task-list-heading .div-datetime-begin {
-                width: 56px;
-                margin-left: 66px;
-            }
+      .task-list-heading .div-datetime-begin {
+        width: 56px;
+        margin-left: 66px;
+      }
 
-            .task-list-heading .div-datetime-end {
-                width: 56px;
-                margin-left: 98px;
-            }
+      .task-list-heading .div-datetime-end {
+        width: 56px;
+        margin-left: 98px;
+      }
 
-        .list-group .list-group-item {
-            padding: 0 0 0 0;
-        }
+      .list-group .list-group-item {
+        padding: 0 0 0 0;
+      }
 
-            .list-group .list-group-item p {
-                height: 38px;
-            }
+      .list-group .list-group-item p {
+        height: 38px;
+      }
 
-                .list-group .list-group-item p .task-name {
-                    width: 300px;
-                    margin-left: 15px;
-                }
+      .list-group .list-group-item p .task-name {
+        width: 300px;
+        margin-left: 15px;
+      }
 
-                .list-group .list-group-item p .div-datetime {
-                    width: 138px;
-                    float: left;
-                    margin-left: 18px;
-                }
+      .list-group .list-group-item p .div-datetime {
+        width: 138px;
+        float: left;
+        margin-left: 18px;
+      }
 
-                .list-group .list-group-item p .div-fileformat {
-                    width: 50px;
-                    float: left;
-                    margin-left: 20px;
-                    text-align: center;
-                }
+      .list-group .list-group-item p .div-fileformat {
+        width: 50px;
+        float: left;
+        margin-left: 20px;
+        text-align: center;
+      }
 
-                .list-group .list-group-item p .div-operation {
-                    width: 100px;
-                    float: left;
-                    margin-left: 20px;
-                }
+      .list-group .list-group-item p .div-operation {
+        width: 100px;
+        float: left;
+        margin-left: 20px;
+      }
 
-        #iframe-download {
-            border: 0;
-            height: 0;
-            width: 0;
-        }
+      #iframe-download {
+        border: 0;
+        height: 0;
+        width: 0;
+      }
 
-        .form-control.narrow {
-            float: left;
-            width: 80%;
-        }
+      .form-control.narrow {
+        float: left;
+        width: 80%;
+      }
 
-        .control-label {
-            height: 34px;
-            padding-top: 7px;
-            text-align: right;
-        }
-
+      .control-label {
+        height: 34px;
+        padding-top: 7px;
+        text-align: right;
+      }
     </style>
     <div class="page-main row">
-        <div class="col-md-12">
-            <div class="widget-container fluid-height clearfix list-width padded background-min-height">
-                <div class="heading compare-heading-div page-top">
-                    <div class="form-group table-heading-div">
-                        &ensp;<i class="icon-file-text"></i>
-                        视频下载记录
-                        <label class="list-count-lable">当前<span id="lblCurrentCount">0</span>条/共<span id="lblTotalCount">0</span>条</label>
-                    </div>
-                </div>
-                <div class="form-group" style="margin-bottom:10px;height:36px;">
-                    <div class="col-md-1 control-label">
-                        <label>开始时间:</label>
-                    </div>
-                    <div class="col-md-5">
-                        <input name="begin" class="form-control datetime" data-date-autoclose="true" data-date-format="yyyy-mm-dd" id="txt_begin_date" type="text">
-                    </div>
-                    <div class="col-md-1 control-label">
-                        <label>
-                            结束时间:
-                        </label>
-                    </div>
-                    <div class="col-md-5">
-                        <input name="end" class="form-control datetime" data-date-autoclose="true" data-date-format="yyyy-mm-dd" id="txt_end_date" type="text">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-1 control-label">
-                        <label>设备编号:</label>
-                    </div>
-                    <div class="col-md-5">
-                        <input class="form-control" type="text" id="txt_deviceId">
-                    </div>
-                    <div class="col-md-1 control-label">
-                        <label>用户名:</label>
-                    </div>
-                    <div class="col-md-5">
-                        <input class="form-control narrow" type="text" id="txt_username">
-                        <a class="btn btn-primary pull-right" onclick="_search()">搜索</a>
-                    </div>
-                </div>
-                <table id="table" class="table table-filters compare-channel-table">
-                    <thead class="page-top" id="test1">
-                        <tr style="text-align:center;">
-                            <td class="task-serialnumber">
-                                序号
-                            </td>
-                            <td class="task-recordname">
-                                任务名称
-                            </td>
-                            <td class="task-username">
-                                用户
-                            </td>
-                            <td class="task-format">
-                                格式
-                            </td>
-                            <td class="task-time">
-                                开始时间
-                            </td>
-                            <td class="task-time">
-                                结束时间
-                            </td>
-                            <td class="task-state">
-                                状态
-                            </td>
-                            <td class="task-redownload"></td>
-                        </tr>
-                    </thead>
-                    <tbody id="tbody"></tbody>
-                </table>
+      <div class="col-md-12">
+        <div
+          class="widget-container fluid-height clearfix list-width padded background-min-height"
+        >
+          <div class="heading compare-heading-div page-top">
+            <div class="form-group table-heading-div">
+              &ensp;<i class="icon-file-text"></i>
+              视频下载记录
+              <label class="list-count-lable"
+                >当前<span id="lblCurrentCount">0</span>条/共<span
+                  id="lblTotalCount"
+                  >0</span
+                >条</label
+              >
             </div>
-            <div class="col-md-12 lazyload-div" id="lazy">
-
+          </div>
+          <div class="form-group" style="margin-bottom: 10px; height: 36px">
+            <div class="col-md-1 control-label">
+              <label>开始时间:</label>
             </div>
+            <div class="col-md-5">
+              <input
+                name="begin"
+                class="form-control datetime"
+                data-date-autoclose="true"
+                data-date-format="yyyy-mm-dd"
+                id="txt_begin_date"
+                type="text"
+              />
+            </div>
+            <div class="col-md-1 control-label">
+              <label> 结束时间: </label>
+            </div>
+            <div class="col-md-5">
+              <input
+                name="end"
+                class="form-control datetime"
+                data-date-autoclose="true"
+                data-date-format="yyyy-mm-dd"
+                id="txt_end_date"
+                type="text"
+              />
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-md-1 control-label">
+              <label>设备编号:</label>
+            </div>
+            <div class="col-md-5">
+              <input class="form-control" type="text" id="txt_deviceId" />
+            </div>
+            <div class="col-md-1 control-label">
+              <label>用户名:</label>
+            </div>
+            <div class="col-md-5">
+              <input
+                class="form-control narrow"
+                type="text"
+                id="txt_username"
+              />
+              <a class="btn btn-primary pull-right" onclick="_search()">搜索</a>
+            </div>
+          </div>
+          <table id="table" class="table table-filters compare-channel-table">
+            <thead class="page-top" id="test1">
+              <tr style="text-align: center">
+                <td class="task-serialnumber">序号</td>
+                <td class="task-recordname">任务名称</td>
+                <td class="task-username">用户</td>
+                <td class="task-format">格式</td>
+                <td class="task-time">开始时间</td>
+                <td class="task-time">结束时间</td>
+                <td class="task-state">状态</td>
+                <td class="task-redownload"></td>
+              </tr>
+            </thead>
+            <tbody id="tbody"></tbody>
+          </table>
         </div>
+        <div class="col-md-12 lazyload-div" id="lazy"></div>
+      </div>
     </div>
     <a class="to-back" href="download_video.htm">
-        <div class="pic"></div>
+      <div class="pic"></div>
     </a>
-    <div id="div_download_list" class="div_download_list" style="display:none;">
-    </div>
-    <div id="div_download" class="status download" onclick="ShowDownloadList(this);">
-        <table width="100%">
-            <tr>
-                <td class="icon">
-                    <a class="icon-download-alt"></a>
-                </td>
-                <td>
-                    <a id="task_number">0</a>
-                </td>
-            </tr>
-        </table>
+    <div
+      id="div_download_list"
+      class="div_download_list"
+      style="display: none"
+    ></div>
+    <div
+      id="div_download"
+      class="status download"
+      onclick="ShowDownloadList(this);"
+    >
+      <table width="100%">
+        <tr>
+          <td class="icon">
+            <a class="icon-download-alt"></a>
+          </td>
+          <td>
+            <a id="task_number">0</a>
+          </td>
+        </tr>
+      </table>
     </div>
     <iframe id="iframe-download"></iframe>
     <script type="text/javascript">
-        var downloadListSwitch = false;
-        var Property = {
-            Task: {
-                value: new Dictionary(),
-                page: new Page(),
-                load: function (index, size, beginTime, endTime, deviceId, username) {
-                    var response = tryCatch(function () {
-                        return Client.Download().Tasks.Records.List(index, size, beginTime, endTime, deviceId, username);
-                    });
-                    var result = new Array();
-                    if (response) {
-                        this.page = response.Page;
-                        response.FileDownloadTaskRecord.sortBy("CreationTime", true);
-                        for (var i = 0; i < response.FileDownloadTaskRecord.length; i++) {
-                            var report = response.FileDownloadTaskRecord[i];
-                            this.value[report.Id] = report;
-                            if (!Property.Device.value[report.DeviceId])
-                                Property.Device.get(report.DeviceId);
-                            var channelId = Property.Device.Channel.getChannelId(report.DeviceId, report.Channel);
-                            if (!Property.Device.Channel.value[channelId])
-                                Property.Device.Channel.get(report.DeviceId, channelId);
-                            result.push(report);
-                        }
-                    }
-                    return result;
-                },
+      var downloadListSwitch = false
+      var Property = {
+        Task: {
+          value: new Dictionary(),
+          page: new Page(),
+          load: function (index, size, beginTime, endTime, deviceId, username) {
+            var response = tryCatch(function () {
+              return Client.Download().Tasks.Records.List(
+                index,
+                size,
+                beginTime,
+                endTime,
+                deviceId,
+                username
+              )
+            })
+            var result = new Array()
+            if (response) {
+              this.page = response.Page
+              response.FileDownloadTaskRecord.sortBy('CreationTime', true)
+              for (var i = 0; i < response.FileDownloadTaskRecord.length; i++) {
+                var report = response.FileDownloadTaskRecord[i]
+                this.value[report.Id] = report
+                if (!Property.Device.value[report.DeviceId])
+                  Property.Device.get(report.DeviceId)
+                var channelId = Property.Device.Channel.getChannelId(
+                  report.DeviceId,
+                  report.Channel
+                )
+                if (!Property.Device.Channel.value[channelId])
+                  Property.Device.Channel.get(report.DeviceId, channelId)
+                result.push(report)
+              }
+            }
+            return result
+          },
+        },
+        Device: {
+          value: new Dictionary(),
+          get: function (deviceId) {
+            var deivce = tryCatch(function () {
+              return Client.Management().Device.Get(deviceId)
+            })
+            if (deivce) this.value[deivce.Id] = deivce
+            return deivce
+          },
+          Channel: {
+            value: new Dictionary(),
+            getChannelId: function (deviceId, channelNum) {
+              var num = channelNum.toString()
+              while (num.length < 4) {
+                num = '0' + num
+              }
+              var frontId = deviceId.substr(0, 24) + '01'
+              var backId = deviceId.substr(26, 2) + num
+              return frontId + backId
             },
-            Device: {
-                value: new Dictionary(),
-                get: function (deviceId) {
-                    var deivce = tryCatch(function () {
-                        return Client.Management().Device.Get(deviceId);
-                    });
-                    if (deivce)
-                        this.value[deivce.Id] = deivce;
-                    return deivce;
-                },
-                Channel: {
-                    value: new Dictionary(),
-                    getChannelId: function (deviceId, channelNum) {
-                        var num = channelNum.toString();
-                        while (num.length < 4) {
-                            num = "0" + num;
-                        }
-                        var frontId = deviceId.substr(0, 24) + "01";
-                        var backId = deviceId.substr(26, 2) + num;
-                        return frontId + backId;
-                    },
-                    get: function (deviceId, channelId) {
-                        var channel = tryCatch(function () {
-                            return Client.Management().Device.Video.Input.Get(deviceId, channelId);
-                        });
-                        if (channel)
-                            this.value[channel.Id] = channel;
-                        return channel;
-                    }
-                }
-            }
-        };
-        var Html = {
-            SearchArgs: {
-                beginTime: null,
-                endTime: null,
-                deviceId: null,
-                username: null,
+            get: function (deviceId, channelId) {
+              var channel = tryCatch(function () {
+                return Client.Management().Device.Video.Input.Get(
+                  deviceId,
+                  channelId
+                )
+              })
+              if (channel) this.value[channel.Id] = channel
+              return channel
             },
-            load: function (controlId, index, size) {
-                var list = Property.Task.load(index, size, this.SearchArgs.beginTime, this.SearchArgs.endTime, this.SearchArgs.deviceId, this.SearchArgs.username);
+          },
+        },
+      }
+      var Html = {
+        SearchArgs: {
+          beginTime: null,
+          endTime: null,
+          deviceId: null,
+          username: null,
+        },
+        load: function (controlId, index, size) {
+          var list = Property.Task.load(
+            index,
+            size,
+            this.SearchArgs.beginTime,
+            this.SearchArgs.endTime,
+            this.SearchArgs.deviceId,
+            this.SearchArgs.username
+          )
 
-                var table = getTag(controlId);
-                table.style.textAlign = "center";
-                table.style.verticalAlign = "middle";
-                for (var i = 0; i < list.length; i++) {
-                    var serialNumber = (Property.Task.page.PageIndex - 1) * Property.Task.page.PageSize + i + 1;
-                    var tr = document.createElement("tr");
+          var table = getTag(controlId)
+          table.style.textAlign = 'center'
+          table.style.verticalAlign = 'middle'
+          for (var i = 0; i < list.length; i++) {
+            var serialNumber =
+              (Property.Task.page.PageIndex - 1) * Property.Task.page.PageSize +
+              i +
+              1
+            var tr = document.createElement('tr')
 
-                    var date = Convert.ToDate(list[i].CreationTime);
-                    var TaskName = Property.Device.Channel.value[Property.Device.Channel.getChannelId(list[i].DeviceId, list[i].Channel)].Name + "_" + date.format("yyyy-MM-dd HH:mm:ss");
-                    tr.appendChild(new TableBodyTd(serialNumber));
-                    tr.appendChild(new TableBodyTd("<a title='" + TaskName + "\n" + Property.Device.value[list[i].DeviceId].Uri + "'>" + TaskName + "</a>", "task-ellipsis td-name"));
-                    tr.appendChild(new TableBodyTd("<a title='" + list[i].UserName + "'>" + list[i].UserName + "</a>", "task-ellipsis"));
-                    tr.appendChild(new TableBodyTd(list[i].FileFormat));
-                    date = Convert.ToDate(list[i].BeginTime);
-                    tr.appendChild(new TableBodyTd(date.format("yyyy-MM-dd HH:mm:ss")));
-                    date = Convert.ToDate(list[i].EndTime);
-                    tr.appendChild(new TableBodyTd(date.format("yyyy-MM-dd HH:mm:ss")));
-                    tr.appendChild(new TableBodyTd(Language.Display.DownloadTaskState[list[i].State]));
-                    tr.appendChild(new TableBodyTd("<a title='重新下载' class='mouse_pointer' onclick=\"download_Onclick('" + list[i].Id + "')\"><i class='icon-download-alt'></i></a>"));
+            var date = Convert.ToDate(list[i].CreationTime)
+            var TaskName =
+              Property.Device.Channel.value[
+                Property.Device.Channel.getChannelId(
+                  list[i].DeviceId,
+                  list[i].Channel
+                )
+              ].Name +
+              '_' +
+              date.format('yyyy-MM-dd HH:mm:ss')
+            tr.appendChild(new TableBodyTd(serialNumber))
+            tr.appendChild(
+              new TableBodyTd(
+                "<a title='" +
+                  TaskName +
+                  '\n' +
+                  Property.Device.value[list[i].DeviceId].Uri +
+                  "'>" +
+                  TaskName +
+                  '</a>',
+                'task-ellipsis td-name'
+              )
+            )
+            tr.appendChild(
+              new TableBodyTd(
+                "<a title='" +
+                  list[i].UserName +
+                  "'>" +
+                  list[i].UserName +
+                  '</a>',
+                'task-ellipsis'
+              )
+            )
+            tr.appendChild(new TableBodyTd(list[i].FileFormat))
+            date = Convert.ToDate(list[i].BeginTime)
+            tr.appendChild(new TableBodyTd(date.format('yyyy-MM-dd HH:mm:ss')))
+            date = Convert.ToDate(list[i].EndTime)
+            tr.appendChild(new TableBodyTd(date.format('yyyy-MM-dd HH:mm:ss')))
+            tr.appendChild(
+              new TableBodyTd(Language.Display.DownloadTaskState[list[i].State])
+            )
+            tr.appendChild(
+              new TableBodyTd(
+                "<a title='重新下载' class='mouse_pointer' onclick=\"download_Onclick('" +
+                  list[i].Id +
+                  "')\"><i class='icon-download-alt'></i></a>"
+              )
+            )
 
-                    table.appendChild(tr);
-                }
-                LazyLoadPage = Property.Task.page;
-                getTag("lblCurrentCount").innerText = parseInt(getTag("lblCurrentCount").innerText) + LazyLoadPage.RecordCount;
-                getTag("lblTotalCount").innerText = LazyLoadPage.TotalRecordCount;
-            },
-            clear: function (controlId) {
-                var table = getTag(controlId);
-                table.innerHTML = "";
-                getTag("lblCurrentCount").innerText = 0;
-                getTag("lblTotalCount").innerText = 0;
+            table.appendChild(tr)
+          }
+          LazyLoadPage = Property.Task.page
+          getTag('lblCurrentCount').innerText =
+            parseInt(getTag('lblCurrentCount').innerText) +
+            LazyLoadPage.RecordCount
+          getTag('lblTotalCount').innerText = LazyLoadPage.TotalRecordCount
+        },
+        clear: function (controlId) {
+          var table = getTag(controlId)
+          table.innerHTML = ''
+          getTag('lblCurrentCount').innerText = 0
+          getTag('lblTotalCount').innerText = 0
+        },
+      }
+
+      function TypeChanged(sender, args) {
+        getTag('tbody').innerHTML = ''
+
+        Html.load('tbody', 1, 20)
+      }
+
+      function download_records_load() {
+        $('#txt_end_date').datepicker()
+        $('#txt_begin_date').datepicker()
+        var a = document.createElement('a')
+        a.href = 'download/download_tasks.htm'
+        var div_download_list = getTag('div_download_list')
+        div_download_list.innerHTML = loadPage(a.href)
+        div_download_list.onclick = stopPropagation
+
+        var lazy = getTag('lazy')
+        lazy.appendChild(new LazyLoadControl('load-more', '加载中……', lazyLoad))
+        window.setTimeout(function () {
+          document.documentElement.scrollTop = 0
+          isOnscroll = true
+        }, 100)
+      }
+
+      function lazyLoad(index) {
+        tryCatch(function () {
+          Html.load('tbody', index + 1, 20)
+        })
+      }
+
+      document.body.onclick = function () {
+        downloadListSwitch = false
+        $('#div_download_list').css('display', 'none')
+      }
+
+      function ShowDownloadList(sender, args) {
+        if (downloadListSwitch == false) {
+          $('#div_download_list').css('display', 'block')
+          downloadListSwitch = true
+        } else {
+          $('#div_download_list').css('display', 'none')
+          downloadListSwitch = false
+        }
+        stopPropagation()
+      }
+
+      function download_Onclick(id) {
+        var task = Property.Task.value[id]
+        var taskObj = TaskListControl.createTaskObj(
+          task.DeviceId,
+          parseInt(task.Channel),
+          1,
+          task.BeginTime,
+          task.EndTime,
+          DownloadFileFormat.AVI
+        )
+        TaskListControl.Dic.waitForCreate.push(taskObj.PageId)
+        TaskListControl.Dic.map[taskObj.PageId] = ''
+        TaskListControl.value[taskObj.PageId] = taskObj
+        var channelId = Property.Device.Channel.getChannelId(
+          task.DeviceId,
+          task.Channel
+        )
+        TaskListControl.appendTaskToList(
+          taskObj,
+          Property.Device.Channel.value[channelId].Name,
+          Property.Device.value[task.DeviceId].Uri
+        )
+        var tagNum = getTag('task_number')
+        tagNum.innerText = parseInt(tagNum.innerText) + 1
+      }
+      function reduceNumber() {
+        var tag = getTag('task_number')
+        tag.innerText = parseInt(tag.innerText) - 1
+      }
+      function _search() {
+        Html.clear('tbody')
+        Html.SearchArgs.beginTime = null
+        Html.SearchArgs.endTime = null
+        Html.SearchArgs.deviceId = null
+        Html.SearchArgs.username = null
+        var beginTime = getTag('txt_begin_date').value
+        var endTime = getTag('txt_end_date').value
+        if (beginTime) {
+          var arrBeginTime = beginTime.split('-')
+          var dateBeginTime = new Date(
+            arrBeginTime[0],
+            arrBeginTime[1] - 1,
+            arrBeginTime[2],
+            0,
+            0,
+            0
+          )
+          var beginTime = dateBeginTime.toISOString()
+          Html.SearchArgs.beginTime = beginTime
+        }
+        if (endTime) {
+          var arrEndTime = endTime.split('-')
+          var dateEndTime = new Date(
+            arrEndTime[0],
+            arrEndTime[1] - 1,
+            arrEndTime[2],
+            0,
+            0,
+            0
+          )
+          var endTime = dateEndTime.toISOString()
+          Html.SearchArgs.endTime = endTime
+        }
+        var deviceId = getTag('txt_deviceId').value
+        if (deviceId) Html.SearchArgs.deviceId = deviceId
+        var username = getTag('txt_username').value
+        if (username) Html.SearchArgs.username = username
+        Html.load('tbody', 1, 20)
+      }
+
+      $(function () {
+        toSetInterval(function () {
+          if (
+            !TaskListControl.Dic.refreshId &&
+            TaskListControl.Dic.waitForCreate.length > 0
+          ) {
+            TaskListControl.Dic.refreshId = TaskListControl.Dic.waitForCreate[0]
+            var task = TaskListControl.value[TaskListControl.Dic.refreshId]
+            var channelId = Property.Device.Channel.getChannelId(
+              task.DeviceId,
+              task.Channel
+            )
+            TaskListControl.createTask(
+              task.DeviceId,
+              task.Channel,
+              task.Stream,
+              task.BeginTime,
+              task.EndTime,
+              task.FileFormat,
+              Property.Device.Channel.value[channelId].Name,
+              Property.Device.value[task.DeviceId].Uri
+            )
+          }
+          if (!TaskListControl.Dic.refreshId) {
+            if (
+              TaskListControl.errorNum.length > 0 &&
+              TaskListControl.Dic.waitForCreate.length == 0
+            ) {
+              $.confirm({
+                title: '',
+                text:
+                  TaskListControl.errorNum.length +
+                  '项任务创建失败，请重新尝试！',
+                alert: true,
+                okButton: '确定',
+              })
+              TaskListControl.errorNum = new Array()
             }
-        }
-
-        function TypeChanged(sender, args) {
-            getTag("tbody").innerHTML = "";
-
-            Html.load("tbody", 1, 20);
-        }
-
-        function download_records_load() {
-            $('#txt_end_date').datepicker();
-            $('#txt_begin_date').datepicker();
-            var a = document.createElement("a");
-            a.href = "download/download_tasks.htm";
-            var div_download_list = getTag("div_download_list");
-            div_download_list.innerHTML = loadPage(a.href);
-            div_download_list.onclick = stopPropagation;
-
-            var lazy = getTag("lazy");
-            lazy.appendChild(new LazyLoadControl("load-more", "加载中……", lazyLoad));
-            window.setTimeout(function () {
-                document.documentElement.scrollTop = 0;
-                isOnscroll = true;
-            }, 100);
-        }
-
-        function lazyLoad(index) {
-            tryCatch(function () {
-                Html.load("tbody", index + 1, 20);
-            });
-        }
-
-        document.body.onclick = function () {
-            downloadListSwitch = false;
-            $("#div_download_list").css("display", "none");
-        }
-
-        function ShowDownloadList(sender, args) {
-            if (downloadListSwitch == false) {
-                $("#div_download_list").css("display", "block");
-                downloadListSwitch = true;
-            }
-            else {
-                $("#div_download_list").css("display", "none");
-                downloadListSwitch = false;
-            }
-            stopPropagation();
-        }
-
-        function download_Onclick(id) {
-            var task = Property.Task.value[id];
-            var taskObj = TaskListControl.createTaskObj(task.DeviceId, parseInt(task.Channel), 1, task.BeginTime, task.EndTime, DownloadFileFormat.AVI);
-            TaskListControl.Dic.waitForCreate.push(taskObj.PageId);
-            TaskListControl.Dic.map[taskObj.PageId] = "";
-            TaskListControl.value[taskObj.PageId] = taskObj;
-            var channelId = Property.Device.Channel.getChannelId(task.DeviceId, task.Channel);
-            TaskListControl.appendTaskToList(taskObj, Property.Device.Channel.value[channelId].Name, Property.Device.value[task.DeviceId].Uri);
-            var tagNum = getTag("task_number");
-            tagNum.innerText = parseInt(tagNum.innerText) + 1;
-        }
-        function reduceNumber() {
-            var tag = getTag("task_number");
-            tag.innerText = parseInt(tag.innerText) - 1;
-        }
-        function _search() {
-            Html.clear("tbody");
-            Html.SearchArgs.beginTime = null;
-            Html.SearchArgs.endTime = null;
-            Html.SearchArgs.deviceId = null;
-            Html.SearchArgs.username = null;
-            var beginTime = getTag("txt_begin_date").value;
-            var endTime = getTag("txt_end_date").value;
-            if (beginTime) {
-                var arrBeginTime = beginTime.split("-");
-                var dateBeginTime = new Date(arrBeginTime[0], arrBeginTime[1] - 1, arrBeginTime[2], 0, 0, 0);
-                var beginTime = dateBeginTime.toISOString();
-                Html.SearchArgs.beginTime = beginTime;
-            }
-            if (endTime) {
-                var arrEndTime = endTime.split("-");
-                var dateEndTime = new Date(arrEndTime[0], arrEndTime[1] - 1, arrEndTime[2], 0, 0, 0);
-                var endTime = dateEndTime.toISOString();
-                Html.SearchArgs.endTime = endTime;
-            }
-            var deviceId = getTag("txt_deviceId").value;
-            if (deviceId)
-                Html.SearchArgs.deviceId = deviceId;
-            var username = getTag("txt_username").value;
-            if (username)
-                Html.SearchArgs.username = username;
-            Html.load("tbody", 1, 20);
-        }
-
-        $(function () {
-            toSetInterval(function () {
-                if (!TaskListControl.Dic.refreshId && TaskListControl.Dic.waitForCreate.length > 0) {
-                    TaskListControl.Dic.refreshId = TaskListControl.Dic.waitForCreate[0];
-                    var task = TaskListControl.value[TaskListControl.Dic.refreshId];
-                    var channelId = Property.Device.Channel.getChannelId(task.DeviceId, task.Channel);
-                    TaskListControl.createTask(task.DeviceId, task.Channel, task.Stream, task.BeginTime, task.EndTime, task.FileFormat, Property.Device.Channel.value[channelId].Name, Property.Device.value[task.DeviceId].Uri);
-                }
-                if (!TaskListControl.Dic.refreshId) {
-                    if (TaskListControl.errorNum.length > 0 && TaskListControl.Dic.waitForCreate.length == 0) {
-                        $.confirm({
-                            title: "",
-                            text: TaskListControl.errorNum.length + "项任务创建失败，请重新尝试！",
-                            alert: true,
-                            okButton: "确定"
-                        });
-                        TaskListControl.errorNum = new Array();
-                    }
-                    return;
-                }
-                task = TaskListControl.value[TaskListControl.Dic.refreshId];
-                var channelId = Property.Device.Channel.getChannelId(task.DeviceId, task.Channel);
-                TaskListControl.refreshItem(Property.Device.Channel.value[channelId].Name, Property.Device.value[task.DeviceId].Uri);
-            }, 1000);
-            download_records_load();
-        });
+            return
+          }
+          task = TaskListControl.value[TaskListControl.Dic.refreshId]
+          var channelId = Property.Device.Channel.getChannelId(
+            task.DeviceId,
+            task.Channel
+          )
+          TaskListControl.refreshItem(
+            Property.Device.Channel.value[channelId].Name,
+            Property.Device.value[task.DeviceId].Uri
+          )
+        }, 1000)
+        download_records_load()
+      })
     </script>
-</body>
+  </body>
 </html>

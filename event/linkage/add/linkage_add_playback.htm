@@ -1,231 +1,301 @@
-﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
+  <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>设置回放</title>
 
     <link rel="stylesheet" type="text/css" href="../../../css/howell.css" />
-    <script type="text/javascript" src="../../../js/language/chinese.js"></script>
-    <script type="text/javascript" src="../../../js/jquery/jquery-1.10.2.min.js"></script>
+    <script
+      type="text/javascript"
+      src="../../../js/language/chinese.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../js/jquery/jquery-3.6.0.min.js"
+    ></script>
     <script src="../../../js/imported.js"></script>
-    <script type="text/javascript" src="../../../js/jquery/jquery-ui.js"></script>
-    <script type="text/javascript" src="../../../js/bootstrap/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../../../js/modernizr.custom.js"></script>
-    <script type="text/javascript" src="../../../js/howell.js/howell.js"></script>
-    <script type="text/javascript" src="../../../js/howell.js/howell.control.js"></script>
+    <script
+      type="text/javascript"
+      src="../../../js/jquery/jquery-ui.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../js/bootstrap/bootstrap.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../js/modernizr.custom.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../js/howell.js/howell.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../js/howell.js/howell.control.js"
+    ></script>
     <script type="text/javascript" src="../../../js/client/enum.js"></script>
     <script type="text/javascript" src="../../../js/md5.js"></script>
     <script type="text/javascript" src="../../../js/client/struct.js"></script>
-    <script type="text/javascript" src="../../../js/howell.js/httpService.js"></script>
-    <script type="text/javascript" src="../../../js/client/security.js"></script>
-    <script type="text/javascript" src="../../../js/jquery/jquery.confirm.js"></script>
-    <script type="text/javascript" src="../../../js/background/security/background_department.event.js"></script>
-    <script type="text/javascript" src="../../../js/background/security/background_departments.js"></script>
-    <script type="text/javascript" src="../../../js/background/security/department/background_department_details.js"></script>
+    <script
+      type="text/javascript"
+      src="../../../js/howell.js/httpService.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../js/client/security.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../js/jquery/jquery.confirm.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../js/background/security/background_department.event.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../js/background/security/background_departments.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../../js/background/security/department/background_department_details.js"
+    ></script>
     <script type="text/javascript" src="department_details.js"></script>
     <script type="text/javascript">
-        Trigger = document.createElement("a");
-        Trigger.href = "http://location/item.htm";
-
+      Trigger = document.createElement('a')
+      Trigger.href = 'http://location/item.htm'
     </script>
-
-</head>
-<body>
+  </head>
+  <body>
     <style type="text/css">
-        .linkage_add_playback_title_ico {
-            color: #007aff;
-            margin-right: 10px;
-        }
+      .linkage_add_playback_title_ico {
+        color: #007aff;
+        margin-right: 10px;
+      }
     </style>
     <div class="container-fluid main-content alert-window-maxdiv">
-        <div class="page-title">
-            <h3 class="list-heading-div">
-                <i class="icon_linkage_list list-heading-icon mouse_default linkage_add_playback_title_ico"></i>
-                <!--<img src="../../img/icon/department.png" class="alert-window-title-icon"/>-->
-                <label id="lblDepartmentDetailTitle">设置回放</label>
-            </h3>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="widget-content padded">
-                    <form action="#" class="form-horizontal">
-                        <div class="form-group" style="margin-left:0;margin-right:0;margin-top:30px">
-                            <label class="control-label col-md-3">
-                                开始时间
-                            </label>
-                            <div class="col-md-9">
-                                <div class="widget-content padded">
-                                    <div class="slider-container">
-                                        <div class="slider-basic" id="divBeginTimeSlider">
-                                        </div>
-                                        <div>
-                                            <p>
-                                                <input class="form-control pull-right" type="text" id="spanBeginTimeSlider" style="width:50px" onkeyup="sliderChangeOnkeyup('divBeginTimeSlider', 'spanBeginTimeSlider', this.value)" onblur="    sliderChangeOnblur('divBeginTimeSlider', 'spanBeginTimeSlider', this.value)" />
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group" style="margin-left:0;margin-right:0">
-                            <label class="control-label col-md-3">
-                                结束时间
-                            </label>
-                            <div class="col-md-9">
-                                <div class="widget-content padded">
-                                    <div class="slider-container">
-                                        <div class="slider-basic" id="divEndTimeSlider">
-                                        </div>
-                                        <div>
-                                            <p>
-                                                <input class="form-control pull-right" id="spanEndTimeSlider" style="width:50px" onkeyup="sliderChangeOnkeyup('divEndTimeSlider', 'spanEndTimeSlider', this.value)" onblur="    sliderChangeOnblur('divEndTimeSlider', 'spanEndTimeSlider', this.value)" />
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group" style="margin-left:0;margin-right:0">
-                            <label class="control-label col-md-3">
-                                连接协议
-                            </label>
-                            <div class="col-md-9">
-                                <select class="form-control" id="ddlPlaybackProtocol" onchange="playbackProtocol_Onchange(this)">
-                                    <option value="Howell5198" selected="selected">HW5198</option>
-                                    <option value="Howell8000">HW8000</option>
-                                    <option value="ONVIF">ONVIF</option>
-                                    <option value="GB28181">GB28181</option>
-                                    <option value="Other">其它</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group" style="margin-left:0;margin-right:0" id="divPlaybackProtocol">
-                            <label class="control-label col-md-3">
-                                填写协议
-                            </label>
-                            <div class="col-md-9">
-                                <input class="form-control pull-right" id="txtPlaybackProtocol" />
-                            </div>
-                        </div>
-                        <div class="form-group" style="margin-top:75px">
-                            <label class="control-label col-md-7">
-                            </label>
-                            <div class="col-md-2">
-                                <a class="btn btn-primary" id="btnSetPlayBack">
-                                    保&ensp;&ensp;存
-                                </a>
-                            </div>
-                            <div class="col-md-2">
-                                <a class="btn btn-primary" onclick="return AlertWindow.Close();">
-                                    取&ensp;&ensp;消
-                                </a>
-                            </div>
-                        </div>
-                    </form>
+      <div class="page-title">
+        <h3 class="list-heading-div">
+          <i
+            class="icon_linkage_list list-heading-icon mouse_default linkage_add_playback_title_ico"
+          ></i>
+          <!--<img src="../../img/icon/department.png" class="alert-window-title-icon"/>-->
+          <label id="lblDepartmentDetailTitle">设置回放</label>
+        </h3>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="widget-content padded">
+            <form action="#" class="form-horizontal">
+              <div
+                class="form-group"
+                style="margin-left: 0; margin-right: 0; margin-top: 30px"
+              >
+                <label class="control-label col-md-3"> 开始时间 </label>
+                <div class="col-md-9">
+                  <div class="widget-content padded">
+                    <div class="slider-container">
+                      <div class="slider-basic" id="divBeginTimeSlider"></div>
+                      <div>
+                        <p>
+                          <input
+                            class="form-control pull-right"
+                            type="text"
+                            id="spanBeginTimeSlider"
+                            style="width: 50px"
+                            onkeyup="sliderChangeOnkeyup('divBeginTimeSlider', 'spanBeginTimeSlider', this.value)"
+                            onblur="    sliderChangeOnblur('divBeginTimeSlider', 'spanBeginTimeSlider', this.value)"
+                          />
+                        </p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-            </div>
+              </div>
+              <div class="form-group" style="margin-left: 0; margin-right: 0">
+                <label class="control-label col-md-3"> 结束时间 </label>
+                <div class="col-md-9">
+                  <div class="widget-content padded">
+                    <div class="slider-container">
+                      <div class="slider-basic" id="divEndTimeSlider"></div>
+                      <div>
+                        <p>
+                          <input
+                            class="form-control pull-right"
+                            id="spanEndTimeSlider"
+                            style="width: 50px"
+                            onkeyup="sliderChangeOnkeyup('divEndTimeSlider', 'spanEndTimeSlider', this.value)"
+                            onblur="    sliderChangeOnblur('divEndTimeSlider', 'spanEndTimeSlider', this.value)"
+                          />
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group" style="margin-left: 0; margin-right: 0">
+                <label class="control-label col-md-3"> 连接协议 </label>
+                <div class="col-md-9">
+                  <select
+                    class="form-control"
+                    id="ddlPlaybackProtocol"
+                    onchange="playbackProtocol_Onchange(this)"
+                  >
+                    <option value="Howell5198" selected="selected">
+                      HW5198
+                    </option>
+                    <option value="Howell8000">HW8000</option>
+                    <option value="ONVIF">ONVIF</option>
+                    <option value="GB28181">GB28181</option>
+                    <option value="Other">其它</option>
+                  </select>
+                </div>
+              </div>
+              <div
+                class="form-group"
+                style="margin-left: 0; margin-right: 0"
+                id="divPlaybackProtocol"
+              >
+                <label class="control-label col-md-3"> 填写协议 </label>
+                <div class="col-md-9">
+                  <input
+                    class="form-control pull-right"
+                    id="txtPlaybackProtocol"
+                  />
+                </div>
+              </div>
+              <div class="form-group" style="margin-top: 75px">
+                <label class="control-label col-md-7"> </label>
+                <div class="col-md-2">
+                  <a class="btn btn-primary" id="btnSetPlayBack">
+                    保&ensp;&ensp;存
+                  </a>
+                </div>
+                <div class="col-md-2">
+                  <a
+                    class="btn btn-primary"
+                    onclick="return AlertWindow.Close();"
+                  >
+                    取&ensp;&ensp;消
+                  </a>
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
+      </div>
     </div>
     <script type="text/javascript">
-        function linkage_add_playback_load() {
-            var beginTime = -4;
-            var endTime = 30;
-            var protocol = ProtocolType.Howell5198;
-            var input = null;
-            var uri = new Uri(Trigger.href);
-            var id = "";
-            if (uri.Querys && uri.Querys.inputId) {
-                id = uri.Querys.inputId;
-                input = Property.Tab.value.VideoPlaybackIdentifier[uri.Querys.inputId];
-            }
-            if (input) {
-                if (input.BeginTime)
-                    beginTime = input.BeginTime;
-                if (input.EndTime)
-                    endTime = input.EndTime;
-                if (input.Protocol)
-                    protocol = input.Protocol;
-            }
-            $("#divBeginTimeSlider").slider({
-                range: "min",
-                max: 120,
-                min: -60,
-                value: beginTime,
-                slide: function (event, ui) {
-                    return $("#spanBeginTimeSlider").val(+ui.value);
-                }
-            });
-            $("#spanBeginTimeSlider").val($("#divBeginTimeSlider").slider("value"));
-            $("#divEndTimeSlider").slider({
-                range: "min",
-                max: 120,
-                min: -60,
-                value: endTime,
-                slide: function (event, ui) {
-                    return $("#spanEndTimeSlider").val(+ui.value);
-                }
-            });
-            $("#spanEndTimeSlider").val($("#divEndTimeSlider").slider("value"));
-            var protocolTag = getTag("ddlPlaybackProtocol");
-            if (protocol != ProtocolType.Howell5198 && protocol != ProtocolType.ONVIF && protocol != ProtocolType.GB28181 && protocol != ProtocolType.Howell8000)
-                protocolTag.value = "Other";
-            else
-                protocolTag.value = protocol;
-            playbackProtocol_Onchange(protocolTag);
-            getTag("btnSetPlayBack").setAttribute("onclick", "btnSetPlayBack_Onclick('" + id + "')");
-            $("#set_playback").slideDown("fast");
+      function linkage_add_playback_load() {
+        var beginTime = -4
+        var endTime = 30
+        var protocol = ProtocolType.Howell5198
+        var input = null
+        var uri = new Uri(Trigger.href)
+        var id = ''
+        if (uri.Querys && uri.Querys.inputId) {
+          id = uri.Querys.inputId
+          input = Property.Tab.value.VideoPlaybackIdentifier[uri.Querys.inputId]
         }
+        if (input) {
+          if (input.BeginTime) beginTime = input.BeginTime
+          if (input.EndTime) endTime = input.EndTime
+          if (input.Protocol) protocol = input.Protocol
+        }
+        $('#divBeginTimeSlider').slider({
+          range: 'min',
+          max: 120,
+          min: -60,
+          value: beginTime,
+          slide: function (event, ui) {
+            return $('#spanBeginTimeSlider').val(+ui.value)
+          },
+        })
+        $('#spanBeginTimeSlider').val($('#divBeginTimeSlider').slider('value'))
+        $('#divEndTimeSlider').slider({
+          range: 'min',
+          max: 120,
+          min: -60,
+          value: endTime,
+          slide: function (event, ui) {
+            return $('#spanEndTimeSlider').val(+ui.value)
+          },
+        })
+        $('#spanEndTimeSlider').val($('#divEndTimeSlider').slider('value'))
+        var protocolTag = getTag('ddlPlaybackProtocol')
+        if (
+          protocol != ProtocolType.Howell5198 &&
+          protocol != ProtocolType.ONVIF &&
+          protocol != ProtocolType.GB28181 &&
+          protocol != ProtocolType.Howell8000
+        )
+          protocolTag.value = 'Other'
+        else protocolTag.value = protocol
+        playbackProtocol_Onchange(protocolTag)
+        getTag('btnSetPlayBack').setAttribute(
+          'onclick',
+          "btnSetPlayBack_Onclick('" + id + "')"
+        )
+        $('#set_playback').slideDown('fast')
+      }
 
-        function sliderChangeOnkeyup(divId, spanId, value) {
-            if (value == "-" || value == "")
-                return
-            var re1 = new RegExp("^[-][0-9]{1,}$");
-            var re2 = new RegExp("^[0-9]{1,}$");
-            if (!re1.test(value) && !re2.test(value)) {
-                getTag(spanId).value = 0;
-                value = 0;
-            }
-            sliderChange(divId, spanId, value);
+      function sliderChangeOnkeyup(divId, spanId, value) {
+        if (value == '-' || value == '') return
+        var re1 = new RegExp('^[-][0-9]{1,}$')
+        var re2 = new RegExp('^[0-9]{1,}$')
+        if (!re1.test(value) && !re2.test(value)) {
+          getTag(spanId).value = 0
+          value = 0
         }
-        function sliderChange(divId, spanId, value) {
-            $("#" + divId).slider({
-                range: "min",
-                max: 120,
-                min: -60,
-                value: value,
-                slide: function (event, ui) {
-                    return $("#" + spanId).val(+ui.value);
-                }
-            });
-            $("#" + spanId).val($("#" + divId).slider("value"));
+        sliderChange(divId, spanId, value)
+      }
+      function sliderChange(divId, spanId, value) {
+        $('#' + divId).slider({
+          range: 'min',
+          max: 120,
+          min: -60,
+          value: value,
+          slide: function (event, ui) {
+            return $('#' + spanId).val(+ui.value)
+          },
+        })
+        $('#' + spanId).val($('#' + divId).slider('value'))
+      }
+      function sliderChangeOnblur(divId, spanId, value) {
+        var re1 = new RegExp('^[-][0-9]{1,}$')
+        var re2 = new RegExp('^[0-9]{1,}$')
+        if (!re1.test(value) && !re2.test(value)) {
+          sliderChange(divId, spanId, 0)
         }
-        function sliderChangeOnblur(divId, spanId, value) {
-            var re1 = new RegExp("^[-][0-9]{1,}$");
-            var re2 = new RegExp("^[0-9]{1,}$");
-            if (!re1.test(value) && !re2.test(value)) {
-                sliderChange(divId, spanId, 0);
-            }
-
-        }
-        function playbackProtocol_Onchange(tag) {
-            if (tag.value == "Other")
-                getTag("divPlaybackProtocol").style.visibility = "visible";
-            else
-                getTag("divPlaybackProtocol").style.visibility = "hidden";
-        }
-        function btnSetPlayBack_Onclick(id) {
-            var beginTime = getTag("spanBeginTimeSlider").value;
-            var endTime = getTag("spanEndTimeSlider").value;
-            var protocol = getTag("ddlPlaybackProtocol").value;
-            if (protocol == "Other")
-                var protocol = getTag("txtPlaybackProtocol").value;
-            if (id)
-                Html.GroupList.Action.changePlayBackValue(id, beginTime, endTime, protocol)
-            else
-                Html.GroupList.Action.batchChangePlayBackValue(beginTime, endTime, protocol);
-            AlertWindow.Close();
-        }
-        linkage_add_playback_load();
+      }
+      function playbackProtocol_Onchange(tag) {
+        if (tag.value == 'Other')
+          getTag('divPlaybackProtocol').style.visibility = 'visible'
+        else getTag('divPlaybackProtocol').style.visibility = 'hidden'
+      }
+      function btnSetPlayBack_Onclick(id) {
+        var beginTime = getTag('spanBeginTimeSlider').value
+        var endTime = getTag('spanEndTimeSlider').value
+        var protocol = getTag('ddlPlaybackProtocol').value
+        if (protocol == 'Other')
+          var protocol = getTag('txtPlaybackProtocol').value
+        if (id)
+          Html.GroupList.Action.changePlayBackValue(
+            id,
+            beginTime,
+            endTime,
+            protocol
+          )
+        else
+          Html.GroupList.Action.batchChangePlayBackValue(
+            beginTime,
+            endTime,
+            protocol
+          )
+        AlertWindow.Close()
+      }
+      linkage_add_playback_load()
     </script>
-</body>
+  </body>
 </html>

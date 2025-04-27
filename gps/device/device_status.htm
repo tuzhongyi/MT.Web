@@ -1,193 +1,278 @@
-﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
+  <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>GPS设备状态</title>
 
     <link rel="stylesheet" type="text/css" href="../../css/howell.css" />
-    <link rel="stylesheet" type="text/css" href="../../css/bootstrap/bootstrap-switch.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../css/bootstrap/bootstrap-switch.css"
+    />
     <script type="text/javascript" src="../../js/language/chinese.js"></script>
-    <script type="text/javascript" src="../../js/jquery/jquery-1.10.2.min.js"></script>
+    <script
+      type="text/javascript"
+      src="../../js/jquery/jquery-3.6.0.min.js"
+    ></script>
     <script src="../js/imported.js"></script>
     <script type="text/javascript" src="../../js/jquery/jquery-ui.js"></script>
-    <script type="text/javascript" src="../../js/bootstrap/bootstrap.min.js"></script>
+    <script
+      type="text/javascript"
+      src="../../js/bootstrap/bootstrap.min.js"
+    ></script>
     <script type="text/javascript" src="../../js/modernizr.custom.js"></script>
     <script type="text/javascript" src="../../js/howell.js/howell.js"></script>
-    <script type="text/javascript" src="../../js/howell.js/howell.control.js"></script>
+    <script
+      type="text/javascript"
+      src="../../js/howell.js/howell.control.js"
+    ></script>
 
     <script type="text/javascript" src="../../js/md5.js"></script>
     <script type="text/javascript" src="../../js/client/struct.js"></script>
-    <script type="text/javascript" src="../../js/howell.js/httpService.js"></script>
+    <script
+      type="text/javascript"
+      src="../../js/howell.js/httpService.js"
+    ></script>
     <script type="text/javascript" src="../../js/client/management.js"></script>
     <script type="text/javascript" src="../../js/client/security.js"></script>
-    <script type="text/javascript" src="../../js/jquery/jquery.confirm.js"></script>
-    <script type="text/javascript" src="../../js/bootstrap/bootstrap-switch.min.js"></script>
-    <script type="text/javascript" src="../../js/background/management/background_devices.js"></script>
+    <script
+      type="text/javascript"
+      src="../../js/jquery/jquery.confirm.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../js/bootstrap/bootstrap-switch.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../js/background/management/background_devices.js"
+    ></script>
     <script type="text/javascript" src="device_details.js"></script>
     <script type="text/javascript">
-        Trigger = document.createElement("a");
-        Trigger.href = "http://location/item.htm?deviceId=00310101031111111000001000000000";
+      Trigger = document.createElement('a')
+      Trigger.href =
+        'http://location/item.htm?deviceId=00310101031111111000001000000000'
     </script>
-
-</head>
-<body>
+  </head>
+  <body>
     <style type="text/css">
-        .location-icon-div {
-            display: block;
-            height: 34px;
-            width: 34px;
-            padding-left: 8px;
-            padding-right: 8px;
-            padding-top: 7px;
-        }
+      .location-icon-div {
+        display: block;
+        height: 34px;
+        width: 34px;
+        padding-left: 8px;
+        padding-right: 8px;
+        padding-top: 7px;
+      }
 
-            .location-icon-div div {
-                width: 17px;
-                height: 17px;
-            }
+      .location-icon-div div {
+        width: 17px;
+        height: 17px;
+      }
 
-        .location-control {
-            border-top-right-radius: 0px;
-            border-bottom-right-radius: 0px;
-        }
+      .location-control {
+        border-top-right-radius: 0px;
+        border-bottom-right-radius: 0px;
+      }
 
+      .course-icon-div {
+        display: block;
+        height: 34px;
+        width: 34px;
+        padding-left: 3px;
+        padding-right: 13px;
+        padding-top: 5px;
+        color: #007aff;
+      }
 
-        .course-icon-div {
-            display: block;
-            height: 34px;
-            width: 34px;
-            padding-left: 3px;
-            padding-right: 13px;
-            padding-top: 5px;
-            color:#007aff;
-        }
+      .course-icon-div div {
+        width: 26px;
+        height: 22px;
+      }
 
-            .course-icon-div div {
-                width: 26px;
-                height: 22px;
-            }
-
-        .course-control {
-            border-top-right-radius: 0px;
-            border-bottom-right-radius: 0px;
-        }
+      .course-control {
+        border-top-right-radius: 0px;
+        border-bottom-right-radius: 0px;
+      }
     </style>
-    <div class="container-fluid alert-window-maxdiv" id="gps_device_status_alert_window" style="height:580px">
-        <div class="page-title">
-            <h3 class="list-heading-div">
-                <i class="icon-bar-chart title mouse_default device_list_title_ico" style="margin-left:10px;margin-right:10px;font-size:24px!important"></i>
-                <label>GPS设备状态</label>
-            </h3>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="widget-content padded">
-                    <form action="#" class="form-horizontal">
-                        <div class="form-group">
-                            <label class="control-label col-md-2">
-                                最后在线时间
-                            </label>
-                            <div class="col-md-9">
-                                <input class="form-control" type="text" id="txtTime" readonly="readonly" value="N/A" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-2">
-                                设备位置
-                            </label>
-                            <div class="col-md-9">
-                                <div class="pull-left" style="width:426px">
-                                    <input class="form-control location-control" type="text" id="txtLatitudeLongitude" readonly="readonly" />
-                                </div>
-                                <div class="input-group-addon pull-left location-icon-div">
-                                    <div>
-                                        <a href="#?deviceId=" id="aLocation" title="查看定位" style="display:none"><i class="icon-screenshot" style="font-size:20px;"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-2">
-                                地面速度
-                            </label>
-                            <div class="col-md-9">
-                                <input class="form-control" type="text" id="txtSpeed" readonly="readonly" value="N/A" />
-                            </div>
-                        </div>
-                        <div class="form-group" id="divUsername">
-                            <label class="control-label col-md-2">
-                                地面航向
-                            </label>
-                            <div class="col-md-9">
-                                <div class="pull-left" style="width:426px">
-                                    <input class="form-control course-control" type="text" id="txtCourse" readonly="readonly" value="N/A" />
-                                </div>
-                                <div class="input-group-addon pull-left course-icon-div">
-                                    <div id="lblCourse">
-                                        <i class="icon-location-arrow" style="font-size:24px"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group" id="divUsername">
-                            <label class="control-label col-md-2">
-                                磁偏角
-                            </label>
-                            <div class="col-md-9">
-                                <input class="form-control" type="text" id="txtMagneticVariation" readonly="readonly" value="N/A" />
-                            </div>
-                            <label class="col-md-1" id="lblMagneticVariation" style="width:40px;color:#007aff;display:none"><i class="icon-location-arrow" style="font-size:24px"></i></label>
-                        </div>
-                        <div class="form-group" id="divUsername">
-                            <label class="control-label col-md-2">
-                                海拔高度
-                            </label>
-                            <div class="col-md-9">
-                                <input class="form-control" type="text" id="txtAltitude" readonly="readonly" value="N/A" />
-                            </div>
-                        </div>
-                        <div class="form-group" id="divUsername">
-                            <label class="control-label col-md-2">
-                                系统在线时间
-                            </label>
-                            <div class="col-md-9">
-                                <input class="form-control" type="text" id="txtSystemUpTime" readonly="readonly" value="N/A" />
-                            </div>
-                        </div>
-                        <div class="form-group" id="divUsername">
-                            <label class="control-label col-md-2">
-                                电池剩余容量
-                            </label>
-                            <div class="col-md-9">
-                                <input class="form-control" type="text" id="txtBattery" readonly="readonly" value="N/A" />
-                            </div>
-                        </div>
-                        <div class="form-group" id="divUsername">
-                            <label class="control-label col-md-2">
-                                信号强度
-                            </label>
-                            <div class="col-md-9">
-                                <input class="form-control" type="text" id="txtSignalIntensity" readonly="readonly" value="N/A" />
-                            </div>
-                        </div>
-                        <div class="form-group" style="margin-top:30px">
-                            <label class="control-label col-md-7">
-                            </label>
-                            <div class="col-md-2">
-                            </div>
-                            <div class="col-md-2">
-                                <a class="btn btn-primary" onclick="return AlertWindow.Close();">
-                                    关&ensp;&ensp;闭
-                                </a>
-                            </div>
-                        </div>
-                    </form>
+    <div
+      class="container-fluid alert-window-maxdiv"
+      id="gps_device_status_alert_window"
+      style="height: 580px"
+    >
+      <div class="page-title">
+        <h3 class="list-heading-div">
+          <i
+            class="icon-bar-chart title mouse_default device_list_title_ico"
+            style="
+              margin-left: 10px;
+              margin-right: 10px;
+              font-size: 24px !important;
+            "
+          ></i>
+          <label>GPS设备状态</label>
+        </h3>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="widget-content padded">
+            <form action="#" class="form-horizontal">
+              <div class="form-group">
+                <label class="control-label col-md-2"> 最后在线时间 </label>
+                <div class="col-md-9">
+                  <input
+                    class="form-control"
+                    type="text"
+                    id="txtTime"
+                    readonly="readonly"
+                    value="N/A"
+                  />
                 </div>
-            </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-2"> 设备位置 </label>
+                <div class="col-md-9">
+                  <div class="pull-left" style="width: 426px">
+                    <input
+                      class="form-control location-control"
+                      type="text"
+                      id="txtLatitudeLongitude"
+                      readonly="readonly"
+                    />
+                  </div>
+                  <div class="input-group-addon pull-left location-icon-div">
+                    <div>
+                      <a
+                        href="#?deviceId="
+                        id="aLocation"
+                        title="查看定位"
+                        style="display: none"
+                        ><i class="icon-screenshot" style="font-size: 20px"></i
+                      ></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-2"> 地面速度 </label>
+                <div class="col-md-9">
+                  <input
+                    class="form-control"
+                    type="text"
+                    id="txtSpeed"
+                    readonly="readonly"
+                    value="N/A"
+                  />
+                </div>
+              </div>
+              <div class="form-group" id="divUsername">
+                <label class="control-label col-md-2"> 地面航向 </label>
+                <div class="col-md-9">
+                  <div class="pull-left" style="width: 426px">
+                    <input
+                      class="form-control course-control"
+                      type="text"
+                      id="txtCourse"
+                      readonly="readonly"
+                      value="N/A"
+                    />
+                  </div>
+                  <div class="input-group-addon pull-left course-icon-div">
+                    <div id="lblCourse">
+                      <i
+                        class="icon-location-arrow"
+                        style="font-size: 24px"
+                      ></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group" id="divUsername">
+                <label class="control-label col-md-2"> 磁偏角 </label>
+                <div class="col-md-9">
+                  <input
+                    class="form-control"
+                    type="text"
+                    id="txtMagneticVariation"
+                    readonly="readonly"
+                    value="N/A"
+                  />
+                </div>
+                <label
+                  class="col-md-1"
+                  id="lblMagneticVariation"
+                  style="width: 40px; color: #007aff; display: none"
+                  ><i class="icon-location-arrow" style="font-size: 24px"></i
+                ></label>
+              </div>
+              <div class="form-group" id="divUsername">
+                <label class="control-label col-md-2"> 海拔高度 </label>
+                <div class="col-md-9">
+                  <input
+                    class="form-control"
+                    type="text"
+                    id="txtAltitude"
+                    readonly="readonly"
+                    value="N/A"
+                  />
+                </div>
+              </div>
+              <div class="form-group" id="divUsername">
+                <label class="control-label col-md-2"> 系统在线时间 </label>
+                <div class="col-md-9">
+                  <input
+                    class="form-control"
+                    type="text"
+                    id="txtSystemUpTime"
+                    readonly="readonly"
+                    value="N/A"
+                  />
+                </div>
+              </div>
+              <div class="form-group" id="divUsername">
+                <label class="control-label col-md-2"> 电池剩余容量 </label>
+                <div class="col-md-9">
+                  <input
+                    class="form-control"
+                    type="text"
+                    id="txtBattery"
+                    readonly="readonly"
+                    value="N/A"
+                  />
+                </div>
+              </div>
+              <div class="form-group" id="divUsername">
+                <label class="control-label col-md-2"> 信号强度 </label>
+                <div class="col-md-9">
+                  <input
+                    class="form-control"
+                    type="text"
+                    id="txtSignalIntensity"
+                    readonly="readonly"
+                    value="N/A"
+                  />
+                </div>
+              </div>
+              <div class="form-group" style="margin-top: 30px">
+                <label class="control-label col-md-7"> </label>
+                <div class="col-md-2"></div>
+                <div class="col-md-2">
+                  <a
+                    class="btn btn-primary"
+                    onclick="return AlertWindow.Close();"
+                  >
+                    关&ensp;&ensp;闭
+                  </a>
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
+      </div>
     </div>
     <script type="text/javascript">
-        gps_device_status_load();
+      gps_device_status_load()
     </script>
-</body>
+  </body>
 </html>

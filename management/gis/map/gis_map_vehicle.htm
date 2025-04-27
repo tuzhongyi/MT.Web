@@ -1,45 +1,58 @@
-﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
+  <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>在线状态</title>
     <link rel="stylesheet" type="text/css" href="../css/howell.css" />
     <script type="text/javascript" src="../js/language/chinese.js"></script>
-    <script type="text/javascript" src="../js/jquery/jquery-1.10.2.min.js"></script>
+    <script
+      type="text/javascript"
+      src="../js/jquery/jquery-3.6.0.min.js"
+    ></script>
     <script type="text/javascript" src="../js/imported.js"></script>
     <script type="text/javascript" src="../js/jquery/jquery-ui.js"></script>
-    <script type="text/javascript" src="../js/bootstrap/bootstrap.min.js"></script>
+    <script
+      type="text/javascript"
+      src="../js/bootstrap/bootstrap.min.js"
+    ></script>
     <script type="text/javascript" src="../js/modernizr.custom.js"></script>
     <script type="text/javascript" src="../js/howell.js/howell.js"></script>
-    <script type="text/javascript" src="../js/howell.js/howell.control.js"></script>
+    <script
+      type="text/javascript"
+      src="../js/howell.js/howell.control.js"
+    ></script>
     <script type="text/javascript" src="../js/client/enum.js"></script>
     <script type="text/javascript" src="../js/base64.js"></script>
     <script type="text/javascript" src="../js/client/struct.js"></script>
     <script type="text/javascript" src="../js/client/management.js"></script>
     <script type="text/javascript" src="../js/client/client.js"></script>
-    <script type="text/javascript" src="../js/howell.js/howell.convert.js"></script>
-</head>
-<body>
+    <script
+      type="text/javascript"
+      src="../js/howell.js/howell.convert.js"
+    ></script>
+  </head>
+  <body>
     <style type="text/css">
-        .icon_btn {
-            margin-left: 0px;
-            width: 200px;
-        }
+      .icon_btn {
+        margin-left: 0px;
+        width: 200px;
+      }
 
-        .gis_map_vehicle_list_title_ico {
-            color: #007aff;
-        }
+      .gis_map_vehicle_list_title_ico {
+        color: #007aff;
+      }
     </style>
-    <div class="widget-container fluid-height clearfix association-frame mouse_default swith_control"
-         style="display: block; width: 307px; height: 100%  !important;" onclick="stopPropagation()">
-        <div class="heading">
-            <i class="howell-icon-vehicle gis_map_vehicle_list_title_ico"></i>
-            <span>
-                车辆信息
-            </span>
-            <!--<a class="icon-list-ul mouse_pointer" style="margin-left:30px;font-size:16px;" href="notice_list.htm"></a>-->
-        </div>
-        <!--<div class="association-operation-bar">
+    <div
+      class="widget-container fluid-height clearfix association-frame mouse_default swith_control"
+      style="display: block; width: 307px; height: 100% !important"
+      onclick="stopPropagation()"
+    >
+      <div class="heading">
+        <i class="howell-icon-vehicle gis_map_vehicle_list_title_ico"></i>
+        <span> 车辆信息 </span>
+        <!--<a class="icon-list-ul mouse_pointer" style="margin-left:30px;font-size:16px;" href="notice_list.htm"></a>-->
+      </div>
+      <!--<div class="association-operation-bar">
             <div class="pull-left">
                 <a class="btn btn-xs btn-permission main list-permission-btn" onclick="return show_Click(this,'All');">
                     全部
@@ -50,143 +63,182 @@
                 </a>
             </div>
         </div>-->
-        <div class="pull-left" style="margin-left:20px">
-            <a class="btn btn-xs btn-permission main list-permission-btn selected" onclick="return show_GIS_Map_Vehicle_Click(this, null);">
-                全部
-            </a>
-            <a class="btn btn-xs btn-permission main list-permission-btn urgent" onclick="return show_GIS_Map_Vehicle_Click(this, true);">
-                黑名单
-            </a>
-            <a class="btn btn-xs btn-permission main list-permission-btn commonly" onclick="return show_GIS_Map_Vehicle_Click(this, false);">
-                白名单
-            </a>
-        </div>
-        <div class="widget-content padded clearfix association-list-container" style="overflow-y: auto;
-            height: 80%;">
-            <div id="glist_content">
-            </div>
-        </div>
+      <div class="pull-left" style="margin-left: 20px">
+        <a
+          class="btn btn-xs btn-permission main list-permission-btn selected"
+          onclick="return show_GIS_Map_Vehicle_Click(this, null);"
+        >
+          全部
+        </a>
+        <a
+          class="btn btn-xs btn-permission main list-permission-btn urgent"
+          onclick="return show_GIS_Map_Vehicle_Click(this, true);"
+        >
+          黑名单
+        </a>
+        <a
+          class="btn btn-xs btn-permission main list-permission-btn commonly"
+          onclick="return show_GIS_Map_Vehicle_Click(this, false);"
+        >
+          白名单
+        </a>
+      </div>
+      <div
+        class="widget-content padded clearfix association-list-container"
+        style="overflow-y: auto; height: 80%"
+      >
+        <div id="glist_content"></div>
+      </div>
     </div>
     <script type="text/javascript">
-        var GIS_Map_Vehicle_Property = {
-            value: new Dictionary(),
-            load: function (index, size) {
-                var result = tryCatch(function () {
-                    return Client.Vehicle().Vehicle.List(null, null, null, index, size);
-                });
+      var GIS_Map_Vehicle_Property = {
+        value: new Dictionary(),
+        load: function (index, size) {
+          var result = tryCatch(function () {
+            return Client.Vehicle().Vehicle.List(null, null, null, index, size)
+          })
 
-                if (result && result.Vehicle) {
-                    for (var i = 0; i < result.Vehicle.length; i++) {
-                        this.value[result.Vehicle[i].Id] = result.Vehicle[i];
-                    }
-                }
-                return result;
+          if (result && result.Vehicle) {
+            for (var i = 0; i < result.Vehicle.length; i++) {
+              this.value[result.Vehicle[i].Id] = result.Vehicle[i]
             }
-        }
-        var GIS_Map_Vehicle_Html = {
-            create: function (blackList) {
-                var items = new GroupListItemArray();
-                var vehicles = GIS_Map_Vehicle_Property.value.toArray();
-                for (var i = 0; i < vehicles.length; i++) {
-                    if (blackList) {
-                        if (vehicles[i].ExistedInBlackList)
-                            items.push(this.createItem(vehicles[i]));
-                    }
-                    else if (blackList == false) {
-                        if (!vehicles[i].ExistedInBlackList)
-                            items.push(this.createItem(vehicles[i]));
-                    }
-                    else
-                        items.push(this.createItem(vehicles[i]));
-                }
-                var gl = new GroupList("", items);
-                document.getElementById("glist_content").innerHTML = "\n ";
-                document.getElementById("glist_content").appendChild(gl);
-            },
-            createItem: function (vehicle) {
-                var css = " text-info";
-                if (vehicle.ExistedInBlackList)
-                    css = " text-danger";
-                var btn = new IconButton(vehicle.Id, "howell-icon-vehicle" + css, 0, vehicle.Name);
-                btn.title = vehicle.Name;
-                var item = new GroupListItem();
-                item.id = vehicle.Id;
-                item.onclick = null;
-                item.Content.appendChild(btn);
-                var removeBtn = document.createElement("a");
-                removeBtn.setAttribute("onclick", "setVehicleItemDetailsClick(this, '" + vehicle.Id + "','" + vehicle.Name + "')");
-                removeBtn.title = "添加";
-                removeBtn.className = "icon-plus-sign mouse_pointer pull-right";
+          }
+          return result
+        },
+      }
+      var GIS_Map_Vehicle_Html = {
+        create: function (blackList) {
+          var items = new GroupListItemArray()
+          var vehicles = GIS_Map_Vehicle_Property.value.toArray()
+          for (var i = 0; i < vehicles.length; i++) {
+            if (blackList) {
+              if (vehicles[i].ExistedInBlackList)
+                items.push(this.createItem(vehicles[i]))
+            } else if (blackList == false) {
+              if (!vehicles[i].ExistedInBlackList)
+                items.push(this.createItem(vehicles[i]))
+            } else items.push(this.createItem(vehicles[i]))
+          }
+          var gl = new GroupList('', items)
+          document.getElementById('glist_content').innerHTML = '\n '
+          document.getElementById('glist_content').appendChild(gl)
+        },
+        createItem: function (vehicle) {
+          var css = ' text-info'
+          if (vehicle.ExistedInBlackList) css = ' text-danger'
+          var btn = new IconButton(
+            vehicle.Id,
+            'howell-icon-vehicle' + css,
+            0,
+            vehicle.Name
+          )
+          btn.title = vehicle.Name
+          var item = new GroupListItem()
+          item.id = vehicle.Id
+          item.onclick = null
+          item.Content.appendChild(btn)
+          var removeBtn = document.createElement('a')
+          removeBtn.setAttribute(
+            'onclick',
+            "setVehicleItemDetailsClick(this, '" +
+              vehicle.Id +
+              "','" +
+              vehicle.Name +
+              "')"
+          )
+          removeBtn.title = '添加'
+          removeBtn.className = 'icon-plus-sign mouse_pointer pull-right'
 
-                item.Content.appendChild(removeBtn);
-                //var info = document.createElement("div");
-                //info.className = "text-ellipsis notice-info";
-                //info.innerText = notice.Message;
-                //info.title = notice.Message;
-                //item.Content.appendChild(info);
+          item.Content.appendChild(removeBtn)
+          //var info = document.createElement("div");
+          //info.className = "text-ellipsis notice-info";
+          //info.innerText = notice.Message;
+          //info.title = notice.Message;
+          //item.Content.appendChild(info);
 
-                //var time = document.createElement("div");
+          //var time = document.createElement("div");
 
-                //var date = Convert.ToDate(notice.CreationTime);
-                ////time.innerText = date.toLocaleString();
-                //time.innerText = date.format("MM-dd HH:mm:ss");
+          //var date = Convert.ToDate(notice.CreationTime);
+          ////time.innerText = date.toLocaleString();
+          //time.innerText = date.format("MM-dd HH:mm:ss");
 
-                //item.Content.appendChild(time);
+          //item.Content.appendChild(time);
 
-                //item.onclick = function (e) {
-                //    var a = document.createElement("a");
-                //    a.href = "AlertProcess.htm";
-                //    var result = Client.Management().Notice.Get(this.id);
-                //    result.Time = result.CreationTime;
-                //    result.Message = base64encode(utf16to8(result.Message));
-                //    var str = JSONstringify(result);
-                //    a.href += "?notice=" + encodeURI(str);
-                //    AlertWindow.Show(a);
-                //}
-                return item;
+          //item.onclick = function (e) {
+          //    var a = document.createElement("a");
+          //    a.href = "AlertProcess.htm";
+          //    var result = Client.Management().Notice.Get(this.id);
+          //    result.Time = result.CreationTime;
+          //    result.Message = base64encode(utf16to8(result.Message));
+          //    var str = JSONstringify(result);
+          //    a.href += "?notice=" + encodeURI(str);
+          //    AlertWindow.Show(a);
+          //}
+          return item
+        },
+      }
+
+      function setVehicleItemDetailsClick(sender, args, name) {
+        var seletcId = GIS_Dispatch_Html.getSelectId()
+        if (
+          seletcId &&
+          (GIS_Dispatch_Property.MapList.LayerList.value[seletcId] ||
+            GIS_Dispatch_Property.MapList.ItemList.value[seletcId])
+        ) {
+          if (
+            GIS_Dispatch_Html.Pos.Longitude &&
+            GIS_Dispatch_Html.Pos.Latitude
+          ) {
+            var mapId
+            var parentId
+            if (GIS_Dispatch_Property.MapList.ItemList.value[seletcId]) {
+              mapId =
+                GIS_Dispatch_Property.MapList.ItemList.value[seletcId].mapId
+              parentId =
+                GIS_Dispatch_Property.MapList.ItemList.value[seletcId]
+                  .ParentLayerId
             }
-        }
-
-        function setVehicleItemDetailsClick(sender, args, name) {
-            var seletcId = GIS_Dispatch_Html.getSelectId();
-            if (seletcId && (GIS_Dispatch_Property.MapList.LayerList.value[seletcId] || GIS_Dispatch_Property.MapList.ItemList.value[seletcId])) {
-                if (GIS_Dispatch_Html.Pos.Longitude && GIS_Dispatch_Html.Pos.Latitude) {
-                    var mapId;
-                    var parentId;
-                    if (GIS_Dispatch_Property.MapList.ItemList.value[seletcId]) {
-                        mapId = GIS_Dispatch_Property.MapList.ItemList.value[seletcId].mapId;
-                        parentId = GIS_Dispatch_Property.MapList.ItemList.value[seletcId].ParentLayerId;
-                    }
-                    if (GIS_Dispatch_Property.MapList.LayerList.value[seletcId]) {
-                        mapId = GIS_Dispatch_Property.MapList.LayerList.value[seletcId].mapId;
-                        parentId = seletcId;
-                    }
-                    Trigger = document.createElement("a");
-                    Trigger.href = "management/gis/map/item/gis_map_item_details.htm?iconType=1&mapId=" + mapId + "&parentId=" + parentId + "&longitude=" + GIS_Dispatch_Html.Pos.Longitude + "&latitude=" + GIS_Dispatch_Html.Pos.Latitude + "&componentId=" + args + "&componentName=" + name;
-                    AlertWindow.Show(Trigger, -1);
-                }
-                else {
-                    alertPrompt("请选择一个点位");
-                }
+            if (GIS_Dispatch_Property.MapList.LayerList.value[seletcId]) {
+              mapId =
+                GIS_Dispatch_Property.MapList.LayerList.value[seletcId].mapId
+              parentId = seletcId
             }
-            else {
-                alertPrompt("请选择一张图层");
-            }
+            Trigger = document.createElement('a')
+            Trigger.href =
+              'management/gis/map/item/gis_map_item_details.htm?iconType=1&mapId=' +
+              mapId +
+              '&parentId=' +
+              parentId +
+              '&longitude=' +
+              GIS_Dispatch_Html.Pos.Longitude +
+              '&latitude=' +
+              GIS_Dispatch_Html.Pos.Latitude +
+              '&componentId=' +
+              args +
+              '&componentName=' +
+              name
+            AlertWindow.Show(Trigger, -1)
+          } else {
+            alertPrompt('请选择一个点位')
+          }
+        } else {
+          alertPrompt('请选择一张图层')
         }
+      }
 
-        function show_GIS_Map_Vehicle_Click(sender, args) {
-            if (sender) {
-                $(".list-permission-btn").removeClass("selected");
-                sender.className += " selected";
-            }
-            GIS_Map_Vehicle_Html.create(args);
+      function show_GIS_Map_Vehicle_Click(sender, args) {
+        if (sender) {
+          $('.list-permission-btn').removeClass('selected')
+          sender.className += ' selected'
         }
+        GIS_Map_Vehicle_Html.create(args)
+      }
 
-        function GIS_Map_Vehicle_Html_Init() {
-            GIS_Map_Vehicle_Property.load();
-            GIS_Map_Vehicle_Html.create();
-        }
-        GIS_Map_Vehicle_Html_Init();
+      function GIS_Map_Vehicle_Html_Init() {
+        GIS_Map_Vehicle_Property.load()
+        GIS_Map_Vehicle_Html.create()
+      }
+      GIS_Map_Vehicle_Html_Init()
     </script>
-</body>
+  </body>
 </html>

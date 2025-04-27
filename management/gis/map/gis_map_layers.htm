@@ -1,153 +1,215 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
+  <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>GIS地图图层</title>
     <link href="../../css/howell.css" rel="stylesheet" />
     <script type="text/javascript" src="../../js/language/chinese.js"></script>
-    <script type="text/javascript" src="../../js/jquery/jquery-1.10.2.min.js"></script>
+    <script
+      type="text/javascript"
+      src="../../js/jquery/jquery-3.6.0.min.js"
+    ></script>
     <script src="../../js/imported.js"></script>
     <script type="text/javascript" src="../../js/jquery/jquery-ui.js"></script>
-    <script type="text/javascript" src="../../js/jquery/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="../../js/bootstrap/bootstrap.min.js"></script>
+    <script
+      type="text/javascript"
+      src="../../js/jquery/jquery.dataTables.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../js/bootstrap/bootstrap.min.js"
+    ></script>
     <script type="text/javascript" src="../../js/nav.js"></script>
 
-    <script type="text/javascript" src="../../js/jquery/jquery.confirm.js"></script>
+    <script
+      type="text/javascript"
+      src="../../js/jquery/jquery.confirm.js"
+    ></script>
     <script type="text/javascript" src="../../js/modernizr.custom.js"></script>
     <script type="text/javascript" src="../../js/md5.js"></script>
     <script type="text/javascript" src="../../js/howell.js/howell.js"></script>
     <script type="text/javascript" src="../../js/howell.js/digest.js"></script>
-    <script type="text/javascript" src="../../js/howell.js/httpService.js"></script>
+    <script
+      type="text/javascript"
+      src="../../js/howell.js/httpService.js"
+    ></script>
     <script type="text/javascript" src="../../js/client/management.js"></script>
     <script type="text/javascript" src="../../js/client/security.js"></script>
     <script type="text/javascript" src="../../js/client/enum.js"></script>
     <script type="text/javascript" src="../../js/client/struct.js"></script>
     <script src="../../js/client/client.js"></script>
-    <script type="text/javascript" src="../../js/howell.js/howell.control.js"></script>
-    <script type="text/javascript" src="../../js/jquery/jquery.confirm.js"></script>
-    <script type="text/javascript" src="../../js/bootstrap/bootstrap-switch.min.js"></script>
-    <script type="text/javascript" src="../../js/background/management/background_device.event.js"></script>
-    <script type="text/javascript" src="../../js/background/management/background_devices.js"></script>
-    <script type="text/javascript" src="../../js/background/management/background_device_mediums.js"></script>
+    <script
+      type="text/javascript"
+      src="../../js/howell.js/howell.control.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../js/jquery/jquery.confirm.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../js/bootstrap/bootstrap-switch.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../js/background/management/background_device.event.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../js/background/management/background_devices.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../js/background/management/background_device_mediums.js"
+    ></script>
     <script type="text/javascript" src="device_mediums.js"></script>
     <!--<script type="text/javascript" src="../../js/background/management/device/user/background_device_user_permissions.js"></script>
     <script type="text/javascript" src="user/device_user_permissions.js"></script>-->
 
     <script>
-
-        Trigger = document.createElement("a");;
-        Trigger.href = "medium/item.htm?deviceId=00310101021111111000001000000000";
-        Info.ControlIdPrefix.Medium.AlertUrl.add = "medium/device_medium_permissions.htm";
+      Trigger = document.createElement('a')
+      Trigger.href = 'medium/item.htm?deviceId=00310101021111111000001000000000'
+      Info.ControlIdPrefix.Medium.AlertUrl.add =
+        'medium/device_medium_permissions.htm'
     </script>
-
-</head>
-<body>
+  </head>
+  <body>
     <!--已绑定列表-->
-    <div class="widget-container fluid-height clearfix association-frame mouse_default swith_control">
-        <div class="heading association-heading">
-            <i class="howell-icon-device association-heading-icon mouse_default"></i>
-            <label>GIS地图图层</label><div class="association-heading-count-text">共 <label id="lbl_gis_map_layer_count">0</label> 条</div>
+    <div
+      class="widget-container fluid-height clearfix association-frame mouse_default swith_control"
+    >
+      <div class="heading association-heading">
+        <i
+          class="howell-icon-device association-heading-icon mouse_default"
+        ></i>
+        <label>GIS地图图层</label>
+        <div class="association-heading-count-text">
+          共 <label id="lbl_gis_map_layer_count">0</label> 条
         </div>
-        <div class="association-operation-bar">
-            <a class="association-operation-bar-text-btn pull-left" onclick="btn_add_map_layers_Click(this)" id="btn_add_map_layers" href="management/gis/map/layer/gis_map_layer_details.htm">
-                <div class="icon-plus">
-                </div>
-                <span>
-                    添加
-                </span>
-            </a>
-            <div class="btn-group pull-right association-btn-group">
-                <div class="btn btn-xs btn-primary-outline association-btn-group-icon-btn" onclick="btn_gis_map_layer_batch_remove_Click(this);" title="删除">
-                    <i class="icon-trash">
-                    </i>
-                </div>
-                <div class="btn btn-xs dropdown-toggle control btn-primary-outline btn-xsgroup-toggle">
-                    <span class="caret" style="margin-top:9px;margin-bottom:8px"></span>
-                </div>
-                <ul class="dropdown-menu association-dropdown-menu" onmouseover="operationGISMapLayerCanClose = false;" onmouseout="    operationGISMapLayerCanClose = true;">
-                    <li class="dropdown-menu-li">
-                        <a class="association-dropdown-men-item mouse_pointer" onclick="RemoveAllGISMapLayer_Click(this)">全部删除</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="btn-group  pull-right association-groupdown">
-                <div class="btn btn-xs btn-primary association-btn-xs-groupdown dropdown-toggle control">
-                    选&ensp;择&ensp;<span class="caret"></span>
-                </div>
-                <ul class="dropdown-menu association-groupdown-menu" onmouseover="operationGISMapLayerCanClose = false;" onmouseout="    operationGISMapLayerCanClose = true;">
-                    <li class="mouse_pointer dropdown-menu-li">
-                        <a class="association-groupdown-menu-item"
-                           onclick="GroupList.Select.All('gis_map_layer_list_', LayerAssociationGISMap_SelectedAll);">
-                            全选
-                        </a>
-                    </li>
-                    <li class="mouse_pointer dropdown-menu-li">
-                        <a class="association-groupdown-menu-item"
-                           onclick="GroupList.Select.All('gis_map_layer_list_', LayerAssociationGISMap_SelectedCurrent);">
-                            当前页
-                        </a>
-                    </li>
-                    <li class="mouse_pointer dropdown-menu-li">
-                        <a class="association-groupdown-menu-item"
-                           onclick="GroupList.Select.Inverse('gis_map_layer_list_'); LayerAssociationGISMap_SelectedInverse()">
-                            反选
-                        </a>
-                    </li>
-                    <li class="mouse_pointer dropdown-menu-li">
-                        <a class="association-groupdown-menu-item"
-                           onclick="GroupList.Select.Cancel('gis_map_layer_list_', LayerAssociationGISMap_SelectedCancel);">
-                            取消
-                        </a>
-                    </li>
-                </ul>
-            </div>
+      </div>
+      <div class="association-operation-bar">
+        <a
+          class="association-operation-bar-text-btn pull-left"
+          onclick="btn_add_map_layers_Click(this)"
+          id="btn_add_map_layers"
+          href="management/gis/map/layer/gis_map_layer_details.htm"
+        >
+          <div class="icon-plus"></div>
+          <span> 添加 </span>
+        </a>
+        <div class="btn-group pull-right association-btn-group">
+          <div
+            class="btn btn-xs btn-primary-outline association-btn-group-icon-btn"
+            onclick="btn_gis_map_layer_batch_remove_Click(this);"
+            title="删除"
+          >
+            <i class="icon-trash"> </i>
+          </div>
+          <div
+            class="btn btn-xs dropdown-toggle control btn-primary-outline btn-xsgroup-toggle"
+          >
+            <span
+              class="caret"
+              style="margin-top: 9px; margin-bottom: 8px"
+            ></span>
+          </div>
+          <ul
+            class="dropdown-menu association-dropdown-menu"
+            onmouseover="operationGISMapLayerCanClose = false;"
+            onmouseout="    operationGISMapLayerCanClose = true;"
+          >
+            <li class="dropdown-menu-li">
+              <a
+                class="association-dropdown-men-item mouse_pointer"
+                onclick="RemoveAllGISMapLayer_Click(this)"
+                >全部删除</a
+              >
+            </li>
+          </ul>
         </div>
+        <div class="btn-group pull-right association-groupdown">
+          <div
+            class="btn btn-xs btn-primary association-btn-xs-groupdown dropdown-toggle control"
+          >
+            选&ensp;择&ensp;<span class="caret"></span>
+          </div>
+          <ul
+            class="dropdown-menu association-groupdown-menu"
+            onmouseover="operationGISMapLayerCanClose = false;"
+            onmouseout="    operationGISMapLayerCanClose = true;"
+          >
+            <li class="mouse_pointer dropdown-menu-li">
+              <a
+                class="association-groupdown-menu-item"
+                onclick="GroupList.Select.All('gis_map_layer_list_', LayerAssociationGISMap_SelectedAll);"
+              >
+                全选
+              </a>
+            </li>
+            <li class="mouse_pointer dropdown-menu-li">
+              <a
+                class="association-groupdown-menu-item"
+                onclick="GroupList.Select.All('gis_map_layer_list_', LayerAssociationGISMap_SelectedCurrent);"
+              >
+                当前页
+              </a>
+            </li>
+            <li class="mouse_pointer dropdown-menu-li">
+              <a
+                class="association-groupdown-menu-item"
+                onclick="GroupList.Select.Inverse('gis_map_layer_list_'); LayerAssociationGISMap_SelectedInverse()"
+              >
+                反选
+              </a>
+            </li>
+            <li class="mouse_pointer dropdown-menu-li">
+              <a
+                class="association-groupdown-menu-item"
+                onclick="GroupList.Select.Cancel('gis_map_layer_list_', LayerAssociationGISMap_SelectedCancel);"
+              >
+                取消
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
 
-        <div class="widget-content padded clearfix association-list-container">
-            <div id="glist_gis_map_layers">
-
-            </div>
-        </div>
-        <div class="col-md-12">
-            <div id="div_gis_map_layer_paging">
-
-            </div>
-        </div>
+      <div class="widget-content padded clearfix association-list-container">
+        <div id="glist_gis_map_layers"></div>
+      </div>
+      <div class="col-md-12">
+        <div id="div_gis_map_layer_paging"></div>
+      </div>
     </div>
 
     <script>
-        var operationGISMapLayerCanClose = true;
-        function gis_map_layer_list_load() {
-            GIS_Map_Property.LayerList.mapId = GIS_Map_Html.Current.Id.get();
-            GIS_Map_Property.LayerList.parentLayerId = GIS_Map_Html.Current.Id.get();
-            GIS_Map_Html.Control.PopoverWindow.LayerList.selected = new Array();
-            GIS_Map_Property.LayerList.value = new Object();
-            $(".dropdown-menu-li").click(function () {
-                var node = this.parentElement.parentElement;
-                if (node.className.indexOf("open") > -1)
-                    $(node).removeClass("open");
-            });
-            $(".popover-content .dropdown-toggle.control").click(function () {
-                var node = this.parentElement;
-                if (node.className.indexOf("open") < 0)
-                    $(node).addClass("open");
-                else
-                    $(node).removeClass("open");
-            });
-            $(".popover-content .dropdown-toggle.control").blur(function () {
-                if (operationGISMapLayerCanClose) {
-                    var node = this.parentElement;
-                    if (node.className.indexOf("open") > -1)
-                        $(node).removeClass("open");
-                    operationGISMapLayerCanClose = true;
-                }
-            });
-            //GIS_Map_Html.Control.PopoverWindow.LayerList.load(1);
-        }
+      var operationGISMapLayerCanClose = true
+      function gis_map_layer_list_load() {
+        GIS_Map_Property.LayerList.mapId = GIS_Map_Html.Current.Id.get()
+        GIS_Map_Property.LayerList.parentLayerId = GIS_Map_Html.Current.Id.get()
+        GIS_Map_Html.Control.PopoverWindow.LayerList.selected = new Array()
+        GIS_Map_Property.LayerList.value = new Object()
+        $('.dropdown-menu-li').click(function () {
+          var node = this.parentElement.parentElement
+          if (node.className.indexOf('open') > -1) $(node).removeClass('open')
+        })
+        $('.popover-content .dropdown-toggle.control').click(function () {
+          var node = this.parentElement
+          if (node.className.indexOf('open') < 0) $(node).addClass('open')
+          else $(node).removeClass('open')
+        })
+        $('.popover-content .dropdown-toggle.control').blur(function () {
+          if (operationGISMapLayerCanClose) {
+            var node = this.parentElement
+            if (node.className.indexOf('open') > -1) $(node).removeClass('open')
+            operationGISMapLayerCanClose = true
+          }
+        })
+        //GIS_Map_Html.Control.PopoverWindow.LayerList.load(1);
+      }
 
-        gis_map_layer_list_load();
+      gis_map_layer_list_load()
     </script>
-</body>
+  </body>
 </html>
-

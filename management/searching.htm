@@ -1,414 +1,574 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head><meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>搜索设备</title>
     <link rel="stylesheet" type="text/css" href="../css/howell.css" />
-    <link rel="stylesheet" type="text/css" href="../css/bootstrap/bootstrap-switch.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../css/bootstrap/bootstrap-switch.css"
+    />
     <script type="text/javascript" src="../js/language/chinese.js"></script>
-    <script type="text/javascript" src="../js/jquery/jquery-1.10.2.min.js"></script>
+    <script
+      type="text/javascript"
+      src="../js/jquery/jquery-3.6.0.min.js"
+    ></script>
     <script src="../js/imported.js"></script>
     <script type="text/javascript" src="../js/jquery/jquery-ui.js"></script>
-    <script type="text/javascript" src="../js/bootstrap/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../js/jquery/jquery.confirm.js"></script>
+    <script
+      type="text/javascript"
+      src="../js/bootstrap/bootstrap.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../js/jquery/jquery.confirm.js"
+    ></script>
     <script type="text/javascript" src="../js/nav.js"></script>
 
     <script type="text/javascript" src="../js/howell.js/howell.js"></script>
-    <script type="text/javascript" src="../js/bootstrap/bootstrap-switch.min.js"></script>
+    <script
+      type="text/javascript"
+      src="../js/bootstrap/bootstrap-switch.min.js"
+    ></script>
     <script src="../js/client/enum.js"></script>
     <script type="text/javascript" src="../js/client/struct.js"></script>
     <script type="text/javascript" src="../js/client/security.js"></script>
     <script type="text/javascript" src="../js/client/management.js"></script>
     <script type="text/javascript" src="../js/client/client.js"></script>
-    <script type="text/javascript" src="../js/howell.js/howell.control.js"></script>
+    <script
+      type="text/javascript"
+      src="../js/howell.js/howell.control.js"
+    ></script>
     <script type="text/javascript" src="../js/modernizr.custom.js"></script>
     <!--<script type="text/javascript" src="../js/background/management/background_device.event.js"></script>-->
-    <script type="text/javascript" src="../js/background/management/background_searching.js?update=20170629"></script>
+    <script
+      type="text/javascript"
+      src="../js/background/management/background_searching.js?update=20170629"
+    ></script>
     <script type="text/javascript" src="searching.js"></script>
     <script type="text/javascript" src="../js/howell.js/guid.js"></script>
 
     <style type="text/css">
-        .compare-float-heading-tag-div {
-            height: 27px;
-            margin-top: 0px;
-        }
+      .compare-float-heading-tag-div {
+        height: 27px;
+        margin-top: 0px;
+      }
 
-        .td-classification {
-            width: 80px;
-            padding: 0 0 0 0 !important;
-            text-align: center;
-            /*border:1px solid red;*/
-        }
+      .td-classification {
+        width: 80px;
+        padding: 0 0 0 0 !important;
+        text-align: center;
+        /*border:1px solid red;*/
+      }
 
-        .td-name {
-            width: 200px;
-            padding: 0 0 0 0 !important;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            word-break: keep-all;
-            white-space: nowrap;
-            /*border:1px solid yellow;*/
-        }
+      .td-name {
+        width: 200px;
+        padding: 0 0 0 0 !important;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        word-break: keep-all;
+        white-space: nowrap;
+        /*border:1px solid yellow;*/
+      }
 
-        .td-serial-number {
-            width: 200px;
-            padding: 0 0 0 0 !important;
-            text-align: center;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            word-break: keep-all;
-            white-space: nowrap;
-            /*border:1px solid black;*/
-        }
+      .td-serial-number {
+        width: 200px;
+        padding: 0 0 0 0 !important;
+        text-align: center;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        word-break: keep-all;
+        white-space: nowrap;
+        /*border:1px solid black;*/
+      }
 
-        .td-model {
-            width: 200px;
-            padding: 0 0 0 0 !important;
-            text-align: center;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            word-break: keep-all;
-            white-space: nowrap;
-            /*border:1px solid gold;*/
-        }
+      .td-model {
+        width: 200px;
+        padding: 0 0 0 0 !important;
+        text-align: center;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        word-break: keep-all;
+        white-space: nowrap;
+        /*border:1px solid gold;*/
+      }
 
-        .td-uri {
-            width: 300px;
-            padding: 0 0 0 0 !important;
-            text-align: center;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            word-break: keep-all;
-            white-space: nowrap;
-            /*border:1px solid blue;*/
-        }
+      .td-uri {
+        width: 300px;
+        padding: 0 0 0 0 !important;
+        text-align: center;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        word-break: keep-all;
+        white-space: nowrap;
+        /*border:1px solid blue;*/
+      }
 
-        .td-existed-in-database {
-            width: 100px;
-            padding: 0 0 0 0 !important;
-            text-align: center;
-            /*border:1px solid pink;*/
-        }
-        .chk-title{
-            line-height:38px;
-            margin-right:20px;
-            color:#666666;
-        }
-        .chk-control{
-            margin-top:8px;
-        }
-        .device_searching_title_ico{
-            font-size: 22px !important;
-            color:#007aff
-        }
+      .td-existed-in-database {
+        width: 100px;
+        padding: 0 0 0 0 !important;
+        text-align: center;
+        /*border:1px solid pink;*/
+      }
+      .chk-title {
+        line-height: 38px;
+        margin-right: 20px;
+        color: #666666;
+      }
+      .chk-control {
+        margin-top: 8px;
+      }
+      .device_searching_title_ico {
+        font-size: 22px !important;
+        color: #007aff;
+      }
     </style>
-
-</head>
-<body>
-    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-switch.css" />
+  </head>
+  <body>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="css/bootstrap/bootstrap-switch.css"
+    />
     <script type="text/javascript" src="js/jquery/jquery.confirm.js"></script>
-    <script type="text/javascript" src="js/bootstrap/bootstrap-switch.min.js"></script>
+    <script
+      type="text/javascript"
+      src="js/bootstrap/bootstrap-switch.min.js"
+    ></script>
     <script type="text/javascript" src="js/client/management.js"></script>
     <script type="text/javascript" src="js/modernizr.custom.js"></script>
-    <script type="text/javascript" src="js/background/management/background_searching.js?update=20170629"></script>
+    <script
+      type="text/javascript"
+      src="js/background/management/background_searching.js?update=20170629"
+    ></script>
     <script type="text/javascript" src="management/searching.js"></script>
     <script type="text/javascript" src="js/howell.js/guid.js"></script>
-    <script type="text/javascript" src="management/searching/searching_details.js"></script>
+    <script
+      type="text/javascript"
+      src="management/searching/searching_details.js"
+    ></script>
     <style type="text/css">
-        .compare-float-heading-tag-div {
-            height: 27px;
-            margin-top: 0px;
-        }
+      .compare-float-heading-tag-div {
+        height: 27px;
+        margin-top: 0px;
+      }
 
-        .td-classification {
-            width: 80px;
-            padding: 0 0 0 0 !important;
-            text-align: center;
-            /*border:1px solid red;*/
-        }
+      .td-classification {
+        width: 80px;
+        padding: 0 0 0 0 !important;
+        text-align: center;
+        /*border:1px solid red;*/
+      }
 
-        .td-name {
-            width: 200px;
-            padding: 0 0 0 0 !important;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            word-break: keep-all;
-            white-space: nowrap;
-            /*border:1px solid yellow;*/
-        }
+      .td-name {
+        width: 200px;
+        padding: 0 0 0 0 !important;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        word-break: keep-all;
+        white-space: nowrap;
+        /*border:1px solid yellow;*/
+      }
 
-        .td-serial-number {
-            width: 200px;
-            padding: 0 0 0 0 !important;
-            text-align: center;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            word-break: keep-all;
-            white-space: nowrap;
-            /*border:1px solid black;*/
-        }
+      .td-serial-number {
+        width: 200px;
+        padding: 0 0 0 0 !important;
+        text-align: center;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        word-break: keep-all;
+        white-space: nowrap;
+        /*border:1px solid black;*/
+      }
 
-        .td-model {
-            width: 200px;
-            padding: 0 0 0 0 !important;
-            text-align: center;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            word-break: keep-all;
-            white-space: nowrap;
-            /*border:1px solid gold;*/
-        }
+      .td-model {
+        width: 200px;
+        padding: 0 0 0 0 !important;
+        text-align: center;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        word-break: keep-all;
+        white-space: nowrap;
+        /*border:1px solid gold;*/
+      }
 
-        .td-uri {
-            width: 300px;
-            padding: 0 0 0 0 !important;
-            text-align: center;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            word-break: keep-all;
-            white-space: nowrap;
-            /*border:1px solid blue;*/
-        }
+      .td-uri {
+        width: 300px;
+        padding: 0 0 0 0 !important;
+        text-align: center;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        word-break: keep-all;
+        white-space: nowrap;
+        /*border:1px solid blue;*/
+      }
 
-        .td-existed-in-database {
-            width: 100px;
-            padding: 0 0 0 0 !important;
-            text-align: center;
-            /*border:1px solid pink;*/
-        }
+      .td-existed-in-database {
+        width: 100px;
+        padding: 0 0 0 0 !important;
+        text-align: center;
+        /*border:1px solid pink;*/
+      }
 
-        .chk-title {
-            line-height: 38px;
-            margin-right: 20px;
-            color: #666666;
-        }
+      .chk-title {
+        line-height: 38px;
+        margin-right: 20px;
+        color: #666666;
+      }
 
-        .chk-control {
-            margin-top: 8px;
-        }
+      .chk-control {
+        margin-top: 8px;
+      }
 
-        .device_searching_title_ico {
-            font-size: 22px !important;
-            color: #007aff;
-        }
+      .device_searching_title_ico {
+        font-size: 22px !important;
+        color: #007aff;
+      }
     </style>
 
     <div class="heading compare-float-heading-div" id="table_loading_head">
-        <div class="widget-container fluid-height clearfix list-width">
-            <div class="widget-content padded clearfix" style="padding-bottom:0px;padding-left:5px;padding-right:5px">
-                <div class="heading list-heading-maxdiv">
-                    <div class="form-group list-heading-div">
-                        &ensp;&ensp;<i class="howell-icon-device title mouse_default device_searching_title_ico"></i>
-                        搜索设备 <label class="list-count-lable">共<span id="head_lblTotalCount">0</span>条</label>
-                    </div>
-                    <div>
-                        <div>
-                            <a class='btn btn-xs btn-default pull-right div-xsgroup button-img-size' id="head_btn_add_device" onclick="addDevide_Click(this)">
-                                <i class='icon-plus'></i>
-                            </a>
-                            <div class="btn-group  pull-right div-xsgroupdown" id="head_btn-operation">
-                                <div class="btn btn-xs btn-primary btn-xsgroupdown dropdown-toggle" data-toggle="dropdown" id="head_operation" onclick="operation_Click(this,'operation')">
-                                    选&ensp;择&ensp;<span class="caret"></span>
-                                </div>
+      <div class="widget-container fluid-height clearfix list-width">
+        <div
+          class="widget-content padded clearfix"
+          style="padding-bottom: 0px; padding-left: 5px; padding-right: 5px"
+        >
+          <div class="heading list-heading-maxdiv">
+            <div class="form-group list-heading-div">
+              &ensp;&ensp;<i
+                class="howell-icon-device title mouse_default device_searching_title_ico"
+              ></i>
+              搜索设备
+              <label class="list-count-lable"
+                >共<span id="head_lblTotalCount">0</span>条</label
+              >
+            </div>
+            <div>
+              <div>
+                <a
+                  class="btn btn-xs btn-default pull-right div-xsgroup button-img-size"
+                  id="head_btn_add_device"
+                  onclick="addDevide_Click(this)"
+                >
+                  <i class="icon-plus"></i>
+                </a>
+                <div
+                  class="btn-group pull-right div-xsgroupdown"
+                  id="head_btn-operation"
+                >
+                  <div
+                    class="btn btn-xs btn-primary btn-xsgroupdown dropdown-toggle"
+                    data-toggle="dropdown"
+                    id="head_operation"
+                    onclick="operation_Click(this,'operation')"
+                  >
+                    选&ensp;择&ensp;<span class="caret"></span>
+                  </div>
 
-                                <ul class="dropdown-menu xsgroupdown-menu-ul">
-                                    <li class="mouse_pointer">
-                                        <a class="xsgroupdown-menu-ul-li-a" onclick="Html.Control.Table.selectAll(Info.ControlIdPrefix.GroupListItem, GroupListItem_SelectAll);">
-                                            全选
-                                        </a>
-                                    </li>
-                                    <li class="mouse_pointer">
-                                        <a class="xsgroupdown-menu-ul-li-a" onclick="Html.Control.Table.selectInverse(Info.ControlIdPrefix.GroupListItem);">
-                                            反选
-                                        </a>
-                                    </li>
-                                    <li class="mouse_pointer">
-                                        <a class="xsgroupdown-menu-ul-li-a" onclick="Html.Control.Table.selectCancel(Info.ControlIdPrefix.GroupListItem, GroupListItem_Cancel);">
-                                            取消
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <a class='btn btn-xs btn-primary pull-right div-xsgroup searching-stop' style="font-size:14px;width:80px" id="head_btn_searching" onclick="searching_Click(this)">
-                                搜&ensp;&ensp;索
-                            </a>
-                            <label class="control-label pull-right chk-title" style="text-align:left">
-                                添加时使用IP作为名称
-                            </label>
-                            <label class="control-label pull-right chk-control">
-                                <label class="chk">
-                                    <input type="checkbox" class="chkbox" name="chk_IPName" style="margin-left:30px" id="chk_IPName2" checked="checked" onclick="chk_IPName_Click(this)" />
-                                    <span></span>
-                                </label>
-                            </label>
-                            <label class="control-label pull-right chk-title" style="text-align:left;margin-right:40px">
-                                只显示未保存设备
-                            </label>
-                            <label class="control-label pull-right chk-control">
-                                <label class="chk">
-                                    <input type="checkbox" class="chkbox" style="margin-left:30px" name="chk_existed" id="chk_existed2" onclick="chk_existed_Click(this)" />
-                                    <span></span>
-                                </label>
-                            </label>
-                            <label class="select-title pull-left" style="color:#666666">搜索协议类型:</label>
-                            <div class="col-md-3 pull-left">
-                                <select class="form-control" id="head_ddlProtocolType" style="height:30px;margin-top:3px" onchange="protocolType_OnChange(this)">
-                                    <option value="Howell5198">HW5198</option>
-                                    <option value="Howell8000">HW8000</option>
-                                    <option value="ONVIF">ONVIF</option>
-                                    <option value="GB28181">GB28181</option>
-                                    <option value="UniView">UniView</option>
-                                    <option value="DaHua">DaHua</option>
-                                    <option value="Honeywell">Honeywell</option>                                      
-                                    <option value="HowellTvt">新地标</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
+                  <ul class="dropdown-menu xsgroupdown-menu-ul">
+                    <li class="mouse_pointer">
+                      <a
+                        class="xsgroupdown-menu-ul-li-a"
+                        onclick="Html.Control.Table.selectAll(Info.ControlIdPrefix.GroupListItem, GroupListItem_SelectAll);"
+                      >
+                        全选
+                      </a>
+                    </li>
+                    <li class="mouse_pointer">
+                      <a
+                        class="xsgroupdown-menu-ul-li-a"
+                        onclick="Html.Control.Table.selectInverse(Info.ControlIdPrefix.GroupListItem);"
+                      >
+                        反选
+                      </a>
+                    </li>
+                    <li class="mouse_pointer">
+                      <a
+                        class="xsgroupdown-menu-ul-li-a"
+                        onclick="Html.Control.Table.selectCancel(Info.ControlIdPrefix.GroupListItem, GroupListItem_Cancel);"
+                      >
+                        取消
+                      </a>
+                    </li>
+                  </ul>
                 </div>
-                <table id="head_table" class="table table-filters compare-channel-table" style="margin-bottom:0px">
-                    <thead class="">
-                        <tr style="text-align:center;height:50px">
-                            <td class="td-classification">
-                                <div class="mouse_pointer" style="position:relative" id="head_classificationFilter">
-                                    <div class="dropdown-toggle" data-toggle="dropdown" id="head_classificationFilterBtn" onclick="classificationFilter_Click(this, 'classificationFilterBtn')">
-                                        类型<span class="caret"></span>
-                                    </div>
-                                    <!--<ul class="dropdown-menu" style="margin-left:18px" id="head_classificationItemList">
+                <a
+                  class="btn btn-xs btn-primary pull-right div-xsgroup searching-stop"
+                  style="font-size: 14px; width: 80px"
+                  id="head_btn_searching"
+                  onclick="searching_Click(this)"
+                >
+                  搜&ensp;&ensp;索
+                </a>
+                <label
+                  class="control-label pull-right chk-title"
+                  style="text-align: left"
+                >
+                  添加时使用IP作为名称
+                </label>
+                <label class="control-label pull-right chk-control">
+                  <label class="chk">
+                    <input
+                      type="checkbox"
+                      class="chkbox"
+                      name="chk_IPName"
+                      style="margin-left: 30px"
+                      id="chk_IPName2"
+                      checked="checked"
+                      onclick="chk_IPName_Click(this)"
+                    />
+                    <span></span>
+                  </label>
+                </label>
+                <label
+                  class="control-label pull-right chk-title"
+                  style="text-align: left; margin-right: 40px"
+                >
+                  只显示未保存设备
+                </label>
+                <label class="control-label pull-right chk-control">
+                  <label class="chk">
+                    <input
+                      type="checkbox"
+                      class="chkbox"
+                      style="margin-left: 30px"
+                      name="chk_existed"
+                      id="chk_existed2"
+                      onclick="chk_existed_Click(this)"
+                    />
+                    <span></span>
+                  </label>
+                </label>
+                <label class="select-title pull-left" style="color: #666666"
+                  >搜索协议类型:</label
+                >
+                <div class="col-md-3 pull-left">
+                  <select
+                    class="form-control"
+                    id="head_ddlProtocolType"
+                    style="height: 30px; margin-top: 3px"
+                    onchange="protocolType_OnChange(this)"
+                  >
+                    <option value="Howell5198">HW5198</option>
+                    <option value="Howell8000">HW8000</option>
+                    <option value="ONVIF">ONVIF</option>
+                    <option value="GB28181">GB28181</option>
+                    <option value="UniView">UniView</option>
+                    <option value="DaHua">DaHua</option>
+                    <option value="Honeywell">Honeywell</option>
+                    <option value="HowellTvt">新地标</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <table
+            id="head_table"
+            class="table table-filters compare-channel-table"
+            style="margin-bottom: 0px"
+          >
+            <thead class="">
+              <tr style="text-align: center; height: 50px">
+                <td class="td-classification">
+                  <div
+                    class="mouse_pointer"
+                    style="position: relative"
+                    id="head_classificationFilter"
+                  >
+                    <div
+                      class="dropdown-toggle"
+                      data-toggle="dropdown"
+                      id="head_classificationFilterBtn"
+                      onclick="classificationFilter_Click(this, 'classificationFilterBtn')"
+                    >
+                      类型<span class="caret"></span>
+                    </div>
+                    <!--<ul class="dropdown-menu" style="margin-left:18px" id="head_classificationItemList">
 
                                     </ul>-->
-                                </div>
-                            </td>
-                            <td class="td-name">
-                                名称
-                            </td>
-                            <td class="td-serial-number">
-                                序列号
-                            </td>
-                            <td class="td-model">
-                                型号
-                            </td>
-                            <td class="td-uri">
-                                Uri
-                            </td>
-                            <td class="td-existed-in-database">
-                                数据库
-                            </td>
-                        </tr>
-                    </thead>
-                </table>
-            </div>
+                  </div>
+                </td>
+                <td class="td-name">名称</td>
+                <td class="td-serial-number">序列号</td>
+                <td class="td-model">型号</td>
+                <td class="td-uri">Uri</td>
+                <td class="td-existed-in-database">数据库</td>
+              </tr>
+            </thead>
+          </table>
         </div>
+      </div>
     </div>
     <div class="page-main row">
-        <div class="col-md-12">
-            <div class="widget-container fluid-height clearfix list-width padded background-min-height">
-                <div class="page-top heading list-heading-maxdiv">
-                    <div class="form-group list-heading-div">
-                        &ensp;&ensp;<i class="howell-icon-device title mouse_default device_searching_title_ico"></i>
-                        搜索设备 <label class="list-count-lable">共<span id="lblTotalCount">0</span>条</label>
-                    </div>
-                    <div>
-                        <div>
-                            <a class='btn btn-xs btn-default pull-right div-xsgroup button-img-size' id="btn_add_device" onclick="addDevide_Click(this)">
-                                <i class='icon-plus'></i>
-                            </a>
-                            <div class="btn-group  pull-right div-xsgroupdown" id="btn-operation">
-                                <div class="btn btn-xs btn-primary btn-xsgroupdown dropdown-toggle" data-toggle="dropdown" id="operation" onclick="operation_Click(this, 'head_operation')">
-                                    选&ensp;择&ensp;<span class="caret"></span>
-                                </div>
-                                <ul class="dropdown-menu xsgroupdown-menu-ul">
-                                    <li class="mouse_pointer">
-                                        <a class="xsgroupdown-menu-ul-li-a" onclick="Html.Control.Table.selectAll(Info.ControlIdPrefix.GroupListItem, GroupListItem_SelectAll, true);">
-                                            全选
-                                        </a>
-                                    </li>
-                                    <li class="mouse_pointer">
-                                        <a class="xsgroupdown-menu-ul-li-a" onclick="Html.Control.Table.selectInverse(Info.ControlIdPrefix.GroupListItem, true);">
-                                            反选
-                                        </a>
-                                    </li>
-                                    <li class="mouse_pointer">
-                                        <a class="xsgroupdown-menu-ul-li-a" onclick="Html.Control.Table.selectCancel(Info.ControlIdPrefix.GroupListItem, GroupListItem_Cancel, true);">
-                                            取消
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <a class='btn btn-xs btn-primary pull-right div-xsgroup searching-stop' style="font-size:14px;width:80px" id="btn_searching" onclick="searching_Click(this)">
-                                搜&ensp;&ensp;索
-                            </a>
-                            <label class="control-label pull-right chk-title" style="text-align:left">
-                                添加时使用IP作为名称
-                            </label>
-                            <label class="control-label pull-right chk-control">
-                                <label class="chk">
-                                    <input type="checkbox" class="chkbox" name="chk_IPName" style="margin-left:30px" id="chk_IPName" checked="checked" onclick="chk_IPName_Click(this)" />
-                                    <span></span>
-                                </label>
-                            </label>
-                            <label class="control-label pull-right chk-title" style="text-align:left;margin-right:40px">
-                                只显示未保存设备
-                            </label>
-                            <label class="control-label pull-right chk-control">
-                                <label class="chk">
-                                    <input type="checkbox" class="chkbox" name="chk_existed" style="margin-left:30px" id="chk_existed" onclick="chk_existed_Click(this)" />
-                                    <span></span>
-                                </label>
-                            </label>
-                            <label class="select-title pull-left" style="color:#666666">搜索协议类型:</label>
-                            <div class="col-md-3 pull-left">
-                                <select class="form-control" id="ddlProtocolType" style="height:30px;margin-top:3px" onchange="protocolType_OnChange(this)">
-                                    <option value="Howell5198">HW5198</option>
-                                    <option value="Howell8000">HW8000</option>
-                                    <option value="ONVIF">ONVIF</option>
-                                    <option value="GB28181">GB28181</option>
-                                    <option value="UniView">UniView</option>
-                                    <option value="DaHua">DaHua</option>
-                                    <option value="Honeywell">Honeywell</option>                                    
-                                    <option value="HowellTvt">新地标</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <table id="table" class="table table-filters compare-channel-table">
-                    <thead class="page-top" id="test1">
-                        <tr style="text-align:center;height:50px">
-                            <td class="td-classification">
-                                <div class="mouse_pointer" style="position:relative" id="classificationFilter">
-                                    <div class="dropdown-toggle" data-toggle="dropdown" id="classificationFilterBtn" onclick="classificationFilter_Click(this, 'head_classificationFilterBtn')">
-                                        类型<span class="caret"></span>
-                                    </div>
-                                    <!--<ul class="dropdown-menu" style="margin-left:18px" id="classificationItemList"></ul>-->
-                                </div>
-                            </td>
-                            <td class="td-name">
-                                名称
-                            </td>
-                            <td class="td-serial-number">
-                                序列号
-                            </td>
-                            <td class="td-model">
-                                型号
-                            </td>
-                            <td class="td-uri">
-                                Uri
-                            </td>
-                            <td class="td-existed-in-database">
-                                数据库
-                            </td>
-                        </tr>
-                    </thead>
-                    <tbody id="tbody"></tbody>
-                </table>
+      <div class="col-md-12">
+        <div
+          class="widget-container fluid-height clearfix list-width padded background-min-height"
+        >
+          <div class="page-top heading list-heading-maxdiv">
+            <div class="form-group list-heading-div">
+              &ensp;&ensp;<i
+                class="howell-icon-device title mouse_default device_searching_title_ico"
+              ></i>
+              搜索设备
+              <label class="list-count-lable"
+                >共<span id="lblTotalCount">0</span>条</label
+              >
             </div>
+            <div>
+              <div>
+                <a
+                  class="btn btn-xs btn-default pull-right div-xsgroup button-img-size"
+                  id="btn_add_device"
+                  onclick="addDevide_Click(this)"
+                >
+                  <i class="icon-plus"></i>
+                </a>
+                <div
+                  class="btn-group pull-right div-xsgroupdown"
+                  id="btn-operation"
+                >
+                  <div
+                    class="btn btn-xs btn-primary btn-xsgroupdown dropdown-toggle"
+                    data-toggle="dropdown"
+                    id="operation"
+                    onclick="operation_Click(this, 'head_operation')"
+                  >
+                    选&ensp;择&ensp;<span class="caret"></span>
+                  </div>
+                  <ul class="dropdown-menu xsgroupdown-menu-ul">
+                    <li class="mouse_pointer">
+                      <a
+                        class="xsgroupdown-menu-ul-li-a"
+                        onclick="Html.Control.Table.selectAll(Info.ControlIdPrefix.GroupListItem, GroupListItem_SelectAll, true);"
+                      >
+                        全选
+                      </a>
+                    </li>
+                    <li class="mouse_pointer">
+                      <a
+                        class="xsgroupdown-menu-ul-li-a"
+                        onclick="Html.Control.Table.selectInverse(Info.ControlIdPrefix.GroupListItem, true);"
+                      >
+                        反选
+                      </a>
+                    </li>
+                    <li class="mouse_pointer">
+                      <a
+                        class="xsgroupdown-menu-ul-li-a"
+                        onclick="Html.Control.Table.selectCancel(Info.ControlIdPrefix.GroupListItem, GroupListItem_Cancel, true);"
+                      >
+                        取消
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+                <a
+                  class="btn btn-xs btn-primary pull-right div-xsgroup searching-stop"
+                  style="font-size: 14px; width: 80px"
+                  id="btn_searching"
+                  onclick="searching_Click(this)"
+                >
+                  搜&ensp;&ensp;索
+                </a>
+                <label
+                  class="control-label pull-right chk-title"
+                  style="text-align: left"
+                >
+                  添加时使用IP作为名称
+                </label>
+                <label class="control-label pull-right chk-control">
+                  <label class="chk">
+                    <input
+                      type="checkbox"
+                      class="chkbox"
+                      name="chk_IPName"
+                      style="margin-left: 30px"
+                      id="chk_IPName"
+                      checked="checked"
+                      onclick="chk_IPName_Click(this)"
+                    />
+                    <span></span>
+                  </label>
+                </label>
+                <label
+                  class="control-label pull-right chk-title"
+                  style="text-align: left; margin-right: 40px"
+                >
+                  只显示未保存设备
+                </label>
+                <label class="control-label pull-right chk-control">
+                  <label class="chk">
+                    <input
+                      type="checkbox"
+                      class="chkbox"
+                      name="chk_existed"
+                      style="margin-left: 30px"
+                      id="chk_existed"
+                      onclick="chk_existed_Click(this)"
+                    />
+                    <span></span>
+                  </label>
+                </label>
+                <label class="select-title pull-left" style="color: #666666"
+                  >搜索协议类型:</label
+                >
+                <div class="col-md-3 pull-left">
+                  <select
+                    class="form-control"
+                    id="ddlProtocolType"
+                    style="height: 30px; margin-top: 3px"
+                    onchange="protocolType_OnChange(this)"
+                  >
+                    <option value="Howell5198">HW5198</option>
+                    <option value="Howell8000">HW8000</option>
+                    <option value="ONVIF">ONVIF</option>
+                    <option value="GB28181">GB28181</option>
+                    <option value="UniView">UniView</option>
+                    <option value="DaHua">DaHua</option>
+                    <option value="Honeywell">Honeywell</option>
+                    <option value="HowellTvt">新地标</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <table id="table" class="table table-filters compare-channel-table">
+            <thead class="page-top" id="test1">
+              <tr style="text-align: center; height: 50px">
+                <td class="td-classification">
+                  <div
+                    class="mouse_pointer"
+                    style="position: relative"
+                    id="classificationFilter"
+                  >
+                    <div
+                      class="dropdown-toggle"
+                      data-toggle="dropdown"
+                      id="classificationFilterBtn"
+                      onclick="classificationFilter_Click(this, 'head_classificationFilterBtn')"
+                    >
+                      类型<span class="caret"></span>
+                    </div>
+                    <!--<ul class="dropdown-menu" style="margin-left:18px" id="classificationItemList"></ul>-->
+                  </div>
+                </td>
+                <td class="td-name">名称</td>
+                <td class="td-serial-number">序列号</td>
+                <td class="td-model">型号</td>
+                <td class="td-uri">Uri</td>
+                <td class="td-existed-in-database">数据库</td>
+              </tr>
+            </thead>
+            <tbody id="tbody"></tbody>
+          </table>
         </div>
+      </div>
     </div>
     <script type="text/javascript">
-    $(function () {
-        searching_load();
-    });
+      $(function () {
+        searching_load()
+      })
     </script>
-</body>
+  </body>
 </html>

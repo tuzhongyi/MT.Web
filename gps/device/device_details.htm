@@ -1,133 +1,173 @@
-﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
+  <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>设置GPS设备</title>
 
     <link rel="stylesheet" type="text/css" href="../../css/howell.css" />
-    <link rel="stylesheet" type="text/css" href="../../css/bootstrap/bootstrap-switch.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../css/bootstrap/bootstrap-switch.css"
+    />
     <script type="text/javascript" src="../../js/language/chinese.js"></script>
-    <script type="text/javascript" src="../../js/jquery/jquery-1.10.2.min.js"></script>
+    <script
+      type="text/javascript"
+      src="../../js/jquery/jquery-3.6.0.min.js"
+    ></script>
     <script src="../js/imported.js"></script>
     <script type="text/javascript" src="../../js/jquery/jquery-ui.js"></script>
-    <script type="text/javascript" src="../../js/bootstrap/bootstrap.min.js"></script>
+    <script
+      type="text/javascript"
+      src="../../js/bootstrap/bootstrap.min.js"
+    ></script>
     <script type="text/javascript" src="../../js/modernizr.custom.js"></script>
     <script type="text/javascript" src="../../js/howell.js/howell.js"></script>
-    <script type="text/javascript" src="../../js/howell.js/howell.control.js"></script>
+    <script
+      type="text/javascript"
+      src="../../js/howell.js/howell.control.js"
+    ></script>
 
     <script type="text/javascript" src="../../js/md5.js"></script>
     <script type="text/javascript" src="../../js/client/struct.js"></script>
-    <script type="text/javascript" src="../../js/howell.js/httpService.js"></script>
+    <script
+      type="text/javascript"
+      src="../../js/howell.js/httpService.js"
+    ></script>
     <script type="text/javascript" src="../../js/client/management.js"></script>
     <script type="text/javascript" src="../../js/client/security.js"></script>
-    <script type="text/javascript" src="../../js/jquery/jquery.confirm.js"></script>
-    <script type="text/javascript" src="../../js/bootstrap/bootstrap-switch.min.js"></script>
-    <script type="text/javascript" src="../../js/background/management/background_devices.js"></script>
+    <script
+      type="text/javascript"
+      src="../../js/jquery/jquery.confirm.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../js/bootstrap/bootstrap-switch.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../js/background/management/background_devices.js"
+    ></script>
     <script type="text/javascript" src="device_details.js"></script>
     <script type="text/javascript">
-        Trigger = document.createElement("a");
-        Trigger.href = "http://location/item.htm?deviceId=00310101031111111000001000000000";
+      Trigger = document.createElement('a')
+      Trigger.href =
+        'http://location/item.htm?deviceId=00310101031111111000001000000000'
     </script>
-
-</head>
-<body>
-    <div class="container-fluid alert-window-maxdiv" id="gps_device_details_alert_window" style="height:480px">
-        <div class="page-title">
-            <h3 class="list-heading-div">
-                <i class="icon-map-marker title mouse_default device_list_title_ico" style="margin-left:10px;margin-right:10px;font-size:24px!important"></i>
-                <label id="lblDeviceDetailTitle">添加GPS设备</label>
-            </h3>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="widget-content padded">
-                    <form action="#" class="form-horizontal">
-                        <div class="form-group" id="divId">
-                            <label class="control-label col-md-2">
-                                设备编号
-                            </label>
-                            <div class="col-md-9">
-                                <input class="form-control" type="text" id="txtId" readonly="readonly" />
-                            </div>
-                        </div>
-                        <div class="form-group" id="divCreationTime">
-                            <label class="control-label col-md-2">
-                                创建时间
-                            </label>
-                            <div class="col-md-9">
-                                <input class="form-control" type="text" id="txtCreationTime" readonly="readonly" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-2">
-                                GPS编号
-                            </label>
-                            <div class="col-md-9">
-                                <input class="form-control" type="text" id="txtAccessId" />
-                            </div>
-                            <label class="lable-required">*</label>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-2">
-                                设备名称
-                            </label>
-                            <div class="col-md-9">
-                                <input class="form-control" type="text" id="txtName" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-2">
-                                用户名
-                            </label>
-                            <div class="col-md-9">
-                                <input class="form-control" type="text" id="txtUsername" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-2">
-                                密码
-                            </label>
-                            <div class="col-md-9">
-                                <input class="form-control" type="text" id="txtPassword" />
-                            </div>
-                        </div>
-                        <div class="form-group" id="divUsername">
-                            <label class="control-label col-md-2">
-                                型号
-                            </label>
-                            <div class="col-md-9">
-                                <input class="form-control" type="text" id="txtModel" />
-                            </div>
-                        </div>
-                        <div class="form-group" id="divUsername">
-                            <label class="control-label col-md-2">
-                                描述信息
-                            </label>
-                            <div class="col-md-9">
-                                <textarea rows="3" class="form-control" id="txtDescription"></textarea>
-                            </div>
-                        </div>
-                        <div class="form-group" style="margin-top:30px">
-                            <label class="control-label col-md-7">
-                            </label>
-                            <div class="col-md-2">
-                                <a class="btn btn-primary" id="btnDetailDevice" onclick="return btnDetailGPSDevice_Click(this);">
-                                    完&ensp;&ensp;成
-                                </a>
-                            </div>
-                            <div class="col-md-2">
-                                <a class="btn btn-primary" onclick="return AlertWindow.Close();">
-                                    取&ensp;&ensp;消
-                                </a>
-                            </div>
-                        </div>
-                    </form>
+  </head>
+  <body>
+    <div
+      class="container-fluid alert-window-maxdiv"
+      id="gps_device_details_alert_window"
+      style="height: 480px"
+    >
+      <div class="page-title">
+        <h3 class="list-heading-div">
+          <i
+            class="icon-map-marker title mouse_default device_list_title_ico"
+            style="
+              margin-left: 10px;
+              margin-right: 10px;
+              font-size: 24px !important;
+            "
+          ></i>
+          <label id="lblDeviceDetailTitle">添加GPS设备</label>
+        </h3>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="widget-content padded">
+            <form action="#" class="form-horizontal">
+              <div class="form-group" id="divId">
+                <label class="control-label col-md-2"> 设备编号 </label>
+                <div class="col-md-9">
+                  <input
+                    class="form-control"
+                    type="text"
+                    id="txtId"
+                    readonly="readonly"
+                  />
                 </div>
-            </div>
+              </div>
+              <div class="form-group" id="divCreationTime">
+                <label class="control-label col-md-2"> 创建时间 </label>
+                <div class="col-md-9">
+                  <input
+                    class="form-control"
+                    type="text"
+                    id="txtCreationTime"
+                    readonly="readonly"
+                  />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-2"> GPS编号 </label>
+                <div class="col-md-9">
+                  <input class="form-control" type="text" id="txtAccessId" />
+                </div>
+                <label class="lable-required">*</label>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-2"> 设备名称 </label>
+                <div class="col-md-9">
+                  <input class="form-control" type="text" id="txtName" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-2"> 用户名 </label>
+                <div class="col-md-9">
+                  <input class="form-control" type="text" id="txtUsername" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-2"> 密码 </label>
+                <div class="col-md-9">
+                  <input class="form-control" type="text" id="txtPassword" />
+                </div>
+              </div>
+              <div class="form-group" id="divUsername">
+                <label class="control-label col-md-2"> 型号 </label>
+                <div class="col-md-9">
+                  <input class="form-control" type="text" id="txtModel" />
+                </div>
+              </div>
+              <div class="form-group" id="divUsername">
+                <label class="control-label col-md-2"> 描述信息 </label>
+                <div class="col-md-9">
+                  <textarea
+                    rows="3"
+                    class="form-control"
+                    id="txtDescription"
+                  ></textarea>
+                </div>
+              </div>
+              <div class="form-group" style="margin-top: 30px">
+                <label class="control-label col-md-7"> </label>
+                <div class="col-md-2">
+                  <a
+                    class="btn btn-primary"
+                    id="btnDetailDevice"
+                    onclick="return btnDetailGPSDevice_Click(this);"
+                  >
+                    完&ensp;&ensp;成
+                  </a>
+                </div>
+                <div class="col-md-2">
+                  <a
+                    class="btn btn-primary"
+                    onclick="return AlertWindow.Close();"
+                  >
+                    取&ensp;&ensp;消
+                  </a>
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
+      </div>
     </div>
     <script type="text/javascript">
-        gps_device_item_load();
+      gps_device_item_load()
     </script>
-</body>
+  </body>
 </html>

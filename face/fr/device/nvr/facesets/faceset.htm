@@ -1,117 +1,165 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <head>
+    <meta
+      charset="utf-8"
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+    />
     <title></title>
-</head>
+  </head>
 
-<body>
+  <body>
     <style type="text/css">
-        .white-box {
-            margin-bottom: 0px;
-        }
+      .white-box {
+        margin-bottom: 0px;
+      }
     </style>
     <div>
-        <div class="row page-titles">
-            <div class="col-md-5 col-8 align-self-center">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item">
-                        <a href="javascript:selectNav(this); loadContent('page', base64encode(setUrlRandomParams(navigation.index.home)))">
-                            <span language="home">主页</span>
-                        </a>
-                    </li>
-                    <li class="breadcrumb-item">
-                        <a id="deviceNavBtn">
-                            <span language="back_end">后端</span><span language="device">设备</span>
-                        </a>
-                    </li>
-                    <li class="breadcrumb-item">
-                        <a>
-                            <span language="face_database">人脸库</span><span language="information">信息</span>
-                        </a>
-                    </li>
-                </ol>
-            </div>
+      <div class="row page-titles">
+        <div class="col-md-5 col-8 align-self-center">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a
+                href="javascript:selectNav(this); loadContent('page', base64encode(setUrlRandomParams(navigation.index.home)))"
+              >
+                <span language="home">主页</span>
+              </a>
+            </li>
+            <li class="breadcrumb-item">
+              <a id="deviceNavBtn">
+                <span language="back_end">后端</span
+                ><span language="device">设备</span>
+              </a>
+            </li>
+            <li class="breadcrumb-item">
+              <a>
+                <span language="face_database">人脸库</span
+                ><span language="information">信息</span>
+              </a>
+            </li>
+          </ol>
         </div>
-        <div class="page-title-occupying"></div>
-        <div class="row">
-            <div class="col-12">
-                <div class="card pull-height fixed">
-                    <div class="card-body">
-                        <div class="card-title">
-                            <span language="face_database">人脸库</span><span language="information">信息</span>
-                        </div>
-                        <div class="row m-b-15">
-                            <div class="col-6">
-                                <div class="button-group">
-                                    <button type="button" class="hide btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fa fa-check"></i> <span language="choose">选择</span>
-                                    </button>
-                                    <div class="dropdown-menu dropdown-menu-right" style="min-width:86px;">
-                                        <a class="dropdown-item text-right" href="#" onclick="devicesControl.allSelect()">
-                                            <i class="mdi mdi-check-circle-outline pull-left"></i><span language="allselected">全选</span>
-                                        </a>
-                                        <a class="dropdown-item text-right" href="#" onclick="devicesControl.unSelect()">
-                                            <i class="mdi mdi-check-circle pull-left"></i><span language="inverseselected">反选</span>
-                                        </a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item text-right" href="#" onclick="devicesControl.cancelSelect()">
-                                            <i class="mdi mdi-checkbox-blank-circle-outline pull-left"></i><span language="cancel">取消</span>
-                                        </a>
-                                    </div>
-                                    <button class="btn waves-effect waves-light btn-success p-r-20 p-l-20" onclick="Html.FaceSet.add()" id="btn_plus">
-                                        <i class="fa fa-plus"></i> <span language="add">添加</span>
-                                    </button>
-                                    <button class="btn waves-effect waves-light btn-danger p-r-20 p-l-20" style="display: none" onclick="devicesControl.delDevicesClick()" id="btn_del">
-                                        <i class="fa fa-trash-o"></i> <span language="delete">删除</span>
-                                    </button>
-                                </div>
-                            </div>        
-                            <div class="col-6 text-right">
-
-                            </div>
-                        </div>
-                        <div class="row" id="list_body">
-                            <div class="col-12">
-                                <div class="card-group" id="faceSetsList"></div>
-                            </div>
-                        </div>
+      </div>
+      <div class="page-title-occupying"></div>
+      <div class="row">
+        <div class="col-12">
+          <div class="card pull-height fixed">
+            <div class="card-body">
+              <div class="card-title">
+                <span language="face_database">人脸库</span
+                ><span language="information">信息</span>
+              </div>
+              <div class="row m-b-15">
+                <div class="col-6">
+                  <div class="button-group">
+                    <button
+                      type="button"
+                      class="hide btn btn-info dropdown-toggle"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      <i class="fa fa-check"></i>
+                      <span language="choose">选择</span>
+                    </button>
+                    <div
+                      class="dropdown-menu dropdown-menu-right"
+                      style="min-width: 86px"
+                    >
+                      <a
+                        class="dropdown-item text-right"
+                        onclick="devicesControl.allSelect()"
+                      >
+                        <i class="mdi mdi-check-circle-outline pull-left"></i
+                        ><span language="allselected">全选</span>
+                      </a>
+                      <a
+                        class="dropdown-item text-right"
+                        onclick="devicesControl.unSelect()"
+                      >
+                        <i class="mdi mdi-check-circle pull-left"></i
+                        ><span language="inverseselected">反选</span>
+                      </a>
+                      <div class="dropdown-divider"></div>
+                      <a
+                        class="dropdown-item text-right"
+                        onclick="devicesControl.cancelSelect()"
+                      >
+                        <i
+                          class="mdi mdi-checkbox-blank-circle-outline pull-left"
+                        ></i
+                        ><span language="cancel">取消</span>
+                      </a>
                     </div>
+                    <button
+                      class="btn waves-effect waves-light btn-success p-r-20 p-l-20"
+                      onclick="Html.FaceSet.add()"
+                      id="btn_plus"
+                    >
+                      <i class="fa fa-plus"></i>
+                      <span language="add">添加</span>
+                    </button>
+                    <button
+                      class="btn waves-effect waves-light btn-danger p-r-20 p-l-20"
+                      style="display: none"
+                      onclick="devicesControl.delDevicesClick()"
+                      id="btn_del"
+                    >
+                      <i class="fa fa-trash-o"></i>
+                      <span language="delete">删除</span>
+                    </button>
+                  </div>
                 </div>
+                <div class="col-6 text-right"></div>
+              </div>
+              <div class="row" id="list_body">
+                <div class="col-12">
+                  <div class="card-group" id="faceSetsList"></div>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
-    <script src="fr/device/nvr/facesets/faceset.js?update=20180712" charset="UTF-8"></script>
+    <script
+      src="fr/device/nvr/facesets/faceset.js?update=20180712"
+      charset="UTF-8"
+    ></script>
     <script src="js/client/management.js?update=20180712"></script>
     <script type="text/javascript">
-        $(function () {
-            var uri = new Uri(jumpHref.href);
-            if (uri.Query && uri.Querys.deviceId){
-                Html.DeviceId = uri.Querys.deviceId;
-            }
-            else{
-                loadContent('page', base64encode(setUrlRandomParams(navigation.device.nvr.list)));
-                return;
-            }
-            if (uri.Query && uri.Querys.type){
-                Html.Type = uri.Querys.type;
-                var element = document.getElementById("deviceNavBtn");
-                if(Html.Type=="nvr"){
-                    element.innerHTML = chinese.back_end + chinese.device;
-                    element.href="javascript:selectNav(this); loadContent('page', base64encode(setUrlRandomParams(navigation.device.nvr.list)))";
-                }
-                if(Html.Type=="camera"){
-                    element.innerHTML = chinese.fore_end + chinese.device;
-                    element.href="javascript:selectNav(this); loadContent('page', base64encode(setUrlRandomParams(navigation.device.camera.list)))";
-                }
-            }
-            Html.FaceSet.List.create("faceSetsList" , Html.DeviceId)
-            $('#list_body').slimScroll({
-                height: '80%'
-            });
-            init_language();
-        });
+      $(function () {
+        var uri = new Uri(jumpHref.href)
+        if (uri.Query && uri.Querys.deviceId) {
+          Html.DeviceId = uri.Querys.deviceId
+        } else {
+          loadContent(
+            'page',
+            base64encode(setUrlRandomParams(navigation.device.nvr.list))
+          )
+          return
+        }
+        if (uri.Query && uri.Querys.type) {
+          Html.Type = uri.Querys.type
+          var element = document.getElementById('deviceNavBtn')
+          if (Html.Type == 'nvr') {
+            element.innerHTML = chinese.back_end + chinese.device
+            element.href =
+              "javascript:selectNav(this); loadContent('page', base64encode(setUrlRandomParams(navigation.device.nvr.list)))"
+          }
+          if (Html.Type == 'camera') {
+            element.innerHTML = chinese.fore_end + chinese.device
+            element.href =
+              "javascript:selectNav(this); loadContent('page', base64encode(setUrlRandomParams(navigation.device.camera.list)))"
+          }
+        }
+        Html.FaceSet.List.create('faceSetsList', Html.DeviceId)
+        $('#list_body').slimScroll({
+          height: '80%',
+        })
+        init_language()
+      })
     </script>
-</body>
+  </body>
 </html>

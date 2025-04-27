@@ -1,34 +1,50 @@
-﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
+  <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Home</title>
     <script type="text/javascript" src="js/language/chinese.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.min.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="css/bootstrap/bootstrap.min.css"
+    />
     <link rel="stylesheet" type="text/css" href="css/style.css" />
     <link rel="stylesheet" type="text/css" href="css/howell.css" />
-    <script type="text/javascript" src="js/jquery/jquery-1.10.2.min.js?update=20170424"></script>
+    <script
+      type="text/javascript"
+      src="js/jquery/jquery-3.6.0.min.js?update=20170424"
+    ></script>
     <script src="js/imported.js?update=20170424"></script>
-    <script type="text/javascript" src="js/jquery/jquery-ui.js?update=20170424"></script>
-    <script type="text/javascript" src="js/bootstrap/bootstrap.min.js?update=20170424"></script>
+    <script
+      type="text/javascript"
+      src="js/jquery/jquery-ui.js?update=20170424"
+    ></script>
+    <script
+      type="text/javascript"
+      src="js/bootstrap/bootstrap.min.js?update=20170424"
+    ></script>
     <script src="js/imported.js?update=20170424"></script>
     <script src="js/howell.js/howell.js?update=20170424"></script>
     <script src="js/howell.js/howell.control.js?update=20170424"></script>
 
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-          name="viewport" />
-</head>
-<body>
-
+    <meta
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+      name="viewport"
+    />
+  </head>
+  <body>
     <!-- Navigation -->
     <div class="navbar navbar-fixed-top scroll-hide">
-        <div class="container-fluid top-bar">
-
-            <!--<a class="logo" href="http://www.howell.net.cn"></a>-->
-            <div>
-                <ul class="nav navbar-nav pull-left nav-order-bar" style="padding-top:10px">
-                    <!--<li class="dropdown messages hidden-xs"><a class="dropdown-toggle" data-toggle="dropdown"
-                        href="#"><span aria-hidden="true" class="icon message"></span>
+      <div class="container-fluid top-bar">
+        <!--<a class="logo" href="http://www.howell.net.cn"></a>-->
+        <div>
+          <ul
+            class="nav navbar-nav pull-left nav-order-bar"
+            style="padding-top: 10px"
+          >
+            <!--<li class="dropdown messages hidden-xs"><a class="dropdown-toggle" data-toggle="dropdown"
+                        ><span aria-hidden="true" class="icon message"></span>
                         <div class="sr-only">
                             Messages
                         </div>
@@ -36,35 +52,41 @@
                             3
                         </p>
                     </a></li>-->
-                    <li class="dropdown settings hidden-sm">
-                        <a onclick="orderClick('Id',this)" class="dropdown-toggle" href="#" data-toggle="dropdown">
-                            <span aria-hidden="true" class="order-icon order-icon-Id icon-sort-by-order"></span>
-                            <div class="sr-only">
-                                编号排序
-                            </div>
-                        </a>
-                    </li>
-                    <!--<li class="dropdown settings hidden-sm">
+            <li class="dropdown settings hidden-sm">
+              <a
+                onclick="orderClick('Id',this)"
+                class="dropdown-toggle"
+                data-toggle="dropdown"
+              >
+                <span
+                  aria-hidden="true"
+                  class="order-icon order-icon-Id icon-sort-by-order"
+                ></span>
+                <div class="sr-only">编号排序</div>
+              </a>
+            </li>
+            <!--<li class="dropdown settings hidden-sm">
                         <a onclick="logout();" class="dropdown-toggle"
-                           href="#">
+                           >
                             <span aria-hidden="true" class="icon-signout"></span>
                             <div class="sr-only">
                                 Exit
                             </div>
                         </a>
                     </li>-->
-                    <li class="dropdown settings hidden-sm">
-                        <a onclick="orderClick('Name', this)" class="dropdown-toggle" href="#">
-                            <span aria-hidden="true" class="order-icon order-icon-Name icon-sort-by-alphabet"></span>
-                            <div class="sr-only">
-                                名称排序
-                            </div>
-                        </a>
-                    </li>
-                </ul>
-                <ul class="nav navbar-nav pull-right" style="padding-top:10px">
-                    <!--<li class="dropdown messages hidden-xs"><a class="dropdown-toggle" data-toggle="dropdown"
-            href="#"><span aria-hidden="true" class="icon message"></span>
+            <li class="dropdown settings hidden-sm">
+              <a onclick="orderClick('Name', this)" class="dropdown-toggle">
+                <span
+                  aria-hidden="true"
+                  class="order-icon order-icon-Name icon-sort-by-alphabet"
+                ></span>
+                <div class="sr-only">名称排序</div>
+              </a>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav pull-right" style="padding-top: 10px">
+            <!--<li class="dropdown messages hidden-xs"><a class="dropdown-toggle" data-toggle="dropdown"
+            ><span aria-hidden="true" class="icon message"></span>
             <div class="sr-only">
                 Messages
             </div>
@@ -72,264 +94,311 @@
                 3
             </p>
         </a></li>-->
-                    <li class="dropdown settings hidden-sm">
-                        <a onclick="Goto(Navigation.event.record.list)" class="dropdown-toggle" href="#" data-toggle="dropdown">
-                            <span aria-hidden="true" class="icon-bell-alt"></span>
-                            <div class="sr-only">
-                                报警记录
-                            </div>
-                        </a>
-                    </li>
-                    <!--<li class="dropdown settings hidden-sm">
+            <li class="dropdown settings hidden-sm">
+              <a
+                onclick="Goto(Navigation.event.record.list)"
+                class="dropdown-toggle"
+                data-toggle="dropdown"
+              >
+                <span aria-hidden="true" class="icon-bell-alt"></span>
+                <div class="sr-only">报警记录</div>
+              </a>
+            </li>
+            <!--<li class="dropdown settings hidden-sm">
             <a onclick="logout();" class="dropdown-toggle"
-               href="#">
+               >
                 <span aria-hidden="true" class="icon-signout"></span>
                 <div class="sr-only">
                     Exit
                 </div>
             </a>
         </li>-->
-                    <li class="dropdown settings">
-                        <a onclick="logout(); " class="dropdown-toggle"
-                           href="#">
-                            <span aria-hidden="true" class="icon-signout"></span>
-                            <div class="sr-only">
-                                Exit
-                            </div>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <!--<form class="navbar-form form-inline col-md-2 hidden-xs">
+            <li class="dropdown settings">
+              <a onclick="logout(); " class="dropdown-toggle">
+                <span aria-hidden="true" class="icon-signout"></span>
+                <div class="sr-only">Exit</div>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <!--<form class="navbar-form form-inline col-md-2 hidden-xs">
             <input class="form-control" placeholder="Search" type="text">
             <label></label>
             </form>-->
-        </div>
-        <div class="container-fluid main-nav clearfix">
-            <div class="nav-collapse">
-                <ul class="nav">
-                    <li style="width:8px">
-
-                    </li>
-                    <li>
-                        <a href="#" onclick="Goto(Navigation.index)">
-                            <span aria-hidden="true" class="icon-home" style="color:#007aff;font-size:26px"></span>主页
-                        </a>
-                    </li>
-                    <li class="dropdown">
-                        <a data-toggle="dropdown" href="#">
-                            <span aria-hidden="true" class="howell-icon-device" style="color:#007aff;font-size:26px;"></span>设备管理<b class="caret"></b>
-                        </a>
-                        <iframe class="dropdown-menu" style="width: 150px; height: 153px;border:1px solid #dddddd"></iframe>
-                        <ul class="dropdown-menu" style="width:150px">
-                            <li>
-                                <a href="#" onclick="Goto(Navigation.index + '?page=' + base64encode(setUrlRandomParams(Navigation.management.device.list)));">
-                                    <p>
-                                        设备信息
-                                    </p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" onclick="Goto(Navigation.index + '?page=' + base64encode(setUrlRandomParams(Navigation.management.device.searching)));">
-                                    <p>
-                                        搜索设备
-                                    </p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" onclick="Goto(Navigation.index + '?page=' + base64encode(setUrlRandomParams(Navigation.management.device.association)));">
-                                    <p>
-                                        关联设备
-                                    </p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" onclick="Goto(Navigation.index + '?page=' + base64encode(setUrlRandomParams(Navigation.management.device.pseudo_code)));">
-                                    <p>
-                                        设置视频通道伪码
-                                    </p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" onclick="Goto(Navigation.index + '?page=' + base64encode(setUrlRandomParams(Navigation.event.linkage.list)));">
-                                    <p>
-                                        联动列表
-                                    </p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" onclick="Goto(Navigation.index + '?page=' + base64encode(setUrlRandomParams(Navigation.annunciator.modbus)));">
-                                    <p>
-                                        设置报警器
-                                    </p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" onclick="Goto(Navigation.index + '?page=' + base64encode(setUrlRandomParams(Navigation.management.platform.list)));">
-                                    <p>
-                                        平台信息
-                                    </p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" onclick="Goto(Navigation.index + '?page=' + base64encode(setUrlRandomParams(Navigation.management.gis.map.dispatch)));">
-                                    <p>
-                                        GIS地图布控
-                                    </p>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a data-toggle="dropdown" href="#" onclick="Goto(Navigation.index + '?page=' + base64encode(setUrlRandomParams(Navigation.security.user.list)));">
-                            <span aria-hidden="true"
-                                  class="icon-user" style="color:#007aff"></span>用户管理
-                        </a>
-                    </li>
-                    <li class="dropdown">
-                        <a data-toggle="dropdown" href="#" onclick="Goto(Navigation.index + '?page=' + base64encode(setUrlRandomParams(Navigation.security.department.list)));">
-                            <span aria-hidden="true" class="icon-group" style="color:#007aff;font-size:26px"></span>部门管理
-                        </a>
-                    </li>
-                    <li class="dropdown">
-                        <a data-toggle="dropdown" href="#">
-                            <span aria-hidden="true" class="icon-map-marker" style="color:#007aff"></span>GPS<b class="caret"></b>
-                        </a>
-                        <iframe class="dropdown-menu" style="width: 150px; height: 38px;border:1px solid #dddddd"></iframe>
-                        <ul class="dropdown-menu" style="width:150px">
-                            <li>
-                                <a href="#" onclick="Goto(Navigation.index + '?page=' + base64encode(setUrlRandomParams(Navigation.gps.device.list)));">
-                                    <p>
-                                        GPS设备信息
-                                    </p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" onclick="Goto(Navigation.index + '?page=' + base64encode(setUrlRandomParams(Navigation.vehicle.device.list)));">
-                                    <p>
-                                        车牌识别设备
-                                    </p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" onclick="Goto(Navigation.index + '?page=' + base64encode(setUrlRandomParams(Navigation.vehicle.device.record)));">
-                                    <p>
-                                        车牌识别记录
-                                    </p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" onclick="Goto(Navigation.index + '?page=' + base64encode(setUrlRandomParams(Navigation.vehicle.list)));">
-                                    <p>
-                                        车辆信息
-                                    </p>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a data-toggle="dropdown" href="#">
-                            <span aria-hidden="true" class="howell-icon-function" style="color:#007aff;font-size:28px;"></span>功能<b class="caret"></b>
-                        </a>
-                        <iframe class="dropdown-menu" style="width: 150px; height: 153px;border:1px solid #dddddd"></iframe>
-                        <ul class="dropdown-menu" style="width:150px">
-                            <li>
-                                <a href="#" onclick="Goto(Navigation.index + '?page=' + base64encode(setUrlRandomParams(Navigation.map)));">
-                                    <p>
-                                        地图
-                                    </p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" onclick="Goto(Navigation.index + '?page=' + base64encode(setUrlRandomParams(Navigation.event.record.list)));">
-                                    <p>
-                                        报警记录
-                                    </p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" onclick="Goto(Navigation.index + '?page=' + base64encode(setUrlRandomParams(Navigation.video)));">
-                                    <p>
-                                        视频
-                                    </p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" onclick="Goto(Navigation.index + '?page=' + base64encode(setUrlRandomParams(Navigation.download.video)));">
-                                    <p>
-                                        视频下载
-                                    </p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" onclick="Goto(Navigation.index + '?page=' + base64encode(setUrlRandomParams(Navigation.download.record)));">
-                                    <p>
-                                        下载记录
-                                    </p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" onclick="Goto(Navigation.index + '?page=' + base64encode(setUrlRandomParams(Navigation.logs.user.operations)));">
-                                    <p>
-                                        用户操作日志
-                                    </p>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="mouse_pointer" onclick="reboot();">
-                                    <p>
-                                        重启
-                                    </p>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="mouse_pointer" onclick="shutdown()">
-                                    <p>
-                                        关机
-                                    </p>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a data-toggle="dropdown" href="#">
-                            <span aria-hidden="true" class="icon-ellipsis-vertical" style="color:#007aff"></span>其它<b class="caret"></b>
-                        </a>
-                        <iframe class="dropdown-menu" style="width: 150px; height: 38px;border:1px solid #dddddd"></iframe>
-                        <ul class="dropdown-menu" style="width:150px">
-                            <li>
-                                <a href="#" onclick="Goto(Navigation.help, true);">
-                                    <p>
-                                        帮助
-                                    </p>
-                                </a>
-                            </li>
-                            <!--<li>
+      </div>
+      <div class="container-fluid main-nav clearfix">
+        <div class="nav-collapse">
+          <ul class="nav">
+            <li style="width: 8px"></li>
+            <li>
+              <a onclick="Goto(Navigation.index)">
+                <span
+                  aria-hidden="true"
+                  class="icon-home"
+                  style="color: #007aff; font-size: 26px"
+                ></span
+                >主页
+              </a>
+            </li>
+            <li class="dropdown">
+              <a data-toggle="dropdown">
+                <span
+                  aria-hidden="true"
+                  class="howell-icon-device"
+                  style="color: #007aff; font-size: 26px"
+                ></span
+                >设备管理<b class="caret"></b>
+              </a>
+              <iframe
+                class="dropdown-menu"
+                style="width: 150px; height: 153px; border: 1px solid #dddddd"
+              ></iframe>
+              <ul class="dropdown-menu" style="width: 150px">
+                <li>
+                  <a
+                    onclick="Goto(Navigation.index + '?page=' + base64encode(setUrlRandomParams(Navigation.management.device.list)));"
+                  >
+                    <p>设备信息</p>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    onclick="Goto(Navigation.index + '?page=' + base64encode(setUrlRandomParams(Navigation.management.device.searching)));"
+                  >
+                    <p>搜索设备</p>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    onclick="Goto(Navigation.index + '?page=' + base64encode(setUrlRandomParams(Navigation.management.device.association)));"
+                  >
+                    <p>关联设备</p>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    onclick="Goto(Navigation.index + '?page=' + base64encode(setUrlRandomParams(Navigation.management.device.pseudo_code)));"
+                  >
+                    <p>设置视频通道伪码</p>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    onclick="Goto(Navigation.index + '?page=' + base64encode(setUrlRandomParams(Navigation.event.linkage.list)));"
+                  >
+                    <p>联动列表</p>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    onclick="Goto(Navigation.index + '?page=' + base64encode(setUrlRandomParams(Navigation.annunciator.modbus)));"
+                  >
+                    <p>设置报警器</p>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    onclick="Goto(Navigation.index + '?page=' + base64encode(setUrlRandomParams(Navigation.management.platform.list)));"
+                  >
+                    <p>平台信息</p>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    onclick="Goto(Navigation.index + '?page=' + base64encode(setUrlRandomParams(Navigation.management.gis.map.dispatch)));"
+                  >
+                    <p>GIS地图布控</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a
+                data-toggle="dropdown"
+                onclick="Goto(Navigation.index + '?page=' + base64encode(setUrlRandomParams(Navigation.security.user.list)));"
+              >
+                <span
+                  aria-hidden="true"
+                  class="icon-user"
+                  style="color: #007aff"
+                ></span
+                >用户管理
+              </a>
+            </li>
+            <li class="dropdown">
+              <a
+                data-toggle="dropdown"
+                onclick="Goto(Navigation.index + '?page=' + base64encode(setUrlRandomParams(Navigation.security.department.list)));"
+              >
+                <span
+                  aria-hidden="true"
+                  class="icon-group"
+                  style="color: #007aff; font-size: 26px"
+                ></span
+                >部门管理
+              </a>
+            </li>
+            <li class="dropdown">
+              <a data-toggle="dropdown">
+                <span
+                  aria-hidden="true"
+                  class="icon-map-marker"
+                  style="color: #007aff"
+                ></span
+                >GPS<b class="caret"></b>
+              </a>
+              <iframe
+                class="dropdown-menu"
+                style="width: 150px; height: 38px; border: 1px solid #dddddd"
+              ></iframe>
+              <ul class="dropdown-menu" style="width: 150px">
+                <li>
+                  <a
+                    onclick="Goto(Navigation.index + '?page=' + base64encode(setUrlRandomParams(Navigation.gps.device.list)));"
+                  >
+                    <p>GPS设备信息</p>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    onclick="Goto(Navigation.index + '?page=' + base64encode(setUrlRandomParams(Navigation.vehicle.device.list)));"
+                  >
+                    <p>车牌识别设备</p>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    onclick="Goto(Navigation.index + '?page=' + base64encode(setUrlRandomParams(Navigation.vehicle.device.record)));"
+                  >
+                    <p>车牌识别记录</p>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    onclick="Goto(Navigation.index + '?page=' + base64encode(setUrlRandomParams(Navigation.vehicle.list)));"
+                  >
+                    <p>车辆信息</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a data-toggle="dropdown">
+                <span
+                  aria-hidden="true"
+                  class="howell-icon-function"
+                  style="color: #007aff; font-size: 28px"
+                ></span
+                >功能<b class="caret"></b>
+              </a>
+              <iframe
+                class="dropdown-menu"
+                style="width: 150px; height: 153px; border: 1px solid #dddddd"
+              ></iframe>
+              <ul class="dropdown-menu" style="width: 150px">
+                <li>
+                  <a
+                    onclick="Goto(Navigation.index + '?page=' + base64encode(setUrlRandomParams(Navigation.map)));"
+                  >
+                    <p>地图</p>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    onclick="Goto(Navigation.index + '?page=' + base64encode(setUrlRandomParams(Navigation.event.record.list)));"
+                  >
+                    <p>报警记录</p>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    onclick="Goto(Navigation.index + '?page=' + base64encode(setUrlRandomParams(Navigation.video)));"
+                  >
+                    <p>视频</p>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    onclick="Goto(Navigation.index + '?page=' + base64encode(setUrlRandomParams(Navigation.download.video)));"
+                  >
+                    <p>视频下载</p>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    onclick="Goto(Navigation.index + '?page=' + base64encode(setUrlRandomParams(Navigation.download.record)));"
+                  >
+                    <p>下载记录</p>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    onclick="Goto(Navigation.index + '?page=' + base64encode(setUrlRandomParams(Navigation.logs.user.operations)));"
+                  >
+                    <p>用户操作日志</p>
+                  </a>
+                </li>
+                <li>
+                  <a class="mouse_pointer" onclick="reboot();">
+                    <p>重启</p>
+                  </a>
+                </li>
+                <li>
+                  <a class="mouse_pointer" onclick="shutdown()">
+                    <p>关机</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a data-toggle="dropdown">
+                <span
+                  aria-hidden="true"
+                  class="icon-ellipsis-vertical"
+                  style="color: #007aff"
+                ></span
+                >其它<b class="caret"></b>
+              </a>
+              <iframe
+                class="dropdown-menu"
+                style="width: 150px; height: 38px; border: 1px solid #dddddd"
+              ></iframe>
+              <ul class="dropdown-menu" style="width: 150px">
+                <li>
+                  <a onclick="Goto(Navigation.help, true);">
+                    <p>帮助</p>
+                  </a>
+                </li>
+                <!--<li>
                                 <a href="about.htm" onclick="this.href = document.location.protocol + '//' + document.location.host + Navigation.about; AlertWindow.Show(this, -1); return false;">
                                     <p>
                                         关于
                                     </p>
                                 </a>
                             </li>-->
-                        </ul>
-                    </li>
-                </ul>
-                <div id="table_head" style="display:none;"></div>
-            </div>
+              </ul>
+            </li>
+          </ul>
+          <div id="table_head" style="display: none"></div>
         </div>
+      </div>
     </div>
-    <a class="to-top" onclick="document.documentElement.scrollTop = 0; window.pageYOffset = 0; document.body.scrollTop=0">
-        <div class="pic"></div>
+    <a
+      class="to-top"
+      onclick="document.documentElement.scrollTop = 0; window.pageYOffset = 0; document.body.scrollTop=0"
+    >
+      <div class="pic"></div>
     </a>
-    <button class="navbar-toggle"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+    <button class="navbar-toggle">
+      <span class="icon-bar"></span><span class="icon-bar"></span
+      ><span class="icon-bar"></span>
+    </button>
     <!-- End Navigation  src="service.htm" -->
     <script type="text/javascript">
-        $('.navbar-toggle').click(function () {
-            return $('body, html').toggleClass("nav-open");
-        });
-        function alarm_record_open() {
-
-        }
+      $('.navbar-toggle').click(function () {
+        return $('body, html').toggleClass('nav-open')
+      })
+      function alarm_record_open() {}
     </script>
-</body>
+  </body>
 </html>

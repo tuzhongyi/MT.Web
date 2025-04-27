@@ -1,6 +1,6 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
+  <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>联动列表</title>
@@ -8,11 +8,20 @@
     <link href="../css/bootstrap/bootstrap-switch.css" rel="stylesheet" />
     <link href="../css/bootstrap/colorpicker.css" rel="stylesheet" />
     <script type="text/javascript" src="../js/language/chinese.js"></script>
-    <script type="text/javascript" src="../js/jquery/jquery-1.10.2.min.js"></script>
+    <script
+      type="text/javascript"
+      src="../js/jquery/jquery-3.6.0.min.js"
+    ></script>
     <script type="text/javascript" src="../js/imported.js"></script>
     <script type="text/javascript" src="../js/jquery/jquery-ui.js"></script>
-    <script type="text/javascript" src="../js/bootstrap/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../js/jquery/jquery.confirm.js"></script>
+    <script
+      type="text/javascript"
+      src="../js/bootstrap/bootstrap.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../js/jquery/jquery.confirm.js"
+    ></script>
     <script type="text/javascript" src="../js/nav.js"></script>
 
     <script type="text/javascript" src="../js/howell.js/howell.js"></script>
@@ -21,121 +30,213 @@
     <script type="text/javascript" src="../js/client/management.js"></script>
     <script type="text/javascript" src="../js/client/enum.js"></script>
     <script type="text/javascript" src="../js/client/client.js"></script>
-    <script type="text/javascript" src="../js/howell.js/howell.control.js"></script>
+    <script
+      type="text/javascript"
+      src="../js/howell.js/howell.control.js"
+    ></script>
     <script type="text/javascript" src="../js/modernizr.custom.js"></script>
-    <script type="text/javascript" src="../js/bootstrap/bootstrap-switch.min.js"></script>
-    <script type="text/javascript" src="../js/bootstrap/bootstrap-timepicker.js"></script>
-    <script type="text/javascript" src="../js/bootstrap/bootstrap-colorpicker.js"></script>
-    <script type="text/javascript" src="../js/background/event/background_linkage.event.js"></script>
-    <script type="text/javascript" src="../js/background/event/background_linkages.js"></script>
+    <script
+      type="text/javascript"
+      src="../js/bootstrap/bootstrap-switch.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../js/bootstrap/bootstrap-timepicker.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../js/bootstrap/bootstrap-colorpicker.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../js/background/event/background_linkage.event.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../js/background/event/background_linkages.js"
+    ></script>
     <script type="text/javascript" src="linkages.js"></script>
-    <script type="text/javascript" src="../js/background/event/linkage/background_linkage_details.js"></script>
+    <script
+      type="text/javascript"
+      src="../js/background/event/linkage/background_linkage_details.js"
+    ></script>
     <script type="text/javascript" src="linkage/linkage_details.js"></script>
-</head>
-<body>
+  </head>
+  <body>
     <link href="css/bootstrap/bootstrap-switch.css" rel="stylesheet" />
     <link href="css/bootstrap/colorpicker.css" rel="stylesheet" />
     <script type="text/javascript" src="js/jquery/jquery.confirm.js"></script>
     <script type="text/javascript" src="js/client/management.js"></script>
     <script type="text/javascript" src="js/modernizr.custom.js"></script>
-    <script type="text/javascript" src="js/bootstrap/bootstrap-switch.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap/bootstrap-timepicker.js"></script>
-    <script type="text/javascript" src="js/bootstrap/bootstrap-colorpicker.js"></script>
-    <script type="text/javascript" src="js/background/event/background_linkage.event.js"></script>
-    <script type="text/javascript" src="js/background/event/background_linkages.js"></script>
+    <script
+      type="text/javascript"
+      src="js/bootstrap/bootstrap-switch.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="js/bootstrap/bootstrap-timepicker.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="js/bootstrap/bootstrap-colorpicker.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="js/background/event/background_linkage.event.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="js/background/event/background_linkages.js"
+    ></script>
     <script type="text/javascript" src="event/linkages.js"></script>
-    <script type="text/javascript" src="js/background/event/linkage/background_linkage_details.js"></script>
-    <script type="text/javascript" src="event/linkage/linkage_details.js"></script>
+    <script
+      type="text/javascript"
+      src="js/background/event/linkage/background_linkage_details.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="event/linkage/linkage_details.js"
+    ></script>
     <style type="text/css">
-        #rdoInactive input[type='radio']:checked + span::after {
-            content: "";
-            width: 8px;
-            height: 8px;
-            position: absolute;
-            top: 6px;
-            left: -15px;
-            background-color: #f0ad4e;
-            border-radius: 50%;
-            display: block;
-        }
+      #rdoInactive input[type='radio']:checked + span::after {
+        content: '';
+        width: 8px;
+        height: 8px;
+        position: absolute;
+        top: 6px;
+        left: -15px;
+        background-color: #f0ad4e;
+        border-radius: 50%;
+        display: block;
+      }
 
-        #rdoActive input[type='radio']:checked + span::after {
-            content: "";
-            width: 8px;
-            height: 8px;
-            position: absolute;
-            top: 6px;
-            left: -15px;
-            background-color: #5cb85c;
-            border-radius: 50%;
-            display: block;
-        }
+      #rdoActive input[type='radio']:checked + span::after {
+        content: '';
+        width: 8px;
+        height: 8px;
+        position: absolute;
+        top: 6px;
+        left: -15px;
+        background-color: #5cb85c;
+        border-radius: 50%;
+        display: block;
+      }
     </style>
     <div class="page-main row">
-        <div class="col-md-12">
-            <div class="widget-container fluid-height clearfix list-width padded background-min-height">
-                <div class="heading list-heading-maxdiv">
-                    <div class="form-group list-heading-div">
-                        &ensp;&ensp;<i class="icon_linkage_list"></i>联动列表 <label class="list-count-lable">共<span id="lblTotalCount">0</span>条</label>
-                    </div>
-                    <div>
-                        <div>
-                            <div class="pull-left">
-                                <label class="select-title">事件类型:</label><div class="select-div"><select class="form-control" id="ddlEventType" onchange="selectEventType_Click(this.value)"></select></div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-7 pull-right" id="divOperationControl">
-                                    <a class='btn btn-xs btn-default pull-right div-xsgroup button-img-size' id="btnBatchRemoveLinkages" onclick="btnBatchRemoveLinkages_Click(this)" title="删除">
-                                        <i class='icon-trash'></i>
-                                    </a>
-                                    <a class='btn btn-xs btn-default pull-right div-xsgroup edit_text_default_btn' id="btnBatchEditText" href="event/linkage/linkage_edit.htm" onclick="return btnBatchEditText_Click(this)" title="批量修改文本">
-                                        <div style="margin-top:-1px"></div>
-                                    </a>
-                                    <div class="btn-group  pull-right div-xsgroupdown" id="btn-operation">
-                                        <div class="btn btn-xs btn-primary btn-xsgroupdown dropdown-toggle" data-toggle="dropdown" id="operation">
-                                            选&ensp;择&ensp;<span class="caret"></span>
-                                        </div>
-                                        <ul class="dropdown-menu xsgroupdown-menu-ul">
-                                            <li class="mouse_pointer">
-                                                <a class="xsgroupdown-menu-ul-li-a" onclick="GroupList.Select.All(Info.ControlIdPrefix.GroupListItem, GroupListItem_SelectAll);">
-                                                    全选
-                                                </a>
-                                            </li>
-                                            <li class="mouse_pointer">
-                                                <a class="xsgroupdown-menu-ul-li-a" onclick="GroupList.Select.Inverse(Info.ControlIdPrefix.GroupListItem);">
-                                                    反选
-                                                </a>
-                                            </li>
-                                            <li class="mouse_pointer">
-                                                <a class="xsgroupdown-menu-ul-li-a" onclick="GroupList.Select.Cancel(Info.ControlIdPrefix.GroupListItem, GroupListItem_Cancel);">
-                                                    取消
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="btn-group  pull-right div-xsgroupdown" id="btn-operation">
-                                        <div class="btn btn-xs btn-primary btn-xsgroupdown dropdown-toggle" data-toggle="dropdown">
-                                            添&ensp;&ensp;加<span class="caret"></span>
-                                        </div>
-                                        <ul class="dropdown-menu" id="addOperation" style="right:auto;left:0;overflow-y:auto;height:500px"></ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="dList">
-
-                </div>
+      <div class="col-md-12">
+        <div
+          class="widget-container fluid-height clearfix list-width padded background-min-height"
+        >
+          <div class="heading list-heading-maxdiv">
+            <div class="form-group list-heading-div">
+              &ensp;&ensp;<i class="icon_linkage_list"></i>联动列表
+              <label class="list-count-lable"
+                >共<span id="lblTotalCount">0</span>条</label
+              >
             </div>
+            <div>
+              <div>
+                <div class="pull-left">
+                  <label class="select-title">事件类型:</label>
+                  <div class="select-div">
+                    <select
+                      class="form-control"
+                      id="ddlEventType"
+                      onchange="selectEventType_Click(this.value)"
+                    ></select>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-7 pull-right" id="divOperationControl">
+                    <a
+                      class="btn btn-xs btn-default pull-right div-xsgroup button-img-size"
+                      id="btnBatchRemoveLinkages"
+                      onclick="btnBatchRemoveLinkages_Click(this)"
+                      title="删除"
+                    >
+                      <i class="icon-trash"></i>
+                    </a>
+                    <a
+                      class="btn btn-xs btn-default pull-right div-xsgroup edit_text_default_btn"
+                      id="btnBatchEditText"
+                      href="event/linkage/linkage_edit.htm"
+                      onclick="return btnBatchEditText_Click(this)"
+                      title="批量修改文本"
+                    >
+                      <div style="margin-top: -1px"></div>
+                    </a>
+                    <div
+                      class="btn-group pull-right div-xsgroupdown"
+                      id="btn-operation"
+                    >
+                      <div
+                        class="btn btn-xs btn-primary btn-xsgroupdown dropdown-toggle"
+                        data-toggle="dropdown"
+                        id="operation"
+                      >
+                        选&ensp;择&ensp;<span class="caret"></span>
+                      </div>
+                      <ul class="dropdown-menu xsgroupdown-menu-ul">
+                        <li class="mouse_pointer">
+                          <a
+                            class="xsgroupdown-menu-ul-li-a"
+                            onclick="GroupList.Select.All(Info.ControlIdPrefix.GroupListItem, GroupListItem_SelectAll);"
+                          >
+                            全选
+                          </a>
+                        </li>
+                        <li class="mouse_pointer">
+                          <a
+                            class="xsgroupdown-menu-ul-li-a"
+                            onclick="GroupList.Select.Inverse(Info.ControlIdPrefix.GroupListItem);"
+                          >
+                            反选
+                          </a>
+                        </li>
+                        <li class="mouse_pointer">
+                          <a
+                            class="xsgroupdown-menu-ul-li-a"
+                            onclick="GroupList.Select.Cancel(Info.ControlIdPrefix.GroupListItem, GroupListItem_Cancel);"
+                          >
+                            取消
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                    <div
+                      class="btn-group pull-right div-xsgroupdown"
+                      id="btn-operation"
+                    >
+                      <div
+                        class="btn btn-xs btn-primary btn-xsgroupdown dropdown-toggle"
+                        data-toggle="dropdown"
+                      >
+                        添&ensp;&ensp;加<span class="caret"></span>
+                      </div>
+                      <ul
+                        class="dropdown-menu"
+                        id="addOperation"
+                        style="
+                          right: auto;
+                          left: 0;
+                          overflow-y: auto;
+                          height: 500px;
+                        "
+                      ></ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="dList"></div>
         </div>
+      </div>
     </div>
     <script type="text/javascript">
-        $(function () {
-            linkage_list_load();
-        });
+      $(function () {
+        linkage_list_load()
+      })
     </script>
-</body>
+  </body>
 </html>
-
-

@@ -1,184 +1,219 @@
-﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
-<head>
+  <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <meta
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+      name="viewport"
+    />
     <link type="text/css" href="css/font-awesome.css" rel="stylesheet" />
-    <link type="text/css" href="css/bootstrap.min.css" rel="stylesheet" />    
+    <link type="text/css" href="css/bootstrap.min.css" rel="stylesheet" />
 
-    <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="js/ext.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>    
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/jquery.confirm.js"></script>
     <script type="text/javascript" src="js/base64.js"></script>
     <script type="text/javascript" src="js/enum.js"></script>
     <script type="text/javascript" src="js/httpService.js"></script>
     <script type="text/javascript" src="js/BaseClient.js"></script>
-    
+
     <script type="text/javascript" src="js/pu.js"></script>
     <script type="text/javascript" src="js/client.js"></script>
 
-
     <title>实时监控</title>
     <style type="text/css">
+      .video {
+        width: 100%;
+        height: 220px;
+        background-color: #bfd1e6;
+      }
+
+      @media screen and (min-height: 550px) {
         .video {
-            width: 100%;
-            height: 220px;
-            background-color: #BFD1E6;
+          height: 300px;
         }
+      }
 
-        @media screen and (min-height:550px) {
-            .video {
-                height: 300px;
-            }
-        }
+      .ptz {
+        width: 90%;
+        height: 200px;
+        margin: 20px auto;
+      }
 
-       .ptz {
-            width: 90%;
-            height: 200px;
-            margin: 20px auto;
-        }
+      .ptz table {
+        width: 100%;
+        height: 100%;
+        text-align: center;
+      }
 
-            .ptz table {
-                width: 100%;
-                height: 100%;
-                text-align: center;
-            }
+      .ptz .btn {
+        width: 100%;
+        height: 100%;
+        font-size: 150%;
+        border-radius: 10px;
+        text-align: center;
+        margin: 0 0;
+      }
 
-            .ptz .btn {
-                width: 100%;
-                height: 100%;
-                font-size: 150%;
-                border-radius: 10px;
-                text-align: center;
-                margin: 0 0;
-            }
+      .ptz .btn.btn-default {
+        border: 2px solid #111111;
+        padding-top: 0px;
+      }
 
-                .ptz .btn.btn-default {
-                    border: 2px solid #111111;
-                    padding-top: 0px;
-                }
+      .ptz .btn.btn-default.icon-chevron-left,
+      .ptz .btn.btn-default.icon-chevron-right {
+        padding-top: 2px;
+      }
 
-                    .ptz .btn.btn-default.icon-chevron-left, .ptz .btn.btn-default.icon-chevron-right {
-                        padding-top: 2px;
-                    }
+      .ptz .direction {
+      }
 
-            .ptz .direction {
-            }
-
-            .ptz .lens {
-            }
+      .ptz .lens {
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="video">
-        <video style="width:100%;height:100%;" controls="controls" id="video" autoplay="autoplay"></video>
+      <video
+        style="width: 100%; height: 100%"
+        controls="controls"
+        id="video"
+        autoplay="autoplay"
+      ></video>
     </div>
     <div class="ptz center">
-        <table cellpadding="10">
-            <tr>
-                <td>
-                    <a class="btn btn-default icon-zoom-out" onmousedown="ptz_lens_event(this, PTZLens.ZoomTele)" title="拉远">
-                    </a>
-                </td>
-                <td><a class="btn btn-default icon-chevron-up direction" onclick="ptz_direction_click(this, PTZDirection.Up)"></a></td>
-                <td>
-                    <a class="btn btn-default icon-zoom-in lens" onmousedown="ptz_lens_event(this, PTZLens.ZoomWide)" title="拉近">
-                    </a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a class="btn btn-default icon-chevron-left direction" onclick="ptz_direction_click(this, PTZDirection.Left)">
-                    </a>
-                </td>
-                <td></td>
-                <td><a class="btn btn-default icon-chevron-right direction" onclick="ptz_direction_click(this, PTZDirection.Right)"></a></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td><a class="btn btn-default icon-chevron-down direction" onclick="ptz_direction_click(this, PTZDirection.Down)"></a></td>
-                <td></td>
-            </tr>
-        </table>
+      <table cellpadding="10">
+        <tr>
+          <td>
+            <a
+              class="btn btn-default icon-zoom-out"
+              onmousedown="ptz_lens_event(this, PTZLens.ZoomTele)"
+              title="拉远"
+            >
+            </a>
+          </td>
+          <td>
+            <a
+              class="btn btn-default icon-chevron-up direction"
+              onclick="ptz_direction_click(this, PTZDirection.Up)"
+            ></a>
+          </td>
+          <td>
+            <a
+              class="btn btn-default icon-zoom-in lens"
+              onmousedown="ptz_lens_event(this, PTZLens.ZoomWide)"
+              title="拉近"
+            >
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a
+              class="btn btn-default icon-chevron-left direction"
+              onclick="ptz_direction_click(this, PTZDirection.Left)"
+            >
+            </a>
+          </td>
+          <td></td>
+          <td>
+            <a
+              class="btn btn-default icon-chevron-right direction"
+              onclick="ptz_direction_click(this, PTZDirection.Right)"
+            ></a>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            <a
+              class="btn btn-default icon-chevron-down direction"
+              onclick="ptz_direction_click(this, PTZDirection.Down)"
+            ></a>
+          </td>
+          <td></td>
+        </tr>
+      </table>
     </div>
-</body>
+  </body>
 </html>
 <script type="text/javascript">
+  var deviceId = ''
+  var inputId = 1
+  var username = 'liudongqi'
+  var password = 'liudongqi'
 
-    var deviceId = "";
-    var inputId = 1;
-    var username = "liudongqi";
-    var password = "liudongqi";
+  function createVideo() {
+    var video = document.getElementById('video')
+    if (!video) video = document.createElement('video')
+    video.width = document.documentElement.clientWidth
+  }
 
-    function createVideo() {
-        var video = document.getElementById("video");
-        if (!video)
-            video = document.createElement("video");
-        video.width = document.documentElement.clientWidth;
+  function ptz_direction_click(sender, args) {
+    try {
+      var result = Client.PU().PU.PTZ.Direction(deviceId, inputId, args)
 
-    }
-
-    function ptz_direction_click(sender, args) {
+      setTimeout(function () {
         try {
-            
-            var result = Client.PU().PU.PTZ.Direction(deviceId, inputId, args);
-
-            setTimeout(function () {
-                try {
-                    var result = Client.PU().PU.PTZ.Direction(deviceId, inputId, PTZDirection.Stop);
-                    var video = document.getElementById("video");
-                    video.load();
-                } catch (ex) { }
-            }, 500)
-        } catch (ex) {
-            if (ex.message)
-                alert(ex.message)
-            if (ex.name)
-                alert(ex.name);
-        }
+          var result = Client.PU().PU.PTZ.Direction(
+            deviceId,
+            inputId,
+            PTZDirection.Stop
+          )
+          var video = document.getElementById('video')
+          video.load()
+        } catch (ex) {}
+      }, 500)
+    } catch (ex) {
+      if (ex.message) alert(ex.message)
+      if (ex.name) alert(ex.name)
     }
+  }
 
-    function ptz_lens_event(sender, args) {
+  function ptz_lens_event(sender, args) {
+    try {
+      var result = Client.PU().PU.PTZ.Lens(deviceId, inputId, args)
+
+      setTimeout(function () {
         try {
-            var result = Client.PU().PU.PTZ.Lens(deviceId, inputId, args);
-
-            setTimeout(function () {
-                try {
-                    var result = Client.PU().PU.PTZ.Lens(deviceId, inputId, PTZLens.Stop);
-                    var video = document.getElementById("video");
-                    video.load();
-                } catch (ex) { }
-            }, 500)
-        } catch (ex) {
-            if (ex.message)
-                alert(ex.message)
-            if (ex.name)
-                alert(ex.name);
-        }
+          var result = Client.PU().PU.PTZ.Lens(deviceId, inputId, PTZLens.Stop)
+          var video = document.getElementById('video')
+          video.load()
+        } catch (ex) {}
+      }, 500)
+    } catch (ex) {
+      if (ex.message) alert(ex.message)
+      if (ex.name) alert(ex.name)
     }
+  }
 
+  function _load() {
+    document.getElementsByTagName('body')[0].style.height =
+      document.documentElement.clientHeight
 
-    function _load() {
-        document.getElementsByTagName("body")[0].style.height = document.documentElement.clientHeight;
+    var video = document.getElementById('video')
+    video.offsetHeight = document.documentElement.clientHeight * 0.4
 
-        var video = document.getElementById("video");
-        video.offsetHeight = document.documentElement.clientHeight * 0.4;        
+    var uri = new Uri(document.location.toString())
+    deviceId = uri.Querys.id
 
-        var uri = new Uri(document.location.toString());
-        deviceId = uri.Querys.id;
-        
-        var exampleUrl = "http://192.168.18.245:8800/hls/Media/Live/" + deviceId + "/" + inputId + "/2/live.m3u8?user=admin&password=12345";
+    var exampleUrl =
+      'http://192.168.18.245:8800/hls/Media/Live/' +
+      deviceId +
+      '/' +
+      inputId +
+      '/2/live.m3u8?user=admin&password=12345'
 
-        var uri = new Uri(exampleUrl);
-        uri.Host = Client.Host;
-        uri.Port = Client.HlsPort;
+    var uri = new Uri(exampleUrl)
+    uri.Host = Client.Host
+    uri.Port = Client.HlsPort
 
-        uri.Querys.user = username;
-        uri.Querys.password = password;
+    uri.Querys.user = username
+    uri.Querys.password = password
 
-        video.src = uri.toString();
-    }
+    video.src = uri.toString()
+  }
 
-    onload = _load;
+  onload = _load
 </script>

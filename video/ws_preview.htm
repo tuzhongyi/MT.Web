@@ -1,14 +1,18 @@
-﻿<!DOCTYPE HTML
-    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
-
-<head>
+  <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <meta
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+      name="viewport"
+    />
     <link href="../css/bootstrap/font-awesome.css" rel="stylesheet" />
     <link href="../css/bootstrap/bootstrap.min.css" rel="stylesheet" />
     <script src="../config.js"></script>
-    <script type="text/javascript" src="../js/jquery/jquery-1.10.2.min.js"></script>
+    <script
+      type="text/javascript"
+      src="../js/jquery/jquery-3.6.0.min.js"
+    ></script>
     <script type="text/javascript" src="../js/base64.js"></script>
 
     <script type="text/javascript" src="../js/client/struct.js"></script>
@@ -23,184 +27,206 @@
     <link href="./wsplayer/css/player.css" rel="stylesheet" />
     <script type="text/javascript" src="./wsplayer/wsplayer.js"></script>
 
-
     <title>实时监控</title>
     <style type="text/css">
+      .video {
+        width: 100%;
+        height: 220px;
+        background-color: black;
+      }
+
+      @media screen and (min-height: 550px) {
         .video {
-            width: 100%;
-            height: 220px;
-            background-color: black;
+          height: 300px;
         }
+      }
 
-        @media screen and (min-height:550px) {
-            .video {
-                height: 300px;
-            }
-        }
+      .ptz {
+        width: 90%;
+        height: 200px;
+        margin: 20px auto;
+      }
 
-        .ptz {
-            width: 90%;
-            height: 200px;
-            margin: 20px auto;
-        }
+      .ptz table {
+        width: 100%;
+        height: 100%;
+        text-align: center;
+      }
 
-        .ptz table {
-            width: 100%;
-            height: 100%;
-            text-align: center;
-        }
+      .ptz .btn {
+        width: 100%;
+        height: 100%;
+        font-size: 250%;
+        border-radius: 10px;
+        text-align: center;
+        margin: 0 0;
+      }
 
-        .ptz .btn {
-            width: 100%;
-            height: 100%;
-            font-size: 250%;
-            border-radius: 10px;
-            text-align: center;
-            margin: 0 0;
-        }
+      .ptz .btn.btn-default {
+        border: 2px solid #111111;
+        padding-top: 0px;
+      }
 
-        .ptz .btn.btn-default {
-            border: 2px solid #111111;
-            padding-top: 0px;
-        }
+      .ptz .btn.btn-default.icon-chevron-left,
+      .ptz .btn.btn-default.icon-chevron-right {
+        padding-top: 1px;
+      }
 
-        .ptz .btn.btn-default.icon-chevron-left,
-        .ptz .btn.btn-default.icon-chevron-right {
-            padding-top: 1px;
-        }
+      .ptz .direction {
+      }
 
-        .ptz .direction {}
-
-        .ptz .lens {}
+      .ptz .lens {
+      }
     </style>
-</head>
+  </head>
 
-<body unselectable="none" onselectstart="return false;">
-    <div class="video player" id="video">
-
-    </div>
+  <body unselectable="none" onselectstart="return false;">
+    <div class="video player" id="video"></div>
     <div class="ptz center">
-        <table cellpadding="10">
-            <tr>
-                <td>
-                    <a class="btn btn-default icon-zoom-out" onmousedown="ptz_lens_event(this, PTZLens.ZoomTele)"
-                        title="拉远">
-                    </a>
-                </td>
-                <td><a class="btn btn-default icon-chevron-up direction"
-                        onclick="ptz_direction_click(this, PTZDirection.Up)"></a></td>
-                <td>
-                    <a class="btn btn-default icon-zoom-in lens" onmousedown="ptz_lens_event(this, PTZLens.ZoomWide)"
-                        title="拉近">
-                    </a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a class="btn btn-default icon-chevron-left direction"
-                        onclick="ptz_direction_click(this, PTZDirection.Left)">
-                    </a>
-                </td>
-                <td></td>
-                <td><a class="btn btn-default icon-chevron-right direction"
-                        onclick="ptz_direction_click(this, PTZDirection.Right)"></a></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td><a class="btn btn-default icon-chevron-down direction"
-                        onclick="ptz_direction_click(this, PTZDirection.Down)"></a></td>
-                <td></td>
-            </tr>
-        </table>
+      <table cellpadding="10">
+        <tr>
+          <td>
+            <a
+              class="btn btn-default icon-zoom-out"
+              onmousedown="ptz_lens_event(this, PTZLens.ZoomTele)"
+              title="拉远"
+            >
+            </a>
+          </td>
+          <td>
+            <a
+              class="btn btn-default icon-chevron-up direction"
+              onclick="ptz_direction_click(this, PTZDirection.Up)"
+            ></a>
+          </td>
+          <td>
+            <a
+              class="btn btn-default icon-zoom-in lens"
+              onmousedown="ptz_lens_event(this, PTZLens.ZoomWide)"
+              title="拉近"
+            >
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a
+              class="btn btn-default icon-chevron-left direction"
+              onclick="ptz_direction_click(this, PTZDirection.Left)"
+            >
+            </a>
+          </td>
+          <td></td>
+          <td>
+            <a
+              class="btn btn-default icon-chevron-right direction"
+              onclick="ptz_direction_click(this, PTZDirection.Right)"
+            ></a>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            <a
+              class="btn btn-default icon-chevron-down direction"
+              onclick="ptz_direction_click(this, PTZDirection.Down)"
+            ></a>
+          </td>
+          <td></td>
+        </tr>
+      </table>
     </div>
-</body>
-
+  </body>
 </html>
 <script type="text/javascript">
+  var deviceId = ''
+  var inputId = ''
 
-    var deviceId = "";
-    var inputId = "";
+  function createVideo() {
+    var video = document.getElementById('video')
+    if (!video) video = document.createElement('video')
+    video.width = document.documentElement.clientWidth
+  }
 
+  function ptz_direction_click(sender, args) {
+    try {
+      var result = Client.Management().Device.Video.Input.PTZ.Directions(
+        deviceId,
+        inputId,
+        args,
+        30
+      )
 
-    function createVideo() {
-        var video = document.getElementById("video");
-        if (!video)
-            video = document.createElement("video");
-        video.width = document.documentElement.clientWidth;
-
-    }
-
-    function ptz_direction_click(sender, args) {
+      setTimeout(function () {
         try {
-            var result = Client.Management().Device.Video.Input.PTZ.Directions(deviceId, inputId, args, 30);
-
-            setTimeout(function () {
-                try {
-                    var result = Client.Management().Device.Video.Input.PTZ.Directions(deviceId, inputId, PTZDirection.Stop, 0);
-                    var video = document.getElementById("video");
-                    video.load();
-                } catch (ex) { }
-            }, 500)
-        } catch (ex) {
-            if (ex.message)
-                alert(ex.message)
-            if (ex.name)
-                alert(ex.name);
-        }
+          var result = Client.Management().Device.Video.Input.PTZ.Directions(
+            deviceId,
+            inputId,
+            PTZDirection.Stop,
+            0
+          )
+          var video = document.getElementById('video')
+          video.load()
+        } catch (ex) {}
+      }, 500)
+    } catch (ex) {
+      if (ex.message) alert(ex.message)
+      if (ex.name) alert(ex.name)
     }
+  }
 
-    function ptz_lens_event(sender, args) {
+  function ptz_lens_event(sender, args) {
+    try {
+      var result = Client.Management().Device.Video.Input.PTZ.Lens(
+        deviceId,
+        inputId,
+        args,
+        30
+      )
+
+      setTimeout(function () {
         try {
-            var result = Client.Management().Device.Video.Input.PTZ.Lens(deviceId, inputId, args, 30);
-
-            setTimeout(function () {
-                try {
-                    var result = Client.Management().Device.Video.Input.PTZ.Lens(deviceId, inputId, PTZLens.Stop, 0);
-                    var video = document.getElementById("video");
-                    video.load();
-                } catch (ex) { }
-            }, 500)
-        } catch (ex) {
-            if (ex.message)
-                alert(ex.message)
-            if (ex.name)
-                alert(ex.name);
-        }
+          var result = Client.Management().Device.Video.Input.PTZ.Lens(
+            deviceId,
+            inputId,
+            PTZLens.Stop,
+            0
+          )
+          var video = document.getElementById('video')
+          video.load()
+        } catch (ex) {}
+      }, 500)
+    } catch (ex) {
+      if (ex.message) alert(ex.message)
+      if (ex.name) alert(ex.name)
     }
+  }
 
+  function _load() {
+    var uri = new Uri(document.location.toString())
+    inputId = uri.Querys.id
 
-    function _load() {
+    var id = new Id(inputId)
+    deviceId = id.getDeviceId()
+    var channelNo = parseInt(id.ModuleId.No)
+    var example =
+      'ws://192.168.21.241:8800/ws/video/howellps/live/dev_id/slot/stream/live.mp4?user=howell&password=123456'
 
-        var uri = new Uri(document.location.toString());
-        inputId = uri.Querys.id;
+    example = example.replace('dev_id', id.getDeviceId())
+    example = example.replace('slot', parseInt(id.ModuleId.No))
+    example = example.replace('stream', 1)
+    var uri = new Uri(example)
+    uri.Host = Client.Host
+    uri.Port = Client.Port
+    uri.Querys.user = getCookie('username')
+    uri.Querys.password = getCookie('sid')
 
-        var id = new Id(inputId);
-        deviceId = id.getDeviceId();
-        var channelNo = parseInt(id.ModuleId.No);
-        var example = "ws://192.168.21.241:8800/ws/video/howellps/live/dev_id/slot/stream/live.mp4?user=howell&password=123456"
+    var player = new WSPlayer({
+      elementId: 'video',
+      url: uri.toString(),
+    })
+    player.play()
+  }
 
-        example = example.replace("dev_id", id.getDeviceId());
-        example = example.replace("slot", parseInt(id.ModuleId.No));
-        example = example.replace("stream", 1)
-        var uri = new Uri(example);
-        uri.Host = Client.Host;
-        uri.Port = Client.Port;        
-        uri.Querys.user = getCookie("username");
-        uri.Querys.password = getCookie("sid");
-
-        
-            var player = new WSPlayer({
-                elementId: "video",
-                url: uri.toString()
-            })
-            player.play();
-        
-
-
-
-
-        
-    }
-
-    onload = _load;
+  onload = _load
 </script>

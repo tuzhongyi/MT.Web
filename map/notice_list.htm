@@ -1,18 +1,31 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head><meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>处理信息一览</title>
 
     <link rel="stylesheet" type="text/css" href="../css/howell.css" />
     <link href="../css/bootstrap/bootstrap-switch.css" rel="stylesheet" />
     <script type="text/javascript" src="../js/language/chinese.js"></script>
-    <script type="text/javascript" src="../js/jquery/jquery-1.10.2.min.js"></script>
+    <script
+      type="text/javascript"
+      src="../js/jquery/jquery-3.6.0.min.js"
+    ></script>
     <script type="text/javascript" src="../js/jquery/jquery-ui.js"></script>
-    <script type="text/javascript" src="../js/jquery/jquery.confirm.js"></script>
+    <script
+      type="text/javascript"
+      src="../js/jquery/jquery.confirm.js"
+    ></script>
 
-    <script type="text/javascript" src="../js/bootstrap/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../js/bootstrap/bootstrap-switch.min.js"></script>
+    <script
+      type="text/javascript"
+      src="../js/bootstrap/bootstrap.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../js/bootstrap/bootstrap-switch.min.js"
+    ></script>
     <script type="text/javascript" src="../js/imported.js"></script>
     <script type="text/javascript" src="../js/base64.js"></script>
     <script type="text/javascript" src="../js/howell.js/howell.js"></script>
@@ -23,577 +36,651 @@
     <script type="text/javascript" src="../js/client/management.js"></script>
     <script type="text/javascript" src="../js/client/security.js"></script>
     <script type="text/javascript" src="../js/client/client.js"></script>
-    <script type="text/javascript" src="../js/howell.js/howell.control.js"></script>
+    <script
+      type="text/javascript"
+      src="../js/howell.js/howell.control.js"
+    ></script>
     <script type="text/javascript" src="../js/modernizr.custom.js"></script>
-</head>
-<body>
+  </head>
+  <body>
     <link href="css/bootstrap/bootstrap-switch.css" rel="stylesheet" />
     <script type="text/javascript" src="js/jquery/jquery.confirm.js"></script>
-    <script type="text/javascript" src="js/bootstrap/bootstrap-switch.min.js"></script>
+    <script
+      type="text/javascript"
+      src="js/bootstrap/bootstrap-switch.min.js"
+    ></script>
     <script type="text/javascript" src="js/client/management.js"></script>
     <script type="text/javascript" src="js/modernizr.custom.js"></script>
     <style type="text/css">
-        .presentation {
-            padding-left: 0;
-        }
+      .presentation {
+        padding-left: 0;
+      }
 
-            .presentation li {
-                float: left;
-                margin-right: 10px;
-                list-style: none;
-            }
+      .presentation li {
+        float: left;
+        margin-right: 10px;
+        list-style: none;
+      }
 
-            .presentation [class^="icon-"] {
-                cursor: default;
-            }
+      .presentation [class^='icon-'] {
+        cursor: default;
+      }
 
-        .icon-comment {
-            color: #FFFFFF;
-            font-size: 32px;
-        }
+      .icon-comment {
+        color: #ffffff;
+        font-size: 32px;
+      }
 
-        .list-item-information {
-            float: left;
-            margin-left: 20px;
-            color: #007aff;
-        }
+      .list-item-information {
+        float: left;
+        margin-left: 20px;
+        color: #007aff;
+      }
 
-        .read .list-item-information, .read .list-group-item-name {
-            color: #666666;
-        }
+      .read .list-item-information,
+      .read .list-group-item-name {
+        color: #666666;
+      }
 
-        .notice_list_title_ico {
-            color: #007aff;
-        }
-        .background_icon.icon-comment{
-            margin-top:0px;
-        }
+      .notice_list_title_ico {
+        color: #007aff;
+      }
+      .background_icon.icon-comment {
+        margin-top: 0px;
+      }
     </style>
     <div class="page-main row">
-        <div class="col-md-12">
-            <div class="widget-container fluid-height clearfix list-width padded background-min-height">
-                <div class="heading list-heading-maxdiv">
-                    <div class="form-group list-heading-div">
-                        &ensp;&ensp;<i class="icon-comment-alt list-heading-icon mouse_default notice_list_title_ico"></i>
-                        <span id="listTitle">通知信息</span> <label class="list-count-lable">当前<span id="lblCurrentCount">0</span>条/共<span id="lblTotalCount">0</span>条</label>
-                    </div>
-                    <div>
-                        <!--<ul class="presentation pull-left">
+      <div class="col-md-12">
+        <div
+          class="widget-container fluid-height clearfix list-width padded background-min-height"
+        >
+          <div class="heading list-heading-maxdiv">
+            <div class="form-group list-heading-div">
+              &ensp;&ensp;<i
+                class="icon-comment-alt list-heading-icon mouse_default notice_list_title_ico"
+              ></i>
+              <span id="listTitle">通知信息</span>
+              <label class="list-count-lable"
+                >当前<span id="lblCurrentCount">0</span>条/共<span
+                  id="lblTotalCount"
+                  >0</span
+                >条</label
+              >
+            </div>
+            <div>
+              <!--<ul class="presentation pull-left">
                             <li><div class="icon-circle text-danger right"></div>紧急</li>
                             <li><div class="icon-circle text-warning"></div>重要/警告</li>
                             <li><div class="icon-circle text-doderblue right"></div>一般</li>
                         </ul>-->
-                        <div class="pull-left">
-                            <a class="btn btn-xs btn-permission main" onclick="return NoticeStatus_Click(this);">
-                                全部
-                            </a>
-                            <a class="btn btn-xs btn-permission main selected" onclick="return NoticeStatus_Click(this, NoticeStatusType.Unread);">
-                                未读
-                            </a>
-                            <a class="btn btn-xs btn-permission main" onclick="return NoticeStatus_Click(this, NoticeStatusType.Read);">
-                                已读
-                            </a>
-
-                        </div>
-                        <div>
-                            <a title="标为已读" class="btn btn-xs btn-primary-outline pull-right div-xsgroup button-img-size" onclick="batchPrecess_Click(this)">
-                                <i class="icon-eye-open"></i>
-                            </a>
-                            <div class="btn-group  pull-right div-xsgroupdown" id="btn-operation">
-                                <div class="btn btn-xs btn-primary btn-xsgroupdown dropdown-toggle" data-toggle="dropdown" id="operation">
-                                    选&ensp;择&ensp;<span class="caret"></span>
-                                </div>
-                                <ul class="dropdown-menu xsgroupdown-menu-ul">
-                                    <li class="mouse_pointer">
-                                        <a class="xsgroupdown-menu-ul-li-a" onclick="GroupList.Select.All(Info.ControlIdPrefix.GroupListItem, GroupListItem_SelectAll);">
-                                            全选
-                                        </a>
-                                    </li>
-                                    <li class="mouse_pointer">
-                                        <a class="xsgroupdown-menu-ul-li-a" onclick="GroupList.Select.Inverse(Info.ControlIdPrefix.GroupListItem);">
-                                            反选
-                                        </a>
-                                    </li>
-                                    <li class="mouse_pointer">
-                                        <a class="xsgroupdown-menu-ul-li-a" onclick="GroupList.Select.Cancel(Info.ControlIdPrefix.GroupListItem, GroupListItem_Cancel);">
-                                            取消
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-
-
-                    </div>
-
+              <div class="pull-left">
+                <a
+                  class="btn btn-xs btn-permission main"
+                  onclick="return NoticeStatus_Click(this);"
+                >
+                  全部
+                </a>
+                <a
+                  class="btn btn-xs btn-permission main selected"
+                  onclick="return NoticeStatus_Click(this, NoticeStatusType.Unread);"
+                >
+                  未读
+                </a>
+                <a
+                  class="btn btn-xs btn-permission main"
+                  onclick="return NoticeStatus_Click(this, NoticeStatusType.Read);"
+                >
+                  已读
+                </a>
+              </div>
+              <div>
+                <a
+                  title="标为已读"
+                  class="btn btn-xs btn-primary-outline pull-right div-xsgroup button-img-size"
+                  onclick="batchPrecess_Click(this)"
+                >
+                  <i class="icon-eye-open"></i>
+                </a>
+                <div
+                  class="btn-group pull-right div-xsgroupdown"
+                  id="btn-operation"
+                >
+                  <div
+                    class="btn btn-xs btn-primary btn-xsgroupdown dropdown-toggle"
+                    data-toggle="dropdown"
+                    id="operation"
+                  >
+                    选&ensp;择&ensp;<span class="caret"></span>
+                  </div>
+                  <ul class="dropdown-menu xsgroupdown-menu-ul">
+                    <li class="mouse_pointer">
+                      <a
+                        class="xsgroupdown-menu-ul-li-a"
+                        onclick="GroupList.Select.All(Info.ControlIdPrefix.GroupListItem, GroupListItem_SelectAll);"
+                      >
+                        全选
+                      </a>
+                    </li>
+                    <li class="mouse_pointer">
+                      <a
+                        class="xsgroupdown-menu-ul-li-a"
+                        onclick="GroupList.Select.Inverse(Info.ControlIdPrefix.GroupListItem);"
+                      >
+                        反选
+                      </a>
+                    </li>
+                    <li class="mouse_pointer">
+                      <a
+                        class="xsgroupdown-menu-ul-li-a"
+                        onclick="GroupList.Select.Cancel(Info.ControlIdPrefix.GroupListItem, GroupListItem_Cancel);"
+                      >
+                        取消
+                      </a>
+                    </li>
+                  </ul>
                 </div>
-
-                <div id="group_list">
-
-                </div>
+              </div>
             </div>
-            <div class="col-md-12 lazyload-div" id="divLazyload">
+          </div>
 
-            </div>
+          <div id="group_list"></div>
         </div>
+        <div class="col-md-12 lazyload-div" id="divLazyload"></div>
+      </div>
     </div>
     <div id="sc"></div>
     <a class="to-back">
-        <div class="pic"></div>
+      <div class="pic"></div>
     </a>
     <script type="text/javascript">
-        //信息
-        var Info =
-        {
-            ControlIdPrefix:
-            {
-                GroupListItem: "group_",
-                AlertWindow: "alert_",
-                Edit: "edit_",
-                //获取ID
-                getId: function (id, prefix) {
-                    return id.substr(prefix.length);
-                }
+      //信息
+      var Info = {
+        ControlIdPrefix: {
+          GroupListItem: 'group_',
+          AlertWindow: 'alert_',
+          Edit: 'edit_',
+          //获取ID
+          getId: function (id, prefix) {
+            return id.substr(prefix.length)
+          },
+        },
+      }
+
+      //属性
+      var Property = {
+        Status: NoticeStatusType.Unread,
+        Count: {
+          get: function (id, fn) {
+            var result = fn.List(id, 1, 1)
+            return result.Page.TotalRecordCount
+          },
+        },
+
+        PageSize: 20, //单页数据数量
+        //当前数量
+        CurrentCount: {
+          value: 0,
+          get: function () {
+            return this.value
+          },
+          set: function (value) {
+            getTag('lblCurrentCount').innerHTML = value
+            this.value = value
+          },
+        },
+        //总数
+        TotalCount: {
+          value: 0,
+          get: function () {
+            return this.value
+          },
+          set: function (value) {
+            getTag('lblTotalCount').innerHTML = value
+            this.value = value
+          },
+        },
+        User: {
+          value: new Dictionary(),
+          load: function () {
+            var list = Client.Security().User.List()
+            if (list && list.User) {
+              for (var i = 0; i < list.User.length; i++) {
+                this.value[list.User[i].Id] = list.User[i]
+              }
             }
-        }
-
-        //属性
-        var Property =
-        {
-            Status: NoticeStatusType.Unread,
-            Count: {
-                get: function (id, fn) {
-                    var result = fn.List(id, 1, 1);
-                    return result.Page.TotalRecordCount;
-                }
-            },
-
-            PageSize: 20,//单页数据数量
-            //当前数量
-            CurrentCount: {
-                value: 0,
-                get: function () {
-                    return this.value;
-                },
-                set: function (value) {
-                    getTag("lblCurrentCount").innerHTML = value;
-                    this.value = value;
-                }
-            },
-            //总数
-            TotalCount: {
-                value: 0,
-                get: function () {
-                    return this.value;
-                },
-                set: function (value) {
-                    getTag("lblTotalCount").innerHTML = value;
-                    this.value = value;
-                }
-            },
-            User: {
-                value: new Dictionary(),
-                load: function () {
-                    var list = Client.Security().User.List();
-                    if (list && list.User) {
-                        for (var i = 0; i < list.User.length; i++) {
-                            this.value[list.User[i].Id] = list.User[i];
-                        }
-                    }
-                }
-            },
-            EventLinkage: {
-                value: new Dictionary(),
-                load: function () {
-                    var list = Client.Management().Event.Linkage.List();
-                    if (list && list.EventLinkage) {
-                        for (var i = 0; i < list.EventLinkage.length; i++) {
-                            this.value[list.EventLinkage[i].ComponentId] = list.EventLinkage[i];
-                        }
-                    }
-                }
-            },
-            NoticeList:
-            {
-                value: new Dictionary(),
-                load: function (index, size, status) {
-                    var result = tryCatch(function () {
-                        Property.User.load();
-                        Property.EventLinkage.load();
-                        return Client.Management().Notice.List(null, status, null, null, null, index, size);
-                    });
-                    if (result && result.Notice) {
-                        for (var i = 0; i < result.Notice.length; i++) {
-                            if (!result.Notice[i]["Selected"])
-                                result.Notice[i]["Selected"] = false;
-                            result.Notice[i].SenderObj = Property.User.value[result.Notice[i].Sender];
-                            result.Notice[i].EventLinkage = Property.EventLinkage.value[result.Notice[i].ComponentId]
-                            this.value[result.Notice[i].Id] = result.Notice[i];
-
-                        }
-                    }
-                    return result;
-                },
-                batchRead: function (fn) {
-                    var count = 0;
-                    for (var id in this.value) {
-                        if (this.value[id].Selected) {
-                            try {
-                                Client.Management().Notice.Read(id);
-                                if (fn) fn(id);
-                                ++count;
-                            } catch (e) { }
-                        }
-                    }
-                    return count;
-                },
-                get: function (id) {
-                    if (this.value)
-                        return this.value[id];
-                    return null;
-                }
+          },
+        },
+        EventLinkage: {
+          value: new Dictionary(),
+          load: function () {
+            var list = Client.Management().Event.Linkage.List()
+            if (list && list.EventLinkage) {
+              for (var i = 0; i < list.EventLinkage.length; i++) {
+                this.value[list.EventLinkage[i].ComponentId] =
+                  list.EventLinkage[i]
+              }
             }
-        }
-
-        var Html = {
-            Current: {
-                Id: {
-                    get: function () {
-                        var uri = new Uri(Trigger.href);
-                        if (uri.Query)
-                            return uri.Querys.id;
-                        return null;
-                    }
-                }
-            },
-            Control: {
-                IconButton: {
-                    create: function (id, key, className, getCountFn) {
-                        var strLabel = "<lable id='" + Info.ControlIdPrefix.Popover.label(key) + id + "'>" + getCountFn(id) + "</lable>"
-                        var icon = new IconButton(Info.ControlIdPrefix.Popover.icon(key) + id, className, 11, strLabel);
-                        icon.className = "popover_control_item";
-                        return icon;
-                    }
-                },
-                GroupList: {
-                    createItem: function (notice) {
-                        var classificationColor = {
-                            Emergency: "text-danger",
-                            Info: "text-doderblue",
-                            None: "text-default",
-                            Warning: "text-warning"
-                        }
-                        var eventTypeColor = {
-                            None: LabelTagColor.DarkGray,
-                            IO: LabelTagColor.LightBlue,
-                            VMD: LabelTagColor.Prunus,
-                            Videoloss: LabelTagColor.Prunus,
-                            IRCut: LabelTagColor.Prunus,
-                            DayNight: LabelTagColor.Prunus,
-                            RecordState: LabelTagColor.LightBlue,
-                            StorageMediumFailure: LabelTagColor.Green,
-                            RAIDFailure: LabelTagColor.Green,
-                            RecordingFailure: LabelTagColor.LightBlue,
-                            BadVideo: LabelTagColor.Prunus,
-                            POS: LabelTagColor.Taro,
-                            FanFailure: LabelTagColor.Taro,
-                            CpuUsage: LabelTagColor.Taro,
-                            MemoryUsage: LabelTagColor.Taro,
-                            Temperature: LabelTagColor.Taro,
-                            Pressure: LabelTagColor.Taro,
-                            Voltage: LabelTagColor.Taro,
-                            MaximumConnections: LabelTagColor.LightBlue,
-                            NetworkBitrate: LabelTagColor.DoderBlue,
-                            VideoBitrate: LabelTagColor.LightBlue,
-                            Squint: LabelTagColor.Prunus,
-                            VideoTurned: LabelTagColor.Prunus,
-                            Intrusion: LabelTagColor.Prunus,
-                            Tripwire: LabelTagColor.Prunus,
-                            Loitering: LabelTagColor.Prunus,
-                            Unattended: LabelTagColor.Prunus,
-                            Removal: LabelTagColor.Prunus,
-                            Retrograde: LabelTagColor.Prunus
-                        };
-
-                        //创建控件
-                        var createControl = {
-                            //输入通道名称，点击后显示相信信息
-                            details: function (notice, control) {
-                                var span = document.createElement("span");
-                                span.innerText = notice.ComponentName;
-                                span.title = notice.ComponentName;
-                                var icbClass = "background_icon icon-comment";
-                                var icbColor = LabelTagColor.DarkGray;
-                                var language = Language.Display.EventType.None;
-                                if (notice.EventLinkage) {
-                                    icbClass = "background_icon eventtype " + notice.EventLinkage.EventType.toLowerCase()
-                                    icbColor = eventTypeColor[notice.EventLinkage.EventType];
-                                    language = Language.Display.EventType[notice.EventLinkage.EventType];
-                                }
-                                var btn = new IconColorButton("", icbClass, icbColor, 10, span);
-                                btn.title = language;
-                                //btn.href = "linkage/linkage_details.htm?linkageId=" + id;
-                                btn.className = btn.className + " list-group-item-name";
-
-                                //btn.onclick = function () {
-                                //    AlertWindow.Show(btn, 300);
-                                //    return stopPropagation();
-                                //};
-                                control.appendChild(btn);
-                            },
-                            message: function (notice, control) {
-                                var div = document.createElement("div");
-                                div.title = notice.Message;
-                                div.className = "list-item-information";
-                                div.style.styleFloat = "left";
-                                div.style.marginLeft = "20px";
-                                div.style.maxWidth = "300px";
-                                if (!notice.Message) {
-                                    div.title = "无信息"
-                                    div.className += " none";
-                                }
-
-                                div.innerText = div.title;
-                                control.appendChild(div);
-                            },
-                            time: function (notice, control) {
-                                var div = document.createElement("div");
-                                var date = Convert.ToDate(notice.CreationTime);
-                                div.title = date.format("yyyy-MM-dd HH:mm:ss");
-                                div.className = "list-item-information pull-right";
-                                div.innerText = div.title;
-                                control.appendChild(div);
-                            },
-                            sender: function (notice, control) {
-                                var div = document.createElement("div");
-                                div.title = notice.SenderObj.Nickname;
-                                div.className = "list-item-information nickname";
-                                div.innerText = div.title;
-                                control.appendChild(div);
-                            },
-                            classification: function (notice, control) {
-                                var btn = document.createElement("div");
-                                btn.innerHTML = '<div class="icon-circle ' + classificationColor[notice.Classification] + '"></div>';
-                                btn.className = "pull-right list-lable-btn-operation";
-                                btn.style.marginLeft = "20px";
-                                btn.title = Language.Enum.NoticeClassification[notice.Classification];
-                                control.appendChild(btn);
-                            },
-                            process: function (notice, control) {
-                                var btn = document.createElement("div");
-                                btn.className = "pull-right list-lable-btn-operation";
-
-                                var a = document.createElement("a");
-                                a.href = "map/AlertProcess.htm";
-                                a.title = "处理";
-
-                                a.className = "icon-envelope-alt";
-                                a.id = notice.Id;
-                                a.onclick = function (e) {
-                                    var result = Client.Management().Notice.Get(this.id);
-                                    result.Time = result.CreationTime;
-                                    result.Message = base64encode(utf16to8(result.Message));
-                                    var str = JSONstringify(result);
-                                    a.href += "?notice=" + str;
-                                    AlertWindow.Show(a);
-
-                                    $("#" + Info.ControlIdPrefix.GroupListItem + this.id).addClass("read");
-                                    stopPropagation();
-                                    return false;
-                                }
-
-                                btn.appendChild(a);
-                                control.appendChild(btn);
-                            }
-                        };
-
-                        var id = notice.Id
-                        var item = new GroupListItem(Info.ControlIdPrefix.GroupListItem, GrouplistItem_Click);
-
-                        item.id = Info.ControlIdPrefix.GroupListItem + id;
-
-                        var span = document.createElement("span");
-                        span.className = "list-label";
-
-                        createControl.details(notice, item.Content);//创建权限图标和输入通道名称
-
-                        createControl.process(notice, item.Content);
-                        createControl.classification(notice, item.Content);
-
-                        createControl.time(notice, item.Content);
-
-
-                        createControl.sender(notice, item.Content);
-                        createControl.message(notice, item.Content);
-
-
-                        item.Content.className = "list-group-item-content";
-
-
-                        if (notice.Status == NoticeStatusType.Read)
-                            item.className += " read";
-                        item.className = item.className + " mouse_pointer" + (Property.NoticeList.value[id].Selected ? " selected" : "");
-                        return item;
-                    },
-                    //获取列表项
-                    getItems: function (list) {
-                        var items = new GroupListItemArray();
-                        if (list) {
-                            for (var i = 0; i < list.length; i++) {
-                                items.push(this.createItem(list[i]));
-                            }
-                            return items;
-                        }
-                    },
-                    //创建列表
-                    create: function () {
-
-                        var result = Property.NoticeList.load(1, Property.PageSize);
-
-                        if (result) {
-                            var items = this.getItems(result.Notice);
-                            getTag("dList").appendChild(new GroupList("group_list", items));
-
-                            Property.CurrentCount.set(result.Page.RecordCount);
-                            Property.TotalCount.set(result.Page.TotalRecordCount);
-
-                            LazyLoadPage = result.Page;
-                        }
-                    },
-                    //加载列表
-                    load: function (index, size, status) {
-                        var result = Property.NoticeList.load(index, size, status);
-                        var items = this.getItems(result.Notice);
-                        var gList = getTag("group_list");
-                        if (items) {
-                            for (var i = 0; i < items.length; i++) {
-                                gList.appendChild(items[i]);
-                            }
-                        }
-                        var old = Property.CurrentCount.get();
-                        Property.CurrentCount.set(old + result.Page.RecordCount);
-                        Property.TotalCount.set(result.Page.TotalRecordCount);
-                        LazyLoadPage = result.Page;
-                    },
-                    //清空列表
-                    clear: function () {
-                        var gList = getTag("group_list");
-                        gList.innerHTML = "";
-                        Property.CurrentCount.set(0);
-                        Property.TotalCount.set(0);
-                        this.selectedCount = 0;
-                    },
-                    reload: function (list, page) {
-                        var list = new Array();
-                        var i = 0;
-                        for (var d in list) {
-                            list[i++] = list[d];
-                        }
-
-                        this.clear();
-
-                        var items = this.getItems(list);
-                        var gList = getTag("group_list");
-                        if (items) {
-                            for (var i = 0; i < items.length; i++) {
-                                gList.appendChild(items[i]);
-                            }
-                        }
-                        Property.CurrentCount.set(list.length);
-                        Property.TotalCount.set(page.TotalRecordCount);
-                    },
-                    batchProcess: function () {
-                        Property.NoticeList.batchRead(function (id) {
-                            var controlId = Info.ControlIdPrefix.GroupListItem + id;
-                            var item = getTag(controlId);
-                            item.className += " read";
-                            item.click();
-                        });
-                    },
-                    selectedCount: 0,
-                    select: function (id) {
-                        Property.NoticeList.value[id].Selected = !Property.NoticeList.value[id].Selected;
-                        if (Property.NoticeList.value[id].Selected)
-                            ++this.selectedCount;
-                        else
-                            --this.selectedCount;
-                    },
-                }
-            }
-        }
-
-        function GroupListItem_SelectAll(args) {
-            GroupListItem_Cancel();
-            for (var i = 0; i < args.length; i++) {
-                var id = Info.ControlIdPrefix.getId(args[i].id, Info.ControlIdPrefix.GroupListItem);
-                Property.NoticeList.value[id].Selected = true;
-            }
-            Html.Control.GroupList.selectedCount = args.length;
-        };
-        function GrouplistItem_Click(sender, args) {
-            tryCatch(function () {
-                var id = Info.ControlIdPrefix.getId(sender.id, Info.ControlIdPrefix.GroupListItem);
-                Html.Control.GroupList.select(id);
+          },
+        },
+        NoticeList: {
+          value: new Dictionary(),
+          load: function (index, size, status) {
+            var result = tryCatch(function () {
+              Property.User.load()
+              Property.EventLinkage.load()
+              return Client.Management().Notice.List(
+                null,
+                status,
+                null,
+                null,
+                null,
+                index,
+                size
+              )
             })
-        }
-        function GroupListItem_Cancel() {
-            for (var key in Property.NoticeList.value) {
-                Property.NoticeList.value[key].Selected = false;
+            if (result && result.Notice) {
+              for (var i = 0; i < result.Notice.length; i++) {
+                if (!result.Notice[i]['Selected'])
+                  result.Notice[i]['Selected'] = false
+                result.Notice[i].SenderObj =
+                  Property.User.value[result.Notice[i].Sender]
+                result.Notice[i].EventLinkage =
+                  Property.EventLinkage.value[result.Notice[i].ComponentId]
+                this.value[result.Notice[i].Id] = result.Notice[i]
+              }
             }
-            Html.Control.GroupList.selectedCount = 0;
-        }
-        function notice_list_load() {
-            tryCatch(function () {
-                Html.Control.GroupList.load(1, 20, NoticeStatusType.Unread);
-            });
-            var lazy = getTag("divLazyload");
-            lazy.appendChild(new LazyLoadControl("load-more", "加载中……", lazyLoad));
-            window.setTimeout(function () {
-                document.documentElement.scrollTop = 0;
-                isOnscroll = true;
-            }, 100);
+            return result
+          },
+          batchRead: function (fn) {
+            var count = 0
+            for (var id in this.value) {
+              if (this.value[id].Selected) {
+                try {
+                  Client.Management().Notice.Read(id)
+                  if (fn) fn(id)
+                  ++count
+                } catch (e) {}
+              }
+            }
+            return count
+          },
+          get: function (id) {
+            if (this.value) return this.value[id]
+            return null
+          },
+        },
+      }
 
-        }
-        function NoticeStatus_Click(sender, args) {
-            if (sender.className.indexOf("selected") > 0)
-                return false;
-            tryCatch(function () {
-                $(".btn-permission.main").removeClass("selected");
-                sender.className += " selected";
-                Property.Status = args ? args : null;
-                Html.Control.GroupList.clear();
-                Html.Control.GroupList.load(1, Property.PageSize, args);
-            });
-            GroupListItem_Cancel();
-            return false;
-        }
-        function batchPrecess_Click(sender) {
-            if (Html.Control.GroupList.selectedCount <= 0)
-                return;
-            $.confirm({
-                text: "确定要处理所有选中消息吗？",
-                okButton: "确定",
-                cancelButton: "取消",
-                confirm: function () {
-                    Html.Control.GroupList.batchProcess();
+      var Html = {
+        Current: {
+          Id: {
+            get: function () {
+              var uri = new Uri(Trigger.href)
+              if (uri.Query) return uri.Querys.id
+              return null
+            },
+          },
+        },
+        Control: {
+          IconButton: {
+            create: function (id, key, className, getCountFn) {
+              var strLabel =
+                "<lable id='" +
+                Info.ControlIdPrefix.Popover.label(key) +
+                id +
+                "'>" +
+                getCountFn(id) +
+                '</lable>'
+              var icon = new IconButton(
+                Info.ControlIdPrefix.Popover.icon(key) + id,
+                className,
+                11,
+                strLabel
+              )
+              icon.className = 'popover_control_item'
+              return icon
+            },
+          },
+          GroupList: {
+            createItem: function (notice) {
+              var classificationColor = {
+                Emergency: 'text-danger',
+                Info: 'text-doderblue',
+                None: 'text-default',
+                Warning: 'text-warning',
+              }
+              var eventTypeColor = {
+                None: LabelTagColor.DarkGray,
+                IO: LabelTagColor.LightBlue,
+                VMD: LabelTagColor.Prunus,
+                Videoloss: LabelTagColor.Prunus,
+                IRCut: LabelTagColor.Prunus,
+                DayNight: LabelTagColor.Prunus,
+                RecordState: LabelTagColor.LightBlue,
+                StorageMediumFailure: LabelTagColor.Green,
+                RAIDFailure: LabelTagColor.Green,
+                RecordingFailure: LabelTagColor.LightBlue,
+                BadVideo: LabelTagColor.Prunus,
+                POS: LabelTagColor.Taro,
+                FanFailure: LabelTagColor.Taro,
+                CpuUsage: LabelTagColor.Taro,
+                MemoryUsage: LabelTagColor.Taro,
+                Temperature: LabelTagColor.Taro,
+                Pressure: LabelTagColor.Taro,
+                Voltage: LabelTagColor.Taro,
+                MaximumConnections: LabelTagColor.LightBlue,
+                NetworkBitrate: LabelTagColor.DoderBlue,
+                VideoBitrate: LabelTagColor.LightBlue,
+                Squint: LabelTagColor.Prunus,
+                VideoTurned: LabelTagColor.Prunus,
+                Intrusion: LabelTagColor.Prunus,
+                Tripwire: LabelTagColor.Prunus,
+                Loitering: LabelTagColor.Prunus,
+                Unattended: LabelTagColor.Prunus,
+                Removal: LabelTagColor.Prunus,
+                Retrograde: LabelTagColor.Prunus,
+              }
+
+              //创建控件
+              var createControl = {
+                //输入通道名称，点击后显示相信信息
+                details: function (notice, control) {
+                  var span = document.createElement('span')
+                  span.innerText = notice.ComponentName
+                  span.title = notice.ComponentName
+                  var icbClass = 'background_icon icon-comment'
+                  var icbColor = LabelTagColor.DarkGray
+                  var language = Language.Display.EventType.None
+                  if (notice.EventLinkage) {
+                    icbClass =
+                      'background_icon eventtype ' +
+                      notice.EventLinkage.EventType.toLowerCase()
+                    icbColor = eventTypeColor[notice.EventLinkage.EventType]
+                    language =
+                      Language.Display.EventType[notice.EventLinkage.EventType]
+                  }
+                  var btn = new IconColorButton(
+                    '',
+                    icbClass,
+                    icbColor,
+                    10,
+                    span
+                  )
+                  btn.title = language
+                  //btn.href = "linkage/linkage_details.htm?linkageId=" + id;
+                  btn.className = btn.className + ' list-group-item-name'
+
+                  //btn.onclick = function () {
+                  //    AlertWindow.Show(btn, 300);
+                  //    return stopPropagation();
+                  //};
+                  control.appendChild(btn)
+                },
+                message: function (notice, control) {
+                  var div = document.createElement('div')
+                  div.title = notice.Message
+                  div.className = 'list-item-information'
+                  div.style.styleFloat = 'left'
+                  div.style.marginLeft = '20px'
+                  div.style.maxWidth = '300px'
+                  if (!notice.Message) {
+                    div.title = '无信息'
+                    div.className += ' none'
+                  }
+
+                  div.innerText = div.title
+                  control.appendChild(div)
+                },
+                time: function (notice, control) {
+                  var div = document.createElement('div')
+                  var date = Convert.ToDate(notice.CreationTime)
+                  div.title = date.format('yyyy-MM-dd HH:mm:ss')
+                  div.className = 'list-item-information pull-right'
+                  div.innerText = div.title
+                  control.appendChild(div)
+                },
+                sender: function (notice, control) {
+                  var div = document.createElement('div')
+                  div.title = notice.SenderObj.Nickname
+                  div.className = 'list-item-information nickname'
+                  div.innerText = div.title
+                  control.appendChild(div)
+                },
+                classification: function (notice, control) {
+                  var btn = document.createElement('div')
+                  btn.innerHTML =
+                    '<div class="icon-circle ' +
+                    classificationColor[notice.Classification] +
+                    '"></div>'
+                  btn.className = 'pull-right list-lable-btn-operation'
+                  btn.style.marginLeft = '20px'
+                  btn.title =
+                    Language.Enum.NoticeClassification[notice.Classification]
+                  control.appendChild(btn)
+                },
+                process: function (notice, control) {
+                  var btn = document.createElement('div')
+                  btn.className = 'pull-right list-lable-btn-operation'
+
+                  var a = document.createElement('a')
+                  a.href = 'map/AlertProcess.htm'
+                  a.title = '处理'
+
+                  a.className = 'icon-envelope-alt'
+                  a.id = notice.Id
+                  a.onclick = function (e) {
+                    var result = Client.Management().Notice.Get(this.id)
+                    result.Time = result.CreationTime
+                    result.Message = base64encode(utf16to8(result.Message))
+                    var str = JSONstringify(result)
+                    a.href += '?notice=' + str
+                    AlertWindow.Show(a)
+
+                    $(
+                      '#' + Info.ControlIdPrefix.GroupListItem + this.id
+                    ).addClass('read')
+                    stopPropagation()
+                    return false
+                  }
+
+                  btn.appendChild(a)
+                  control.appendChild(btn)
+                },
+              }
+
+              var id = notice.Id
+              var item = new GroupListItem(
+                Info.ControlIdPrefix.GroupListItem,
+                GrouplistItem_Click
+              )
+
+              item.id = Info.ControlIdPrefix.GroupListItem + id
+
+              var span = document.createElement('span')
+              span.className = 'list-label'
+
+              createControl.details(notice, item.Content) //创建权限图标和输入通道名称
+
+              createControl.process(notice, item.Content)
+              createControl.classification(notice, item.Content)
+
+              createControl.time(notice, item.Content)
+
+              createControl.sender(notice, item.Content)
+              createControl.message(notice, item.Content)
+
+              item.Content.className = 'list-group-item-content'
+
+              if (notice.Status == NoticeStatusType.Read)
+                item.className += ' read'
+              item.className =
+                item.className +
+                ' mouse_pointer' +
+                (Property.NoticeList.value[id].Selected ? ' selected' : '')
+              return item
+            },
+            //获取列表项
+            getItems: function (list) {
+              var items = new GroupListItemArray()
+              if (list) {
+                for (var i = 0; i < list.length; i++) {
+                  items.push(this.createItem(list[i]))
                 }
-            });
+                return items
+              }
+            },
+            //创建列表
+            create: function () {
+              var result = Property.NoticeList.load(1, Property.PageSize)
+
+              if (result) {
+                var items = this.getItems(result.Notice)
+                getTag('dList').appendChild(new GroupList('group_list', items))
+
+                Property.CurrentCount.set(result.Page.RecordCount)
+                Property.TotalCount.set(result.Page.TotalRecordCount)
+
+                LazyLoadPage = result.Page
+              }
+            },
+            //加载列表
+            load: function (index, size, status) {
+              var result = Property.NoticeList.load(index, size, status)
+              var items = this.getItems(result.Notice)
+              var gList = getTag('group_list')
+              if (items) {
+                for (var i = 0; i < items.length; i++) {
+                  gList.appendChild(items[i])
+                }
+              }
+              var old = Property.CurrentCount.get()
+              Property.CurrentCount.set(old + result.Page.RecordCount)
+              Property.TotalCount.set(result.Page.TotalRecordCount)
+              LazyLoadPage = result.Page
+            },
+            //清空列表
+            clear: function () {
+              var gList = getTag('group_list')
+              gList.innerHTML = ''
+              Property.CurrentCount.set(0)
+              Property.TotalCount.set(0)
+              this.selectedCount = 0
+            },
+            reload: function (list, page) {
+              var list = new Array()
+              var i = 0
+              for (var d in list) {
+                list[i++] = list[d]
+              }
+
+              this.clear()
+
+              var items = this.getItems(list)
+              var gList = getTag('group_list')
+              if (items) {
+                for (var i = 0; i < items.length; i++) {
+                  gList.appendChild(items[i])
+                }
+              }
+              Property.CurrentCount.set(list.length)
+              Property.TotalCount.set(page.TotalRecordCount)
+            },
+            batchProcess: function () {
+              Property.NoticeList.batchRead(function (id) {
+                var controlId = Info.ControlIdPrefix.GroupListItem + id
+                var item = getTag(controlId)
+                item.className += ' read'
+                item.click()
+              })
+            },
+            selectedCount: 0,
+            select: function (id) {
+              Property.NoticeList.value[id].Selected =
+                !Property.NoticeList.value[id].Selected
+              if (Property.NoticeList.value[id].Selected) ++this.selectedCount
+              else --this.selectedCount
+            },
+          },
+        },
+      }
+
+      function GroupListItem_SelectAll(args) {
+        GroupListItem_Cancel()
+        for (var i = 0; i < args.length; i++) {
+          var id = Info.ControlIdPrefix.getId(
+            args[i].id,
+            Info.ControlIdPrefix.GroupListItem
+          )
+          Property.NoticeList.value[id].Selected = true
         }
-
-        //延迟加载事件
-        function lazyLoad(index) {
-            tryCatch(function () {
-                Html.Control.GroupList.load(index + 1, Property.PageSize, Property.Status);
-            });
+        Html.Control.GroupList.selectedCount = args.length
+      }
+      function GrouplistItem_Click(sender, args) {
+        tryCatch(function () {
+          var id = Info.ControlIdPrefix.getId(
+            sender.id,
+            Info.ControlIdPrefix.GroupListItem
+          )
+          Html.Control.GroupList.select(id)
+        })
+      }
+      function GroupListItem_Cancel() {
+        for (var key in Property.NoticeList.value) {
+          Property.NoticeList.value[key].Selected = false
         }
+        Html.Control.GroupList.selectedCount = 0
+      }
+      function notice_list_load() {
+        tryCatch(function () {
+          Html.Control.GroupList.load(1, 20, NoticeStatusType.Unread)
+        })
+        var lazy = getTag('divLazyload')
+        lazy.appendChild(new LazyLoadControl('load-more', '加载中……', lazyLoad))
+        window.setTimeout(function () {
+          document.documentElement.scrollTop = 0
+          isOnscroll = true
+        }, 100)
+      }
+      function NoticeStatus_Click(sender, args) {
+        if (sender.className.indexOf('selected') > 0) return false
+        tryCatch(function () {
+          $('.btn-permission.main').removeClass('selected')
+          sender.className += ' selected'
+          Property.Status = args ? args : null
+          Html.Control.GroupList.clear()
+          Html.Control.GroupList.load(1, Property.PageSize, args)
+        })
+        GroupListItem_Cancel()
+        return false
+      }
+      function batchPrecess_Click(sender) {
+        if (Html.Control.GroupList.selectedCount <= 0) return
+        $.confirm({
+          text: '确定要处理所有选中消息吗？',
+          okButton: '确定',
+          cancelButton: '取消',
+          confirm: function () {
+            Html.Control.GroupList.batchProcess()
+          },
+        })
+      }
 
-        function AlertReaded() {
+      //延迟加载事件
+      function lazyLoad(index) {
+        tryCatch(function () {
+          Html.Control.GroupList.load(
+            index + 1,
+            Property.PageSize,
+            Property.Status
+          )
+        })
+      }
 
-        }
+      function AlertReaded() {}
 
-        $(function () {
-            notice_list_load();
-        });
+      $(function () {
+        notice_list_load()
+      })
     </script>
-</body>
+  </body>
 </html>

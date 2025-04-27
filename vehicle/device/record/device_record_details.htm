@@ -1,19 +1,32 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
+  <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>车牌识别记录详细信息</title>
     <link rel="stylesheet" type="text/css" href="../../css/howell.css" />
     <link href="../../css/bootstrap/bootstrap-switch.css" rel="stylesheet" />
-    <link href="../../css/bootstrap/colorpicker.css" rel="stylesheet" type="text/css" />
+    <link
+      href="../../css/bootstrap/colorpicker.css"
+      rel="stylesheet"
+      type="text/css"
+    />
     <script type="text/javascript" src="../../js/language/chinese.js"></script>
-    <script type="text/javascript" src="../../js/jquery/jquery-1.10.2.min.js"></script>
+    <script
+      type="text/javascript"
+      src="../../js/jquery/jquery-3.6.0.min.js"
+    ></script>
     <script src="../../js/imported.js"></script>
     <script src="../../js/imported.js"></script>
     <script type="text/javascript" src="../../js/jquery/jquery-ui.js"></script>
-    <script type="text/javascript" src="../../js/bootstrap/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../../js/jquery/jquery.confirm.js"></script>
+    <script
+      type="text/javascript"
+      src="../../js/bootstrap/bootstrap.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../js/jquery/jquery.confirm.js"
+    ></script>
 
     <script type="text/javascript" src="../../js/howell.js/howell.js"></script>
     <script type="text/javascript" src="../../js/client/struct.js"></script>
@@ -21,278 +34,357 @@
     <script type="text/javascript" src="../../js/client/security.js"></script>
     <script type="text/javascript" src="../../js/client/enum.js"></script>
     <script type="text/javascript" src="../../js/client/client.js"></script>
-    <script type="text/javascript" src="../../js/howell.js/howell.control.js"></script>
+    <script
+      type="text/javascript"
+      src="../../js/howell.js/howell.control.js"
+    ></script>
     <script type="text/javascript" src="../../js/modernizr.custom.js"></script>
-    <script type="text/javascript" src="../../js/bootstrap/bootstrap-timepicker.js"></script>
-    <script type="text/javascript" src="../../js/bootstrap/bootstrap-colorpicker.js"></script>
-    <script type="text/javascript" src="../../js/bootstrap/bootstrap-switch.min.js"></script>
+    <script
+      type="text/javascript"
+      src="../../js/bootstrap/bootstrap-timepicker.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../js/bootstrap/bootstrap-colorpicker.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../js/bootstrap/bootstrap-switch.min.js"
+    ></script>
     <script src="../../js/background/event/record/background_record_details.js"></script>
     <script src="record_details.js"></script>
-</head>
-<body>
+  </head>
+  <body>
     <style type="text/css">
-        .dropdown-menu {
-            z-index: 10000;
-        }
+      .dropdown-menu {
+        z-index: 10000;
+      }
 
-        .group-list-tag {
-            height: 40px;
-            float: left;
-            margin-top: -9px;
-            margin-right: 5px;
-            margin-left: -15px;
-            width: 5px;
-            background-color: #f0ad4e;
-        }
+      .group-list-tag {
+        height: 40px;
+        float: left;
+        margin-top: -9px;
+        margin-right: 5px;
+        margin-left: -15px;
+        width: 5px;
+        background-color: #f0ad4e;
+      }
 
-            .group-list-tag.associated {
-                background-color: #60c560;
-            }
+      .group-list-tag.associated {
+        background-color: #60c560;
+      }
 
-            .group-list-tag.unassociated {
-                background-color: #c09853;
-            }
+      .group-list-tag.unassociated {
+        background-color: #c09853;
+      }
 
-        .dropdown-toggle.simlie {
-            margin-left: -9px !important;
-            height: 29px;
-            padding-top: 3px;
-        }
+      .dropdown-toggle.simlie {
+        margin-left: -9px !important;
+        height: 29px;
+        padding-top: 3px;
+      }
 
-        .text_area {
-            border: 1px solid #ddd;
-            height: 26.1%;
-            width: 100%;
-        }
+      .text_area {
+        border: 1px solid #ddd;
+        height: 26.1%;
+        width: 100%;
+      }
 
-        .font-set-div {
-            border-top: 1px solid #ddd;
-            border-left: 1px solid #ddd;
-            border-right: 1px solid silver;
-            border-bottom: 1px solid silver;
-            width: 100%;
-            padding: 5px 0 5px 10px;
-        }
+      .font-set-div {
+        border-top: 1px solid #ddd;
+        border-left: 1px solid #ddd;
+        border-right: 1px solid silver;
+        border-bottom: 1px solid silver;
+        width: 100%;
+        padding: 5px 0 5px 10px;
+      }
 
-        .w_width {
-            width: 57px;
-            text-align: left;
-        }
+      .w_width {
+        width: 57px;
+        text-align: left;
+      }
 
-        .font-set-table {
-            border-collapse: collapse;
-            border-bottom: 1px solid silver;
-        }
+      .font-set-table {
+        border-collapse: collapse;
+        border-bottom: 1px solid silver;
+      }
 
-        .font-set-table-td {
-            border: 0;
-            padding: 2px 3px 3px 3px;
-            font-size: 12px;
-        }
+      .font-set-table-td {
+        border: 0;
+        padding: 2px 3px 3px 3px;
+        font-size: 12px;
+      }
 
-        .colorpicker-saturation {
-            width: 100px;
-            height: 100px;
-            background-image: url(../../img/saturation.png);
-            cursor: crosshair;
-            float: left;
-        }
+      .colorpicker-saturation {
+        width: 100px;
+        height: 100px;
+        background-image: url(../../img/saturation.png);
+        cursor: crosshair;
+        float: left;
+      }
 
-        .colorpicker-hue {
-            background-image: url(../../img/hue.png);
-        }
+      .colorpicker-hue {
+        background-image: url(../../img/hue.png);
+      }
 
-        .colorpicker-color {
-            height: 10px;
-            margin-top: 5px;
-            clear: both;
-            background-image: url(../../img/alpha.png);
-            background-position: 0 100%;
-        }
+      .colorpicker-color {
+        height: 10px;
+        margin-top: 5px;
+        clear: both;
+        background-image: url(../../img/alpha.png);
+        background-position: 0 100%;
+      }
 
-        .colorpicker-alpha {
-            background-image: url(../../img/alpha.png);
-            display: none;
-        }
+      .colorpicker-alpha {
+        background-image: url(../../img/alpha.png);
+        display: none;
+      }
 
-        .page-main.reduce {
-            height: 800px;
-            width: 702px;
-        }
+      .page-main.reduce {
+        height: 800px;
+        width: 702px;
+      }
 
-        .record_details_title_ico {
-            color: #007aff;
-            margin-right: 10px;
-        }
+      .record_details_title_ico {
+        color: #007aff;
+        margin-right: 10px;
+      }
 
-        .select-color-control {
-            border-top-right-radius: 0px;
-            border-bottom-right-radius: 0px;
-        }
+      .select-color-control {
+        border-top-right-radius: 0px;
+        border-bottom-right-radius: 0px;
+      }
 
-        .select-color-div {
-            display: block;
-            height: 34px;
-            width: 34px;
-            padding: 8px;
-        }
+      .select-color-div {
+        display: block;
+        height: 34px;
+        width: 34px;
+        padding: 8px;
+      }
 
-            .select-color-div div {
-                width: 17px;
-                height: 17px;
-            }
+      .select-color-div div {
+        width: 17px;
+        height: 17px;
+      }
     </style>
     <div class="page-main reduce row">
-        <div class="col-md-12">
-            <div class="fluid-height clearfix list-width padded background-min-height">
-                <div class="heading list-heading-maxdiv">
-                    <div class="form-group list-heading-div">
-                        &ensp;&ensp;<i class="title mouse_default howell-icon-vehicle-plate-device vehicle_device_list_title_ico"></i>
-                        车牌识别记录详细信息
-                    </div>
-                    <div class="row">
-                        <div class="tab-content padded col-md-12" style="height:732px;overflow:auto">
-                            <div style="border-top:0px;margin-top:-3px;">
-                                <div class="scrollable" style="height:731px;overflow-y:auto;margin-top:4px;overflow-x:hidden;">
-                                    <form action="#" class="form-horizontal">
-                                        <div class="form-group" style="margin-top:20px">
-                                            <label class="control-label col-md-2">
-                                                设备编号
-                                            </label>
-                                            <div class="col-md-9">
-                                                <input class="form-control" type="text" id="txtDeviceId" readonly="readonly" />
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label col-md-2">
-                                                信息创建时间
-                                            </label>
-                                            <div class="col-md-9">
-                                                <input class="form-control" type="text" id="txtCreationTime" readonly="readonly" />
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label col-md-2">
-                                                接入设备编号
-                                            </label>
-                                            <div class="col-md-9">
-                                                <input class="form-control" type="text" id="txtAccessId" readonly="readonly" />
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label col-md-2">
-                                                车辆名称
-                                            </label>
-                                            <div class="col-md-9">
-                                                <input class="form-control" type="text" id="txtName" readonly="readonly" />
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label col-md-2">
-                                                车牌
-                                            </label>
-                                            <div class="col-md-9">
-                                                <input class="form-control" type="text" id="txtPlate" readonly="readonly" />
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label col-md-2">
-                                                车牌位置
-                                            </label>
-                                            <div class="col-md-9">
-                                                <input class="form-control" type="text" id="txtPlatePosition" readonly="readonly" />
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label col-md-2">
-                                                车辆颜色
-                                            </label>
-                                            <div class="col-md-4">
-                                                <div class="pull-left">
-                                                    <input class="form-control select-color-control" readonly="readonly" id="txtVehicleColor" style="width: 109px;" type="text">
-                                                </div>
-                                                <div class="input-group-addon pull-left select-color-div">
-                                                    <div id="divVehicleColor" style="background-color: gray;">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <label class="control-label col-md-2">
-                                                车牌颜色
-                                            </label>
-                                            <div class="col-md-4">
-                                                <div class="pull-left">
-                                                    <input class="form-control select-color-control" readonly="readonly" id="txtPlateColor" style="width: 109px;" type="text">
-                                                </div>
-                                                <div class="input-group-addon pull-left select-color-div">
-                                                    <div id="divPlateColor" style="background-color: black;">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label col-md-2">
-                                                车辆品牌
-                                            </label>
-                                            <div class="col-md-9">
-                                                <input class="form-control" type="text" id="txtBrand" readonly="readonly" />
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label col-md-2">
-                                                车辆速度
-                                            </label>
-                                            <div class="col-md-9">
-                                                <input class="form-control" type="text" id="txtSpeed" readonly="readonly" />
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label col-md-2">
-                                                车道编号
-                                            </label>
-                                            <div class="col-md-9">
-                                                <input class="form-control" type="text" id="txtLaneId" readonly="readonly" />
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label col-md-2">
-                                                车辆位置
-                                            </label>
-                                            <div class="col-md-9">
-                                                <input class="form-control" type="text" id="txtLatitudeLongitude" readonly="readonly" />
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label col-md-2">
-                                                描述信息
-                                            </label>
-                                            <div class="col-md-9">
-                                                <textarea class="form-control" id="txtDescription" rows="3" readonly="readonly"></textarea>
-                                            </div>
-                                        </div>
-                                        <div class="form-group" style="margin-top:30px">
-                                            <label class="control-label col-md-7">
-                                            </label>
-                                            <div class="col-md-2">
-                                            </div>
-                                            <div class="col-md-2">
-                                                <a class="btn btn-primary" onclick="return AlertWindow.Close();">
-                                                    关&ensp;&ensp;闭
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+      <div class="col-md-12">
+        <div
+          class="fluid-height clearfix list-width padded background-min-height"
+        >
+          <div class="heading list-heading-maxdiv">
+            <div class="form-group list-heading-div">
+              &ensp;&ensp;<i
+                class="title mouse_default howell-icon-vehicle-plate-device vehicle_device_list_title_ico"
+              ></i>
+              车牌识别记录详细信息
             </div>
+            <div class="row">
+              <div
+                class="tab-content padded col-md-12"
+                style="height: 732px; overflow: auto"
+              >
+                <div style="border-top: 0px; margin-top: -3px">
+                  <div
+                    class="scrollable"
+                    style="
+                      height: 731px;
+                      overflow-y: auto;
+                      margin-top: 4px;
+                      overflow-x: hidden;
+                    "
+                  >
+                    <form action="#" class="form-horizontal">
+                      <div class="form-group" style="margin-top: 20px">
+                        <label class="control-label col-md-2"> 设备编号 </label>
+                        <div class="col-md-9">
+                          <input
+                            class="form-control"
+                            type="text"
+                            id="txtDeviceId"
+                            readonly="readonly"
+                          />
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-2">
+                          信息创建时间
+                        </label>
+                        <div class="col-md-9">
+                          <input
+                            class="form-control"
+                            type="text"
+                            id="txtCreationTime"
+                            readonly="readonly"
+                          />
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-2">
+                          接入设备编号
+                        </label>
+                        <div class="col-md-9">
+                          <input
+                            class="form-control"
+                            type="text"
+                            id="txtAccessId"
+                            readonly="readonly"
+                          />
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-2"> 车辆名称 </label>
+                        <div class="col-md-9">
+                          <input
+                            class="form-control"
+                            type="text"
+                            id="txtName"
+                            readonly="readonly"
+                          />
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-2"> 车牌 </label>
+                        <div class="col-md-9">
+                          <input
+                            class="form-control"
+                            type="text"
+                            id="txtPlate"
+                            readonly="readonly"
+                          />
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-2"> 车牌位置 </label>
+                        <div class="col-md-9">
+                          <input
+                            class="form-control"
+                            type="text"
+                            id="txtPlatePosition"
+                            readonly="readonly"
+                          />
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-2"> 车辆颜色 </label>
+                        <div class="col-md-4">
+                          <div class="pull-left">
+                            <input
+                              class="form-control select-color-control"
+                              readonly="readonly"
+                              id="txtVehicleColor"
+                              style="width: 109px"
+                              type="text"
+                            />
+                          </div>
+                          <div
+                            class="input-group-addon pull-left select-color-div"
+                          >
+                            <div
+                              id="divVehicleColor"
+                              style="background-color: gray"
+                            ></div>
+                          </div>
+                        </div>
+                        <label class="control-label col-md-2"> 车牌颜色 </label>
+                        <div class="col-md-4">
+                          <div class="pull-left">
+                            <input
+                              class="form-control select-color-control"
+                              readonly="readonly"
+                              id="txtPlateColor"
+                              style="width: 109px"
+                              type="text"
+                            />
+                          </div>
+                          <div
+                            class="input-group-addon pull-left select-color-div"
+                          >
+                            <div
+                              id="divPlateColor"
+                              style="background-color: black"
+                            ></div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-2"> 车辆品牌 </label>
+                        <div class="col-md-9">
+                          <input
+                            class="form-control"
+                            type="text"
+                            id="txtBrand"
+                            readonly="readonly"
+                          />
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-2"> 车辆速度 </label>
+                        <div class="col-md-9">
+                          <input
+                            class="form-control"
+                            type="text"
+                            id="txtSpeed"
+                            readonly="readonly"
+                          />
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-2"> 车道编号 </label>
+                        <div class="col-md-9">
+                          <input
+                            class="form-control"
+                            type="text"
+                            id="txtLaneId"
+                            readonly="readonly"
+                          />
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-2"> 车辆位置 </label>
+                        <div class="col-md-9">
+                          <input
+                            class="form-control"
+                            type="text"
+                            id="txtLatitudeLongitude"
+                            readonly="readonly"
+                          />
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-2"> 描述信息 </label>
+                        <div class="col-md-9">
+                          <textarea
+                            class="form-control"
+                            id="txtDescription"
+                            rows="3"
+                            readonly="readonly"
+                          ></textarea>
+                        </div>
+                      </div>
+                      <div class="form-group" style="margin-top: 30px">
+                        <label class="control-label col-md-7"> </label>
+                        <div class="col-md-2"></div>
+                        <div class="col-md-2">
+                          <a
+                            class="btn btn-primary"
+                            onclick="return AlertWindow.Close();"
+                          >
+                            关&ensp;&ensp;闭
+                          </a>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
     <script type="text/javascript">
-        vehicle_device_record_details_load();
+      vehicle_device_record_details_load()
     </script>
-</body>
+  </body>
 </html>
-
-
