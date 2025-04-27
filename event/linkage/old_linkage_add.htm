@@ -1,0 +1,1501 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>创建联动</title>
+    <link rel="stylesheet" type="text/css" href="../../css/howell.css" />
+    <link href="../../css/bootstrap/bootstrap-switch.css" rel="stylesheet" />
+    <script type="text/javascript" src="../../js/language/chinese.js"></script>
+    <script type="text/javascript" src="../../js/jquery/jquery-1.10.2.min.js"></script>
+    <script src="../../js/imported.js"></script>
+    <script src="../../js/imported.js"></script>
+    <script type="text/javascript" src="../../js/jquery/jquery-ui.js"></script>
+    <script type="text/javascript" src="../../js/bootstrap/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../js/jquery/jquery.confirm.js"></script>
+
+    <script type="text/javascript" src="../../js/howell.js/howell.js"></script>
+    <script type="text/javascript" src="../../js/client/struct.js"></script>
+    <script type="text/javascript" src="../../js/client/security.js"></script>
+    <script type="text/javascript" src="../../js/client/security.js"></script>
+    <script type="text/javascript" src="../../js/client/enum.js"></script>
+    <script type="text/javascript" src="../../js/client/client.js"></script>
+    <script type="text/javascript" src="../../js/howell.js/howell.control.js"></script>
+    <script type="text/javascript" src="../../js/modernizr.custom.js"></script>
+    <script type="text/javascript" src="../../js/bootstrap/bootstrap-switch.min.js"></script>
+    <script type="text/javascript" src="../../js/background/linkage/background_linkages.js"></script>
+    <script src="../../js/background/event/background_linkages.js"></script>
+    <script type="text/javascript" src="../linkages.js"></script>
+</head>
+<body>
+    <style type="text/css">
+        .group-list-tag {
+            height: 40px;
+            float: left;
+            margin-top: -9px;
+            margin-right: 5px;
+            margin-left: -15px;
+            width: 5px;
+            background-color: #f0ad4e;
+        }
+
+            .group-list-tag.associated {
+                background-color: #60c560;
+            }
+
+            .group-list-tag.unassociated {
+                background-color: #c09853;
+            }
+
+        .dropdown-toggle.simlie{
+            margin-left: -9px !important;
+            height: 29px;
+            padding-top: 3px;
+        }
+        .checkbox_gray::before{
+            background-color:gray !important;
+        }
+        .text_area{
+            border:1px solid #ddd;
+            height:100%;
+            width:100%;
+        }
+    </style>
+
+    <div class="page-main row">
+        <div class="col-md-12">
+            <div class="fluid-height clearfix list-width padded background-min-height">
+                <div class="heading list-heading-maxdiv" style="position:relative">
+                    <div style="height:670px;width:450px;overflow:hidden;position:absolute;z-index:1;top:48px;display:none" id="IO_Input_Div">
+                        <div class="row">
+                            <div style="font-size:18px;margin-left:10px;float:left;margin-top:1px" id="childListName">
+                                请选择关联通道
+                            </div>
+                            <div class="pull-left" style="margin-left:10px;margin-top:18px;color:#555;font-size:15px;clear:both;">
+                                <label onclick="slideUpChannelList();" class="mouse_pointer" style="color:#007aff">设备列表</label>  >>  <label id="nvaName">通道</label>
+                            </div>
+                            <div class="btn-group pull-right div-xsgroupdown" style="margin-top:10px;margin-right:20px !important">
+                                <div class="btn btn-xs btn-primary btn-xsgroupdown dropdown-toggle simlie" data-toggle="dropdown" style="margin-right:10px">
+                                    选&ensp;择&ensp;<span class="caret"></span>
+                                </div>
+                                <ul class="dropdown-menu xsgroupdown-menu-ul" style="margin-right:10px">
+                                    <li class="mouse_pointer">
+                                        <a class="xsgroupdown-menu-ul-li-a" onclick="GroupList.Select.All(Add_Info.ControlIdPrefix.channel, Channel_SelectAll);">
+                                            全选
+                                        </a>
+                                    </li>
+                                    <li class="mouse_pointer">
+                                        <a class="xsgroupdown-menu-ul-li-a" onclick="GroupList.Select.Inverse(Add_Info.ControlIdPrefix.channel);">
+                                            反选
+                                        </a>
+                                    </li>
+                                    <li class="mouse_pointer">
+                                        <a class="xsgroupdown-menu-ul-li-a" onclick="GroupList.Select.Cancel(Add_Info.ControlIdPrefix.channel, Channel_SelectCancel);">
+                                            取消
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div id="dListChannel" class="scrollable" style="height:587px;width:430px;overflow-y:auto;margin-top:4px;background-color:white">
+
+                        </div>
+                    </div>
+                    <div style="height:670px;width:450px;overflow:hidden;position:absolute;z-index:1;top:48px;display:none;left:620px" id="Video_Input_Div">
+                        <div class="row">
+                            <div style="font-size:18px;clear:both;margin-left:22px;float:left;margin-top:1px">
+                                已配置输入通道列表
+                            </div>
+                            <div class="btn-group pull-right div-xsgroupdown" style="margin-top:37px;">
+                                <div class="btn btn-xs btn-primary btn-xsgroupdown dropdown-toggle simlie" data-toggle="dropdown" style="margin-right:5px">
+                                    选&ensp;择&ensp;<span class="caret"></span>
+                                </div>
+                                <ul class="dropdown-menu xsgroupdown-menu-ul" style="margin-right:5px">
+                                    <li class="mouse_pointer">
+                                        <a class="xsgroupdown-menu-ul-li-a" onclick="GroupList.Select.All(Add_Html.Tab, Tab_SelectAll);">
+                                            全选
+                                        </a>
+                                    </li>
+                                    <li class="mouse_pointer">
+                                        <a class="xsgroupdown-menu-ul-li-a" onclick="GroupList.Select.Inverse(Add_Html.Tab);">
+                                            反选
+                                        </a>
+                                    </li>
+                                    <li class="mouse_pointer">
+                                        <a class="xsgroupdown-menu-ul-li-a" onclick="GroupList.Select.Cancel(Add_Html.Tab, Tab_SelectCancel);">
+                                            取消
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!--<a class="pull-right btn btn-primary div-xsgroup dropdown-toggle simlie" style="margin-top:37px;margin-right:20px" onclick="btnToAddLinkageMode_Onclick();">配置联动</a>-->
+                        </div>
+                        <div class="tab-content" style="height:588px;overflow:auto;margin-left:15px;width:430px" id="my-tab-content">
+                            <div class="heading tabs" style="height:41px;background-color:#e0e0e0">
+                                <ul class="nav nav-tabs" id="tabs" data-tabs="tabs" style="margin-top:-2px">
+                                    <li id="tab_btn_VideoPreviewIdentifier" class="active">
+                                        <a href="#tab_VideoPreviewIdentifier" data-toggle="tab" onclick="tab_select_OnChange('VideoPreviewIdentifier')">预览</a>
+                                    </li>
+                                    <li id="tab_btn_VideoPlaybackIdentifier">
+                                        <a href="#tab_VideoPlaybackIdentifier" data-toggle="tab" onclick="tab_select_OnChange('VideoPlaybackIdentifier')">回放</a>
+                                    </li>
+                                    <li id="tab_btn_VideoSnapIdentifier">
+                                        <a href="#tab_VideoSnapIdentifier" data-toggle="tab" onclick="tab_select_OnChange('VideoSnapIdentifier')">抓图</a>
+                                    </li>
+                                    <li id="tab_btn_TextIdentifier">
+                                        <a href="#tab_TextIdentifier" data-toggle="tab" onclick="tab_select_OnChange(null)">文本</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="tab-pane active" id="tab_VideoPreviewIdentifier" style="border-top:0px;background-color:white">
+                                <div class="scrollable" style="height:545px;overflow-y:auto;margin-top:4px">
+                                    <div class="list-group" id="preview_">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tab_VideoPlaybackIdentifier" style="border-top:0px;background-color:white">
+                                <div class="scrollable" style="height:545px;overflow-y:auto;margin-top:4px">
+                                    <div class="list-group" id="playback_">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tab_VideoSnapIdentifier" style="border-top:0px;background-color:white">
+                                <div class="scrollable" style="height:545px;overflow-y:auto;margin-top:4px">
+                                    <div class="list-group" id="snap_">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tab_TextIdentifier" style="border-top:0px;background-color:white">
+                                <div class="scrollable" style="height:545px;overflow-y:auto;margin-top:4px">
+                                    <textarea class="text_area" id="text_area"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group list-heading-div">
+                        &ensp;&ensp;<i class="icon_linkage_list"></i>
+                        创建联动
+                    </div>
+                    <div style="height:80px">
+                        <div class="col-md-5">
+                            <div style="clear:both;font-size:18px;margin-left:-10px" id="deviceListName">
+                                请选择关联设备
+                            </div>
+                            <div class="pull-left" style="margin-top:10px;margin-left:-10px" id="chkEventState">
+                                <label class="checkbox-inline checkbox_control">
+                                    <input type="checkbox" id="chkActive" value="Active" checked="checked" onclick="chkActive_OnClick();" /><span id="chkSpan"></span>
+                                </label>
+                                <label class="checkbox_info" style="margin-top:8px;">
+                                    激活
+                                </label>
+                            </div>
+                            <div class="btn-group pull-right div-xsgroupdown" style="margin-top:10px;margin-right:2px !important" id="deviceOperation">
+                                <div class="btn btn-xs btn-primary btn-xsgroupdown dropdown-toggle simlie" data-toggle="dropdown">
+                                    选&ensp;择&ensp;<span class="caret"></span>
+                                </div>
+                                <ul class="dropdown-menu xsgroupdown-menu-ul">
+                                    <li class="mouse_pointer">
+                                        <a class="xsgroupdown-menu-ul-li-a" onclick="GroupList.Select.All(Add_Info.ControlIdPrefix.device, Device_SelectAll);">
+                                            全选
+                                        </a>
+                                    </li>
+                                    <li class="mouse_pointer">
+                                        <a class="xsgroupdown-menu-ul-li-a" onclick="GroupList.Select.Cancel(Add_Info.ControlIdPrefix.device, Device_SelectCancel);">
+                                            取消
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-2"></div>
+                        <div class="col-md-5">
+                            <div style="clear:both;font-size:18px;margin-left:-10px" id="linkageListName">
+                                待创建联动列表
+                            </div>
+                            <div class="pull-left" style="margin-top:10px;margin-left:-10px">
+                                <!--<select class="form-control" style="max-width:200px;" id="ddlAddEventType" onchange="tab_select_OnChange(this.value, Add_Html.StateKey)"></select>-->
+                            </div>
+                            <div class="btn-group pull-right div-xsgroupdown" style="margin-top:10px;margin-right:0px!important" id="linkageOperation">
+                                <div class=" btn btn-xs btn-primary btn-xsgroupdown dropdown-toggle simlie" data-toggle="dropdown">
+                                    选&ensp;择&ensp;<span class="caret"></span>
+                                </div>
+                                <ul class="dropdown-menu xsgroupdown-menu-ul">
+                                    <li class="mouse_pointer">
+                                        <a class="xsgroupdown-menu-ul-li-a" onclick="GroupList.Select.All(Add_Info.ControlIdPrefix.linkage, Linkage_SelectAll);">
+                                            全选
+                                        </a>
+                                    </li>
+                                    <li class="mouse_pointer">
+                                        <a class="xsgroupdown-menu-ul-li-a" onclick="GroupList.Select.Inverse(Add_Info.ControlIdPrefix.linkage);">
+                                            反选
+                                        </a>
+                                    </li>
+                                    <li class="mouse_pointer">
+                                        <a class="xsgroupdown-menu-ul-li-a" onclick="GroupList.Select.Cancel(Add_Info.ControlIdPrefix.linkage, Linkage_SelectCancel);">
+                                            取消
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!--<a class="pull-right btn btn-primary div-xsgroup dropdown-toggle simlie" style="margin-top:10px;margin-right:20px" id="btnToAddInputMode" onclick="btnToAddInputMode_Onclick();">配置关联</a>-->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div id="dListDevice" class="list_linkage scrollable">
+
+                        </div>
+                        <div class="col-md-2">
+                            <div style="margin:225px auto 0px 20px;text-align:center;" onclick="addChannel_OnClick()">
+                                <a class="btn btn-primary div-xsgroup icon-long-arrow-right"></a>
+                            </div>
+                            <div style="margin:0px auto 0px 20px;text-align:center;" onclick="removeChannel_OnClick()">
+                                <a class="btn btn-primary div-xsgroup icon-long-arrow-left"></a>
+                            </div>
+                        </div>
+                        <div id="dListLinkage" class="list_linkage scrollable">
+                            <div class="list-group" id="linkage_">
+
+                            </div>
+                        </div>
+                        <a class="btn btn-primary div-xsgroup pull-right btn_linkage" style="margin-right:20px;margin-top:20px" onclick="AlertWindow.Close()">关&ensp;&ensp;闭</a>
+                        <a class="btn btn-default div-xsgroup pull-right btn_linkage" style="margin-right:20px;margin-top:20px" id="btnNext" onclick="btnToAddInputMode_Onclick()">下一步</a>
+                        <a class="btn btn-default div-xsgroup pull-right btn_linkage" style="margin-right:20px;margin-top:20px;display:none" id="btnSaveFinish" onclick="btnSaveFinish_Onclick()">完&ensp;&ensp;成</a>
+                        <a class="btn btn-primary div-xsgroup pull-right btn_linkage" style="margin-right:20px;margin-top:20px;display:none" id="btnLast" onclick="btnToAddLinkageMode_Onclick()">上一步</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    var Add_Info = {
+        ChildListName: {
+            VideoInput:{
+                list:"视频输入通道列表",
+                title: "请选择联动动作"
+            },       
+            IO: {
+                list: "IO输入通道列表",
+                title: "请选择关联IO输入通道"
+            },
+            VMD: {
+                list: "IO输入通道列表",
+                title: "请选择关联IO输入通道"
+            },
+            Videoloss: {
+                list: "IO输入通道列表",
+                title: "请选择关联IO输入通道"
+            },
+            IRCut: {
+                list: "IO输入通道列表",
+                title: "请选择关联IO输入通道"
+            },
+            DayNight: {
+                list: "IO输入通道列表",
+                title: "请选择关联IO输入通道"
+            },
+            RecordState: {
+                list: "IO输入通道列表",
+                title: "请选择关联IO输入通道"
+            },
+            StorageMediumFailure: {
+                list: "存储媒介列表",
+                title: "请选择关联存储媒介"
+            },
+            RAIDFailure: {
+                list: "存储媒介列表",
+                title: "请选择关联存储媒介"
+            },
+            RecordingFailure: {
+                list: "IO输入通道列表",
+                title: "请选择关联IO输入通道"
+            },
+            BadVideo: {
+                list: "IO输入通道列表",
+                title: "请选择关联IO输入通道"
+            },
+            MaximumConnections: {
+                list: "IO输入通道列表",
+                title: "请选择关联IO输入通道"
+            },
+            NetworkBitrate: {
+                list: "网络接口列表",
+                title: "请选择关联网络接口"
+            },
+            VideoBitrate: {
+                list: "IO输入通道列表",
+                title: "请选择关联IO输入通道"
+            },
+            Squint: {
+                list: "IO输入通道列表",
+                title: "请选择关联IO输入通道"
+            },
+            VideoTurned: {
+                list: "IO输入通道列表",
+                title: "请选择关联IO输入通道"
+            },
+            IntrusionArea: {
+                list: "IO输入通道列表",
+                title: "请选择关联IO输入通道"
+            },
+            IntrusionLine: {
+                list: "IO输入通道列表",
+                title: "请选择关联IO输入通道"
+            },
+            Loitering: {
+                list: "IO输入通道列表",
+                title: "请选择关联IO输入通道"
+            },
+            StationaryInserted: {
+                list: "IO输入通道列表",
+                title: "请选择关联IO输入通道"
+            },
+            StationaryRemoved: {
+                list: "IO输入通道列表",
+                title: "请选择关联IO输入通道"
+            },
+            ReversedIntrustion: {
+                list: "IO输入通道列表",
+                title: "请选择关联IO输入通道"
+            },
+        },
+        ControlIdPrefix: {
+            device: "device_",
+            channelCount: "channel_count_",
+            channel: "channel_",
+            linkage: "linkage_",
+            VideoPreviewIdentifier: {
+                name: "preview_",
+                object:function(){
+                    return new VideoPreviewIdentifier();
+                }
+            },
+            VideoPlaybackIdentifier: {
+                name: "playback_",
+                object:function(){
+                    return new VideoPlaybackIdentifier();
+                }
+            },
+            VideoSnapIdentifier: {
+                name: "snap_",
+                object: function () {
+                    return new VideoSnapIdentifier();
+                }
+            },
+            getId: function (id, prefix) {
+                return id.substr(prefix.length);
+            }
+        },
+        TabKey: {
+            preview_: "VideoPreviewIdentifier",
+            playback_: "VideoPlaybackIdentifier",
+            snap_: "VideoSnapIdentifier",
+        },
+        Type: {
+            get: function () {
+                var uri = new Uri(Trigger.href);
+                if (uri.Query)
+                    return uri.Querys.type;
+                return null;
+            }
+        },
+        Channel: {
+            getName: function (channel, type) {
+                var name = "";
+                switch (type) {
+                    case "VideoInputChannel":
+                    case "IOInputChannel":
+                        name = channel.Name;
+                        break;
+                    case "StorageMedium":
+                        name = channel.StoragePort;
+                        break;
+                    case "NetworkInterface":
+                        name = channel.InterfacePort;
+                        break;
+                }
+                return name;
+            },
+        },
+        TypeKey: {
+            VideoInput: {
+                name: "VideoInputChannel",
+                value:["Video","Input"],
+            },
+            IO: {
+                name: "IOInputChannel",
+                value: ["IO", "Input"],
+            },
+            VMD: {
+                name: "IOInputChannel",
+                value: ["IO", "Input"],
+            },
+            Videoloss: {
+                name: "IOInputChannel",
+                value: ["IO", "Input"],
+            },
+            IRCut: {
+                name: "IOInputChannel",
+                value: ["IO", "Input"],//红外滤光片切换模式ON/OFF 不确定
+            },
+            DayNight: {
+                name: "IOInputChannel",
+                value: ["IO", "Input"],//彩色转黑白模式ON/OFF 不确定
+            },
+            RecordState:{
+                name: "IOInputChannel",
+                value: ["IO", "Input"],//录像状态 ON/OFF 不确定
+            },
+            StorageMediumFailure: {
+                name: "StorageMedium",
+                value: ["Storage"],
+            },
+            RAIDFailure: {
+                name: "StorageMedium",
+                value: ["Storage"],
+            },
+            RecordingFailure: {
+                name: "IOInputChannel",
+                value: ["IO", "Input"],
+            },
+            BadVideo: {
+                name: "IOInputChannel",
+                value: ["IO", "Input"],
+            },
+            POS: null,
+            FanFailure: null,
+            CpuUsage: null,
+            MemoryUsage: null,
+            Temperature: null,
+            Pressure: null,
+            Voltage: null,
+            MaximumConnections: {
+                name: "IOInputChannel",
+                value: ["IO", "Input"],
+            },
+            NetworkBitrate: {
+                name: "NetworkInterface",
+                value: ["Network"],
+            },
+            VideoBitrate: {
+                name: "IOInputChannel",
+                value: ["IO", "Input"],
+            },
+            Squint: {
+                name: "IOInputChannel",
+                value: ["IO", "Input"],//聚焦模糊  不确定
+            },
+            VideoTurned: {
+                name: "IOInputChannel",
+                value: ["IO", "Input"],// 视频转动  不确定
+            },
+            IntrusionArea: {
+                name: "IOInputChannel",
+                value: ["IO", "Input"],
+            },
+            IntrusionLine: {
+                name: "IOInputChannel",
+                value: ["IO", "Input"],
+            },
+            Loitering: {
+                name: "IOInputChannel",
+                value: ["IO", "Input"],
+            },
+            StationaryInserted: {
+                name: "IOInputChannel",
+                value: ["IO", "Input"],
+            },
+            StationaryRemoved: {
+                name: "IOInputChannel",
+                value: ["IO", "Input"],
+            },
+            ReversedIntrustion: {
+                name: "IOInputChannel",
+                value: ["IO", "Input"],
+            },
+        },
+        LinkageAction: ["VideoPreviewIdentifier", "VideoPlaybackIdentifier", "TextIdentifier", "AudioPlayerIdentifier", "VideoSnapIdentifier"]
+    }
+
+    var SelectedState = {
+        All: "selected",
+        Items: "items",
+        None: "",
+    }
+
+    Property.Add = {
+        Device: {
+            value: new Dictionary(),
+            load: function () {
+                var response = tryCatch(function () {
+                    return Client.Management().Device.List();
+                });
+                var deviceArray = new Array();
+                if (response && response.Device) {
+                    for (var i = 0; i < response.Device.length; i++) {
+                        var device = response.Device[i];
+                        device.VideoInputChannel = new Dictionary();
+                        if (Add_Info.TypeKey[Add_Html.Type] != null)
+                            device[Add_Info.TypeKey[Add_Html.Type].name] = new Dictionary();
+                        else {
+                            device[Add_Html.Type] = new Dictionary();
+                            var activeId = Info.Id.set(device.Id, Add_Html.Type, EventState.Active);
+                            var inactiveId = Info.Id.set(device.Id, Add_Html.Type, EventState.Inactive);
+                            device[Add_Html.Type][EventState.Active] = Property.Add.Linkage.value[activeId] ? true : false;
+                            device[Add_Html.Type][EventState.Inactive] = Property.Add.Linkage.value[inactiveId] ? true : false;
+                        }
+                        device.Selected = SelectedState.None;
+                        device.ChildSelectedCount = 0;
+                        if (this.value[device.Id]) {
+                            if (this.value[device.Id].VideoInputChannel)
+                                device.VideoInputChannel = this.value[device.Id].VideoInputChannel;
+                            if (Add_Info.TypeKey[Add_Html.Type] != null && this.value[device.Id][Add_Info.TypeKey[Add_Html.Type].name])
+                                device[Add_Info.TypeKey[Add_Html.Type].name] = this.value[device.Id][Add_Info.TypeKey[Add_Html.Type].name];
+                            if (this.value[device.Id][Add_Html.Type])
+                                device[Add_Html.Type] = this.value[device.Id][Add_Html.Type];
+                            device.Selected = this.value[device.Id].Selected;
+                            device.ChildSelectedCount = this.value[device.Id].ChildSelectedCount;
+                        }
+                        this.value[device.Id] = device;
+                        deviceArray.push(device);
+                    }
+                }
+                return deviceArray;
+            },
+            Channel: {
+                deviceId: null,
+                value: function (deviceId, key) {
+                    return Property.Add.Device.value[deviceId][key.name];
+                },
+                getChild: function (obj, key, offset) {
+                    if (!key)
+                        return obj;
+                    if (offset < key.length - 1)
+                        return this.getChild(obj[key[offset++]], key, offset);
+                    return obj[key[offset]];
+                },
+                getCount: function (deviceId, key) {
+                    var client = this.getChild(Client.Management().Device, key.value, 0);
+                    var list = client.List(deviceId, 1, 1);
+                    return list.Page.TotalRecordCount;
+                },
+                load: function (deviceId, key) {
+                    var client = this.getChild(Client.Management().Device, key.value, 0);
+                    var response = tryCatch(function () {
+                        return client.List(deviceId);
+                    });
+                    for (var i = 0; i < response[key.name].length; i++) {
+                        var item = response[key.name][i];
+                        item.Selected = false;
+                        if (Add_Html.IsVideoInput == false) {
+                            var activeId = Info.Id.set(item.Id, Add_Html.Type, EventState.Active);
+                            var inactiveId = Info.Id.set(item.Id, Add_Html.Type, EventState.Inactive);
+                            item[Add_Html.Type] = new Dictionary();
+                            item[Add_Html.Type][EventState.Active] = Property.Add.Linkage.value[activeId] ? true : false;
+                            item[Add_Html.Type][EventState.Inactive] = Property.Add.Linkage.value[inactiveId] ? true : false;
+                            if (Property.Add.Device.value[deviceId][key.name] && Property.Add.Device.value[deviceId][key.name][item.Id]) {
+                                item.Selected = Property.Add.Device.value[deviceId][key.name][item.Id].Selected;
+                                item[Add_Html.Type] = Property.Add.Device.value[deviceId][key.name][item.Id][Add_Html.Type]
+                            }
+                        }
+                        else {
+                            item.isCreate = new Dictionary();
+                            for (var k in Add_Info.TabKey) {
+                                item.isCreate[Add_Info.TabKey[k]] = false;
+                            }
+                            if (Property.Add.Device.value[deviceId][key.name] && Property.Add.Device.value[deviceId][key.name][item.Id]) {
+                                item.Selected = Property.Add.Device.value[deviceId][key.name][item.Id].Selected;
+                                item.isCreate = Property.Add.Device.value[deviceId][key.name][item.Id].isCreate;
+                            }
+                        }
+                        Property.Add.Device.value[deviceId][key.name][item.Id] = item;
+                    }
+                }
+            }
+        },
+        Linkage: {
+            value: new Dictionary(),
+            init: function () {
+                this.value = Property.LinkageList.value;
+                for (var key in Add_Info.LinkageAction) {
+                    this[key] = function () {
+                        var list = this.value.toArray();
+                        var result = new Array();
+                        for (var i = 0; i < list.length; i++) {
+                            if (list[i][key])
+                                result.push(list[i])
+                        }
+                        return result;
+                    }
+                }
+            },
+            create: function (linkage) {
+                var result = tryCatch(function () {
+                    return Client.Management().Event.Linkage.Create(linkage);
+                });
+                if (result == 0) {
+                    linkage.Name = Property.Name.get(linkage);
+                    Property.LinkageList.value[Info.Id.set(linkage.ComponentId, linkage.EventType, linkage.EventState)] = linkage;
+                }
+            },
+            remove: function (linkage) {
+                var result = tryCatch(function () {
+                    return Client.Management().Event.Linkage.Delete(linkage.ComponentId, linkage.EventType, linkage.EventState);
+                });
+                if (result == 0) {
+                    delete Property.LinkageList.value[Info.Id.set(linkage.ComponentId, linkage.EventType, linkage.EventState)];
+                }
+            }
+        }
+    }
+
+    var Add_Html = {
+        Init: function () {
+            Property.Add.Linkage.init();
+        },
+        Tab: Add_Info.ControlIdPrefix.VideoPreviewIdentifier.name,
+        Type: null,
+        StateKey: EventState.Active,
+        IsVideoInput: false,
+        GroupList: {
+            Device: {
+                crrateItem: function (device, count) {
+                    var item = new GroupListItem(Add_Info.ControlIdPrefix.device);
+                    item.id = device.Id;
+                    item.className = item.className + " mouse_pointer " + Property.Add.Device.value[device.Id].Selected;
+                    if (count)
+                        $(item.Content).append($("<div class='group-list-tag'></div>" + device.Name + "<span class='pull-right badge' id='" + Add_Info.ControlIdPrefix.channelCount + device.Id + "'>" + count + "</span>"));
+                    else
+                        $(item.Content).append($("<div class='group-list-tag'></div>" + "<lable>" + device.Name + "</lable>"));
+                    item.ondblclick = function () {
+                        Device_OnDblClick(item);
+                    };
+                    item.onclick = function () {
+                        Device_OnClick(item);
+                    };
+                    return item;
+                },
+                create: function (controlId, key) {
+                    var list = Property.Add.Device.load();
+                    var array = new GroupListItemArray();
+                    var linkages = Property.Add.Linkage.value.toArray();
+                    for (var i = 0; i < list.length; i++) {
+                        if (key != null && Add_Html.IsVideoInput == false) {
+                            var totalRecordCount = Property.Add.Device.Channel.getCount(list[i].Id, key);
+                            for (var j = 0; j < linkages.length; j++) {
+                                var deviceId = new Id(linkages[j].ComponentId).getDeviceId();
+                                if (deviceId != list[i].Id)
+                                    continue;
+                                if (linkages[j].EventType != Add_Html.Type)
+                                    continue;
+                                if (linkages[j].EventState != Add_Html.StateKey)
+                                    continue;
+                                --totalRecordCount;
+                            }
+                            if (totalRecordCount > 0) {
+                                var item = this.crrateItem(list[i], totalRecordCount);
+                                array.push(item);
+                            }
+                        }
+                        else {
+                            if (Add_Html.IsVideoInput == false) {
+                                if (list[i][Add_Html.Type] && list[i][Add_Html.Type][Add_Html.StateKey] == false) {
+                                    var item = this.crrateItem(list[i]);
+                                    array.push(item);
+                                }
+                            }
+                            else {
+                                var totalRecordCount = Property.Add.Device.Channel.getCount(list[i].Id, key);
+                                if (totalRecordCount > 0) {
+                                    if (Property.Add.Device.value[key.name]) {
+                                        var channels = Property.Add.Device.value[key.name].toArray();
+                                        for (var j = 0; j < channels.length; j++) {
+                                            if (channels[j].isCreate[Add_Info.TabKey[Add_Html.Tab]] == true)
+                                                --totalRecordCount;
+                                        }
+                                    }
+                                    var item = this.crrateItem(list[i], totalRecordCount);
+                                    array.push(item);
+                                }
+                            }
+                        }
+                    }
+                    getTag(controlId).appendChild(new GroupList(Add_Info.ControlIdPrefix.device, array));
+                },
+                clear: function () {
+                    var control = getTag(Add_Info.ControlIdPrefix.device);
+                    if (control)
+                        control.parentElement.innerText="";
+                },
+                select: function (sender, value) {
+                    var id = sender.id;
+                    var device = Property.Add.Device.value[id];
+                    if (value == true && device.Selected != SelectedState.None) {
+                        return
+                    }
+                    if (value == false && device.Selected == SelectedState.None) {
+                        return
+                    }
+                    switch (device.Selected) {
+                        case SelectedState.All:
+                        case SelectedState.Items:
+                            $(sender).removeClass(Property.Add.Device.value[id].Selected);
+                            Property.Add.Device.value[id].Selected = SelectedState.None;
+                            break;
+                        case SelectedState.None:
+                            if (Add_Info.TypeKey[Add_Html.Type] != null || Add_Html.IsVideoInput == true) {
+                                Add_Html.GroupList.Channel.read(sender.id, Add_Html.IsVideoInput == false ? Add_Html.Type : "VideoInput");
+                                var array = Property.Add.Device.value[id][Add_Html.IsVideoInput == false ? Add_Info.TypeKey[Add_Html.Type].name : Add_Info.TypeKey["VideoInput"].name].toArray();
+                                var count = 0;
+                                for (var i = 0; i < array.length; i++) {
+                                    if (Add_Html.IsVideoInput == false ? (array[i].Selected && array[i][Add_Html.Type][Add_Html.StateKey] == false) : (array[i].Selected && array[i].isCreate[Add_Info.TabKey[Add_Html.Tab]] == false)) {
+                                        ++count;
+                                    }
+                                }
+                                var state = count == getTag(Add_Info.ControlIdPrefix.channelCount + id).innerText || count == 0 ? SelectedState.All : SelectedState.Items;
+                                Property.Add.Device.value[id].Selected = state;
+                                $(sender).addClass(state);
+                                break;
+                            }
+                            Property.Add.Device.value[id].Selected = SelectedState.All;
+                            $(sender).addClass(SelectedState.All);
+                            break;
+                    }
+                },
+                change: function (deviceId, selectCount) {
+                    if (Property.Add.Device.value[deviceId].ChildSelectedCount == getTag(Add_Info.ControlIdPrefix.channelCount + deviceId).innerText)
+                        Property.Add.Device.value[deviceId].Selected = SelectedState.All;
+                    else if (Property.Add.Device.value[deviceId].ChildSelectedCount == 0)
+                        Property.Add.Device.value[deviceId].Selected = SelectedState.None;
+                    else
+                        Property.Add.Device.value[deviceId].Selected = SelectedState.Items;
+                    var item = getTag(deviceId);
+                    if (item.className.indexOf(SelectedState.All) >= 0) {
+                        $(item).removeClass(SelectedState.All);
+                    }
+                    if (item.className.indexOf(SelectedState.Items) >= 0) {
+                        $(item).removeClass(SelectedState.Items);
+                    }
+                    $(item).addClass(Property.Add.Device.value[deviceId].Selected);
+                },
+                changeState: function () {
+                    if (Add_Info.TypeKey[Add_Html.Type] != null) {
+                        devices = getTag(Add_Info.ControlIdPrefix.device, getTagType.Name);
+                        if (devices.length > 0) {
+                            for (var i = 0; i < devices.length; i++) {
+                                var device = Property.Add.Device.value[devices[i].id];
+                                if (device.Selected == SelectedState.None || device.Selected == SelectedState.All)
+                                    continue
+                                var inputs = Property.Add.Device.value[devices[i].id][Add_Info.TypeKey[Add_Html.Type].name].toArray();
+                                var count = 0;
+                                for (var j = 0; j < inputs.length; j++) {
+                                    if (inputs[j][Add_Html.Type][Add_Html.StateKey] == false && inputs[j].Selected == true) {
+                                        count++;
+                                    }
+                                }
+                                Property.Add.Device.value[devices[i].id].ChildSelectedCount = count;
+                                var channelCount = Number(getTag(Add_Info.ControlIdPrefix.channelCount + devices[i].id).innerText);
+                                var tag = getTag(devices[i].id);
+                                if (tag.className.indexOf(SelectedState.All) >= 0) {
+                                    $(tag).removeClass(SelectedState.All);
+                                }
+                                if (tag.className.indexOf(SelectedState.Items) >= 0) {
+                                    $(tag).removeClass(SelectedState.Items);
+                                }
+                                if (count == 0) {
+                                    Property.Add.Device.value[devices[i].id].Selected = SelectedState.None;
+                                    continue;
+                                }
+                                if (channelCount > count) {
+                                    Property.Add.Device.value[devices[i].id].Selected = SelectedState.Items;
+                                    $(tag).addClass(SelectedState.Items);
+                                    continue;
+                                }
+                                if (channelCount == count) {
+                                    Property.Add.Device.value[devices[i].id].Selected = SelectedState.All;
+                                    $(tag).addClass(SelectedState.All);
+                                    continue;
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            Channel: {
+                load: function (controlId, deviceId) {
+                    Property.Add.Device.Channel.deviceId = deviceId;
+                    var type = Add_Html.IsVideoInput == false ? Add_Html.Type : "VideoInput";
+                    this.read(deviceId, type);
+                    var list = Property.Add.Device.value[deviceId][Add_Info.TypeKey[type].name].toArray();
+                    var array = new GroupListItemArray();
+                    for (var i = 0; i < list.length; i++) {
+                        if (Add_Html.IsVideoInput == false && list[i][Add_Html.Type][Add_Html.StateKey] == true)
+                            continue;
+                        if (Add_Html.IsVideoInput == true && list[i].isCreate[Add_Info.TabKey[Add_Html.Tab]] == true)
+                            continue;
+                        var item = new GroupListItem(Add_Info.ControlIdPrefix.channel, Channel_OnClick);
+                        item.id = list[i].Id;
+                        if (Property.Add.Device.value[deviceId].Selected == SelectedState.None) {
+                            item.className = item.className + " mouse_pointer";
+                        }
+                        else if (Property.Add.Device.value[deviceId].Selected == SelectedState.All) {
+                            item.className = item.className + " mouse_pointer selected";
+                        }
+                        else {
+                            item.className = item.className + " mouse_pointer " + (Property.Add.Device.value[deviceId][Add_Info.TypeKey[type].name][list[i].Id].Selected ? "selected" : "");
+                        }
+                        item.Content.appendChild($("<div class='group-list-tag'></div>" + Add_Info.Channel.getName(list[i], Add_Info.TypeKey[type].name))[0]);
+                        array.push(item);
+                    }
+                    getTag(controlId).appendChild(new GroupList(Add_Info.ControlIdPrefix.channel, array));
+                },
+                read: function (deviceId, type) {
+                    if (!Property.Add.Device.value[deviceId][Add_Info.TypeKey[type].name] || Property.Add.Device.value[deviceId][Add_Info.TypeKey[type].name].toArray().length < 1)
+                        Property.Add.Device.Channel.load(deviceId, Add_Info.TypeKey[type]);
+                },
+                clear: function () {
+                    var control = getTag(Add_Info.ControlIdPrefix.channel);
+                    if (control)
+                        control.parentElement.innerText="";
+                },
+                select: function (id, value) {
+                    var deviceId = new Id(id).getDeviceId();
+                    var type = Add_Html.IsVideoInput == false ? Add_Info.TypeKey[Add_Html.Type].name : Add_Info.TypeKey["VideoInput"].name;
+                    if (Property.Add.Device.value[deviceId].ChildSelectedCount == 0 && Property.Add.Device.value[deviceId].Selected == SelectedState.All) {
+                        var arr = Property.Add.Device.value[deviceId][type].toArray();
+                        for (var i = 0; i < arr.length; i++) {
+                            if (Add_Html.IsVideoInput == false ? (arr[i][Add_Html.Type][Add_Html.StateKey] == false) : (arr[i].isCreate[Add_Info.TabKey[Add_Html.Tab]] == false)) {
+                                Property.Add.Device.value[deviceId][type][arr[i].Id].Selected = true;
+                                Add_Html.GroupList.Device.change(deviceId, ++Property.Add.Device.value[deviceId].ChildSelectedCount);
+                            }
+                        }
+                    }
+                    if (is.Boolean(value)) {
+                        if (value) {
+                            if (Property.Add.Device.value[deviceId][type][id].Selected == false) {
+                                Property.Add.Device.value[deviceId][type][id].Selected = true;
+                                Add_Html.GroupList.Device.change(deviceId, ++Property.Add.Device.value[deviceId].ChildSelectedCount);
+                            }
+                        }
+                        else {
+                            if (Property.Add.Device.value[deviceId][type][id].Selected == true) {
+                                Property.Add.Device.value[deviceId][type][id].Selected = false;
+                                Add_Html.GroupList.Device.change(deviceId, --Property.Add.Device.value[deviceId].ChildSelectedCount);
+                            }
+                        }
+                        return;
+                    }
+                    if (Property.Add.Device.value[deviceId][type][id].Selected) {
+                        Property.Add.Device.value[deviceId][type][id].Selected = false;
+                        Add_Html.GroupList.Device.change(deviceId, --Property.Add.Device.value[deviceId].ChildSelectedCount);
+                        return;
+                    }
+                    Property.Add.Device.value[deviceId][type][id].Selected = true;
+                    Add_Html.GroupList.Device.change(deviceId, ++Property.Add.Device.value[deviceId].ChildSelectedCount);
+                },
+            },
+            Linkage: {
+                Selected: new Dictionary(),
+                createItem: function (controlId, componentId, deviceId) {
+                    var item = new GroupListItem(controlId, Linkage_OnClick);
+                    item.id = controlId + Info.Id.set(componentId, Add_Html.Type, Add_Html.StateKey);
+                    item.className = item.className + " mouse_pointer " + (this.Selected[Info.Id.set(componentId, Add_Html.Type, Add_Html.StateKey)] ? "selected" : "");
+                    if (deviceId)
+                        item.Content.appendChild($("<div class='group-list-tag'></div>" + Property.Add.Device.value[deviceId].Name + "_" + Add_Info.Channel.getName(Property.Add.Device.value[deviceId][Add_Info.TypeKey[Add_Html.Type].name][componentId], Add_Info.TypeKey[Add_Html.Type].name))[0]);
+                    else
+                        item.Content.appendChild($("<div class='group-list-tag'></div>" + Property.Add.Device.value[componentId].Name)[0]);
+                    return item;
+                },
+                select: function (sender, value) {
+                    var id = Add_Info.ControlIdPrefix.getId(sender.id, Add_Info.ControlIdPrefix.linkage);
+                    if (is.Boolean(value)) {
+                        if (value) {
+                            this.Selected[id] = id;
+                        }
+                        else {
+                            delete this.Selected[id];
+                        }
+                        return;
+                    }
+                    if (this.Selected[id]) {
+                        delete this.Selected[id];
+                        return;
+                    }
+                    this.Selected[id] = id;
+                },
+                remove: function () {
+                    var list = this.Selected.toArray();
+                    if (list.length < 1)
+                        return
+                    if (Add_Info.TypeKey[Add_Html.Type] == null) {
+                        for (var i = 0; i < list.length; i++) {
+                            var info = Info.Id.get(list[i]);
+                            var id = info[Info.Id.key.ComponentId];
+                            var type = info[Info.Id.key.EventType];
+                            var state = info[Info.Id.key.EventState];
+                            Property.Add.Device.value[id][type][state] = false;
+                            var tag = getTag(Add_Info.ControlIdPrefix.linkage + list[i]);
+                            if (tag)
+                                tag.parentElement.removeChild(tag);
+                            if (this.Selected[list[i]])
+                                delete this.Selected[list[i]];
+                        }
+                        Add_Html.GroupList.Device.clear();
+                        Add_Html.GroupList.Device.create("dListDevice", Add_Info.TypeKey[Add_Html.Type]);
+                        return;
+                    }
+                    for (var i = 0; i < list.length; i++) {
+                        var info = Info.Id.get(list[i]);
+                        var id = info[Info.Id.key.ComponentId];
+                        var type = info[Info.Id.key.EventType];
+                        var state = info[Info.Id.key.EventState];
+                        var tag = getTag(Add_Info.ControlIdPrefix.linkage + list[i]);
+                        if (tag)
+                            tag.parentElement.removeChild(tag);
+                        if (this.Selected[list[i]])
+                            delete this.Selected[list[i]];
+                        if (type == Add_Html.Type && state == Add_Html.StateKey) {
+                            var deviceId = new Id(id).getDeviceId();
+                            if (Property.Add.Device.value[deviceId].Selected == SelectedState.All) {
+                                var channels = Property.Add.Device.value[deviceId][Add_Info.TypeKey[Add_Html.Type].name].toArray();
+                                for (var j = 0; j < channels.length; j++) {
+                                    if (channels[j][Add_Html.Type][Add_Html.StateKey] == false) {
+                                        Property.Add.Device.value[deviceId][Add_Info.TypeKey[Add_Html.Type].name][channels[j].Id].Selected = true;
+                                    }
+                                }
+                                Property.Add.Device.value[deviceId].Selected = SelectedState.Items;
+                                getTag(deviceId).className = "list-group-item mouse_pointer " + SelectedState.Items;
+                            }
+                            ++getTag(Add_Info.ControlIdPrefix.channelCount + deviceId).innerText;
+                            Property.Add.Device.value[deviceId][Add_Info.TypeKey[Add_Html.Type].name][id].Selected = false;
+                        }
+                        Property.Add.Device.value[deviceId][Add_Info.TypeKey[Add_Html.Type].name][id][type][state] = false;
+                    }
+                    var tags = getTag(Add_Info.ControlIdPrefix.channel, getTagType.Name);
+                    if (tags.length > 0) {
+                        Add_Html.GroupList.Channel.load("dListChannel", Property.Add.Device.Channel.deviceId);
+                    }
+                },
+                create: function () {
+                    var devices = Property.Add.Device.value.toArray();
+                    if (Add_Info.TypeKey[Add_Html.Type] == null) {
+                        for (var i = 0; i < devices.length; i++) {
+                            if (devices[i].Selected != SelectedState.All)
+                                continue
+                            if (Property.Add.Device.value[devices[i].Id][Add_Html.Type][Add_Html.StateKey] == false) {
+                                var item = this.createItem(Add_Info.ControlIdPrefix.linkage, devices[i].Id);
+                                var group = getTag(Add_Info.ControlIdPrefix.linkage);
+                                group.appendChild(item);
+                                Property.Add.Device.value[devices[i].Id].Selected = SelectedState.None;
+                                Property.Add.Device.value[devices[i].Id].ChildSelectedCount = 0;
+                                Property.Add.Device.value[devices[i].Id][Add_Html.Type][Add_Html.StateKey] = true;
+                                var tag = getTag(devices[i].Id);
+                                tag.parentElement.removeChild(tag);
+                            }
+                        }
+                        return;
+                    }
+                    for (var i = 0; i < devices.length; i++) {
+                        if (devices[i].Selected == SelectedState.None)
+                            continue
+                        var channels = Property.Add.Device.value[devices[i].Id][Add_Info.TypeKey[Add_Html.Type].name].toArray();
+                        for (var j = 0; j < channels.length; j++) {
+                            if (channels[j][Add_Html.Type][Add_Html.StateKey] == false && (channels[j].Selected == true || devices[i].Selected == SelectedState.All)) {
+                                var item = this.createItem(Add_Info.ControlIdPrefix.linkage, channels[j].Id, devices[i].Id);
+                                var group = getTag(Add_Info.ControlIdPrefix.linkage);
+                                group.appendChild(item);
+                                Property.Add.Device.value[devices[i].Id][Add_Info.TypeKey[Add_Html.Type].name][channels[j].Id][Add_Html.Type][Add_Html.StateKey] = true;
+                                Property.Add.Device.value[devices[i].Id][Add_Info.TypeKey[Add_Html.Type].name][channels[j].Id].Selected = false;
+                                --getTag(Add_Info.ControlIdPrefix.channelCount + devices[i].Id).innerText;
+                            }
+                        }
+                        Property.Add.Device.value[devices[i].Id].Selected = SelectedState.None;
+                        Property.Add.Device.value[devices[i].Id].ChildSelectedCount = 0;
+                        getTag(devices[i].Id).className = "list-group-item mouse_pointer";
+                    }
+                    var tags = getTag(Add_Info.ControlIdPrefix.channel, getTagType.Name);
+                    if (tags.length > 0) {
+                        Add_Html.GroupList.Channel.load("dListChannel", Property.Add.Device.Channel.deviceId);
+                    }
+                    tags = getTag(Add_Info.ControlIdPrefix.channel, getTagType.Name);
+                    if (tags.length < 1) {
+                        slideUpChannelList();
+                    }
+                },
+                clear: function () {
+                    getTag(Add_Info.ControlIdPrefix.linkage.Active).innerText="";
+                    getTag(Add_Info.ControlIdPrefix.linkage.Inactive).innerText="";
+                },
+            },
+            Action: {
+                Selected: {
+                    VideoPreviewIdentifier: new Dictionary(),
+                    VideoPlaybackIdentifier: new Dictionary(),
+                    VideoSnapIdentifier: new Dictionary()
+                },
+                load: function () {
+                    var devices = Property.Add.Device.value.toArray();
+                    var array = new GroupListItemArray();
+                    for (var i = 0; i < devices.length; i++) {
+                        if (devices[i].Selected == SelectedState.None)
+                            continue
+                        var inputs = Property.Add.Device.value[devices[i].Id].VideoInputChannel.toArray();
+                        for (var j = 0; j < inputs.length; j++) {
+                            if (inputs[j].isCreate[Add_Info.TabKey[Add_Html.Tab]] == false && (inputs[j].Selected == true || devices[i].Selected == SelectedState.All)) {
+                                var item = this.createItem(Add_Html.Tab, inputs[j], devices[i].Name);
+                                array.push(item);
+                                Property.Add.Device.value[devices[i].Id].VideoInputChannel[inputs[j].Id].isCreate[Add_Info.TabKey[Add_Html.Tab]] = true;
+                                Property.Add.Device.value[devices[i].Id].VideoInputChannel[inputs[j].Id].Selected = false;
+                                --getTag(Add_Info.ControlIdPrefix.channelCount + devices[i].Id).innerText;
+                            }
+                        }
+                        Property.Add.Device.value[devices[i].Id].Selected = SelectedState.None;
+                        Property.Add.Device.value[devices[i].Id].ChildSelectedCount = 0;
+                        getTag(devices[i].Id).className = "list-group-item mouse_pointer";
+                    }
+                    if (array.length > 0) {
+                        var group = getTag(Add_Html.Tab);
+                        for (var i = 0; i < array.length; i++) {
+                            group.appendChild(array[i]);
+                        }
+                    }
+                    var tags = getTag(Add_Info.ControlIdPrefix.channel, getTagType.Name);
+                    if (tags.length > 0) {
+                        Add_Html.GroupList.Channel.load("dListChannel", Property.Add.Device.Channel.deviceId);
+                    }
+                    tags = getTag(Add_Info.ControlIdPrefix.channel, getTagType.Name);
+                    if (tags.length < 1) {
+                        slideUpChannelList();
+                    }
+                },
+                createItem: function (key, item, deviceName) {
+                    var tag = new GroupListItem(key, TabItem_OnClick);
+                    tag.id = key + item.Id;
+                    tag.className = tag.className + " mouse_pointer";
+                    tag.Content.appendChild($("<div class='group-list-tag'></div>" + deviceName + "_" + item.Name)[0]);
+                    return tag;
+                },
+                select: function (id, value) {
+                    var deviceId = new Id(id).getDeviceId();
+                    if (is.Boolean(value)) {
+                        if (value) {
+                            this.Selected[Add_Info.TabKey[Add_Html.Tab]][id] = Property.Add.Device.value[deviceId].VideoInputChannel[id];
+                        }
+                        else {
+                            delete this.Selected[Add_Info.TabKey[Add_Html.Tab]][id];
+                        }
+                        return;
+                    }
+                    if (this.Selected[Add_Info.TabKey[Add_Html.Tab]][id]) {
+                        delete this.Selected[Add_Info.TabKey[Add_Html.Tab]][id];
+                        return;
+                    }
+                    this.Selected[Add_Info.TabKey[Add_Html.Tab]][id] = Property.Add.Device.value[deviceId].VideoInputChannel[id];
+                },
+                remove: function () {
+                    for (var key in this.Selected) {
+                        var list = this.Selected[key].toArray();
+                        for (var i = 0; i < list.length; i++) {
+                            var tag = getTag(Add_Html.Tab + list[i].Id);
+                            if (tag)
+                                tag.parentElement.removeChild(tag);
+                            if (this.Selected[key][list[i].Id])
+                                delete this.Selected[key][list[i].Id];
+                            var deviceId = new Id(list[i].Id).getDeviceId();
+                            if (key == Add_Info.TabKey[Add_Html.Tab]) {
+                                if (Property.Add.Device.value[deviceId].Selected == SelectedState.All) {
+                                    var inputs = Property.Add.Device.value[deviceId].VideoInputChannel.toArray();
+                                    for (var j = 0; j < inputs.length; j++) {
+                                        if (inputs[j].isCreate[key] == false) {
+                                            Property.Add.Device.value[deviceId].VideoInputChannel[inputs[j].Id].Selected = true;
+                                        }
+                                    }
+                                    Property.Add.Device.value[deviceId].Selected = SelectedState.Items;
+                                    getTag(deviceId).className = "list-group-item mouse_pointer " + SelectedState.Items;
+                                }
+                                ++getTag(Add_Info.ControlIdPrefix.channelCount + deviceId).innerText;
+                                Property.Add.Device.value[deviceId].VideoInputChannel[list[i].Id].Selected = false;
+                            }
+                            Property.Add.Device.value[deviceId].VideoInputChannel[list[i].Id].isCreate[key] = false;
+                        }
+                    }
+                    var tags = getTag(Add_Info.ControlIdPrefix.channel, getTagType.Name);
+                    if (tags.length > 0) {
+                        Add_Html.GroupList.Channel.load("dListChannel", Property.Add.Device.Channel.deviceId);
+                    }
+                },
+            }
+        }
+    }
+    </script>
+    <script type="text/javascript">
+        var TimeFn = null;
+        //页面加载
+        function linkage_add_load() {
+            Add_Html.Init();
+            Add_Html.Type = Add_Info.Type.get();
+            if (Add_Info.TypeKey[Add_Html.Type] != null) {
+                getTag("childListName").innerText = Add_Info.ChildListName[Add_Html.Type].title;
+                getTag("nvaName").innerText = Add_Info.ChildListName[Add_Html.Type].list;
+            }
+            Add_Html.GroupList.Device.create("dListDevice", Add_Info.TypeKey[Add_Html.Type]);
+        }
+
+        function Device_OnDblClick(sender) {
+            clearTimeout(TimeFn);
+            //chkLock();
+            if (Add_Info.TypeKey[Add_Html.Type] == null && Add_Html.IsVideoInput == false)
+                return;
+            var count = getTag(Add_Info.ControlIdPrefix.channelCount + sender.id).innerText;
+            if (count == 0)
+                return;
+            Add_Html.GroupList.Channel.load("dListChannel", sender.id);
+            getTag("deviceOperation").style.display = "none";
+            getTag("deviceListName").style.display = "none";
+            getTag("chkEventState").style.display = "none"
+            $("#IO_Input_Div").slideDown("fast");
+        }
+
+        function Device_OnClick(sender) {
+            clearTimeout(TimeFn);
+            TimeFn = setTimeout(function () {
+                //chkLock();
+                if (Add_Info.TypeKey[Add_Html.Type] != null || Add_Html.IsVideoInput == true) {
+                    var count = getTag(Add_Info.ControlIdPrefix.channelCount + sender.id).innerText;
+                    if (count == 0)
+                        return
+                }
+                Add_Html.GroupList.Device.select(sender);
+            }, 300);
+        }
+
+        function Device_SelectAll(items) {
+            if (items) {
+                for (var i = 0; i < items.length; i++) {
+                    if (Add_Info.TypeKey[Add_Html.Type] != null || Add_Html.IsVideoInput == true) {
+                        var count = getTag(Add_Info.ControlIdPrefix.channelCount + items[i].id).innerText;
+                        if (count == 0) {
+                            if (items[i].className.indexOf("selected") > 0)
+                                $(items[i]).removeClass("selected");
+                            continue
+                        }
+                    }
+                    Add_Html.GroupList.Device.select(items[i], true);
+                }
+            }
+        }
+
+        function Device_SelectCancel(items) {
+            if (items) {
+                for (var i = 0; i < items.length; i++) {
+                    Add_Html.GroupList.Device.select(items[i], false);
+                }
+            }
+        }
+
+        function Channel_SelectAll(items) {
+            if (items) {
+                for (var i = 0; i < items.length; i++) {
+                    Add_Html.GroupList.Channel.select(items[i].id, true);
+                }
+            }
+        }
+
+        function Channel_SelectCancel(items) {
+            if (items) {
+                for (var i = 0; i < items.length; i++) {
+                    Add_Html.GroupList.Channel.select(items[i].id, false);
+                }
+            }
+        }
+
+        function Tab_SelectAll(items) {
+            if (items) {
+                for (var i = 0; i < items.length; i++) {
+                    Add_Html.GroupList.Action.select(Add_Info.ControlIdPrefix.getId(items[i].id, Add_Html.Tab), true);
+                    
+                }
+            }
+        }
+
+        function Tab_SelectCancel(items) {
+            if (items) {
+                for (var i = 0; i < items.length; i++) {
+                    Add_Html.GroupList.Action.select(Add_Info.ControlIdPrefix.getId(items[i].id, Add_Html.Tab), false);
+                }
+            }
+        }
+
+        function Linkage_SelectAll(items) {
+            if (items) {
+                for (var i = 0; i < items.length; i++) {
+                    Add_Html.GroupList.Linkage.select(items[i], true);
+                }
+            }
+        }
+
+        function Linkage_SelectCancel(items) {
+            if (items) {
+                for (var i = 0; i < items.length; i++) {
+                    Add_Html.GroupList.Linkage.select(items[i], false);
+                }
+            }
+        }
+
+        function Channel_OnClick(sender) {
+            Add_Html.GroupList.Channel.select(sender.id);
+        }
+
+        function Linkage_OnClick(sender) {
+            Add_Html.GroupList.Linkage.select(sender);
+        }
+
+        function addChannel_OnClick() {
+            if (Add_Html.IsVideoInput == false) {
+                Add_Html.GroupList.Linkage.create();
+                if (getTag(Add_Info.ControlIdPrefix.linkage, getTagType.Name).length > 0) {
+                    getTag("btnNext").className = "btn btn-primary div-xsgroup pull-right btn_linkage";
+                    chkLock();
+                }
+                return;
+            }
+            Add_Html.GroupList.Action.load();
+            for (var k in Add_Info.TabKey) {
+                if (getTag(k, getTagType.Name).length > 0) {
+                    getTag("btnSaveFinish").className = "btn btn-primary div-xsgroup pull-right btn_linkage";
+                    break;
+                }
+            }   
+        }
+
+        function removeChannel_OnClick() {
+            if (Add_Html.IsVideoInput == false) {
+                Add_Html.GroupList.Linkage.remove();
+                if (getTag(Add_Info.ControlIdPrefix.linkage, getTagType.Name).length == 0) {
+                    getTag("btnNext").className = "btn btn-default div-xsgroup pull-right btn_linkage";
+                    chkUnlock();
+                }
+                return;
+            }
+            Add_Html.GroupList.Action.remove();
+            getTag("btnSaveFinish").className = "btn btn-default div-xsgroup pull-right btn_linkage";
+            for (var k in Add_Info.TabKey) {         
+                if (getTag(k, getTagType.Name).length > 0) {
+                    getTag("btnSaveFinish").className = "btn btn-primary div-xsgroup pull-right btn_linkage";
+                    break;
+                }
+            }
+        }
+
+        function TabItem_OnClick(sender) {
+            Add_Html.GroupList.Action.select(Add_Info.ControlIdPrefix.getId(sender.id, Add_Html.Tab));
+        }
+
+        function slideUpChannelList() {
+            setTimeout(function () {
+                getTag('deviceOperation').style.display = 'block';
+                getTag('deviceListName').style.display = 'block';
+                getTag('chkEventState').style.display = 'block'
+            }, 200);
+            $('#IO_Input_Div').slideUp('fast', 'swing', Add_Html.GroupList.Channel.clear);
+        }
+
+        function slideUpVideoInputList() {
+            setTimeout(function () {
+                getTag('linkageOperation').style.display = 'block';
+                getTag('linkageListName').style.display = 'block';
+                getTag('linkage_').style.display = 'block';
+                //getTag('btnToAddInputMode').style.display = 'block'
+            }, 200);
+            $('#Video_Input_Div').slideUp('fast', 'swing');
+        }
+
+        function slideDownVideoInputList() {
+            getTag("linkageOperation").style.display = "none";
+            getTag("linkageListName").style.display = "none";
+            getTag('linkage_').style.display = 'none';
+            //getTag("btnToAddInputMode").style.display = "none"
+            $("#Video_Input_Div").slideDown("fast");
+        }
+
+        function filter(type) {
+            var channels = getTag(type, getTagType.Name);
+            if (channels.length > 0) {
+                for (var i = 0; i < channels.length; i++) {
+                    if (type == Add_Info.ControlIdPrefix.linkage) {
+                        idInfo = Info.Id.get(Add_Info.ControlIdPrefix.getId(channels[i].id, type));
+                        var channelId = idInfo[Info.Id.key.ComponentId];
+                        var deviceId = new Id(channelId).getDeviceId();
+                    }
+                    else {
+                        var deviceId = new Id(Add_Info.ControlIdPrefix.getId(channels[i].id, type)).getDeviceId();
+                    }
+                    var tag = getTag(deviceId);
+                    if (tag) {
+                        var countTag = getTag(Add_Info.ControlIdPrefix.channelCount + deviceId);
+                        if (countTag) {
+                            countTag.innerText = Number(countTag.innerText) - 1;
+                        }
+                    }
+                }
+            }
+        }
+
+        function btnToAddInputMode_Onclick() {
+            if (getTag(Add_Info.ControlIdPrefix.linkage, getTagType.Name).length < 1)
+                return
+            getTag("childListName").innerText = Add_Info.ChildListName.VideoInput.title;
+            getTag('deviceListName').innerText = "请选择联动动作";
+            getTag("nvaName").innerText = Add_Info.ChildListName.VideoInput.list;
+            getTag("btnNext").style.display = "none";
+            getTag("btnLast").style.display = "block";
+            getTag("btnSaveFinish").style.display = "block";
+            var devices = Property.Add.Device.value.toArray();
+            for (var i = 0; i < devices.length; i++) {
+                if (devices[i].Selected == SelectedState.All || devices[i].Selected == SelectedState.Items) {
+                    Property.Add.Device.value[devices[i].Id].Selected = SelectedState.None;
+                    if (Add_Info.TypeKey[Add_Html.Type] != null) {
+                        var channels = Property.Add.Device.value[devices[i].Id][Add_Info.TypeKey[Add_Html.Type].name].toArray();
+                        for (var j = 0; j < channels.length; j++) {
+                            if (channels[j].Selected == true)
+                                Property.Add.Device.value[devices[i].Id][Add_Info.TypeKey[Add_Html.Type].name][channels[j].Id].Selected = false;
+                        }
+                    }
+                }
+            }
+            slideUpChannelList();
+            slideDownVideoInputList();
+            Add_Html.IsVideoInput = true;
+            if (Add_Html.Tab == null) {
+                getTag("dListDevice").innerText="";
+                return;
+            }
+            Add_Html.GroupList.Device.create("dListDevice", Add_Info.TypeKey.VideoInput);
+            filter(Add_Html.Tab);
+        }
+
+        function btnToAddLinkageMode_Onclick() {
+            if (Add_Info.TypeKey[Add_Html.Type] != null) {
+                getTag("childListName").innerText = Add_Info.ChildListName[Add_Html.Type].title;
+                getTag("nvaName").innerText = Add_Info.ChildListName[Add_Html.Type].list;
+            }
+            getTag('deviceListName').innerText = "请选择关联设备";
+            getTag("btnNext").style.display = "block";
+            getTag("btnLast").style.display = "none";
+            getTag("btnSaveFinish").style.display = "none";
+            var devices = Property.Add.Device.value.toArray();
+            for (var i = 0; i < devices.length; i++) {
+                if (devices[i].Selected == SelectedState.All || devices[i].Selected == SelectedState.Items) {
+                    Property.Add.Device.value[devices[i].Id].Selected = SelectedState.None;
+                    var channels = Property.Add.Device.value[devices[i].Id][Add_Info.TypeKey.VideoInput.name].toArray();
+                    for (var j = 0; j < channels.length; j++) {
+                        if (channels[j].Selected == true)
+                            Property.Add.Device.value[devices[i].Id][Add_Info.TypeKey.VideoInput.name][channels[j].Id].Selected = false;
+                    }
+                }
+            }
+            slideUpChannelList();
+            slideUpVideoInputList();
+            Add_Html.IsVideoInput = false;
+            Add_Html.GroupList.Device.create("dListDevice", Add_Info.TypeKey[Add_Html.Type]);
+            filter(Add_Info.ControlIdPrefix.linkage);
+        }
+
+        function tab_select_OnChange(key) {
+            var devices = Property.Add.Device.value.toArray();
+            for (var i = 0; i < devices.length; i++) {
+                if (devices[i].Selected == SelectedState.All || devices[i].Selected == SelectedState.Items) {
+                    Property.Add.Device.value[devices[i].Id].Selected = SelectedState.None;
+                    var channels = Property.Add.Device.value[devices[i].Id][Add_Info.TypeKey.VideoInput.name].toArray();
+                    for (var j = 0; j < channels.length; j++) {
+                        if (channels[j].Selected == true)
+                            Property.Add.Device.value[devices[i].Id][Add_Info.TypeKey.VideoInput.name][channels[j].Id].Selected = false;
+                    }
+                }
+            }
+            if (key == null) {
+                slideUpChannelList();
+                Add_Html.Tab = null;
+                getTag("dListDevice").innerText="";
+                getTag("text_area").focus();
+                return;
+            }
+            Add_Html.Tab = Add_Info.ControlIdPrefix[key].name;
+            Add_Html.GroupList.Device.create("dListDevice", Add_Info.TypeKey.VideoInput);
+            slideUpChannelList();
+            filter(Add_Html.Tab);
+        }
+
+        function chkActive_OnClick() {
+            var chk = getTag("chkActive");
+            if (chk.checked) {
+                Add_Html.StateKey = EventState.Active;
+                Add_Html.GroupList.Device.create("dListDevice", Add_Info.TypeKey[Add_Html.Type]);
+                Add_Html.GroupList.Device.changeState();
+                return;
+            }
+            Add_Html.StateKey = EventState.Inactive;
+            Add_Html.GroupList.Device.create("dListDevice", Add_Info.TypeKey[Add_Html.Type]);
+            Add_Html.GroupList.Device.changeState();
+        }
+
+        function chkLock() {
+            getTag("chkActive").disabled = "disabled";
+            getTag("chkSpan").className = "checkbox_gray";
+        }
+
+        function chkUnlock() {
+            getTag("chkActive").disabled = "";
+            getTag("chkSpan").className = "";
+        }
+
+        function btnSaveFinish_Onclick() {
+            var count = 0;
+            for (var k in Add_Info.TabKey) {
+                if (getTag(k, getTagType.Name).length > 0) {
+                    break;
+                }
+                ++count;
+            }
+            if (count == 3)
+                return
+            var linkages = getTag(Add_Info.ControlIdPrefix.linkage, getTagType.Name);
+            if (linkages.length < 1)
+                return;
+            for (var i = 0; i < linkages.length; i++) {
+                var idInfo = Info.Id.get(Add_Info.ControlIdPrefix.getId(linkages[i].id, Add_Info.ControlIdPrefix.linkage));
+                var id = idInfo[Info.Id.key.ComponentId];
+                var type = idInfo[Info.Id.key.EventType];
+                var state = idInfo[Info.Id.key.EventState];
+                var linkage = new EventLinkage();
+                linkage.ComponentId = id;
+                linkage.EventState = state;
+                linkage.EventType = type;
+                if (getTag("text_area").value != "") {
+                    var text = new TextIdentifier();
+                    text.Text = getTag("text_area").value;
+                    linkage.TextIdentifier = text
+                    linkage.TextIdentifierSpecified = true;
+                }
+                for (var key in Add_Info.TabKey) {
+                    var inputs = getTag(key, getTagType.Name);
+                    if (inputs.length > 0) {
+                        for (var j = 0; j < inputs.length; j++) {
+                            var obj = Add_Info.ControlIdPrefix[Add_Info.TabKey[key]].object();
+                            obj.VideoInputChannelId = Add_Info.ControlIdPrefix.getId(inputs[j].id, key);
+                            obj.StreamNo = 1;
+                            linkage[Add_Info.TabKey[key]].push(obj);
+                        }
+                        linkage[Add_Info.TabKey[key] + "Specified"] = true;
+                    }
+                }
+                Property.Add.Linkage.create(linkage);
+            }
+            AlertWindow.Close(PageEvent.Linkage.GroupListReload(Property.EventType));
+        }
+        linkage_add_load();
+    </script>
+</body>
+</html>

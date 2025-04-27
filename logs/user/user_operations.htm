@@ -1,0 +1,180 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>用户操作日志</title>
+</head>
+<body>
+    <style type="text/css">
+        .logs_user_operations_title_ico {
+            font-size: 25px !important;
+            margin-left: 15px;
+            color: #007aff;
+        }
+
+        #rdoInactive input[type='radio']:checked + span::after {
+            content: "";
+            width: 8px;
+            height: 8px;
+            position: absolute;
+            top: 6px;
+            left: -15px;
+            background-color: #f0ad4e;
+            border-radius: 50%;
+            display: block;
+        }
+
+        #rdoActive input[type='radio']:checked + span::after {
+            content: "";
+            width: 8px;
+            height: 8px;
+            position: absolute;
+            top: 6px;
+            left: -15px;
+            background-color: #5cb85c;
+            border-radius: 50%;
+            display: block;
+        }
+
+        .widget-container {
+            min-height: 120px;
+        }
+
+            .widget-container .heading {
+                height: 70px;
+            }
+
+        .content {
+            margin-top: -15px;
+        }
+
+        .control-label {
+            height: 34px;
+            padding-top: 7px;
+            text-align: right;
+        }
+
+        .form-group {
+            min-height: 34px;
+        }
+
+        @media (max-width: 767px) {
+            .page-main {
+                width: 100%;
+            }
+
+            .to-back {
+                display: none;
+            }
+
+            .icon-color-btn-background {
+                display: none !important;
+            }
+
+            .control-label {
+                float: left;
+            }
+
+            .icon_btn.color {
+                width: 270px;
+            }
+
+            .widget-container {
+                padding-bottom: 5px;
+            }
+
+            .col-md-0 {
+                margin-top: 10px;
+            }
+        }
+
+        .col-md-0_7 {
+            width: 5.833333333333332%;
+        }
+
+        #divMoreSearch {
+            display: none;
+        }
+    </style>
+    <link href="css/datepicker.css" rel="stylesheet" />
+    <link href="css/select2.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="js/client/logs.js"></script>
+    <script type="text/javascript" src="js/bootstrap/bootstrap-datepicker.js?update=20170525" charset="gb2312"></script>
+    <script type="text/javascript" src="js/background/logs/user/background_user_operations.js?update=20170525"></script>
+    <script type="text/javascript" src="js/background/logs/user/operation/background_user_operation_details.js"></script>
+    <script type="text/javascript" src="logs/user/user_operations.js?update=20170525"></script>
+    <script type="text/javascript" src="logs/user/operation/user_operation_details.js"></script>
+    <script type="text/javascript" src="js/jquery/select2.js"></script>
+    <div class="page-main row">
+        <div class="col-md-12">
+            <div class="widget-container">
+                <div class="heading">
+                    <div class="form-group list-heading-div">
+                        <i class="icon-file-text logs_user_operations_title_ico"></i>
+                        用户操作日志 <label class="list-count-lable">当前<span id="lblCurrentCount">0</span>条/共<span id="lblTotalCount">0</span>条</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-1 control-label">
+                        <label>开始时间:</label>
+                    </div>
+                    <div class="col-md-4">
+                        <input class="form-control datetime" data-date-autoclose="true" data-date-format="yyyy-mm-dd" id="txt_begin_date" type="text">
+                    </div>
+                    <div class="col-md-1 control-label">
+                        <label>结束时间:</label>
+                    </div>
+                    <div class="col-md-4">
+                        <input class="form-control datetime" data-date-autoclose="true" data-date-format="yyyy-mm-dd" id="txt_end_date" type="text">
+                    </div>
+                    <a class="col-md-1 mouse_pointer" style="text-align:left;line-height:34px;font-size:18px" onclick="btnMoreSearchClick();">
+                        <span id="spanBtnMoreSearch">更多</span>&nbsp;<i class="icon-double-angle-down" id="iBtnMoreSearch"></i>
+                    </a>
+                    <div class="col-md-1" style="text-align:right;">
+                        <a class="btn btn-primary" onclick="user_operations_search()">搜&nbsp;&nbsp;索</a>
+                    </div>
+                    <div class="fileupload fileupload-new col-md-1" data-provides="fileupload">
+                        <div class="fileupload-preview fileupload-exists img-thumbnail">
+                        </div>
+                    </div>
+                </div>
+                <div id="divMoreSearch">
+                    <div class="form-group">
+                        <div class="col-md-1 control-label">
+                            <label>操作类型:</label>
+                        </div>
+                        <div class="col-md-4">
+                            <select class="form-control" id="dllSearchUserOperationType" onchange="selectSearchUserOperationType(this.value)"></select>
+                        </div>
+                        <div class="col-md-1 control-label">
+                            <label>用户名称:</label>
+                        </div>
+                        <div class="col-md-4">
+                            <select class="select2able" multiple="" id="txtSearchUserId"></select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 content ">
+            <div class="widget-container padded" style="min-height:590px" id="dList">
+
+            </div>
+        </div>
+        <div class="btn btn-lg btn-block btn-default-outline hidden-sm">
+            向上拉动加载更多
+        </div>
+        <div class="col-md-12 lazyload-div" id="divLazyload">
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(function () {
+            logs_user_operations_load();
+        });
+    </script>
+</body>
+</html>
+<script type="text/javascript">
+    onload = logs_user_operations_load;
+</script>

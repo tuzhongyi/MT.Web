@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+
+    <link href="css/style.css" rel="stylesheet" />
+    <link href="css/colors/blue-dark.css" rel="stylesheet" />
+    <link href="css/howell.css" rel="stylesheet" />
+    <script src="js/language.js"></script>
+    <script src="js/jquery/jquery-1.10.2.min.js"></script>
+    <script src="js/bootstrap/popper.min.js"></script>
+    <script src="js/bootstrap/bootstrap.min.js"></script>
+    <script src="js/howell.js/howell.js"></script>
+    <script src="js/howell.js/httpService.js"></script>
+    <script src="js/client/authentication.js"></script>
+    <script src="js/client/client.js"></script>
+    <!-- <script src="../js/backstage.js"></script> -->
+    <script src="js/howell.js/ext.js"></script>
+    <script src="js/howell.js/howell.convert.js"></script>
+    <!-- <script src="../js/index.js"></script> -->
+
+    <link href="css/jquery.toast.css" rel="stylesheet" />
+    <script src="js/jquery/jquery.toast.js"></script>
+    <link rel="icon" href="img/fd_favicon.ico" type="image/x-icon" />
+</head>
+<body>
+
+    <script type="text/javascript">
+
+
+        var service = new UploadService();
+        service.OnCompleted = uploadComplete;
+        service.OnSending = uploadProgress;
+        service.OnError = uploadFailed;
+        service.OnCanceled = uploadCanceled;
+        service.OnBegining = function () {
+            $(".progress-bar").css("width", 0 + "%");
+        }
+
+        function uploadFile() {
+            var file = document.getElementById('file').files[0];
+            if (file) {                
+                service.Upload(Client.Authentication().Activation(), file);
+                // setTimeout(function() {
+                //     document.location="default.html";
+                // }, 2000);
+            }
+
+        }
+
+
+
+        function uploadProgress(evt) {
+            if (evt.lengthComputable) {
+                var percentComplete = Math.round(evt.loaded * 100 / evt.total);
+                document.getElementById('progressNumber').innerHTML = percentComplete.toString() + '%';
+                //document.getElementById('progressNumberBar').style.width =  + "%";
+                $(".progress-bar").css("width", percentComplete + "%");
+            }
+            else {
+                document.getElementById('progressNumber').innerHTML = 'unable to compute';
+            }
+        }
+
+        function uploadComplete(evt) {
+            /* This event is raised when the server send back a response */
+            document.location = "default.html";
+            // if (evt && evt.currentTarget) {
+                // if (evt.currentTarget.status == 200) {
+                    // var response = JSONDeserialization(evt)
+                    // response.CreationTime = Convert.ToDate(response.CreationTime);
+                    // response.ExpiredTime = Convert.ToDate(response.ExpiredTime);
+                    // var date = new Date();
+
+                    // var example = document.getElementById("example");
+                    // example.getElementsByClassName("CreationTime")[0].innerHTML = response.CreationTime.format("yyyy-MM-dd");
+                    // example.getElementsByClassName("ExpiredTime")[0].innerHTML = response.ExpiredTime.format("yyyy-MM-dd");
+                    // example.getElementsByClassName("SerialNumber")[0].innerHTML = response.SerialNumber;
+                    
+                    // swal({
+                    //     title: chinese.upload + chinese.success + "！",
+                    //     text: chinese.your + chinese.system + chinese.already + chinese.activation + "。",
+                    //     type: "cyan"
+                    // }, function () {
+                    //     loadPage("page", "system.html")
+                    // });
+
+                // }
+                // else {
+
+                //     tryCatch(function () {
+                //         throw new howellException(evt.currentTarget.status, evt.currentTarget.responseText);
+                //     });
+                // }
+            // }
+        }
+
+        function uploadFailed(evt) {
+            alert("There was an error attempting to upload the file.");
+        }
+
+        function uploadCanceled(evt) {
+            alert("The upload has been canceled by the user or the browser dropped the connection.");
+        }
+
+
+    </script>
+    <link href="controls/sweetalert/sweetalert.css" rel="stylesheet" />
+    <script src="controls/sweetalert/sweetalert.min.js"></script>
+    <script src="js/bootstrap/bootstrap-fileupload.js"></script>
+    <script src="js/bootstrap/jasny-bootstrap.js"></script>
+    <div class="col-12 vertical-align">
+        <div class="card ">
+            <div class="card-body text-center">
+                <h1 class="">
+                    <span language="upload"> </span><span language="activation"> </span><span language="file"> </span>
+                </h1>
+                <div class="row">
+                    <div class="fileinput fileinput-new input-group col-xlg-6 offset-xlg-3 center" data-provides="fileinput">
+                        <div class="form-control" data-trigger="fileinput">
+                            <i class="fa fa-file fileinput-exists"></i>
+                            <span class="fileinput-filename"> </span>
+                        </div>
+                        <span class="input-group-addon btn btn-secondary btn-file">
+                            <span class="fileinput-new"><span language="choose"> </span><span language="file"> </span></span>
+                            <span class="fileinput-exists">
+                                <span language="again"> </span><span language="choose"> </span>
+                            </span>
+                            <input type="hidden"><input id="file" type="file" name="...">
+                        </span>
+                        <a href="#" class="input-group-addon btn btn-secondary fileinput-exists" data-dismiss="fileinput"><span language="remove"> </span></a>
+
+                    </div>
+                </div>
+                <!--<div class="form-group">
+
+                    <div class="fileupload fileupload-new" data-provides="fileupload">
+                        <div class="input-group">
+                            <div class="form-control">
+                                <i class="icon-file fileupload-exists"></i><span class="fileupload-preview"> </span>
+                            </div>
+                            <div class="input-group-btn">
+                                <a class="btn btn-default fileupload-exists" data-dismiss="fileupload" href="#">移除</a>
+                                <span class="btn btn-default btn-file">
+                                    <span class="fileupload-new"> </span><span class="fileupload-exists"> </span>
+                                    <input id="file" type="file">
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>-->
+
+                <div class="form-group center m-t-20">
+                    <button class="btn btn-primary col-md-push-3" type="button" onclick="uploadFile()"><span language="upload"> </span></button>
+                    <a class="btn btn-outline-primary col-md-pull-3" href="default.html"><span language="return"> </span></a>
+
+                </div>
+
+
+                <div id="progressNumber" class="progress-bar bg-info wow animated progress-animated" style="width:0%; height:6px;"
+                     role="progressbar">
+                    <span class="sr-only"> </span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div id="example" style="display:none;border:1px solid">
+        <div class="page-title">
+            <h3 class="list-heading-div">
+                <i class="icon-key title mouse_default" style="margin-right:30px;margin-left:10px"></i>
+                <label>
+                    <span language="activation"> </span><span language="information">信息</span>
+                </label>
+            </h3>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="widget-content padded">
+
+                    <div class="form-group">
+                        <label class="control-label col-md-2">
+                            <span language="create"> </span><span language="time">时间</span>
+                        </label>
+                        <div class="col-md-9">
+                            <label class="form-control CreationTime" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2">
+                            <span language="expired"> </span><span language="time">时间</span>
+                        </label>
+                        <div class="col-md-9">
+                            <label class="form-control ExpiredTime" />
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-bottom:100px;">
+                        <label class="control-label col-md-2">
+                            <span language="serialnumber"> </span>
+                        </label>
+                        <div class="col-md-9">
+                            <label class="form-control SerialNumber" />
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        setTimeout(init_language, 0);
+    </script>
+</body>
+</html>

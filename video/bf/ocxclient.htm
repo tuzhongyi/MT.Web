@@ -1,0 +1,68 @@
+<html>
+<head>
+    <title>ocxclient</title>
+    <script src="../js/jquery/jquery-1.10.2.min.js"></script>
+    <script src="../js/imported.js"></script>
+    <script src="../js/howell.js/httpService.js"></script>
+    <script src="../js/client/client.js"></script>
+    <script src="../js/howell.js/howell.js"></script>
+    <style type="text/css">
+        body {
+            margin: 0 0;
+        }
+    </style>
+
+</head>
+<body>
+    <!--<object id="ocxclient" style="width:100%;height:100%;"
+            codebase="ocxclient.cab#version=1,0,9,0"
+            classid="CLSID:148598E9-2825-4990-8EB0-9F2BBA1464F0">
+        <param id="param_ip" name="IP" value="192.168.18.245">
+        <param id="param_port" name="Port" value="8812">
+        <param id="param_username" name="Username" value="admin">
+        <param id="param_password" name="Password" value="12345">
+    </object>-->
+
+</body>
+</html>
+<script type="text/javascript">
+    //onload = function () {
+
+    var username = getCookie("username");
+    var password = getCookie("sid");
+    //document.getElementById("param_username").value = username;
+    //document.getElementById("param_password").value = password;
+    //document.getElementById("param_ip").value = Client.Host;
+
+    //document.getElementById("param_port").value = Client.VideoPort;
+    var obj = document.createElement("object");
+    obj.id = "ocxclient";
+    obj.style.width = "100%";
+    obj.style.height = "100%";
+    obj.codeBase = "ocxclient.cab#version=1,0,9,0";
+    obj.classid = "CLSID:148598E9-2825-4990-8EB0-9F2BBA1464F0";
+
+    var param = document.createElement("param");
+    param.name = "IP";
+    param.value = Client.Host;
+    obj.appendChild(param);
+
+    var param = document.createElement("param");
+    param.name = "Port";
+    param.value = Client.VideoPort;
+    obj.appendChild(param);
+
+    var param = document.createElement("param");
+    param.name = "Username";
+    param.value = username;
+    obj.appendChild(param);
+
+    var param = document.createElement("param");
+    param.name = "Password";
+    param.value = password;
+    obj.appendChild(param);
+
+    document.body.appendChild(obj);
+    //}
+</script>
+

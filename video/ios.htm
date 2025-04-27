@@ -1,0 +1,269 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <title>视频</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="../css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="../css/bootstrap/font-awesome.css" rel="stylesheet" />
+    <script src="../js/imported.js"></script>
+
+    <script type="text/javascript" src="../js/jquery/jquery-1.10.2.min.js"></script>
+
+    <script type="text/javascript" src="../js/bootstrap/bootstrap.min.js"></script>
+    <script src="../js/base64.js"></script>
+    <script src="../js/howell.js/howell.js"></script>
+
+    <script src="../js/client/struct.js"></script>
+    <script src="../js/client/enum.js"></script>
+    <script src="../js/client/security.js"></script>
+    <script type="text/javascript" src="../js/client/client.js"></script>
+
+
+    <style type="text/css">
+        .main-content {
+            padding: 5px 5px;
+        }
+
+        .item {
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+            text-align: center;
+            width: 100%;
+            height: 160px;
+            margin-bottom: 5px;
+        }
+
+        .video-content {
+            height: 70%;
+            padding: 3% 3%;
+        }
+
+        .operations {
+            border-top: 1px solid #cccccc;
+            padding: 3% 3%;
+            height: 30%;
+            text-align: right;
+        }
+
+            .operations a {
+                font-size: 150%;
+                line-height: 100%;
+            }
+
+            .operations .text.border-left {
+                border-left-style: solid;
+                border-left-color: #cccccc;
+            }
+
+            .operations i {
+                margin-right: 5px;
+            }
+
+        .video-tag {
+            height: 97%;
+            width: 40%;
+            float: left;
+        }
+
+            .video-tag div img {
+                height: 80%;
+                margin-top: 5%;
+            }
+
+            .video-tag div {
+                background-color: black;
+                height: 100%;
+                width: 100%;
+                padding-top:5%;
+            }
+
+        .bgd {
+            width: 100%;
+            height: 90px;
+            overflow: hidden;
+            background-color: black;
+        }
+            .bgd .icon-play-sign {
+                font-size:500%;
+                color:rgba(255,255,255, 0.5);
+            }
+        .video-info {
+            height: 100%;
+            width: 60%;
+            float: left;
+            text-align: left;
+            vertical-align: middle;
+        }
+
+
+
+            .video-info .text {
+                margin: 1% 10%;
+                font-size: 150%;
+                width: 90%;
+                word-break: break-all;
+            }
+
+        #example {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid main-content">
+
+        <div class="item" id="example">
+            <div class="video-content">
+                <div class="video-tag">
+                    <a class="abgd">
+                        <div class="bgd">
+                            <i class="icon-play-sign"></i>
+                        </div>
+                    </a>
+                </div>
+                <div class="video-info">
+                    <div class="text">eCamera111111111111111111111111111111111111111-分享</div>
+                </div>
+            </div>
+            <div class="operations">
+                <a class="col-md-4 ptz"><i class="icon-move"></i>云台</a>
+                <a class="col-md-4 border-left"><i class="icon-film"></i>录像</a>
+            </div>
+        </div>
+
+        <!--<div class="heading tabs">
+            <ul class="nav nav-tabs" id="tabs" data-tabs="tabs">
+                <li class="active"><a href="#tab1" data-toggle="tab">预览</a> </li>
+                <li><a href="#tab2" data-toggle="tab">回放</a> </li>
+            </ul>
+        </div>
+        <div class="tab-content padded" id="my-tab-content">
+            <div class="tab-pane active" id="tab1">
+                <div class="contact-list">
+                    <ul class="list-group" id="ul_preview"></ul>
+                </div>
+            </div>
+            <div class="tab-pane" id="tab2">
+                <div class="contact-list">
+                    <ul class="list-group" id="ul_playback"></ul>
+                </div>
+            </div>
+        </div>-->
+    </div>
+
+
+
+</body>
+</html>
+<script type="text/javascript">
+    var username = "";
+    var sid = "";
+    function _load() {
+        tryCatch(function () {
+            username = getCookie("username")
+            sid = getCookie("sid");
+            var inputs = new ios_video_inputs();
+            inputs.toHtml();
+        });
+        var url = "";
+        var index = document.location.toString().indexOf("?")
+        if (index > 0) {
+            url = document.location.toString().substr(index);
+            base64decode(url)
+        }
+
+    }
+
+    function ios_video_inputs() {
+        this.Channels = getChannelList();
+        function getChannelList() {
+            var result = new Dictionary();
+            var userId = getCookie("uid");
+            var inputs = Client.Security().User.Video.Input.List(userId);
+
+            for (var i = 0; i < inputs.VideoInputChannelPermission.length; i++) {
+                var channelPermission = inputs.VideoInputChannelPermission[i];
+                result[channelPermission.Id] = channelPermission;
+            }
+            return result;
+        }
+        this.toHtml = function () {
+            var PlayType =
+            {
+                preview: "live",
+                playback: "vod"
+            };
+
+            if (this.Channels) {
+                var example = $("#example");
+                this.Channels.forIn(function (channelId, value) {
+
+
+                    var div = document.createElement("div");
+                    div.innerHTML = example[0].innerHTML;
+                    div.className = "item";
+                    div.id = channelId;
+                    //example.find(".icon-move")[0].src = "";
+
+
+                    var id = new Id(channelId);
+                    var deviceId = id.getDeviceId();
+                    var no = parseInt(id.ModuleId.No);
+                    var streamNo = 2;
+
+
+
+                    var url = "http://" + document.location.host + "/hls/Media/Live/" + deviceId + "/" + no + "/" + streamNo + "/live.m3u8?user=admin&password=12345";
+                    var uri = new Uri(url);
+                    uri.Host = Client.Host;
+                    uri.Port = Client.HlsPort;
+
+                    uri.Querys.user = username;
+                    uri.Querys.password = sid;
+
+                    url = uri.toString();
+
+                    $div = $(div);
+
+                    $div.find(".text").text(value.Name);                    
+                    
+                    var ptzurl = "ptz.htm?" + base64encode(url);
+                    $div.find(".abgd").attr("href", ptzurl);
+                    $div.find(".ptz").attr("href", ptzurl);
+
+                    $(".main-content").append($div);
+
+                });
+
+
+
+                //for (var type in PlayType) {
+                //    var ul = getTag("ul_" + type);
+
+                //    this.Channels.forIn(function (channelId, value) {
+                //        var li = document.createElement("li");
+                //        li.className = "list-group-item";
+                //        var a = document.createElement("a");
+                //        a.innerHTML = value.Name;
+
+                //        var id = new Id(channelId);
+                //        var deviceId = id.getDeviceId();
+                //        var no = parseInt(id.ModuleId.No);
+                //        var streamNo = 2;
+
+                //        var url = "http://" + document.location.host + "/hls/Media/" + PlayType[type] + "/" + deviceId + "/" + no + "/" + streamNo + "/" + PlayType[type] + ".m3u8?user=admin&password=12345";
+
+                //        //a.href = "../hlsplayer/live.html?" + base64encode(url);
+                //        a.href = "http://192.168.18.245:8800/hlsplayer/live.html?" + base64encode(url);
+                //        li.appendChild(a);
+                //        ul.appendChild(li);
+                //    });
+                //}
+            }
+        }
+    }
+
+
+    onload = _load;
+</script>

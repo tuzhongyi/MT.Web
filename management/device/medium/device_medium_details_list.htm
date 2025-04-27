@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>存储媒介详细列表</title>
+</head>
+<body>
+    <div class="modal-shiftfix" style="width:1200px;height:750px">
+        <div class="container-fluid main-content">
+            <div class="page-title" style="color:#007aff">
+                <h3>
+                    <i class="icon-hdd" style="margin-right:10px"></i>
+                    存储媒介详细列表
+                </h3>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="widget-container fluid-height clearfix">
+                        <div class="widget-content padded clearfix" style="height:600px">
+                            <table class="table table-bordered table-striped" id="tableMediums">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            媒介编号
+                                        </th>
+                                        <th>
+                                            存储接口编码
+                                        </th>
+                                        <th>
+                                            媒介类型
+                                        </th>
+                                        <th>
+                                            厂商信息
+                                        </th>
+                                        <th>
+                                            型号
+                                        </th>
+                                        <th>
+                                            存储方式
+                                        </th>
+                                        <th>
+                                            容量
+                                        </th>
+                                        <th>
+                                            剩余空间
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-12">
+                            <div id="paging">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        function init() {
+            var result = Property.MediumList.loadDB(Html.Current.Id.get(), 1, Property.MediumList.tableSize);
+            Html.Control.PopoverWindow.MediumList.fillTable(result);
+            document.getElementById("tableMediums").style.tableLayout = "fixed";
+
+        };
+        init();
+        function Medium_PageChange(index) {
+            Html.Control.PopoverWindow.MediumList.fillTable(Property.MediumList.loadDB(Html.Current.Id.get(), index, Property.MediumList.tableSize));
+        }
+
+    </script>
+</body>
+</html>

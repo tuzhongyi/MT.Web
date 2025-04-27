@@ -1,0 +1,109 @@
+<html>
+<head>
+    <script src="/jwplayer/jwplayer.js"></script>
+    <style type="text/css">
+        table td {
+            padding: 10px 10px;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <td><div id='myplayer'></div></td>
+            <td><div id='myplayer_playback'></div></td>
+        </tr>
+    </table>
+    
+    <script type='text/javascript'>
+        jwplayer('myplayer').setup({
+            file: "rtmp://"+document.location.hostname+"/stream?dev_id=00310101031111111000001000000000&slot=8&stream=1&mode=live&user=howell&password=fad6686dca794462a5fa17e2f00ec7c7",
+            height: 360,
+            width: 640,
+            autostart: true,
+            stretching: "exactfit",
+            rtmp: {
+                bufferlength: 0.1
+            }
+        });
+        jwplayer('myplayer_playback').setup({
+            file: "rtmp://"+document.location.hostname+"/stream?dev_id=00310101031111111000001000000000&slot=8&stream=1&mode=playback&user=howell&password=fad6686dca794462a5fa17e2f00ec7c7&beg=2017-09-11T02:36:00.000Z&end=2017-09-11T02:41:00.000Z",
+            height: 360,
+            width: 640,
+            autostart: true,
+            stretching: "exactfit",
+            rtmp: {
+                bufferlength: 0.1
+            }
+        });
+    </script>
+
+    <br />
+    <table border="1" cellpadding="0" cellspacing="0">
+        <tr>
+            <td>URI</td>
+            <td colspan="2">rtmp://media stream server ip/stream?dev_id&slot&stream&mode&user&password</td>
+        </tr>
+        <tr>
+            <td>参数名</td>
+            <td>参数描述</td>
+            <td>参数说明</td>
+        </tr>
+        <tr>
+            <td>dev_id</td>
+            <td>设备ID</td>
+            <td>可以通过以下方法获知：设备列表-[单击]设备名称-设备ID</td>
+        </tr>
+
+        <tr>
+            <td>slot</td>
+            <td>通道号</td>
+            <td>1-x</td>
+        </tr>
+
+        <tr>
+            <td>stream</td>
+            <td>主（子）码流</td>
+            <td>主码流：1<br />子码流：2</td>
+        </tr>
+
+        <tr>
+            <td>mode</td>
+            <td>预览/回放</td>
+            <td>预览：live<br />回放：playback</td>
+        </tr>
+        <tr>
+            <td>beg</td>
+            <td>回放开始时间</td>
+            <td>UTC格式</td>
+        </tr>
+        <tr>
+            <td>end</td>
+            <td>回放结束时间</td>
+            <td>UTC格式</td>
+        </tr>
+        <tr>
+            <td>user</td>
+            <td>用户名</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>password</td>
+            <td>密码</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>例1：预览</td>
+            <td colspan="2">rtmp://192.168.21.240/stream?dev_id=00310101031111111000001000000000&slot=8&stream=1&mode=live&user=howell&password=fad6686dca794462a5fa17e2f00ec7c7</td>
+            </tr>
+        <tr>
+            <td>例2：回放</td>
+            <td colspan="2">rtmp://192.168.21.240/stream?dev_id=00310101031111111000001000000000&slot=8&stream=1&mode=playback&user=howell&password=fad6686dca794462a5fa17e2f00ec7c7&beg=2017-09-11T02:36:00.000Z&end=2017-09-11T02:41:00.000Z</td>
+        </tr>
+    </table>    
+
+
+
+
+</body>
+</html>

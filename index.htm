@@ -1,0 +1,431 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head id="pageHead">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>主页</title>
+    <script type="text/javascript" src="js/language/chinese.js"></script>
+    <!--<link rel="icon" href="img/hw.png" type="image/x-icon" />-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="css/bootstrap/bootstrap.min.css"
+    />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="css/howell.css" />
+    <script type="text/javascript" src="config.js"></script>
+    <script type="text/javascript" src="js/jquery/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="js/jquery/jquery-ui.js"></script>
+    <script type="text/javascript" src="js/bootstrap/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/base64.js"></script>
+    <script type="text/javascript" src="js/howell.js/ext.js"></script>
+    <script type="text/javascript" src="js/howell.js/howell.js"></script>
+    <script
+      type="text/javascript"
+      src="js/howell.js/howell.control.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="js/howell.js/howell.convert.js"
+    ></script>
+    <script type="text/javascript" src="js/client/enum.js"></script>
+    <script type="text/javascript" src="js/client/struct.js"></script>
+    <script type="text/javascript" src="js/client/security.js"></script>
+    <script type="text/javascript" src="js/client/client.js"></script>
+    <script src="index.js?update=20170531"></script>
+    <meta
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+      name="viewport"
+    />
+    <!--<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />-->
+  </head>
+  <body unselectable="none" onselectstart="return false;">
+    <style type="text/css">
+      .btn.btn-xs.dropdown-toggle.control.btn-primary-outline.btn-xsgroup-toggle {
+        padding-top: 9.5px;
+        padding-bottom: 9.5px;
+      }
+    </style>
+    <!-- Navigation -->
+    <div class="navbar navbar-fixed-top scroll-hide">
+      <div class="container-fluid top-bar">
+        <!--<a class="logo" href="http://www.howell.net.cn"></a>-->
+        <div class="pull-right">
+          <ul class="nav navbar-nav pull-right">
+            <li class="dropdown settings hidden-sm">
+              <a
+                onclick="Goto(Navigation.event.record.list)"
+                class="dropdown-toggle"
+                href="#"
+                data-toggle="dropdown"
+              >
+                <span aria-hidden="true" class="icon-bell-alt"></span>
+                <div class="sr-only">报警记录</div>
+              </a>
+            </li>
+            <li class="dropdown settings">
+              <a onclick="logout(); " class="dropdown-toggle" href="#">
+                <span aria-hidden="true" class="icon-signout"></span>
+                <div class="sr-only">Exit</div>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="container-fluid main-nav clearfix">
+        <div class="nav-collapse">
+          <ul class="nav">
+            <li style="width: 8px"></li>
+            <li>
+              <a
+                href="#"
+                onclick="loadContent(base64encode(setUrlRandomParams(Navigation.health)));"
+              >
+                <span
+                  aria-hidden="true"
+                  class="icon-home"
+                  style="color: #007aff; font-size: 26px"
+                ></span
+                >主页
+              </a>
+            </li>
+            <li class="dropdown">
+              <a data-toggle="dropdown" href="#">
+                <span
+                  aria-hidden="true"
+                  class="howell-icon-device"
+                  style="color: #007aff; font-size: 26px"
+                ></span
+                >设备管理<b class="caret"></b>
+              </a>
+              <iframe
+                class="dropdown-menu"
+                style="width: 150px; height: 192px; border: 1px solid #dddddd"
+              ></iframe>
+              <ul class="dropdown-menu" style="width: 150px">
+                <li>
+                  <a
+                    href="#"
+                    onclick="loadContent(base64encode(setUrlRandomParams(Navigation.management.device.list)));"
+                  >
+                    <p>设备信息</p>
+                  </a>
+                  <!--<ul class="dropdown-menu" style="display:block;position:static;margin-left:100%;margin-top:-40px;height:100px"><li>aaaaaaaaaaaaaaaa</li></ul>-->
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    onclick="loadContent(base64encode(setUrlRandomParams(Navigation.management.device.searching)));"
+                  >
+                    <p>搜索设备</p>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    onclick="loadContent(base64encode(setUrlRandomParams(Navigation.management.device.association)));"
+                  >
+                    <p>关联设备</p>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    onclick="loadContent(base64encode(setUrlRandomParams(Navigation.management.device.pseudo_code)));"
+                  >
+                    <p>设置视频通道伪码</p>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    onclick="loadContent(base64encode(setUrlRandomParams(Navigation.event.linkage.list)));"
+                  >
+                    <p>联动列表</p>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    onclick="loadContent(base64encode(setUrlRandomParams(Navigation.annunciator.modbus)));"
+                  >
+                    <p>设置报警器</p>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    onclick="loadContent(base64encode(setUrlRandomParams(Navigation.management.platform.list)));"
+                  >
+                    <p>平台信息</p>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    onclick="loadContent(base64encode(setUrlRandomParams(Navigation.management.gis.map.dispatch)));"
+                  >
+                    <p>GIS地图布控</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a
+                data-toggle="dropdown"
+                href="#"
+                onclick="loadContent(base64encode(setUrlRandomParams(Navigation.security.user.list)));"
+              >
+                <span
+                  aria-hidden="true"
+                  class="icon-user"
+                  style="color: #007aff"
+                ></span
+                >用户管理<!--<b class="caret"></b>-->
+              </a>
+            </li>
+            <!--<li class="dropdown">
+                        <a data-toggle="dropdown" href="#" onclick="loadContent(base64encode(setUrlRandomParams(Navigation.security.department.list)));">
+                            <span aria-hidden="true"
+                                  class="icon-group" style="color:#007aff;font-size:26px"></span>部门管理
+                        </a>
+                    </li>-->
+            <li class="dropdown">
+              <a data-toggle="dropdown" href="#">
+                <span
+                  aria-hidden="true"
+                  class="icon-map-marker"
+                  style="color: #007aff"
+                ></span
+                >GPS<b class="caret"></b>
+              </a>
+              <iframe
+                class="dropdown-menu"
+                style="width: 150px; height: 38px; border: 1px solid #dddddd"
+              ></iframe>
+              <ul class="dropdown-menu" style="width: 150px">
+                <li>
+                  <a
+                    href="#"
+                    onclick="loadContent(base64encode(setUrlRandomParams(Navigation.gps.device.list)))"
+                  >
+                    <p>GPS设备信息</p>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    onclick="loadContent(base64encode(setUrlRandomParams(Navigation.vehicle.device.list)));"
+                  >
+                    <p>车牌识别设备</p>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    onclick="loadContent(base64encode(setUrlRandomParams(Navigation.vehicle.device.record)));"
+                  >
+                    <p>车牌识别记录</p>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    onclick="loadContent(base64encode(setUrlRandomParams(Navigation.vehicle.list)));"
+                  >
+                    <p>车辆信息</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a data-toggle="dropdown" href="#">
+                <span
+                  aria-hidden="true"
+                  class="howell-icon-function"
+                  style="color: #007aff; font-size: 28px"
+                ></span
+                >功能<b class="caret"></b>
+              </a>
+              <iframe
+                class="dropdown-menu"
+                style="width: 150px; height: 192px; border: 1px solid #dddddd"
+              ></iframe>
+              <ul class="dropdown-menu" style="width: 150px">
+                <li>
+                  <a
+                    href="#"
+                    onclick="loadContent(base64encode(setUrlRandomParams(Navigation.map)));"
+                  >
+                    <p>地图</p>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    onclick="loadContent(base64encode(setUrlRandomParams(Navigation.event.record.list)));"
+                  >
+                    <p>报警记录</p>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    onclick="loadContent(base64encode(setUrlRandomParams(Navigation.video)));"
+                  >
+                    <p>视频</p>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    onclick="loadContent(base64encode(setUrlRandomParams(Navigation.download.video)));"
+                  >
+                    <p>视频下载</p>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    onclick="loadContent(base64encode(setUrlRandomParams(Navigation.download.record)));"
+                  >
+                    <p>下载记录</p>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    onclick="loadContent(base64encode(setUrlRandomParams(Navigation.logs.user.operations)));"
+                  >
+                    <p>用户操作日志</p>
+                  </a>
+                </li>
+                <li>
+                  <a class="mouse_pointer" onclick="reboot();">
+                    <p>重启</p>
+                  </a>
+                </li>
+                <li>
+                  <a class="mouse_pointer" onclick="shutdown()">
+                    <p>关机</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a data-toggle="dropdown" href="#">
+                <span
+                  aria-hidden="true"
+                  class="icon-ellipsis-vertical"
+                  style="color: #007aff"
+                ></span
+                >其它<b class="caret"></b>
+              </a>
+              <iframe
+                class="dropdown-menu"
+                style="width: 150px; height: 38px; border: 1px solid #dddddd"
+              ></iframe>
+              <ul class="dropdown-menu" style="width: 150px">
+                <li>
+                  <a href="#" onclick="Goto(Navigation.help, true);">
+                    <p>帮助</p>
+                  </a>
+                </li>
+                <!--<li>
+                                <a href="about.htm" onclick="this.href = document.location.protocol + '//' + document.location.host + Navigation.about; AlertWindow.Show(this, -1); return false;">
+                                    <p>
+                                        关于
+                                    </p>
+                                </a>
+                            </li>-->
+              </ul>
+            </li>
+            <!--<li class="dropdown">
+                        <a data-toggle="dropdown" href="#">
+                            <span aria-hidden="true" class="icon-ellipsis-vertical" style="color:#007aff"></span>测试<b class="caret"></b>
+                        </a>
+                        <iframe class="dropdown-menu" style="width: 150px; height: 38px;border:1px solid #dddddd"></iframe>
+                        <ul class="dropdown-menu" style="width:150px">
+                            <li>
+                                <a>
+                                    <p>
+                                        测试1
+                                    </p>
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    <p>
+                                        测试2
+                                    </p>
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    <p>
+                                        测试3
+                                    </p>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="dropdown-menu" style="width:150px;left:150px;">
+                            <li>
+                                <a>
+                                    <p>
+                                        测试1-1
+                                    </p>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="dropdown-menu" style="width:150px;left:150px;top:37px">
+                            <li>
+                                <a>
+                                    <p>
+                                        测试2-1
+                                    </p>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="dropdown-menu" style="width:150px;left:150px;top:74px">
+                            <li>
+                                <a>
+                                    <p>
+                                        测试3-1
+                                    </p>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="dropdown-menu" style="width:150px;left:300px;top:37px">
+                            <li>
+                                <a>
+                                    <p>
+                                        测试2-1-2
+                                    </p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>-->
+          </ul>
+          <div id="table_head" style="display: none"></div>
+        </div>
+      </div>
+    </div>
+    <a
+      class="to-top"
+      onclick="document.documentElement.scrollTop = 0; window.pageYOffset = 0; document.body.scrollTop=0"
+    >
+      <div class="pic"></div>
+    </a>
+    <button class="navbar-toggle">
+      <span class="icon-bar"></span><span class="icon-bar"></span
+      ><span class="icon-bar"></span>
+    </button>
+    <div id="divLoadContent"></div>
+    <!-- End Navigation  src="service.htm" -->
+    <script type="text/javascript">
+      $('.navbar-toggle').click(function () {
+        return $('body, html').toggleClass('nav-open')
+      })
+      onload = indexInit
+    </script>
+  </body>
+</html>

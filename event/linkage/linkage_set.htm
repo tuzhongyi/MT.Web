@@ -1,0 +1,1534 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>设置联动</title>
+    <link rel="stylesheet" type="text/css" href="../../css/howell.css" />
+    <link href="../../css/bootstrap/bootstrap-switch.css" rel="stylesheet" />
+    <link href="../../css/bootstrap/colorpicker.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="../../js/language/chinese.js"></script>
+    <script type="text/javascript" src="../../js/jquery/jquery-1.10.2.min.js"></script>
+    <script src="../../js/imported.js"></script>
+    <script src="../../js/imported.js"></script>
+    <script type="text/javascript" src="../../js/jquery/jquery-ui.js"></script>
+    <script type="text/javascript" src="../../js/bootstrap/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../js/jquery/jquery.confirm.js"></script>
+
+    <script type="text/javascript" src="../../js/howell.js/howell.js"></script>
+    <script type="text/javascript" src="../../js/client/struct.js"></script>
+    <script type="text/javascript" src="../../js/client/security.js"></script>
+    <script type="text/javascript" src="../../js/client/security.js"></script>
+    <script type="text/javascript" src="../../js/client/enum.js"></script>
+    <script type="text/javascript" src="../../js/client/client.js"></script>
+    <script type="text/javascript" src="../../js/howell.js/howell.control.js"></script>
+    <script type="text/javascript" src="../../js/modernizr.custom.js"></script>
+    <script type="text/javascript" src="../../js/bootstrap/bootstrap-timepicker.js"></script>
+    <script type="text/javascript" src="../../js/bootstrap/bootstrap-colorpicker.js"></script>
+    <script type="text/javascript" src="../../js/bootstrap/bootstrap-switch.min.js"></script>
+    <!--<script type="text/javascript" src="../../js/background/linkage/background_user.event.js"></script>-->
+    <script type="text/javascript" src="../../js/background/linkage/background_linkages.js"></script>
+    <script type="text/javascript" src="../linkages.js"></script>
+</head>
+<body>
+    <style type="text/css">
+        .dropdown-menu {
+            z-index: 10000;
+        }
+
+        .group-list-tag {
+            height: 40px;
+            float: left;
+            margin-top: -9px;
+            margin-right: 5px;
+            margin-left: -15px;
+            width: 5px;
+            background-color: #f0ad4e;
+        }
+
+            .group-list-tag.associated {
+                background-color: #60c560;
+            }
+
+            .group-list-tag.unassociated {
+                background-color: #c09853;
+            }
+
+        .dropdown-toggle.simlie {
+            margin-left: -9px !important;
+            height: 29px;
+            padding-top: 3px;
+        }
+
+        .text_area {
+            border: 1px solid #ddd;
+            height: 26.1%;
+            width: 100%;
+        }
+
+        .font-set-div {
+            border-top: 1px solid #ddd;
+            border-left: 1px solid #ddd;
+            border-right: 1px solid silver;
+            border-bottom: 1px solid silver;
+            width: 100%;
+            padding: 5px 0 5px 10px;
+        }
+
+        .w_width {
+            width: 57px;
+            text-align: left;
+        }
+
+        .font-set-table {
+            border-collapse: collapse;
+            border-bottom: 1px solid silver;
+        }
+
+        .font-set-table-td {
+            border: 0;
+            padding: 2px 3px 3px 3px;
+            font-size: 12px;
+        }
+
+        .colorpicker-saturation {
+            width: 100px;
+            height: 100px;
+            background-image: url(../../img/saturation.png);
+            cursor: crosshair;
+            float: left;
+        }
+
+        .colorpicker-hue {
+            background-image: url(../../img/hue.png);
+        }
+
+        .colorpicker-color {
+            height: 10px;
+            margin-top: 5px;
+            clear: both;
+            background-image: url(../../img/alpha.png);
+            background-position: 0 100%;
+        }
+
+        .colorpicker-alpha {
+            background-image: url(../../img/alpha.png);
+            display: none;
+        }
+
+        .list-group-item p {
+            height: 40px;
+        }
+
+            .list-group-item p lable {
+                width: 345px;
+            }
+
+        .group-list-tag.double {
+            margin-top: -2px;
+            height: 41px;
+        }
+
+        .list-group-item .first-line {
+            height: 20px;
+            font-size: 14px;
+        }
+
+        .list-group-item .second-line {
+            height: 20px;
+            font-size: 11px;
+            color: #888888;
+        }
+
+        .input-name {
+            width: 60%;
+        }
+
+        .device-ip {
+            width: 60%;
+        }
+
+        .device-classification {
+            width: 40%;
+            text-align: right;
+        }
+
+        .device-name {
+            width: 40%;
+            text-align: right;
+        }
+    </style>
+    <script type="text/javascript">
+        (function () {
+            $(document).ready(function () {
+                $("#timepicker-default").timepicker();
+                $("#timepicker-24h").timepicker({
+                    minuteStep: 1,
+                    showSeconds: true,
+                    showMeridian: false
+                });
+                $("#timepicker-noTemplate").timepicker({
+                    template: false,
+                    showInputs: false,
+                    minuteStep: 5
+                });
+                $("#timepicker-modal").timepicker({
+                    minuteStep: 1,
+                    secondStep: 5,
+                    showInputs: false,
+                    modalBackdrop: true,
+                    showSeconds: true,
+                    showMeridian: false
+                });
+            });
+        }).call(this);
+    </script>
+    <div class="page-main row">
+        <div class="col-md-12">
+            <!--<div class="widget-container fluid-height clearfix list-width padded background-min-height">-->
+            <div class="fluid-height clearfix list-width padded background-min-height">
+                <div class="heading list-heading-maxdiv" style="position:relative">
+                    <div style="height:670px;width:450px;overflow:hidden;position:absolute;z-index:1;top:48px;display:none" id="Input_Div">
+                        <div class="row">
+                            <div style="font-size:18px;margin-left:10px;float:left;margin-top:2px">
+                                视频输入通道列表
+                            </div>
+                            <div class="pull-left" style="margin-left:10px;margin-top:14px;color:#555;font-size:15px;clear:both;">
+                                <label onclick="setTimeout(function () { getTag('ddlClassification').style.display = 'block'; getTag('deviceListName').style.display = 'block'; getTag('deviceOperation').style.display = 'block'; }, 200); $('#Input_Div').slideUp('fast', 'swing', Set_Html.GroupList.Input.clear);" class="mouse_pointer" style="color:#007aff">设备</label>  >>  <label>通道</label>
+                            </div>
+                            <div class="btn-group pull-right div-xsgroupdown" style="margin-top:6px;margin-right:20px !important">
+                                <div class="btn btn-xs btn-primary btn-xsgroupdown dropdown-toggle simlie" data-toggle="dropdown" style="margin-right:10px" onclick="dropdownList_Click(this)">
+                                    选&ensp;择&ensp;<span class="caret"></span>
+                                </div>
+                                <ul class="dropdown-menu xsgroupdown-menu-ul" style="margin-right:10px" onmouseover="operationSetLinkageCanClose = false;" onmouseout="operationSetLinkageCanClose = true;">
+                                    <li class="mouse_pointer">
+                                        <a class="xsgroupdown-menu-ul-li-a" onclick="GroupList.Select.All(Set_Info.ControlIdPrefix.input, Input_SelectAll); dropdownList_Click(this.parentElement.parentElement);">
+                                            全选
+                                        </a>
+                                    </li>
+                                    <li class="mouse_pointer">
+                                        <a class="xsgroupdown-menu-ul-li-a" onclick="GroupList.Select.Inverse(Set_Info.ControlIdPrefix.input); dropdownList_Click(this.parentElement.parentElement);">
+                                            反选
+                                        </a>
+                                    </li>
+                                    <li class="mouse_pointer">
+                                        <a class="xsgroupdown-menu-ul-li-a" onclick="GroupList.Select.Cancel(Set_Info.ControlIdPrefix.input, Input_SelectCancel); dropdownList_Click(this.parentElement.parentElement);">
+                                            取消
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div id="dListInput" class="scrollable" style="height:587px;width:430px;overflow-y:auto;margin-top:4px;background-color:white">
+
+                        </div>
+                    </div>
+
+
+                    <div style="height:670px;width:431px;overflow:hidden;position:absolute;z-index:1;top:48px;right:25px;display:none;background-color:#F7F7F7" id="set_playback">
+                        <div class="row">
+                            <div style="font-size:18px;margin-left:10px;float:left;margin-top:5px">
+                                设置回放
+                            </div>
+                            <div class="scrollable" style="height:588px;width:430px;overflow-y:auto;margin-top:81px;background-color:white">
+                                <form action="#" class="form-horizontal">
+                                    <div class="form-group" style="margin-left:0;margin-right:0;margin-top:30px">
+                                        <label class="control-label col-md-3">
+                                            开始时间
+                                        </label>
+                                        <div class="col-md-9">
+                                            <div class="widget-content padded">
+                                                <div class="slider-container">
+                                                    <div class="slider-basic" id="divBeginTimeSlider">
+                                                    </div>
+                                                    <div>
+                                                        <p>
+                                                            <input class="form-control pull-right" type="text" id="spanBeginTimeSlider" style="width:50px" onkeyup="sliderChangeOnkeyup('divBeginTimeSlider', 'spanBeginTimeSlider', this.value)" onblur="    sliderChangeOnblur('divBeginTimeSlider', 'spanBeginTimeSlider', this.value)" />
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" style="margin-left:0;margin-right:0">
+                                        <label class="control-label col-md-3">
+                                            结束时间
+                                        </label>
+                                        <div class="col-md-9">
+                                            <div class="widget-content padded">
+                                                <div class="slider-container">
+                                                    <div class="slider-basic" id="divEndTimeSlider">
+                                                    </div>
+                                                    <div>
+                                                        <p>
+                                                            <input class="form-control pull-right" id="spanEndTimeSlider" style="width:50px" onkeyup="sliderChangeOnkeyup('divEndTimeSlider', 'spanEndTimeSlider', this.value)" onblur="    sliderChangeOnblur('divEndTimeSlider', 'spanEndTimeSlider', this.value)" />
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" style="margin-left:0;margin-right:0">
+                                        <label class="control-label col-md-3">
+                                            连接协议
+                                        </label>
+                                        <div class="col-md-9">
+                                            <select class="form-control" id="ddlPlaybackProtocol" onchange="playbackProtocol_Onchange(this)">
+                                                <option value="Howell5198">HW5198</option>
+                                                <option value="Howell8000">HW8000</option>
+                                                <option value="ONVIF">ONVIF</option>
+                                                <option value="GB28181">GB28181</option>
+                                                <option value="Other">其它</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" style="margin-left:0;margin-right:0" id="divPlaybackProtocol">
+                                        <label class="control-label col-md-3">
+                                            填写协议
+                                        </label>
+                                        <div class="col-md-9">
+                                            <input class="form-control pull-right" id="txtPlaybackProtocol">
+                                        </div>
+                                    </div>
+                                    <a class="btn btn-primary div-xsgroup pull-right btn_linkage" style="margin-right:20px" onclick="closeSetPalyBack()">取&ensp;&ensp;消</a>
+                                    <a class="btn btn-primary div-xsgroup pull-right btn_linkage" id="btnSetPlayBack">保&ensp;&ensp;存</a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group list-heading-div">
+                        &ensp;<i class="icon_linkage_list"></i>
+                        设置联动
+                    </div>
+                    <div style="height:80px">
+                        <div class="col-md-5">
+                            <div style="clear:both;font-size:18px;margin-left:-10px" id="deviceListName">
+                                请选择联动动作
+                            </div>
+                            <div class="pull-left">
+                                <select class="form-control" style="max-width:200px;margin-top:10px;margin-left:-10px" id="ddlClassification" onchange="ddlDeviceList_Changed(this)"></select>
+                            </div>
+                            <div class="btn-group pull-right div-xsgroupdown" style="margin-top:5px;margin-right:2px !important" id="deviceOperation">
+                                <div class="btn btn-xs btn-primary btn-xsgroupdown dropdown-toggle simlie" style="margin-top:5px" data-toggle="dropdown" onclick="dropdownList_Click(this)">
+                                    选&ensp;择&ensp;<span class="caret"></span>
+                                </div>
+                                <ul class="dropdown-menu xsgroupdown-menu-ul" onmouseover="operationSetLinkageCanClose = false;" onmouseout="operationSetLinkageCanClose = true;">
+                                    <li class="mouse_pointer">
+                                        <a class="xsgroupdown-menu-ul-li-a" onclick="GroupList.Select.All(Set_Info.ControlIdPrefix.device, Device_SelectAll); dropdownList_Click(this.parentElement.parentElement);">
+                                            全选
+                                        </a>
+                                    </li>
+                                    <li class="mouse_pointer">
+                                        <a class="xsgroupdown-menu-ul-li-a" onclick="GroupList.Select.Cancel(Set_Info.ControlIdPrefix.device, Device_SelectCancel); dropdownList_Click(this.parentElement.parentElement);">
+                                            取消
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-2"></div>
+                        <div class="col-md-5">
+                            <div style="font-size:18px;margin-left:-10px;float:left;margin-top:4px">
+                                联动关联通道信息
+                            </div>
+                            <div class="btn-group pull-right div-xsgroupdown" style="margin-top:34px;margin-right:0px !important">
+                                <div class="btn btn-xs btn-primary btn-xsgroupdown dropdown-toggle simlie" data-toggle="dropdown" onclick="dropdownList_Click(this)">
+                                    选&ensp;择&ensp;<span class="caret"></span>
+                                </div>
+                                <ul class="dropdown-menu xsgroupdown-menu-ul" onmouseover="operationSetLinkageCanClose = false;" onmouseout="operationSetLinkageCanClose = true;">
+                                    <li class="mouse_pointer">
+                                        <a class="xsgroupdown-menu-ul-li-a" onclick="GroupList.Select.All(Set_Info.ControlKey[Set_Html.TabKey].item, Tab_SelectAll); dropdownList_Click(this.parentElement.parentElement);">
+                                            全选
+                                        </a>
+                                    </li>
+                                    <li class="mouse_pointer">
+                                        <a class="xsgroupdown-menu-ul-li-a" onclick="GroupList.Select.Inverse(Set_Info.ControlKey[Set_Html.TabKey].item); dropdownList_Click(this.parentElement.parentElement);">
+                                            反选
+                                        </a>
+                                    </li>
+                                    <li class="mouse_pointer">
+                                        <a class="xsgroupdown-menu-ul-li-a" onclick="GroupList.Select.Cancel(Set_Info.ControlKey[Set_Html.TabKey].item, Tab_SelectCancel); dropdownList_Click(this.parentElement.parentElement);">
+                                            取消
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div id="dListDevice" class="list_linkage scrollable">
+
+                        </div>
+                        <div class="col-md-2">
+                            <div style="margin:225px auto 0px 15px;text-align:center;" onclick="addInput_OnClick()">
+                                <a class="btn btn-primary div-xsgroup icon-long-arrow-right"></a>
+                            </div>
+                            <div style="margin:0px auto 0px 15px;text-align:center;" onclick="removeInput_OnClick()">
+                                <a class="btn btn-primary div-xsgroup icon-long-arrow-left"></a>
+                            </div>
+                        </div>
+                        <div class="tab-content padded col-md-5" style="height:602px;overflow:auto" id="my-tab-content">
+                            <div class="heading tabs" style="height:41px;background-color:#e0e0e0">
+                                <ul class="nav nav-tabs" id="tabs" data-tabs="tabs" style="margin-top:-2px">
+                                    <li id="tab_btn_VideoPreviewIdentifier">
+                                        <a href="#tab_VideoPreviewIdentifier" data-toggle="tab" onclick="tab_OnClick('VideoPreviewIdentifier')">预览</a>
+                                    </li>
+                                    <li id="tab_btn_VideoPlaybackIdentifier">
+                                        <a href="#tab_VideoPlaybackIdentifier" data-toggle="tab" onclick="tab_OnClick('VideoPlaybackIdentifier')">回放</a>
+                                    </li>
+                                    <li id="tab_btn_VideoSnapIdentifier">
+                                        <a href="#tab_VideoSnapIdentifier" data-toggle="tab" onclick="tab_OnClick('VideoSnapIdentifier')">抓图</a>
+                                    </li>
+                                    <li id="tab_btn_DecoderIdentifier">
+                                        <a href="#tab_DecoderIdentifier" data-toggle="tab" onclick="tab_OnClick('DecoderIdentifier')">解码器</a>
+                                    </li>
+                                    <li id="tab_btn_TextIdentifier">
+                                        <a href="#tab_TextIdentifier" data-toggle="tab" onclick="tab_OnClick(null)">文本</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="tab-pane" id="tab_VideoPreviewIdentifier" style="border-top:0px;background-color:white">
+                                <div class="scrollable" style="height:548px;overflow-y:auto;margin-top:1px">
+                                    <div class="list-group" id="preview_">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tab_VideoPlaybackIdentifier" style="border-top:0px;background-color:white">
+                                <div class="scrollable" style="height:548px;overflow-y:auto;margin-top:1px">
+                                    <div class="list-group" id="playback_">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tab_VideoSnapIdentifier" style="border-top:0px;background-color:white">
+                                <div class="scrollable" style="height:548px;overflow-y:auto;margin-top:1px">
+                                    <div class="list-group" id="snap_">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tab_DecoderIdentifier" style="border-top:0px;background-color:white">
+                                <div class="scrollable" style="height:548px;overflow-y:auto;margin-top:1px;">
+                                    <div class="list-group" id="decoder_">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tab_TextIdentifier" style="border-top:0px;background-color:white">
+                                <div class="scrollable" style="height:545px;overflow-y:auto;margin-top:4px;margin-left:2px;width:426px">
+                                    <div style="margin-top:10px;">设置字体:</div>
+                                    <div class="font-set-div">
+                                        <form id="ff">
+                                            <table cellpadding="0" cellspacing="0" class="font-set-table">
+                                                <tr>
+                                                    <td class="font-set-table-td">
+                                                        字体:<br>
+                                                        <input class="w_width" style="width:137px" value="宋体" type="text" id="txtFontFamily" />
+                                                    </td>
+                                                    <td class="font-set-table-td">字形:<br><input value="normal" id="txtFontWeight" class="w_width" type="text" /></td>
+                                                    <td class="font-set-table-td">大小:<br><input type="text" id="txtFontSize" value="14px" style="width:47px;" /></td>
+                                                    <td class="font-set-table-td">RGBA:<br><input data-color-format="rgba" id="cp2" type="text" value="rgba(0,0,0,0)" readonly="readonly"></td>
+                                                <tr>
+                                                    <td class="font-set-table-td">
+                                                        <select size="6" class="w_width" style="width:137px" id="selectFontFamily" onchange="select_value(this.options[this.selectedIndex].value,0)">
+                                                            <option value="宋体" selected="selected">宋体
+                                                            <option value="方正舒体">方正舒体
+                                                            <option value="方正姚体">方正姚体
+                                                            <option value="华文行楷">华文行楷
+                                                            <option value="华文新魏">华文新魏
+                                                            <option value="仿宋_GB2312">仿宋_GB2312
+                                                            <option value="黑体">黑体
+                                                            <option value="华文彩云">华文彩云
+                                                            <option value="隶书">隶书
+                                                            <option value="华文中宋">华文中宋
+                                                            <option value="verdana">verdana
+                                                            <option value="Times New Roman">Times New Roman
+                                                            <option value="Fixedsys">Fixedsys
+                                                        </select>
+                                                    </td>
+                                                    <td class="font-set-table-td">
+                                                        <select size="6" class="w_width" id="selectFontWeight" onchange="select_value(this.options[this.selectedIndex].value,1)">
+                                                            <option value="normal" selected="selected">常规
+                                                            <option value="bold">粗体
+                                                        </select>
+                                                    </td>
+                                                    <td class="font-set-table-td">
+                                                        <select size="6" style="width:47px;" id="selectFontSize" onchange="select_value(this.options[this.selectedIndex].value,2)">
+                                                            <option value="12px">12
+                                                            <option value="13px">13
+                                                            <option value="14px" selected="selected">14
+                                                            <option value="15px">15
+                                                            <option value="16px">16
+                                                            <option value="17px">17
+                                                            <option value="18px">18
+                                                            <option value="19px">19
+                                                            <option value="20px">20
+                                                            <option value="21px">21
+                                                            <option value="22px">22
+                                                            <option value="23px">23
+                                                            <option value="24px">24
+                                                            <option value="25px">25
+                                                            <option value="26px">26
+                                                            <option value="27px">27
+                                                            <option value="28px">28
+                                                            <option value="29px">29
+                                                            <option value="30px">30
+                                                            <option value="32px">32
+                                                            <option value="34px">34
+                                                            <option value="36px">36
+                                                            <option value="38px">38
+                                                            <option value="40px">40
+                                                        </select>
+                                                    </td>
+                                            </table>
+                                        </form>
+                                    </div>
+                                    <div style="margin-top:20px">
+                                        测试字符串:
+                                    </div>
+                                    <div id="show_words" class="text_area" style="overflow-y:auto;overflow-x:hidden;font-family:宋体;font-weight:normal;font-size:14px;"></div>
+                                    <div style="margin-top:20px">
+                                        请输入联动显示信息:
+                                    </div>
+                                    <textarea class="text_area" id="text_area" style="font-family:宋体;font-weight:normal;font-size:14px;" onkeyup="textarea_Onkeyup(this.value);"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <a class="btn btn-primary div-xsgroup pull-right btn_linkage" style="margin-right:20px" onclick="AlertWindow.Close()">取&ensp;&ensp;消</a>
+                        <a class="btn btn-primary div-xsgroup pull-right btn_linkage" onclick="setLinkage_OnClick()">保&ensp;&ensp;存</a>
+                        <a class="btn btn-primary div-xsgroup pull-right btn_linkage" id="btnBatchSetPalyBack" onclick="openSetPalyBack();">设置回放</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+
+        ColorpickerChanged = function (e) {
+            $("#show_words").css("color", e);
+        }
+
+        var Set_Info = {
+            ControlIdPrefix: {
+                device: "device_",
+                inputCount: "input_count_",
+                input: "input_",
+                save_ioinput: "save_ioinput_",
+                getId: function (id, prefix) {
+                    return id.substr(prefix.length);
+                }
+            },
+            ControlKey: {
+                VideoPreviewIdentifier: {
+                    item: "preview_",
+                    type: function () {
+                        return new VideoPreviewIdentifier();
+                    }
+                },
+                VideoPlaybackIdentifier: {
+                    item: "playback_",
+                    type: function () {
+                        return new VideoPlaybackIdentifier();
+                    }
+                },
+                VideoSnapIdentifier: {
+                    item: "snap_",
+                    type: function () {
+                        return new VideoSnapIdentifier();
+                    }
+                },
+                DecoderIdentifier: {
+                    item: "decoder_",
+                    type: function () {
+                        return new DecoderIdentifier();
+                    }
+                },
+            }
+        }
+
+        var SelectedState = {
+            All: "selected",
+            Items: "items",
+            None: "",
+        }
+
+        var Set_Property = {
+            Count: {
+                Input: function (deviceId, key) {
+                    return tryCatch(function () {
+                        var Inputs = Set_Property.Input.load(deviceId);
+                        var count = Inputs.length;
+                        for (var i = 0; i < Inputs.length; i++) {
+                            if (Inputs[i][key] == true) {
+                                count = count - 1;
+                            }
+                        }
+                        return count;
+                    });
+                }
+            },
+            Device: {
+                classification: "All",
+                value: new Dictionary(),
+                load: function () {
+                    var response = tryCatch(function () {
+                        return Client.Management().Device.List(null, null, Set_Property.Device.classification == "All" ? null : Set_Property.Device.classification);
+                    });
+                    var deviceArray = new Array();
+                    if (response && response.Device) {
+                        for (var i = 0; i < response.Device.length; i++) {
+                            var device = response.Device[i];
+                            device.hasInput = true;
+                            if (Set_Property.Input.getCount(device.Id).Page.TotalRecordCount == 0)
+                                device.hasInput = false;
+                            device.VideoInput = new Dictionary();
+                            if (device.Classification == DeviceClassification.HDDecoder || device.Classification == DeviceClassification.DecodingUnit) {
+                                device.isCreate = false;
+                                device.componentSelected = false;
+                            }
+                            device.Selected = SelectedState.None;
+                            device.ChildSelectedCount = 0;
+                            if (this.value[device.Id]) {
+                                device.hasInput = this.value[device.Id].hasInput;
+                                device.VideoInput = this.value[device.Id].VideoInput;
+                                device.Selected = this.value[device.Id].Selected;
+                                device.ChildSelectedCount = this.value[device.Id].ChildSelectedCount;
+                                if (this.value[device.Id].isCreate)
+                                    device.isCreate = this.value[device.Id].isCreate;
+                                if (this.value[device.Id].componentSelected)
+                                    device.componentSelected = this.value[device.Id].componentSelected;
+                            }
+                            this.value[device.Id] = device;
+                            deviceArray.push(device);
+                        }
+                    }
+                    return deviceArray;
+                },
+            },
+            Input: {
+                deviceId: null,
+                value: function (deviceId) {
+                    return Set_Property.Device.value[deviceId].VideoInput;
+                },
+                getCount: function (deviceId) {
+                    return tryCatch(function () {
+                        return Client.Management().Device.Video.Input.List(deviceId, 1, 1);
+                    });
+                },
+                list: function (deviceId) {
+                    return tryCatch(function () {
+                        return Client.Management().Device.Video.Input.List(deviceId);
+                    });
+                },
+                load: function (deviceId) {
+                    var response = this.list(deviceId);
+                    if (response && response.VideoInputChannel) {
+                        for (var i = 0; i < response.VideoInputChannel.length; i++) {
+                            var input = response.VideoInputChannel[i];
+                            input.Selected = false;
+                            input.DeviceId = deviceId;
+                            input.VideoPreviewIdentifier = false;
+                            input.VideoPlaybackIdentifier = false;
+                            input.VideoSnapIdentifier = false;
+                            if (this.value(deviceId)[input.Id]) {
+                                input.Selected = this.value(deviceId)[input.Id].Selected;
+                                input.SelectedSpecified = false;
+                                input.VideoPreviewIdentifier = this.value(deviceId)[input.Id].VideoPreviewIdentifier;
+                                input.VideoPlaybackIdentifier = this.value(deviceId)[input.Id].VideoPlaybackIdentifier;
+                                input.VideoSnapIdentifier = this.value(deviceId)[input.Id].VideoSnapIdentifier;
+                            }
+                            this.value(deviceId)[input.Id] = input;
+                        }
+                    }
+                    return this.value(deviceId).toArray();
+                },
+                get: function (deviceId, inputId) {
+                    return tryCatch(function () {
+                        return Client.Management().Device.Video.Input.Get(deviceId, inputId);
+                    });
+                }
+            },
+            Tab: {
+                value: {
+                    VideoPreviewIdentifier: new Dictionary(),
+                    VideoPlaybackIdentifier: new Dictionary(),
+                    VideoSnapIdentifier: new Dictionary(),
+                    DecoderIdentifier: new Dictionary()
+                },
+                set: function (linkage) {
+                    tryCatch(function () {
+                        Client.Management().Event.Linkage.Set(linkage, linkage.EventType, linkage.EventState);
+                    });
+                }
+            }
+        }
+
+        var Set_Html = {
+            TabKey: null,
+            GroupList: {
+                Device: {
+                    Selected: new Dictionary(),
+                    createItem: function (device) {
+                        var item = new GroupListItem(Set_Info.ControlIdPrefix.device);
+                        item.id = device.Id;
+                        var inputCount = "";
+                        if (Set_Html.TabKey != "DecoderIdentifier")
+                            inputCount = "<span class='pull-right badge' id='" + Set_Info.ControlIdPrefix.inputCount + device.Id + "'>" + Set_Property.Count.Input(device.Id, Set_Html.TabKey) + "</span>";
+                        item.className = item.className + " mouse_pointer " + (Set_Html.TabKey == "DecoderIdentifier" ? Set_Property.Device.value[device.Id].componentSelected : Set_Property.Device.value[device.Id].Selected);
+                        $(item.Content).append($("<div class='group-list-tag'></div>" + "<lable class='text-ellipsis'>" + device.Name + "</lable>" + inputCount));
+                        item.ondblclick = function () {
+                            Device_OnDblClick(item);
+                        };
+                        item.onclick = function () {
+                            Device_OnClick(item);
+                        };
+                        return item;
+                    },
+                    create: function (controlId) {
+                        var list = Set_Property.Device.load();
+                        var array = new GroupListItemArray();
+                        for (var i = 0; i < list.length; i++) {
+                            Set_Property.Input.load(list[i].Id);
+                            if (Set_Html.TabKey != "DecoderIdentifier" && list[i].hasInput == false)
+                                continue;
+                            if (Set_Html.TabKey == "DecoderIdentifier" && ((list[i].Classification != DeviceClassification.DecodingUnit && list[i].Classification != DeviceClassification.HDDecoder) || list[i].isCreate)) {
+                                continue;
+                            }
+                            var item = this.createItem(list[i]);
+                            array.push(item);
+                        }
+                        getTag(controlId).appendChild(new GroupList(Set_Info.ControlIdPrefix.device, array));
+                    },
+                    clear: function () {
+                        var control = getTag(Set_Info.ControlIdPrefix.device);
+                        if (control)
+                            control.innerText = "";
+                    },
+                    select: function (sender, value) {
+                        var id = sender.id;
+                        var device = Set_Property.Device.value[id];
+                        if (value == true && device.Selected != SelectedState.None) {
+                            return
+                        }
+                        if (value == false && device.Selected == SelectedState.None) {
+                            return
+                        }
+                        switch (device.Selected) {
+                            case SelectedState.All:
+                            case SelectedState.Items:
+                                $(sender).removeClass(Set_Property.Device.value[id].Selected);
+                                Set_Property.Device.value[id].Selected = SelectedState.None;
+                                break;
+                            case SelectedState.None:
+                                var array = Set_Property.Input.value(id).toArray();
+                                var count = 0;
+                                for (var i = 0; i < array.length; i++) {
+                                    if (array[i].Selected && array[i][Set_Html.TabKey] == false) {
+                                        ++count;
+                                    }
+                                }
+                                var state = count == getTag(Set_Info.ControlIdPrefix.inputCount + id).innerText || count == 0 ? SelectedState.All : SelectedState.Items;
+                                Set_Property.Device.value[id].Selected = state;
+                                $(sender).addClass(state);
+                                break;
+
+                        }
+                    },
+                    selectDecoder: function (sender, value) {
+                        var id = sender.id;
+                        if (value == true && Set_Property.Device.value[id].componentSelected)
+                            return
+                        if (value == false && !Set_Property.Device.value[id].componentSelected)
+                            return
+                        if (Set_Property.Device.value[id].componentSelected) {
+                            Set_Property.Device.value[id].componentSelected = false;
+                            $(sender).removeClass("selected");
+                            return;
+                        }
+                        if (!Set_Property.Device.value[id].componentSelected) {
+                            Set_Property.Device.value[id].componentSelected = true;
+                            $(sender).addClass("selected");
+                            return;
+                        }
+                    },
+                    change: function (deviceId, selectCount) {
+                        if (Set_Property.Device.value[deviceId].ChildSelectedCount == getTag(Set_Info.ControlIdPrefix.inputCount + deviceId).innerText)
+                            Set_Property.Device.value[deviceId].Selected = SelectedState.All;
+                        else if (Set_Property.Device.value[deviceId].ChildSelectedCount == 0)
+                            Set_Property.Device.value[deviceId].Selected = SelectedState.None;
+                        else
+                            Set_Property.Device.value[deviceId].Selected = SelectedState.Items;
+                        var item = getTag(deviceId);
+                        if (item.className.indexOf(SelectedState.All) >= 0) {
+                            $(item).removeClass(SelectedState.All);
+                        }
+                        if (item.className.indexOf(SelectedState.Items) >= 0) {
+                            $(item).removeClass(SelectedState.Items);
+                        }
+                        $(item).addClass(Set_Property.Device.value[deviceId].Selected);
+                    },
+                },
+                Input: {
+                    //Selected: new Dictionary(),
+                    load: function (controlId) {
+                        var list = Set_Property.Input.load(Set_Property.Input.deviceId);
+                        var array = new GroupListItemArray();
+                        for (var i = 0; i < list.length; i++) {
+                            if (list[i][Set_Html.TabKey] == true)
+                                continue;
+                            var item = new GroupListItem(Set_Info.ControlIdPrefix.input, Input_OnClick);
+                            item.id = list[i].Id;
+                            if (Set_Property.Device.value[Set_Property.Input.deviceId].Selected == SelectedState.None) {
+                                item.className = item.className + " mouse_pointer";
+                            }
+                            else if (Set_Property.Device.value[Set_Property.Input.deviceId].Selected == SelectedState.All) {
+                                item.className = item.className + " mouse_pointer selected";
+                            }
+                            else {
+                                item.className = item.className + " mouse_pointer " + (Set_Property.Input.value(Set_Property.Input.deviceId)[list[i].Id].Selected ? "selected" : "");
+                            }
+                            $(item.Content).append($("<div class='group-list-tag'></div>" + "<lable class='text-ellipsis'>" + list[i].Name + "</lable>"));
+                            array.push(item);
+                        }
+                        getTag(controlId).appendChild(new GroupList(Set_Info.ControlIdPrefix.input, array));
+                    },
+                    clear: function () {
+                        var control = getTag(Set_Info.ControlIdPrefix.input);
+                        if (control)
+                            control.innerText = "";
+                    },
+                    select: function (id, value) {
+                        var deviceId = new Id(id).getDeviceId();
+                        if (Set_Property.Device.value[deviceId].ChildSelectedCount == 0 && Set_Property.Device.value[deviceId].Selected == SelectedState.All) {
+                            var arr = Set_Property.Device.value[deviceId].VideoInput.toArray();
+                            for (var i = 0; i < arr.length; i++) {
+                                if (arr[i][Set_Html.TabKey] == false) {
+                                    Set_Property.Device.value[deviceId].VideoInput[arr[i].Id].Selected = true;
+                                    Set_Html.GroupList.Device.change(deviceId, ++Set_Property.Device.value[deviceId].ChildSelectedCount);
+                                }
+                            }
+                        }
+                        if (is.Boolean(value)) {
+                            if (value) {
+                                if (Set_Property.Device.value[deviceId].VideoInput[id].Selected == false) {
+                                    Set_Property.Device.value[deviceId].VideoInput[id].Selected = true;
+                                    Set_Html.GroupList.Device.change(deviceId, ++Set_Property.Device.value[deviceId].ChildSelectedCount);
+                                }
+                            }
+                            else {
+                                if (Set_Property.Device.value[deviceId].VideoInput[id].Selected == true) {
+                                    Set_Property.Device.value[deviceId].VideoInput[id].Selected = false;
+                                    Set_Html.GroupList.Device.change(deviceId, --Set_Property.Device.value[deviceId].ChildSelectedCount);
+                                }
+                            }
+                            return;
+                        }
+                        if (Set_Property.Device.value[deviceId].VideoInput[id].Selected) {
+                            Set_Property.Device.value[deviceId].VideoInput[id].Selected = false;
+                            Set_Html.GroupList.Device.change(deviceId, --Set_Property.Device.value[deviceId].ChildSelectedCount);
+                            return;
+                        }
+                        Set_Property.Device.value[deviceId].VideoInput[id].Selected = true;
+                        Set_Html.GroupList.Device.change(deviceId, ++Set_Property.Device.value[deviceId].ChildSelectedCount);
+                    },
+                },
+                Tab: {
+                    Selected: {
+                        VideoPreviewIdentifier: new Dictionary(),
+                        VideoPlaybackIdentifier: new Dictionary(),
+                        VideoSnapIdentifier: new Dictionary(),
+                        DecoderIdentifier: new Dictionary()
+                    },
+                    getValue: function (key, id) {
+                        Set_Property.Tab.value[key][id];
+                    },
+                    changePlayBackValue: function (id, beginTime, endTime, protocol) {
+                        var playBack = new VideoPlaybackIdentifier();
+                        playBack.VideoInputChannelId = id;
+                        playBack.BeginTime = beginTime;
+                        playBack.EndTime = endTime;
+                        playBack.Protocol = protocol;
+                        Set_Property.Tab.value.VideoPlaybackIdentifier[id] = playBack;
+                    },
+                    batchChangePlayBackValue: function (beginTime, endTime, protocol) {
+                        var list = this.Selected.VideoPlaybackIdentifier.toArray();
+                        for (var i = 0; i < list.length; i++) {
+                            this.changePlayBackValue(list[i].Id, beginTime, endTime, protocol);
+                        }
+                        GroupList.Select.Cancel(Set_Info.ControlKey.VideoPlaybackIdentifier.item, Tab_SelectCancel);
+                    },
+                    load: function () {
+                        var devices = Set_Property.Device.value.toArray();
+                        var array = new GroupListItemArray();
+                        if (Set_Html.TabKey == "DecoderIdentifier") {
+                            for (var i = 0; i < devices.length; i++) {
+                                if (devices[i].componentSelected) {
+                                    var item = this.createDeviceItem(Set_Html.TabKey, devices[i]);
+                                    array.push(item);
+                                    Set_Property.Device.value[devices[i].Id].componentSelected = false;
+                                    Set_Property.Device.value[devices[i].Id].isCreate = true;
+                                    var tag = getTag(devices[i].Id);
+                                    if (tag)
+                                        tag.parentElement.removeChild(tag);
+                                }
+                            }
+                        }
+                        else {
+                            for (var i = 0; i < devices.length; i++) {
+                                if (devices[i].Selected == SelectedState.None)
+                                    continue
+                                var inputs = Set_Property.Device.value[devices[i].Id].VideoInput.toArray();
+                                for (var j = 0; j < inputs.length; j++) {
+                                    if (inputs[j][Set_Html.TabKey] == false && (inputs[j].Selected == true || devices[i].Selected == SelectedState.All)) {
+                                        var item = this.createItem(Set_Html.TabKey, inputs[j], devices[i]);
+                                        array.push(item);
+                                        Set_Property.Device.value[devices[i].Id].VideoInput[inputs[j].Id][Set_Html.TabKey] = true;
+                                        Set_Property.Device.value[devices[i].Id].VideoInput[inputs[j].Id].Selected = false;
+                                        --getTag(Set_Info.ControlIdPrefix.inputCount + devices[i].Id).innerText;
+                                    }
+                                }
+                                Set_Property.Device.value[devices[i].Id].Selected = SelectedState.None;
+                                Set_Property.Device.value[devices[i].Id].ChildSelectedCount = 0;
+                                getTag(devices[i].Id).className = "list-group-item mouse_pointer";
+                            }
+                        }
+                        if (array.length > 0) {
+                            var group = getTag(Set_Info.ControlKey[Set_Html.TabKey].item);
+                            for (var i = 0; i < array.length; i++) {
+                                group.appendChild(array[i]);
+                            }
+                        }
+                    },
+                    createItem: function (key, item, device) {
+                        var tag = new GroupListItem(Set_Info.ControlKey[key].item, TabItem_OnClick);
+                        tag.id = Set_Info.ControlKey[key].item + item.Id;
+                        tag.className = tag.className + " mouse_pointer";
+                        var btnEdit = "";
+                        if (key == "VideoPlaybackIdentifier")
+                            var btnEdit = "<a class='pull-right icon-edit' style='margin-top:-31px' title='编辑' onclick=\"return openSetPalyBack('" + item.Id + "')\" ><a/>";
+                            //var btnEdit = "<a class='pull-right linkage-edit icon-edit' onclick=\"openSetPalyBack('" + item.Id + "')\" ><a/>";
+                        //$(tag.Content).append($("<div class='group-list-tag'></div>" + "<lable class='text-ellipsis'>" + item.Name + "_" + device.Name + "</lable>" + btnEdit));
+                        tag.Content.style.padding = "2px 15px 0 0";
+                        tag.Content.style.height = "41px";
+                        var ip = new Uri(device.Uri);
+                        $(tag.Content).append($("<div class='group-list-tag double'></div><div class='first-line'><div class='pull-left input-name text-ellipsis' title='" + item.Name + "'>" + item.Name + "</div><div class='pull-right device-name text-ellipsis' title='" + device.Name + "'>" + device.Name + "</div></div><div class='second-line'><div class='pull-left device-ip text-ellipsis' title='IP地址'>" + ip.Host + "</div><div class='pull-right device-classification' title='设备类型'>" + Language.Display.DeviceClassification[device.Classification] + "</div></div>" + btnEdit));
+                        if (btnEdit) {
+                            tag.getElementsByClassName("first-line")[0].style.width = "95%";
+                            tag.getElementsByClassName("second-line")[0].style.width = "95%";
+                        }
+                        return tag;
+                    },
+                    createDeviceItem: function (key, device) {
+                        var tag = new GroupListItem(Set_Info.ControlKey[key].item, TabItem_OnClick);
+                        tag.id = Set_Info.ControlKey[key].item + device.Id;
+                        tag.className = tag.className + " mouse_pointer";
+                        tag.Content.style.padding = "2px 15px 0 0";
+                        tag.Content.style.height = "41px";
+                        var ip = new Uri(device.Uri);
+                        $(tag.Content).append($("<div class='group-list-tag double'></div><div class='first-line'><div class='pull-left input-name text-ellipsis' title='" + device.Name + "'>" + device.Name + "</div></div><div class='second-line'><div class='pull-left device-ip text-ellipsis' title='IP地址'>" + ip.Host + "</div><div class='pull-right device-classification' title='设备类型'>" + Language.Display.DeviceClassification[device.Classification] + "</div></div>"));
+                        tag.getElementsByClassName("input-name")[0].style.width = "100%";
+                        //$(tag.Content).append($("<div class='group-list-tag'></div>" + "<lable class='text-ellipsis'>" + device.Name + "</lable>"));
+                        return tag;
+                    },
+                    create: function (linkage) {
+                        for (var key in Set_Info.ControlKey) {
+                            try {
+                                if (linkage[key]) {
+                                    if (key == "DecoderIdentifier") {
+                                        for (var i = 0; i < linkage[key].length; i++) {
+                                            Set_Property.Tab.value[key][linkage[key][i].DeviceId] = linkage[key][i];
+                                            Set_Property.Device.value[linkage[key][i].DeviceId].isCreate = true;
+                                            if (key == Set_Html.TabKey)
+                                                getTag(linkage[key][i].DeviceId).parentElement.removeChild(getTag(linkage[key][i].DeviceId));
+                                            var item = this.createDeviceItem(key, Set_Property.Device.value[linkage[key][i].DeviceId])
+                                            var group = getTag(Set_Info.ControlKey[key].item);
+                                            group.appendChild(item);
+                                        }
+                                    }
+                                    else {
+                                        for (var i = 0; i < linkage[key].length; i++) {
+                                            Set_Property.Tab.value[key][linkage[key][i].VideoInputChannelId] = linkage[key][i];
+                                            var deviceId = new Id(linkage[key][i].VideoInputChannelId).getDeviceId();
+                                            var device = Set_Property.Device.value[deviceId];
+                                            Set_Property.Device.value[deviceId].VideoInput[linkage[key][i].VideoInputChannelId][key] = true;
+                                            if (key == Set_Html.TabKey)
+                                                --getTag(Set_Info.ControlIdPrefix.inputCount + deviceId).innerText;
+                                            var input = Set_Property.Input.get(deviceId, linkage[key][i].VideoInputChannelId);
+                                            var value = new Object();
+                                            value["Id"] = linkage[key][i].VideoInputChannelId;
+                                            value["Name"] = input.Name;
+                                            value["device"] = device;
+                                            var item = this.createItem(key, value, device);
+                                            var group = getTag(Set_Info.ControlKey[key].item);
+                                            group.appendChild(item);
+                                        }
+                                    }
+                                }
+                            }
+                            catch (e) {
+                                $.confirm({
+                                    text: e.message,
+                                    okButton: "确定",
+                                    alert: true
+                                })
+                            }
+                        }
+                        if (linkage.TextIdentifier) {
+                            getTag("text_area").innerText = linkage.TextIdentifier.Text;
+                            var tag = getTag("show_words");
+                            tag.innerText = linkage.TextIdentifier.Text;
+                            if (linkage.TextIdentifier.Font) {
+                                tag.style.fontFamily = linkage.TextIdentifier.Font.FontFamily;
+                                tag.style.fontSize = linkage.TextIdentifier.Font.FontSize + "px";
+                                tag.style.fontWeight = linkage.TextIdentifier.Font.Bold == false ? "normal" : "bold";
+                                try {
+                                    tag.style.color = convertUintToRgba(linkage.TextIdentifier.Font.FontColor);
+                                }
+                                catch (e) {
+                                    tag.style.color = convertUintToRgba(linkage.TextIdentifier.Font.FontColor, true);
+                                }
+                                getTag("cp2").value = tag.style.color;
+
+
+                                $("#cp2").colorpicker({ format: "rgba" });
+                                getTag("txtFontFamily").value = tag.style.fontFamily;
+                                getTag("txtFontSize").value = tag.style.fontSize;
+                                getTag("txtFontWeight").value = tag.style.fontWeight;
+
+                                optionsLoad(getTag("selectFontSize"), tag.style.fontSize);
+                                optionsLoad(getTag("selectFontFamily"), tag.style.fontFamily);
+                                optionsLoad(getTag("selectFontWeight"), tag.style.fontWeight);
+
+                                //show_words.style.fontFamily = tag.style.fontFamily;
+                                //show_words.style.fontWeight = tag.style.fontSize;
+                                //show_words.style.fontSize = tag.style.fontWeight;
+                                //show_words.style.color = str[3];
+                            }
+                        }
+                    },
+                    select: function (id, value) {
+                        var deviceId = new Id(id).getDeviceId();
+                        if (is.Boolean(value)) {
+                            if (value) {
+                                if (Set_Html.TabKey == "DecoderIdentifier") {
+                                    this.Selected[Set_Html.TabKey][id] = Set_Property.Device.value[id];
+                                }
+                                else {
+                                    this.Selected[Set_Html.TabKey][id] = Set_Property.Device.value[deviceId].VideoInput[id];
+                                }
+                            }
+                            else {
+                                delete this.Selected[Set_Html.TabKey][id];
+                            }
+                            return;
+                        }
+                        if (this.Selected[Set_Html.TabKey][id]) {
+                            delete this.Selected[Set_Html.TabKey][id];
+                            return;
+                        }
+                        if (Set_Html.TabKey == "DecoderIdentifier") {
+                            this.Selected[Set_Html.TabKey][id] = Set_Property.Device.value[id];
+                        }
+                        else {
+                            this.Selected[Set_Html.TabKey][id] = Set_Property.Device.value[deviceId].VideoInput[id];
+                        }
+                    },
+                    remove: function () {
+                        for (var key in this.Selected) {
+                            var list = this.Selected[key].toArray();
+                            for (var i = 0; i < list.length; i++) {
+                                if (key == "VideoPlaybackIdentifier")
+                                    if (Set_Property.Tab.value[key][list[i].Id])
+                                        delete Set_Property.Tab.value[key][list[i].Id];
+                                var tag = getTag(Set_Info.ControlKey[key].item + list[i].Id);
+                                if (tag)
+                                    tag.parentElement.removeChild(tag);
+                                if (this.Selected[key][list[i].Id])
+                                    delete this.Selected[key][list[i].Id];
+                                if (key == Set_Html.TabKey) {
+                                    if (key == "DecoderIdentifier") {
+                                        var item = Set_Html.GroupList.Device.createItem(Set_Property.Device.value[list[i].Id]);
+                                        var dlist = getTag(Set_Info.ControlIdPrefix.device);
+                                        dlist.appendChild(item);
+                                    }
+                                    else {
+                                        if (Set_Property.Device.value[list[i].DeviceId].Selected == SelectedState.All) {
+                                            var inputs = Set_Property.Device.value[list[i].DeviceId].VideoInput.toArray();
+                                            for (var j = 0; j < inputs.length; j++) {
+                                                if (inputs[j][key] == false) {
+                                                    Set_Property.Device.value[list[i].DeviceId].VideoInput[inputs[j].Id].Selected = true;
+                                                }
+                                            }
+                                            Set_Property.Device.value[list[i].DeviceId].Selected = SelectedState.Items;
+                                            getTag(list[i].DeviceId).className = "list-group-item mouse_pointer " + SelectedState.Items;
+                                        }
+                                        ++getTag(Set_Info.ControlIdPrefix.inputCount + list[i].DeviceId).innerText;
+                                        Set_Property.Device.value[list[i].DeviceId].VideoInput[list[i].Id].Selected = false;
+                                    }
+                                }
+                                if (key == "DecoderIdentifier") {
+                                    Set_Property.Device.value[list[i].Id].isCreate = false;
+                                    continue;
+                                }
+                                Set_Property.Device.value[list[i].DeviceId].VideoInput[list[i].Id][key] = false;
+                            }
+                        }
+                    },
+                    set: function (linkage) {
+                        for (var key in Set_Info.ControlKey) {
+                            var list = $("[name=" + Set_Info.ControlKey[key].item + "]");
+                            linkage[key] = new Array();
+                            for (var i = 0; i < list.length; i++) {
+                                var type = null;
+                                if (key == "DecoderIdentifier") {
+                                    var deviceId = Set_Info.ControlIdPrefix.getId(list[i].id, Set_Info.ControlKey[key].item);
+                                    type = Set_Info.ControlKey[key].type();
+                                    type.DeviceId = deviceId;
+                                }
+                                else {
+                                    var videoInputChannelId = Set_Info.ControlIdPrefix.getId(list[i].id, Set_Info.ControlKey[key].item);
+                                    if (Set_Property.Tab.value[key][videoInputChannelId])
+                                        type = Set_Property.Tab.value[key][videoInputChannelId];
+                                    else {
+                                        var type = Set_Info.ControlKey[key].type();
+                                        type.VideoInputChannelId = videoInputChannelId;
+                                        if (key == "VideoPlaybackIdentifier") {
+                                            type.BeginTime = -4;
+                                            type.EndTime = 30;
+                                            type.Protocol = "Howell5198";
+                                        }
+
+                                    }
+                                }
+                                linkage[key].push(type);
+                            }
+                            if (linkage[key].length > 0)
+                                linkage[key + "Specified"] = true;
+                        }
+                        var text = new TextIdentifier();
+                        text.Text = getTag("text_area").value;
+                        var obj = document.getElementById("ff");
+                        text.Font.FontFamily = obj.elements[0].value;
+                        text.Font.Bold = obj.elements[1].value == "normal" ? false : true;
+                        text.Font.FontSize = obj.elements[2].value.substr(0, obj.elements[2].value.length - 2);
+                        text.Font.FontColor = convertRgbaToUint(obj.elements[3].value);
+                        text.FontSpecified = true;
+                        linkage.TextIdentifier = text;
+                        linkage.TextIdentifierSpecified = true;
+                        Set_Property.Tab.set(Convert(linkage, new Object()));
+                        return Convert(linkage, Property.LinkageList.get(Html.Current.Id.get()));
+                    },
+                    change: function (key) {
+                        var devices = Set_Property.Device.value.toArray();
+                        for (var i = 0; i < devices.length; i++) {
+                            if (!devices[i].hasInput)
+                                continue;
+                            Set_Property.Device.value[devices[i].Id].Selected = SelectedState.None;
+                            var tag = getTag(devices[i].Id);
+                            if (tag)
+                                tag.className = "list-group-item mouse_pointer";
+                            var count = 0;
+                            var inputs = Set_Property.Device.value[devices[i].Id].VideoInput.toArray();
+                            for (var j = 0; j < inputs.length; j++) {
+                                inputs[j].Selected = false;
+                                if (key != null && inputs[j][key] == false) {
+                                    count++;
+                                }
+                            }
+                            if (key != null && key != "DecoderIdentifier")
+                                getTag(Set_Info.ControlIdPrefix.inputCount + devices[i].Id).innerText = count;
+                        }
+                    }
+                },
+            }
+        }
+    </script>
+    <script type="text/javascript">
+        var TimeFn = null;
+        var operationSetLinkageCanClose = true;
+        //页面加载
+        function linkage_set_load() {
+            Set_Html.TabKey = Html.Current.Key.get();
+            delete DeviceClassification["None"];
+            delete Language.Display.DeviceClassification["None"];
+            var classification = createDeviceClassificationEnum();
+            DropDownList.Create("ddlClassification", ControlModel.EnumAndLanguage, classification, Language.Display.DeviceClassification);
+            Set_Html.GroupList.Device.create("dListDevice");
+            Set_Html.GroupList.Tab.create(Property.LinkageList.get(Html.Current.Id.get()));
+            if (Set_Html.TabKey == null) {
+                getTag("tab_btn_TextIdentifier").className = "active";
+                getTag("tab_TextIdentifier").className = getTag("tab_TextIdentifier").className + " active";
+                getTag("dListDevice").innerText = "";
+                getTag("btnBatchSetPalyBack").style.display = "none";
+            }
+            else {
+                getTag("tab_btn_" + Set_Html.TabKey).className = "active";
+                getTag("tab_" + Set_Html.TabKey).className = getTag("tab_" + Set_Html.TabKey).className + " active";
+                if (Set_Html.TabKey == "VideoPlaybackIdentifier")
+                    getTag("btnBatchSetPalyBack").style.display = "block";
+                else
+                    getTag("btnBatchSetPalyBack").style.display = "none";
+            }
+            $(".popover-content .dropdown-toggle.simlie").blur(function () {
+                if (operationSetLinkageCanClose) {
+                    var node = this.parentElement;
+                    if (node.className.indexOf("open") > -1)
+                        $(node).removeClass("open");
+                    operationSetLinkageCanClose = true;
+                }
+            });
+        }
+
+        function dropdownList_Click(sender) {
+            if (sender.parentElement.className.indexOf("open") == -1) {
+                $(sender.parentElement).addClass("open")
+                return;
+            }
+            $(sender.parentElement).removeClass("open");
+        }
+
+        function createDeviceClassificationEnum() {
+            var NewDeviceClassification = new Object();
+            NewDeviceClassification["All"] = "All";
+            for (var key in DeviceClassification) {
+                NewDeviceClassification[key] = DeviceClassification[key];
+            }
+            return NewDeviceClassification;
+        }
+
+        function tab_OnClick(key) {
+            for (var tabKey in Set_Info.ControlKey) {
+                $("#tab_" + tabKey).removeClass("active");
+                $("#tab_btn_" + tabKey).removeClass("active");
+            }
+            $("#tab_TextIdentifier").removeClass("active");
+            $("#tab_btn_TextIdentifier").removeClass("active");
+            Set_Html.TabKey = key;
+            Set_Html.GroupList.Device.create("dListDevice");
+            Set_Html.GroupList.Tab.change(key);
+            if (key == null) {
+                getTag("dListDevice").innerText = "";
+                $("#tab_TextIdentifier").addClass("active");
+                $("#tab_btn_TextIdentifier").addClass("active");
+                getTag("btnBatchSetPalyBack").style.display = "none";
+            }
+            else {
+                $("#tab_" + key).addClass("active");
+                $("#tab_btn_" + key).addClass("active");
+                if (key == "VideoPlaybackIdentifier")
+                    getTag("btnBatchSetPalyBack").style.display = "block";
+                else
+                    getTag("btnBatchSetPalyBack").style.display = "none";
+            }
+
+            setTimeout(function () { getTag("ddlClassification").style.display = "block"; getTag('deviceListName').style.display = 'block'; getTag("deviceOperation").style.display = "block"; }, 200);
+            $('#Input_Div').slideUp('fast', 'swing', Set_Html.GroupList.Input.clear);
+        }
+
+        //设备下拉菜单改变事件
+        function ddlDeviceList_Changed(sender, args) {
+            Set_Html.GroupList.Device.clear();
+            Set_Property.Device.classification = sender.value;
+            Set_Html.GroupList.Device.create("dListDevice");
+            return false;
+        }
+
+        function Device_OnDblClick(sender) {
+            if (Set_Html.TabKey == "DecoderIdentifier")
+                return;
+            clearTimeout(TimeFn);
+            var count = getTag(Set_Info.ControlIdPrefix.inputCount + sender.id).innerText;
+            if (count == 0)
+                return
+            Set_Property.Input.deviceId = sender.id;
+            Set_Html.GroupList.Input.load("dListInput");
+            getTag("ddlClassification").style.display = "none";
+            getTag('deviceListName').style.display = 'none';
+            getTag("deviceOperation").style.display = "none";
+            $("#Input_Div").slideDown("fast");
+        }
+
+        function Device_OnClick(sender) {
+            if (Set_Html.TabKey == "DecoderIdentifier") {
+                Set_Html.GroupList.Device.selectDecoder(sender);
+                return;
+            }
+            clearTimeout(TimeFn);
+            TimeFn = setTimeout(function () {
+                var count = getTag(Set_Info.ControlIdPrefix.inputCount + sender.id).innerText;
+                if (count == 0)
+                    return
+                Set_Html.GroupList.Device.select(sender);
+            }, 300);
+        }
+
+        function Device_SelectAll(items) {
+            if (items) {
+                if (Set_Html.TabKey == "DecoderIdentifier") {
+                    for (var i = 0; i < items.length; i++) {
+                        Set_Html.GroupList.Device.selectDecoder(items[i], true);
+                    }
+                    return;
+                }
+                for (var i = 0; i < items.length; i++) {
+                    var count = getTag(Set_Info.ControlIdPrefix.inputCount + items[i].id).innerText;
+                    if (count == 0) {
+                        if (items[i].className.indexOf("selected") > 0)
+                            $(items[i]).removeClass("selected");
+                        continue
+                    }
+                    Set_Html.GroupList.Device.select(items[i], true);
+                }
+            }
+        }
+        function Device_SelectCancel(items) {
+            if (items) {
+                if (Set_Html.TabKey == "DecoderIdentifier") {
+                    for (var i = 0; i < items.length; i++) {
+                        Set_Html.GroupList.Device.selectDecoder(item[i], false);
+                    }
+                    return;
+                }
+                for (var i = 0; i < items.length; i++) {
+                    Set_Html.GroupList.Device.select(items[i], false);
+                }
+            }
+        }
+        function Input_SelectAll(items) {
+            if (items) {
+                for (var i = 0; i < items.length; i++) {
+                    Set_Html.GroupList.Input.select(items[i].id, true);
+                }
+            }
+        }
+        function Input_SelectCancel(items) {
+            if (items) {
+                for (var i = 0; i < items.length; i++) {
+                    Set_Html.GroupList.Input.select(items[i].id, false);
+                }
+            }
+        }
+
+        function Tab_SelectAll(items) {
+            if (items) {
+                for (var i = 0; i < items.length; i++) {
+                    Set_Html.GroupList.Tab.select(Set_Info.ControlIdPrefix.getId(items[i].id, Set_Info.ControlKey[Set_Html.TabKey].item), true);
+                }
+            }
+        }
+        function Tab_SelectCancel(items) {
+            if (items) {
+                for (var i = 0; i < items.length; i++) {
+                    Set_Html.GroupList.Tab.select(Set_Info.ControlIdPrefix.getId(items[i].id, Set_Info.ControlKey[Set_Html.TabKey].item), false);
+                }
+            }
+        }
+
+        function Input_OnClick(sender) {
+            Set_Html.GroupList.Input.select(sender.id);
+        }
+
+        function TabItem_OnClick(sender) {
+            Set_Html.GroupList.Tab.select(Set_Info.ControlIdPrefix.getId(sender.id, Set_Info.ControlKey[Set_Html.TabKey].item));
+
+        }
+
+        function addInput_OnClick() {
+            Set_Html.GroupList.Tab.load();
+            setTimeout(function () { getTag("ddlClassification").style.display = "block"; getTag('deviceListName').style.display = 'block'; getTag("deviceOperation").style.display = "block"; }, 200);
+            $('#Input_Div').slideUp('fast', 'swing', Set_Html.GroupList.Input.clear);
+        }
+        function removeInput_OnClick() {
+            Set_Html.GroupList.Tab.remove();
+            setTimeout(function () { getTag("ddlClassification").style.display = "block"; getTag('deviceListName').style.display = 'block'; getTag("deviceOperation").style.display = "block"; }, 200);
+            $('#Input_Div').slideUp('fast', 'swing', Set_Html.GroupList.Input.clear);
+        }
+        function setLinkage_OnClick() {
+            var linkage = Set_Html.GroupList.Tab.set(Convert(Property.LinkageList.get(Html.Current.Id.get()), new Object()));
+            AlertWindow.Close(PageEvent.Linkage.GroupListItemChanged, linkage);
+        }
+        function convertRgbaToUint(rgba) {
+            var str = rgba.split("(")[1];
+            str = str.substr(0, str.length - 1);
+            var arr = str.split(",");
+            arr[3] = arr[3] * 255;
+            arr[3] = Math.round(arr[3]);
+            var returnValue = "";
+            for (var i = 0; i < arr.length; i++) {
+                var str16 = parseInt(arr[i]).toString(16);
+                if (str16.length < 2) {
+                    str16 = "0" + str16;
+                }
+                if (i == 3) {
+                    returnValue = str16 + returnValue;
+                    continue;
+                }
+                returnValue = returnValue + str16;
+            }
+            return parseInt(returnValue, 16);
+        }
+        function select_value(temp, num) {
+            var obj = document.getElementById("ff");
+            var str = new Array();
+            obj.elements[num].value = temp;
+            for (var i = 0; i < 4; i++) {
+                str[i] = obj.elements[i].value;
+            }
+            var show_words = document.getElementById("show_words");
+            show_words.style.fontFamily = str[0];
+            show_words.style.fontWeight = str[1];
+            show_words.style.fontSize = str[2];
+            try {
+                show_words.style.color = str[3];
+            } catch (e) {
+                //show_words.style.color = str[3].replace("";
+            }
+        }
+        function textarea_Onkeyup(value) {
+            var tag = getTag("show_words");
+            show_words.innerText = value;
+        }
+
+        function optionsLoad(tag, value) {
+            for (var i = 0; i < tag.options.length; i++) {
+                if (tag.options[i].value == value) {
+                    tag.options[i].selected = "selected";
+                    break;
+                }
+            }
+        }
+
+        function convertUintToRgba(int, isError) {
+            var value = int.toString(16);
+            var count = 8 - value.length;
+            if (value.length < 10) {
+                for (var i = 0; i < count; i++) {
+                    value = "0" + value;
+                }
+            }
+            var arr = new Array();
+            var strIndex = 0;
+            for (var i = 0; i < 4; i++) {
+                arr[i] = value.substr(strIndex, 2);
+                strIndex += 2;
+            }
+            var a = (parseInt(arr[0], 16) / 255).toFixed(2);
+            var returnValue = "rgba(" + parseInt(arr[1], 16) + "," + parseInt(arr[2], 16) + "," + parseInt(arr[3], 16) + "," + a + ")";
+            if (isError) {
+                returnValue = "rgb(" + parseInt(arr[1], 16) + "," + parseInt(arr[2], 16) + "," + parseInt(arr[3], 16) + ")";
+            }
+            return returnValue;
+        }
+
+
+        function openSetPalyBack(id) {
+            stopPropagation();
+            var arr = Set_Html.GroupList.Tab.Selected.VideoPlaybackIdentifier.toArray();
+            if (!id && arr.length == 0)
+                return;
+            var input = Set_Property.Tab.value.VideoPlaybackIdentifier[id];
+            var beginTime = 0;
+            var endTime = 0;
+            var protocol = "";
+            if (input) {
+                if (input.BeginTime)
+                    beginTime = input.BeginTime;
+                if (input.EndTime)
+                    endTime = input.EndTime;
+                if (input.Protocol)
+                    protocol = input.Protocol;
+            }
+            $("#divBeginTimeSlider").slider({
+                range: "min",
+                max: 120,
+                min: -60,
+                value: beginTime,
+                slide: function (event, ui) {
+                    return $("#spanBeginTimeSlider").val(+ui.value);
+                }
+            });
+            $("#spanBeginTimeSlider").val($("#divBeginTimeSlider").slider("value"));
+            $("#divEndTimeSlider").slider({
+                range: "min",
+                max: 120,
+                min: -60,
+                value: endTime,
+                slide: function (event, ui) {
+                    return $("#spanEndTimeSlider").val(+ui.value);
+                }
+            });
+            $("#spanEndTimeSlider").val($("#divEndTimeSlider").slider("value"));
+            var protocolTag = getTag("ddlPlaybackProtocol");
+            if (protocol != ProtocolType.Howell5198 && protocol != ProtocolType.ONVIF && protocol != ProtocolType.GB28181 && protocol != ProtocolType.Howell8000)
+                protocolTag.value = "Other";
+            else
+                protocolTag.value = protocol;
+            playbackProtocol_Onchange(protocolTag);
+            if (!id)
+                id = "";
+            getTag("btnSetPlayBack").setAttribute("onclick", "btnSetPlayBack_Onclick('" + id + "')");
+            $("#set_playback").slideDown("fast");
+        }
+
+        function closeSetPalyBack() {
+            $("#set_playback").slideUp("fast");
+        }
+
+        function btnSetPlayBack_Onclick(id) {
+            var beginTime = getTag("spanBeginTimeSlider").value;
+            var endTime = getTag("spanEndTimeSlider").value;
+            var protocol = getTag("ddlPlaybackProtocol").value;
+            if (protocol == "Other")
+                var protocol = getTag("txtPlaybackProtocol").value;
+            if (id)
+                Set_Html.GroupList.Tab.changePlayBackValue(id, beginTime, endTime, protocol)
+            else
+                Set_Html.GroupList.Tab.batchChangePlayBackValue(beginTime, endTime, protocol);
+            $("#set_playback").slideUp("fast");
+        }
+
+        function playbackProtocol_Onchange(tag) {
+            if (tag.value == "Other")
+                getTag("divPlaybackProtocol").style.visibility = "visible";
+            else
+                getTag("divPlaybackProtocol").style.visibility = "hidden";
+        }
+
+        function sliderChange(divId, spanId, value) {
+            $("#" + divId).slider({
+                range: "min",
+                max: 120,
+                min: -60,
+                value: value,
+                slide: function (event, ui) {
+                    return $("#" + spanId).val(+ui.value);
+                }
+            });
+            $("#" + spanId).val($("#" + divId).slider("value"));
+        }
+        function sliderChangeOnblur(divId, spanId, value) {
+            var re1 = new RegExp("^[-][0-9]{1,}$");
+            var re2 = new RegExp("^[0-9]{1,}$");
+            if (!re1.test(value) && !re2.test(value)) {
+                sliderChange(divId, spanId, 0);
+            }
+
+        }
+        function sliderChangeOnkeyup(divId, spanId, value) {
+            if (value == "-" || value == "")
+                return
+            var re1 = new RegExp("^[-][0-9]{1,}$");
+            var re2 = new RegExp("^[0-9]{1,}$");
+            if (!re1.test(value) && !re2.test(value)) {
+                getTag(spanId).value = 0;
+                value = 0;
+            }
+            sliderChange(divId, spanId, value);
+        }
+
+        linkage_set_load();
+    </script>
+</body>
+</html>

@@ -1,0 +1,168 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>在线状态</title>
+    <link rel="stylesheet" type="text/css" href="../css/howell.css" />
+    <script type="text/javascript" src="../js/language/chinese.js"></script>
+    <script type="text/javascript" src="../js/jquery/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="../js/imported.js"></script>
+    <script type="text/javascript" src="../js/jquery/jquery-ui.js"></script>
+    <script type="text/javascript" src="../js/bootstrap/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/modernizr.custom.js"></script>
+    <script type="text/javascript" src="../js/howell.js/howell.js"></script>
+    <script type="text/javascript" src="../js/howell.js/howell.control.js"></script>
+    <script type="text/javascript" src="../js/client/enum.js"></script>
+    <script type="text/javascript" src="../js/base64.js"></script>
+    <script type="text/javascript" src="../js/client/struct.js"></script>
+    <script type="text/javascript" src="../js/client/management.js"></script>
+    <script type="text/javascript" src="../js/client/client.js"></script>
+    <script type="text/javascript" src="../js/howell.js/howell.convert.js"></script>
+    <style type="text/css">
+        .icon_btn {
+            margin-left: 0px;
+            width: 200px;
+        }
+
+            .icon_btn.read {
+                color: #666666;
+            }
+
+        .notice_process_list_title_ico {
+            color: #007aff;
+        }
+    </style>
+</head>
+<body>
+    <div class="widget-container fluid-height clearfix association-frame mouse_default swith_control"
+         style="display: block; width: 430px; height: 100%  !important;" onclick="stopPropagation()">
+        <div class="heading">
+            <i class="icon-comment notice_process_list_title_ico"></i>
+            <span>
+                通知信息
+            </span><a class="icon-list-ul mouse_pointer" style="margin-left:30px;font-size:16px;" onclick="loadContent(base64encode(setUrlRandomParams('map/notice_list.htm')));"></a>
+        </div>
+        <div class="association-operation-bar">
+            <div class="pull-left">
+                <a class="btn btn-xs btn-permission main list-permission-btn" onclick="return show_Click(this,'All');">
+                    全部
+                </a><a class="btn btn-xs btn-permission main list-permission-btn selected" onclick="return show_Click(this, NoticeStatusType.Unread);">
+                    未读
+                </a><a class="btn btn-xs btn-permission main list-permission-btn" onclick="return show_Click(this, NoticeStatusType.Read);">
+                    已读
+                </a>
+            </div>
+        </div>
+        <div class="widget-content padded clearfix association-list-container" style="overflow-y: auto;
+            height: 80%;">
+            <div id="glist_content">
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var noticeStatusType = NoticeStatusType.Unread;
+        var notice = new notice_list();
+        for (var key in notice.list) {
+            notice.load(notice.list[key], key);
+        }
+        notice.Show(notice.list.Unread);
+
+        function notice_list() {
+            //var list = new Dictionary()
+            this.list = {
+                All: new Dictionary(),
+                Read: new Dictionary(),
+                Unread: new Dictionary(),
+            }
+            function createItem(notice) {
+
+                var btn = new IconButton(notice.Id, "icon-comment-alt", 11, notice.ComponentName);
+                $(btn).addClass("notice");
+                btn.title = notice.ComponentName;
+                var item = new GroupListItem();
+                item.id = notice.Id;
+
+                if (notice.Status == NoticeStatusType.Read)
+                    btn.className += " read";
+
+                item.Content.appendChild(btn);
+
+                var info = document.createElement("div");
+                info.className = "text-ellipsis notice-info";
+                info.innerText = notice.Message;
+                info.title = notice.Message;
+                item.Content.appendChild(info);
+
+                var time = document.createElement("div");
+
+                var date = Convert.ToDate(notice.CreationTime);
+                //time.innerText = date.toLocaleString();
+                time.innerText = date.format("MM-dd HH:mm:ss");
+
+                item.Content.appendChild(time);
+
+                item.onclick = function (e) {
+                    var a = document.createElement("a");
+                    a.href = "map/AlertProcess.htm";
+                    var result = Client.Management().Notice.Get(this.id);
+                    result.Time = result.CreationTime;
+                    result.Message = base64encode(utf16to8(result.Message));
+                    var str = JSONstringify(result);
+                    a.href += "?notice=" + encodeURI(str);
+                    AlertWindow.Show(a);
+                }
+                return item;
+            }
+
+            this.load = function (dic, status) {
+                status = status == "All" ? null : status;
+                tryCatch(function () {
+                    var returnValue = Client.Management().Notice.List(null, status, null, null, null, 1, 100);
+                    if (returnValue && returnValue.Notice) {
+                        for (var i = 0; i < returnValue.Notice.length; i++) {
+                            dic[returnValue.Notice[i].Id] = returnValue.Notice[i];
+                        }
+                    }
+                })
+            }
+
+            this.Show = function (dic) {
+                var items = new GroupListItemArray();
+
+                var a = dic.order("CreationTime", true);
+                a = a.sortBy("Status", true);
+                for (var i = 0; i < a.length; i++) {
+                    items.push(createItem(a[i]));
+                }
+
+                var gl = new GroupList("", items);
+                document.getElementById("glist_content").innerHTML = "\n ";
+                document.getElementById("glist_content").appendChild(gl);
+            }
+
+        }
+
+        function NoticeReload() {
+            notice = new notice_list();
+            for (var key in notice.list) {
+                notice.load(notice.list[key], key);
+            }
+            notice.Show(notice.list[noticeStatusType]);
+        }
+
+        function AlertReaded() {
+            NoticeReload();
+            document.getElementById("notice_number").innerText = parseInt(document.getElementById("notice_number").innerText) - 1;
+        }
+        function show_Click(sender, args) {
+            if (sender) {
+                $(".list-permission-btn").removeClass("selected");
+                sender.className += " selected";
+            }
+            noticeStatusType = args;
+            notice.Show(notice.list[args]);
+        }
+
+    </script>
+</body>
+</html>

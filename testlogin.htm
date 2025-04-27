@@ -1,0 +1,198 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>皓维数据管理中心</title>
+    <link rel="stylesheet" type="text/css" href="css/howell.css" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+
+    <script type="text/javascript" src="js/jquery/jquery-1.10.2.min.js"></script>
+
+    <script src="js/imported.js"></script>
+    <script type="text/javascript" src="js/jquery/jquery-ui.js"></script>
+    <script type="text/javascript" src="js/bootstrap/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/jquery/jquery.confirm.js"></script>
+    <script type="text/javascript" src="js/modernizr.custom.js"></script>
+    <script type="text/javascript" src="js/jquery/jquery.placeholder.js"></script>
+    <script type="text/javascript" src="js/language/chinese.js"></script>
+
+    <script type="text/javascript" src="js/imported.js"></script>
+
+    <script type="text/javascript" src="js/howell.js/howell.js"></script>
+    <script src="js/howell.js/howell.convert.js"></script>
+    <script type="text/javascript" src="js/client/struct.js"></script>
+    <script type="text/javascript" src="js/howell.js/guid.js"></script>
+    <script type="text/javascript" src="js/md5.js"></script>
+
+    <script type="text/javascript" src="js/howell.js/httpService.js"></script>
+    <script type="text/javascript" src="js/client/system.js"></script>
+    <script type="text/javascript" src="js/client/authentication.js"></script>
+    <script type="text/javascript" src="js/client/client.js"></script>
+    <script type="text/javascript" src="js/client/BaseClient.js"></script>
+    <style type="text/css">
+        @media screen and (max-width:500px) {
+            .modal-content {
+                width: 350px;
+            }
+        }
+    </style>
+
+    <script type="text/javascript">
+
+
+        function initLanguage() {
+            document.getElementById("txtUsername").placeholder = Language.page.login.username;
+            document.getElementById("txtPassword").placeholder = Language.page.login.password;
+            document.getElementById("aLogin").innerHTML = Language.page.login.login;
+        }
+
+        (function () {
+            $(document).ready(function () {
+                $(window).load(function () {
+                    return $(".login-container").addClass("active");
+                });
+            });
+        }).call(this);
+
+        function init() {
+
+            setCookie("page", document.location);
+
+            var response;
+            if (!tryCatch(function () {
+                response = Client.System().getInfo();
+                if (response == "") {
+                document.location = "init_nav.htm";
+                    return false;
+            }
+                return true;
+            })) return;
+
+
+            if (!tryCatch(function () {
+                return Client.System().hadAdmin();
+            })) {
+                document.location = "init_createAdmin.htm";
+                return;
+            };
+
+
+            var aut = Client.Authentication();
+
+            if (aut.IsActived() == false) {
+                document.getElementById("to_active").style.display = "block";
+                return;
+            }
+
+            initLanguage();
+            document.getElementById("txtUsername").focus();
+
+
+            try {
+                var uri = new Uri(document.location);
+                var location = null;
+                if (uri.Query) {
+                    if (uri.Querys.from)
+                        location = base64decode(uri.Querys.from)
+                }
+
+                var result = aut.load_auto(uri.Origin);
+                process(result, location);
+            }
+            catch (e) {
+                processException(e);
+            }
+        }
+
+        onload = init;
+
+        function login(username, password, auto) {
+            try {
+                var uri = new Uri(document.location);
+                var location = null;
+
+                if (uri.Query) {
+                    if (uri.Querys.from)
+                        location = base64decode(uri.Querys.from)
+                }
+                var result = Client.Authentication().login(username, password, auto, false, document.location);
+                process(result, location);
+            }
+            catch (e) {
+                processException(e);
+            }
+        }
+
+        function process(result, location) {
+            if (result) {
+                if (location) {
+                    document.location = location;
+                    return;
+                }
+                var location = "/video/index.htm";
+                //if (navigator.userAgent.toLowerCase().indexOf("mac os") > 0 || navigator.userAgent.toLowerCase().indexOf("android") > 0)
+                if (is.PC())
+                    location = "real_time_monitoring.htm";
+                alert(navigator.userAgent);
+                document.location = location;
+                //document.location = "real_time_monitoring.htm";
+            }
+        }
+        function processException(e) {
+            var txt = e.message;
+            if (!e.message)
+                txt = e.name;
+            if (e.number == 404 || e.number == 401)
+                txt = "用户名或密码错误";
+            $.confirm({
+                text: "登陆失败:" + txt,
+                okButton: "确定",
+                cancelButtonClass: "hide-tag",
+            });
+        }
+
+        function aLogin_click(sender, args) {
+            var username = document.getElementById("txtUsername").value;
+            //var password = hex_md5(document.getElementById("txtPassword").value).toLocaleLowerCase();
+            var password = document.getElementById("txtPassword").value;
+            var auto = document.getElementById("auto_login").checked;
+            login(username, password, auto);
+        }
+
+    </script>
+</head>
+<body class="login2" onkeydown="if (event.keyCode == 13) aLogin_click();">
+    <div class="login-wrapper">
+        <div class="login-container">
+            <img src="img/logo.png" />
+            <form>
+                <div class="form-group">
+                    <input class="form-control" id="txtUsername" placeholder="用户名" type="text" />
+                </div>
+                <div class="form-group" style="padding-bottom:15px;margin-bottom:0px;">
+                    <input class="form-control" id="txtPassword" placeholder="密码" type="password" />
+                </div>
+                <!--<div class="form-group" style="padding-bottom:15px;margin-bottom:0px;">
+                    <input class="form-control" id="auto_login" placeholder="" type="checkbox" />
+                </div>-->
+                <div class="form-group">
+                    <label class="checkbox"><input id="auto_login" type="checkbox" /><span>自动登录</span></label>
+                    <a id="to_active" href="activation.htm" class="pull-right" style="display:none;margin-top:-51px;">激活</a>
+                </div>
+                <div class="form-options clearfix">
+                </div>
+
+            </form>
+        </div>
+        <div class="social-login clearfix">
+            <button type="submit" class="btn btn-primary" id="aLogin" onclick="aLogin_click(this);">登&ensp;&ensp;&ensp;&ensp;录</button>
+        </div>
+    </div>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    $(function () {
+        $('input, textarea').placeholder();
+    });
+</script>

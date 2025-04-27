@@ -1,0 +1,27 @@
+﻿var ModelDetailsColor = {
+    classificationColor: {
+        //None: LabelTagColor.DarkGray,
+        IPCamera: LabelTagColor.LightBlue,
+        DVS: LabelTagColor.LightBlue,
+        NVR: LabelTagColor.Red,
+        DVR: LabelTagColor.Red,
+        DigitalMatrix: LabelTagColor.Green,
+        HDDecoder: LabelTagColor.Green,
+        AnalogMatrix: LabelTagColor.Green,
+        VAS: LabelTagColor.Tomato,
+        AAM: LabelTagColor.Taro,
+        NAM: LabelTagColor.Taro,
+        VPS: LabelTagColor.Tomato,
+        IntegratedMatrix: LabelTagColor.Green,
+        MatrixControlUnit: LabelTagColor.DoderBlue,
+        StreamingMediaServer: LabelTagColor.Color_ffae71,
+        DecodingUnit: LabelTagColor.DoderBlue,
+        EncodingUnit: LabelTagColor.DoderBlue,
+        NVS: LabelTagColor.LightBlue,
+        DataServer: LabelTagColor.Color_66cc99,
+        AcquisitionServer: LabelTagColor.Color_66cc99,
+        SystemGateway: LabelTagColor.Color_66cc99,
+        Camera: LabelTagColor.LightBlue,
+        UltrasonicProbe: LabelTagColor.Taro,
+    }
+}

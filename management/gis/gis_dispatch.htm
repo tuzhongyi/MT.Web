@@ -1,0 +1,857 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>GIS地图布控</title>
+</head>
+<body>
+    <link rel="stylesheet" href="css/bootstrap/bootstrap-switch.css" />
+    <link rel="stylesheet" href="css/zTreeStyle.css" />
+    <script type="text/javascript" src="js/jquery/jquery.confirm.js"></script>
+    <script type="text/javascript" src="js/jquery/jquery.ztree.core-3.5.js"></script>
+    <script type="text/javascript" src="js/jquery/jquery.ztree.exhide-3.5.js"></script>
+    <script type="text/javascript" src="js/bootstrap/bootstrap-switch.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap/bootstrap-fileupload.js"></script>
+    <script type="text/javascript" src="js/bootstrap/bootstrap-datepicker.js"></script>
+    <script type="text/javascript" src="js/howell.js/guid.js"></script>
+    <script src="js/howell.js/httpService.js"></script>
+    <script type="text/javascript" src="js/client/management.js"></script>
+    <script type="text/javascript" src="js/howell.js/webSocketServer.js"></script>
+    <script type="text/javascript" src="management/gis/gis_dispatch.js"></script>
+    <script type="text/javascript" src="js/background/management/gis/map/background_gis_map_details.js"></script>
+    <script type="text/javascript" src="management/gis/map/gis_map_details.js"></script>
+    <script type="text/javascript" src="js/CoordinateTransform.js"></script>
+    <style type="text/css">
+        .btn-permission.urgent {
+            border-color: #d9534f !important;
+            color: #d9534f !important;
+        }
+
+            .btn-permission.urgent:hover {
+                border-color: #d9534f !important;
+                color: #d9534f !important;
+            }
+
+            .btn-permission.urgent.selected {
+                background-color: #d9534f !important;
+                border-color: #d9534f !important;
+                color: white !important;
+            }
+
+        .btn-permission.important {
+            border-color: #f0ad4e !important;
+            color: #f0ad4e !important;
+        }
+
+            .btn-permission.important:hover {
+                border-color: #f0ad4e !important;
+                color: #f0ad4e !important;
+            }
+
+            .btn-permission.important.selected {
+                background-color: #f0ad4e !important;
+                border-color: #f0ad4e !important;
+                color: white !important;
+            }
+
+        .btn-permission.commonly {
+            border-color: #5bc0de !important;
+            color: #5bc0de !important;
+        }
+
+            .btn-permission.commonly:hover {
+                border-color: #5bc0de !important;
+                color: #5bc0de !important;
+            }
+
+            .btn-permission.commonly.selected {
+                background-color: #5bc0de !important;
+                border-color: #5bc0de !important;
+                color: white !important;
+            }
+
+
+
+        .btn-permission.unknown {
+            border-color: #999 !important;
+            color: #999 !important;
+        }
+
+            .btn-permission.unknown:hover {
+                border-color: #999 !important;
+                color: #999 !important;
+            }
+
+            .btn-permission.unknown.selected {
+                background-color: #999 !important;
+                border-color: #999 !important;
+                color: white !important;
+            }
+
+        ul .selected {
+            background-color: rgb(253, 243, 228);
+        }
+
+        .tab-content ul {
+            padding-left: 20px;
+        }
+
+            .tab-content ul li {
+                cursor: pointer;
+                padding-left: 0px;
+                list-style-type: none;
+            }
+
+                .tab-content ul li.bind .delete {
+                    margin-right: -15px;
+                    margin-top: 3px;
+                }
+
+
+
+                .tab-content ul li .text-ellipsis {
+                    max-width: 150px;
+                }
+
+                .tab-content ul li .delete {
+                    margin-top: 5px;
+                }
+
+                .tab-content ul li .edit {
+                    margin-top: 5px;
+                }
+
+        .list-group-item {
+            padding: 0 0 0 0;
+        }
+
+            .list-group-item p {
+                height: 38px;
+                padding: 10px 15px 10px 15px;
+            }
+
+        .map-nev {
+            height: 50px;
+        }
+
+        .prompt {
+            width: 300px;
+            height: 200px;
+            bottom: 10px;
+            right: 10px;
+            background-color: #ddd;
+            position: absolute;
+        }
+
+            .prompt ul {
+                padding: 15px 15px;
+            }
+
+                .prompt ul li {
+                    width: 270px;
+                    list-style-type: none;
+                    height: 40px;
+                    background-color: #aaa;
+                    border-bottom: solid #ddd 1px;
+                }
+
+        .overflow {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: inline;
+        }
+
+        .prompt .datetime {
+            float: right;
+        }
+
+        .div_right_window_status {
+            width: 100%;
+            height: 718px;
+            background-color: white;
+            display: none;
+        }
+
+        .div_right_window_list {
+            /*position: fixed;
+            bottom: 70px;
+            right: 10px;
+            width: 300px;*/
+            width: 100%;
+            height: 718px;
+            background-color: rgb(255,255,255);
+            filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
+            background: rgba(255,255,255,0.7);
+            display: none;
+            z-index: 1000;
+            /*width: 368px;*/
+        }
+
+            .div_right_window_list .icon_btn {
+                margin-left: 0px;
+                width: 213px;
+            }
+
+                .div_right_window_list .icon_btn.notice {
+                    width: 121.5px;
+                    margin-right: 5px;
+                }
+
+        .icon_btn {
+            margin-left: 0px;
+            width: 150px;
+        }
+
+            .icon_btn.read {
+                color: #666666;
+            }
+
+        .map {
+            overflow: hidden;
+            /*width: 940px;*/
+            height: 718px;
+            /*border: 1px solid red;*/
+            background-color: #ddd;
+            float: left;
+        }
+
+            .map .zoom {
+                position: absolute;
+                z-index: 100;
+                top: 10px;
+            }
+
+                .map .zoom td {
+                    -moz-user-select: -moz-none;
+                }
+
+                .map .zoom .control {
+                    cursor: pointer;
+                    width: 20px;
+                    height: 20px;
+                }
+
+                    .map .zoom .control.up {
+                        background-image: url("img/up.gif");
+                    }
+
+                    .map .zoom .control.down {
+                        background-image: url("img/down.gif");
+                    }
+
+                    .map .zoom .control.left {
+                        background-image: url("img/left.gif");
+                    }
+
+                    .map .zoom .control.right {
+                        background-image: url("img/right.gif");
+                    }
+
+                    .map .zoom .control.in {
+                        background-image: url("img/zoom_in.gif");
+                    }
+
+                    .map .zoom .control.out {
+                        background-image: url("img/zoom_out.gif");
+                    }
+
+                    .map .zoom .control.restore {
+                        background-image: url("img/zoom.gif");
+                    }
+
+            .map .dragAble {
+                z-index: 10;
+                height: 768px;
+                left: 0px;
+                position: relative;
+                top: 0px;
+                width: 1024px;
+            }
+
+                .map .dragAble image {
+                    border: 0px;
+                }
+
+        .prompt .icon_camera {
+            background-image: url("img/camera.png");
+            background-repeat: no-repeat;
+            background-size: contain;
+            margin-top: 5px;
+            width: 30px;
+            height: 30px;
+            float: left;
+        }
+
+        .ztree li span.button.tree_map_ico_open {
+            margin-right: 2px;
+            background: url(img/gis_map.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+        }
+
+        .ztree li span.button.tree_map_ico_close {
+            margin-right: 2px;
+            background: url(img/gis_map.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+        }
+
+        .ztree li span.button.tree_map_ico_docu {
+            margin-right: 2px;
+            background: url(img/gis_map.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+        }
+
+        .ztree li span.button.tree_layer_default_ico_open {
+            margin-right: 2px;
+            background: url(img/gis_layer_default.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+        }
+
+        .ztree li span.button.tree_layer_default_ico_close {
+            margin-right: 2px;
+            background: url(img/gis_layer_default.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+        }
+
+        .ztree li span.button.tree_layer_default_ico_docu {
+            margin-right: 2px;
+            background: url(img/gis_layer_default.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+        }
+
+        .ztree li span.button.tree_layer_person_ico_open {
+            margin-right: 2px;
+            background: url(img/gis_layer_person.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+        }
+
+        .ztree li span.button.tree_layer_person_ico_close {
+            margin-right: 2px;
+            background: url(img/gis_layer_person.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+        }
+
+        .ztree li span.button.tree_layer_person_ico_docu {
+            margin-right: 2px;
+            background: url(img/gis_layer_person.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+        }
+
+        .ztree li span.button.tree_layer_vehicle_ico_open {
+            margin-right: 2px;
+            background: url(img/gis_layer_vehicle.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+        }
+
+        .ztree li span.button.tree_layer_vehicle_ico_close {
+            margin-right: 2px;
+            background: url(img/gis_layer_vehicle.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+        }
+
+        .ztree li span.button.tree_layer_vehicle_ico_docu {
+            margin-right: 2px;
+            background: url(img/gis_layer_vehicle.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+        }
+
+        .ztree li span.button.tree_layer_video_input_ico_open {
+            margin-right: 2px;
+            background: url(img/gis_layer_video_input.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+        }
+
+        .ztree li span.button.tree_layer_video_input_ico_close {
+            margin-right: 2px;
+            background: url(img/gis_layer_video_input.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+        }
+
+        .ztree li span.button.tree_layer_video_input_ico_docu {
+            margin-right: 2px;
+            background: url(img/gis_layer_video_input.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+        }
+
+        .ztree li span.button.tree_layer_io_output_ico_open {
+            margin-right: 2px;
+            background: url(img/gis_layer_io_output.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+        }
+
+        .ztree li span.button.tree_layer_io_output_ico_close {
+            margin-right: 2px;
+            background: url(img/gis_layer_io_output.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+        }
+
+        .ztree li span.button.tree_layer_io_output_ico_docu {
+            margin-right: 2px;
+            background: url(img/gis_layer_io_output.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+        }
+
+        .ztree li span.button.tree_item_person_ico_open {
+            margin-right: 2px;
+            background: url(img/gis_item_person.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+        }
+
+        .ztree li span.button.tree_item_person_ico_close {
+            margin-right: 2px;
+            background: url(img/gis_item_person.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+        }
+
+        .ztree li span.button.tree_item_person_ico_docu {
+            margin-right: 2px;
+            background: url(img/gis_item_person.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+        }
+
+        .ztree li span.button.tree_item_vehicle_ico_open {
+            margin-right: 2px;
+            background: url(img/gis_item_vehicle.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+        }
+
+        .ztree li span.button.tree_item_vehicle_ico_close {
+            margin-right: 2px;
+            background: url(img/gis_item_vehicle.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+        }
+
+        .ztree li span.button.tree_item_vehicle_ico_docu {
+            margin-right: 2px;
+            background: url(img/gis_item_vehicle.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+        }
+
+        .ztree li span.button.tree_item_video_input_ico_open {
+            margin-right: 2px;
+            background: url(img/gis_item_video_input.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+        }
+
+        .ztree li span.button.tree_item_video_input_ico_close {
+            margin-right: 2px;
+            background: url(img/gis_item_video_input.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+        }
+
+        .ztree li span.button.tree_item_video_input_ico_docu {
+            margin-right: 2px;
+            background: url(img/gis_item_video_input.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+        }
+
+
+        .ztree li span.button.tree_item_io_output_ico_open {
+            margin-right: 2px;
+            background: url(img/gis_map_io_input.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+        }
+
+        .ztree li span.button.tree_item_io_output_ico_close {
+            margin-right: 2px;
+            background: url(img/gis_map_io_input.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+        }
+
+        .ztree li span.button.tree_item_io_output_ico_docu {
+            margin-right: 2px;
+            background: url(img/gis_map_io_input.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+        }
+
+        .diy-tree-btn {
+            color: #007aff !important;
+            margin-left: 4px !important;
+            font-family: FontAwesome;
+        }
+
+            .diy-tree-btn.none {
+                color: #aaaaaa !important;
+            }
+
+            .diy-tree-btn.part {
+                color: #f0ad4e !important;
+            }
+
+        .switch-tree-display-bar {
+            width: 100%;
+            height: 38px;
+            color: #aaaaaa;
+        }
+
+        .switch-tree-display-bar-div {
+            width: 25%;
+            line-height: 38px;
+        }
+
+            .switch-tree-display-bar-div:hover {
+                background: #f8f8f8;
+                background: rgba(0, 0, 0, 0.04);
+            }
+
+            .switch-tree-display-bar-div.user {
+                padding-left: 28px;
+            }
+
+            .switch-tree-display-bar-div.vehicle {
+                padding-left: 26px;
+            }
+
+            .switch-tree-display-bar-div.video {
+                padding-left: 24.5px;
+            }
+
+            .switch-tree-display-bar-div.annunciator {
+                padding-left: 20.5px;
+            }
+
+            .switch-tree-display-bar-div .selected {
+                color: #007aff;
+            }
+
+        .select-color-control {
+            border-top-right-radius: 0px;
+            border-bottom-right-radius: 0px;
+        }
+
+        .select-color-div {
+            display: block;
+            height: 34px;
+            width: 34px;
+            padding: 8px;
+        }
+
+            .select-color-div div {
+                width: 17px;
+                height: 17px;
+            }
+
+        .howell-icon-helf-eye:before {
+            content: "\f063";
+            font-family: HowellFont;
+            width: 16px;
+            font-size: 18px;
+        }
+
+        .ztree * {
+            font-size: 16px;
+        }
+
+        .tree-all-open {
+            font-size: 16px;
+            line-height: 32px;
+        }
+
+
+        .ztree li a {
+            height: 23px;
+            line-height: 21px;
+        }
+
+            .ztree li a.curSelectedNode {
+                height: 23px;
+                line-height: 21px;
+            }
+
+        .ztree li span {
+            line-height: 21px;
+        }
+
+            .ztree li span.button.root_open {
+                background-position: -125px -71px;
+            }
+
+            .ztree li span.button.root_close {
+                background-position: -101px -71px;
+            }
+
+            .ztree li span.button.bottom_close {
+                background-position: -99px -47px;
+            }
+
+            .ztree li span.button.bottom_open {
+                background-position: -123px -47px;
+            }
+
+            .ztree li span.button.center_close {
+                background-position: -100px -24px;
+            }
+
+            .ztree li span.button.center_open {
+                background-position: -123px -24px;
+            }
+
+            .ztree li span.button.center_docu {
+                background-position: -76px -23px;
+            }
+
+            .ztree li span.button.bottom_docu {
+                background-position: -76px -47px;
+            }
+
+            .ztree li span.button.roots_close {
+                background-position: -100px 0;
+            }
+
+            .ztree li span.button.roots_open {
+                background-position: -123px 0;
+            }
+
+            .ztree li span.button.switch {
+                width: 18px;
+                height: 23px;
+            }
+
+            .ztree li span.button {
+                height: 22px;
+                width: 22px;
+            }
+    </style>
+    <div class="page-main row" style="width:100%">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-2">
+            <div class="widget-container fluid-height">
+                <div class="heading tabs" style="padding:9px 15px;font-size:22px">
+                    <div class="pull-left"><i class="howell-icon-map" style="font-size:22px;margin-right:32px;"></i><span style="color:#5e5e5e">GIS地图</span></div>
+                    <div class="pull-right tree-all-open mouse_pointer" id="btnTreeAllNodeOpen" onclick="treeAllNodeOpen()">全部展开</div>
+                </div>
+                <div class="switch-tree-display-bar">
+                    <div class="switch-tree-display-bar-div user pull-left mouse_pointer" onclick="switchTreeDisplay(this, 'person')">
+                        <div class="icon-user selected" style="font-size:24px"></div>
+                    </div>
+                    <div class="switch-tree-display-bar-div vehicle pull-left mouse_pointer" onclick="switchTreeDisplay(this, 'vehicle')">
+                        <div class="howell-icon-vehicle selected" style="font-size:25px"></div>
+                    </div>
+                    <div class="switch-tree-display-bar-div video pull-left mouse_pointer" onclick="switchTreeDisplay(this, 'video')">
+                        <div class="icon-facetime-video selected" style="font-size:27px"></div>
+                    </div>
+                    <div class="switch-tree-display-bar-div annunciator pull-left mouse_pointer" onclick="switchTreeDisplay(this, 'annunciator')">
+                        <div class="howell-icon-annunciator selected" style="font-size:34px"></div>
+                    </div>
+                </div>
+                <div class="padd" style="padding-bottom: 10px;padding-top:5px">
+                    <div class="div-search" style="margin:auto;width:90%">
+                        <div class="input-group">
+                            <input type="text" id="search_condition" class="form-control">
+                            <div class="input-group-btn" onclick="search_ztree('treeGISMapList', 'search_condition')">
+                                <div class="btn btn-primary-outline">
+                                    <i class="icon-search">
+                                    </i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-content padded" style="height: 640px; overflow: auto;padding-top:0" id="my-tab-content">
+                    <ul class="ztree" id="treeGISMapList" style="padding-left:0;"></ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6" style="padding: 0 0;">
+            <div class="map-nev">
+                <!--<a class='btn btn-xs btn-primary-outline widget-content' style='padding-left:14px;'><i class='icon-plus'></i></a>-->
+                <table class="pull-left">
+                    <tr>
+                        <td>
+                            <a class="btn btn-primary-outline" href="management/gis/map/gis_map_details.htm" onclick="return addGISMapClick(this);">
+                                添加地图
+                            </a>
+                        </td>
+                        <td>
+                            <a class="btn btn-primary-outline" onclick="return addGISMapLayerClick(this);">
+                                添加图层
+                            </a>
+                        </td>
+                        <td>
+                            <a class="btn btn-primary-outline gis-map-edit-btn" id="addVehicleItem" onclick="addMapItemClick(this,GIS_Dispatch_Html.EditType.Vehicle);">
+                                布置车辆
+                            </a>
+                        </td>
+                        <td>
+                            <a class="btn btn-primary-outline gis-map-edit-btn" id="addVideoInputItem" onclick="addMapItemClick(this, GIS_Dispatch_Html.EditType.VideoInput);">
+                                布置摄像机
+                            </a>
+                        </td>
+                        <td>
+                            <a class="btn btn-primary-outline gis-map-edit-btn" id="addIOInputItem" onclick="addMapItemClick(this, GIS_Dispatch_Html.EditType.IOInput);">
+                                布置报警器
+                            </a>
+                        </td>
+                        <td>
+                            <a class="btn btn-primary-outline gis-map-edit-btn" id="addPersonItem" onclick="addMapItemClick(this, GIS_Dispatch_Html.EditType.Person);">
+                                布置人员
+                            </a>
+                        </td>
+                        <td>
+                            <a class="btn btn-primary-outline gis-map-edit-btn" id="editItemLocation" onclick="addMapItemClick(this, GIS_Dispatch_Html.EditType.Location);">
+                                调整位置
+                            </a>
+                        </td>
+                        <td>
+                            <a class="btn btn-primary-outline" id="realTimeRefresh" onclick="realTimeRefresh(this)">
+                                实时监控
+                            </a>
+                        </td>
+                        <td>
+                            <a class="btn btn-primary-outline" onclick="displayMapItemName(this)">
+                                显示名称
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+                <!--<div class="pull-right">
+                    <div class="pull-left">
+                        <select style="width:104px" class="form-control select-color-control" onchange="setMarkerColor(this.value)">
+                            <option value="black">黑色</option>
+                            <option value="red">红色</option>
+                            <option value="blue">蓝色</option>
+                            <option value="purple">紫色</option>
+                        </select>
+                    </div>
+                    <div class="input-group-addon pull-left select-color-div">
+                        <div id="divMarkerColor" style="background-color: black;">
+                        </div>
+                    </div>
+                </div>-->
+            </div>
+            <div style="height:718px">
+                <iframe class="map" id="ifrMap" style="width: 100%; border: 1px solid #808080;" src="" frameborder="0" scrolling="no"></iframe>
+            </div>
+        </div>
+        <div class="col-md-2" style="margin-top:50px;overflow-x:auto;">
+            <div class="div_right_window_list" id="div_right_window_list"></div>
+            <div class="div_right_window_status" id="div_right_window_status">
+                <div class="widget-content padded">
+                    <div class="form-group row">
+                        <label style="margin-bottom:0px;font-size:22px;color:#007aff;margin-left:10px">
+                            地图子项信息
+                        </label>
+                    </div>
+                    <div class="form-group row">
+                        <label class="control-label col-md-4">
+                            名称：
+                        </label>
+                        <div class="col-md-8">
+                            <div style="word-break:break-all" id="div_right_window_status_Name"></div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="control-label col-md-4">是否在线：</label>
+                        <div class="col-md-8">
+                            <div style="word-break:break-all" id="div_right_window_status_Online"></div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="control-label col-md-4">类型：</label>
+                        <div class="col-md-8">
+                            <div style="word-break:break-all" id="div_right_window_status_IconType"></div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="control-label col-md-4">经度：</label>
+                        <div class="col-md-8">
+                            <div style="word-break:break-all" id="div_right_window_status_Longitude"></div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="control-label col-md-4">纬度：</label>
+                        <div class="col-md-8">
+                            <div style="word-break:break-all" id="div_right_window_status_Latitude"></div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="control-label col-md-4">速度：</label>
+                        <div class="col-md-8">
+                            <div style="word-break:break-all" id="div_right_window_status_Speed"></div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="control-label col-md-4">方向：</label>
+                        <div class="col-md-8">
+                            <div style="word-break:break-all" id="div_right_window_status_Course"></div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="control-label col-md-4">更新时间：</label>
+                        <div class="col-md-8">
+                            <div style="word-break:break-all" id="div_right_window_status_UpdatedTime"></div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="control-label col-md-4">状态：</label>
+                        <div class="col-md-8">
+                            <div style="word-break:break-all" id="div_right_window_status_Status"></div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="control-label col-md-4">GPS设备：</label>
+                        <div class="col-md-8">
+                            <div style="word-break:break-all" id="div_right_window_status_GPSId"></div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="control-label col-md-4">车牌识别：</label>
+                        <div class="col-md-8">
+                            <div style="word-break:break-all" id="div_right_window_status_VehiclePlateId"></div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="control-label col-md-4">摄像机：</label>
+                        <div class="col-md-8">
+                            <div style="word-break:break-all" id="div_right_window_status_VideoInputChannelId"></div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="control-label col-md-4">描述信息：</label>
+                        <div class="col-md-8">
+                            <div style="word-break:break-all" id="div_right_window_status_Description"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" language="javascript">
+        var gisDispatchHelper = null;
+        $(function () {
+            gis_dispatch_load();
+        });
+    </script>
+</body>
+</html>

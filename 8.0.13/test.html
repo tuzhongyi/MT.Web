@@ -1,0 +1,372 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>jwplayer example</title>
+
+
+    <link href="http://192.168.21.240:8999/howell.font.css">
+    <script src="http://192.168.21.240:8800/js/howell.js/ext.js"></script>
+    <script src="js/jquery-1.8.3.js"></script>
+    <script src="jwplayer.js"></script>
+    <script src="howell/jwplayer.howell.js"></script>
+    <script src="howell/videotools.js"></script>
+    <style>
+        #container {
+            margin: 0 auto;
+            text-align: center;
+        }
+    </style>
+
+    <style>
+        article,
+        aside,
+        figure,
+        figcaption,
+        footer,
+        header,
+        hgroup,
+        menu,
+        nav,
+        section {
+            display: block;
+        }
+
+        button {
+            margin-top: 10px;
+        }
+
+        footer {
+            font-size: 11px;
+            color: #aaa;
+            margin-top: 10px;
+        }
+
+        small {
+            color: #aaa;
+            font-size: 11px;
+            display: block;
+        }
+
+        a {
+            color: #aaa;
+            text-decoration: none;
+        }
+
+        .video-icon {
+            opacity: 0.8;
+        }
+
+        .video-icon:hover {
+            opacity: 1;
+            outline: none;
+        }
+    </style>
+    <style>
+        .marker {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(200, 200, 200, 0.8);
+            display: none;
+            top: 0;
+            left: 0;
+        }
+
+        .marker .btn.close {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            font-size: 30px;
+            font-weight: bold;
+            border: 1px solid transparent;
+            cursor: pointer;
+        }
+
+        .marker .canvas-room {
+            margin: 100px auto;
+            border: 1px solid black;
+            width: 1024px;
+            height: 680px;
+            background-color: black;
+        }
+
+        .marker .canvas-room canvas {
+            width: 100%;
+            height: 100%;
+        }
+
+        .marker .btn.close:hover {
+            color: red;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="container">loading the player...</div>
+
+    <!-- <div>
+        <a onclick="capture()">截图</a>
+    </div> -->
+    <div class="marker" id="marker">
+        <a class="btn close" onclick="marker.hide()">×</a>
+        <div class="canvas-room" id="canvas">
+        </div>
+        <div>
+            <a onclick="canvas.init()">画框</a>
+        </div>
+    </div>
+    <script>
+        var thePlayer;
+        jwplayer.key = "dZKw36bg8QrIT77rSPS8Ds4yxJ5+LCyZ9iEsqg==";
+
+        thePlayer = jwplayer('container').setup({
+            autostart: true,
+            //flashplayer: 'jwplayer.flash.swf',  
+            //file: 'http://192.168.21.240:8800/hls/Media/Live/00310101001111111000002000000000/3/1/live.m3u8?user=howell&password=e10adc3949ba59abbe56e057f20f883e',  
+            type: "hls",
+            width: 1024,
+            height: 680,
+            volume: 80,
+            playbackRateControls: true,
+            playlist: [{
+                title: "测试视频",
+                sources: [{
+                    file: 'http://192.168.21.240:8800/hls/Media/vod/00310101001111111000002000000000/3/1/2019-12-04T07:00:00.000Z_2019-12-04T07:05:00.000Z/vod.m3u8?user=howell&password=e10adc3949ba59abbe56e057f20f883e',
+                    //file: "http://192.168.21.240:8800/hls/Media/Live/00310101001111111000002000000000/3/1/live.m3u8?user=howell&password=e10adc3949ba59abbe56e057f20f883e",
+                    //file: 'http://192.168.21.240:8800/hls/Media/Live/00310101011111111000008000000000/1/2/live.m3u8?user=howell&password=e10adc3949ba59abbe56e057f20f883e',
+                }]
+            }]
+        });
+
+        thePlayer.on('ready', function () {
+            //img, tooltip, callback, id, btnClass
+            this.addButton("howell/images/snapshot.svg", "截图", capture, "snapshot", "video-icon video-snapshot");
+            this.addButton("howell/images/download.svg", "下载", download, "download", "video-icon video-download");
+            this.addButton("howell/images/step_next.svg", "单帧进", function () {
+                setTime(1);
+                var state = thePlayer.getState();
+                if (state == jwplayer.state.playing)
+                    thePlayer.pause();
+            }, "step_next", "video-icon");
+            this.addButton("howell/images/step_pre.svg", "单帧退", function () {
+                setTime(-1);
+                var state = thePlayer.getState();
+                if (state == jwplayer.state.playing)
+                    thePlayer.pause();
+            }, "step_pre", "video-icon");
+        })
+
+
+
+
+        function capture() {
+            marker.show();
+            var video = document.getElementsByClassName("jw-video jw-reset")[0];
+            var room = document.getElementById("canvas");
+            canvas.element = VideoTools.Snapshot(video, room);
+            canvas.element.id = "canvas_1";
+
+        }
+        function download() {
+            var video = document.getElementsByClassName("jw-video jw-reset")[0];
+            VideoTools.Download(video);
+        }
+        function setTime(tValue) {
+            //  if no video is loaded, this throws an exception 
+
+            var video = document.getElementsByClassName("jw-video jw-reset")[0];
+
+            try {
+                if (tValue == 0) {
+                    video.currentTime = tValue;
+                }
+                else {
+                    video.currentTime += tValue;
+                }
+
+            } catch (err) {
+                // errMessage(err) // show exception
+                console.log(err);
+            }
+        }
+    </script>
+    <script>
+        var marker = {
+            element: document.getElementById("marker"),
+            show: function () {
+                marker.element.style.display = "block"
+            },
+            hide: function () {
+                marker.element.style.display = ""
+            }
+        };
+
+        function draw(canvas, begin, end) {
+            if (canvas) {
+                var ctx = canvas.getContext("2d");
+                ctx.strokeStyle = "red";
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.rect(begin.x, begin.y, end.x, end.y);
+                ctx.stroke();
+            }
+        }
+
+        function windowToCanvas(canvas, x, y) {
+            var rect = canvas.getBoundingClientRect();
+            console.log(rect);
+            return {
+                x: x - rect.left * (canvas.width / rect.width),
+                y: y - rect.top * (canvas.height / rect.height)
+            };
+        }
+
+        var canvas = {
+            element: null,
+            position: {
+                start: null,
+                end: null
+            },
+            drawing: false,
+            init: function () {
+
+                // var draw_canvas = document.createElement("canvas");
+                // var room = document.getElementById("canvas");
+                // room.appendChild(draw_canvas);
+
+                // canvas.element.onmousedown = function (e) {
+                //     canvas.position.start = { x: e.offsetX, y: e.offsetY }; // windowToCanvas(canvas.element, e.clientX, e.clientY);
+                //     canvas.drawing = true;
+                // }
+                // canvas.element.onmousemove = function (e) {
+                //     if (canvas.element) {
+                //         if (canvas.drawing) {
+                //             canvas.position.end = { x: e.offsetX, y: e.offsetY };//windowToCanvas(canvas.element, e.clientX, e.clientY);
+                //             draw(canvas.element, canvas.position.start, canvas.position.end);
+                //         }
+                //     }
+                // }
+
+                CanvasExt.drawRect("canvas_1", "red", 2);
+            }
+        }
+
+
+        window.onmouseup = function (e) {
+            canvas.drawing = false;
+        }
+
+
+        var layer = 0;
+        CanvasExt = {
+            drawRect: function (canvasId, penColor, strokeWidth) {
+                var that = this;
+                that.penColor = penColor;
+                that.penWidth = strokeWidth;
+
+                var canvas = document.getElementById(canvasId);
+                //canvas 的矩形框
+                var canvasRect = canvas.getBoundingClientRect();
+                //矩形框的左上角坐标
+                var canvasLeft = canvasRect.left;
+                var canvasTop = canvasRect.top;
+
+                var layerIndex = layer;
+                var layerName = "layer";
+                var x = 0;
+                var y = 0;
+
+                //鼠标点击按下事件，画图准备
+                canvas.onmousedown = function (e) {
+                    //设置画笔颜色和宽度
+                    var color = that.penColor;
+                    var penWidth = that.penWidth;
+
+                    layerIndex++;
+                    layer++;
+                    layerName += layerIndex;
+                    x = e.clientX - canvasLeft;
+                    y = e.clientY - canvasTop;
+
+                    $("#" + canvasId).addLayer({
+                        type: 'rectangle',
+                        strokeStyle: color,
+                        strokeWidth: penWidth,
+                        name: layerName,
+                        fromCenter: false,
+                        x: x, y: y,
+                        width: 1,
+                        height: 1
+                    });
+
+                    $("#" + canvasId).drawLayers();
+                    $("#" + canvasId).saveCanvas();
+                    //鼠标移动事件，画图
+                    canvas.onmousemove = function (e) {
+                        width = e.clientX - canvasLeft - x;
+                        height = e.clientY - canvasTop - y;
+
+                        $("#" + canvasId).removeLayer(layerName);
+
+                        $("#" + canvasId).addLayer({
+                            type: 'rectangle',
+                            strokeStyle: color,
+                            strokeWidth: penWidth,
+                            name: layerName,
+                            fromCenter: false,
+                            x: x, y: y,
+                            width: width,
+                            height: height
+                        });
+
+                        $("#" + canvasId).drawLayers();
+                    }
+                };
+
+                canvas.onmouseup = function (e) {
+
+                    var color = that.penColor;
+                    var penWidth = that.penWidth;
+
+                    canvas.onmousemove = null;
+
+                    width = e.clientX - canvasLeft - x;
+                    height = e.clientY - canvasTop - y;
+
+                    $("#" + canvasId).removeLayer(layerName);
+
+                    $("#" + canvasId).addLayer({
+                        type: 'rectangle',
+                        strokeStyle: color,
+                        strokeWidth: penWidth,
+                        name: layerName,
+                        fromCenter: false,
+                        x: x, y: y,
+                        width: width,
+                        height: height
+                    });
+
+                    $("#" + canvasId).drawLayers();
+                    $("#" + canvasId).saveCanvas();
+                }
+            }
+        };
+
+        drawPen();
+        function drawPen() {
+            var color = "red";
+            var width = 1;
+            CanvasExt.drawRect("canvas", color, width);
+        }
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

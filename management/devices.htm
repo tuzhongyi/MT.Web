@@ -1,0 +1,200 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>设备信息</title>
+    <link rel="stylesheet" type="text/css" href="../css/howell.css" />
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap/bootstrap-switch.css" />
+    <link rel="stylesheet" href="../css/bootstrap/datatables.css" />
+    <script type="text/javascript" src="../js/language/chinese.js"></script>
+    <script type="text/javascript" src="../js/jquery/jquery-1.10.2.min.js"></script>
+    <script src="../js/howell.js/ext.js"></script>
+    <script src="../js/imported.js"></script>
+    <script type="text/javascript" src="../js/jquery/jquery-ui.js"></script>
+    <script type="text/javascript" src="../js/bootstrap/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/jquery/jquery.confirm.js"></script>
+    <script src="../js/jquery/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="../js/nav.js"></script>
+
+    <script type="text/javascript" src="../js/client/enum.js"></script>
+    <script type="text/javascript" src="../js/howell.js/howell.js"></script>
+    <script type="text/javascript" src="../js/bootstrap/bootstrap-switch.min.js"></script>
+    <script type="text/javascript" src="../js/client/struct.js"></script>
+    <script type="text/javascript" src="../js/client/security.js"></script>
+    <script type="text/javascript" src="../js/client/management.js"></script>
+    <script type="text/javascript" src="../js/client/client.js"></script>
+    <script type="text/javascript" src="../js/howell.js/howell.control.js"></script>
+    <script type="text/javascript" src="../js/modernizr.custom.js"></script>
+    <script type="text/javascript" src="../js/background/management/background_device.event.js"></script>
+    <script type="text/javascript" src="../js/background/management/background_devices.js"></script>
+    <script type="text/javascript" src="devices.js"></script>
+    <script type="text/javascript" src="../js/background/management/device/background_device_details.js"></script>
+    <script type="text/javascript" src="device/device_details.js"></script>
+    <script type="text/javascript" src="../js/background/management/device/background_device_users.js"></script>
+    <script type="text/javascript" src="device/device_users.js"></script>
+    <script type="text/javascript" src="../js/background/management/device/user/background_device_user_permissions.js"></script>
+    <script type="text/javascript" src="device/user/device_user_permissions.js"></script>
+    <script type="text/javascript" src="../js/background/management/device/background_device_departments.js"></script>
+    <script type="text/javascript" src="device/device_departments.js"></script>
+    <script type="text/javascript" src="../js/background/management/device/department/background_device_department_permissions.js"></script>
+    <script type="text/javascript" src="device/department/device_department_permissions.js"></script>
+    <script type="text/javascript" src="../js/background/management/device/background_device_mediums.js"></script>
+    <script type="text/javascript" src="device/device_mediums.js"></script>
+    <script type="text/javascript" src="../js/background/management/device/background_device_networks.js"></script>
+    <script type="text/javascript" src="device/device_networks.js"></script>
+    <script type="text/javascript" src="../js/background/management/device/background_device_video_simple_inputs.js"></script>
+    <script type="text/javascript" src="device/video/device_video_simple_inputs.js"></script>
+    <script type="text/javascript" src="device/video/input/device_video_input_details.js"></script>
+    <script type="text/javascript" src="../js/background/management/device/background_device_video_simple_outputs.js"></script>
+    <script type="text/javascript" src="device/video/device_video_simple_outputs.js"></script>
+    <script type="text/javascript" src="device/video/output/device_video_output_details.js"></script>
+    <script type="text/javascript" src="../js/background/management/device/background_device_io_simple_outputs.js"></script>
+    <script type="text/javascript" src="device/io/device_io_simple_outputs.js"></script>
+    <script type="text/javascript" src="device/io/output/device_io_output_details.js"></script>
+    <script type="text/javascript" src="../js/background/management/device/background_device_io_simple_inputs.js"></script>
+    <script type="text/javascript" src="device/io/device_io_simple_inputs.js"></script>
+    <script type="text/javascript" src="device/io/input/device_io_input_details.js"></script>
+    <script type="text/javascript" src="../js/background/management/device/network/background_device_network_wifi.js"></script>
+    <script type="text/javascript" src="device/network/device_network_wifi.js"></script>
+    <script type="text/javascript" src="../js/background/management/device/background_device_acquisition.js"></script>
+    <script type="text/javascript" src="device/device_acquisition.js"></script>
+    <script type="text/javascript" src="device/device_sync.js"></script>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+    <style type="text/css">
+        .device_list_title_ico{
+            font-size:22px !important;
+            margin-left:15px;
+            color:#007aff
+        }
+    </style>
+</head>
+<body>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-switch.css?update=20170531" />
+    <link rel="stylesheet" href="css/bootstrap/datatables.css?update=20170531" />
+    <script type="text/javascript" src="js/jquery/jquery.confirm.js?update=20170531"></script>
+    <script src="js/jquery/jquery.dataTables.min.js?update=20170531"></script>
+
+    <script type="text/javascript" src="js/bootstrap/bootstrap-switch.min.js?update=20170531"></script>
+    <script type="text/javascript" src="js/client/security.js?update=20170531"></script>
+    <script type="text/javascript" src="js/client/management.js?update=20170531"></script>
+    <script type="text/javascript" src="js/modernizr.custom.js?update=20170531"></script>
+    <script type="text/javascript" src="js/background/management/background_device.event.js?update=20170531"></script>
+    <script type="text/javascript" src="js/background/management/background_devices.js?update=20170531"></script>
+    <script type="text/javascript" src="management/devices.js?update=20170531"></script>
+    <script type="text/javascript" src="js/background/management/device/background_device_details.js?update=20170531"></script>
+    <script type="text/javascript" src="management/device/device_details.js?update=20170531"></script>
+    <script type="text/javascript" src="js/background/management/device/background_device_users.js?update=20170531"></script>
+    <script type="text/javascript" src="management/device/device_users.js?update=20170531"></script>
+    <script type="text/javascript" src="js/background/management/device/user/background_device_user_permissions.js?update=20170531"></script>
+    <script type="text/javascript" src="management/device/user/device_user_permissions.js?update=20170531"></script>
+    <script type="text/javascript" src="js/background/management/device/background_device_departments.js?update=20170531"></script>
+    <script type="text/javascript" src="management/device/device_departments.js?update=20170531"></script>
+    <script type="text/javascript" src="js/background/management/device/department/background_device_department_permissions.js?update=20170531"></script>
+    <script type="text/javascript" src="management/device/department/device_department_permissions.js?update=20170531"></script>
+    <script type="text/javascript" src="js/background/management/device/background_device_mediums.js?update=20170531"></script>
+    <script type="text/javascript" src="management/device/device_mediums.js?update=20170531"></script>
+    <script type="text/javascript" src="js/background/management/device/background_device_networks.js?update=20170531"></script>
+    <script type="text/javascript" src="management/device/device_networks.js?update=20170531"></script>
+    <script type="text/javascript" src="js/background/management/device/background_device_video_simple_inputs.js?update=20170531"></script>
+    <script type="text/javascript" src="management/device/video/device_video_simple_inputs.js?update=20170531"></script>
+    <script type="text/javascript" src="management/device/video/input/device_video_input_details.js?update=20170531"></script>
+    <script type="text/javascript" src="js/background/management/device/background_device_video_simple_outputs.js?update=20170531"></script>
+    <script type="text/javascript" src="management/device/video/device_video_simple_outputs.js?update=20170531"></script>
+    <script type="text/javascript" src="management/device/video/output/device_video_output_details.js?update=20170531"></script>
+    <script type="text/javascript" src="js/background/management/device/background_device_io_simple_outputs.js?update=20170531"></script>
+    <script type="text/javascript" src="management/device/io/device_io_simple_outputs.js?update=20170531"></script>
+    <script type="text/javascript" src="management/device/io/output/device_io_output_details.js?update=20170531"></script>
+    <script type="text/javascript" src="js/background/management/device/background_device_io_simple_inputs.js?update=20170531"></script>
+    <script type="text/javascript" src="management/device/io/device_io_simple_inputs.js?update=20170531"></script>
+    <script type="text/javascript" src="management/device/io/input/device_io_input_details.js?update=20170531"></script>
+    <script type="text/javascript" src="js/background/management/device/network/background_device_network_wifi.js?update=20170531"></script>
+    <script type="text/javascript" src="management/device/network/device_network_wifi.js?update=20170531"></script>
+    <script type="text/javascript" src="js/background/management/device/background_device_acquisition.js?update=20170531"></script>
+    <script type="text/javascript" src="management/device/device_acquisition.js?update=20170531"></script>
+    <script type="text/javascript" src="management/device/device_sync.js?update=20170531"></script>
+    <style type="text/css">
+        .device_list_title_ico {
+            font-size: 22px !important;
+            margin-left: 15px;
+            color: #007aff;
+        }
+    </style>
+    <div class="page-main row">
+        <div class="col-md-12">
+            <div class="widget-container fluid-height clearfix list-width padded background-min-height">
+                <div class="heading list-heading-maxdiv" style="height:110px!important">
+                    <div class="form-group list-heading-div">
+                        <!--&ensp;&ensp;<i class="icon device title mouse_default"></i>-->
+                        <i class="howell-icon-device device_list_title_ico"></i>
+                        设备信息 <label class="list-count-lable">当前<span id="lblCurrentCount">0</span>条/共<span id="lblTotalCount">0</span>条</label>
+                    </div>
+                    <div>
+                        <div class="pull-left">
+                            <label class="select-title">设备分类:</label><div class="select-div"><select class="form-control" id="ddlClassification" onchange="selectClassification_Click(this.value)"></select></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-7 pull-right" id="divOperationControl">
+                                <a class='btn btn-xs btn-primary-outline pull-right div-xsgroup button-img-size' onclick="batchRemoveDevices_Click(this)" title="删除">
+                                    <i class='icon-trash'></i>
+                                </a>
+                                <a class='btn btn-xs btn-primary-outline pull-right div-xsgroup button-img-size' title="同步" id="btnBatchSyncDevice" onclick="return batchSyncDevice_Click(this)" href="management/device/device_sync.htm?mode=batch">
+                                    <i class='icon-retweet'></i>
+                                </a>
+                                <div class="btn-group pull-right association-btn-group" style="margin-right:10px" id="divAddDevice">
+                                    <a class="btn btn-xs btn-primary-outline association-btn-group-icon-btn" title="添加设备" style="margin-right:0" id="btn-addDevice" href="management/device/device_details.htm" onclick="return addDevice_Click(this)">
+                                        <i class=" icon-plus">
+                                        </i>
+                                    </a>
+                                    <a class="btn btn-xs dropdown-toggle control btn-primary-outline btn-xsgroup-toggle" data-toggle="dropdown">
+                                        <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu association-dropdown-menu">
+                                        <li class="dropdown-menu-li">
+                                            <a class="association-dropdown-men-item mouse_pointer" href="management/device/device_details.htm?batch=batch" onclick="return addDevice_Click(this)">批量添加</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="btn-group  pull-right div-xsgroupdown" id="btn-operation">
+                                    <div class="btn btn-xs btn-primary btn-xsgroupdown dropdown-toggle" data-toggle="dropdown" id="operation">选&ensp;择&ensp;<span class="caret"></span></div>
+                                    <ul class="dropdown-menu xsgroupdown-menu-ul">
+                                        <li class="mouse_pointer">
+                                            <a class="xsgroupdown-menu-ul-li-a" onclick="GroupList.Select.All(Info.ControlIdPrefix.GroupListItem, GroupListItem_SelectAll);">
+                                                全选
+                                            </a>
+                                        </li>
+                                        <li class="mouse_pointer">
+                                            <a class="xsgroupdown-menu-ul-li-a" onclick="GroupList.Select.Inverse(Info.ControlIdPrefix.GroupListItem);">
+                                                反选
+                                            </a>
+                                        </li>
+                                        <li class="mouse_pointer">
+                                            <a class="xsgroupdown-menu-ul-li-a" onclick="GroupList.Select.Cancel(Info.ControlIdPrefix.GroupListItem, GroupListItem_Cancel);">
+                                                取消
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="dList">
+
+                </div>
+            </div>
+            <div class="col-md-12 lazyload-div" id="divLazyload">
+
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(function () {
+            management_device_list_load();
+        });
+    </script>
+</body>
+</html>
+<script type="text/javascript">
+    onload = management_device_list_load;
+</script>

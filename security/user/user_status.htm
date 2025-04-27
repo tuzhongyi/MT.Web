@@ -1,0 +1,134 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>在线状态</title>
+    <link rel="stylesheet" type="text/css" href="../../css/howell.css" />
+    <script type="text/javascript" src="../../js/language/chinese.js"></script>
+    <script type="text/javascript" src="../../js/jquery/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="../../js/imported.js"></script>
+    <script type="text/javascript" src="../../js/jquery/jquery-ui.js"></script>
+    <script type="text/javascript" src="../../js/bootstrap/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../js/modernizr.custom.js"></script>
+    <script type="text/javascript" src="../../js/howell.js/howell.js"></script>
+    <script type="text/javascript" src="../../js/howell.js/howell.control.js"></script>
+    <script type="text/javascript" src="../../js/client/enum.js"></script>
+    <script type="text/javascript" src="../../js/client/struct.js"></script>
+    <script type="text/javascript" src="../../js/client/security.js"></script>
+    <script type="text/javascript" src="../../js/client/client.js"></script>
+    <script type="text/javascript" src="../../js/howell.js/howell.convert.js"></script>
+</head>
+<body>
+    <style type="text/css">
+        .icon_btn
+        {
+            margin-left: 0px;
+            width: 200px;
+        }
+        
+        .icon_btn.offline
+        {
+            color: #666666;
+        }
+    </style>
+    <div class="widget-container fluid-height clearfix association-frame mouse_default swith_control" onclick="return stopPropagation();"
+        style="display: block; width: 430px; height: 100%  !important;">
+        <div class="heading">
+            <i class="icon-group"></i>
+            <label>
+                在线人员一览</label>
+        </div>
+        <div class="association-operation-bar">
+            <div class="pull-left">
+            <a class="btn btn-xs btn-permission main list-permission-btn selected" onclick="return showUser_Click(this);">
+                    全部 </a>
+                <a class="btn btn-xs btn-permission main list-permission-btn" onclick="return showUser_Click(this, true);">
+                    在线 </a><a class="btn btn-xs btn-permission main list-permission-btn" 
+                        onclick="return showUser_Click(this, false);">离线 </a>
+            </div>
+        </div>
+        <div class="widget-content padded clearfix association-list-container" style="overflow-y: auto;
+            height: 550px;">
+            <div id="glist_user_status">
+            </div>
+        </div>
+        
+    </div>
+    <script type="text/javascript">
+        var status = new user_status();
+        status.Show();
+
+        function user_status() {
+            var users = new Dictionary()
+            var statusList = new Dictionary();
+
+            function init() {
+                var all = Client.Security().User.List();
+                if (all && all.User) {
+                    for (var i = 0; i < all.User.length; i++) {
+                        users[all.User[i].Username] = all.User[i];
+                    }
+                }
+
+                var list = Client.Security().User.Status.List();
+                if (list.UserStatus) {
+                    for (var i = 0; i < list.UserStatus.length; i++) {
+                        var status = list.UserStatus[i];                       
+
+                        status.Nickname = users[status.Username].Nickname;
+                        statusList[status.Username] = status;
+                    }
+                }
+            }
+            function createItem(status) {
+
+                var btn = new IconButton(status.Id, "icon-user", 11, status.Nickname);
+
+                var item = new GroupListItem();
+
+                if (!status.Online)
+                    btn.className += " offline";
+
+                item.Content.appendChild(btn);
+                var time = document.createElement("div");
+
+                var date = Convert.ToDate(status.LastOnlineTime);
+                time.innerText = date.format("yyyy-MM-dd HH:mm:ss");
+                time.title = "最后在线时间 ";
+       
+
+                item.Content.appendChild(time);
+                return item;
+            }
+            init();
+
+
+
+
+            this.Show = function (online) {
+                var items = new GroupListItemArray();
+
+                var a = statusList.order("Nickname");
+                a = a.sortBy("Online", true);
+                for (var i = 0; i < a.length; i++) {
+                    if (!is.Boolean(online) || a[i].Online == online)
+                        items.push(createItem(a[i]));
+                }
+
+                var gl = new GroupList("", items);
+                document.getElementById("glist_user_status").innerHTML = "\n ";
+                document.getElementById("glist_user_status").appendChild(gl);
+            }
+        }
+
+        function showUser_Click(sender, args) {
+
+            $(".list-permission-btn").removeClass("selected");
+
+            sender.className += " selected";
+
+            status.Show(args);
+        }
+
+    </script>
+</body>
+</html>

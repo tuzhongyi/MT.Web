@@ -1,0 +1,18 @@
+<html>
+<head>
+<script src="/jwplayer/jwplayer.js"></script>
+</head>
+<body>
+<div id='myplayer'></div> <script type='text/javascript'>    
+jwplayer('myplayer').setup({       
+file: "rtmp://192.168.18.245/stream?dev_id=00310101031111111000002000000000&slot=3&stream=2&mode=live&user=admin&password=12345",
+height: 360,
+width: 640,
+autostart: true,
+rtmp: {
+bufferlength: 0.1
+}
+}); 
+</script>
+</body>
+</html>

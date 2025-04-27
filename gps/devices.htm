@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>GPS设备</title>
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap/bootstrap-switch.css" />
+    <link rel="stylesheet" href="../css/bootstrap/datatables.css" />
+    <script type="text/javascript" src="../js/jquery/jquery.confirm.js"></script>
+    <script src="../js/jquery/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap/bootstrap-switch.min.js"></script>
+    <script type="text/javascript" src="../js/client/management.js"></script>
+    <script type="text/javascript" src="../js/modernizr.custom.js"></script>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+</head>
+<body>
+    <script type="text/javascript" src="js/background/gps/background_device.event.js"></script>
+    <script type="text/javascript" src="js/background/gps/background_devices.js?update=20170727"></script>
+    <script type="text/javascript" src="gps/devices.js"></script>
+    <script type="text/javascript" src="js/background/gps/device/background_device_details.js"></script>
+    <script type="text/javascript" src="gps/device/device_details.js"></script>
+    <script type="text/javascript" src="js/background/gps/device/background_device_status.js"></script>
+    <script type="text/javascript" src="gps/device/device_status.js"></script>
+    <style type="text/css">
+        .presentation {
+            padding-left: 0;
+        }
+
+            .presentation li {
+                float: left;
+                margin-right: 15px;
+                list-style: none;
+            }
+
+            .presentation [class^="icon-"] {
+                cursor: default;
+            }
+
+        .device_list_title_ico {
+            font-size: 22px !important;
+            margin-left: 15px;
+            color: #007aff;
+        }
+    </style>
+    <div class="page-main row">
+        <div class="col-md-12">
+            <div class="widget-container fluid-height clearfix list-width padded background-min-height">
+                <div class="heading list-heading-maxdiv" style="height:110px!important">
+                    <div class="form-group list-heading-div">
+                        <i class="icon-map-marker device_list_title_ico" style="font-size:24px!important"></i>
+                        GPS设备 <label class="list-count-lable">当前<span id="lblCurrentCount">0</span>条/共<span id="lblTotalCount">0</span>条</label>
+                    </div>
+                    <div>
+                        <div class="row">
+                            <ul class="presentation pull-left">
+                                <li><div class="icon-circle text-default"></div>离线</li>
+                                <li><div class="icon-circle text-info"></div>在线</li>
+                            </ul>
+                            <div class="col-md-7 pull-right" id="divOperationControl">
+                                <a class='btn btn-xs btn-primary-outline pull-right div-xsgroup button-img-size' onclick="batchRemoveGPSDevices_Click(this)" title="删除">
+                                    <i class='icon-trash'></i>
+                                </a>
+                                <div class="btn-group pull-right association-btn-group" style="margin-right:10px">
+                                    <a class="btn btn-xs btn-primary-outline association-btn-group-icon-btn" title="添加设备" style="margin-right:0" id="btn-addGPSDevice" href="gps/device/device_details.htm" onclick="return addGPSDevice_Click(this)">
+                                        <i class=" icon-plus">
+                                        </i>
+                                    </a>
+                                </div>
+                                <div class="btn-group  pull-right div-xsgroupdown" id="btn-operation">
+                                    <div class="btn btn-xs btn-primary btn-xsgroupdown dropdown-toggle" data-toggle="dropdown" id="operation">选&ensp;择&ensp;<span class="caret"></span></div>
+                                    <ul class="dropdown-menu xsgroupdown-menu-ul">
+                                        <li class="mouse_pointer">
+                                            <a class="xsgroupdown-menu-ul-li-a" onclick="GroupList.Select.All(GPS_Device_Info.ControlIdPrefix.GroupListItem, GPS_Device_GroupListItem_SelectAll);">
+                                                全选
+                                            </a>
+                                        </li>
+                                        <li class="mouse_pointer">
+                                            <a class="xsgroupdown-menu-ul-li-a" onclick="GroupList.Select.Inverse(GPS_Device_Info.ControlIdPrefix.GroupListItem);">
+                                                反选
+                                            </a>
+                                        </li>
+                                        <li class="mouse_pointer">
+                                            <a class="xsgroupdown-menu-ul-li-a" onclick="GroupList.Select.Cancel(GPS_Device_Info.ControlIdPrefix.GroupListItem, GPS_Device_GroupListItem_Cancel);">
+                                                取消
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="dList">
+
+                </div>
+            </div>
+            <div class="col-md-12 lazyload-div" id="divLazyload">
+
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(function () {
+            gps_device_list_load();
+        });
+    </script>
+</body>
+</html>
+<script type="text/javascript">
+    onload = gps_device_list_load;
+</script>

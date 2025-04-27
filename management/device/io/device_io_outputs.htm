@@ -1,0 +1,138 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>IO输出通道列表</title>
+</head>
+<body>
+    <link href="css/bootstrap/bootstrap-switch.css" rel="stylesheet" />
+    <script type="text/javascript" src="js/jquery/jquery.confirm.js"></script>
+    <script type="text/javascript" src="js/bootstrap/bootstrap-switch.min.js"></script>
+    <script type="text/javascript" src="js/client/management.js"></script>
+    <script type="text/javascript" src="js/client/security.js"></script>
+    <script type="text/javascript" src="js/modernizr.custom.js"></script>
+    <script src="js/background/management/background_device.event.js"></script>
+    <script src="js/background/management/device/background_device_io_outputs.js"></script>
+    <script src="management/device/io/device_io_outputs.js"></script>
+    <script src="management/device/io/output/device_io_output_details.js"></script>
+    <script type="text/javascript" src="js/background/management/device/io/output/background_device_io_output_users.js"></script>
+    <script type="text/javascript" src="management/device/io/output/device_io_output_users.js"></script>
+    <script type="text/javascript" src="js/background/management/device/io/output/user/background_device_io_output_user_permissions.js"></script>
+    <script type="text/javascript" src="management/device/io/output/user/device_io_output_user_permissions.js"></script>
+    <script type="text/javascript" src="js/background/management/device/io/output/background_device_io_output_departments.js"></script>
+    <script type="text/javascript" src="management/device/io/output/device_io_output_departments.js"></script>
+    <script type="text/javascript" src="js/background/management/device/io/output/department/background_device_io_output_department_permissions.js"></script>
+    <script type="text/javascript" src="management/device/io/output/department/device_io_output_department_permissions.js"></script>
+    <style type="text/css">
+        .presentation {
+            padding-left: 0;
+        }
+
+            .presentation li {
+                float: left;
+                margin-right: 10px;
+                list-style: none;
+            }
+
+            .presentation [class^="icon-"] {
+                cursor: default;
+            }
+
+        .device_io_output_list_ico {
+            color: #007aff;
+        }
+    </style>
+    <div class="page-main row">
+        <div class="col-md-12">
+            <div class="widget-container fluid-height clearfix list-width padded background-min-height">
+                <div class="heading list-heading-maxdiv">
+                    <div class="form-group list-heading-div">
+                        &ensp;<i class="icon-flickr list-heading-icon device_io_output_list_ico"></i>
+                        <span>IO输出通道列表</span> <label class="list-count-lable">当前<span id="lblCurrentCount">0</span>条/共<span id="lblTotalCount">0</span>条</label><span class="pull-right" style="font-size:16px;margin-top:7px" id="listTitle"></span><i class="howell-icon-device title mouse_default pull-right parent-device-icon"></i>
+                    </div>
+                    <div>
+                        <ul class="presentation pull-left">
+                            <li><div class="icon-circle text-default"></div>未知</li>
+                            <li><div class="icon-circle text-success"></div>低电平</li>
+                            <li><div class="icon-circle text-warning"></div>高电平</li>
+                        </ul>
+                        <div class="row">
+                            <div class="col-md-6 pull-right" id="divOperationControl">
+                                <a class='btn btn-xs btn-primary-outline pull-right div-xsgroup' style='font-size:14px;padding-left:14px;' onclick="batchRemoveIOOutputs_Click(this)" title="删除">
+                                    <i class='icon-trash'></i>
+                                </a>
+                                <div id="btn-addOutput" title="添加IO出通道">
+
+                                </div>
+                                <div class="btn-group  pull-right div-xsgroupdown" id="btn-operation">
+                                    <div class="btn btn-xs btn-primary btn-xsgroupdown dropdown-toggle" data-toggle="dropdown" id="operation">
+                                        选&ensp;择&ensp;<span class="caret"></span>
+                                    </div>
+                                    <ul class="dropdown-menu xsgroupdown-menu-ul">
+                                        <li class="mouse_pointer">
+                                            <a class="xsgroupdown-menu-ul-li-a" onclick="GroupList.Select.All(Info.ControlIdPrefix.Device.IO.Output.item, GroupListItem_SelectAll);">
+                                                全选
+                                            </a>
+                                        </li>
+                                        <li class="mouse_pointer">
+                                            <a class="xsgroupdown-menu-ul-li-a" onclick="GroupList.Select.Inverse(Info.ControlIdPrefix.Device.IO.Output.item);">
+                                                反选
+                                            </a>
+                                        </li>
+                                        <li class="mouse_pointer">
+                                            <a class="xsgroupdown-menu-ul-li-a" onclick="GroupList.Select.Cancel(Info.ControlIdPrefix.Device.IO.Output.item, GroupListItem_Cancel);">
+                                                取消
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="glistPanel">
+
+                </div>
+            </div>
+            <div class="col-md-12 lazyload-div" id="divLazyload">
+
+            </div>
+        </div>
+    </div>
+    <div id="sc"></div>
+    <a class="to-back" href="../../devices.htm">
+        <div class="pic"></div>
+    </a>
+    <script type="text/javascript">
+    var searchControl = null;
+    var searchMode = "normal";
+    function management_device_io_outputs_load() {
+        document.title = "IO输出通道列表";
+        //searchControl = new DropDownCheckListSearchControl("divSearchContent", btnSearchClick, new CheckListAttributes(dic, "chkSearch", "chksSearch", 2, 302));
+        var li = new Object();
+        li["模糊搜索"] = changeSearchMode;
+        searchControl = new DropDownListSearchControl("divSearchContent", btnSearchClick, new DropDownListAttributes("chkSearch", "chksSearch", li, "search-drop-down-ul"));
+        searchControl.Div.className += " pull-right";
+        getTag("divOperationControl").insertBefore(searchControl.Div, getTag("divOperationControl").childNodes[0]);
+        var url = new Uri(Trigger.href);
+        if (url.Querys && url.Querys.deviceId)
+            Html.Control.GroupList.Create(url.Querys.deviceId, "glistPanel");
+        if (url.Querys && url.Querys.deviceName) {
+            var win = new AlertWindow("", "<a class='btn btn-xs btn-primary-outline pull-right div-xsgroup' style='font-size:14px;padding-left:14px;'><i class='icon-plus'></i></a>", "management/device/io/output/device_io_output_add.htm?deviceName=" + url.Querys.deviceName, -1);
+            document.getElementById("btn-addOutput").appendChild(win);
+            getTag("listTitle").innerText = UTF8.toChinese(base64decode(url.Querys.deviceName));
+        }
+        var lazy = getTag("divLazyload");
+        lazy.appendChild(new LazyLoadControl("load-more", "加载中……", lazyLoad));
+        window.setTimeout(function () {
+            document.documentElement.scrollTop = 0;
+            isOnscroll = true;
+        }, 100);
+    }
+    $(function () {
+        management_device_io_outputs_load();
+    });
+    </script>
+</body>
+</html>

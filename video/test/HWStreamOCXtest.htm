@@ -1,0 +1,51 @@
+<HTML>
+<HEAD>
+<TITLE>HWStreamOCX</TITLE>
+</HEAD>
+<SCRIPT LANGUAGE="JavaScript">
+function startplay()
+{
+   HWStreamOCX.Startplay("192.168.18.245","8812","admin","12345","00310101031111111000002000000000","playback",1,0,"2016-03-11T01:28:32Z","2016-03-11T01:35:18Z","D:\\");
+}
+function startplayURL()
+{
+   HWStreamOCX.StartpalyURL("rtmp://192.168.18.245/stream?dev_id=00310101031111111000002000000000&slot=1&stream=2&mode=playback&user=admin&password=12345&beg=2016-03-11T01:28:32Z&end=2016-03-11T01:35:18Z","D:\\");
+}
+function stopplay()
+{
+   HWStreamOCX.Stopplay();
+}
+function toolbar()
+{
+   HWStreamOCX.ShowToolbar(0);
+}
+</SCRIPT>
+<BODY>
+<center>
+<OBJECT ID="HWStreamOCX" WIDTH=640 HEIGHT=400
+CODEBASE="HWStreamOCX.cab#version=1,0,3,0"
+ CLASSID="CLSID:2F80B5A0-AF02-4401-B3C5-62E7222BE904">
+    <PARAM NAME="IP" VALUE="192.168.18.245">
+    <PARAM NAME="Port" VALUE="8812">
+ <PARAM NAME="Username" VALUE="admin">
+ <PARAM NAME="Password" VALUE="12345">
+  <PARAM NAME="Mode" VALUE="live">
+  <PARAM NAME="Device_id" VALUE="00310101031111111000002000000000">
+ <PARAM NAME="Channel" VALUE="1">
+ <PARAM NAME="Stream" VALUE="0">
+ <PARAM NAME="Begin" VALUE="2016-03-11T01:28:32Z">
+ <PARAM NAME="End" VALUE="2016-03-11T01:35:18Z">
+ <PARAM NAME="Snappath" VALUE="D:\\">
+ <PARAM NAME="Toolbar" VALUE="1">
+</OBJECT>
+
+<INPUT TYPE="button" NAME="startplay" 
+       VALUE="startplay" ONCLICK=startplay()>
+<INPUT TYPE="button" NAME="startplayURL" 
+       VALUE="startplayURL" ONCLICK=startplayURL()>
+<INPUT TYPE="button" NAME="stopplay" 
+       VALUE="stopplay" ONCLICK=stopplay()>
+<INPUT TYPE="button" NAME="toolbar" 
+       VALUE="toolbar" ONCLICK=toolbar()>
+</BODY>
+</HTML>

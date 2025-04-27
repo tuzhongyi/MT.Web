@@ -1,0 +1,167 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="stylesheet" type="text/css" href="../css/howell.css" />
+    <script type="text/javascript" src="../js/jquery/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="../js/jquery/jquery-ui.js"></script>
+    <script type="text/javascript" src="../js/bootstrap/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/jquery/jquery.confirm.js"></script>
+    <script type="text/javascript" src="../js/howell.js/guid.js"></script>
+    <script type="text/javascript" src="../js/howell.js/howell.js"></script>
+    <script type="text/javascript" src="../js/howell.js/howell.control.js"></script>
+    <script type="text/javascript" src="../js/howell.js/howell.convert.js"></script>
+    <script type="text/javascript" src="../js/base64.js"></script>
+    <script type="text/javascript" src="../js/client/struct.js"></script>
+    <script type="text/javascript" src="../js/client/management.js"></script>
+    <script type="text/javascript" src="../js/client/security.js"></script>
+    <script type="text/javascript" src="../js/client/adc.js"></script>
+    <script type="text/javascript" src="../js/client/modbus.js"></script>
+    <script type="text/javascript" src="../js/client/client.js"></script>
+    <title></title>
+    <script type="text/javascript">
+        function test() {
+            var notice = new Notice();
+            notice.Classification = NoticeClassification.Info;
+            notice.ComponentId = "00310101221111111000001004000032";
+            notice.ComponentName = "3000";
+            notice.Id = Guid.NewGuid();
+            notice.NoticeType = NoticeType.AlertProcess;
+            notice.Message = "火箭的郁闷不仅是因为从领先15分到最多时落后28分的大转折，更是实打实地被小托马斯戏耍了：小托马斯新赛季来场均超过17次出手砍下20.6分，此战只用12投（9中）就砍下23分。他的身高只有1米75，但面对劳森、哈登乃至霍华德都曾轻松入球，在内线以节奏变化打出了闲庭信步的感觉，斗气时段他的连续投射则是凶狠无情。";
+            notice.Sender = "00310101811111111000001000000000";
+            notice.Status = NoticeStatusType.Unread;
+            notice.Time = new Date();
+
+
+            var a = document.createElement("a");
+            a.href = "AlertProcess.htm";
+
+            //var a = document.getElementById("t");
+
+            var str = JSONstringify(notice);
+
+            a.href += "?notice=" + encodeURI(str);
+
+            Trigger = a;
+        }
+        test();
+    </script>
+</head>
+<body>
+    <div class="container-fluid main-content alert-window-maxdiv">
+        <div class="page-title">
+            <div class="list-heading-div">
+                (<label id="lbl_user"></label>)&emsp;<label id="lbl_dev"></label>&emsp;通知：</div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="widget-content padded">
+                    <div>
+                        <label id="lbl_message">
+                        </label>
+                    </div>
+                    <div style="text-align: right;">
+                        <label id="lbl_date">
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group" style="margin-top: 35px">
+                    <label class="control-label col-md-7">
+                    </label>
+                    <div class="col-md-2">
+                        <a class="btn btn-danger" id="btnProcess" onclick="return btnProcess_click(this);">确认消警
+                        </a>
+                    </div>
+                    <div class="col-md-2">
+                        <a class="btn btn-primary" onclick="return AlertWindow.Close();">取消 </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="test">
+        </div>
+    </div>
+    <script type="text/javascript">
+        var id = null;
+        var isPush = false;
+        var noticeInfo = null;
+        process();
+        function process() {
+            tryCatch(function () {
+
+                var uri = new Uri(Trigger.href);
+                noticeInfo = new Notice();
+                if (uri.Query && uri.Querys.notice) {
+                    if (uri.Querys.push)
+                        isPush = true;
+                    try {
+                        noticeInfo = JSONDeserialization(decodeURI(uri.Querys.notice));
+                    } catch (e) {
+
+                        var d = decodeURI(uri.toString());
+                        uri = new Uri(d);
+                        noticeInfo = JSONDeserialization(uri.Querys.notice);
+                    }
+
+                    
+                    var user = Client.Security().User.Get(noticeInfo.Sender);
+
+                    id = new Id(noticeInfo.ComponentId);
+
+                    getTag("lbl_user").innerHTML = user.Nickname;
+                    getTag("lbl_dev").innerHTML = noticeInfo.ComponentName;
+                    getTag("lbl_message").innerHTML = utf8to16(base64decode(noticeInfo.Message));
+
+                    var date = Convert.ToDate(noticeInfo.Time);
+
+                    var a = new Date();
+                    getTag("lbl_date").innerHTML = date.format("yyyy-MM-dd HH:mm:ss");
+                    var test = getTag("lbl_message");
+                    try {
+                        if (this.AlertReaded) {
+                            if (!isPush) {
+                                if (noticeInfo.Status == NoticeStatusType.Unread) {
+                                    Client.Management().Notice.Read(noticeInfo.Id);
+                                    this.AlertReaded();
+                                }
+                            }
+                        }
+                       
+                    } catch (e) {
+
+                    }
+                }
+
+            });
+        }
+
+        function btnProcess_click(sender, args) {
+            var dev = tryCatch(function () {
+                return Client.Management().Device.Get(id.getDeviceId());
+            });
+            try {
+                Client.Modbus().Device.Signal.Eliminate(dev.SerialNumber, parseInt(id.ModuleId.No));
+                if (isPush) {
+                    if (noticeInfo.Status == NoticeStatusType.Unread) {
+                        Client.Management().Notice.Read(noticeInfo.Id);
+                        try {
+                            AlertReaded();
+                        }
+                        catch (e) {
+                            document.getElementById("notice_number").innerText = parseInt(document.getElementById("notice_number").innerText) - 1;
+                        }
+                    }
+                }
+                AlertWindow.Close();
+            } catch (e) {
+                AlertWindow.Close();
+                if (e.number == 404)
+                    $.confirm({
+                        text: "设备不在线！",
+                        okButton: "确定",
+                        alert: true
+                    });
+            }
+        }
+    </script>
+</body>
+</html>

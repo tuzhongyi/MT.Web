@@ -1,0 +1,191 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>GIS地图项详细信息</title>
+    <link href="../../../../css/howell.css" rel="stylesheet" />
+    <script src="../../../../js/language/chinese.js"></script>
+    <link href="../../../../css/bootstrap/bootstrap-switch.css" rel="stylesheet" />
+    <script src="../../../../js/jquery/jquery-1.10.2.min.js"></script>
+    <script src="../../../../js/jquery/jquery-ui.js"></script>
+    <script src="../../../../js/bootstrap/bootstrap.min.js"></script>
+    <script src="../../../../js/bootstrap/bootstrap-switch.min.js"></script>
+    <script src="../../../../js/imported.js"></script>
+    <script src="../../../../js/modernizr.custom.js"></script>
+    <script src="../../../../js/howell.js/howell.js"></script>
+    <script src="../../../../js/howell.js/howell.control.js"></script>
+
+    <script src="../../../../js/client/enum.js"></script>
+    <script src="../../../../js/client/struct.js"></script>
+    <script src="../../../../js/client/client.js"></script>
+
+    <script src="../../../../js/background/management/background_device.event.js"></script>
+    <script src="../../../../js/background/management/device/background_device_video_mediums.js"></script>
+    <script src="device_video_medium_details.js"></script>
+    <script type="text/javascript">
+        PageEvent.Device.Video.Medium.GroupListChanged = function (medium) {
+            alert("GroupListChanged");
+        }
+    </script>
+</head>
+<body>
+    <script type="text/javascript" src="management/gis/map/item/gis_map_item_details.js"></script>
+    <style type="text/css">
+        .device_medium_add_title_ico {
+            color: #007aff;
+            margin-right: 10px;
+            margin-left: 10px;
+        }
+    </style>
+    <div class="container-fluid main-content alert-window-maxdiv">
+        <div class="page-title">
+            <h3 class="list-heading-div">
+                <i class="icon-map-marker list-heading-icon mouse_default device_medium_add_title_ico"></i>
+                <label id="lblGISMapItemDetailsTitle">添加地图项</label>
+            </h3>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="widget-content padded">
+                    <form action="#" class="form-horizontal">
+                        <div class="form-group" id="divId" style="display:none">
+                            <label class="control-label col-md-2">
+                                编号
+                            </label>
+                            <div class="col-md-9">
+                                <input class="form-control" type="text" id="txtId" readonly="readonly" />
+                            </div>
+                        </div>
+                        <div class="form-group" id="divOnline" style="display:none">
+                            <label class="control-label col-md-2">
+                                在线
+                            </label>
+                            <div class="col-md-9">
+                                <input class="form-control" type="text" id="txtOnline" readonly="readonly" />
+                            </div>
+                        </div>
+                        <div class="form-group" id="divUpdatedTime" style="display:none">
+                            <label class="control-label col-md-2">
+                                最后更新时间
+                            </label>
+                            <div class="col-md-9">
+                                <input class="form-control" type="text" id="txtUpdatedTime" readonly="readonly" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2">
+                                名称
+                            </label>
+                            <div class="col-md-9">
+                                <input class="form-control" type="text" id="txtName" />
+                            </div>
+                            <label class="lable-required">*</label>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2">
+                                经度
+                            </label>
+                            <div class="col-md-4">
+                                <input class="form-control" type="text" id="txtLongitude">
+                            </div>
+                            <label class="control-label col-md-1">
+                                纬度
+                            </label>
+                            <div class="col-md-4">
+                                <input class="form-control" type="text" id="txtLatitude">
+                            </div>
+                            <label class="lable-required">*</label>
+                        </div>
+                        <!--<div class="form-group" id="divDeviceId" style="display:none">
+                            <label class="control-label col-md-2">
+                                视频设备
+                            </label>
+                            <div class="col-md-9">
+                                <select class="form-control" id="ddlDeviceId" onclick="selectDeviceId_Click(this.value)"></select>
+                            </div>
+                        </div>
+                        <div class="form-group" id="divVideoInputId" style="display:none">
+                            <label class="control-label col-md-2">
+                                摄像机
+                            </label>
+                            <div class="col-md-9">
+                                <select class="form-control" id="ddlVideoInputId" disabled="disabled">
+                                    <option value="">未选择</option>
+                                </select>
+                            </div>
+                        </div>-->
+                        <div class="form-group" id="divVideoInputId" style="display:none">
+                            <label class="control-label col-md-2">
+                                视频设备
+                            </label>
+                            <div class="col-md-4">
+                                <select class="form-control" id="ddlDeviceId" onchange="selectDeviceId_Click(this.value)"></select>
+                            </div>
+                            <label class="control-label col-md-1" style="padding-left:0;padding-right:0">
+                                摄像机
+                            </label>
+                            <div class="col-md-4">
+                                <select class="form-control" id="ddlVideoInputId" disabled="disabled">
+                                    <option value="">未选择</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2">
+                                GPS设备
+                            </label>
+                            <div class="col-md-9">
+                                <select class="form-control" id="ddlGPSId">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2">
+                                车牌识别设备
+                            </label>
+                            <div class="col-md-9">
+                                <select class="form-control" id="ddlVehiclePlateId">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2">
+                                状态
+                            </label>
+                            <div class="col-md-9">
+                                <input class="form-control" type="text" id="txtStatus" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2">
+                                描述信息
+                            </label>
+                            <div class="col-md-9">
+                                <textarea class="form-control" id="txtDescription" rows="3"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-top:40px">
+                            <label class="control-label col-md-8">
+                            </label>
+                            <div class="col-md-2">
+                                <a class="btn btn-primary" id="btnAddGISMapItems" onclick="return btnAddGISMapItems_Click(this);">
+                                    确&ensp;&ensp;定
+                                </a>
+                            </div>
+                            <div class="col-md-2">
+                                <a class="btn btn-primary" onclick="return AlertWindow.Close();">
+                                    取&ensp;&ensp;消
+                                </a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        gis_map_item_details_load();
+    </script>
+</body>
+</html>

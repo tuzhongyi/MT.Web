@@ -1,0 +1,16 @@
+<html>
+<head>
+    <script src="/jwplayer/jwplayer.js"></script>
+</head>
+<body>
+    <div id='myplayer'></div>
+    <script type='text/javascript'>
+        jwplayer('myplayer').setup({
+            file: "rtmp://192.168.128.253/stream?dev_id=00310101031111111000002000000000&slot=1&stream=2&mode=playback&user=admin&password=12345&beg=2016-01-14T00:18:18Z&end=2016-01-14T00:25:04Z&media_svr_ip=192.168.18.245&media_svr_port=8812",
+            height: 360,
+            width: 640,
+            autostart: true,
+        });
+    </script>
+</body>
+</html>

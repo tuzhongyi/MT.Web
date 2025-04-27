@@ -1,0 +1,713 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>配置解码通道</title>
+</head>
+<body>
+    <link rel="stylesheet" href="css/zTreeStyle.css" />
+    <script type="text/javascript" src="js/jquery/jquery.ztree.core-3.5.js"></script>
+    <script type="text/javascript" src="js/jquery/jquery.ztree.exhide-3.5.js"></script>
+    <style type="text/css">
+        .dropdown-menu {
+            z-index: 10000;
+        }
+
+        .group-list-tag {
+            height: 40px;
+            float: left;
+            margin-top: -9px;
+            margin-right: 5px;
+            margin-left: -15px;
+            width: 5px;
+            background-color: #f0ad4e;
+        }
+
+            .group-list-tag.associated {
+                background-color: #60c560;
+            }
+
+            .group-list-tag.unassociated {
+                background-color: #c09853;
+            }
+
+        .dropdown-toggle.simlie {
+            margin-left: -9px !important;
+            height: 29px;
+            padding-top: 3px;
+        }
+
+        .text_area {
+            border: 1px solid #ddd;
+            height: 26.1%;
+            width: 100%;
+        }
+
+        .font-set-div {
+            border-top: 1px solid #ddd;
+            border-left: 1px solid #ddd;
+            border-right: 1px solid silver;
+            border-bottom: 1px solid silver;
+            width: 100%;
+            padding: 5px 0 5px 10px;
+        }
+
+        .w_width {
+            width: 57px;
+            text-align: left;
+        }
+
+        .font-set-table {
+            border-collapse: collapse;
+            border-bottom: 1px solid silver;
+        }
+
+        .font-set-table-td {
+            border: 0;
+            padding: 2px 3px 3px 3px;
+            font-size: 12px;
+        }
+
+        .colorpicker-saturation {
+            width: 100px;
+            height: 100px;
+            background-image: url(../../img/saturation.png);
+            cursor: crosshair;
+            float: left;
+        }
+
+        .colorpicker-hue {
+            background-image: url(../../img/hue.png);
+        }
+
+        .colorpicker-color {
+            height: 10px;
+            margin-top: 5px;
+            clear: both;
+            background-image: url(../../img/alpha.png);
+            background-position: 0 100%;
+        }
+
+        .colorpicker-alpha {
+            background-image: url(../../img/alpha.png);
+            display: none;
+        }
+
+        .list-group-item p {
+            height: 40px;
+        }
+
+            .list-group-item p lable {
+                width: 345px;
+            }
+
+        .group-list-tag.double {
+            margin-top: -2px;
+            height: 41px;
+        }
+
+        .list-group-item .first-line {
+            height: 20px;
+            font-size: 14px;
+        }
+
+        .list-group-item .second-line {
+            height: 20px;
+            font-size: 11px;
+            color: #888888;
+        }
+
+        .input-name {
+            width: 60%;
+        }
+
+        .device-ip {
+            width: 60%;
+        }
+
+        .device-classification {
+            width: 40%;
+            text-align: right;
+        }
+
+        .device-name {
+            width: 40%;
+            text-align: right;
+        }
+
+        .ztree * {
+            font-size: 16px;
+        }
+
+        .tree-all-open {
+            font-size: 16px;
+            line-height: 32px;
+        }
+
+
+        .ztree li a {
+            height: 23px;
+            line-height: 21px;
+        }
+
+            .ztree li a.curSelectedNode {
+                height: 23px;
+                line-height: 21px;
+            }
+
+        .ztree li span {
+            line-height: 21px;
+        }
+
+            .ztree li span.button.root_open {
+                background-position: -125px -71px;
+            }
+
+            .ztree li span.button.root_close {
+                background-position: -101px -71px;
+            }
+
+            .ztree li span.button.bottom_close {
+                background-position: -99px -47px;
+            }
+
+            .ztree li span.button.bottom_open {
+                background-position: -123px -47px;
+            }
+
+            .ztree li span.button.center_close {
+                background-position: -100px -24px;
+            }
+
+            .ztree li span.button.center_open {
+                background-position: -123px -24px;
+            }
+
+            .ztree li span.button.center_docu {
+                background-position: -76px -23px;
+            }
+
+            .ztree li span.button.bottom_docu {
+                background-position: -76px -47px;
+            }
+
+            .ztree li span.button.roots_close {
+                background-position: -100px 0;
+            }
+
+            .ztree li span.button.roots_open {
+                background-position: -123px 0;
+            }
+
+            .ztree li span.button.switch {
+                width: 18px;
+                height: 23px;
+            }
+
+            .ztree li span.button {
+                height: 22px;
+                width: 22px;
+            }
+
+                .ztree li span.button.tree_item_video_input_ico_docu {
+                    margin-right: 2px;
+                    background: url(img/gis_item_video_input.png) no-repeat scroll 0 0 transparent;
+                    vertical-align: top;
+                    *vertical-align: middle;
+                }
+
+        .button.howell-icon-device {
+            color: #007aff !important;
+            font-family: HowellFont !important;
+            background-image: none !important;
+            line-height: inherit !important;
+        }
+
+        .screen-item-1 {
+            padding: 0;
+            height: 100%;
+            border: 1px solid green;
+            background-color: black;
+        }
+
+        .screen-item-4 {
+            padding: 0;
+            height: 50%;
+            border: 1px solid green;
+            background-color: black;
+        }
+
+        .screen-item-9 {
+            padding: 0;
+            height: 33.333333333333333%;
+            border: 1px solid green;
+            background-color: black;
+        }
+
+        .screen-item-16 {
+            width: 25%;
+            padding: 0;
+            height: 25%;
+            border: 1px solid green;
+            background-color: black;
+        }
+
+        .screen-item {
+            cursor: pointer;
+            padding:3px;
+        }
+
+            .screen-item.selected {
+                border: 2px solid red;
+                padding:2px;
+            }
+    </style>
+    <div class="page-main row" id="outputScreenPageMain" onmouseup="WindowOnMouseUp()" onmousemove="WindowOnMouseMove(event)">
+        <div id="pad" style="position:absolute;z-index:1000"></div>
+        <div class="col-md-12">
+            <!--<div class="widget-container fluid-height clearfix list-width padded background-min-height">-->
+            <div class="fluid-height clearfix list-width padded background-min-height">
+                <div class="heading list-heading-maxdiv" style="position:relative">
+                    <div class="form-group list-heading-div">
+                        &ensp;<i class="icon_linkage_list"></i>
+                        配置解码通道
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4" style="padding:0">
+                            <div class="col-md-12" style="padding:0;height:39px">
+                                <div class="pull-left" style="font-size: 20px;line-height: 27px;color: #5e5e5e;">
+                                    视频输入通道
+                                </div>
+                                <div class="pull-right">
+                                </div>
+                            </div>
+                            <div class="col-md-12" style="padding:0;">
+                                <div id="dListDevice" class="list_linkage scrollable" style="width:349px;margin-left:0px;height:515px">
+                                    <ul class="ztree" id="treeDeviceList" style="padding-left:0;"></ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-1" style="padding:0">
+
+                        </div>
+                        <div class="col-md-7" style="height:602px;overflow:auto;padding:0">
+                            <div class="col-md-12" style="padding:0;height:39px">
+                                <div class="pull-left" style="font-size: 20px;line-height: 27px;color: #5e5e5e;" id="outputScreenName">
+
+                                </div>
+                                <div class="pull-right">
+                                    <a class="btn btn-xs btn-primary-outline pull-right div-xsgroup button-img-size screen-btn" onclick="Display_Set_Html.Screen.Btn.change(this,16)" style="padding-left:7px;padding-right:20px;display:none" title="16屏" id="btnScreen16">
+                                        <i class="howell-icon-screen-16" style="margin-right:2px;line-height:20px;font-size:18px"></i>
+                                    </a>
+                                    <a class="btn btn-xs btn-primary-outline pull-right div-xsgroup button-img-size screen-btn" onclick="Display_Set_Html.Screen.Btn.change(this, 9)" style="padding-left:7px;display:none" title="9屏" id="btnScreen9">
+                                        <i class="icon-th" style="margin-right:2px;line-height:20px"></i>
+                                    </a>
+                                    <a class="btn btn-xs btn-primary-outline pull-right div-xsgroup button-img-size screen-btn" onclick="Display_Set_Html.Screen.Btn.change(this, 4)" style="padding-left:7px;display:none" title="4屏" id="btnScreen4">
+                                        <i class="icon-th-large" style="margin-right:2px;line-height:20px"></i>
+                                    </a>
+                                    <a class="btn btn-xs btn-primary-outline pull-right div-xsgroup button-img-size screen-btn" onclick="Display_Set_Html.Screen.Btn.change(this, 1)" style="padding-left:7px;display:none" title="单屏" id="btnScreen1">
+                                        <i class="icon-stop" style="margin-right:2px;line-height:20px"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-md-12" style="padding:0;background-color:white;height:515px;color:#96a2b4" id="outputScreen">
+
+                            </div>
+                        </div>
+                        <a class="btn btn-primary div-xsgroup pull-right btn_linkage" style="margin-right:20px" onclick="AlertWindow.Close();">关&ensp;&ensp;闭</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var setting = {
+            view: {
+                dblClickExpand: true,
+                showLine: true,
+                selectedMulti: false,
+                nameIsHTML: true,
+            },
+            data: {
+                simpleData: {
+                    enable: true,
+                    idKey: "id",
+                    pIdKey: "pId",
+                    rootPId: ""
+                }
+            },
+            callback: {
+                beforeMouseDown: zTreeBeforeMouseDown,
+                beforeMouseUp: zTreeBeforeMouseUp,
+                beforeDblClick:zTreeBeforeDblClick,
+                beforeClick: zTreeBeforeClick,
+                onMouseDown: function (event, treeId, treeNode) {
+                    Display_Set_Html.selectedVideoInputId = treeNode.id;
+                    document.getElementById("pad").innerText = treeNode.name;
+                },
+                onMouseUp: function (event, treeId, treeNode) {
+                    document.getElementById("pad").innerText = "";
+                    Display_Set_Html.selectedVideoInputId = null;
+                },
+                onDblClick: function (event, treeId, treeNode) {
+                    if (Display_Set_Html.selectedDecodingId) {
+                        Display_Set_Property.Device.VideoOutput.Decoding.Status.value[Display_Set_Html.selectedDecodingId].VideoInputChannelId = treeNode.id;
+                        Display_Set_Property.Device.VideoOutput.Decoding.Status.value[Display_Set_Html.selectedDecodingId].VideoInputChannelIdSpecified = true;
+                        Display_Set_Property.Device.VideoOutput.Decoding.Status.value[Display_Set_Html.selectedDecodingId].State = "Decoding";
+                        var decodingStatus = Display_Set_Property.Device.VideoOutput.Decoding.Status.value[Display_Set_Html.selectedDecodingId];
+                        Display_Set_Property.Device.VideoOutput.Decoding.Status.set(Display_Set_Html.deviceId, Display_Set_Html.outputId, Display_Set_Html.selectedDecodingId, decodingStatus);
+                        var inputName = Display_Set_Property.Device.VideoInput.value[treeNode.id].Name;
+                        document.getElementById("screen-" + Display_Set_Html.selectedDecodingId).getElementsByClassName("decoding-input-name")[0].innerText = inputName;
+                    }
+                }
+            }
+        };
+        var Display_Set_Property = {
+            Device: {
+                value: new Dictionary(),
+                list: function (classification) {
+                    var result = tryCatch(function () {
+                        return Client.Management().Device.List(null, null, classification);
+                    });
+                    if (result && result.Device) {
+                        for (var i = 0; i < result.Device.length; i++) {
+                            if (result.Device[i].VideoInputChannelCount > 0) {
+                                var obj = this.VideoInput.list(result.Device[i].Id);
+                                if (obj.pseudoCodeCount > 0) {
+                                    this.value[result.Device[i].Id] = result.Device[i];
+                                }
+                            }
+                        }
+                    }
+                    return result;
+                },
+                VideoInput: {
+                    value: new Dictionary(),
+                    list: function (deviceId) {
+                        var pseudoCodeCount = 0;
+                        var result = tryCatch(function () {
+                            return Client.Management().Device.Video.Input.List(deviceId);
+                        });
+                        if (result && result.VideoInputChannel) {
+                            for (var i = 0; i < result.VideoInputChannel.length; i++) {
+                                if (result.VideoInputChannel[i].PseudoCode) {
+                                    result.VideoInputChannel[i].deviceId = deviceId;
+                                    this.value[result.VideoInputChannel[i].Id] = result.VideoInputChannel[i];
+                                    pseudoCodeCount++;
+                                }
+                            }
+                        }
+                        var obj = new Object();
+                        obj.result = result;
+                        obj.pseudoCodeCount = pseudoCodeCount;
+                        return obj;
+                    }
+                },
+                VideoOutput: {
+                    value: null,
+                    get: function (deviceId, outputId) {
+                        var result = tryCatch(function () {
+                            return Client.Management().Device.Video.Output.Get(deviceId, outputId);
+                        });
+                        this.value = result;
+                        return result;
+                    },
+                    Decoding: {
+                        value: new Dictionary(),
+                        list: function (deviceId, outputId) {
+                            var result = tryCatch(function () {
+                                return Client.Management().Device.Video.Output.Decode.List(deviceId, outputId);
+                            });
+                            if (result && result.DecodingChannel) {
+                                for (var i = 0; i < result.DecodingChannel.length; i++) {
+                                    this.value[result.DecodingChannel[i].Id] = result.DecodingChannel[i];
+                                    Display_Set_Property.Device.VideoOutput.Decoding.Status.get(deviceId, outputId, result.DecodingChannel[i].Id);
+                                }
+                            }
+                            return result;
+                        },
+                        Status: {
+                            value: new Dictionary(),
+                            get: function (deviceId, outputId, decodeId) {
+                                var result = tryCatch(function () {
+                                    return Client.Management().Device.Video.Output.Decode.Status.Get(deviceId, outputId, decodeId);
+                                });
+                                if (result) {
+                                    this.value[decodeId] = result;
+                                }
+                                return result;
+                            },
+                            set: function (deviceId, outputId, decodeId, decodingChannelStatus) {
+                                return tryCatch(function () {
+                                    return Client.Management().Device.Video.Output.Decode.Status.Set(deviceId, outputId, decodeId, decodingChannelStatus);
+                                });
+                            }
+                        },
+                        Switching: {
+                            value: null,
+                            get: function (deviceId, outputId, decodeId) {
+                                Client.Management().Device.Video.Output.Decode.Switching.Get(deviceId, outputId, decodeId);
+                            },
+                            set: function () {
+
+                            }
+                        }
+                    },
+                    DisplayMode: {
+                        get: function (deviceId, outputId) {
+                            return tryCatch(function () {
+                                return Client.Management().Device.Video.Output.DisplayMode.Get(deviceId, outputId);
+                            });
+                        },
+                        set: function (deviceId, outputId, displayMode) {
+                            return tryCatch(function () {
+                                return Client.Management().Device.Video.Output.DisplayMode.Set(deviceId, outputId, displayMode)
+                            });
+                        }
+                    },
+                    Capabilities: {
+                        get: function (deviceId, outputId) {
+                            return tryCatch(function () {
+                                return Client.Management().Device.Video.Output.Capabilities.Get(deviceId, outputId);
+                            });
+                        }
+                    }
+
+                }
+            }
+        }
+        var Display_Set_Html = {
+            deviceId: null,
+            outputId: null,
+            capabilities: null,
+            displayMode: null,
+            selectedDecodingId: null,
+            selectedVideoInputId: null,
+            Tree: {
+                create: function () {
+                    var treeTag = document.getElementById("treeDeviceList");
+                    Display_Set_Property.Device.list(DeviceClassification.IPCamera);
+                    Display_Set_Property.Device.list(DeviceClassification.NVR);
+                    var json = this.createJson();
+                    var t = $("#treeDeviceList");
+                    t = $.fn.zTree.init(t, setting, json);
+                    var treeObj = $.fn.zTree.getZTreeObj("treeDeviceList");
+                    var nodes = treeObj.getNodes();
+                    treeObj.expandAll(false);
+                },
+                createJson: function () {
+                    var json = new Array();
+                    var devices = Display_Set_Property.Device.value.toArray();
+                    for (var i = 0; i < devices.length; i++) {
+                        var item = new Object();
+                        item.id = devices[i].Id;
+                        item.pId = 0;
+                        item.name = devices[i].Name;
+                        item.iconSkin = "howell-icon-device ";
+                        json.push(item);
+                    }
+                    var inputs = Display_Set_Property.Device.VideoInput.value.toArray();
+                    for (var i = 0; i < inputs.length; i++) {
+                        var item = new Object();
+                        item.id = inputs[i].Id;
+                        item.pId = inputs[i].deviceId;
+                        item.iconSkin = "tree_item_video_input";
+                        item.name = inputs[i].Name;
+                        json.push(item);
+                    }
+                    return json;
+                }
+            },
+            Screen: {
+                create: function (displayMode) {
+                    var btnScreen = document.getElementById("btnScreen" + displayMode);
+                    $(btnScreen).removeClass("btn-primary-outline");
+                    $(btnScreen).addClass("btn-primary");
+                    var rows;
+                    if (displayMode == 1) {
+                        rows = 12;
+                    }
+                    if (displayMode == 4) {
+                        rows = 6;
+                    }
+                    if (displayMode == 9) {
+                        rows = 4;
+                    }
+                    if (displayMode == 16) {
+                        rows = 3;
+                    }
+                    var screen = document.getElementById("outputScreen");
+                    var decodings = Display_Set_Property.Device.VideoOutput.Decoding.value.toArray();
+                    for (var i = 0; i < parseInt(displayMode) ; i++) {
+                        var div = document.createElement("div");
+                        div.className = "screen-item col-md-" + rows + " screen-item-" + displayMode;
+                        div.onclick = function () {
+                            var list = document.getElementById("outputScreen").getElementsByClassName("screen-item");
+                            for (var i = 0; i < list.length; i++) {
+                                $(list[i]).removeClass("selected");
+                            }
+                            var selectNo = this.id.split("-")[1];
+                            Display_Set_Html.selectedDecodingId = selectNo;
+                            $(this).addClass("selected");
+                        }
+                        div.id = "screen-" + decodings[i].Id;
+
+                        var decodingNo = document.createElement("div");
+                        decodingNo.className = "decoding-no";
+                        decodingNo.innerText = i + 1;
+                        div.appendChild(decodingNo);
+
+                        var inputName = document.createElement("div");
+                        inputName.className = "decoding-input-name";
+                        inputName.style.marginTop = "8px";
+                        inputName.innerText = "未设置视频输入通道";
+
+                        if (Display_Set_Property.Device.VideoOutput.Decoding.Status.value[decodings[i].Id].VideoInputChannelId) {
+                            var videoInputChannelId = Display_Set_Property.Device.VideoOutput.Decoding.Status.value[decodings[i].Id].VideoInputChannelId;
+                            inputName.innerText = Display_Set_Property.Device.VideoInput.value[videoInputChannelId].Name;
+                        }
+
+                        div.appendChild(inputName);
+                        screen.appendChild(div);
+                    }
+                },
+                //addVideoInput: function () {
+                //    if (!Display_Set_Html.selectedDecodingId || !Display_Set_Html.selectedVideoInputId)
+                //        return;
+                //    Display_Set_Property.Device.VideoOutput.Decoding.Status.value[Display_Set_Html.selectedDecodingId].VideoInputChannelId = Display_Set_Html.selectedVideoInputId;
+                //    Display_Set_Property.Device.VideoOutput.Decoding.Status.value[Display_Set_Html.selectedDecodingId].VideoInputChannelIdSpecified = true;
+
+                //    //Display_Set_Property.Device.VideoOutput.Decoding.Status.value[Display_Set_Html.selectedDecodingId].PesudoCodeSpecified = false;
+
+                //    Display_Set_Property.Device.VideoOutput.Decoding.Status.value[Display_Set_Html.selectedDecodingId].State = "Decoding";
+                //    var inputName = Display_Set_Property.Device.VideoInput.value[Display_Set_Html.selectedVideoInputId].Name;
+                //    document.getElementById("screen-" + Display_Set_Html.selectedDecodingId).getElementsByClassName("decoding-input-name")[0].innerText = inputName;
+                //},
+                //deleteVideoInput: function () {
+                //    if (!Display_Set_Html.selectedDecodingId)
+                //        return;
+                //    Display_Set_Property.Device.VideoOutput.Decoding.Status.value[Display_Set_Html.selectedDecodingId].VideoInputChannelId = "";
+                //    Display_Set_Property.Device.VideoOutput.Decoding.Status.value[Display_Set_Html.selectedDecodingId].VideoInputChannelIdSpecified = false;
+                //    document.getElementById("screen-" + Display_Set_Html.selectedDecodingId).getElementsByClassName("decoding-input-name")[0].innerText = "未设置视频输入通道";
+                //},
+                clear: function () {
+                    var screen = document.getElementById("outputScreen");
+                    screen.innerHTML = "";
+                    //Display_Set_Html.selectedDecodingId = null;
+                },
+                Btn: {
+                    set: function (capabilities) {
+                        if (capabilities.SupportedDisplayMode) {
+                            for (var i = 0; i < capabilities.SupportedDisplayMode.length; i++) {
+                                var btn = document.getElementById("btnScreen" + capabilities.SupportedDisplayMode[i]);
+                                if (btn)
+                                    btn.style.display = "block";
+                            }
+                        }
+                    },
+                    change: function (sender, displayMode) {
+                        var btns = document.getElementsByClassName("screen-btn");
+                        for (var i = 0; i < btns.length; i++) {
+                            $(btns[i]).removeClass("btn-primary");
+                            $(btns[i]).addClass("btn-primary-outline");
+                        }
+                        Display_Set_Html.displayMode.DisplayMode = displayMode;
+                        Display_Set_Property.Device.VideoOutput.DisplayMode.set(Display_Set_Html.deviceId, Display_Set_Html.outputId, Display_Set_Html.displayMode);
+                        Display_Set_Html.Screen.clear();
+                        //Display_Set_Html.selectedDecodingId = null;
+                        Display_Set_Html.Screen.create(displayMode);
+                    }
+                },
+                //save: function () {
+                //    Display_Set_Property.Device.VideoOutput.DisplayMode.set(Display_Set_Html.deviceId, Display_Set_Html.outputId, Display_Set_Html.displayMode);
+                //    var decodings = Display_Set_Property.Device.VideoOutput.Decoding.value.toArray();
+                //    for (var i = 0; i < decodings.length; i++) {
+                //        var decodingStatus = Display_Set_Property.Device.VideoOutput.Decoding.Status.value[decodings[i].Id];
+                //        Display_Set_Property.Device.VideoOutput.Decoding.Status.set(Display_Set_Html.deviceId, Display_Set_Html.outputId, decodings[i].Id, decodingStatus);
+                //    }
+                //}
+            }
+        }
+
+        function display_set_load() {
+            var uri = new Uri(Trigger.href);
+            if (uri.Query && uri.Querys.deviceId && uri.Querys.outputId) {
+                Display_Set_Html.deviceId = uri.Querys.deviceId;
+                Display_Set_Html.outputId = uri.Querys.outputId;
+            }
+            Display_Set_Property.Device.VideoOutput.get(Display_Set_Html.deviceId, Display_Set_Html.outputId);
+            document.getElementById("outputScreenName").innerText = Display_Set_Property.Device.VideoOutput.value.Name;
+            Display_Set_Html.Tree.create();
+            Display_Set_Html.displayMode = Display_Set_Property.Device.VideoOutput.DisplayMode.get(Display_Set_Html.deviceId, Display_Set_Html.outputId);
+            Display_Set_Html.capabilities = Display_Set_Property.Device.VideoOutput.Capabilities.get(Display_Set_Html.deviceId, Display_Set_Html.outputId);
+            Display_Set_Property.Device.VideoOutput.Decoding.list(Display_Set_Html.deviceId, Display_Set_Html.outputId);
+            Display_Set_Html.Screen.create(Display_Set_Html.displayMode.DisplayMode);
+            Display_Set_Html.Screen.Btn.set(Display_Set_Html.capabilities);
+        }
+
+        function zTreeBeforeClick(treeId, treeNode, clickFlag) {
+            return false;
+        };
+
+        function zTreeBeforeMouseUp(treeId, treeNode, clickFlag) {
+            if (treeNode)
+                return !treeNode.isParent;
+            return false;
+        };
+
+        function zTreeBeforeMouseDown(treeId, treeNode, clickFlag) {
+            if (treeNode)
+                return !treeNode.isParent;
+            return false;
+        };
+
+        function zTreeBeforeDblClick(treeId, treeNode, clickFlag){
+            if (treeNode)
+                return !treeNode.isParent;
+            return false;
+        }
+
+        function WindowOnMouseUp() {
+            var tag = window.event.srcElement;
+            if (tag) {
+                var item = null;
+                if (tag.className.indexOf("screen-item") > -1) {
+                    item = tag;
+                }
+                if (tag.className.indexOf("decoding-input-name") > -1 || tag.className.indexOf("decoding-no") > -1) {
+                    item = tag.parentElement;
+                }
+                if (Display_Set_Html.selectedVideoInputId && item) {
+                    var list = document.getElementById("outputScreen").getElementsByClassName("screen-item");
+                    for (var i = 0; i < list.length; i++) {
+                        $(list[i]).removeClass("selected");
+                    }
+                    var selectNo = item.id.split("-")[1];
+                    Display_Set_Html.selectedDecodingId = selectNo;
+                    $("#" + item.id).addClass("selected");
+                    Display_Set_Property.Device.VideoOutput.Decoding.Status.value[selectNo].VideoInputChannelId = Display_Set_Html.selectedVideoInputId;
+                    Display_Set_Property.Device.VideoOutput.Decoding.Status.value[selectNo].VideoInputChannelIdSpecified = true;
+                    Display_Set_Property.Device.VideoOutput.Decoding.Status.value[selectNo].State = "Decoding";
+                    var decodingStatus = Display_Set_Property.Device.VideoOutput.Decoding.Status.value[selectNo];
+                    Display_Set_Property.Device.VideoOutput.Decoding.Status.set(Display_Set_Html.deviceId, Display_Set_Html.outputId, selectNo, decodingStatus);
+                    var inputName = Display_Set_Property.Device.VideoInput.value[Display_Set_Html.selectedVideoInputId].Name;
+                    document.getElementById("screen-" + selectNo).getElementsByClassName("decoding-input-name")[0].innerText = inputName;
+                }
+            }
+            Display_Set_Html.selectedVideoInputId = null;
+            document.getElementById("pad").innerText = "";
+        }
+
+        function WindowOnMouseMove(e) {
+            var obj = document.getElementById("pad");
+            obj.style.left = e.clientX - $('#outputScreenPageMain').offset().left + "px";
+            obj.style.top = e.clientY - $('#outputScreenPageMain').offset().top + "px";
+            //obj.style.left = e.pageX - $('#outputScreenPageMain').offset().left + "px";
+            //obj.style.top = e.pageY - $('#outputScreenPageMain').offset().top + "px";
+        }
+
+        display_set_load();
+    </script>
+</body>
+</html>

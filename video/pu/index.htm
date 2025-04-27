@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>视频监控</title>
+    <link href="css/font-awesome.css" rel="stylesheet" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+    <script src="js/enum.js"></script>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+    <style type="text/css">
+        .widget-container {
+            min-height: 0;
+        }
+
+        .pic {
+            background-color: black;
+            width: 60%;
+            text-align: center;
+            margin: 0 auto;
+        }
+
+        img {
+            width: 150px;
+        }
+    </style>
+    <script type="text/javascript">
+        function _load() {
+            var uri = new Uri(document.location);
+            if (uri.Query && uri.Querys.id) {
+                var preview = document.getElementById("preview");
+                var playback = document.getElementById("playback");
+                var q = "?id=" + uri.Querys.id
+                document.getElementById("txt_id").innerHTML = uri.Querys.id;
+                preview.href += q;
+                playback.href += q
+            }
+        }
+
+        onload = _load;
+    </script>
+</head>
+<body>
+    <div class="modal-shiftfix">
+        <div class="container-fluid main-content">
+            <div class="page-title">
+                <h1>
+                    视频监控
+                </h1>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="widget-container">
+                        <div class="heading">
+                            <i class="icon-facetime-video"></i><a id="txt_id"></a>
+                        </div>
+                        <div class="pic">
+                            <img src="default_camera.png">
+                        </div>
+                        <div class="pager">
+                            <a id="preview" class="btn btn-primary-outline" href="preview.htm">实时监控</a>
+                            <a id="playback" class="btn btn-default-outline" href="playback.htm">录像回放</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

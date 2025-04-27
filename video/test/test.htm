@@ -1,0 +1,22 @@
+<HTML>
+<SCRIPT LANGUAGE="JavaScript">
+function test()
+{
+   ocxclient.Connect("192.168.18.245","8812","admin","12345");
+}
+</SCRIPT>
+<BODY>
+<OBJECT ID="ocxclient" WIDTH=1680 HEIGHT=1020
+CODEBASE="ocxclient.cab#version=1,0,9,2"
+ CLASSID="CLSID:148598E9-2825-4990-8EB0-9F2BBA1464F0">
+    <PARAM NAME="IP" VALUE="">
+    <PARAM NAME="Port" VALUE="">
+ <PARAM NAME="Username" VALUE="">
+ <PARAM NAME="Password" VALUE="">
+</OBJECT>
+
+
+<INPUT TYPE="button" NAME="Submit" 
+       VALUE="Submit" ONCLICK=test()>
+</BODY>
+</HTML>

@@ -1,0 +1,162 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link href="../../../../css/howell.css" rel="stylesheet" />
+    <script src="../../../../js/language/chinese.js"></script>
+    <link href="../../../../css/bootstrap/bootstrap-switch.css" rel="stylesheet" />
+    <script src="../../../../js/jquery/jquery-1.10.2.min.js"></script>
+    <script src="../../../../js/jquery/jquery-ui.js"></script>
+    <script src="../../../../js/bootstrap/bootstrap.min.js"></script>
+    <script src="../../../../js/bootstrap/bootstrap-switch.min.js"></script>
+    <script src="../../../../js/imported.js"></script>
+    <script src="../../../../js/modernizr.custom.js"></script>
+    <script src="../../../../js/howell.js/howell.js"></script>
+    <script src="../../../../js/howell.js/howell.control.js"></script>
+
+    <script src="../../../../js/client/enum.js"></script>
+    <script src="../../../../js/client/struct.js"></script>
+    <script src="../../../../js/client/client.js"></script>
+
+    <script src="../../../../js/background/management/background_device.event.js"></script>
+    <script src="../../../../js/background/management/device/background_device_video_outputs.js"></script>
+    <script src="device_video_output_details.js"></script>
+    <script type="text/javascript">
+        PageEvent.Device.Video.Output.GroupListChanged = function (output) {
+            alert("GroupListChanged");
+        }
+    </script>
+</head>
+<body>
+    <style type="text/css">
+        .device_video_output_details_ico{
+            font-size:22px !important;
+            color:#007aff;
+        }
+    </style>
+    <div class="container-fluid main-content alert-window-maxdiv">
+        <div class="page-title">
+            <h3 class="list-heading-div">
+                <i class="icon-desktop mouse_default device_video_output_details_ico"></i>
+                <!--<img src="../../../../img/icon/department.png" class="alert-window-title-icon"/>-->
+                <label id="lblDepartmentDetailTitle" style="margin-left:10px">修改视频输出通道</label>
+            </h3>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="widget-content padded">
+                    <form action="#" class="form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label col-md-2">
+                                通道编号
+                            </label>
+                            <div class="col-md-9">
+                                <input class="form-control" type="text" id="txtId" readonly="readonly" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2">
+                                通道名称
+                            </label>
+                            <div class="col-md-9">
+                                <input class="form-control" type="text" id="txtName" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2">
+                                伪码
+                            </label>
+                            <div class="col-md-9">
+                                <input class="form-control" type="text" id="txtPseudoCode" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2">
+                                视频接口
+                            </label>
+                            <div class="col-md-9">
+                                <select class="form-control" id="ddlVideoInterfaceType"></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2">
+                                输出分辨率
+                            </label>
+                            <div class="col-md-9">
+                                <select class="form-control" id="ddlResolution"></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2">
+                                网络输出通道
+                            </label>
+                            <div class="col-md-6">
+                                <div class="toggle-switch" data-off="warning" data-on="success" data-off-label="否" data-on-label="是" style="width: 180px;">
+                                    <input id="chkNetworked" checked="" type="checkbox">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2">
+                                终端设备
+                            </label>
+                            <div class="col-md-6">
+                                <div class="toggle-switch" data-off="warning" data-on="success" data-off-label="否" data-on-label="是" style="width: 180px;">
+                                    <input id="chkTerminal" checked="" type="checkbox">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2">
+                                外接显示设备
+                            </label>
+                            <div class="col-md-6">
+                                <div class="toggle-switch" data-off="warning" data-on="success" data-off-label="否" data-on-label="是" style="width: 180px;">
+                                    <input id="chkInterfaceEquipped" checked="" type="checkbox">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2">
+                                输出频率
+                            </label>
+                            <div class="col-md-9">
+                                <div class="widget-content padded">
+                                    <div class="slider-container">
+                                        <div class="slider-basic">
+                                        </div>
+                                        <div>
+                                            <p>
+                                                <span class="slider-basic-amount pull-right" id="sliderFrequency"></span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-top:55px">
+                            <label class="control-label col-md-8">
+                            </label>
+                            <div class="col-md-2">
+                                <a class="btn btn-primary" id="btnOutputDetails" onclick="return btnVideoOutputDetails_Click(this);">
+                                    确&ensp;&ensp;定
+                                </a>
+                            </div>
+                            <div class="col-md-2">
+                                <a class="btn btn-primary" onclick="return AlertWindow.Close();">
+                                    取&ensp;&ensp;消
+                                </a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        device_video_output_details_load();
+    </script>
+</body>
+</html>

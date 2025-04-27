@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+</head>
+<body>
+    <div class="container-fluid main-content alert-window-maxdiv">
+        <div class="page-title">
+            <h3 class="list-heading-div">
+                <label>IPv4信息</label>
+            </h3>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="widget-content padded">
+                    <form action="#" class="form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label col-md-2">
+                                IP地址
+                            </label>
+                            <div class="col-md-9">
+                                <input class="form-control" type="text" id="txtAddress" value="" readonly="readonly" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2">
+                                子网掩码
+                            </label>
+                            <div class="col-md-9">
+                                <input class="form-control" type="text" id="txtSubnetmask" value="" readonly="readonly" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2">
+                                默认网关
+                            </label>
+                            <div class="col-md-9">
+                                <input class="form-control" type="text" id="txtDefaultGateway" value="" readonly="readonly" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2">
+                                主DNS
+                            </label>
+                            <div class="col-md-9">
+                                <input class="form-control" type="text" id="txtPrimaryDNS" value="" readonly="readonly" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2">
+                                次DNS
+                            </label>
+                            <div class="col-md-9">
+                                <input class="form-control" type="text" id="txtSecondaryDNS" value="" readonly="readonly" />
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-top:75px">
+                            <label class="control-label col-md-9">
+                            </label>
+                            <div class="col-md-2">
+                                <a class="btn btn-primary" onclick="return AlertWindow.Close();">
+                                    返&ensp;&ensp;回
+                                </a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var url = new Uri(Trigger.href);
+        if (url.Query) {
+            var networkId = url.Querys.networkId;
+            var v4Address = Property.value[networkId].IPAddress.IPv4Address;
+            getTag("txtAddress").value = v4Address.Address ? v4Address.Address : "";
+            getTag("txtSubnetmask").value = v4Address.Subnetmask ? v4Address.Subnetmask : "";
+            getTag("txtDefaultGateway").value = v4Address.DefaultGateway ? v4Address.DefaultGateway : "";
+            getTag("txtPrimaryDNS").value = v4Address.PrimaryDNS ? v4Address.PrimaryDNS : "";
+            getTag("txtSecondaryDNS").value = v4Address.SecondaryDNS ? v4Address.SecondaryDNS : ""
+        }
+    </script>
+</body>
+</html>

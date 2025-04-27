@@ -1,0 +1,632 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="css/howell.css">
+    <link href="css/howell.font.css" rel="stylesheet" />
+    <link href="css/icon.css" rel="stylesheet" />
+    <link href="css/isotope.css" rel="stylesheet" />
+    <link href="css/template.css" rel="stylesheet" />
+    <script src="js/echarts.common.min.js"></script>
+    <script src="js/jquery/jquery-1.10.2.min.js"></script>
+    <script src="js/jquery/jquery.isotope.min.js"></script>
+    <script src="js/jquery/jquery-ui.js"></script>
+    <script src="js/jquery/jquery.isotope.min.js"></script>
+    <script src="js/jquery/jquery.easy-pie-chart.js"></script>
+    <script src="js/howell.js/howell.constant.js"></script>
+</head>
+
+<body>
+    <!-- 客流统计开始 -->
+    <!-- ----------------------------------------------------------------------------------------------------------------------------------- -->
+    <!-- 添加按钮开始 -->
+    <div id="template-pdc-add" class="hide">
+        <div class="set-add-item" style="position:relative">
+            <div class="set-add-item-add" style="width:50px;height:50px;margin:auto;position:absolute;top:0;left:0;bottom:0;right:0">
+
+            </div>
+        </div>
+    </div>
+    <!-- ----------------------------------------------------------------------------------------------------------------------------------- -->
+    <!-- 添加按钮结束 -->
+    <!-- ----------------------------------------------------------------------------------------------------------------------------------- -->
+    <!-- 实时数据图开始 -->
+    <div id="template-pdc-arc" class="hide">
+        <div>
+            <div class="item default-font-color grid-stack-item-content">
+                <div style="height:100%;position:relative;">
+                    <div class="name" style="height:47px;">
+                        <div>
+                            <div class="text-ellipsis pull-left name" style="width:83%;font-size:16px;padding-top: 8px;padding-left: 16px; height: 38px;">
+                                <span>设备名称</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-content padded offline div-status" style="padding:0; height:300px;">
+                        <div style="width:300px;height:300px;position:absolute;left:67.5px">
+                            <canvas class="canvas-circle"></canvas>
+                        </div>
+                        <div style="width:435px;height:165px;position:absolute;top:172px;text-align:center">
+                            <div>
+                                <span class="template-pdc-LeaveNumber pdc-leave-color" style="font-size:26px">
+                                    0
+                                </span>
+                            </div>
+                            <div>
+                                <span class="template-pdc-EnterNumber pdc-enter-color" style="font-size:26px">
+                                    0
+                                </span>
+                            </div>
+                            <div style="margin-top:52px">
+                                <div class="pull-left template-pdc-LastNLeaveNumber pdc-leave-color" style="font-size:26px;margin-top:5px;width:78px;text-align:right">
+                                    0
+                                </div>
+                                <div class="pull-left template-pdc-DeviationNumber pdc-deviation-color" style="font-size:38px;width:278px">
+                                    0
+                                </div>
+                                <div class="pull-right template-pdc-LastNEnterNumber pdc-enter-color" style="font-size:26px;margin-top:5px;width:78px;text-align:left">
+                                    0
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <i class="fa ti-close"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- 实时数据图结束 -->
+    <!-- ----------------------------------------------------------------------------------------------------------------------------------- -->
+    <!-- 设置开始 -->
+    <div id="template-set" class="hide">
+        <div>
+            <div class="item default-font-color pdc-set-bgcolor grid-stack-item-content template card set">
+                <div class="col-md-7">
+                    <div class="name"></div>
+                </div>
+                <div class="col-md-5">
+                    <div class="img"></div>
+                </div>
+                <div class="clear">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 设置结束 -->
+    <!-- ----------------------------------------------------------------------------------------------------------------------------------- -->
+    <!-- 设备数量 -->
+    <div id="template-count" class="hide">
+        <div>
+            <div class="item default-font-color grid-stack-item-content template card count">
+                <div class="card-body m-b-0">
+                    <div class="general-container">
+                        <div class="pull-left left-container">
+                            <div class="data">0</div>
+                            <h5 class="text-muted">在线设备</h5>
+                        </div>
+                        <div class="pull-right right-container">
+                            <div class="round round-md">
+                                <i class="data-type-icon"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <i class="fa ti-close"></i>
+            </div>
+        </div>
+    </div>
+    <!-- 设备数量 -->
+    <!-- ----------------------------------------------------------------------------------------------------------------------------------- -->
+    <!-- 时间控件开始 -->
+    <div id="template-date-time-1" class="hide">
+        <div>
+            <div class="item default-font-color grid-stack-item-content template card date-time-1">
+                <div class="card-body m-b-0">
+                    <div class="date-time-container">
+                        <div class="time-container">
+                            <span class="hour"></span>
+                            <i class="howell-icon-colon"></i>
+                            <span class="minute"></span>
+                        </div>
+                        <div class="date-container">
+                            <span class="date">未知</span>
+                            <span>&nbsp;</span>
+                            <span class="week">未知</span>
+                        </div>
+                    </div>
+                </div>
+                <i class="fa ti-close"></i>
+            </div>
+        </div>
+    </div>
+    <div id="template-date-time-2" class="hide">
+        <div>
+            <div class="item default-font-color grid-stack-item-content template card date-time-2">
+                <div class="card-body m-b-0">
+                    <div class="col-md-5 no-padding">
+                        <div class="week-container">
+                            <span class="week">未知</span>
+                        </div>
+                        <div class="date">未知</div>
+                    </div>
+                    <div class="col-md-7 no-padding">
+                        <div class="time-container">
+                            <span class="hour"></span>
+                            <i class="howell-icon-colon"></i>
+                            <span class="minute"></span>
+                        </div>
+                    </div>
+                </div>
+                <i class="fa ti-close"></i>
+            </div>
+        </div>
+    </div>
+    <!-- 时间控件结束 -->
+    <!-- ----------------------------------------------------------------------------------------------------------------------------------- -->
+    <!-- 双数据折线型图开始 -->
+    <div id="template-line-chart" class="hide">
+        <div>
+            <div class="item grid-stack-item-content template card line-chart">
+                <div class="card-body">
+                    <div class="chart-container">
+                    </div>
+                    <h4 class="name m-b-0">
+                        折线图
+                    </h4>
+                    <h6 class="text-muted font-13 type m-b-0">副标题</h6>
+                </div>
+                <i class="fa ti-close"></i>
+            </div>
+        </div>
+    </div>
+    <!-- 双数据折线型图结束 -->
+    <!-- ----------------------------------------------------------------------------------------------------------------------------------- -->
+    <!-- 双数据柱状图开始 -->
+    <div id="template-histogram-chart" class="hide">
+        <div>
+            <div class="item grid-stack-item-content template card histogram-chart">
+                <div class="card-body">
+                    <div class="chart-container">
+                    </div>
+                    <h4 class="name m-b-0">
+                        柱状图
+                    </h4>
+                    <h6 class="text-muted font-13 type m-b-0">副标题</h6>
+                </div>
+                <i class="fa ti-close"></i>
+            </div>
+        </div>
+    </div>
+    <!-- 双数据柱状图结束 -->
+    <!-- ----------------------------------------------------------------------------------------------------------------------------------- -->
+    <!-- feeds列表项开始 -->
+    <div id="template-feeds-list-item" class="hide">
+        <li class="template feeds-list-item">
+            <div class="icon-container">
+                <i class="icon"></i>
+            </div>
+            <span class="name"></span>
+        </li>
+    </div>
+    <!-- feeds列表项结束 -->
+    <!-- ----------------------------------------------------------------------------------------------------------------------------------- -->
+    <!-- 列表项开始 -->
+    <div id="template-list-item" class="hide">
+        <div class="col-xlg-2 col-lg-3 col-md-4 col-sm-6 col-xs-12 no-padding template list-item">
+            <div class="controlArea mouse_pointer card small">
+                <div class="">
+                    <i class=""></i>
+                </div>
+                <div class="area-lab" title="">
+                    <label></label>
+                    <label></label>
+                </div>
+                <div class="area-icon-close opacity-0">
+                    <span class="area-icon-close  mouse_pointer del_" title="删除">
+                        <i class=""></i>
+                    </span>
+                    <br />
+                    <span class="area-icon-set mouse_pointer edit_" title="编辑">
+                        <i class=""></i>
+                    </span>
+                </div>
+                <div class="clear"> </div>
+                <div class="ribbon ribbon-corner ribbon-success">
+                    <i class="fa fa-check"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 列表项结束 -->
+    <!-- ----------------------------------------------------------------------------------------------------------------------------------- -->
+    <!-- tab模态窗开始 -->
+    <div id="template-list-control-view" class="hide">
+        <div class="template list-control-view">
+            <div class="control-btn-box">
+                <button type="button" class="btn waves-effect waves-light btn-info">全选</button>
+                <button type="button" class="btn waves-effect waves-light btn-info">取消</button>
+            </div>
+            <div class="down-box mouse_pointer">
+                <img class="down-icon" alt="">
+            </div>
+            <div class="content-box" id="groupDevicesView">
+            </div>
+            <div class="btn-group m-b-20 finish-btn-container">
+                <button type="button" class="finish-b btn btn-block btn-info control-btn-padding-1 ">完成</button>
+            </div>
+            <div class="btn-group m-b-20 cancel-btn-container">
+                <button type="button" class="cancel-b btn btn-block btn-default control-btn-padding-1 ">取消</button>
+            </div>
+        </div>
+    </div>
+    <!-- tab模态窗结束 -->
+    <!-- ----------------------------------------------------------------------------------------------------------------------------------- -->
+    <!-- 全选模态窗开始 -->
+    <div id="template-list-control-view2" class="hide">
+        <div class="template list-control-view">
+            <div class="control-btn-box">
+                <button type="button" class="btn waves-effect waves-light btn-info">全选</button>
+                <button type="button" class="btn waves-effect waves-light btn-info">取消</button>
+            </div>
+            <div class="down-box mouse_pointer">
+                <img class="down-icon" alt="">
+            </div>
+            <div class="content-box" id="groupDevicesView2">
+            </div>
+            <div class="btn-group m-b-15 finish-btn-container">
+                <button type="button" class="finish-b btn btn-block btn-info control-btn-padding-1 ">完成</button>
+            </div>
+            <div class="btn-group m-b-15 cancel-btn-container">
+                <button type="button" class="cancel-b btn btn-block btn-default control-btn-padding-1 ">取消</button>
+            </div>
+        </div>
+    </div>
+    <!-- 全选模态窗结束 -->
+    <!-- ----------------------------------------------------------------------------------------------------------------------------------- -->
+    <!-- 单数据统计开始 -->
+    <div id="template-single-data-1" class="hide">
+        <div>
+            <div class="item default-font-color grid-stack-item-content template card single-data-1">
+                <div class="card-body m-b-0">
+                    <div class="name">
+
+                    </div>
+                    <div class="outside-container">
+                        <div class="round round-md pull-left">
+                            <i class="data-type-icon"></i>
+                        </div>
+                        <div class="pull-right data-container">
+                            <div class="data-type">
+
+                            </div>
+                            <div class="data">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <i class="fa ti-close"></i>
+            </div>
+        </div>
+    </div>
+    <div id="template-single-data-2" class="hide">
+        <div>
+            <div class="item default-font-color grid-stack-item-content template card single-data-2">
+                <div class="card-body m-b-0">
+                    <div class="general-container">
+                        <div class="pull-left left-container">
+                            <div class="data">
+
+                            </div>
+                            <div class="name">
+
+                            </div>
+                        </div>
+                        <div class="pull-right right-container">
+                            <div class="round round-md pull-right">
+                                <i class="data-type-icon"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <i class="fa ti-close"></i>
+            </div>
+        </div>
+    </div>
+    <!-- 单数据统计结束 -->
+    <!-- ----------------------------------------------------------------------------------------------------------------------------------- -->
+    <!-- 双数据统计开始 -->
+    <div id="template-double-data-1" class="hide">
+        <div>
+            <div class="item default-font-color grid-stack-item-content template card double-data-1">
+                <div class="card-body m-b-0 pdc-enter-leave-bgcolor p-0 box-top">
+                    <div class="title-container">
+                        <div class="title-icon-container">
+                            <i class="title-icon"></i>
+                        </div>
+                        <h5>
+                            <span class="name"></span>
+                        </h5>
+                    </div>
+                </div>
+                <div class="card-body m-b-0 p-0 box-bottom">
+                    <div class="p-0 area left">
+                        <div class="data-container">
+                            <div class="data data-1">
+
+                            </div>
+                            <h6 class="data-text data-text-1">
+
+                            </h6>
+                        </div>
+                    </div>
+                    <div class="p-0 area">
+                        <div class="data-container">
+                            <div class="data data-2">
+
+                            </div>
+                            <h6 class="data-text data-text-2">
+
+                            </h6>
+                        </div>
+                    </div>
+                </div>
+                <i class="fa ti-close"></i>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="template-double-data-2" class="hide">
+        <div>
+            <div class="item default-font-color grid-stack-item-content template card double-data-2">
+                <div class="card-body m-b-0 p-l-0 p-r-0 p-b-0 box-top">
+                    <div class="round round-md pdc-enter-leave-bgcolor">
+                        <i class="title-icon"></i>
+                    </div>
+                    <h5 class="name">
+                    </h5>
+                </div>
+                <div class="card-body m-b-0 p-0 box-bottom">
+                    <div class="col-md-6 p-0 data-container">
+                        <div class="data data-1">
+
+                        </div>
+                        <div class="data-text data-text-1">
+
+                        </div>
+                    </div>
+                    <div class="col-md-6 p-0 data-container">
+                        <div class="data data-2">
+
+                        </div>
+                        <div class="data-text data-text-2">
+
+                        </div>
+                    </div>
+                </div>
+                <i class="fa ti-close"></i>
+            </div>
+        </div>
+    </div>
+    <!-- 双数据统计结束 -->
+    <!-- 客流统计结束 -->
+    <div class="template-snap-info" style="display:none">
+        <div class="fr-snap-container">
+            <div class="col-md-12">
+                <div class="row fr-snap-container-title">
+                    <div class="col-md-4 left-title-text-container">
+                        <div><i class="left-title-text-container-icon"></i> <span class="left-title-text-container-words"></span></div>
+                    </div>
+                    <div class="col-md-4 center-title-text-container">
+                        
+                    </div>
+                    <div class="col-md-4 right-title-text-container">
+                        <div><i class="right-title-text-container-icon"></i> <span class="right-title-text-container-words"></span></div>
+                    </div>
+                </div>
+                <div class="row m-t-60">
+                    <div class="col-md-5 p-r-30">
+                    </div>
+                    <div class="col-md-6 p-r-5 p-l-5">
+                        <div class="row">
+                            <div class="col-md-3 p-l-0 p-r-0">
+                                <div class="picture-container">
+                                    <img class="picture">
+                                    <div class="img-border-corner top-left warning">
+                                    </div>
+                                    <div class="img-border-corner top-right warning">    
+                                    </div>
+                                    <div class="img-border-corner bottom-left warning">                                            
+                                    </div>
+                                    <div class="img-border-corner bottom-right warning">            
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 content-container p-l-30">
+                                <div class="content-text-title">
+                                    <i class="content-text-title-icon"></i> <span class="content-text-title-words"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <i class="fa ti-close"></i>     
+        </div>
+    </div>
+    <div class="template-match-info" style="display:none">
+        <div class="fr-match-container">
+            <div class="col-md-12">
+                <div class="row fr-match-container-title">
+                    <div class="col-md-4 left-title-text-container">
+                        <div><i class="left-title-text-container-icon"></i> <span class="left-title-text-container-words">商场-1号门</span></div>
+                    </div>
+                    <div class="col-md-4 center-title-text-container">
+                        目标警告
+                    </div>
+                    <div class="col-md-4 right-title-text-container">
+                        <div><i class="right-title-text-container-icon"></i> <span class="right-title-text-container-words">2018年5月3日 09:08:22</span></div>
+                    </div>
+                </div>
+                <div class="row m-t-60">
+                    <div class="col-md-4 left-content-container p-r-30">
+                        <div class="content-text-title">
+                            <i class="left-content-text-title-icon"></i> <span class="left-content-text-title-words">抓拍信息</span>
+                        </div>
+                    </div>
+                    <div class="col-md-4 p-r-5 p-l-5">
+                        <div class="row">
+                            <div class="col-md-4 p-r-0 p-l-0">
+                                <div class="picture-container">
+                                    <img class="left-picture">
+                                    <div class="img-border-corner top-left">
+                                    </div>
+                                    <div class="img-border-corner top-right">    
+                                    </div>
+                                    <div class="img-border-corner bottom-left">                                            
+                                    </div>
+                                    <div class="img-border-corner bottom-right">            
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 contrast-container">
+                                <div class="contrast-title">匹配度</div>
+                                <div class="contrast-content">90.90%</div>
+                            </div>
+                            <div class="col-md-4 p-l-0 p-r-0">
+                                <div class="picture-container">
+                                    <img class="right-picture">
+                                    <div class="img-border-corner top-left warning">
+                                    </div>
+                                    <div class="img-border-corner top-right warning">    
+                                    </div>
+                                    <div class="img-border-corner bottom-left warning">                                            
+                                    </div>
+                                    <div class="img-border-corner bottom-right warning">            
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 right-content-container p-l-30">
+                        <div class="content-text-title">
+                            <i class="right-content-text-title-icon"></i> <span class="right-content-text-title-words">数据库信息</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <i class="fa ti-close"></i>     
+        </div>
+    </div>
+    <div class="template-contrast-info" style="display:none">
+        <div class="card picture-contrast m-b-20">
+            <div class="card-body">
+                <div class="d-flex flex-wrap">
+                    <div>
+                        <h5 class="card-subtitle"><i class="left-title-icon"></i> <span class="left-title-words"></span></h5>
+                    </div>
+                    <div class="ml-auto">
+                        <h6 class="card-subtitle"><i class="right-title-icon"></i> <span class="right-title-words"></span></h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 left-info-container">
+                        <div>
+                            <i class="left-content-title-icon"></i> <span class="left-content-title-words"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-3 p-r-5 p-l-0">
+                        <div class="picture-container">
+                            <img class="picture border-color-info left-picture">
+                            <div class="img-border-corner top-left">
+                            </div>
+                            <div class="img-border-corner top-right">             
+                            </div>
+                            <div class="img-border-corner bottom-left">                 
+                            </div>
+                            <div class="img-border-corner bottom-right">                 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 p-l-5 p-r-0">
+                        <div class="picture-container">
+                            <img class="picture border-color-danger right-picture">
+                            <div class="picture-info background-color-danger">
+                                <span class="right-picture-info-text"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 right-info-container">
+                        <div>
+                            <span class="right-content-title-words"></span> <i class="right-content-title-icon"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="template-tabs-item" style="display:none">
+        <li class="nav-item"> 
+            <a class="nav-link" data-toggle="tab" href="" role="tab" aria-selected="false">
+                <span class="hidden-sm-up"><i class=""></i></span><span class="hidden-xs-down text"></span> 
+            </a> 
+        </li>
+    </div>
+    <div class="template-tabs-pane" style="display:none">
+        <div class="tab-pane" role="tabpanel">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card-group">
+                                                
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="template-tabs-list" style="display:none">
+        <div class="card m-b-0">
+            <div class="card-header" role="tab">
+                <h5 class="mb-0">
+                    <a data-toggle="collapse" href="#collapseOne1" aria-expanded="false" class="tabs-list-title collapsed">
+                        <span class="text"></span>
+                    </a>
+                </h5>
+            </div>
+            <div id="collapseOne1" class="p-10 tabpanel collapse" role="tabpanel">
+                <div class="tabpanel-content"></div>
+            </div>
+        </div>
+    </div>
+    <div class="template-small-pciture-info" style="display:none">
+        <div class="small-pciture-info">
+            <div class="card m-b-15">
+                <div class="card-body p-15 p-t-5 text-center">
+                    <div class="p-b-5 top-title white_space_nowrap overflow_hidden"></div>
+                    <img class="pull-left picture">
+                    <div class="bottom-title white_space_nowrap overflow_hidden"></div>
+                </div>
+            </div> 
+        </div>
+    </div>
+    <div class="template-upload-small-pciture-info" style="display:none">
+        <div class="upload-small-pciture-info">
+            <div class="card m-b-5">
+                <div class="card-body p-15 p-t-5 text-center">
+                    <div class="p-b-5 top-title white_space_nowrap overflow_hidden"></div>
+                    <img class="pull-left picture">
+                    <div class="bottom-title white_space_nowrap overflow_hidden"></div>
+                    <i class="ti ti-close"></i>
+                </div>
+            </div> 
+        </div>
+    </div>
+    <script src="template.js"></script>
+</body>
+
+</html>

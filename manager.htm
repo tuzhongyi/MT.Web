@@ -1,0 +1,310 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>数据管理中心</title>
+    <!--<link rel="icon" href="img/hw.png" type="image/x-icon" />--> 
+    <link rel="stylesheet" type="text/css" href="css/howell.css" />
+
+    <script type="text/javascript" src="config.js"></script>
+    <script type="text/javascript" src="js/jquery/jquery-1.10.2.min.js"></script>
+
+    <script src="js/imported.js"></script>
+    <script type="text/javascript" src="js/jquery/jquery-ui.js"></script>
+    <script type="text/javascript" src="js/bootstrap/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/jquery/jquery.confirm.js"></script>
+    <script type="text/javascript" src="js/modernizr.custom.js"></script>
+    <script type="text/javascript" src="js/jquery/jquery.placeholder.js"></script>
+    <script type="text/javascript" src="js/language/chinese.js?update=20150509"></script>
+
+    <script type="text/javascript" src="js/imported.js"></script>
+
+    <script type="text/javascript" src="js/howell.js/howell.js"></script>
+    <script src="js/howell.js/howell.convert.js"></script>
+    <script type="text/javascript" src="js/client/struct.js"></script>
+    <script type="text/javascript" src="js/howell.js/guid.js"></script>
+    <script type="text/javascript" src="js/md5.js"></script>
+
+    <script type="text/javascript" src="js/howell.js/httpService.js"></script>
+    <script type="text/javascript" src="js/client/system.js"></script>
+    <script type="text/javascript" src="js/client/authentication.js"></script>
+    <script type="text/javascript" src="js/client/client.js"></script>
+
+    <style type="text/css">
+        .active-info{
+            font-size:24px;
+            position:fixed;
+            bottom:15px;
+            right:25px
+        }
+    </style>
+
+
+    <script type="text/javascript">
+        function initLanguage() {
+            document.getElementById("txtUsername").placeholder = Language.page.login.manager;
+            document.getElementById("txtPassword").placeholder = Language.page.login.password;
+            document.getElementById("aLogin").innerHTML = Language.page.login.login;
+        }
+
+        (function () {
+            $(document).ready(function () {
+                $(window).load(function () {
+                    return $(".login-container").addClass("active");
+                });
+            });
+        }).call(this);
+
+        function init() {
+
+            setCookie("page", document.location);
+
+            var response;
+            if (!tryCatch(function () {
+                response = Client.System().getInfo();
+                if (response == "") {
+                document.location = "init_nav.htm";
+                    return false;
+            }
+                return true;
+            })) return;
+            if (!tryCatch(function () {
+                return Client.System().hadAdmin();
+            })) {
+                document.location = "init_createAdmin.htm";
+                return;
+            };
+
+            var aut = Client.Authentication();
+
+            if (aut.IsActived() == false) {
+                //document.getElementById("active_info").style.display = "none";
+                document.getElementById("aLogin").style.display = "none";
+                //document.getElementById("to_active").style.display = "block";
+                document.getElementById("aActive").style.display = "inline-block";
+                return;
+            }
+
+
+
+            var step = "is ios"
+            if (navigator.userAgent.toLowerCase().indexOf("mac os") > 0) {
+                try {
+                    step = "load";
+                    var result = Client.Authentication().login("admin", "12345");
+                    step = "result:" + result;
+                    if (result) {
+                        step = "goto";
+                        document.location = "/video/index.htm";
+                        step = "true";
+                    }
+                } catch (e) {
+                    if (e.message)
+                        alert(step + ":" + e.message);
+                    if (e.name)
+                        alert(step + ":" + e.name);
+                }
+            }
+
+            initLanguage();
+            document.getElementById("txtUsername").focus();
+
+
+            try {
+                var uri = new Uri(document.location);
+                var location = null;
+                if (uri.Query) {
+                    if (uri.Querys.from)
+                        location = base64decode(uri.Querys.from)
+                }
+
+
+                var result = aut.load_auto(uri.Origin);
+                process(result, location);
+            }
+            catch (e) {
+                processException(e);
+            }
+        }
+
+        onload = init;
+
+        function login(username, password, auto) {
+            try {
+                var uri = new Uri(document.location);
+                var location = null;
+                if (uri.Query) {
+                    if (uri.Querys.from)
+                        location = base64decode(uri.Querys.from)
+                }
+
+                var result = Client.Authentication().login(username, password, auto, false, document.location.toString());
+                process(result, location);
+            }
+            catch (e) {
+                processException(e);
+            }
+        }
+
+        function process(result, location) {
+
+            if (result) {
+                var uri = new Uri(document.location);
+
+                if (location) {
+                    document.location = location;
+                    return;
+                }
+                document.location = "index.htm";
+            }
+
+        }
+
+        function processException(e) {
+
+            var txt = e.message;
+            if (!e.message)
+                txt = e.name;
+            if (e.number == 404 || e.number == 401)
+                txt = "用户名或密码错误";
+            if (e.number == 403)
+                txt = "系统未授权，请联系供应商激活系统！"
+
+            $.confirm({
+                text: "登陆失败:" + txt,
+                okButton: "确定",
+                alert: true,
+                hasCloseButton: false
+            });
+        }
+
+        function aLogin_click(sender, args) {
+            var username = document.getElementById("txtUsername").value;
+            //var password = hex_md5(document.getElementById("txtPassword").value).toLocaleLowerCase();
+            var password = document.getElementById("txtPassword").value;
+            var auto = document.getElementById("auto_login").checked;
+            login(username, password, auto);
+        }
+
+    </script>
+</head>
+<body class="login2" onkeydown="if (event.keyCode == 13) aLogin_click();">
+    <div class="login-wrapper">
+        <div class="login-container">
+            <!--<img src="img/logo.png" />-->
+            <div style="height: 159px;font-size: 36px;color: #256A79;line-height: 159px;">数据管理中心平台</div>
+            <form>
+                <div class="form-group">
+                    <input class="form-control" id="txtUsername" placeholder="管理员账号" type="text" />
+                </div>
+                <div class="form-group" style="padding-bottom:15px;margin-bottom:0px;">
+                    <input class="form-control" id="txtPassword" placeholder="密码" type="password" />
+                </div>
+                <div class="form-group">
+                    <label class="checkbox"><input id="auto_login" type="checkbox" /><span>自动登录</span></label>
+                    <a href="default.htm" style="margin-top:-50px;" class="pull-right">普通用户登录</a>
+                </div>
+                <div class="form-options clearfix">
+                </div>
+            </form>
+            <div class="social-login clearfix">
+                <button type="submit" class="btn btn-primary" id="aLogin" onclick="aLogin_click(this);">登&ensp;&ensp;&ensp;&ensp;录</button>
+                <a style="display:none" class="btn btn-primary" id="aActive" href="activation.htm">激&ensp;&ensp;&ensp;&ensp;活</a>
+            </div>
+        </div>
+    </div>
+    <a id="active_info" title="激活信息" class="icon-info-sign pull-right active-info" href="#" onclick="expiredInfo_Click()"></a>
+    <div id="example" style="display:none;border:1px solid">
+        <div style="width:600px">
+            <div class="page-title">
+                <h3 class="list-heading-div">
+                    <i class="icon-key title mouse_default" style="margin-right:30px;margin-left:10px"></i>
+                    <label>激活信息</label>
+                </h3>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="widget-content padded">
+                        <div class="form-group" style="height:30px;line-height:30px">
+                            <div class="control-label col-md-1">
+                            </div>
+                            <label class="control-label col-md-2">
+                                创建时间
+                            </label>
+                            <div class="col-md-8">
+                                <label class="form-control CreationTime" />
+                            </div>
+                            <div class="control-label col-md-1">
+                            </div>
+                        </div>
+                        <div class="form-group" style="height:30px;line-height:30px">
+                            <div class="control-label col-md-1">
+                            </div>
+                            <label class="control-label col-md-2">
+                                过期时间
+                            </label>
+                            <div class="col-md-8">
+                                <label class="form-control ExpiredTime" />
+                            </div>
+                            <div class="control-label col-md-1">
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-bottom:50px;height:30px;line-height:30px">
+                            <div class="control-label col-md-1">
+                            </div>
+                            <label class="control-label col-md-2">
+                                序列号
+                            </label>
+                            <div class="col-md-8">
+                                <label class="form-control SerialNumber" />
+                            </div>
+                            <div class="control-label col-md-1">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    $(function () {
+        $('input, textarea').placeholder();
+    });
+    function expiredInfo_Click() {
+        var expiredInfo = getExpiredInfo();
+        if (expiredInfo) {
+            var div = document.createElement("div");
+            div.innerHTML = document.getElementById("example").innerHTML;
+            div.getElementsByClassName("CreationTime")[0].innerText = Convert.ToDate(expiredInfo.CreationTime).format("yyyy-MM-dd hh:mm:ss");
+            div.getElementsByClassName("ExpiredTime")[0].innerText = Convert.ToDate(expiredInfo.ExpiredTime).format("yyyy-MM-dd hh:mm:ss");
+            div.getElementsByClassName("SerialNumber")[0].innerText = expiredInfo.SerialNumber;
+            var txt = div.innerHTML;
+            $.confirm({
+                text: txt,
+                okButton: "确定",
+                alert: true,
+                hasCloseButton: true,
+                footer: false
+            });
+        }
+    };
+    function getExpiredInfo() {
+        //var url = Client.Authentication().Activation();
+        //var info = null;
+        //try {
+        //    xmlHttp = new XMLHttpRequest();
+        //    xmlHttp.open("GET", url, false);
+        //    xmlHttp.setRequestHeader("Content-Type", "application/octet-stream");
+        //    xmlHttp.send();
+        //    if (xmlHttp.status == 200)
+        //        return xmlHttp.responseText ? JSONDeserialization(xmlHttp.responseText) : null;
+        //    throw new howellException(xmlHttp.status, xmlHttp.statusText, xmlHttp.responseText);
+        //} finally {
+
+        //}
+        var aut = Client.Authentication();
+        return aut.getExpiredInfo();
+    }
+</script>

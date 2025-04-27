@@ -1,0 +1,512 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>下载视频</title>
+    <link href="../css/howell.css" rel="stylesheet" />
+    <link href="../css/bootstrap/bootstrap-switch.css" rel="stylesheet" />
+    <link href="../css/bootstrap/bootstrap-datetimepicker.css" rel="stylesheet" />
+    <link href="../css/bootstrap/bootstrap-progressbar-3.3.4.css" rel="stylesheet" />
+    <script src="../js/jquery/jquery-1.10.2.min.js"></script>
+    <script src="../js/howell.js/ext.js"></script>
+    <script src="../js/bootstrap/bootstrap.min.js"></script>
+    <script src="../js/bootstrap/bootstrap-datetimepicker.js" charset="gb2312"></script>
+    <script src="../js/bootstrap/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="../js/bootstrap/bootstrap-datepicker.js" charset="gb2312"></script>
+    <script src="../js/bootstrap/bootstrap-timepicker.js"></script>
+    <script src="../js/bootstrap/bootstrap-switch.min.js"></script>
+    <script src="../js/bootstrap/bootstrap-progressbar.js"></script>
+    <script src="../js/howell.js/howell.js"></script>
+    <script src="../js/howell.js/howell.control.js"></script>
+    <script src="../js/language/chinese.js"></script>
+    <script src="../js/nav.js"></script>
+    <script src="../js/howell.js/guid.js"></script>
+    <script src="../jwplayer/jwplayer.js"></script>
+
+    <script src="../js/client/enum.js"></script>
+    <script src="../js/client/struct.js"></script>
+
+    <script src="../js/client/management.js"></script>
+    <script src="../js/client/security.js"></script>
+    <script src="../js/client/download.js"></script>
+    <script src="../js/client/client.js"></script>
+    <script src="download_tasks.js"></script>
+</head>
+<body>
+    <link href="css/bootstrap/bootstrap-switch.css" rel="stylesheet" />
+    <link href="css/bootstrap/bootstrap-datetimepicker.css" rel="stylesheet" />
+    <link href="css/bootstrap/bootstrap-progressbar-3.3.4.css" rel="stylesheet" />
+    <script src="js/bootstrap/bootstrap-datetimepicker.js" charset="gb2312"></script>
+    <script src="js/bootstrap/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="js/bootstrap/bootstrap-datepicker.js" charset="gb2312"></script>
+    <script src="js/bootstrap/bootstrap-timepicker.js"></script>
+    <script src="js/bootstrap/bootstrap-switch.min.js"></script>
+    <script src="js/bootstrap/bootstrap-progressbar.js"></script>
+    <script src="js/howell.js/guid.js"></script>
+    <script src="jwplayer/jwplayer.js"></script>
+
+    <script src="js/client/management.js"></script>
+    <script src="js/client/download.js"></script>
+    <script src="download/download_tasks.js"></script>
+    <style type="text/css">
+        #task_list {
+            margin-top: 30px;
+            height: 610px;
+            overflow: auto;
+            box-shadow: 0px 0px 0px rgba(0,0,0,0.1);
+        }
+
+        .task-list-heading {
+            padding: 20px 0 0 0;
+        }
+
+            .task-list-heading .task-name {
+                text-align: center;
+                width: 330px;
+            }
+
+            .task-list-heading .div-fileformat {
+                width: 28px;
+                margin-left: 16px;
+            }
+
+            .task-list-heading .div-datetime-begin {
+                width: 56px;
+                margin-left: 66px;
+            }
+
+            .task-list-heading .div-datetime-end {
+                width: 56px;
+                margin-left: 98px;
+            }
+
+        .list-group .list-group-item {
+            padding: 0 0 0 0;
+        }
+
+            .list-group .list-group-item p {
+                height: 38px;
+            }
+
+                .list-group .list-group-item p .task-name {
+                    width: 300px;
+                    margin-left: 15px;
+                }
+
+                .list-group .list-group-item p .div-datetime {
+                    width: 138px;
+                    float: left;
+                    margin-left: 18px;
+                }
+
+                .list-group .list-group-item p .div-fileformat {
+                    width: 50px;
+                    float: left;
+                    margin-left: 20px;
+                    text-align: center;
+                }
+
+                .list-group .list-group-item p .div-operation {
+                    width: 100px;
+                    float: left;
+                    margin-left: 20px;
+                }
+
+        .contact-list .text-ellipsis {
+            width: 80%;
+        }
+
+        .widget-container {
+            background-color: transparent;
+        }
+
+        .tab-content {
+            height: 700px;
+        }
+
+        .contact-list {
+            background-color: white;
+            overflow: auto;
+        }
+
+            .contact-list.playback {
+                height: 320px;
+            }
+
+        .datetime {
+            margin-top: 5px;
+            height: 375px;
+            background-color: white;
+        }
+
+        .datepicker.datepicker-dropdown.dropdown-menu {
+            margin-left: -15px;
+        }
+
+        .form-horizontal {
+            margin-bottom: 20px;
+        }
+
+        ul .selected {
+            background-color: rgb(253, 243, 228);
+        }
+
+        .tab-content ul {
+            padding-left: 15px;
+        }
+
+            .tab-content ul li {
+                cursor: pointer;
+                padding-left: 0px;
+                list-style-type: none;
+            }
+
+        .widget-container .heading.tabs {
+            padding: 15px 15px;
+        }
+
+        .btn.btn-default-outline:hover {
+            color: #007aff;
+            border: 1px solid #007aff;
+            background-color: white;
+        }
+
+        #iframe-download {
+            border: 0;
+            height: 0;
+            width: 0;
+        }
+
+        .iframe-download {
+            border: 0;
+            height: 0;
+            width: 0;
+        }
+
+        .tag-jump {
+            padding: 8px 0 0 10px;
+            height: 50px;
+        }
+    </style>
+    <div class="page-main row" style="width:1140px;height:730px;border:none;" id="main">
+        <div class="col-md-3">
+            <div class="widget-container fluid-height">
+                <div class="heading tabs">
+                    <i class="icon-facetime-video" style="font-size:16px"></i>
+                    视频
+                </div>
+                <div class="tab-content" style="overflow: auto" id="my-tab-content">
+                    <div class="contact-list padded playback">
+                        <ul id="ulChannels"></ul>
+                    </div>
+                    <div class="datetime padded">
+                        <form action="#" class="form-horizontal">
+                            <label>视频格式</label>
+                            <select class="form-control" id="ddlDownloadFileFormat">
+                                <option value="MP4">MP4</option>
+                                <option value="AVI">AVI</option>
+                            </select>
+                        </form>
+                        <form action="#" class="form-horizontal">
+                            <label>日期：</label>
+                            <div class="input-group date datepicker" data-date-autoclose="true" data-date-format="dd.mm.yyyy"
+                                 data-date-start-view="2">
+                                <input class="form-control" data-date-autoclose="true" data-date-format="yyyy-mm-dd" id="txt_date" type="text"><span class="input-group-addon"><i class="icon-calendar"></i></span></input>
+                            </div>
+                        </form>
+                        <form action="#" class="form-horizontal">
+                            <label>开始时间</label>
+                            <div class="input-group bootstrap-timepicker">
+                                <input class="form-control txt_time" id="txt_begin_time" type="text"><span class="input-group-addon">
+                                    <i class="icon-time"></i>
+                                </span></input>
+                            </div>
+                        </form>
+                        <form action="#" class="form-horizontal">
+                            <label>结束时间</label>
+                            <div class="input-group bootstrap-timepicker">
+                                <input class="form-control txt_time" id="txt_end_time" type="text"><span class="input-group-addon">
+                                    <i class="icon-time"></i>
+                                </span></input>
+                            </div>
+                        </form>
+                        <!--<form action="#" class="form-horizontal">
+                            <label>开始时间</label>
+                            <div class="input-group date form_date">
+                                <input class="form-control" type="text" id="txt_begin_time">
+                                <span class="input-group-addon"><span class="icon-calendar"></span></span>
+                            </div>
+                        </form>
+                        <form action="#" class="form-horizontal">
+                            <label>结束时间</label>
+                            <div class="input-group date form_date">
+                                <input class="form-control" type="text" id="txt_end_time">
+                                <span class="input-group-addon"><span class="icon-calendar"></span></span>
+                            </div>
+                        </form>-->
+                        <div class="row">
+                            <a class="btn btn-primary-outline pull-right" onclick="download_click(this)">创建任务</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9" style="padding: 0 0;background-color:white;height:750px">
+            <div style="padding: 0 0;height:660px" id="test_list">
+                <!--<div style="padding: 0 0;background-color:white;height:700px" id="test_list">-->
+                <!--<div class="task-list-heading">
+                <div class="pull-left task-name">
+                    任务名称
+                </div>
+                <div class="pull-left div-fileformat">
+                    格式
+                </div>
+                <div class="pull-left div-datetime-begin">
+                    开始时间
+                </div>
+                <div class="pull-left div-datetime-end">
+                    结束时间
+                </div>
+            </div>
+            <div class="list-group" id="task_list">
+
+            </div>-->
+                <!--</div>-->
+            </div>
+            <div style="margin-top:20px">
+                <!--<a class="pull-left tag-jump" href="download_video_record.htm">下载记录</a>-->
+                <a class="btn btn-primary-outline pull-right" onclick="removeList_Click();">清空</a>
+                <a class="btn btn-primary-outline pull-right" onclick="reDownloadAll_Click()">任务重置</a>
+                <a class="btn btn-primary-outline pull-right" onclick="downloadAll_Click()">全部下载</a>
+            </div>
+        </div>
+    </div>
+    <iframe id="iframe-download"></iframe>
+    <div id="iframe-list"></div>
+    <!--<div class="progress" style="width:100px">
+        <div class="progress-bar" role="progressbar"></div>
+    </div>
+    <button type="button" id="trigger-0">0</button>
+    <button type="button" id="trigger-50">50</button>
+    <button type="button" id="trigger-100">100</button>-->
+    <script type="text/javascript">
+    var deviceId = null;
+    var inputId = null;
+
+
+    var streamNo = 1;
+
+    //初始化日期控件
+    function init_datepicker(format) {
+        $('.form_date').datetimepicker('remove');
+        $('.form_date').datetimepicker({
+            language: 'zh-CN',
+            format: format,
+            weekStart: 1,
+            todayBtn: 1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            minView: 0,
+            minuteStep: 5,
+            forceParse: true,
+            showMeridian: true,
+        });
+    }
+
+    function download_click(sender, args) {
+        if (ChannelListControl.Select.value.length < 1)
+            return;
+        for (var i = 0; i < ChannelListControl.Select.value.length; i++) {
+            var a = getTag(ChannelListControl.Select.value[i]);
+            if (a) {
+                var href = a.href;
+                href = new Uri(href);
+                //var beginTime = Convert.ToDate(getTag("txt_begin_time").value);
+                //var endTime = Convert.ToDate(getTag("txt_end_time").value);
+                var txtDate = getTag("txt_date");
+                var txtBeginTime = getTag("txt_begin_time");
+                var txtEndTime = getTag("txt_end_time");
+                var beginTime = new Date(Date.parse(txtDate.value.replace(/-/g, "/") + " " + txtBeginTime.value));
+                var endTime = new Date(Date.parse(txtDate.value.replace(/-/g, "/") + " " + txtEndTime.value));
+                var downloadFileFormat = getTag("ddlDownloadFileFormat").value;
+
+                var list = TaskListControl.value.toArray();
+                for (var j = 0; j < list.length; j++) {
+                    if (list[j].DeviceId == href.Querys.dev_id && parseInt(href.Querys.slot) == parseInt(list[j].Channel) && beginTime.toISOString() == list[j].BeginTime && endTime.toISOString() == list[j].EndTime && downloadFileFormat == list[j].FileFormat) {
+                        $.confirm({
+                            title: "",
+                            text: "已创建过该任务",
+                            alert: true,
+                            okButton: "确定"
+                        });
+                        return;
+                    }
+                }
+
+                var task = TaskListControl.createTaskObj(href.Querys.dev_id, parseInt(href.Querys.slot), 1, beginTime.toISOString(), endTime.toISOString(), downloadFileFormat);
+                ChannelListControl.channelName[task.PageId] = a.innerText
+                TaskListControl.Dic.waitForCreate.push(task.PageId);
+                TaskListControl.Dic.map[task.PageId] = "";
+                TaskListControl.value[task.PageId] = task;
+                TaskListControl.appendTaskToList(task, ChannelListControl.channelName[task.PageId], ChannelListControl.deviceUri[task.DeviceId]);
+                $(a).removeClass("selected");
+            }
+        }
+        ChannelListControl.Select.value = new Array();
+    }
+
+    var ChannelListControl = {
+        channelName: new Dictionary(),
+        deviceUri: new Dictionary(),
+        getDeviceUri: function (deviceId) {
+            return tryCatch(function () {
+                return Client.Management().Device.Get(deviceId).Uri;
+            })
+        },
+        Select: {
+            value: new Array(),
+            add: function (id) {
+                var index = this.value.indexOf(id);
+                if (index < 0) {
+                    this.value.push(id);
+                }
+            },
+            remove: function (id) {
+                var index = this.value.indexOf(id);
+                if (index > -1) {
+                    this.value.splice(index, 1);
+                }
+            }
+        },
+        inputs: new Dictionary(),
+        getInput: function () {
+            tryCatch(function () {
+                var userId = getCookie("uid");
+                var inputs = Client.Security().User.Video.Input.List(userId);
+                for (var i = 0; i < inputs.VideoInputChannelPermission.length; i++) {
+                    var input = inputs.VideoInputChannelPermission[i];
+                    ChannelListControl.inputs[input.Id] = input;
+                    var id = new Id(input.Id);
+                    var deviceId = id.getDeviceId();
+                    if (!ChannelListControl.deviceUri[deviceId])
+                        ChannelListControl.deviceUri[deviceId] = ChannelListControl.getDeviceUri(deviceId);
+                }
+            });
+        },
+        list: function () {
+            var ul = getTag("ulChannels");
+            this.inputs.forIn(function (channelId, value) {
+                var li = document.createElement("li");
+                var a = document.createElement("a");
+                a.id = channelId;
+                a.className = "";
+                var example = "rtmp://192.168.18.245/stream?dev_id=00310101031111111000002000000000&slot=1&stream=2&mode=playback&user=admin&password=12345&beg=2016-01-14T00:18:18Z&end=2016-01-14T00:25:04Z";
+                var uri = new Uri(example);
+                uri.Host = Client.Host;
+
+                var id = new Id(channelId);
+                uri.Querys.dev_id = id.getDeviceId();
+                uri.Querys.slot = parseInt(id.ModuleId.No);
+                uri.Querys.user = username;
+                uri.Querys.password = sid;
+                a.className = "text-ellipsis";
+                a.href = uri.toString();
+
+                a.onclick = function () {
+                    if (this.className.indexOf("selected") > -1) {
+                        $(this).removeClass("selected");
+                        ChannelListControl.Select.remove(this.id);
+                    }
+                    else {
+                        $(this).addClass("selected");
+                        ChannelListControl.Select.add(this.id);
+                    }
+                    return false;
+                };
+                a.innerHTML = value.Name;
+                a.title = value.Name + "\n" + ChannelListControl.deviceUri[id.getDeviceId()];
+                li.appendChild(a);
+                ul.appendChild(li);
+            });
+        }
+    }
+
+    var username = "";
+    var sid = "";
+
+
+    function _load() {
+        //var date = new Date();
+        //date.setDate(date.getDate());
+        //init_datepicker("yyyy-mm-dd hh:ii:ss");
+        //getTag("txt_end_time").value = date.format("yyyy-MM-dd HH:mm:ss");
+        //date.setMinutes(date.getMinutes() - 5);
+        //getTag("txt_begin_time").value = date.format("yyyy-MM-dd HH:mm:ss");
+
+        username = getCookie("username")
+        sid = getCookie("sid");
+        ChannelListControl.getInput();
+        ChannelListControl.list();
+        $('#txt_date').datepicker({
+            format: "yyyy-mm-dd",
+        }).val(new Date().format("yyyy-MM-dd"));
+
+        var date = new Date();
+        $("#txt_end_time").timepicker({
+            minuteStep: 1,
+            showSeconds: true,
+            showMeridian: false,
+            defaultTime: date.getHours() + ":" + date.getMinutes() + ":" + "00",
+        });
+        date.setMinutes(date.getMinutes() - 5);
+        $("#txt_begin_time").timepicker({
+            minuteStep: 1,
+            showSeconds: true,
+            showMeridian: false,
+            defaultTime: date.getHours() + ":" + date.getMinutes() + ":" + "00",
+        });
+
+        var a = document.createElement("a");
+        a.href = "download/download_tasks.htm";
+        getTag("test_list").innerHTML = loadPage(a.href);
+    }
+
+    function removeList_Click() {
+        TaskListControl.removeAll();
+    }
+
+    function downloadAll_Click() {
+        TaskListControl.downloadAll();
+    }
+    function reDownloadAll_Click() {
+        TaskListControl.reloadAll();
+    }
+    $(function () {
+        toSetInterval(function () {
+            if (!TaskListControl.Dic.refreshId && TaskListControl.Dic.waitForCreate.length > 0) {
+                TaskListControl.Dic.refreshId = TaskListControl.Dic.waitForCreate[0];
+                var task = TaskListControl.value[TaskListControl.Dic.refreshId];
+                TaskListControl.createTask(task.DeviceId, task.Channel, task.Stream, task.BeginTime, task.EndTime, task.FileFormat, ChannelListControl.channelName[task.PageId], ChannelListControl.deviceUri[task.DeviceId]);
+            }
+            if (!TaskListControl.Dic.refreshId) {
+                if (TaskListControl.errorNum.length > 0 && TaskListControl.Dic.waitForCreate.length == 0) {
+                    $.confirm({
+                        title: "",
+                        text: TaskListControl.errorNum.length + "项任务创建失败，请重新尝试！",
+                        alert: true,
+                        okButton: "确定"
+                    });
+                    TaskListControl.errorNum = new Array();
+                }
+                return;
+            }
+            task = TaskListControl.value[TaskListControl.Dic.refreshId];
+            TaskListControl.refreshItem(ChannelListControl.channelName[task.PageId], ChannelListControl.deviceUri[task.DeviceId]);
+        }, 1000);
+        _load();
+    });
+    </script>
+</body>
+</html>

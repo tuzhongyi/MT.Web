@@ -1,0 +1,332 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>设备列表</title>
+    <link href="../css/howell.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <div class="page-main row">
+        <div class="col-md-12">
+            <div class="widget-container fluid-height clearfix list-width padded background-min-height">
+                <div class="heading list-heading-maxdiv">
+                    <div class="form-group list-heading-div">
+                        &ensp;&ensp;<i class="icon_divice_list mouse_default"></i>
+                        设备列表 <label class="list-count-lable">当前<span id="lblCurrentCount">7</span>条/共<span id="lblTotalCount">7</span>条</label>
+                    </div>
+                    <div>
+                        <div class="pull-left">
+                            <label class="select-title">设备分类:</label><div class="select-div"><select class="form-control" id="ddlClassification" onchange="selectClassification_Click(this.value)"><option value="All">All - 全部</option><option value="IPCamera">IPCamera - IP摄像机</option><option value="DVS">DVS - 数字视频服务器</option><option value="NVR">NVR - 网络视频录像机</option><option value="DVR">DVR - 数字硬盘录像机</option><option value="DigitalMatrix">DigitalMatrix - 数字矩阵</option><option value="HDDecoder">HDDecoder - 高清解码器</option><option value="AnalogMatrix">AnalogMatrix - 模拟矩阵</option><option value="VAS">VAS - 视频分析服务器</option><option value="AAM">AAM - 模拟报警主机</option><option value="NAM">NAM - 网络报警主机</option><option value="VPS">VPS - 视频处理服务器</option><option value="IntegratedMatrix">IntegratedMatrix - 综合矩阵</option><option value="MatrixControlUnit">MatrixControlUnit - 数字矩阵控制单元</option><option value="StreamingMediaServer">StreamingMediaServer - 流媒体服务器</option><option value="DecodingUnit">DecodingUnit - 解码单元</option><option value="EncodingUnit">EncodingUnit - 编码单元</option><option value="NVS">NVS - 网络视频服务器</option><option value="DataServer">DataServer - 数据服务器</option><option value="AcquisitionServer">AcquisitionServer - 数据采集服务器</option><option value="SystemGateway">SystemGateway - 系统网关</option><option value="Camera">Camera - 模拟摄像机</option><option value="UltrasonicProbe">UltrasonicProbe - 超声波报警探头</option></select></div>
+                        </div>
+                        <div>
+                            <a title="删除" class="btn btn-xs btn-primary-outline pull-right div-xsgroup button-img-size" onclick="batchRemoveDevices_Click(this)">
+                                <i class="icon-trash"></i>
+                            </a>
+                            <div title="添加设备" id="btn-addDevice">
+                                <a href="device/device_details.htm" target="false"><a class="btn btn-xs btn-primary-outline pull-right div-xsgroup" style="padding-left: 14px; font-size: 14px;"><i class="icon-plus"></i></a></a>
+                            </div>
+                            <div class="btn-group  pull-right div-xsgroupdown" id="btn-operation">
+                                <div class="btn btn-xs btn-primary btn-xsgroupdown dropdown-toggle" id="operation" data-toggle="dropdown">
+                                    选&ensp;&ensp;择
+                                    <span class="caret"></span>
+                                </div>
+                                <ul class="dropdown-menu xsgroupdown-menu-ul">
+                                    <li class="mouse_pointer">
+                                        <a class="xsgroupdown-menu-ul-li-a" onclick="GroupList.Select.All(Info.ControlIdPrefix.GroupListItem, GroupListItem_SelectAll);">
+                                            全选
+                                        </a>
+                                    </li>
+                                    <li class="mouse_pointer">
+                                        <a class="xsgroupdown-menu-ul-li-a" onclick="GroupList.Select.Inverse(Info.ControlIdPrefix.GroupListItem);">
+                                            反选
+                                        </a>
+                                    </li>
+                                    <li class="mouse_pointer">
+                                        <a class="xsgroupdown-menu-ul-li-a" onclick="GroupList.Select.Cancel(Info.ControlIdPrefix.GroupListItem, GroupListItem_Cancel);">
+                                            取消
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="dList">
+                    <div class="list-group" id="deviceGroupList">
+                        <a name="group_" class="list-group-item mouse_pointer" id="group_00310101011111111000001000000000">
+                            <p class="list-group-item-content">
+                                <div title="IP摄像机" class="icon_btn color list-group-item-name" id="alert_00310101011111111000001000000000">
+                                    <div class="icon-color-btn-background label-lightblue" style="margin-right: 10px;">
+                                        <div class="arrow-left icon-color-btn-triangle"></div>
+                                        <div class="background_icon classification device ipcamera"></div>
+                                    </div>
+                                    <span title="ST-N9211HD">ST-N9211HD</span>
+                                </div>
+                                <div class="pull-right list-lable-btn-operation">
+                                    <a name="a_deviceId" title="删除" class="table-actions mouse_pointer expand-btn" onclick="removeDevice_Click(this, '00310101011111111000001000000000')"><i class="icon-trash"></i></a>
+                                </div><div class="pull-right list-lable-btn-operation">
+                                    <a title="编辑" class="table-actions expand-btn" id="edit_00310101011111111000001000000000" onclick="return editDevice_Click(this)" href="device/device_details.htm?deviceId=00310101011111111000001000000000">
+                                        <i class="icon-edit"></i>
+                                    </a>
+                                </div><div class="pull-right list-lable-btn-operation">
+                                    <a title="统计" class="table-actions expand-btn" onclick="toStatistics_Click(this)" href="device/device_statistics.htm?deviceId=00310101011111111000001000000000"><i class="icon-bar-chart"></i></a>
+                                </div>
+                                <div class="pull-right list-lable-btn-operation">
+                                    <a title="数据采集中心信息" class="table-actions expand-btn" id="acquisition_00310101011111111000001000000000" onclick="return acquisitionDevice_Click(this)" href="device/device_acquisition.htm?deviceId=00310101011111111000001000000000">
+                                        <i class="icon-cloud-upload"></i>
+                                    </a>
+                                </div>
+                                <div class="pull-right popover_control" style="margin-right: 0px;">
+                                    <div style="width: 70px; float: left;">
+                                        <a title="用户" class="popover-control" id="popover_user_00310101011111111000001000000000" href="device/device_users.htm?deviceId=00310101011111111000001000000000">
+                                            <div class="popover_control_item" id="popover_user_icon_00310101011111111000001000000000">
+                                                <div class="icon-user" style="padding-right: 11px;"></div>
+                                                <lable id="popover_user_lbl_00310101011111111000001000000000">1</lable>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div style="width: 70px; float: left;">
+                                        <a title="部门" class="popover-control" id="popover_department_00310101011111111000001000000000" href="device/device_departments.htm?deviceId=00310101011111111000001000000000">
+                                            <div class="popover_control_item" id="popover_department_icon_00310101011111111000001000000000">
+                                                <div class="icon-group" style="padding-right: 11px;"></div>
+                                                <lable id="popover_department_lbl_00310101011111111000001000000000">0</lable>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div style="width: 70px; float: left;">
+                                        <a title="网络接口" class="popover-control" id="popover_network_00310101011111111000001000000000" href="device/device_networks.htm?deviceId=00310101011111111000001000000000">
+                                            <div class="popover_control_item" id="popover_network_icon_00310101011111111000001000000000">
+                                                <div class="icon-code-fork" style="padding-right: 11px;"></div>
+                                                <lable id="popover_network_lbl_00310101011111111000001000000000">0</lable>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div style="width: 70px; float: left;">
+                                        <a title="存储媒介" class="popover-control" id="popover_medium_00310101011111111000001000000000" href="device/device_mediums.htm?deviceId=00310101011111111000001000000000">
+                                            <div class="popover_control_item" id="popover_medium_icon_00310101011111111000001000000000">
+                                                <div class="icon-hdd" style="padding-right: 11px;"></div>
+                                                <lable id="popover_medium_lbl_00310101011111111000001000000000">0</lable>
+                                            </div>
+                                        </a>
+                                    </div><div style="width: 70px; float: left;">
+                                        <a title="视频输入通道" class="popover-control" id="popover_video_input_00310101011111111000001000000000" href="device/video/device_video_simple_inputs.htm?deviceId=00310101011111111000001000000000">
+                                            <div class="popover_control_item" id="popover_video_input_icon_00310101011111111000001000000000">
+                                                <div class="icon-facetime-video" style="padding-right: 11px;"></div>
+                                                <lable id="popover_video_input_lbl_00310101011111111000001000000000">2</lable>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div style="width: 70px; float: left;">
+                                        <a title="视频输出通道" class="popover-control" id="popover_video_output_00310101011111111000001000000000" href="device/video/device_video_simple_outputs.htm?deviceId=00310101011111111000001000000000">
+                                            <div class="popover_control_item" id="popover_video_output_icon_00310101011111111000001000000000">
+                                                <div class="icon-desktop" style="padding-right: 11px;"></div>
+                                                <lable id="popover_video_output_lbl_00310101011111111000001000000000">0</lable>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div style="width: 70px; float: left;">
+                                        <a title="IO输入通道" class="popover-control" id="popover_io_input_00310101011111111000001000000000" href="device/io/device_io_simple_inputs.htm?deviceId=00310101011111111000001000000000">
+                                            <div class="popover_control_item" id="popover_io_input_icon_00310101011111111000001000000000">
+                                                <div class="icon-in" style="padding-right: 11px;"></div>
+                                                <lable id="popover_io_input_lbl_00310101011111111000001000000000">0</lable>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div style="width: 70px; float: left;">
+                                        <a title="IO输出通道" class="popover-control" id="popover_io_output_00310101011111111000001000000000" href="device/io/device_io_simple_outputs.htm?deviceId=00310101011111111000001000000000">
+                                            <div class="popover_control_item" id="popover_io_output_icon_00310101011111111000001000000000">
+                                                <div class="icon-out" style="padding-right: 11px;"></div>
+                                                <lable id="popover_io_output_lbl_00310101011111111000001000000000">1</lable>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </p>
+                        </a>
+                        <a name="group_" class="list-group-item mouse_pointer" id="group_00310101011111111000002000000000">
+                            <p class="list-group-item-content"><div title="IP摄像机" class="icon_btn color list-group-item-name" id="alert_00310101011111111000002000000000"><div class="icon-color-btn-background label-lightblue" style="margin-right: 10px;"><div class="arrow-left icon-color-btn-triangle"></div><div class="background_icon classification device ipcamera"></div></div><span title="111111">111111</span></div><div class="pull-right list-lable-btn-operation"><a name="a_deviceId" title="删除" class="table-actions mouse_pointer expand-btn" onclick="removeDevice_Click(this, '00310101011111111000002000000000')"><i class="icon-trash"></i></a></div><div class="pull-right list-lable-btn-operation"><a title="编辑" class="table-actions expand-btn" id="edit_00310101011111111000002000000000" onclick="return editDevice_Click(this)" href="device/device_details.htm?deviceId=00310101011111111000002000000000"><i class="icon-edit"></i></a></div><div class="pull-right list-lable-btn-operation"><a title="统计" class="table-actions expand-btn" onclick="toStatistics_Click(this)" href="device/device_statistics.htm?deviceId=00310101011111111000002000000000"><i class="icon-bar-chart"></i></a></div><div class="pull-right list-lable-btn-operation"><a title="数据采集中心信息" class="table-actions expand-btn" id="acquisition_00310101011111111000002000000000" onclick="return acquisitionDevice_Click(this)" href="device/device_acquisition.htm?deviceId=00310101011111111000002000000000"><i class="icon-cloud-upload"></i></a></div><div class="pull-right popover_control" style="margin-right: 0px;"><div style="width: 70px; float: left;"><a title="用户" class="popover-control" id="popover_user_00310101011111111000002000000000" href="device/device_users.htm?deviceId=00310101011111111000002000000000"><div class="popover_control_item" id="popover_user_icon_00310101011111111000002000000000"><div class="icon-user" style="padding-right: 11px;"></div><lable id="popover_user_lbl_00310101011111111000002000000000">0</lable></div></a></div><div style="width: 70px; float: left;"><a title="部门" class="popover-control" id="popover_department_00310101011111111000002000000000" href="device/device_departments.htm?deviceId=00310101011111111000002000000000"><div class="popover_control_item" id="popover_department_icon_00310101011111111000002000000000"><div class="icon-group" style="padding-right: 11px;"></div><lable id="popover_department_lbl_00310101011111111000002000000000">0</lable></div></a></div><div style="width: 70px; float: left;"><a title="网络接口" class="popover-control" id="popover_network_00310101011111111000002000000000" href="device/device_networks.htm?deviceId=00310101011111111000002000000000"><div class="popover_control_item" id="popover_network_icon_00310101011111111000002000000000"><div class="icon-code-fork" style="padding-right: 11px;"></div><lable id="popover_network_lbl_00310101011111111000002000000000">0</lable></div></a></div><div style="width: 70px; float: left;"><a title="存储媒介" class="popover-control" id="popover_medium_00310101011111111000002000000000" href="device/device_mediums.htm?deviceId=00310101011111111000002000000000"><div class="popover_control_item" id="popover_medium_icon_00310101011111111000002000000000"><div class="icon-hdd" style="padding-right: 11px;"></div><lable id="popover_medium_lbl_00310101011111111000002000000000">0</lable></div></a></div><div style="width: 70px; float: left;"><a title="视频输入通道" class="popover-control" id="popover_video_input_00310101011111111000002000000000" href="device/video/device_video_simple_inputs.htm?deviceId=00310101011111111000002000000000"><div class="popover_control_item" id="popover_video_input_icon_00310101011111111000002000000000"><div class="icon-facetime-video" style="padding-right: 11px;"></div><lable id="popover_video_input_lbl_00310101011111111000002000000000">0</lable></div></a></div><div style="width: 70px; float: left;"><a title="视频输出通道" class="popover-control" id="popover_video_output_00310101011111111000002000000000" href="device/video/device_video_simple_outputs.htm?deviceId=00310101011111111000002000000000"><div class="popover_control_item" id="popover_video_output_icon_00310101011111111000002000000000"><div class="icon-desktop" style="padding-right: 11px;"></div><lable id="popover_video_output_lbl_00310101011111111000002000000000">1</lable></div></a></div><div style="width: 70px; float: left;"><a title="IO输入通道" class="popover-control" id="popover_io_input_00310101011111111000002000000000" href="device/io/device_io_simple_inputs.htm?deviceId=00310101011111111000002000000000"><div class="popover_control_item" id="popover_io_input_icon_00310101011111111000002000000000"><div class="icon-in" style="padding-right: 11px;"></div><lable id="popover_io_input_lbl_00310101011111111000002000000000">1</lable></div></a></div><div style="width: 70px; float: left;"><a title="IO输出通道" class="popover-control" id="popover_io_output_00310101011111111000002000000000" href="device/io/device_io_simple_outputs.htm?deviceId=00310101011111111000002000000000"><div class="popover_control_item" id="popover_io_output_icon_00310101011111111000002000000000"><div class="icon-out" style="padding-right: 11px;"></div><lable id="popover_io_output_lbl_00310101011111111000002000000000">0</lable></div></a></div></div></p>
+                        </a><a name="group_" class="list-group-item mouse_pointer" id="group_00310101031111111000001000000000"><p class="list-group-item-content"><div title="网络视频录像机" class="icon_btn color list-group-item-name" id="alert_00310101031111111000001000000000"><div class="icon-color-btn-background label-danger" style="margin-right: 10px;"><div class="arrow-left icon-color-btn-triangle"></div><div class="background_icon classification device nvr"></div></div><span title="NVR">NVR</span></div><div class="pull-right list-lable-btn-operation"><a name="a_deviceId" title="删除" class="table-actions mouse_pointer expand-btn" onclick="removeDevice_Click(this, '00310101031111111000001000000000')"><i class="icon-trash"></i></a></div><div class="pull-right list-lable-btn-operation"><a title="编辑" class="table-actions expand-btn" id="edit_00310101031111111000001000000000" onclick="return editDevice_Click(this)" href="device/device_details.htm?deviceId=00310101031111111000001000000000"><i class="icon-edit"></i></a></div><div class="pull-right list-lable-btn-operation"><a title="统计" class="table-actions expand-btn" onclick="toStatistics_Click(this)" href="device/device_statistics.htm?deviceId=00310101031111111000001000000000"><i class="icon-bar-chart"></i></a></div><div class="pull-right list-lable-btn-operation"><a title="数据采集中心信息" class="table-actions expand-btn" id="acquisition_00310101031111111000001000000000" onclick="return acquisitionDevice_Click(this)" href="device/device_acquisition.htm?deviceId=00310101031111111000001000000000"><i class="icon-cloud-upload"></i></a></div><div class="pull-right popover_control" style="margin-right: 0px;"><div style="width: 70px; float: left;"><a title="用户" class="popover-control" id="popover_user_00310101031111111000001000000000" href="device/device_users.htm?deviceId=00310101031111111000001000000000"><div class="popover_control_item" id="popover_user_icon_00310101031111111000001000000000"><div class="icon-user" style="padding-right: 11px;"></div><lable id="popover_user_lbl_00310101031111111000001000000000">0</lable></div></a></div><div style="width: 70px; float: left;"><a title="部门" class="popover-control" id="popover_department_00310101031111111000001000000000" href="device/device_departments.htm?deviceId=00310101031111111000001000000000"><div class="popover_control_item" id="popover_department_icon_00310101031111111000001000000000"><div class="icon-group" style="padding-right: 11px;"></div><lable id="popover_department_lbl_00310101031111111000001000000000">0</lable></div></a></div><div style="width: 70px; float: left;"><a title="网络接口" class="popover-control" id="popover_network_00310101031111111000001000000000" href="device/device_networks.htm?deviceId=00310101031111111000001000000000"><div class="popover_control_item" id="popover_network_icon_00310101031111111000001000000000"><div class="icon-code-fork" style="padding-right: 11px;"></div><lable id="popover_network_lbl_00310101031111111000001000000000">0</lable></div></a></div><div style="width: 70px; float: left;"><a title="存储媒介" class="popover-control" id="popover_medium_00310101031111111000001000000000" href="device/device_mediums.htm?deviceId=00310101031111111000001000000000"><div class="popover_control_item" id="popover_medium_icon_00310101031111111000001000000000"><div class="icon-hdd" style="padding-right: 11px;"></div><lable id="popover_medium_lbl_00310101031111111000001000000000">0</lable></div></a></div><div style="width: 70px; float: left;"><a title="视频输入通道" class="popover-control" id="popover_video_input_00310101031111111000001000000000" href="device/video/device_video_simple_inputs.htm?deviceId=00310101031111111000001000000000"><div class="popover_control_item" id="popover_video_input_icon_00310101031111111000001000000000"><div class="icon-facetime-video" style="padding-right: 11px;"></div><lable id="popover_video_input_lbl_00310101031111111000001000000000">10</lable></div></a></div><div style="width: 70px; float: left;"><a title="视频输出通道" class="popover-control" id="popover_video_output_00310101031111111000001000000000" href="device/video/device_video_simple_outputs.htm?deviceId=00310101031111111000001000000000"><div class="popover_control_item" id="popover_video_output_icon_00310101031111111000001000000000"><div class="icon-desktop" style="padding-right: 11px;"></div><lable id="popover_video_output_lbl_00310101031111111000001000000000">0</lable></div></a></div><div style="width: 70px; float: left;"><a title="IO输入通道" class="popover-control" id="popover_io_input_00310101031111111000001000000000" href="device/io/device_io_simple_inputs.htm?deviceId=00310101031111111000001000000000"><div class="popover_control_item" id="popover_io_input_icon_00310101031111111000001000000000"><div class="icon-in" style="padding-right: 11px;"></div><lable id="popover_io_input_lbl_00310101031111111000001000000000">0</lable></div></a></div><div style="width: 70px; float: left;"><a title="IO输出通道" class="popover-control" id="popover_io_output_00310101031111111000001000000000" href="device/io/device_io_simple_outputs.htm?deviceId=00310101031111111000001000000000"><div class="popover_control_item" id="popover_io_output_icon_00310101031111111000001000000000"><div class="icon-out" style="padding-right: 11px;"></div><lable id="popover_io_output_lbl_00310101031111111000001000000000">0</lable></div></a></div></div></p></a><a name="group_" class="list-group-item mouse_pointer" id="group_00310101061111111000001000000000"><p class="list-group-item-content"><div title="高清解码器" class="icon_btn color list-group-item-name" id="alert_00310101061111111000001000000000"><div class="icon-color-btn-background label-success" style="margin-right: 10px;"><div class="arrow-left icon-color-btn-triangle"></div><div class="background_icon classification device hddecoder"></div></div><span title="高清解码器">高清解码器</span></div><div class="pull-right list-lable-btn-operation"><a name="a_deviceId" title="删除" class="table-actions mouse_pointer expand-btn" onclick="removeDevice_Click(this, '00310101061111111000001000000000')"><i class="icon-trash"></i></a></div><div class="pull-right list-lable-btn-operation"><a title="编辑" class="table-actions expand-btn" id="edit_00310101061111111000001000000000" onclick="return editDevice_Click(this)" href="device/device_details.htm?deviceId=00310101061111111000001000000000"><i class="icon-edit"></i></a></div><div class="pull-right list-lable-btn-operation"><a title="统计" class="table-actions expand-btn" onclick="toStatistics_Click(this)" href="device/device_statistics.htm?deviceId=00310101061111111000001000000000"><i class="icon-bar-chart"></i></a></div><div class="pull-right list-lable-btn-operation"><a title="数据采集中心信息" class="table-actions expand-btn" id="acquisition_00310101061111111000001000000000" onclick="return acquisitionDevice_Click(this)" href="device/device_acquisition.htm?deviceId=00310101061111111000001000000000"><i class="icon-cloud-upload"></i></a></div><div class="pull-right popover_control" style="margin-right: 0px;"><div style="width: 70px; float: left;"><a title="用户" class="popover-control" id="popover_user_00310101061111111000001000000000" href="device/device_users.htm?deviceId=00310101061111111000001000000000"><div class="popover_control_item" id="popover_user_icon_00310101061111111000001000000000"><div class="icon-user" style="padding-right: 11px;"></div><lable id="popover_user_lbl_00310101061111111000001000000000">0</lable></div></a></div><div style="width: 70px; float: left;"><a title="部门" class="popover-control" id="popover_department_00310101061111111000001000000000" href="device/device_departments.htm?deviceId=00310101061111111000001000000000"><div class="popover_control_item" id="popover_department_icon_00310101061111111000001000000000"><div class="icon-group" style="padding-right: 11px;"></div><lable id="popover_department_lbl_00310101061111111000001000000000">0</lable></div></a></div><div style="width: 70px; float: left;"><a title="网络接口" class="popover-control" id="popover_network_00310101061111111000001000000000" href="device/device_networks.htm?deviceId=00310101061111111000001000000000"><div class="popover_control_item" id="popover_network_icon_00310101061111111000001000000000"><div class="icon-code-fork" style="padding-right: 11px;"></div><lable id="popover_network_lbl_00310101061111111000001000000000">0</lable></div></a></div><div style="width: 70px; float: left;"><a title="存储媒介" class="popover-control" id="popover_medium_00310101061111111000001000000000" href="device/device_mediums.htm?deviceId=00310101061111111000001000000000"><div class="popover_control_item" id="popover_medium_icon_00310101061111111000001000000000"><div class="icon-hdd" style="padding-right: 11px;"></div><lable id="popover_medium_lbl_00310101061111111000001000000000">0</lable></div></a></div><div style="width: 70px; float: left;"><a title="视频输入通道" class="popover-control" id="popover_video_input_00310101061111111000001000000000" href="device/video/device_video_simple_inputs.htm?deviceId=00310101061111111000001000000000"><div class="popover_control_item" id="popover_video_input_icon_00310101061111111000001000000000"><div class="icon-facetime-video" style="padding-right: 11px;"></div><lable id="popover_video_input_lbl_00310101061111111000001000000000">0</lable></div></a></div><div style="width: 70px; float: left;"><a title="视频输出通道" class="popover-control" id="popover_video_output_00310101061111111000001000000000" href="device/video/device_video_simple_outputs.htm?deviceId=00310101061111111000001000000000"><div class="popover_control_item" id="popover_video_output_icon_00310101061111111000001000000000"><div class="icon-desktop" style="padding-right: 11px;"></div><lable id="popover_video_output_lbl_00310101061111111000001000000000">0</lable></div></a></div><div style="width: 70px; float: left;"><a title="IO输入通道" class="popover-control" id="popover_io_input_00310101061111111000001000000000" href="device/io/device_io_simple_inputs.htm?deviceId=00310101061111111000001000000000"><div class="popover_control_item" id="popover_io_input_icon_00310101061111111000001000000000"><div class="icon-in" style="padding-right: 11px;"></div><lable id="popover_io_input_lbl_00310101061111111000001000000000">0</lable></div></a></div><div style="width: 70px; float: left;"><a title="IO输出通道" class="popover-control" id="popover_io_output_00310101061111111000001000000000" href="device/io/device_io_simple_outputs.htm?deviceId=00310101061111111000001000000000"><div class="popover_control_item" id="popover_io_output_icon_00310101061111111000001000000000"><div class="icon-out" style="padding-right: 11px;"></div><lable id="popover_io_output_lbl_00310101061111111000001000000000">0</lable></div></a></div></div></p></a><a name="group_" class="list-group-item mouse_pointer" id="group_00310101151111111000001000000000"><p class="list-group-item-content"><div title="解码单元" class="icon_btn color list-group-item-name" id="alert_00310101151111111000001000000000"><div class="icon-color-btn-background label-doderblue" style="margin-right: 10px;"><div class="arrow-left icon-color-btn-triangle"></div><div class="background_icon classification device decodingunit"></div></div><span title="解码器">解码器</span></div><div class="pull-right list-lable-btn-operation"><a name="a_deviceId" title="删除" class="table-actions mouse_pointer expand-btn" onclick="removeDevice_Click(this, '00310101151111111000001000000000')"><i class="icon-trash"></i></a></div><div class="pull-right list-lable-btn-operation"><a title="编辑" class="table-actions expand-btn" id="edit_00310101151111111000001000000000" onclick="return editDevice_Click(this)" href="device/device_details.htm?deviceId=00310101151111111000001000000000"><i class="icon-edit"></i></a></div><div class="pull-right list-lable-btn-operation"><a title="统计" class="table-actions expand-btn" onclick="toStatistics_Click(this)" href="device/device_statistics.htm?deviceId=00310101151111111000001000000000"><i class="icon-bar-chart"></i></a></div><div class="pull-right list-lable-btn-operation"><a title="数据采集中心信息" class="table-actions expand-btn" id="acquisition_00310101151111111000001000000000" onclick="return acquisitionDevice_Click(this)" href="device/device_acquisition.htm?deviceId=00310101151111111000001000000000"><i class="icon-cloud-upload"></i></a></div><div class="pull-right popover_control" style="margin-right: 0px;"><div style="width: 70px; float: left;"><a title="用户" class="popover-control" id="popover_user_00310101151111111000001000000000" href="device/device_users.htm?deviceId=00310101151111111000001000000000"><div class="popover_control_item" id="popover_user_icon_00310101151111111000001000000000"><div class="icon-user" style="padding-right: 11px;"></div><lable id="popover_user_lbl_00310101151111111000001000000000">0</lable></div></a></div><div style="width: 70px; float: left;"><a title="部门" class="popover-control" id="popover_department_00310101151111111000001000000000" href="device/device_departments.htm?deviceId=00310101151111111000001000000000"><div class="popover_control_item" id="popover_department_icon_00310101151111111000001000000000"><div class="icon-group" style="padding-right: 11px;"></div><lable id="popover_department_lbl_00310101151111111000001000000000">0</lable></div></a></div><div style="width: 70px; float: left;"><a title="网络接口" class="popover-control" id="popover_network_00310101151111111000001000000000" href="device/device_networks.htm?deviceId=00310101151111111000001000000000"><div class="popover_control_item" id="popover_network_icon_00310101151111111000001000000000"><div class="icon-code-fork" style="padding-right: 11px;"></div><lable id="popover_network_lbl_00310101151111111000001000000000">0</lable></div></a></div><div style="width: 70px; float: left;"><a title="存储媒介" class="popover-control" id="popover_medium_00310101151111111000001000000000" href="device/device_mediums.htm?deviceId=00310101151111111000001000000000"><div class="popover_control_item" id="popover_medium_icon_00310101151111111000001000000000"><div class="icon-hdd" style="padding-right: 11px;"></div><lable id="popover_medium_lbl_00310101151111111000001000000000">0</lable></div></a></div><div style="width: 70px; float: left;"><a title="视频输入通道" class="popover-control" id="popover_video_input_00310101151111111000001000000000" href="device/video/device_video_simple_inputs.htm?deviceId=00310101151111111000001000000000"><div class="popover_control_item" id="popover_video_input_icon_00310101151111111000001000000000"><div class="icon-facetime-video" style="padding-right: 11px;"></div><lable id="popover_video_input_lbl_00310101151111111000001000000000">10</lable></div></a></div><div style="width: 70px; float: left;"><a title="视频输出通道" class="popover-control" id="popover_video_output_00310101151111111000001000000000" href="device/video/device_video_simple_outputs.htm?deviceId=00310101151111111000001000000000"><div class="popover_control_item" id="popover_video_output_icon_00310101151111111000001000000000"><div class="icon-desktop" style="padding-right: 11px;"></div><lable id="popover_video_output_lbl_00310101151111111000001000000000">0</lable></div></a></div><div style="width: 70px; float: left;"><a title="IO输入通道" class="popover-control" id="popover_io_input_00310101151111111000001000000000" href="device/io/device_io_simple_inputs.htm?deviceId=00310101151111111000001000000000"><div class="popover_control_item" id="popover_io_input_icon_00310101151111111000001000000000"><div class="icon-in" style="padding-right: 11px;"></div><lable id="popover_io_input_lbl_00310101151111111000001000000000">0</lable></div></a></div><div style="width: 70px; float: left;"><a title="IO输出通道" class="popover-control" id="popover_io_output_00310101151111111000001000000000" href="device/io/device_io_simple_outputs.htm?deviceId=00310101151111111000001000000000"><div class="popover_control_item" id="popover_io_output_icon_00310101151111111000001000000000"><div class="icon-out" style="padding-right: 11px;"></div><lable id="popover_io_output_lbl_00310101151111111000001000000000">0</lable></div></a></div></div></p></a><a name="group_" class="list-group-item mouse_pointer" id="group_00310101151111111000002000000000"><p class="list-group-item-content"><div title="解码单元" class="icon_btn color list-group-item-name" id="alert_00310101151111111000002000000000"><div class="icon-color-btn-background label-doderblue" style="margin-right: 10px;"><div class="arrow-left icon-color-btn-triangle"></div><div class="background_icon classification device decodingunit"></div></div><span title="解码器2">解码器2</span></div><div class="pull-right list-lable-btn-operation"><a name="a_deviceId" title="删除" class="table-actions mouse_pointer expand-btn" onclick="removeDevice_Click(this, '00310101151111111000002000000000')"><i class="icon-trash"></i></a></div><div class="pull-right list-lable-btn-operation"><a title="编辑" class="table-actions expand-btn" id="edit_00310101151111111000002000000000" onclick="return editDevice_Click(this)" href="device/device_details.htm?deviceId=00310101151111111000002000000000"><i class="icon-edit"></i></a></div><div class="pull-right list-lable-btn-operation"><a title="统计" class="table-actions expand-btn" onclick="toStatistics_Click(this)" href="device/device_statistics.htm?deviceId=00310101151111111000002000000000"><i class="icon-bar-chart"></i></a></div><div class="pull-right list-lable-btn-operation"><a title="数据采集中心信息" class="table-actions expand-btn" id="acquisition_00310101151111111000002000000000" onclick="return acquisitionDevice_Click(this)" href="device/device_acquisition.htm?deviceId=00310101151111111000002000000000"><i class="icon-cloud-upload"></i></a></div><div class="pull-right popover_control" style="margin-right: 0px;"><div style="width: 70px; float: left;"><a title="用户" class="popover-control" id="popover_user_00310101151111111000002000000000" href="device/device_users.htm?deviceId=00310101151111111000002000000000"><div class="popover_control_item" id="popover_user_icon_00310101151111111000002000000000"><div class="icon-user" style="padding-right: 11px;"></div><lable id="popover_user_lbl_00310101151111111000002000000000">1</lable></div></a></div><div style="width: 70px; float: left;"><a title="部门" class="popover-control" id="popover_department_00310101151111111000002000000000" href="device/device_departments.htm?deviceId=00310101151111111000002000000000"><div class="popover_control_item" id="popover_department_icon_00310101151111111000002000000000"><div class="icon-group" style="padding-right: 11px;"></div><lable id="popover_department_lbl_00310101151111111000002000000000">0</lable></div></a></div><div style="width: 70px; float: left;"><a title="网络接口" class="popover-control" id="popover_network_00310101151111111000002000000000" href="device/device_networks.htm?deviceId=00310101151111111000002000000000"><div class="popover_control_item" id="popover_network_icon_00310101151111111000002000000000"><div class="icon-code-fork" style="padding-right: 11px;"></div><lable id="popover_network_lbl_00310101151111111000002000000000">0</lable></div></a></div><div style="width: 70px; float: left;"><a title="存储媒介" class="popover-control" id="popover_medium_00310101151111111000002000000000" href="device/device_mediums.htm?deviceId=00310101151111111000002000000000"><div class="popover_control_item" id="popover_medium_icon_00310101151111111000002000000000"><div class="icon-hdd" style="padding-right: 11px;"></div><lable id="popover_medium_lbl_00310101151111111000002000000000">0</lable></div></a></div><div style="width: 70px; float: left;"><a title="视频输入通道" class="popover-control" id="popover_video_input_00310101151111111000002000000000" href="device/video/device_video_simple_inputs.htm?deviceId=00310101151111111000002000000000"><div class="popover_control_item" id="popover_video_input_icon_00310101151111111000002000000000"><div class="icon-facetime-video" style="padding-right: 11px;"></div><lable id="popover_video_input_lbl_00310101151111111000002000000000">0</lable></div></a></div><div style="width: 70px; float: left;"><a title="视频输出通道" class="popover-control" id="popover_video_output_00310101151111111000002000000000" href="device/video/device_video_simple_outputs.htm?deviceId=00310101151111111000002000000000"><div class="popover_control_item" id="popover_video_output_icon_00310101151111111000002000000000"><div class="icon-desktop" style="padding-right: 11px;"></div><lable id="popover_video_output_lbl_00310101151111111000002000000000">0</lable></div></a></div><div style="width: 70px; float: left;"><a title="IO输入通道" class="popover-control" id="popover_io_input_00310101151111111000002000000000" href="device/io/device_io_simple_inputs.htm?deviceId=00310101151111111000002000000000"><div class="popover_control_item" id="popover_io_input_icon_00310101151111111000002000000000"><div class="icon-in" style="padding-right: 11px;"></div><lable id="popover_io_input_lbl_00310101151111111000002000000000">0</lable></div></a></div><div style="width: 70px; float: left;"><a title="IO输出通道" class="popover-control" id="popover_io_output_00310101151111111000002000000000" href="device/io/device_io_simple_outputs.htm?deviceId=00310101151111111000002000000000"><div class="popover_control_item" id="popover_io_output_icon_00310101151111111000002000000000"><div class="icon-out" style="padding-right: 11px;"></div><lable id="popover_io_output_lbl_00310101151111111000002000000000">0</lable></div></a></div></div></p></a><a name="group_" class="list-group-item mouse_pointer" id="group_00310101221111111000001000000000"><p class="list-group-item-content"><div title="超声波报警探头" class="icon_btn color list-group-item-name" id="alert_00310101221111111000001000000000"><div class="icon-color-btn-background label-taro" style="margin-right: 10px;"><div class="arrow-left icon-color-btn-triangle"></div><div class="background_icon classification device ultrasonicprobe"></div></div><span title="None">None</span></div><div class="pull-right list-lable-btn-operation"><a name="a_deviceId" title="删除" class="table-actions mouse_pointer expand-btn" onclick="removeDevice_Click(this, '00310101221111111000001000000000')"><i class="icon-trash"></i></a></div><div class="pull-right list-lable-btn-operation"><a title="编辑" class="table-actions expand-btn" id="edit_00310101221111111000001000000000" onclick="return editDevice_Click(this)" href="device/device_details.htm?deviceId=00310101221111111000001000000000"><i class="icon-edit"></i></a></div><div class="pull-right list-lable-btn-operation"><a title="统计" class="table-actions expand-btn" onclick="toStatistics_Click(this)" href="device/device_statistics.htm?deviceId=00310101221111111000001000000000"><i class="icon-bar-chart"></i></a></div><div class="pull-right list-lable-btn-operation"><a title="数据采集中心信息" class="table-actions expand-btn" id="acquisition_00310101221111111000001000000000" onclick="return acquisitionDevice_Click(this)" href="device/device_acquisition.htm?deviceId=00310101221111111000001000000000"><i class="icon-cloud-upload"></i></a></div><div class="pull-right popover_control" style="margin-right: 0px;"><div style="width: 70px; float: left;"><a title="用户" class="popover-control" id="popover_user_00310101221111111000001000000000" href="device/device_users.htm?deviceId=00310101221111111000001000000000"><div class="popover_control_item" id="popover_user_icon_00310101221111111000001000000000"><div class="icon-user" style="padding-right: 11px;"></div><lable id="popover_user_lbl_00310101221111111000001000000000">0</lable></div></a></div><div style="width: 70px; float: left;"><a title="部门" class="popover-control" id="popover_department_00310101221111111000001000000000" href="device/device_departments.htm?deviceId=00310101221111111000001000000000"><div class="popover_control_item" id="popover_department_icon_00310101221111111000001000000000"><div class="icon-group" style="padding-right: 11px;"></div><lable id="popover_department_lbl_00310101221111111000001000000000">0</lable></div></a></div><div style="width: 70px; float: left;"><a title="网络接口" class="popover-control" id="popover_network_00310101221111111000001000000000" href="device/device_networks.htm?deviceId=00310101221111111000001000000000"><div class="popover_control_item" id="popover_network_icon_00310101221111111000001000000000"><div class="icon-code-fork" style="padding-right: 11px;"></div><lable id="popover_network_lbl_00310101221111111000001000000000">1</lable></div></a></div><div style="width: 70px; float: left;"><a title="存储媒介" class="popover-control" id="popover_medium_00310101221111111000001000000000" href="device/device_mediums.htm?deviceId=00310101221111111000001000000000"><div class="popover_control_item" id="popover_medium_icon_00310101221111111000001000000000"><div class="icon-hdd" style="padding-right: 11px;"></div><lable id="popover_medium_lbl_00310101221111111000001000000000">1</lable></div></a></div><div style="width: 70px; float: left;"><a title="视频输入通道" class="popover-control" id="popover_video_input_00310101221111111000001000000000" href="device/video/device_video_simple_inputs.htm?deviceId=00310101221111111000001000000000"><div class="popover_control_item" id="popover_video_input_icon_00310101221111111000001000000000"><div class="icon-facetime-video" style="padding-right: 11px;"></div><lable id="popover_video_input_lbl_00310101221111111000001000000000">0</lable></div></a></div><div style="width: 70px; float: left;"><a title="视频输出通道" class="popover-control" id="popover_video_output_00310101221111111000001000000000" href="device/video/device_video_simple_outputs.htm?deviceId=00310101221111111000001000000000"><div class="popover_control_item" id="popover_video_output_icon_00310101221111111000001000000000"><div class="icon-desktop" style="padding-right: 11px;"></div><lable id="popover_video_output_lbl_00310101221111111000001000000000">0</lable></div></a></div><div style="width: 70px; float: left;"><a title="IO输入通道" class="popover-control" id="popover_io_input_00310101221111111000001000000000" href="device/io/device_io_simple_inputs.htm?deviceId=00310101221111111000001000000000"><div class="popover_control_item" id="popover_io_input_icon_00310101221111111000001000000000"><div class="icon-in" style="padding-right: 11px;"></div><lable id="popover_io_input_lbl_00310101221111111000001000000000">32</lable></div></a></div><div style="width: 70px; float: left;"><a title="IO输出通道" class="popover-control" id="popover_io_output_00310101221111111000001000000000" href="device/io/device_io_simple_outputs.htm?deviceId=00310101221111111000001000000000"><div class="popover_control_item" id="popover_io_output_icon_00310101221111111000001000000000"><div class="icon-out" style="padding-right: 11px;"></div><lable id="popover_io_output_lbl_00310101221111111000001000000000">4</lable></div></a></div></div></p></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 lazyload-div" id="divLazyload">
+                <div class="btn btn-lg btn-block btn-default" id="load-more" style="display: none;"><i class="icon-spinner icon-spin"></i>加载中……</div>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <!-- Navigation -->
+        <div class="navbar navbar-fixed-top scroll-hide">
+            <div class="container-fluid top-bar">
+                <div class="pull-right">
+                    <ul class="nav navbar-nav pull-right">
+                        <!--<li class="dropdown messages hidden-xs"><a class="dropdown-toggle" data-toggle="dropdown"
+                            href="#"><span aria-hidden="true" class="icon message"></span>
+                            <div class="sr-only">
+                                Messages
+                            </div>
+                            <p class="counter">
+                                3
+                            </p>
+                        </a></li>-->
+
+                        <li class="dropdown settings hidden-xs">
+                            <a class="dropdown-toggle" onclick="window.close()" href="#">
+                                <span class="icon exit" aria-hidden="true"></span>
+                                <div class="sr-only">
+                                    Exit
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <a class="logo" onclick="Goto(Navigation.security.index);" href="#"></a>
+                <!--<form class="navbar-form form-inline col-md-2 hidden-xs">
+                <input class="form-control" placeholder="Search" type="text">
+                <label></label>
+                </form>-->
+            </div>
+            <div class="container-fluid main-nav clearfix">
+                <div class="nav-collapse">
+                    <ul class="nav">
+                        <li style="width: 8px;">
+                        </li>
+                        <li>
+                            <a onclick="Goto(Navigation.index)" href="#">
+                                <span class="icon home" aria-hidden="true"></span>主页
+                            </a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" data-toggle="dropdown">
+                                <span class="icon device" aria-hidden="true"></span>设备管理<b class="caret"></b>
+                            </a>
+                            <iframe class="dropdown-menu" style="border: 1px solid rgb(221, 221, 221); border-image: none; width: 150px; height: 307px;"></iframe>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a onclick="Goto(Navigation.management.device.list);" href="#">
+                                        <p>
+                                            设备列表
+                                        </p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a onclick="Goto(Navigation.management.device.searching);" href="#">
+                                        <p>
+                                            搜索设备
+                                        </p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a onclick="Goto(Navigation.management.device.association);" href="#">
+                                        <p>
+                                            关联设备
+                                        </p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a onclick="Goto(Navigation.event.linkage.list);" href="#">
+                                        <p>
+                                            联动列表
+                                        </p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a onclick="Goto(Navigation.event.record.list);" href="#">
+                                        <p>
+                                            报警记录
+                                        </p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a onclick="Goto(Navigation.map);" href="#">
+                                        <p>
+                                            地图
+                                        </p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a onclick="Goto(Navigation.annunciator.modbus);" href="#">
+                                        <p>
+                                            设置报警器
+                                        </p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a onclick="Goto(Navigation.video);" href="#">
+                                        <p>
+                                            视频
+                                        </p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a onclick="Goto(Navigation.security.user.list);" href="#" data-toggle="dropdown">
+                                <span class="icon-user" aria-hidden="true" style="color: rgb(0, 122, 255);"></span>用户管理<!--<b class="caret"></b>-->
+                            </a>
+                            <!--<ul class="dropdown-menu">
+                                <li>
+                                    <a href="#" onclick="Goto(Navigation.security.user.list)">
+                                        <p>
+                                            用户列表
+                                        </p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" onclick="Goto(Navigation.security.user.item)">
+                                        <p>
+                                            添加用户
+                                        </p>
+                                    </a>
+                                </li>
+                            </ul>-->
+                        </li>
+                        <li class="dropdown">
+                            <a onclick="Goto(Navigation.security.department.list);" href="#" data-toggle="dropdown">
+                                <span class="icon-group" aria-hidden="true" style="color: rgb(0, 122, 255); font-size: 26px;"></span>部门管理<!--<b class="caret"></b>-->
+                            </a>
+                            <!--<ul class="dropdown-menu">
+                                <li>
+                                    <a href="#" onclick="Goto(Navigation.security.department.list);">
+                                        <p>
+                                            输入通道列表
+                                        </p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" onclick="Goto(Navigation.security.department.item);">
+                                        <p>
+                                            添加输入通道
+                                        </p>
+                                    </a>
+                                </li>
+                            </ul>-->
+                        </li>
+                        <!--<li class="dropdown"><a data-toggle="dropdown" href="#"><span aria-hidden="true"
+                            class="icon permissions"></span>权限管理<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#" onclick="Goto(Navigation.security.permissions.users);">
+                                    <p>
+                                        用户权限
+                                    </p>
+                                </a></li>
+                                <li><a href="#" onclick="Goto(Navigation.security.permissions.departments);">
+                                    <p>
+                                        输入通道权限
+                                    </p>
+                                </a></li>
+                            </ul>
+                        </li>-->
+                    </ul>
+                    <div id="table_head" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
+        <a class="to-top" onclick="document.documentElement.scrollTop = 0;">
+            <div class="pic"></div>
+        </a>
+        <!-- End Navigation  src="service.htm" -->
+    </div>
+</body>
+</html>

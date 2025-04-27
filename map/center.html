@@ -1,0 +1,678 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv=" X-UA-COMPATIBLE" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>地图</title>
+    <link href="../css/bootstrap/bootstrap-switch.css" rel="stylesheet" />
+    <link href="../css/howell.css" rel="stylesheet" />
+    <link href="map.css" rel="stylesheet" />
+    <script type="text/javascript" src="../js/howell.js/ext.js"></script>
+    <script type="text/javascript" src="../js/jquery/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="../js/jquery/jquery-ui.js"></script>
+    <script type="text/javascript" src="../js/jquery/jquery.confirm.js"></script>
+    <script type="text/javascript" src="../js/bootstrap/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap/bootstrap-switch.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap/bootstrap-fileupload.js"></script>
+    <script type="text/javascript" src="../js/bootstrap/bootstrap-datepicker.js"></script>
+    <script type="text/javascript" src="../js/imported.js"></script>
+    <script type="text/javascript" src="../js/language/chinese.js"></script>
+    <script type="text/javascript" src="../js/howell.js/ext.js"></script>
+    <script type="text/javascript" src="../js/howell.js/howell.js"></script>
+    <script type="text/javascript" src="../js/nav.js"></script>
+    <script type="text/javascript" src="../js/howell.js/guid.js"></script>
+    <script src="../js/howell.js/httpService.js"></script>
+    <script type="text/javascript" src="../js/client/enum.js"></script>
+    <script type="text/javascript" src="../js/client/struct.js"></script>
+    <script type="text/javascript" src="../js/client/management.js"></script>
+    <script type="text/javascript" src="../js/client/security.js"></script>
+    <script type="text/javascript" src="../js/howell.js/webSocketServer.js"></script>
+    <script type="text/javascript" src="../js/client/adc.js"></script>
+    <script type="text/javascript" src="../js/client/modbus.js"></script>
+    <script type="text/javascript" src="../js/client/client.js"></script>
+    <script type="text/javascript" src="map.js"></script>
+    <script type="text/javascript" src="../js/base64.js"></script>
+    <script type="text/javascript" src="../js/howell.js/howell.control.js"></script>
+    <script type="text/javascript" src="../js/howell.js/howell.convert.js"></script>
+    <script type="text/javascript" src="center.js"></script>
+    <script type="text/javascript" src="../event/record/record_list_map.js"></script>
+</head>
+<body>
+    <link href="css/bootstrap/bootstrap-switch.css" rel="stylesheet" />
+    <link href="map/map.css" rel="stylesheet" />
+    <script type="text/javascript" src="js/jquery/jquery.confirm.js"></script>
+    <script type="text/javascript" src="js/bootstrap/bootstrap-switch.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap/bootstrap-fileupload.js"></script>
+    <script type="text/javascript" src="js/bootstrap/bootstrap-datepicker.js"></script>
+    <script type="text/javascript" src="js/howell.js/guid.js"></script>
+    <script type="text/javascript" src="js/howell.js/httpService.js"></script>
+    <script type="text/javascript" src="js/client/management.js"></script>
+    <script type="text/javascript" src="js/howell.js/webSocketServer.js"></script>
+    <script type="text/javascript" src="js/client/adc.js"></script>
+    <script type="text/javascript" src="js/client/modbus.js"></script>
+    <script type="text/javascript" src="map/map.js"></script>
+    <script type="text/javascript" src="map/center.js"></script>
+    <script type="text/javascript" src="event/record/record_list_map.js"></script>
+    <style type="text/css">
+        .fileupload .btn {
+            margin: 0 10px 10px 0;
+        }
+
+        .btn-permission.urgent {
+            border-color: #d9534f !important;
+            color: #d9534f !important;
+        }
+
+            .btn-permission.urgent:hover {
+                border-color: #d9534f !important;
+                color: #d9534f !important;
+            }
+
+            .btn-permission.urgent.selected {
+                background-color: #d9534f !important;
+                border-color: #d9534f !important;
+                color: white !important;
+            }
+
+        .btn-permission.important {
+            border-color: #f0ad4e !important;
+            color: #f0ad4e !important;
+        }
+
+            .btn-permission.important:hover {
+                border-color: #f0ad4e !important;
+                color: #f0ad4e !important;
+            }
+
+            .btn-permission.important.selected {
+                background-color: #f0ad4e !important;
+                border-color: #f0ad4e !important;
+                color: white !important;
+            }
+
+        .btn-permission.commonly {
+            border-color: #5bc0de !important;
+            color: #5bc0de !important;
+        }
+
+            .btn-permission.commonly:hover {
+                border-color: #5bc0de !important;
+                color: #5bc0de !important;
+            }
+
+            .btn-permission.commonly.selected {
+                background-color: #5bc0de !important;
+                border-color: #5bc0de !important;
+                color: white !important;
+            }
+
+
+
+        .btn-permission.unknown {
+            border-color: #999 !important;
+            color: #999 !important;
+        }
+
+            .btn-permission.unknown:hover {
+                border-color: #999 !important;
+                color: #999 !important;
+            }
+
+            .btn-permission.unknown.selected {
+                background-color: #999 !important;
+                border-color: #999 !important;
+                color: white !important;
+            }
+
+        ul .selected {
+            background-color: rgb(253, 243, 228);
+        }
+
+        .tab-content ul {
+            padding-left: 20px;
+        }
+
+            .tab-content ul li {
+                cursor: pointer;
+                padding-left: 0px;
+                list-style-type: none;
+            }
+
+                .tab-content ul li.bind .delete {
+                    margin-right: -15px;
+                    margin-top: 3px;
+                }
+
+
+
+                .tab-content ul li .text-ellipsis {
+                    max-width: 150px;
+                }
+
+                .tab-content ul li .delete {
+                    margin-top: 5px;
+                }
+
+                .tab-content ul li .edit {
+                    margin-top: 5px;
+                }
+
+        .list-group-item {
+            padding: 0 0 0 0;
+        }
+
+            .list-group-item p {
+                padding: 10px 15px 10px 15px;
+            }
+
+        .map-nev {
+            height: 50px;
+        }
+
+        .prompt {
+            width: 300px;
+            height: 200px;
+            bottom: 10px;
+            right: 10px;
+            background-color: #ddd;
+            position: absolute;
+        }
+
+            .prompt ul {
+                padding: 15px 15px;
+            }
+
+                .prompt ul li {
+                    width: 270px;
+                    list-style-type: none;
+                    height: 40px;
+                    background-color: #aaa;
+                    border-bottom: solid #ddd 1px;
+                }
+
+        .overflow {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: inline;
+        }
+
+        .prompt .datetime {
+            float: right;
+        }
+
+        .status {
+            position: fixed;
+            bottom: 20px;
+            height: 40px;
+            background-color: rgb(255,255,255);
+            filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
+            background: rgba(255, 255, 255, 0.7);
+            padding: 10px 10px;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+            .status.user {
+                right: 6px;
+                width: 120px;
+            }
+
+            .status.notice {
+                right: 131px;
+                width: 60px;
+            }
+
+            .status.record {
+                right: 196px;
+                /*width: 60px;*/
+            }
+
+            .status .icon {
+                text-align: right;
+                padding-right: 5px;
+            }
+
+        .div_status_list {
+            position: fixed;
+            bottom: 70px;
+            right: 20px;
+            width: 300px;
+            height: 700px;
+            background-color: rgb(255,255,255);
+            filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
+            background: rgba(255,255,255,0.7);
+            display: none;
+            z-index: 1000;
+            width: 415px;
+        }
+
+            .div_status_list .icon_btn {
+                margin-left: 0px;
+                width: 215px;
+            }
+
+                .div_status_list .icon_btn.notice {
+                    width: 121.5px;
+                    margin-right: 5px;
+                }
+
+        .icon_btn {
+            margin-left: 0px;
+            width: 150px;
+        }
+
+            .icon_btn.read {
+                color: #666666;
+            }
+
+        .date_table {
+            left: auto !important;
+            right: 10px !important;
+        }
+
+        .notice-info {
+            width: 121.5px;
+            margin-right: 5px;
+            min-height: 1px;
+        }
+    </style>
+    <div class="page-main row">
+        <div class="col-md-3">
+            <div class="widget-container fluid-height">
+                <div class="heading tabs" style="padding: 15px 20px;">
+                    <ul class="nav nav-tabs" id="tabs" data-tabs="tabs">
+                        <li class="active"><a href="#tab1" data-toggle="tab">地图</a> </li>
+                        <li><a href="#tab2" data-toggle="tab">摄像机</a> </li>
+                        <li><a href="#tab3" data-toggle="tab">报警器</a> </li>
+                    </ul>
+                </div>
+                <div class="tab-content padded" style="height: 718px; overflow: auto" id="my-tab-content">
+                    <div class="tab-pane active" id="tab1">
+                        <div class="contact-list">
+                            <ul id="ulMap">
+                                <!--<li>
+                                    <a href="#"><img width="30" height="30" src="images/avatar-female.png" />Walter White<i class="icon-circle text-danger"></i></a>
+                                </li>-->
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab2">
+                        <div class="contact-list">
+                            <ul id="ulCamera"></ul>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab3">
+                        <div class="contact-list">
+                            <ul id="ulAnnunciator"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9" style="padding: 0 0;">
+            <div class="map-nev">
+                <!--<a class='btn btn-xs btn-primary-outline widget-content' style='padding-left:14px;'><i class='icon-plus'></i></a>-->
+                <table>
+                    <tr>
+                        <td>
+                            <div class="fileupload fileupload-new" data-provides="fileupload">
+                                <div class="fileupload-preview fileupload-exists img-thumbnail">
+                                </div>
+                                <div>
+                                    <span class="btn btn-permission btn-file">
+                                        <span class="fileupload-new">上传地图</span>
+                                        <input type="file">
+                                    </span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <a class="btn btn-primary-outline" onclick="CanEdit_Click(this)">编辑</a>
+                        </td>
+                        <td>
+                            <a class="btn btn-primary-outline" title="隐藏名称" onclick="Control.Map.text.set(this)">
+                                隐藏名称
+                            </a>
+                        </td>
+                        <td>
+                            <a class="btn btn-primary-outline" onclick="Control.Map.Point.rotate(this)">调整角度</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="map" id="divMap" style="width: 100%; border: 1px solid #808080;" oncontextmenu="return false"
+                 ondragstart="return false">
+            </div>
+        </div>
+    </div>
+    <div id="div_user_status_list" class="div_status_list">
+    </div>
+    <div id="div_notice_list" class="div_status_list">
+    </div>
+    <div id="div_record_list" class="div_status_list">
+    </div>
+    <div id="div_record" class="status record" onclick="ShowStatus(this, { divId: 'div_record_list', source: 'event/record/record_list.htm', status: showRecord, name: 'showRecord' });">
+        <table width="100%">
+            <tr>
+                <td class="icon">
+                    <a class="icon-bell-alt"></a>
+                </td>
+                <td>
+                    <a id="record_number">0</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="div_notice" class="status notice" onclick="ShowStatus(this, { divId: 'div_notice_list', source: 'map/notice_process_list.htm', status: showNotice, name: 'showNotice' });">
+        <table width="100%">
+            <tr>
+                <td class="icon">
+                    <a class="icon-comment-alt"></a>
+                </td>
+                <td>
+                    <a id="notice_number">0</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="div_user_status" class="status user" onclick="ShowStatus(this, {divId:'div_user_status_list',source:'security/user/user_status.htm', status:showUserStatus,name:'showUserStatus'});">
+        <table width="100%">
+            <tr>
+                <td class="icon">
+                    <a class="icon-user"></a>
+                </td>
+                <td>
+                    <a id="online_number">0</a>
+                </td>
+                <td class="icon">
+                    <div class="icon-user ">
+                    </div>
+                </td>
+                <td>
+                    <a id="offline_number">0</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <!--<div><a onclick="Send('Active')">Active</a></div>
+    <div><a onclick="Send('Inactive')">Inactive</a></div>-->
+    <script type="text/javascript" language="javascript">
+    var showUserStatus = false;
+    var showNotice = false;
+    var showRecord = false;
+
+
+    function Send(args) {
+        //var message = '{ "Message": 3, "CSeq": 1, "Request": { "EventNotify": { "Id": "00310101011111111000003001000001", "Name": "IPC_192.168.3.11", "EventType": "VMD", "EventState": "' + args + '", "Time": "2015-12-24T06:43:20.1389836Z", "EventId": "439a251d6f274c9790f4c6a1b21ac075", "ImageUrl": [] } } }';
+        //var obj = JSONDeserialization(message);
+        //adc.NotificationEvent(Convert(obj.Request.EventNotify, new EventNotify()));
+        var id = Guid.NewGuid();
+        var message = '{ "NoticeType":"AlertProcess","Sender":"00310101811111111000001000000000","Status":"Unread","Time":"2014-09-23 10:01:51Z","Id":"' + id + '","Message":"火箭的郁闷不仅是因为从领先15分到最多时落后28分的大转折，更是实打实地被小托马斯戏耍了","Classification": "Info", "ComponentId": "00310101221111111000001004000032", "ComponentName": "3000"}';
+        var obj = JSONDeserialization(message);
+        adc.Notice(Convert(obj, new Notice()));
+    }
+
+    function CanEdit_Click(sender, args) {
+
+        map.CanEdit = !map.CanEdit;
+
+        var css = "primary";
+        if (map.CanEdit)
+            css = "danger";
+        else {
+            var _img = Control.Map.get(Control.Map.selectedId);
+            map.Load.Image(_img);
+            _img.addEventListener("load", function () {
+                Control.Map.Point.load(Control.Map.selectedId);
+            }, false);
+        }
+        sender.className = "btn btn-" + css + "-outline";
+    }
+
+    document.body.onclick = function () {
+        showUserStatus = false;
+        showNotice = false;
+        showRecord = false;
+        $(".div_status_list").css("display", "none");
+        //        divUserStatusList.style.display = "none";
+    }
+
+    function ShowStatus(sender, args) {
+        showUserStatus = false;
+        showNotice = false;
+        showRecord = false;
+        $(".div_status_list").css("display", "none");
+
+        var div = getTag(args.divId);
+        div.innerHTML = "\n ";
+
+        Trigger = document.createElement("a");
+        Trigger.href = args.source;
+
+        var display = "none";
+        if (!args.status) {
+            display = "block";
+            var page = loadPage(args.source);
+            //$($.parseHTML(page, document, true)).insertAfter($("#" + args.divId)[0].firstChild);
+            $("#" + args.divId).append($(page));
+        }
+        this[args.name] = !args.status;
+
+
+
+        div.style.display = display;
+        //var height = window.innerHeight;
+        //if (!height)height = document.body.clientHeight;
+        //div.style.height = height - 140 - document.getElementById("divMap").offsetTop - 70 + "px";
+        div.style.height = (sender.offsetTop - 140) + "px";
+        stopPropagation();
+    }
+
+    var map; //= new MapControl(document.getElementById("divMap"));
+    var adc = Client.ADC();
+    adc.NotificationEvent = function (notify) {
+        if (notify) {
+            var state = "";
+            switch (notify.EventState) {
+                case EventState.Active:
+                    if (showRecord && record && record.Show) {
+                        var date = new Date();
+                        date.setHours(0, 0, 0, 0);
+                        var startDate = new Date();
+                        startDate.setHours(0, 0, 0, 0);
+                        startDate.setDate(date.getDate() - 1);
+                        var endDate = new Date();
+                        endDate.setDate(date.getDate() + 1);
+                        endDate.setHours(0, 0, 0, 0);
+                        record.reload(record.Severity);
+                    }
+                    status();
+                    state = AlarmStatus.Alarm;
+                    break;
+                case EventState.Inactive:
+                    state = AlarmStatus.DisAlarm;
+                    break;
+                default:
+                    break;
+            }
+            var device = Property.Device.value[notify.Id];
+
+            if (device) {
+                //Property.Device.value[notify.Id].State = state;
+
+                var point = getTag(device.PointId);
+
+                if (state == AlarmStatus.Alarm && device.MapId && device.MapItemType == MapItemType.Annunciator) {
+
+                    var _img = Control.Map.get(device.MapId)
+                    map.Load.Image(_img);
+                    _img.addEventListener("load", function () {
+                        Control.Map.Point.load(device.MapId);
+                        point = getTag(device.PointId);
+                        if (point) {
+                            //point.click();
+                            $(".point.selected").removeClass("selected");
+                            point.className += " selected";
+                        }
+                        Point.changeAlarmStatus(point, state);
+                    }, false);
+                }
+                else {
+                    if (!point) {
+                        point = new Object();
+                        point.id = device.PointId;
+                        point.childNodes = new Array();
+                        point.childNodes[0] = new Object();
+                        point.childNodes[0].className = "img camera";
+                    }
+                    Point.changeAlarmStatus(point, state);
+                }
+            }
+        }
+    }
+    adc.Notice = function (notice) {
+        if (notice) {
+            try {
+                if (NoticeReload) {
+                    NoticeReload();
+                }
+            }
+            catch (e) {
+
+            }
+            var a = document.createElement("a");
+            a.href = "map/AlertProcess.htm";
+            notice.Message = base64encode(utf16to8(notice.Message));
+            var str = JSONstringify(notice);
+            a.href += "?push=true&notice=" + encodeURI(str);
+            document.getElementById("notice_number").innerText = parseInt(document.getElementById("notice_number").innerText) + 1;
+            AlertWindow.Show(a);
+        }
+    }
+
+    function init() {
+        map = new MapControl(document.getElementById("divMap"));
+        $(".stauts").click(function () {
+            stopPropagation();
+        });
+
+        var session = getCookie("sid")
+        var username = getCookie("username");
+        adc.Connection(session, username);
+
+        Fileupload.prototype.listen = function () {
+            this.$input.on('change.fileupload', $.proxy(Control.Map.upload, this))
+        }
+        var up = $('.fileupload').fileupload();
+
+
+        Control.Map.load("ulMap");
+        Control.Device.load("ulCamera", DeviceClassification.IPCamera);
+        Control.Device.load("ulAnnunciator", DeviceClassification.NAM);
+        Control.Device.load("ulAnnunciator", DeviceClassification.AAM);
+        Control.Device.load("ulAnnunciator", DeviceClassification.UltrasonicProbe);
+        var maps = Property.Map.value.toArray();
+        if (maps.length > 0) {
+            var mapId = maps[0].Id
+            var _img = Control.Map.get(mapId)
+            map.Load.Image(_img);
+            _img.addEventListener("load", function () {
+                for (var i = maps.length - 1; i >= 0; i--) {
+                    Control.Map.Point.load(maps[i].Id);
+                }
+            }, false);
+        }
+        status();
+        toSetInterval(status, 30000);
+    }
+
+    function status() {
+        var date = new Date();
+        date.setHours(0, 0, 0, 0);
+        var startDate = new Date();
+        startDate.setHours(0, 0, 0, 0);
+        startDate.setDate(date.getDate() - 1);
+        var endDate = new Date();
+        endDate.setDate(date.getDate() + 1);
+        endDate.setHours(0, 0, 0, 0);
+        getTag("online_number").innerHTML = Property.User.status_count(true);
+        getTag("offline_number").innerHTML = Property.User.status_count(false);
+        getTag("notice_number").innerHTML = Property.Notice();
+        getTag("record_number").innerHTML = Property.Record(startDate.toISOString(), endDate.toISOString());
+    }
+
+    function load_map(sender, args) {
+        var img = document.createElement("img");
+        img.src = "pic/" + sender.innerHTML + ".png";
+        map.Load.Image(img);
+    }
+
+    function showPoint(sender) {
+        var id = sender.id;
+        map.Load.Image(dic[id].ImageSrc);
+    }
+    function point_bind_device(sender, args) {
+        var type = args;
+        var point = map.Point().Selected.get();
+        if (point) {
+            return Control.Map.Point.bind(sender.id, point, type);
+        }
+        return false;
+    }
+
+
+
+
+
+    function load_point() {
+        for (var i = 0; i < Point.value.length; i++) {
+            var point = Point.value[i];
+            var x = oDrag.offsetWidth * point.X;
+            var y = oDrag.offsetHeight * point.Y;
+            var p = Point.create(x, y);
+            oDrag.appendChild(p);
+        }
+    }
+
+
+
+    PointDoubleClickEvent = function (sender) {
+        //if (sender && sender.className.indexOf("camera") < 0) {
+        if (sender) {
+            var pointId = sender.id;
+            var point = Property.Map.Point.value(Control.Map.selectedId)[pointId];
+            if (point) {
+                var device = Property.Device.value[point.ComponentId];
+                var id = new Id(point.ComponentId);
+                //if(device.State && device.State == )
+                if (dic[pointId]) {
+                    $.confirm({
+                        text: "确定消除该报警器的报警?",
+                        okButton: "确定",
+                        cancelButton: "取消",
+                        confirm: function () {
+                            var returnVal = tryCatch(function () {
+                                Client.Modbus().Device.Signal.Eliminate(device.SerialNumber, parseInt(id.ModuleId.No));
+                            });
+                            if (returnVal != false && dic[pointId] && dic[pointId].indexOf("camera") > -1) {
+                                var notify = new Object();
+                                notify.Id = point.ComponentId;
+                                notify.EventState = EventState.Inactive;
+                                adc.NotificationEvent(notify);
+                            }
+                        }
+                    });
+                }
+            }
+        }
+        stopPropagation();
+    }
+
+    $(function () {
+        init();
+    });
+    </script>
+</body>
+</html>
+

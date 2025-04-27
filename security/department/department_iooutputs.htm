@@ -1,0 +1,217 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>输出通道关联</title>
+    <link rel="stylesheet" type="text/css" href="../../css/howell.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/bootstrap/bootstrap-switch.css" />
+    <script type="text/javascript" src="../../js/language/chinese.js"></script>
+    <script type="text/javascript" src="../../js/jquery/jquery-1.10.2.min.js"></script>
+    <script src="../../js/imported.js"></script>
+    <script type="text/javascript" src="../../js/jquery/jquery-ui.js"></script>
+    <script type="text/javascript" src="../../js/jquery/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="../../js/bootstrap/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../js/nav.js"></script>
+
+    <script type="text/javascript" src="../../js/jquery/jquery.confirm.js"></script>
+    <script type="text/javascript" src="../../js/modernizr.custom.js"></script>
+    <script type="text/javascript" src="../../js/md5.js"></script>
+    <script type="text/javascript" src="../../js/howell.js/howell.js"></script>
+    <script type="text/javascript" src="../../js/howell.js/digest.js"></script>
+    <script type="text/javascript" src="../../js/howell.js/httpService.js"></script>
+    <script type="text/javascript" src="../../js/client/security.js"></script>
+    <script type="text/javascript" src="../../js/client/management.js"></script>
+    <script type="text/javascript" src="../../js/client/enum.js"></script>
+    <script type="text/javascript" src="../../js/client/struct.js"></script>
+    <script type="text/javascript" src="../../js/howell.js/howell.control.js"></script>
+    <script type="text/javascript" src="../../js/jquery/jquery.confirm.js"></script>
+    <script type="text/javascript" src="../../js/bootstrap/bootstrap-switch.min.js"></script>
+    <script type="text/javascript" src="../../js/background/security/background_department.event.js"></script>
+    <script type="text/javascript" src="../../js/background/security/background_departments.js"></script>
+    <script type="text/javascript" src="../../js/background/security/department/background_department_iooutputs.js"></script>
+    <script type="text/javascript" src="department_iooutputs.js"></script>
+    <script type="text/javascript" src="../../js/background/security/department/iooutput/background_department_iooutput_details.js"></script>
+    <script type="text/javascript" src="iooutput/department_iooutput_details.js"></script>
+    <script type="text/javascript" src="../../js/background/security/department/iooutput/background_department_iooutput_permissions.js"></script>
+    <script type="text/javascript" src="iooutput/department_iooutput_permissions.js"></script>
+    <script type="text/javascript">
+
+        Trigger = document.createElement("a");;
+        Trigger.href = "iooutput/item.htm?departmentId=00310101821111111000001000000000";
+
+        onload = function () {
+            $(".swith_control").css("float", "left");
+        };
+
+        Info.ControlIdPrefix.IOOutput.AlertUrl.permissions = "iooutput/department_iooutput_permissions.htm";
+        Info.ControlIdPrefix.IOOutput.AlertUrl.details = "iooutput/department_iooutput_details.htm";
+    </script>
+
+</head>
+<body>
+    <!--已绑定列表-->
+    <div id="div_association_iooutput" class="widget-container fluid-height clearfix association-frame mouse_default swith_control">
+        <div class="heading association-heading">
+            <i class="icon-flickr association-heading-icon"></i>
+            <label>已绑定输出通道列表</label><div class="association-heading-count-text">共 <label id="lbl_association_iooutput_count">0</label> 条</div>
+        </div>
+        <div class="association-operation-bar">
+            <div class="association-operation-bar-text-btn pull-left" onclick="To_IOOutput_Unassociation_Click(this);">
+                <a class="icon-plus">
+                </a>
+                <span>
+                    添加
+                </span>
+            </div>
+            <div class="btn-group pull-right association-btn-group" id="div_bound_deleteIOOutput">
+                <div class="btn btn-xs btn-primary-outline association-btn-group-icon-btn" onclick="btn_iooutput_batch_remove_Click(this);" title="删除">
+                    <i class="icon-trash">
+                    </i>
+                </div>
+                <div class="btn btn-xs dropdown-toggle control btn-primary-outline btn-xsgroup-toggle">
+                    <span class="caret"></span>
+                </div>
+                <ul class="dropdown-menu association-dropdown-menu" onmouseover="operationIOOutputCanClose = false;" onmouseout="operationIOOutputCanClose = true;">
+                    <li class="dropdown-menu-li">
+                        <a class="association-dropdown-men-item mouse_pointer" onclick="RemoveAllIOOutput_Click(this);">全部删除</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="btn-group  pull-right association-groupdown" id="div_bound_selectIOOutput">
+                <div class="btn btn-xs btn-primary association-btn-xs-groupdown dropdown-toggle">
+                    选&ensp;择&ensp;<span class="caret"></span>
+                </div>
+                <ul class="dropdown-menu association-groupdown-menu" onmouseover="operationIOOutputCanClose = false;" onmouseout="operationIOOutputCanClose = true;">
+                    <li class="mouse_pointer dropdown-menu-li">
+                        <a class="association-groupdown-menu-item"
+                           onclick="GroupList.Select.All('department_iooutput_list_', DepartmentAssociationIOOutput_SelectedAll);">
+                            全选
+                        </a>
+                    </li>
+                    <li class="mouse_pointer dropdown-menu-li">
+                        <a class="association-groupdown-menu-item"
+                           onclick="GroupList.Select.All('department_iooutput_list_', DepartmentAssociationIOOutput_SelectedCurrent);">
+                            当前页
+                        </a>
+                    </li>
+                    <li class="mouse_pointer dropdown-menu-li">
+                        <a class="association-groupdown-menu-item"
+                           onclick="GroupList.Select.Inverse('department_iooutput_list_'); DepartmentAssociationIOOutput_SelectedInverse()">
+                            反选
+                        </a>
+                    </li>
+                    <li class="mouse_pointer dropdown-menu-li">
+                        <a class="association-groupdown-menu-item"
+                           onclick="GroupList.Select.Cancel('department_iooutput_list_', DepartmentAssociationIOOutput_SelectedCancel);">
+                            取消
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="widget-content padded clearfix association-list-container">
+            <div id="glist_association_iooutputs">
+
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div id="div_association_iooutput_paging">
+
+            </div>
+        </div>
+    </div>
+
+    <!--未绑定列表-->
+    <div id="div_unassociation_iooutput" class="widget-container fluid-height clearfix association-frame mouse_default swith_control" style="display:none">
+        <div class="heading association-heading">
+            <i class="icon-flickr association-heading-icon"></i>
+            <label>未绑定输出通道列表</label><div class="association-heading-count-text">共 <label id="lbl_unassociation_iooutput_count">0</label> 条</div>
+        </div>
+        <div class="association-operation-bar">
+            <div class="association-operation-bar-text-btn pull-left" onclick="To_IOOutput_Association_Click(this);">
+                <a class="icon-chevron-left">
+                </a>
+                <span>
+                    返回
+                </span>
+            </div>
+            <a class="btn btn-xs btn-primary pull-right association-operation-bar-ordinary-btn" id="btn_association" onclick="return btn_iooutput_association_Click(this);">
+                完&ensp;成
+            </a>
+            <div class="btn-group  pull-right association-groupdown" id="div_unassociation_selectIOOutput">
+                <div class="btn btn-xs btn-primary association-btn-xs-groupdown dropdown-toggle">
+                    选&ensp;择&ensp;<span class="caret"></span>
+                </div>
+                <ul class="dropdown-menu association-groupdown-menu" onmouseover="operationIOOutputCanClose = false;" onmouseout="operationIOOutputCanClose = true;">
+                    <li class="mouse_pointer dropdown-menu-li">
+                        <a class="association-groupdown-menu-item"
+                           onclick="GroupList.Select.All('iooutput_list_', DepartmentUnassociationIOOutput_SelectedAll);">
+                            全选
+                        </a>
+                    </li>
+                    <li class="mouse_pointer dropdown-menu-li">
+                        <a class="association-groupdown-menu-item"
+                           onclick="GroupList.Select.All('iooutput_list_', DepartmentUnassociationIOOutput_SelectedCurrent);">
+                            当前页
+                        </a>
+                    </li>
+                    <li class="mouse_pointer dropdown-menu-li">
+                        <a class="association-groupdown-menu-item"
+                           onclick="GroupList.Select.Inverse('iooutput_list_'); DepartmentUnassociationIOOutput_SelectedInverse();">
+                            反选
+                        </a>
+                    </li>
+                    <li class="mouse_pointer dropdown-menu-li">
+                        <a class="association-groupdown-menu-item"
+                           onclick="GroupList.Select.Cancel('iooutput_list_', DepartmentUnassociationIOOutput_SelectedCancel);">
+                            取消
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="widget-content padded clearfix association-list-container">
+            <div id="glist_unassociation_iooutputs">
+
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div id="div_unassociation_iooutput_paging">
+
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        function department_iooutput_list_load() {
+            getTag("btn_association").href = Info.ControlIdPrefix.IOOutput.AlertUrl.permissions + "?fun=PageEvent.IOOutput.BatchAddIOOutputsToDepartment&departmentId=" + Html.Current.Id.get();
+            iooutputList.Association.selected = new Array();
+            iooutputList.Unassociation.selected = new Array();
+            $(".dropdown-menu-li").click(function () {
+                var node = this.parentElement.parentElement;
+                if (node.className.indexOf("open") > -1)
+                    $(node).removeClass("open");
+            });
+            $(".popover-content .dropdown-toggle").click(function () {
+                var node = this.parentElement;
+                if (node.className.indexOf("open") < 0)
+                    $(node).addClass("open");
+                else
+                    $(node).removeClass("open");
+            });
+            $(".popover-content .dropdown-toggle").blur(function () {
+                if (operationIOOutputCanClose) {
+                    var node = this.parentElement;
+                    if (node.className.indexOf("open") > -1)
+                        $(node).removeClass("open");
+                    operationIOOutputCanClose = true;
+                }
+            });
+            iooutputList.Association.load(1);
+        }
+        department_iooutput_list_load();
+    </script>
+
+</body>
+</html>

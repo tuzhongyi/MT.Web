@@ -1,0 +1,288 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>设置设备</title>
+
+    <link rel="stylesheet" type="text/css" href="../../css/howell.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/bootstrap/bootstrap-switch.css" />
+    <script type="text/javascript" src="../../js/language/chinese.js"></script>
+    <script type="text/javascript" src="../../js/jquery/jquery-1.10.2.min.js"></script><script src="../js/imported.js"></script>
+    <script type="text/javascript" src="../../js/jquery/jquery-ui.js"></script>
+    <script type="text/javascript" src="../../js/bootstrap/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../js/modernizr.custom.js"></script>
+    <script type="text/javascript" src="../../js/howell.js/howell.js"></script>
+    <script type="text/javascript" src="../../js/howell.js/howell.control.js"></script>
+
+    <script type="text/javascript" src="../../js/md5.js"></script>
+    <script type="text/javascript" src="../../js/client/struct.js"></script>
+    <script type="text/javascript" src="../../js/howell.js/httpService.js"></script>
+    <script type="text/javascript" src="../../js/client/management.js"></script>
+    <script type="text/javascript" src="../../js/client/security.js"></script>
+    <script type="text/javascript" src="../../js/jquery/jquery.confirm.js"></script>
+    <script type="text/javascript" src="../../js/bootstrap/bootstrap-switch.min.js"></script>
+    <script type="text/javascript" src="../../js/background/management/background_devices.js"></script>
+    <script type="text/javascript" src="device_details.js"></script>
+    <script type="text/javascript">
+        Trigger = document.createElement("a");
+        Trigger.href = "http://location/item.htm?deviceId=00310101031111111000001000000000";
+    </script>
+
+</head>
+<body>
+    <div class="container-fluid alert-window-maxdiv" style="height:610px">
+        <div class="page-title">
+            <h3 class="list-heading-div">
+                <i class="howell-icon-device title mouse_default device_list_title_ico" style="margin-left:10px"></i>
+                <label id="lblDeviceDetailTitle">添加设备</label>
+            </h3>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="widget-content padded">
+                    <form action="#" class="form-horizontal">
+                        <div id="page1" style="margin-bottom:15px">
+                            <div class="form-group" id="divId">
+                                <label class="control-label col-md-2">
+                                    设备编号
+                                </label>
+                                <div class="col-md-9">
+                                    <input class="form-control" type="text" id="txtId" readonly="readonly" />
+                                </div>
+                            </div>
+                            <div class="form-group" id="divPlatformId">
+                                <label class="control-label col-md-2">
+                                    所属平台编号
+                                </label>
+                                <div class="col-md-9">
+                                    <input class="form-control" type="text" id="txtPlatformId" readonly="readonly" />
+                                </div>
+                            </div>
+                            <div class="form-group" id="divPlatformAccessId">
+                                <label class="control-label col-md-2">
+                                    平台接入编号
+                                </label>
+                                <div class="col-md-9">
+                                    <input class="form-control" type="text" id="txtPlatformAccessId" readonly="readonly" />
+                                </div>
+                            </div>
+                            <div class="form-group" id="divPlatformFileSourceType">
+                                <label class="control-label col-md-2">
+                                    平台视频类型
+                                </label>
+                                <div class="col-md-9">
+                                    <select class="form-control" id="ddlPlatformFileSourceType">
+                                        <option value="0">
+                                            自适应
+                                        </option>
+                                        <option value="1">
+                                            设备
+                                        </option>
+                                        <option value="2">
+                                            平台
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divDeviceName">
+                                <label class="control-label col-md-2">
+                                    设备名称
+                                </label>
+                                <div class="col-md-9">
+                                    <input class="form-control" type="text" id="txtName" />
+                                </div>
+                                <label class="lable-required">*</label>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2">
+                                    设备分类
+                                </label>
+                                <div class="col-md-9">
+                                    <select class="form-control" id="ddlDetailClassification" onchange="detailClassification_Onchange(this)"></select>
+                                </div>
+                                <label class="lable-required">*</label>
+                            </div>
+                            <div class="form-group" id="divDdlProtocolType">
+                                <label class="control-label col-md-2">
+                                    协议类型
+                                </label>
+                                <div class="col-md-9">
+                                    <select class="form-control" id="ddlProtocolType" onchange="protocolType_Onchange(this)">
+                                    </select>
+                                </div>
+                                <label class="lable-required">*</label>
+                            </div>
+                            <div class="form-group" style="display:none" id="divTxtProtocolType">
+                                <label class="control-label col-md-2">
+                                    协议类型
+                                </label>
+                                <div class="col-md-9">
+                                    <input class="form-control" type="text" id="txtProtocolType" readonly="readonly" />
+                                </div>
+                                <label class="lable-required">*</label>
+                            </div>
+                            <div class="form-group" id="HowellUriGroup">
+                                <label class="control-label col-md-2">
+                                    IP地址
+                                </label>
+                                <div class="col-md-5" id="divIPControl">
+                                </div>
+                                <label class="control-label col-md-1">
+                                    端口
+                                </label>
+                                <div class="col-md-3">
+                                    <input class="form-control" type="text" id="txtPort" value="5198" />
+                                </div>
+                                <label class="lable-required">*</label>
+                            </div>
+                            <div class="form-group" style="display:none;" id="divFirstIP">
+                                <label class="control-label col-md-2">
+                                    IP地址
+                                </label>
+                                <div class="col-md-5" id="divFirstIPControl">
+
+                                </div>
+                                <label class="control-label col-md-1">
+                                    端口
+                                </label>
+                                <div class="col-md-3">
+                                    <input class="form-control" type="text" id="txtBatchPort" value="5198" />
+                                </div>
+                                <label class="lable-required">*</label>
+                            </div>
+                            <div class="form-group" style="display:none;" id="divEndIP">
+                                <label class="control-label col-md-2">
+
+                                </label>
+                                <div class="col-md-5" id="divEndIPControl">
+
+                                </div>
+                                <label class="control-label col-md-1">
+                                </label>
+                                <div class="col-md-3">
+                                </div>
+                                <label class="lable-required">*</label>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2">
+                                    总线地址
+                                </label>
+                                <div class="col-md-9">
+                                    <input class="form-control" type="text" id="txtBusAddress" />
+                                </div>
+                                <label class="lable-required">*</label>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2">
+                                    是否有子设备
+                                </label>
+                                <div class="col-md-9">
+                                    <div class="toggle-switch text-toggle-switch" data-off-label="否" data-off="default" data-on="primary" data-on-label="是" style="width: 200px;">
+                                        <input type="checkbox" id="chkHasSubDevice" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="page2" style="display:none;margin-bottom:49px;">
+                            <div class="form-group" id="divUsername">
+                                <label class="control-label col-md-2">
+                                    用户名
+                                </label>
+                                <div class="col-md-9">
+                                    <input class="form-control" type="text" id="txtUsername" />
+                                </div>
+                            </div>
+                            <div class="form-group" id="divPassword">
+                                <label class="control-label col-md-2">
+                                    密码
+                                </label>
+                                <div class="col-md-9">
+                                    <input class="form-control" type="text" id="txtPassword" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2">
+                                    厂商信息
+                                </label>
+                                <div class="col-md-9">
+                                    <input class="form-control" type="text" id="txtManufacturer" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-2">
+                                    设备型号
+                                </label>
+                                <div class="col-md-9">
+                                    <input class="form-control" type="text" id="txtModel" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-2">
+                                    固件版本信息
+                                </label>
+                                <div class="col-md-9">
+                                    <input class="form-control" type="text" id="txtFirmware" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-2">
+                                    设备序列号
+                                </label>
+                                <div class="col-md-9">
+                                    <input class="form-control" type="text" id="txtSerialNumber" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-2">
+                                    零售商信息
+                                </label>
+                                <div class="col-md-9">
+                                    <input class="form-control" type="text" id="txtPointOfSale" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2">
+                                    设备描述
+                                </label>
+                                <div class="col-md-9">
+                                    <textarea rows="4" class="form-control" id="txtInformation"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-5">
+                            </label>
+                            <div class="col-md-2">
+                                <a class="btn btn-primary" id="btnLastStep" onclick="btnLastStep_Click();" style="display:none;">
+                                    上一步
+                                </a>
+                            </div>
+                            <div class="col-md-2">
+                                <a class="btn btn-primary" id="btnDetailDevice" onclick="return btnDetailDevice_Click(this);" style="display:none">
+                                    完&ensp;&ensp;成
+                                </a>
+                                <a class="btn btn-primary" id="btnNextStep" onclick="btnNextStep_Click();">
+                                    下一步
+                                </a>
+                            </div>
+                            <div class="col-md-2">
+                                <a class="btn btn-primary" onclick="return AlertWindow.Close();">
+                                    取&ensp;&ensp;消
+                                </a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">        
+        item_load();
+        if (document.location.href.indexOf("details") < 0)
+            (function ($) { $(function () { $('.toggle-switch')['bootstrapSwitch']() }) })(jQuery);
+    </script>
+</body>
+</html>

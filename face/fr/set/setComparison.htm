@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title></title>
+</head>
+
+<body>
+    <style type="text/css">
+        .white-box {
+            margin-bottom: 0px;
+        }
+    </style>
+    <div>
+        <div class="row page-titles">
+            <div class="col-md-5 col-8 align-self-center">
+                <ol class="breadcrumb" id="navDeviceList">
+                    <li class="breadcrumb-item">
+                        <a href="javascript:selectNav(this); loadContent('page', base64encode(setUrlRandomParams(navigation.index.home)))">
+                            <span language="home">主页</span>
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a>
+                            <span language="face">人脸</span><span language="comparison">比对</span><span language="setting">设置</span>
+                        </a>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <div class="page-title-occupying"></div>
+        <div class="row screen-outer">
+            <div class="col-xlg-2 col-xl-3 col-lg-3 col-md-4 col-sm-12">
+                <div class="card pull-height row-span-5">
+                    <div class="card-body" style="height:100%">
+                        <h3 class="card-title"><span language="choose">选择</span><span language="channel">通道</span></h3>
+                        <div class="myadmin-dd-empty dd" id="videoInputTreeList">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xlg-7 col-xl-9 col-lg-9 col-md-8 col-sm-12">
+                <div class="row">
+                    <div class="col-xlg-12 col-lg-12 col-md-12">
+                        <div class="card row-span-3">
+                            <div class="card-body" style="height:100%">
+                                <div class="card-title">
+                                    <h3 id="getdata"><span language="setting">设置</span><span language="worksheet">工作表</span></h3>
+                                </div>
+                                <div class="schedule-container pull-left" id="scheduleContainer">
+                                    <div id="schedule" class="kaoqing">
+                                    </div>
+                                </div>
+                                <div class="pull-left schedule-copy-btn-container hide" id="scheduleCopyBtnContainer">
+                                    <div class="schedule-copy-btn" onclick="scheduleCopy(0)" title-language="copy">
+                                        <i class="mdi mdi-file-multiple"></i>
+                                    </div>
+                                    <div class="schedule-copy-btn not-first" onclick="scheduleCopy(1)" title-language="copy">
+                                        <i class="mdi mdi-file-multiple"></i>
+                                    </div>
+                                    <div class="schedule-copy-btn not-first" onclick="scheduleCopy(2)" title-language="copy">
+                                        <i class="mdi mdi-file-multiple"></i>
+                                    </div>
+                                    <div class="schedule-copy-btn not-first" onclick="scheduleCopy(3)" title-language="copy">
+                                        <i class="mdi mdi-file-multiple"></i>
+                                    </div>
+                                    <div class="schedule-copy-btn not-first" onclick="scheduleCopy(4)" title-language="copy">
+                                        <i class="mdi mdi-file-multiple"></i>
+                                    </div>
+                                    <div class="schedule-copy-btn not-first" onclick="scheduleCopy(5)" title-language="copy">
+                                        <i class="mdi mdi-file-multiple"></i>
+                                    </div>
+                                    <div class="schedule-copy-btn not-first" onclick="scheduleCopy(6)" title-language="copy">
+                                        <i class="mdi mdi-file-multiple"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xlg-12 col-lg-12 col-md-12">
+                        <div class="card row-span-1">
+                            <div class="card-body p-b-0 p-t-15" style="height:100%">
+                                <div class="card-title">
+                                    <h3><span language="associate">关联</span><span language="face">人脸</span><span language="library">库</span></h3>
+                                </div>
+                                <div class="row" style="height:80%">
+                                    <div class="col-12">
+                                        <div class="card-group" id="facesetList"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xlg-3 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                <div class="row">
+                    <div class="col-xlg-12 col-lg-12 col-md-12">
+                        <div class="card row-span-4">
+                            <div class="card-body" style="height:100%">
+                                <h3 class="card-title"><span language="basic">基本</span><span language="setting">设置</span></h3>
+                                <form class="form">
+                                    <div class="form-group">
+                                        <label for="Enabled" class="control-label">
+                                            <span language="whether">是否</span><span language="enable">启用</span><span language="face">人脸</span><span language="comparison">比对</span>
+                                        </label>
+                                        <select class="form-control custom-select" data-placeholder="Choose a enable" tabindex="1" id="Enabled">
+                                            <option value="false"><span language="no">否</span></option>
+                                            <option value="true"><span language="yes">是</span></option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="ContrastFailureAlarmUpload" class="control-label">
+                                            <span language="comparison">比对</span><span language="failed">失败</span><span language="upload">上传</span><span language="centre">中心</span>
+                                        </label>
+                                        <select class="form-control custom-select" data-placeholder="Choose a enable" tabindex="1" id="ContrastFailureAlarmUpload">
+                                            <option value="false"><span language="no">否</span></option>
+                                            <option value="true"><span language="yes">是</span></option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="PluseEnable" class="control-label">
+                                            <span language="whether">是否</span><span language="enable">启用</span><span language="alarm">报警</span><span language="pulse">脉动</span><span language="output">输出</span>
+                                        </label>
+                                        <select class="form-control custom-select" data-placeholder="Choose a enable" tabindex="1" id="PluseEnable">
+                                            <option value="false"><span language="no">否</span></option>
+                                            <option value="true"><span language="yes">是</span></option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label" for="PluseTime">
+                                            <span language="alarm">报警</span><span language="pulse">脉动</span><span language="continued">持续</span><span language="time">时间</span>
+                                        </label>
+                                        <input id="PluseTime" type="text" value="100" name="PluseTime" data-bts-button-down-class="btn btn-secondary btn-outline" data-bts-button-up-class="btn btn-secondary btn-outline">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label"  for="Threshold">
+                                            <span language="similar">相似度</span>
+                                        </label>
+                                        <input id="Threshold" type="text" value="0" name="Threshold" data-bts-button-down-class="btn btn-secondary btn-outline" data-bts-button-up-class="btn btn-secondary btn-outline">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">
+                                            联动方式
+                                        </label>
+                                        <div>
+                                            <input type="checkbox" id="Monitor" class="filled-in chk-col-light-blue handle-type"/>
+                                            <label class="m-r-20" for="Monitor">监视器上警告</label>
+                                            <input type="checkbox" id="Audio" class="filled-in chk-col-light-blue handle-type"/>
+                                            <label class="m-r-20" for="Audio">声音报警</label>
+                                            <input type="checkbox" id="Upload" class="filled-in chk-col-light-blue handle-type" />
+                                            <label class="m-r-20" for="Upload">上传中心</label>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xlg-12 col-lg-12 col-md-12">
+                        <div class="card row-span-0">
+                            <div class="card-body" style="height:100%">
+                                <div class="form-group text-center p-t-15">
+                                    <button onclick="comparisonClick()" type="button" class="btn btn-success p-l-20 p-r-20">
+                                        <i class="mdi mdi-content-save"></i>
+                                        <span language="save">保存</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="display:none;">
+            <div id="scheduleDetailsSet" style="width:280px">
+                <div class="form-group m-b-0" style="display:flex">
+                    <div style="width:100%;height:100%">
+                        <div class="pull-left" style="width:44%">
+                            <input class="form-control" type="time" value="00:00" id="scheduleBeginTime">
+                        </div>
+                        <div class="pull-left" style="padding-left: 10px;padding-right: 10px;padding-top: 10px;color: rgb(116, 125, 138);">
+                            --
+                        </div>
+                        <div class="pull-left" style="width:44%">
+                            <input class="form-control" type="time" value="00:00" id="scheduleEndTime">
+                        </div>
+                        <div style="clear:both">
+                        </div>
+                        <div class="text-center p-t-15">
+                            <button onclick="savejuicyItem()" type="button" class="btn btn-success p-l-20 p-r-20 m-r-10">
+                                <i class="mdi mdi-content-save"></i>
+                                <span language="ok">确定</span>
+                            </button>
+                            <button type="button" onclick="deletejuicyItem()" class="btn waves-effect waves-light btn-danger p-l-20 p-r-20">
+                                <i class="mdi mdi-close-circle"></i>
+                                <span language="delete">关闭</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="fr/set/setComparison.js" charset="UTF-8"></script>
+    <script src="js/client/management.js"></script>
+    <link href="controls/touchspin/jquery.bootstrap-touchspin.min.css" rel="stylesheet" />
+    <link href="controls/tooltipControls/tooltipControls.css" rel="stylesheet" />
+    <link href="controls/drag4/drag4.css" rel="stylesheet" />
+    <script src="controls/touchspin/jquery.bootstrap-touchspin.min.js"></script>
+    <script src="controls/tooltipControls/tooltipControls.js"></script>
+    <script src="controls/drag4/drag4.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            Html.Device.List.create("videoInputTreeList");
+            $('#videoInputTreeList').slimScroll({
+                height: "92%"
+            });
+            $('#facesetList').slimScroll({
+                height: "86%"
+            });
+            $("#PluseTime").TouchSpin({
+                min: 1,
+                max: 900,
+                buttonup_class: 'btn btn-secondary btn-outline',
+                buttondown_class: 'btn btn-secondary btn-outline ',
+                step: 1,
+                postfix: '毫秒'
+            });
+            $("#Threshold").TouchSpin({
+                min: 0,
+                max: 100,
+                buttonup_class: 'btn btn-secondary btn-outline',
+                buttondown_class: 'btn btn-secondary btn-outline ',
+                step: 1,
+            });
+            loadPageCallBcak=function(){
+                var tagMcTooltipWrapper=document.getElementById("mcTooltipWrapper");
+                var tagMcOverlay=document.getElementById("mcOverlay");
+                if(tagMcTooltipWrapper)
+                    tagMcTooltipWrapper.parentElement.removeChild(tagMcTooltipWrapper);
+                if(tagMcOverlay)
+                    tagMcOverlay.parentElement.removeChild(tagMcOverlay);
+            }
+            init_language();
+        });
+    </script>
+</body>
+</html>

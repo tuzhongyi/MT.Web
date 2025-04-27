@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>录像时间</title>
+    <link href="../css/bootstrap/font-awesome.css" rel="stylesheet" />
+    <link href="../css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+
+    <script src="../config.js"></script>
+    <script src="../js/jquery/jquery-1.10.2.min.js"></script>
+    <script src="../js/howell.js/ext.js"></script>
+    <script src="../js/bootstrap/bootstrap.min.js"></script>
+    <script src="../js/bootstrap/bootstrap-timepicker.js"></script>
+    <script src="../js/bootstrap/bootstrap-datepicker.js" charset="gbk"></script>
+
+
+    <script src="../js/base64.js"></script>
+    <script src="../js/howell.js/howell.js"></script>
+    <script src="../js/howell.js/httpService.js"></script>
+    <script src="../js/client/enum.js"></script>
+    <script src="../js/client/struct.js"></script>
+    <script src="../js/client/BaseClient.js"></script>
+    <script src="../js/client/client.js"></script>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+    <style type="text/css">
+        .widget-container {
+            min-height: 0px;
+        }
+    </style>
+    <script type="text/javascript">
+        var channelId = "";
+        function _load() {
+            var uri = new Uri(document.location);
+            if (uri.Query && uri.Querys.id) {
+                channelId = uri.Querys.id;
+            }
+        }
+
+        function getHref(datetime) {            
+            var beg = datetime.toISOString();            
+            datetime.setMinutes(datetime.getMinutes()+ 3);
+            var end = datetime.toISOString();
+
+            var id = new Id(channelId);
+            var deviceId = id.getDeviceId();
+            var no = parseInt(id.ModuleId.No);
+            var stream = "1";
+
+            var example_url = "http://127.0.0.1:8800/hls/Media/vod/" + deviceId + "/" + no + "/" + stream + "/" + beg + "_" + end + "/vod.m3u8?user=admin&password=12345";
+            var uri = new Uri(example_url);
+            uri.Host = Client.Host;
+            uri.Port = Client.HlsPort;
+            uri.Querys.user = getCookie("username");
+            uri.Querys.password = getCookie("sid");
+
+            return uri.toString();
+        }
+
+        function playback(sender) {
+            var txtDate = $(".txt_date").val();
+            var txtTime = $(".txt_time").val();
+            var date = new Date(Date.parse(txtDate.replace(/-/g, "/") + " " + txtTime));
+            sender.href = getHref(date);            
+            return true;
+        }
+
+        onload = _load;
+    </script>
+</head>
+<body unselectable="none" onselectstart="return false;">
+    <div class="modal-shiftfix">
+        <div class="container-fluid main-content">
+            <div class="page-title">
+                <h1>
+                    录像回放
+                </h1>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="widget-container padded">
+                        <form action="#" class="form-horizontal">
+                            <label>日期：</label>
+                            <div class="input-group date datepicker" data-date-autoclose="true" data-date-format="dd.mm.yyyy"
+                                 data-date-start-view="2">
+                                <input class="form-control txt_date" data-date-autoclose="true" data-date-format="yyyy-mm-dd" type="text" /><span class="input-group-addon"><i class="icon-calendar"></i></span></input>
+                            </div>
+                        </form>
+                        <form action="#" class="form-horizontal">
+                            <label>开始时间</label>
+                            <div class="input-group bootstrap-timepicker">
+                                <input class="form-control txt_time" type="text" /><span class="input-group-addon">
+                                    <i class="icon-time"></i>
+                                </span></input>
+                            </div>
+                        </form>
+                        <br />
+                        <a class="btn btn-primary pull-right" onclick="return playback(this)">确定</a>
+                        <br />
+                        <br />
+                        <script type="text/javascript">
+                            var date = new Date();
+                            date.setDate(date.getDate())
+                            $('.txt_date').datepicker({
+                                format: "yyyy-mm-dd",
+                            }).val(date.format("yyyy-MM-dd"));
+                            date.setMinutes(date.getMinutes() - 3);
+                            var time = date.getHours() + ":" + date.getMinutes();
+                            $(".txt_time").timepicker({
+                                defaultTime: time,
+                                minuteStep: 1,
+                                showSeconds: true,
+                                showMeridian: false
+                            });
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,193 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>设置平台信息</title>
+
+    <link rel="stylesheet" type="text/css" href="../../css/howell.css" />
+    <script type="text/javascript" src="../../js/language/chinese.js"></script>
+    <script type="text/javascript" src="../../js/jquery/jquery-1.10.2.min.js"></script>
+    <script src="../../js/imported.js"></script>
+    <script type="text/javascript" src="../../js/jquery/jquery-ui.js"></script>
+    <script type="text/javascript" src="../../js/bootstrap/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../js/modernizr.custom.js"></script>
+    <script type="text/javascript" src="../../js/howell.js/howell.js"></script>
+    <script type="text/javascript" src="../../js/howell.js/howell.control.js"></script>
+    <script type="text/javascript" src="../../js/client/enum.js"></script>
+    <script type="text/javascript" src="../../js/md5.js"></script>
+    <script type="text/javascript" src="../../js/client/struct.js"></script>
+    <script type="text/javascript" src="../../js/howell.js/httpService.js"></script>
+    <script type="text/javascript" src="../../js/client/security.js"></script>
+    <script type="text/javascript" src="../../js/jquery/jquery.confirm.js"></script>
+    <script type="text/javascript" src="../../js/background/security/background_department.event.js"></script>
+    <script type="text/javascript" src="../../js/background/security/background_departments.js"></script>
+    <script type="text/javascript" src="../../js/background/security/department/background_department_details.js"></script>
+    <script type="text/javascript" src="department_details.js"></script>
+    <script type="text/javascript">
+        Trigger = document.createElement("a");
+        Trigger.href = "http://location/item.htm";
+
+    </script>
+
+</head>
+<body>
+    <div class="container-fluid main-content alert-window-maxdiv" style="padding-bottom:0px">
+        <div class="page-title">
+            <h3 class="list-heading-div">
+                <i class="howell-icon-platform mouse_default platform_list_title_ico" style="margin-left:20px"></i>
+                <label id="lblPlatformDetailTitle" style="margin-left:-10px">添加平台信息</label>
+            </h3>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="widget-content padded">
+                    <form action="#" class="form-horizontal">
+                        <div id="page1" style="margin-bottom:15px">
+                            <div class="form-group" id="divId">
+                                <label class="control-label col-md-2">
+                                    平台编号
+                                </label>
+                                <div class="col-md-9">
+                                    <input class="form-control" type="text" id="txtId" readonly="readonly" />
+                                </div>
+                                <label class="lable-required">*</label>
+                            </div>
+                            <div class="form-group" id="divAuthenticationCode">
+                                <label class="control-label col-md-2">
+                                    认证码
+                                </label>
+                                <div class="col-md-9">
+                                    <input class="form-control" type="text" id="txtAuthenticationCode" readonly="readonly" />
+                                </div>
+                                <label class="lable-required">*</label>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2">
+                                    平台名称
+                                </label>
+                                <div class="col-md-9">
+                                    <input class="form-control" type="text" id="txtName" />
+                                </div>
+                                <label class="lable-required">*</label>
+                            </div>
+                            <div class="form-group" id="divProtocolType">
+                                <label class="control-label col-md-2">
+                                    协议类型
+                                </label>
+                                <div class="col-md-9">
+                                    <select class="form-control" id="ddlProtocolType"></select>
+                                </div>
+                                <label class="lable-required">*</label>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2">
+                                    IP地址
+                                </label>
+                                <div class="col-md-5" id="divIPControl">
+                                </div>
+                                <label class="control-label col-md-1">
+                                    端口
+                                </label>
+                                <div class="col-md-3">
+                                    <input class="form-control" type="text" id="txtPort" />
+                                </div>
+                                <label class="lable-required">*</label>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2">
+                                    序列号
+                                </label>
+                                <div class="col-md-9">
+                                    <input class="form-control" type="text" id="txtSerialNumber" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2">
+                                    用户名
+                                </label><div class="col-md-9">
+                                    <input class="form-control" type="text" id="txtUsername" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2">
+                                    密码
+                                </label><div class="col-md-9">
+                                    <input class="form-control" type="text" id="txtPassword" />
+                                </div>
+                            </div>
+                        </div>
+                        <div id="page2" style="margin-bottom:24px;display:none">
+                            <div class="form-group">
+                                <label class="control-label col-md-2">
+                                    厂商信息
+                                </label>
+                                <div class="col-md-9">
+                                    <input class="form-control" type="text" id="txtManufacturer" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2">
+                                    型号
+                                </label>
+                                <div class="col-md-9">
+                                    <input class="form-control" type="text" id="txtModel" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2">
+                                    固件版本信息
+                                </label>
+                                <div class="col-md-9">
+                                    <input class="form-control" type="text" id="txtFirmware" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2">
+                                    零售商信息
+                                </label>
+                                <div class="col-md-9">
+                                    <input class="form-control" type="text" id="txtPointOfSale" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2">
+                                    描述
+                                </label>
+                                <div class="col-md-9">
+                                    <textarea class="form-control" id="txtInformation" rows="3"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-top:15px">
+                            <label class="control-label col-md-5">
+                            </label>
+                            <div class="col-md-2">
+                                <a class="btn btn-primary" style="display:none" id="btnDetailPlatformLastStep" onclick="btnDetailPlatformLastStep_Click();">
+                                    上一步
+                                </a>
+                            </div>
+                            <div class="col-md-2">
+                                <a class="btn btn-primary" style="display:none" id="btnDetailPlatform" onclick="return btnDetailPlatform_Click(this);">
+                                    完&ensp;&ensp;成
+                                </a>
+                                <a class="btn btn-primary" id="btnDetailPlatformNextStep" onclick="btnDetailPlatformNextStep_Click();">
+                                    下一步
+                                </a>
+                            </div>
+                            <div class="col-md-2">
+                                <a class="btn btn-primary" onclick="return AlertWindow.Close();">
+                                    取&ensp;&ensp;消
+                                </a>
+                            </div>
+                        </div>
+                    </form>
+                </div></form>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script type="text/javascript">
+        platform_item_load();
+    </script>
+</body>
+</html>

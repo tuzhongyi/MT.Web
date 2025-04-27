@@ -1,0 +1,112 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>添加部门关联设备权限</title>
+    <link rel="stylesheet" type="text/css" href="../../../css/howell.css" />
+    <link rel="stylesheet" type="text/css" href="../../../css/bootstrap/bootstrap-switch.css" />
+    <script type="text/javascript" src="../../../js/language/chinese.js"></script>
+    <script type="text/javascript" src="../../../js/jquery/jquery-1.10.2.min.js"></script><script src="../../../js/imported.js"></script>
+    <script type="text/javascript" src="../../../js/jquery/jquery-ui.js"></script>
+    <script type="text/javascript" src="../../../js/jquery/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="../../../js/bootstrap/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../../js/nav.js"></script>
+    
+    <script type="text/javascript" src="../../../js/jquery/jquery.confirm.js"></script>
+    <script type="text/javascript" src="../../../js/modernizr.custom.js"></script>
+    <script type="text/javascript" src="../../../js/md5.js"></script>
+    <script type="text/javascript" src="../../../js/howell.js/howell.js"></script>
+    <script type="text/javascript" src="../../../js/howell.js/digest.js"></script>
+    <script type="text/javascript" src="../../../js/howell.js/httpService.js"></script>
+    <script type="text/javascript" src="../../../js/client/security.js"></script>
+    <script type="text/javascript" src="../../../js/client/management.js"></script>
+    <script type="text/javascript" src="../../../js/client/enum.js"></script>
+    <script type="text/javascript" src="../../../js/client/struct.js"></script>
+    <script type="text/javascript" src="../../../js/howell.js/howell.control.js"></script>
+    <script type="text/javascript" src="../../../js/jquery/jquery.confirm.js"></script>
+    <script type="text/javascript" src="../../../js/bootstrap/bootstrap-switch.min.js"></script>
+    <script type="text/javascript" src="../../../js/background/security/background_user.event.js"></script>
+    <script type="text/javascript" src="../../../js/background/security/background_users.js"></script>
+    <script src="../../../js/background/security/user/background_user_devices.js"></script>
+    <script type="text/javascript" src="../../../js/background/security/user/device/background_user_device_permissions.js"></script>
+    <script type="text/javascript" src="user_device_permissions.js"></script>
+
+    <script type="text/javascript">
+
+    </script>
+</head>
+<body>
+    <div style="height:360px;width:500px">
+        <div class="row heading" style="color:#007aff;margin-left:10px;margin-top:10px;font-size:24px">
+            选择关联权限
+        </div>
+        <div class="row bottom" style="margin-top:50px">
+            <div class="control-label col-md-2">
+
+            </div>
+            <div class="control-label col-md-2">
+                系统
+            </div>
+            <div class="col-md-6">
+                <div class="toggle-switch text-toggle-switch" data-off-label="否" data-off="default" data-on="primary" data-on-label="是" style="width:200px">
+                    <input type="checkbox" name="chkUserAddDevicePermissions" value="System" checked="checked"/>
+                </div>
+            </div>
+            <div class="control-label col-md-2">
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="control-label col-md-2">
+
+            </div>
+            <div class="control-label col-md-2">
+                媒体
+            </div>
+            <div class="col-md-6">
+                <div class="toggle-switch text-toggle-switch" data-off-label="否" data-off="default" data-on="primary" data-on-label="是" style="width:200px">
+                    <input type="checkbox" name="chkUserAddDevicePermissions" value="Media" checked="checked" />
+                </div>
+            </div>
+            <div class="control-label col-md-2">
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="control-label col-md-2">
+
+            </div>
+            <div class="control-label col-md-2">
+                日志
+            </div>
+            <div class="col-md-6">
+                <div class="toggle-switch text-toggle-switch" data-off-label="否" data-off="default" data-on="primary" data-on-label="是" style="width:200px">
+                    <input type="checkbox" name="chkUserAddDevicePermissions" value="Logs" checked="checked" />
+                </div>
+            </div>
+            <div class="control-label col-md-2">
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group" style="margin-top:40px">
+                <label class="control-label col-md-7">
+                </label>
+                <div class="col-md-2">
+                    <a class="btn btn-primary" onclick="return btnPermissionsUser_Device_Click();">
+                        确&ensp;&ensp;定
+                    </a>
+                </div>
+                <div class="col-md-2">
+                    <a class="btn btn-primary" onclick="return AlertWindow.Close();">
+                        取&ensp;&ensp;消
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        user_device_permissions_load();
+    </script>
+</body>
+</html>

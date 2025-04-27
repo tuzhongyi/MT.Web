@@ -1,0 +1,178 @@
+﻿.map {
+    overflow: hidden;
+    /*width: 940px;*/
+    height: 718px;
+    /*border: 1px solid red;*/
+    background-color: #ddd;
+    float: left;
+}
+
+    .map .zoom {
+        position: absolute;
+        z-index: 100;
+        top: 10px;
+    }
+
+        .map .zoom td {
+            -moz-user-select: -moz-none;
+        }
+
+        .map .zoom .control {
+            cursor: pointer;
+            width: 20px;
+            height: 20px;
+        }
+
+            .map .zoom .control.up {
+                background-image: url("img/up.gif");
+            }
+
+            .map .zoom .control.down {
+                background-image: url("img/down.gif");
+            }
+
+            .map .zoom .control.left {
+                background-image: url("img/left.gif");
+            }
+
+            .map .zoom .control.right {
+                background-image: url("img/right.gif");
+            }
+
+            .map .zoom .control.in {
+                background-image: url("img/zoom_in.gif");
+            }
+
+            .map .zoom .control.out {
+                background-image: url("img/zoom_out.gif");
+            }
+
+            .map .zoom .control.restore {
+                background-image: url("img/zoom.gif");
+            }
+
+    .map .dragAble {
+        z-index: 10;
+        height: 768px;
+        left: 0px;
+        position: relative;
+        top: 0px;
+        width: 1024px;
+    }
+
+        .map .dragAble image {
+            border: 0px;
+        }
+
+.point {
+    position: absolute;
+    width: 43px;
+    height: 43px;
+    background-position-x: center;
+    margin-left: -14px;
+    margin-top: -40px;
+    text-align: center;
+    overflow: visible;
+}
+    
+    .point .img {
+        background-image: url("img/point.png");
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position:center;
+        width: 100%;
+        height: 100%;
+        opacity:0.85;
+    }
+
+    .point.selected .img {
+        opacity:1;
+        z-index:1000;
+    }    
+    .point .img.camera {
+        background-image: url("img/camera.png");
+    }
+    .point .img.camera.alarm {
+        background-image: url("img/vmd1.png");
+    }
+    .point .img.camera.disalarm{
+        background-image: url("img/vmd2.png");
+    }
+
+
+
+    .point .img.annunciator {
+        background-image: url("img/disalarm.png");
+    }
+.point .img.annunciator.alarm
+{
+    background-image:url("img/alarm.png");
+    }
+    .point .img.annunciator.disalarm
+{
+    background-image:url("img/disalarm.png");
+    }
+    .point.selected {
+        /*background-image: url("img/selected.png");*/
+        /*background-color:rgba(200,200,200,0.5);*/
+    }
+
+    .point label {
+        margin-top:10px;
+        white-space: nowrap;
+        color: black;
+        background-color: rgba(255,255,255, 0.5);
+        padding: 2px 5px;
+    }
+
+    .point.selected label {
+        /*background-image: url("img/selected.png");*/
+        background-color: rgba(200,200,200,0.5);
+    }
+
+
+
+            #ulCamera .p {
+            background-image: url("img/point.png");
+            background-size: contain;
+            background-repeat: no-repeat;
+            height: 15px;
+            width: 10px;
+        }
+
+        #ulCamera .selected .p {
+            background-image: url("img/selected.png");            
+        }
+        .tab-content ul li.bind.selected {
+                background-image: url("img/selected.png");
+            }
+
+        #ulCamera li.bind {
+            background-image: url("img/camera.png");
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: right;
+            margin-right: 15px;
+        }
+            #ulCamera li.bind div {
+                display:none;
+            }
+        #ulAnnunciator li.bind {
+            background-image: url("img/annunciator.png");
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: right;
+            margin-right: 15px;
+        }
+            #ulAnnunciator li.bind div {
+                display:none;
+            }
+        .prompt .icon_camera {
+            background-image: url("img/camera.png");
+            background-repeat: no-repeat;
+            background-size: contain;
+            margin-top: 5px;
+            width: 30px;
+            height: 30px;
+            float: left;
+        }

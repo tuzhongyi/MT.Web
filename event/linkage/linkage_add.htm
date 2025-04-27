@@ -1,0 +1,1753 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>添加联动</title>
+    <link rel="stylesheet" type="text/css" href="../../css/howell.css" />
+    <link href="../../css/bootstrap/bootstrap-switch.css" rel="stylesheet" />
+    <link href="../../css/bootstrap/colorpicker.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="../../js/language/chinese.js"></script>
+    <script type="text/javascript" src="../../js/jquery/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="../../js/imported.js"></script>
+    <script type="text/javascript" src="../../js/jquery/jquery-ui.js"></script>
+    <script type="text/javascript" src="../../js/bootstrap/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../js/jquery/jquery.confirm.js"></script>
+    <script type="text/javascript" src="../../js/nav.js"></script>
+
+    <script type="text/javascript" src="../../js/howell.js/howell.js"></script>
+    <script type="text/javascript" src="../../js/client/struct.js"></script>
+    <script type="text/javascript" src="../../js/client/security.js"></script>
+    <script type="text/javascript" src="../../js/client/management.js"></script>
+    <script type="text/javascript" src="../../js/client/client.js"></script>
+    <script type="text/javascript" src="../../js/client/enum.js"></script>
+    <script type="text/javascript" src="../../js/howell.js/howell.control.js"></script>
+    <script type="text/javascript" src="../../js/modernizr.custom.js"></script>
+    <script type="text/javascript" src="../../js/bootstrap/bootstrap-switch.min.js"></script>
+    <script type="text/javascript" src="../../js/jquery/jquery.bootstrap.wizard.js"></script>
+    <script type="text/javascript" src="../../js/jquery/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="../../js/bootstrap/bootstrap-timepicker.js"></script>
+    <script type="text/javascript" src="../../js/bootstrap/bootstrap-colorpicker.js"></script>
+</head>
+<body>
+    <link href="css/bootstrap/bootstrap-switch.css" rel="stylesheet" />
+    <link href="css/bootstrap/colorpicker.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="js/jquery/jquery.confirm.js"></script>
+    <script type="text/javascript" src="js/client/management.js"></script>
+    <script type="text/javascript" src="js/modernizr.custom.js"></script>
+    <script type="text/javascript" src="js/bootstrap/bootstrap-switch.min.js"></script>
+    <script type="text/javascript" src="js/jquery/jquery.bootstrap.wizard.js"></script>
+    <script type="text/javascript" src="js/jquery/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap/bootstrap-timepicker.js"></script>
+    <script type="text/javascript" src="js/bootstrap/bootstrap-colorpicker.js"></script>
+    <style type="text/css">
+        .group-list-tag {
+            height: 40px;
+            float: left;
+            margin-top: -9px;
+            margin-right: 5px;
+            margin-left: -15px;
+            width: 5px;
+            background-color: #f0ad4e;
+        }
+
+            .group-list-tag.associated {
+                background-color: #60c560;
+            }
+
+            .group-list-tag.unassociated {
+                background-color: #c09853;
+            }
+
+        .dropdown-toggle.simlie {
+            margin-left: -9px !important;
+            height: 29px;
+            padding-top: 3px;
+        }
+
+        .checkbox_gray::before {
+            background-color: gray !important;
+        }
+
+        .text_area {
+            border: 1px solid #ddd;
+            height: 26.1%;
+            width: 100%;
+        }
+
+        .font-set-div {
+            border-top: 1px solid #ddd;
+            border-left: 1px solid #ddd;
+            border-right: 1px solid silver;
+            border-bottom: 1px solid silver;
+            width: 100%;
+            padding: 5px 0 5px 10px;
+        }
+
+        .w_width {
+            width: 57px;
+            text-align: left;
+        }
+
+        .font-set-table {
+            border-collapse: collapse;
+            border-bottom: 1px solid silver;
+        }
+
+        .font-set-table-td {
+            border: 0;
+            padding: 2px 3px 3px 3px;
+            font-size: 12px;
+        }
+
+        .colorpicker-saturation {
+            width: 100px;
+            height: 100px;
+            background-image: url(img/saturation.png);
+            cursor: crosshair;
+            float: left;
+        }
+
+        .colorpicker-hue {
+            background-image: url(img/hue.png);
+        }
+
+        .colorpicker-color {
+            height: 10px;
+            margin-top: 5px;
+            clear: both;
+            background-image: url(img/alpha.png);
+            background-position: 0 100%;
+        }
+
+        .colorpicker-alpha {
+            background-image: url(img/alpha.png);
+            display: none;
+        }
+
+        .text-name-size {
+            max-width: 250px;
+        }
+
+        .list-group-item p {
+            margin-bottom: 0;
+            padding: 2px 15px 0px 0;
+            border-bottom: 0;
+            height: 41px;
+        }
+
+        .list-group-item {
+            border-bottom: 1px solid #dddddd;
+        }
+
+        .group-list-tag.double {
+            margin-top: -2px;
+            height: 41px;
+        }
+
+        .list-group-item .first-line {
+            height: 20px;
+            font-size: 14px;
+        }
+
+        .list-group-item .second-line {
+            height: 20px;
+            font-size: 11px;
+            color: #888888;
+        }
+
+        .input-name {
+            width: 60%;
+        }
+
+        .device-ip {
+            width: 60%;
+        }
+
+        .device-classification {
+            width: 40%;
+            text-align: right;
+        }
+
+        .device-name {
+            width: 40%;
+            text-align: right;
+        }
+    </style>
+    <div class="page-main row" style="background-color:white">
+        <div class="col-md-12">
+            <div class="fluid-height clearfix list-width padded background-min-height">
+                <div class="heading list-heading-maxdiv" style="position:relative">
+                    <div style="height:670px;width:450px;overflow:hidden;position:absolute;z-index:1;top:48px;display:none;left:620px" id="Video_Input_Div">
+                        <div class="row">
+                            <div style="font-size:18px;clear:both;margin-left:22px;float:left;margin-top:1px">
+                                已配置输入通道列表
+                            </div>
+                            <div class="btn-group pull-right div-xsgroupdown" style="margin-top:37px;">
+                                <div class="btn btn-xs btn-primary btn-xsgroupdown dropdown-toggle simlie" data-toggle="dropdown" style="margin-right:5px">
+                                    选&ensp;择&ensp;<span class="caret"></span>
+                                </div>
+                                <ul class="dropdown-menu xsgroupdown-menu-ul" style="margin-right:5px">
+                                    <li class="mouse_pointer">
+                                        <a class="xsgroupdown-menu-ul-li-a" onclick="GroupList.Select.All(Html.Tab, Tab_SelectAll);">
+                                            全选
+                                        </a>
+                                    </li>
+                                    <li class="mouse_pointer">
+                                        <a class="xsgroupdown-menu-ul-li-a" onclick="GroupList.Select.Inverse(Html.Tab);">
+                                            反选
+                                        </a>
+                                    </li>
+                                    <li class="mouse_pointer">
+                                        <a class="xsgroupdown-menu-ul-li-a" onclick="GroupList.Select.Cancel(Html.Tab, Tab_SelectCancel);">
+                                            取消
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!--<a class="pull-right btn btn-primary div-xsgroup dropdown-toggle simlie" style="margin-top:37px;margin-right:20px" onclick="btnToAddLinkageMode_Onclick();">配置联动</a>-->
+                        </div>
+                        <div class="tab-content" style="height:590px;overflow:auto;margin-left:15px;width:430px" id="my-tab-content">
+                            <div class="heading tabs" style="height:41px;background-color:#e0e0e0;margin-top:2px">
+                                <ul class="nav nav-tabs" id="tabs" data-tabs="tabs" style="margin-top:-2px">
+                                    <li id="tab_btn_VideoPreviewIdentifier" class="active">
+                                        <a href="#tab_VideoPreviewIdentifier" data-toggle="tab" onclick="tab_select_OnChange('VideoPreviewIdentifier')">预览</a>
+                                    </li>
+                                    <li id="tab_btn_VideoPlaybackIdentifier">
+                                        <a href="#tab_VideoPlaybackIdentifier" data-toggle="tab" onclick="tab_select_OnChange('VideoPlaybackIdentifier')">回放</a>
+                                    </li>
+                                    <li id="tab_btn_VideoSnapIdentifier">
+                                        <a href="#tab_VideoSnapIdentifier" data-toggle="tab" onclick="tab_select_OnChange('VideoSnapIdentifier')">抓图</a>
+                                    </li>
+                                    <li id="tab_btn_VideoSnapIdentifier">
+                                        <a href="#tab_DecoderIdentifier" data-toggle="tab" onclick="tab_select_OnChange('DecoderIdentifier')">解码器</a>
+                                    </li>
+                                    <li id="tab_btn_TextIdentifier">
+                                        <a href="#tab_TextIdentifier" data-toggle="tab" onclick="tab_select_OnChange(null)">文本</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="tab-pane active" id="tab_VideoPreviewIdentifier" style="border-top:0px;">
+                                <div class="scrollable" style="height:548px;overflow-y:auto;margin-top:1px;margin-left:2px;width:426px">
+                                    <div class="list-group" id="preview_">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tab_VideoPlaybackIdentifier" style="border-top:0px;">
+                                <div class="scrollable" style="height:548px;overflow-y:auto;margin-top:1px;margin-left:2px;width:426px">
+                                    <div class="list-group" id="playback_">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tab_VideoSnapIdentifier" style="border-top:0px;">
+                                <div class="scrollable" style="height:548px;overflow-y:auto;margin-top:1px;margin-left:2px;width:426px">
+                                    <div class="list-group" id="snap_">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tab_DecoderIdentifier" style="border-top:0px;">
+                                <div class="scrollable" style="height:548px;overflow-y:auto;margin-top:1px;margin-left:2px;width:426px">
+                                    <div class="list-group" id="decoder_">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tab_TextIdentifier" style="border-top:0px;">
+                                <div class="scrollable" style="height:545px;overflow-y:auto;margin-top:4px;margin-left:2px;width:426px">
+                                    <div style="margin-top:10px;">设置字体:</div>
+                                    <div class="font-set-div">
+                                        <form id="ff">
+                                            <table cellpadding="0" cellspacing="0" class="font-set-table">
+                                                <tr>
+                                                    <td class="font-set-table-td">
+                                                        字体:<br>
+                                                        <input class="w_width" style="width:137px" value="宋体" type="text" />
+                                                    </td>
+                                                    <td class="font-set-table-td">字形:<br><input value="normal" class="w_width" type="text" /></td>
+                                                    <td class="font-set-table-td">大小:<br><input type="text" value="14px" style="width:47px;" /></td>
+                                                    <td class="font-set-table-td">RGBA:<br><input data-color-format="rgba" id="cp2" type="text" value="rgba(0,0,0,0)" onblur="select_value(this.value, 3);"></td>
+                                                <tr>
+                                                    <td class="font-set-table-td">
+                                                        <select size="6" class="w_width" style="width:137px" onchange="select_value(this.options[this.selectedIndex].value,0)">
+                                                            <option value="宋体" selected="selected">宋体
+                                                            <option value="方正舒体">方正舒体
+                                                            <option value="方正姚体">方正姚体
+                                                            <option value="华文行楷">华文行楷
+                                                            <option value="华文新魏">华文新魏
+                                                            <option value="仿宋_GB2312">仿宋_GB2312
+                                                            <option value="黑体">黑体
+                                                            <option value="华文彩云">华文彩云
+                                                            <option value="隶书">隶书
+                                                            <option value="华文中宋">华文中宋
+                                                            <option value="verdana">verdana
+                                                            <option value="Times New Roman">Times New Roman
+                                                            <option value="Fixedsys">Fixedsys
+                                                        </select>
+                                                    </td>
+                                                    <td class="font-set-table-td">
+                                                        <select size="6" class="w_width" onchange="select_value(this.options[this.selectedIndex].value,1)">
+                                                            <option value="normal" selected="selected">常规
+                                                            <option value="bold">粗体
+                                                        </select>
+                                                    </td>
+                                                    <td class="font-set-table-td">
+                                                        <select size="6" style="width:47px;" onchange="select_value(this.options[this.selectedIndex].value,2)">
+                                                            <option value="12px">12
+                                                            <option value="13px">13
+                                                            <option value="14px" selected="selected">14
+                                                            <option value="15px">15
+                                                            <option value="16px">16
+                                                            <option value="17px">17
+                                                            <option value="18px">18
+                                                            <option value="19px">19
+                                                            <option value="20px">20
+                                                            <option value="21px">21
+                                                            <option value="22px">22
+                                                            <option value="23px">23
+                                                            <option value="24px">24
+                                                            <option value="25px">25
+                                                            <option value="26px">26
+                                                            <option value="27px">27
+                                                            <option value="28px">28
+                                                            <option value="29px">29
+                                                            <option value="30px">30
+                                                            <option value="32px">32
+                                                            <option value="34px">34
+                                                            <option value="36px">36
+                                                            <option value="38px">38
+                                                            <option value="40px">40
+                                                        </select>
+                                                    </td>
+                                            </table>
+                                        </form>
+                                    </div>
+                                    <div style="margin-top:20px">
+                                        测试字符串:
+                                    </div>
+                                    <div id="show_words" class="text_area" style="overflow-y:auto;overflow-x:hidden;font-family:宋体;font-weight:normal;font-size:14px;color:rgba(0,0,0,0);"></div>
+                                    <div style="margin-top:20px">
+                                        请输入联动显示信息:
+                                    </div>
+                                    <textarea class="text_area" id="text_area" style="font-family:宋体;font-weight:normal;font-size:14px;" onkeyup="textarea_Onkeyup(this.value);"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group list-heading-div">
+                        &ensp;<i class="icon_linkage_list"></i>
+                        创建联动
+                    </div>
+                    <div style="height:80px">
+                        <div class="col-md-5">
+                            <div style="clear:both;font-size:18px;margin-left:-10px" id="ComponentListName">
+                                请选择关联设备
+                            </div>
+                            <div class="pull-left" style="margin-top:10px;margin-left:-10px" id="chkEventState">
+                                <label class="checkbox-inline checkbox_control">
+                                    <input type="checkbox" id="chkActive" value="Active" checked="checked" onclick="chkActive_OnClick();" /><span id="chkSpan"></span>
+                                </label>
+                                <label class="checkbox_info" style="margin-top:8px;">
+                                    激活
+                                </label>
+                            </div>
+                            <div class="btn-group pull-right div-xsgroupdown" style="margin-top:10px;margin-right:2px !important" id="deviceOperation">
+                                <div class="btn btn-xs btn-primary btn-xsgroupdown dropdown-toggle simlie" data-toggle="dropdown">
+                                    选&ensp;择&ensp;<span class="caret"></span>
+                                </div>
+                                <ul class="dropdown-menu xsgroupdown-menu-ul">
+                                    <li class="mouse_pointer">
+                                        <a class="xsgroupdown-menu-ul-li-a" onclick="GroupList.Select.All(Info.ControlIdPrefix.component, Component_SelectAll);">
+                                            全选
+                                        </a>
+                                    </li>
+                                    <li class="mouse_pointer">
+                                        <a class="xsgroupdown-menu-ul-li-a" onclick="GroupList.Select.Inverse(Info.ControlIdPrefix.component);">
+                                            反选
+                                        </a>
+                                    </li>
+                                    <li class="mouse_pointer">
+                                        <a class="xsgroupdown-menu-ul-li-a" onclick="GroupList.Select.Cancel(Info.ControlIdPrefix.component, Component_SelectCancel);">
+                                            取消
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="pull-right" style="margin-top:5px;margin-right:15px">
+                                <div class="select-div"><select style="height:29px" class="form-control" id="ddlClassification" onchange="selectClassification_Click(this.value)"></select></div>
+                            </div>
+                        </div>
+                        <div class="col-md-2"></div>
+                        <div class="col-md-5">
+                            <div style="clear:both;font-size:18px;margin-left:-10px" id="linkageListName">
+                                待创建联动列表
+                            </div>
+                            <div class="pull-left" style="margin-top:10px;margin-left:-10px">
+                                <!--<select class="form-control" style="max-width:200px;" id="ddlAddEventType" onchange="tab_select_OnChange(this.value, Html.StateKey)"></select>-->
+                            </div>
+                            <div class="btn-group pull-right div-xsgroupdown" style="margin-top:10px;margin-right:0px!important" id="linkageOperation">
+                                <div class=" btn btn-xs btn-primary btn-xsgroupdown dropdown-toggle simlie" data-toggle="dropdown">
+                                    选&ensp;择&ensp;<span class="caret"></span>
+                                </div>
+                                <ul class="dropdown-menu xsgroupdown-menu-ul">
+                                    <li class="mouse_pointer">
+                                        <a class="xsgroupdown-menu-ul-li-a" onclick="GroupList.Select.All(Info.ControlIdPrefix.linkage, Linkage_SelectAll);">
+                                            全选
+                                        </a>
+                                    </li>
+                                    <li class="mouse_pointer">
+                                        <a class="xsgroupdown-menu-ul-li-a" onclick="GroupList.Select.Inverse(Info.ControlIdPrefix.linkage);">
+                                            反选
+                                        </a>
+                                    </li>
+                                    <li class="mouse_pointer">
+                                        <a class="xsgroupdown-menu-ul-li-a" onclick="GroupList.Select.Cancel(Info.ControlIdPrefix.linkage, Linkage_SelectCancel);">
+                                            取消
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!--<a class="pull-right btn btn-primary div-xsgroup dropdown-toggle simlie" style="margin-top:10px;margin-right:20px" id="btnToAddInputMode" onclick="btnToAddInputMode_Onclick();">配置关联</a>-->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div id="dListComponent" class="list_linkage scrollable" style="border:1px solid #ddd;padding:2px 2px 2px 2px;">
+
+                        </div>
+                        <div class="col-md-2">
+                            <div style="margin:225px auto 0px 65px;text-align:center;width:40px" onclick="addComponent_OnClick()">
+                                <a class="btn btn-primary div-xsgroup icon-long-arrow-right"></a>
+                            </div>
+                            <div style="margin:0px auto 0px 65px;text-align:center;width:40px" onclick="removeComponent_OnClick()">
+                                <a class="btn btn-primary div-xsgroup icon-long-arrow-left"></a>
+                            </div>
+                        </div>
+                        <div id="dListLinkage" class="list_linkage scrollable" style="border:1px solid #ddd;padding:2px 2px 2px 2px;">
+                            <div class="list-group" id="linkage_">
+
+                            </div>
+                        </div>
+                        <a class="btn btn-primary div-xsgroup pull-right btn_linkage" onclick="loadContent(base64encode(setUrlRandomParams('event/linkages.htm')));" style="margin-right:20px;margin-top:20px">联动列表</a>
+                        <a class="btn btn-default div-xsgroup pull-right btn_linkage" style="margin-right:20px;margin-top:20px" id="btnNext" onclick="btnToAddInputMode_Onclick()">下一步</a>
+                        <a class="btn btn-default div-xsgroup pull-right btn_linkage" style="margin-right:20px;margin-top:20px;display:none" id="btnSaveFinish" onclick="btnSaveFinish_Onclick()">完&ensp;&ensp;成</a>
+                        <a class="btn btn-primary div-xsgroup pull-right btn_linkage" style="margin-right:20px;margin-top:20px;display:none" id="btnLast" onclick="btnToAddLinkageMode_Onclick()">上一步</a>
+                        <a class="btn btn-primary div-xsgroup pull-right btn_linkage" style="margin-right:20px;margin-top:20px;display:none" href="event/linkage/add/linkage_add_playback.htm" id="btnBatchSetPalyBack" onclick="return editPlayback_Click(this)">设置回放</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    $(function () {
+        $("#timepicker-default").timepicker();
+        $("#timepicker-24h").timepicker({
+            minuteStep: 1,
+            showSeconds: true,
+            showMeridian: false
+        });
+        $("#timepicker-noTemplate").timepicker({
+            template: false,
+            showInputs: false,
+            minuteStep: 5
+        });
+        $("#timepicker-modal").timepicker({
+            minuteStep: 1,
+            secondStep: 5,
+            showInputs: false,
+            modalBackdrop: true,
+            showSeconds: true,
+            showMeridian: false
+        });
+        $("#cp1").colorpicker({
+            format: "hex"
+        });
+        $("#cp2").colorpicker();
+        $("#cp3").colorpicker();
+    });
+    </script>
+    <script type="text/javascript">
+    var Info = {
+        ChildListName: {
+            VideoInput: {
+                list: "视频输入通道列表",
+                title: "请选择联动动作"
+            },
+            IO: {
+                list: "IO输入通道列表",
+                title: "请选择关联IO输入通道"
+            },
+            VMD: {
+                list: "视频输入通道列表",
+                title: "请选择关联视频输入通道列表"
+            },
+            Videoloss: {
+                list: "视频输入通道列表",
+                title: "请选择关联视频输入通道列表"
+            },
+            IRCut: {
+                list: "视频输入通道列表",
+                title: "请选择关联视频输入通道列表"
+            },
+            DayNight: {
+                list: "视频输入通道列表",
+                title: "请选择关联视频输入通道列表"
+            },
+            RecordState: {
+                list: "IO输入通道列表",
+                title: "请选择关联IO输入通道"
+            },
+            StorageMediumFailure: {
+                list: "存储媒介列表",
+                title: "请选择关联存储媒介"
+            },
+            RAIDFailure: {
+                list: "存储媒介列表",
+                title: "请选择关联存储媒介"
+            },
+            RecordingFailure: {
+                list: "IO输入通道列表",
+                title: "请选择关联IO输入通道"
+            },
+            BadVideo: {
+                list: "视频输入通道列表",
+                title: "请选择关联视频输入通道列表"
+            },
+            MaximumConnections: {
+                list: "IO输入通道列表",
+                title: "请选择关联IO输入通道"
+            },
+            NetworkBitrate: {
+                list: "网络接口列表",
+                title: "请选择关联网络接口"
+            },
+            VideoBitrate: {
+                list: "IO输入通道列表",
+                title: "请选择关联IO输入通道"
+            },
+            Squint: {
+                list: "视频输入通道列表",
+                title: "请选择关联视频输入通道列表"
+            },
+            VideoTurned: {
+                list: "视频输入通道列表",
+                title: "请选择关联视频输入通道列表"
+            },
+            Intrusion: {
+                list: "视频输入通道列表",
+                title: "请选择关联视频输入通道列表"
+            },
+            Tripwire: {
+                list: "视频输入通道列表",
+                title: "请选择关联视频输入通道列表"
+            },
+            Loitering: {
+                list: "视频输入通道列表",
+                title: "请选择关联视频输入通道列表"
+            },
+            Unattended: {
+                list: "视频输入通道列表",
+                title: "请选择关联视频输入通道列表"
+            },
+            Removal: {
+                list: "视频输入通道列表",
+                title: "请选择关联视频输入通道列表"
+            },
+            Retrograde: {
+                list: "视频输入通道列表",
+                title: "请选择关联视频输入通道列表"
+            },
+        },
+        ControlIdPrefix: {
+            component: "component_",
+            channelCount: "channel_count_",
+            channel: "channel_",
+            linkage: "linkage_",
+            VideoPreviewIdentifier: {
+                name: "preview_",
+                object: function () {
+                    return new VideoPreviewIdentifier();
+                }
+            },
+            VideoPlaybackIdentifier: {
+                name: "playback_",
+                object: function () {
+                    return new VideoPlaybackIdentifier();
+                }
+            },
+            VideoSnapIdentifier: {
+                name: "snap_",
+                object: function () {
+                    return new VideoSnapIdentifier();
+                }
+            },
+            DecoderIdentifier: {
+                name: "decoder_",
+                object: function () {
+                    return new DecoderIdentifier();
+                }
+            },
+            getId: function (id, prefix) {
+                return id.substr(prefix.length);
+            }
+        },
+        TabKey: {
+            preview_: "VideoPreviewIdentifier",
+            playback_: "VideoPlaybackIdentifier",
+            snap_: "VideoSnapIdentifier",
+            decoder_: "DecoderIdentifier"
+        },
+        Type: {
+            get: function () {
+                var uri = new Uri(Trigger.href);
+                if (uri.Query)
+                    return uri.Querys.type;
+                return null;
+            }
+        },
+        Channel: {
+            getName: function (channel, type) {
+                var name = "";
+                switch (type) {
+                    case "VideoInputChannel":
+                    case "IOInputChannel":
+                        name = channel.Name;
+                        break;
+                    case "StorageMedium":
+                        name = channel.StoragePort;
+                        break;
+                    case "NetworkInterface":
+                        name = channel.InterfacePort;
+                        break;
+                }
+                return name;
+            },
+        },
+        TypeKey: {
+            VideoInput: {
+                name: "VideoInputChannel",
+                value: ["Video", "Input"],
+            },
+            IO: {
+                name: "IOInputChannel",
+                value: ["IO", "Input"],
+            },
+            VMD: {
+                name: "VideoInputChannel",
+                value: ["Video", "Input"],
+            },
+            Videoloss: {
+                name: "VideoInputChannel",
+                value: ["Video", "Input"],
+            },
+            IRCut: {
+                name: "VideoInputChannel",
+                value: ["Video", "Input"],//红外滤光片切换模式ON/OFF 不确定
+            },
+            DayNight: {
+                name: "VideoInputChannel",
+                value: ["Video", "Input"],//彩色转黑白模式ON/OFF 不确定
+            },
+            RecordState: {
+                name: "IOInputChannel",
+                value: ["IO", "Input"],//录像状态 ON/OFF 不确定
+            },
+            StorageMediumFailure: {
+                name: "StorageMedium",
+                value: ["Storage"],
+            },
+            RAIDFailure: {
+                name: "StorageMedium",
+                value: ["Storage"],
+            },
+            RecordingFailure: {
+                name: "IOInputChannel",
+                value: ["IO", "Input"],
+            },
+            BadVideo: {
+                name: "VideoInputChannel",
+                value: ["Video", "Input"],
+            },
+            POS: null,
+            FanFailure: null,
+            CpuUsage: null,
+            MemoryUsage: null,
+            Temperature: null,
+            Pressure: null,
+            Voltage: null,
+            MaximumConnections: {
+                name: "IOInputChannel",
+                value: ["IO", "Input"],
+            },
+            NetworkBitrate: {
+                name: "NetworkInterface",
+                value: ["Network"],
+            },
+            VideoBitrate: {
+                name: "IOInputChannel",
+                value: ["IO", "Input"],
+            },
+            Squint: {
+                name: "VideoInputChannel",
+                value: ["Video", "Input"],//聚焦模糊  不确定
+            },
+            VideoTurned: {
+                name: "VideoInputChannel",
+                value: ["Video", "Input"],// 视频转动  不确定
+            },
+            Intrusion: {
+                name: "VideoInputChannel",
+                value: ["Video", "Input"],
+            },
+            Tripwire: {
+                name: "VideoInputChannel",
+                value: ["Video", "Input"],
+            },
+            Loitering: {
+                name: "VideoInputChannel",
+                value: ["Video", "Input"],
+            },
+            Unattended: {
+                name: "VideoInputChannel",
+                value: ["Video", "Input"],
+            },
+            Removal: {
+                name: "VideoInputChannel",
+                value: ["Video", "Input"],
+            },
+            Retrograde: {
+                name: "VideoInputChannel",
+                value: ["Video", "Input"],
+            },
+        },
+        Id: {
+            key: {
+                ComponentId: 0,
+                EventType: 1,
+                EventState: 2
+            },
+            get: function (id) {
+                var items = id.split("_");
+                return items;
+            },
+            set: function (id, type, state) {
+                return id + "_" + type + "_" + state;
+            }
+        },
+    }
+
+    Property = {
+        Device: {
+            value: new Dictionary(),
+            load: function () {
+                var response = tryCatch(function () {
+                    return Client.Management().Device.List();
+                });
+                var deviceArray = new Array();
+                if (response && response.Device) {
+                    for (var i = 0; i < response.Device.length; i++) {
+                        var device = response.Device[i];
+                        device.VideoInputChannel = new Dictionary();
+                        if (device.Classification == DeviceClassification.HDDecoder || device.Classification == DeviceClassification.DecodingUnit) {
+                            device.isCreate = false;
+                            device.componentSelected = false;
+                        }
+                        if (Info.TypeKey[Html.Type] != null)
+                            device[Info.TypeKey[Html.Type].name] = new Dictionary();
+                        else {
+                            device[Html.Type] = new Dictionary();
+                            var activeId = Info.Id.set(device.Id, Html.Type, EventState.Active);
+                            var inactiveId = Info.Id.set(device.Id, Html.Type, EventState.Inactive);
+                            device[Html.Type][EventState.Active] = Property.Linkage.value[activeId] ? true : false;
+                            device[Html.Type][EventState.Inactive] = Property.Linkage.value[inactiveId] ? true : false;
+                            device.Selected = false;
+                        }
+                        if (this.value[device.Id]) {
+                            if (this.value[device.Id].VideoInputChannel)
+                                device.VideoInputChannel = this.value[device.Id].VideoInputChannel;
+                            if (Info.TypeKey[Html.Type] != null && this.value[device.Id][Info.TypeKey[Html.Type].name])
+                                device[Info.TypeKey[Html.Type].name] = this.value[device.Id][Info.TypeKey[Html.Type].name];
+                            if (this.value[device.Id][Html.Type])
+                                device[Html.Type] = this.value[device.Id][Html.Type];
+                            if (this.value[device.Id].isCreate)
+                                device.isCreate = this.value[device.Id].isCreate;
+                            if (this.value[device.Id].componentSelected)
+                                device.componentSelected = this.value[device.Id].componentSelected;
+                            device.Selected = this.value[device.Id].Selected;
+                        }
+                        this.value[device.Id] = device;
+                        deviceArray.push(device);
+                    }
+                }
+                return deviceArray;
+            },
+            Channel: {
+                value: function (deviceId, key) {
+                    return Property.Device.value[deviceId][key.name];
+                },
+                getChild: function (obj, key, offset) {
+                    if (!key)
+                        return obj;
+                    if (offset < key.length - 1)
+                        return this.getChild(obj[key[offset++]], key, offset);
+                    return obj[key[offset]];
+                },
+                loadList: function (key, search) {
+                    var channels = new Array();
+                    var devices = Property.Device.value.toArray();
+                    for (var i = 0; i < devices.length; i++) {
+                        if (search && search != "All") {
+                            if (devices[i].Classification != search)
+                                continue;
+                        }
+                        this.load(devices[i].Id, key);
+                        channels = channels.concat(Property.Device.value[devices[i].Id][key.name].toArray());
+                    }
+                    return channels;
+                },
+                load: function (deviceId, key) {
+                    var client = this.getChild(Client.Management().Device, key.value, 0);
+                    var response = tryCatch(function () {
+                        return client.List(deviceId);
+                    });
+                    for (var i = 0; i < response[key.name].length; i++) {
+                        var item = response[key.name][i];
+                        item.Selected = false;
+                        if (Html.IsVideoInput == false) {
+                            var activeId = Info.Id.set(item.Id, Html.Type, EventState.Active);
+                            var inactiveId = Info.Id.set(item.Id, Html.Type, EventState.Inactive);
+                            item[Html.Type] = new Dictionary();
+                            item[Html.Type][EventState.Active] = Property.Linkage.value[activeId] ? true : false;
+                            item[Html.Type][EventState.Inactive] = Property.Linkage.value[inactiveId] ? true : false;
+                            if (Property.Device.value[deviceId][key.name] && Property.Device.value[deviceId][key.name][item.Id]) {
+                                item.Selected = Property.Device.value[deviceId][key.name][item.Id].Selected;
+                                if (!item[Html.Type])
+                                    item[Html.Type] = new Object();
+                                if (!item.isCreate)
+                                    item.isCreate = new Object();
+                                item[Html.Type] = Convert(Property.Device.value[deviceId][key.name][item.Id][Html.Type], item[Html.Type]);
+                                item.isCreate = Convert(Property.Device.value[deviceId][key.name][item.Id].isCreate, item.isCreate);
+                                //item[Html.Type] = Property.Device.value[deviceId][key.name][item.Id][Html.Type];
+                                //item.isCreate = Property.Device.value[deviceId][key.name][item.Id].isCreate;
+                            }
+                        }
+                        else {
+                            item.isCreate = new Dictionary();
+                            for (var k in Info.TabKey) {
+                                item.isCreate[Info.TabKey[k]] = false;
+                            }
+                            if (Property.Device.value[deviceId][key.name] && Property.Device.value[deviceId][key.name][item.Id]) {
+                                item.Selected = Property.Device.value[deviceId][key.name][item.Id].Selected;
+                                if (!item[Html.Type])
+                                    item[Html.Type] = new Object();
+                                if (!item.isCreate)
+                                    item.isCreate = new Object();
+                                item[Html.Type] = Convert(Property.Device.value[deviceId][key.name][item.Id][Html.Type], item[Html.Type]);
+                                item.isCreate = Convert(Property.Device.value[deviceId][key.name][item.Id].isCreate, item.isCreate);
+                                //item[Html.Type] = Property.Device.value[deviceId][key.name][item.Id][Html.Type];
+                                //item.isCreate = Property.Device.value[deviceId][key.name][item.Id].isCreate;
+                            }
+                        }
+                        Property.Device.value[deviceId][key.name][item.Id] = item;
+                    }
+                }
+            }
+        },
+        Linkage: {
+            value: new Dictionary(),
+            load: function (type) {
+                var result = tryCatch(function () {
+                    return Client.Management().Event.Linkage.List(type, null);
+                });
+                if (result && result.EventLinkage) {
+                    for (var i = 0; i < result.EventLinkage.length; i++) {
+                        result.EventLinkage[i] = result.EventLinkage[i];
+                        var id = Info.Id.set(result.EventLinkage[i].ComponentId, result.EventLinkage[i].EventType, result.EventLinkage[i].EventState);
+                        this.value[id] = result.EventLinkage[i];
+                    }
+                }
+            },
+            create: function (linkage) {
+                var result = tryCatch(function () {
+                    return Client.Management().Event.Linkage.Create(linkage);
+                });
+            },
+        },
+        Tab: {
+            value: {
+                VideoPreviewIdentifier: new Dictionary(),
+                VideoPlaybackIdentifier: new Dictionary(),
+                VideoSnapIdentifier: new Dictionary()
+            },
+        }
+    }
+
+    var Html = {
+        SearchKey: "All",
+        Init: function (type) {
+            Property.Linkage.load(type);
+        },
+        Tab: Info.ControlIdPrefix.VideoPreviewIdentifier.name,
+        Type: null,
+        StateKey: EventState.Active,
+        IsVideoInput: false,
+        GroupList: {
+            Component: {
+                createItem: function (component, key) {
+                    var item = new GroupListItem(Info.ControlIdPrefix.component);
+                    item.id = component.Id;
+                    var inputName = "";
+                    var ip = "";
+                    var deviceName = "";
+                    var deviceClassification = "";
+
+                    if (key == null) {
+                        item.className = item.className + " mouse_pointer " + (Property.Device.value[component.Id].Selected ? "selected" : "");
+                        inputName = component.Name;
+                        deviceClassification = Language.Display.DeviceClassification[component.Classification];
+                        ip = component.Uri;
+                    }
+                    else if (key == Info.ControlIdPrefix.DecoderIdentifier.name) {
+                        item.className = item.className + " mouse_pointer " + (Property.Device.value[component.Id].componentSelected ? "selected" : "");
+                        inputName = component.Name;
+                        deviceClassification = Language.Display.DeviceClassification[component.Classification];
+                        ip = component.Uri;
+                    }
+                    else {
+                        if (Html.Type == EventType.NetworkBitrate) {
+                            inputName = component.InterfacePort;
+                        }
+                        else if (Html.Type == EventType.StorageMediumFailure || Html.Type == EventType.RAIDFailure) {
+                            inputName = component.StoragePort;
+                        }
+                        else {
+                            inputName = component.Name;
+                        }
+                        var device = Property.Device.value[new Id(component.Id).getDeviceId()];
+                        ip = device.Uri;
+                        deviceName = device.Name;
+                        deviceClassification = Language.Display.DeviceClassification[device.Classification];
+
+                        item.className = item.className + " mouse_pointer " + (Property.Device.value[device.Id][key.name][component.Id].Selected ? "selected" : "");
+                    }
+                    ip = new Uri(ip);
+                    $(item.Content).append($("<div class='group-list-tag double'></div><div class='first-line'><div class='pull-left input-name text-ellipsis' title='" + inputName + "'>" + inputName + "</div><div class='pull-right device-name text-ellipsis' title='" + deviceName + "'>" + deviceName + "</div></div><div class='second-line'><div class='pull-left device-ip text-ellipsis' title='IP地址'>" + ip.Host + "</div><div class='pull-right device-classification' title='设备类型'>" + deviceClassification + "</div></div>"));
+                    if (!deviceName) {
+                        item.getElementsByClassName("device-name")[0].style.width = "0";
+                        item.getElementsByClassName("input-name")[0].style.width = "100%";
+                    }
+                    item.onclick = function () {
+                        Component_OnClick(item);
+                    };
+                    return item;
+                },
+                load: function (controlId, key, search) {
+                    var list;
+                    var device = Property.Device.load();
+                    if (search && search != "All") {
+                        list = new Array();
+                        for (var i = 0; i < device.length; i++) {
+                            if (device[i].Classification == search)
+                                list.push(device[i]);
+                        }
+                    }
+                    else {
+                        list = device;
+                    }
+
+                    if (key != null || Html.IsVideoInput == true) {
+                        list = Property.Device.Channel.loadList(key, search);
+                    }
+                    var array = new GroupListItemArray();
+                    for (var i = 0; i < list.length; i++) {
+                        if (Html.IsVideoInput == false) {
+                            var id = Info.Id.set(list[i].Id, Html.Type, Html.StateKey);
+                            if (Property.Linkage.value[id]) {
+                                if (key == null) {
+                                    Property.Device.value[list[i].Id][Html.Type][Html.StateKey] = true;
+                                    continue;
+                                }
+                                Property.Device.value[new Id(list[i].Id).getDeviceId()][key.name][list[i].Id][Html.Type][Html.StateKey] = true;
+                                continue;
+                            }
+                            if (key == null && Property.Device.value[list[i].Id][Html.Type][Html.StateKey] == true)
+                                continue;
+                            if (key != null && Property.Device.value[new Id(list[i].Id).getDeviceId()][key.name][list[i].Id][Html.Type][Html.StateKey] == true)
+                                continue;
+                            var item = this.createItem(list[i], key);
+                            array.push(item);
+                        }
+                        else {
+                            if (list[i].isCreate[Info.TabKey[Html.Tab]] == true)
+                                continue
+                            var item = this.createItem(list[i], key);
+                            array.push(item);
+                        }
+                    }
+                    getTag(controlId).appendChild(new GroupList(Info.ControlIdPrefix.component, array));
+                },
+                loadDecoding: function (controlId, key) {
+                    var array = new GroupListItemArray();
+                    for (var id in Property.Device.value) {
+                        if (Property.Device.value[id].Classification == DeviceClassification.HDDecoder || Property.Device.value[id].Classification == DeviceClassification.DecodingUnit) {
+                            if (!Property.Device.value[id].isCreate) {
+                                var item = this.createItem(Property.Device.value[id], key);
+                                array.push(item);
+                            }
+                        }
+                    }
+                    getTag(controlId).appendChild(new GroupList(Info.ControlIdPrefix.component, array));
+                },
+                clear: function () {
+                    var control = getTag(Info.ControlIdPrefix.component);
+                    if (control)
+
+                        control.parentElement.innerText = "";
+                },
+                select: function (sender, value) {
+                    var id = sender.id;
+                    var type = null;
+                    var deviceId = null;
+                    if (Info.TypeKey[Html.Type] != null || Html.IsVideoInput != false) {
+                        type = Html.IsVideoInput == false ? Info.TypeKey[Html.Type].name : Info.TypeKey["VideoInput"].name;
+                        deviceId = new Id(id).getDeviceId();
+                    }
+                    if (is.Boolean(value)) {
+                        if (value) {
+                            if (type != null) {
+                                if (Html.Tab == Info.ControlIdPrefix.DecoderIdentifier.name) {
+                                    if (Property.Device.value[id].componentSelected == false) {
+                                        Property.Device.value[id].componentSelected = true;
+                                        $(sender).addClass("selected");
+                                    }
+                                }
+                                else {
+                                    if (Property.Device.value[deviceId][type][id].Selected == false) {
+                                        Property.Device.value[deviceId][type][id].Selected = true;
+                                        $(sender).addClass("selected");
+                                    }
+                                }
+                            }
+                            else {
+                                if (Property.Device.value[id].Selected == false) {
+                                    Property.Device.value[id].Selected = true;
+                                    $(sender).addClass("selected");
+                                }
+                            }
+                        }
+                        else {
+                            if (type != null) {
+                                if (Html.Tab == Info.ControlIdPrefix.DecoderIdentifier.name) {
+                                    if (Property.Device.value[id].componentSelected == true) {
+                                        Property.Device.value[id].componentSelected = false;
+                                        $(sender).removeClass("selected");
+                                    }
+                                }
+                                else {
+                                    if (Property.Device.value[deviceId][type][id].Selected == true) {
+                                        Property.Device.value[deviceId][type][id].Selected = false;
+                                        $(sender).removeClass("selected");
+                                    }
+                                }
+                            }
+                            else {
+                                if (Property.Device.value[id].Selected == true) {
+                                    Property.Device.value[id].Selected = false;
+                                    $(sender).removeClass("selected");
+                                }
+                            }
+                        }
+                        return;
+                    }
+                    if (type != null) {
+                        if (Html.Tab == Info.ControlIdPrefix.DecoderIdentifier.name) {
+                            if (Property.Device.value[id].componentSelected) {
+                                Property.Device.value[id].componentSelected = false;
+                                $(sender).removeClass("selected");
+                            }
+                            else {
+                                Property.Device.value[id].componentSelected = true;
+                                $(sender).addClass("selected");
+                            }
+                        }
+                        else {
+                            if (Property.Device.value[deviceId][type][id].Selected) {
+                                Property.Device.value[deviceId][type][id].Selected = false;
+                                $(sender).removeClass("selected");
+                            }
+                            else {
+                                Property.Device.value[deviceId][type][id].Selected = true;
+                                $(sender).addClass("selected");
+                            }
+                        }
+                        return;
+                    }
+                    if (Property.Device.value[id].Selected) {
+                        Property.Device.value[id].Selected = false;
+                        $(sender).removeClass("selected");
+                    }
+                    else {
+                        Property.Device.value[id].Selected = true;
+                        $(sender).addClass("selected");
+                    }
+                },
+            },
+            Linkage: {
+                Selected: new Dictionary(),
+                createItem: function (controlId, componentId, deviceId) {
+                    var item = new GroupListItem(controlId, Linkage_OnClick);
+                    item.id = controlId + Info.Id.set(componentId, Html.Type, Html.StateKey);
+                    item.className = item.className + " mouse_pointer " + (this.Selected[Info.Id.set(componentId, Html.Type, Html.StateKey)] ? "selected" : "");
+                    var inputName = "";
+                    var deviceClassification = "";
+                    var ip = "";
+                    var deviceName = "";
+                    if (deviceId) {
+                        inputName = Info.Channel.getName(Property.Device.value[deviceId][Info.TypeKey[Html.Type].name][componentId], Info.TypeKey[Html.Type].name);
+                        deviceClassification = Language.Display.DeviceClassification[Property.Device.value[deviceId].Classification];
+                        deviceName = Property.Device.value[deviceId].Name;
+                        ip = Property.Device.value[deviceId].Uri;
+
+                    }
+                    else {
+                        inputName = Property.Device.value[componentId].Name;
+                        deviceClassification = Language.Display.DeviceClassification[Property.Device.value[componentId].Classification];
+                        ip = Property.Device.value[componentId].Uri;
+                    }
+                    ip = new Uri(ip);
+                    $(item.Content).append($("<div class='group-list-tag double'></div><div class='first-line'><div class='pull-left input-name text-ellipsis' title='" + inputName + "'>" + inputName + "</div><div class='pull-right device-name text-ellipsis' title='" + deviceName + "'>" + deviceName + "</div></div><div class='second-line'><div class='pull-left device-ip text-ellipsis' title='IP地址'>" + ip.Host + "</div><div class='pull-right device-classification' title='设备类型'>" + deviceClassification + "</div></div>"));
+                    if (!deviceName) {
+                        item.getElementsByClassName("device-name")[0].style.width = "0";
+                        item.getElementsByClassName("input-name")[0].style.width = "100%";
+                    }
+                    return item;
+                },
+                select: function (sender, value) {
+                    var id = Info.ControlIdPrefix.getId(sender.id, Info.ControlIdPrefix.linkage);
+                    if (is.Boolean(value)) {
+                        if (value) {
+                            this.Selected[id] = id;
+                        }
+                        else {
+                            delete this.Selected[id];
+                        }
+                        return;
+                    }
+                    if (this.Selected[id]) {
+                        delete this.Selected[id];
+                        return;
+                    }
+                    this.Selected[id] = id;
+                },
+                remove: function () {
+                    var list = this.Selected.toArray();
+                    if (list.length < 1)
+                        return;
+                    for (var i = 0; i < list.length; i++) {
+                        var info = Info.Id.get(list[i]);
+                        var id = info[Info.Id.key.ComponentId];
+                        var type = info[Info.Id.key.EventType];
+                        var state = info[Info.Id.key.EventState];
+                        if (Info.TypeKey[Html.Type] == null)
+                            Property.Device.value[id][type][state] = false;
+                        else {
+                            var deviceId = new Id(id).getDeviceId();
+                            Property.Device.value[deviceId][Info.TypeKey[Html.Type].name][id].Selected = false;
+                            Property.Device.value[deviceId][Info.TypeKey[Html.Type].name][id][type][state] = false;
+                        }
+                        var tag = getTag(Info.ControlIdPrefix.linkage + list[i]);
+                        if (tag)
+                            tag.parentElement.removeChild(tag);
+                        if (this.Selected[list[i]])
+                            delete this.Selected[list[i]];
+                    }
+                    Html.GroupList.Component.clear();
+                    Html.GroupList.Component.load("dListComponent", Info.TypeKey[Html.Type], Html.SearchKey);
+                    return;
+                },
+                create: function () {
+                    var devices = Property.Device.value.toArray();
+                    if (Info.TypeKey[Html.Type] == null) {
+                        for (var i = 0; i < devices.length; i++) {
+                            if (!devices[i].Selected)
+                                continue
+                            if (Property.Device.value[devices[i].Id][Html.Type][Html.StateKey] == false) {
+                                var item = this.createItem(Info.ControlIdPrefix.linkage, devices[i].Id);
+                                var group = getTag(Info.ControlIdPrefix.linkage);
+                                group.appendChild(item);
+                                Property.Device.value[devices[i].Id].Selected = false;
+                                Property.Device.value[devices[i].Id][Html.Type][Html.StateKey] = true;
+                                var tag = getTag(devices[i].Id);
+                                tag.parentElement.removeChild(tag);
+                            }
+                        }
+                        return;
+                    }
+                    for (var i = 0; i < devices.length; i++) {
+                        var channels = Property.Device.value[devices[i].Id][Info.TypeKey[Html.Type].name].toArray();
+                        for (var j = 0; j < channels.length; j++) {
+                            if (channels[j][Html.Type][Html.StateKey] == false && channels[j].Selected == true) {
+                                var item = this.createItem(Info.ControlIdPrefix.linkage, channels[j].Id, devices[i].Id);
+                                var group = getTag(Info.ControlIdPrefix.linkage);
+                                group.appendChild(item);
+                                Property.Device.value[devices[i].Id][Info.TypeKey[Html.Type].name][channels[j].Id][Html.Type][Html.StateKey] = true;
+                                Property.Device.value[devices[i].Id][Info.TypeKey[Html.Type].name][channels[j].Id].Selected = false;
+                                var tag = getTag(channels[j].Id);
+                                tag.parentElement.removeChild(tag);
+                            }
+                        }
+                    }
+                },
+                clear: function () {
+                    getTag(Info.ControlIdPrefix.linkage.Active).innerText = "";
+                    getTag(Info.ControlIdPrefix.linkage.Inactive).innerText = "";
+                },
+            },
+            Action: {
+                Selected: {
+                    VideoPreviewIdentifier: new Dictionary(),
+                    VideoPlaybackIdentifier: new Dictionary(),
+                    VideoSnapIdentifier: new Dictionary(),
+                    DecoderIdentifier: new Dictionary()
+                },
+                getValue: function (key, id) {
+                    Property.Tab.value[key][id];
+                },
+                changePlayBackValue: function (id, beginTime, endTime, protocol) {
+                    var playBack = new VideoPlaybackIdentifier();
+                    playBack.VideoInputChannelId = id;
+                    playBack.BeginTime = beginTime;
+                    playBack.EndTime = endTime;
+                    playBack.Protocol = protocol;
+                    Property.Tab.value.VideoPlaybackIdentifier[id] = playBack;
+                },
+                batchChangePlayBackValue: function (beginTime, endTime, protocol) {
+                    var list = this.Selected.VideoPlaybackIdentifier.toArray();
+                    for (var i = 0; i < list.length; i++) {
+                        this.changePlayBackValue(list[i].Id, beginTime, endTime, protocol);
+                    }
+                    GroupList.Select.Cancel(Info.ControlIdPrefix.VideoPlaybackIdentifier.name, Tab_SelectCancel);
+                },
+                load: function () {
+                    var devices = Property.Device.value.toArray();
+                    var array = new GroupListItemArray();
+                    for (var i = 0; i < devices.length; i++) {
+                        if (Html.Tab == Info.ControlIdPrefix.DecoderIdentifier.name) {
+                            if (devices[i].Classification == DeviceClassification.HDDecoder || devices[i].Classification == DeviceClassification.DecodingUnit) {
+                                if (devices[i].isCreate == false && devices[i].componentSelected == true) {
+                                    var item = this.createItem(Html.Tab, null, devices[i]);
+                                    array.push(item);
+                                    Property.Device.value[devices[i].Id].isCreate = true;
+                                    Property.Device.value[devices[i].Id].componentSelected = false;
+                                    var tag = getTag(devices[i].Id);
+                                    if (tag)
+                                        tag.parentElement.removeChild(tag);
+                                }
+                            }
+                        }
+                        else {
+                            var inputs = Property.Device.value[devices[i].Id].VideoInputChannel.toArray();
+                            for (var j = 0; j < inputs.length; j++) {
+                                if (inputs[j].isCreate[Info.TabKey[Html.Tab]] == false && inputs[j].Selected == true) {
+                                    var item = this.createItem(Html.Tab, inputs[j], devices[i]);
+                                    array.push(item);
+                                    Property.Device.value[devices[i].Id].VideoInputChannel[inputs[j].Id].isCreate[Info.TabKey[Html.Tab]] = true;
+                                    Property.Device.value[devices[i].Id].VideoInputChannel[inputs[j].Id].Selected = false;
+                                    var tag = getTag(inputs[j].Id);
+                                    if (tag)
+                                        tag.parentElement.removeChild(tag);
+                                }
+                            }
+                        }
+                    }
+                    if (array.length > 0) {
+                        var group = getTag(Html.Tab);
+                        for (var i = 0; i < array.length; i++) {
+                            group.appendChild(array[i]);
+                        }
+                    }
+                },
+                createItem: function (key, item, device) {
+                    var tag = new GroupListItem(key, TabItem_OnClick);
+                    tag.id = key + (item ? item.Id : device.Id);
+                    tag.className = tag.className + " mouse_pointer";
+
+                    var btnEdit = "";
+                    if (key == Info.ControlIdPrefix.VideoPlaybackIdentifier.name)
+                        var btnEdit = "<a class='pull-right icon-edit' style='margin-top:-31px' title='编辑'  href='event/linkage/add/linkage_add_playback.htm?inputId=" + item.Id + "' onclick=\"return editPlayback_Click(this," + true + ")\" ><a/>";
+                    //var btnEdit = "<a class='pull-right linkage-add-edit icon-edit' href='add/linkage_add_playback.htm?inputId=" + item.Id + "' onclick=\"return editPlayback_Click(this," + true + ")\" ><a/>";
+
+                    var inputName = "";
+                    var ip = new Uri(device.Uri);
+                    var deviceName = "";
+                    if (item) {
+                        inputName = item.Name;
+                        deviceName = device.Name;
+                    }
+                    else {
+                        inputName = device.Name;
+                    }
+
+                    $(tag.Content).append($("<div class='group-list-tag double'></div><div class='first-line'><div class='pull-left input-name text-ellipsis' title='" + inputName + "'>" + inputName + "</div><div class='pull-right device-name text-ellipsis' title='" + deviceName + "'>" + deviceName + "</div></div><div class='second-line'><div class='pull-left device-ip text-ellipsis' title='IP地址'>" + ip.Host + "</div><div class='pull-right device-classification' title='设备类型'>" + Language.Display.DeviceClassification[device.Classification] + "</div></div>" + btnEdit));
+                    if (btnEdit) {
+                        tag.getElementsByClassName("first-line")[0].style.width = "95%";
+                        tag.getElementsByClassName("second-line")[0].style.width = "95%";
+                    }
+                    if (!deviceName) {
+                        tag.getElementsByClassName("device-name")[0].style.width = "0";
+                        tag.getElementsByClassName("input-name")[0].style.width = "100%";
+                    }
+                    return tag;
+                },
+                select: function (id, value) {
+                    var deviceId = new Id(id).getDeviceId();
+                    if (is.Boolean(value)) {
+                        if (value) {
+                            this.Selected[Info.TabKey[Html.Tab]][id] = Html.Tab == Info.ControlIdPrefix.DecoderIdentifier.name ? Property.Device.value[id] : Property.Device.value[deviceId].VideoInputChannel[id];
+                        }
+                        else {
+                            delete this.Selected[Info.TabKey[Html.Tab]][id];
+                        }
+                        return;
+                    }
+                    if (this.Selected[Info.TabKey[Html.Tab]][id]) {
+                        delete this.Selected[Info.TabKey[Html.Tab]][id];
+                        return;
+                    }
+                    this.Selected[Info.TabKey[Html.Tab]][id] = Html.Tab == Info.ControlIdPrefix.DecoderIdentifier.name ? Property.Device.value[id] : Property.Device.value[deviceId].VideoInputChannel[id];
+                },
+                remove: function () {
+                    for (var key in this.Selected) {
+                        var list = this.Selected[key].toArray();
+                        for (var i = 0; i < list.length; i++) {
+                            if (key == "VideoPlaybackIdentifier")
+                                if (Property.Tab.value[key][list[i].Id])
+                                    delete Property.Tab.value[key][list[i].Id];
+                            var tag = getTag(Info.ControlIdPrefix[key].name + list[i].Id);
+                            if (tag)
+                                tag.parentElement.removeChild(tag);
+                            if (this.Selected[key][list[i].Id])
+                                delete this.Selected[key][list[i].Id];
+                            if (key == "DecoderIdentifier") {
+                                Property.Device.value[list[i].Id].componentSelected = false;
+                                Property.Device.value[list[i].Id].isCreate = false;
+                                continue;
+                            }
+                            var deviceId = new Id(list[i].Id).getDeviceId();
+                            Property.Device.value[deviceId].VideoInputChannel[list[i].Id].Selected = false;
+                            Property.Device.value[deviceId].VideoInputChannel[list[i].Id].isCreate[key] = false;
+                        }
+                    }
+                    if (Html.Tab != null) {
+                        if (Html.Tab == Info.ControlIdPrefix.DecoderIdentifier.name) {
+                            Html.GroupList.Component.loadDecoding("dListComponent", Info.ControlIdPrefix.DecoderIdentifier.name);
+                            return
+                        }
+                        Html.GroupList.Component.load("dListComponent", Info.TypeKey.VideoInput, Html.SearchKey);
+                    }
+
+                },
+            }
+        }
+    }
+    </script>
+    <script type="text/javascript">
+        var TimeFn = null;
+        //页面加载
+        function linkage_add_load() {
+            delete DeviceClassification["None"];
+            delete Language.Display.DeviceClassification["None"];
+            var classification = createEnum();
+            DropDownList.Create("ddlClassification", ControlModel.Language, classification, Language.Display.DeviceClassification);
+            Html.Type = Info.Type.get();
+            Html.Init(Html.Type);
+            if (Info.TypeKey[Html.Type] != null) {
+                getTag("ComponentListName").innerText = Info.ChildListName[Html.Type].title;
+            }
+            Html.GroupList.Component.load("dListComponent", Info.TypeKey[Html.Type], Html.SearchKey);
+        }
+
+        function Component_OnClick(sender) {
+            Html.GroupList.Component.select(sender);
+        }
+
+        function Component_SelectAll(items) {
+            if (items) {
+                for (var i = 0; i < items.length; i++) {
+                    Html.GroupList.Component.select(items[i], true);
+                }
+            }
+        }
+
+        function Component_SelectCancel(items) {
+            if (items) {
+                for (var i = 0; i < items.length; i++) {
+                    Html.GroupList.Component.select(items[i], false);
+                }
+            }
+        }
+
+        function Tab_SelectAll(items) {
+            if (items) {
+                for (var i = 0; i < items.length; i++) {
+                    Html.GroupList.Action.select(Info.ControlIdPrefix.getId(items[i].id, Html.Tab), true);
+
+                }
+            }
+        }
+
+        function Tab_SelectCancel(items) {
+            if (items) {
+                for (var i = 0; i < items.length; i++) {
+                    Html.GroupList.Action.select(Info.ControlIdPrefix.getId(items[i].id, Html.Tab), false);
+                }
+            }
+        }
+
+        function Linkage_SelectAll(items) {
+            if (items) {
+                for (var i = 0; i < items.length; i++) {
+                    Html.GroupList.Linkage.select(items[i], true);
+                }
+            }
+        }
+
+        function Linkage_SelectCancel(items) {
+            if (items) {
+                for (var i = 0; i < items.length; i++) {
+                    Html.GroupList.Linkage.select(items[i], false);
+                }
+            }
+        }
+
+        function Linkage_OnClick(sender) {
+            Html.GroupList.Linkage.select(sender);
+        }
+
+        function addComponent_OnClick() {
+            if (Html.IsVideoInput == false) {
+                Html.GroupList.Linkage.create();
+                if (getTag(Info.ControlIdPrefix.linkage, getTagType.Name).length > 0) {
+                    getTag("btnNext").className = "btn btn-primary div-xsgroup pull-right btn_linkage";
+                    chkLock();
+                }
+                return;
+            }
+            Html.GroupList.Action.load();
+            for (var k in Info.TabKey) {
+                if (getTag(k, getTagType.Name).length > 0) {
+                    getTag("btnSaveFinish").className = "btn btn-primary div-xsgroup pull-right btn_linkage";
+                    break;
+                }
+            }
+        }
+
+        function removeComponent_OnClick() {
+            if (Html.IsVideoInput == false) {
+                Html.GroupList.Linkage.remove();
+                if (getTag(Info.ControlIdPrefix.linkage, getTagType.Name).length == 0) {
+                    getTag("btnNext").className = "btn btn-default div-xsgroup pull-right btn_linkage";
+                    chkUnlock();
+                }
+                return;
+            }
+            Html.GroupList.Action.remove();
+            getTag("btnSaveFinish").className = "btn btn-default div-xsgroup pull-right btn_linkage";
+            for (var k in Info.TabKey) {
+                if (getTag(k, getTagType.Name).length > 0) {
+                    getTag("btnSaveFinish").className = "btn btn-primary div-xsgroup pull-right btn_linkage";
+                    break;
+                }
+            }
+        }
+
+        function TabItem_OnClick(sender) {
+            Html.GroupList.Action.select(Info.ControlIdPrefix.getId(sender.id, Html.Tab));
+        }
+
+        function slideUpVideoInputList() {
+            setTimeout(function () {
+                getTag('linkageOperation').style.display = 'block';
+                getTag('linkageListName').style.display = 'block';
+                getTag('linkage_').style.display = 'block';
+            }, 200);
+            $('#Video_Input_Div').slideUp('fast', 'swing');
+        }
+
+        function slideDownVideoInputList() {
+            getTag("linkageOperation").style.display = "none";
+            getTag("linkageListName").style.display = "none";
+            getTag('linkage_').style.display = 'none';
+            $("#Video_Input_Div").slideDown("fast");
+        }
+
+        function filter(type) {
+            var channels = getTag(type, getTagType.Name);
+            if (channels.length > 0) {
+                for (var i = 0; i < channels.length; i++) {
+                    if (type == Info.ControlIdPrefix.linkage) {
+                        idInfo = Info.Id.get(Info.ControlIdPrefix.getId(channels[i].id, type));
+                        var channelId = idInfo[Info.Id.key.ComponentId];
+                        var deviceId = new Id(channelId).getDeviceId();
+                    }
+                    else {
+                        var deviceId = new Id(Info.ControlIdPrefix.getId(channels[i].id, type)).getDeviceId();
+                    }
+                    var tag = getTag(deviceId);
+                    if (tag) {
+                        var countTag = getTag(Info.ControlIdPrefix.channelCount + deviceId);
+                        if (countTag) {
+                            countTag.innerText = Number(countTag.innerText) - 1;
+                        }
+                    }
+                }
+            }
+        }
+
+        function btnToAddInputMode_Onclick() {
+            if (getTag(Info.ControlIdPrefix.linkage, getTagType.Name).length < 1)
+                return
+            getTag('ComponentListName').innerText = "请选择联动动作";
+            getTag("btnNext").style.display = "none";
+            getTag("btnLast").style.display = "block";
+            getTag("btnSaveFinish").style.display = "block";
+            var devices = Property.Device.value.toArray();
+            for (var i = 0; i < devices.length; i++) {
+                if (Info.TypeKey[Html.Type] == null) {
+                    Property.Device.value[devices[i].Id].Selected = false;
+                }
+                else {
+                    var channels = Property.Device.value[devices[i].Id][Info.TypeKey[Html.Type].name].toArray();
+                    for (var j = 0; j < channels.length; j++) {
+                        Property.Device.value[devices[i].Id][Info.TypeKey[Html.Type].name][channels[j].Id].Selected = false;
+                    }
+                }
+            }
+            slideDownVideoInputList();
+            Html.IsVideoInput = true;
+            if (Html.Tab == null) {
+                getTag("dListComponent").innerText = "";
+                return;
+            }
+            if (Html.Tab == Info.ControlIdPrefix.DecoderIdentifier.name) {
+                Html.GroupList.Component.loadDecoding("dListComponent", Info.ControlIdPrefix.DecoderIdentifier.name);
+                return;
+            }
+            Html.GroupList.Component.load("dListComponent", Info.TypeKey.VideoInput, Html.SearchKey);
+        }
+
+        function btnToAddLinkageMode_Onclick() {
+            getTag('ComponentListName').innerText = "请选择关联设备";
+            if (Info.ChildListName[Html.Type])
+                getTag('ComponentListName').innerText = Info.ChildListName[Html.Type].title;
+            getTag("btnNext").style.display = "block";
+            getTag("btnLast").style.display = "none";
+            getTag("btnSaveFinish").style.display = "none";
+            var devices = Property.Device.value.toArray();
+            for (var i = 0; i < devices.length; i++) {
+                if (devices[i].Classification == DeviceClassification.HDDecoder || devices[i].Classification == DeviceClassification.DecodingUnit) {
+                    Property.Device.value[devices[i].Id].componentSelected = false;
+                }
+                var channels = Property.Device.value[devices[i].Id][Info.TypeKey.VideoInput.name].toArray();
+                for (var j = 0; j < channels.length; j++) {
+                    if (channels[j].Selected == true)
+                        Property.Device.value[devices[i].Id][Info.TypeKey.VideoInput.name][channels[j].Id].Selected = false;
+                }
+            }
+            slideUpVideoInputList();
+            Html.IsVideoInput = false;
+            Html.GroupList.Component.load("dListComponent", Info.TypeKey[Html.Type], Html.SearchKey);
+        }
+
+        function tab_select_OnChange(key) {
+            var devices = Property.Device.value.toArray();
+            for (var i = 0; i < devices.length; i++) {
+                if (devices[i].Classification == DeviceClassification.HDDecoder || devices[i].Classification == DeviceClassification.DecodingUnit) {
+                    Property.Device.value[devices[i].Id].componentSelected = false;
+                }
+                var channels = Property.Device.value[devices[i].Id][Info.TypeKey.VideoInput.name].toArray();
+                for (var j = 0; j < channels.length; j++) {
+                    if (channels[j].Selected == true)
+                        Property.Device.value[devices[i].Id][Info.TypeKey.VideoInput.name][channels[j].Id].Selected = false;
+                }
+            }
+            if (key == null) {
+                Html.Tab = null;
+                getTag("dListComponent").innerText = "";
+                getTag("text_area").focus();
+                return;
+            }
+            if (key == "VideoPlaybackIdentifier")
+                getTag("btnBatchSetPalyBack").style.display = "block";
+            else
+                getTag("btnBatchSetPalyBack").style.display = "none";
+            Html.Tab = Info.ControlIdPrefix[key].name;
+            if (Html.Tab == Info.ControlIdPrefix.DecoderIdentifier.name) {
+                Html.GroupList.Component.loadDecoding("dListComponent", Info.ControlIdPrefix.DecoderIdentifier.name);
+                return;
+            }
+            Html.GroupList.Component.load("dListComponent", Info.TypeKey.VideoInput, Html.SearchKey);
+        }
+
+        function chkActive_OnClick() {
+            var chk = getTag("chkActive");
+            if (chk.checked) {
+                Html.StateKey = EventState.Active;
+                Html.GroupList.Component.load("dListComponent", Info.TypeKey[Html.Type], Html.SearchKey);
+                return;
+            }
+            Html.StateKey = EventState.Inactive;
+            Html.GroupList.Component.load("dListComponent", Info.TypeKey[Html.Type], Html.SearchKey);
+        }
+
+        function chkLock() {
+            getTag("chkActive").disabled = "disabled";
+            getTag("chkSpan").className = "checkbox_gray";
+        }
+
+        function chkUnlock() {
+            getTag("chkActive").disabled = "";
+            getTag("chkSpan").className = "";
+        }
+
+        function editPlayback_Click(sender, args) {
+            stopPropagation();
+            if (!args) {
+                var arr = Html.GroupList.Action.Selected.VideoPlaybackIdentifier.toArray();
+                if (arr.length < 1)
+                    return false;
+            }
+            AlertWindow.Show(sender, -1);
+            return false;
+        }
+
+        function btnSaveFinish_Onclick() {
+            var count = 0;
+            for (var k in Info.TabKey) {
+                if (getTag(k, getTagType.Name).length > 0) {
+                    break;
+                }
+                ++count;
+            }
+            if (count == 4)
+                return
+            var linkages = getTag(Info.ControlIdPrefix.linkage, getTagType.Name);
+            if (linkages.length < 1)
+                return;
+            for (var i = 0; i < linkages.length; i++) {
+                var idInfo = Info.Id.get(Info.ControlIdPrefix.getId(linkages[i].id, Info.ControlIdPrefix.linkage));
+                var id = idInfo[Info.Id.key.ComponentId];
+                var type = idInfo[Info.Id.key.EventType];
+                var state = idInfo[Info.Id.key.EventState];
+                var linkage = new EventLinkage();
+                linkage.ComponentId = id;
+                linkage.EventState = state;
+                linkage.EventType = type;
+
+                var text = new TextIdentifier();
+                text.Text = getTag("text_area").value;
+                var obj = document.getElementById("ff");
+                text.Font.FontFamily = obj.elements[0].value;
+                text.Font.Bold = obj.elements[1].value == "normal" ? false : true;
+                text.Font.FontSize = obj.elements[2].value.substr(0, obj.elements[2].value.length - 2);
+                text.Font.FontColor = convertRgbaToUint(obj.elements[3].value);
+                text.FontSpecified = true;
+                linkage.TextIdentifier = text;
+                linkage.TextIdentifierSpecified = true;
+
+                for (var key in Info.TabKey) {
+                    var inputs = getTag(key, getTagType.Name);
+                    if (inputs.length > 0) {
+                        for (var j = 0; j < inputs.length; j++) {
+                            var obj = null;
+                            if (Info.TabKey[key] == "DecoderIdentifier") {
+                                var deviceId = Info.ControlIdPrefix.getId(inputs[j].id, key);
+                                obj = Info.ControlIdPrefix[Info.TabKey[key]].object();
+                                obj.DeviceId = deviceId;
+                            }
+                            else {
+                                var videoInputChannelId = Info.ControlIdPrefix.getId(inputs[j].id, key);
+                                if (Property.Tab.value[Info.TabKey[key]][videoInputChannelId])
+                                    obj = Property.Tab.value[Info.TabKey[key]][videoInputChannelId];
+                                else {
+                                    var obj = Info.ControlIdPrefix[Info.TabKey[key]].object();
+                                    obj.VideoInputChannelId = videoInputChannelId;
+                                    if (Info.TabKey[key] == "VideoPlaybackIdentifier") {
+                                        obj.BeginTime = -4;
+                                        obj.EndTime = 30;
+                                        obj.Protocol = "Howell5198";
+                                    }
+                                    obj.StreamNo = 1;
+                                }
+                            }
+                            linkage[Info.TabKey[key]].push(obj);
+                        }
+                        linkage[Info.TabKey[key] + "Specified"] = true;
+                    }
+                }
+                Property.Linkage.create(linkage);
+            }
+            loadContent(base64encode(setUrlRandomParams('event/linkage/linkage_add.htm')));
+        }
+
+        function select_value(temp, num) {
+            var obj = document.getElementById("ff");
+            var str = new Array();
+            obj.elements[num].value = temp;
+            for (var i = 0; i < 4; i++) {
+                str[i] = obj.elements[i].value;
+            }
+            show_words.style.fontFamily = str[0];
+            show_words.style.fontWeight = str[1];
+            show_words.style.fontSize = str[2];
+            show_words.style.color = str[3];
+        }
+        function textarea_Onkeyup(value) {
+            var tag = getTag("show_words");
+            show_words.innerText = value;
+        }
+        function convertRgbaToUint(rgba) {
+            var str = rgba.split("(")[1];
+            str = str.substr(0, str.length - 1);
+            var arr = str.split(",");
+            arr[3] = arr[3] * 255;
+            arr[3] = Math.round(arr[3]);
+            var returnValue = "";
+            for (var i = 0; i < arr.length; i++) {
+                var str16 = parseInt(arr[i]).toString(16);
+                if (str16.length < 2) {
+                    str16 = "0" + str16;
+                }
+                if (i == 3) {
+                    returnValue = str16 + returnValue;
+                    continue;
+                }
+                returnValue = returnValue + str16;
+            }
+            return parseInt(returnValue, 16);
+        }
+        function createEnum() {
+            var NewDeviceClassification = new Object();
+            NewDeviceClassification["All"] = "All";
+            for (var key in DeviceClassification) {
+                NewDeviceClassification[key] = DeviceClassification[key];
+            }
+            return NewDeviceClassification;
+        }
+        function selectClassification_Click(args) {
+            if (Html.SearchKey == args)
+                return
+            Html.SearchKey = args;
+            if (Html.IsVideoInput == false)
+                Html.GroupList.Component.load("dListComponent", Info.TypeKey[Html.Type], Html.SearchKey);
+            else
+                Html.GroupList.Component.load("dListComponent", Info.TypeKey.VideoInput, Html.SearchKey);
+        }
+        $(function () {
+            linkage_add_load();
+        });
+    </script>
+</body>
+</html>
+

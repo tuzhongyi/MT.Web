@@ -1,0 +1,1297 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>视频</title>
+    <link href="css/howell.css" rel="stylesheet" />
+    <link href="video/wsplayer/css/player.css?v=20200825" rel="stylesheet" />
+
+    <script src="config.js"></script>
+    <script src="js/jquery/jquery-1.10.2.min.js"></script>
+    <script src="js/howell.js/ext.js"></script>
+    <script src="js/bootstrap/bootstrap.min.js"></script>
+    <script src="js/bootstrap/bootstrap-datepicker.js" charset="gb2312"></script>
+    <script src="js/bootstrap/bootstrap-timepicker.js"></script>
+    <script src="js/nav.js"></script>
+    <script src="js/howell.js/howell.js"></script>
+    <script src="js/howell.js/howell.control.js"></script>
+    <script src="video/wsplayer/wsplayer.js?v=20200929"></script>
+
+    <script src="js/client/enum.js"></script>
+    <script src="js/client/struct.js"></script>
+
+    <script src="js/client/management.js"></script>
+    <script src="js/client/security.js"></script>
+    <script src="js/client/client.js"></script>
+    <script src="event/record/record_list_video.js"></script>
+
+    <style type="text/css">
+        body {
+            padding-top: 125px !important;
+        }
+
+        .disable {
+            background-color: #e8e8e8 !important;
+            color: #aaaaaa !important;
+            border-color: #aaaaaa !important;
+        }
+
+        .disable:hover {
+            background-color: #e8e8e8 !important;
+            color: #aaaaaa !important;
+            border-color: #aaaaaa !important;
+        }
+
+        .disable:hover i {
+            color: #aaaaaa !important;
+        }
+
+        .contact-list .text-ellipsis {
+            width: 80%;
+        }
+
+        .widget-container {
+            background-color: transparent;
+        }
+
+        .tab-content {
+            height: 700px;
+        }
+
+        .contact-list {
+            background-color: white;
+            overflow: auto;
+        }
+
+        .contact-list.preview {
+            height: 279px;
+        }
+
+        .contact-list.playback {
+            /*height: 350px;*/
+            height: 279px;
+        }
+
+        .datetime {
+            margin-top: 5px;
+            /*height: 345px;*/
+            height: 375px;
+            background-color: white;
+        }
+
+        .ptz {
+            padding-top: 35px;
+            margin-top: 5px;
+            height: 375px;
+            background-color: white;
+            text-align: center;
+        }
+
+        .ptz .direction {
+            margin: 0px auto;
+        }
+
+        .ptz .direction .btn {
+            margin: 5px 5px;
+        }
+
+        /*.ptz .lens {
+                height: 70px;
+            }
+
+                .ptz .lens .btn {
+                    padding: 5px 5px;
+                    margin: 0 2px;
+                }
+
+            .ptz .zoom {
+                border-bottom: 5px solid red;
+            }
+
+            .ptz .focus {
+                border-bottom: 5px solid green;
+            }
+
+            .ptz .iris {
+                border-bottom: 5px solid blue;
+            }*/
+
+        .datepicker.datepicker-dropdown.dropdown-menu {
+            margin-left: -15px;
+        }
+
+        .form-horizontal {
+            margin-bottom: 20px;
+        }
+
+        ul .selected {
+            background-color: rgb(253, 243, 228);
+        }
+
+
+
+        .tab-content ul {
+            padding-left: 15px;
+        }
+
+        .tab-content ul li {
+            cursor: pointer;
+            padding-left: 0px;
+            list-style-type: none;
+        }
+
+        .widget-container .heading.tabs {
+            padding: 15px 15px;
+        }
+
+        .lens {
+            margin: 0 0;
+            display: table-cell;
+            color: #999999;
+            border: 1px solid #bbbbbb;
+            background-color: white;
+            width: 300px;
+        }
+
+        .lens i {
+            margin: 4px 4px;
+        }
+
+        .lens:hover {
+            color: #999999;
+        }
+
+        .lens.left {
+            border-right: none;
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+            text-align: right;
+            padding-right: 0px;
+            padding-left: 10px;
+        }
+
+        .lens.left:hover i {
+            color: #60c560;
+        }
+
+        .lens.right {
+            border-left: none;
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            text-align: left;
+            padding-left: 0px;
+            padding-right: 5px;
+        }
+
+        .lens.right:hover i {
+            color: #d9534f;
+        }
+
+        .btn.btn-default-outline:hover {
+            color: #007aff;
+            border: 1px solid #007aff;
+            background-color: white;
+        }
+
+        .status {
+            position: fixed;
+            bottom: 20px;
+            height: 40px;
+            background-color: rgb(255, 255, 255);
+            filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
+            background: rgba(255, 255, 255, 0.7);
+            padding: 10px 10px;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        .status.record {
+            right: 6px;
+        }
+
+        .div_status_list {
+            position: fixed;
+            bottom: 70px;
+            right: 20px;
+            width: 300px;
+            height: 700px;
+            background-color: rgb(255, 255, 255);
+            display: none;
+            z-index: 1000;
+            width: 415px;
+        }
+
+        .div_status_list .icon_btn {
+            margin-left: 0px;
+            width: 215px;
+        }
+
+        .navbar {
+            height: 0;
+        }
+
+        .navbar .container-fluid.main-nav {
+            display: none;
+        }
+
+        .icon_btn.can-not-click {
+            cursor: default;
+            color: #555;
+        }
+
+        .video {
+            background-color: black;
+            border: 1px solid green;
+            float: left;
+            position: relative;
+            width: 50%;
+            height: 50%;
+            /*padding: 33.5px 0;*/
+        }
+
+        .video.selected {
+            border: 1px solid rgb(90, 170, 236);
+        }
+
+        .video .mask {
+            /*top: 33.5px;
+                bottom: 63.5px;*/
+            top: 0px;
+            bottom: 30px;
+            width: 100%;
+            /*background-color: rgba(255,0,0,0.7);*/
+        }
+
+        .form-horizontal2 {
+            margin-bottom: 14px;
+        }
+
+        .order-bar {
+            text-align: center;
+            padding-top: 9px;
+            padding-bottom: 9px;
+            border-bottom: 1px solid #ddd;
+            background-color: white;
+            padding-left: 3px;
+        }
+
+        .order-bar .order {
+            color: #007aff;
+        }
+    </style>
+
+</head>
+
+<body unselectable="none" onselectstart="return false;">
+    <div class="page-main row" id="main" style="width:1340px;height:730px;border:none;">
+        <div class="col-md-3">
+            <div class="widget-container fluid-height">
+                <div class="heading tabs">
+                    <ul class="nav nav-tabs" id="tabs" data-tabs="tabs">
+                        <li class="active"><a href="#tab1" data-toggle="tab">预览</a> </li>
+                        <li><a href="#tab2" id="tabPlayback" data-toggle="tab">回放</a> </li>
+                        <li class="pull-right"><a href="real_time_monitoring_ocx.htm">插件方式</a></li>
+                    </ul>
+                </div>
+                <div class="tab-content" style="overflow: auto" id="my-tab-content">
+                    <div class="tab-pane active" id="tab1">
+                        <div class="order-bar" id="divPreviewOrder">
+                            <div class="pull-left" style="width:30%">
+                                <div class="mouse_pointer orderBtn orderBtnId"
+                                    onclick="orderClick('Id', this, 'Preview')">
+                                    通道编号<i class="order-icon" style="margin-left:5px"></i>
+                                </div>
+                            </div>
+                            <div class="pull-left" style="width:30%">
+                                <div class="mouse_pointer orderBtn orderBtnName"
+                                    onclick="orderClick('Name', this, 'Preview')">
+                                    通道名称<i class="order-icon" style="margin-left:5px"></i>
+                                </div>
+                            </div>
+                            <div style="clear:both"></div>
+                        </div>
+                        <div class="contact-list padded preview">
+                            <ul id="ulPreview"></ul>
+                        </div>
+                        <div class="ptz padded">
+                            <div class="form-horizontal">
+                                <table class="direction">
+                                    <tr>
+                                        <td></td>
+                                        <td><a class="btn btn-permission icon-chevron-up disable" name="btnPTZ"
+                                                onmouseup="ptz_direction_event(this, PTZDirection.Stop)"
+                                                onmousedown="    ptz_direction_event(this, PTZDirection.Up)"></a></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a class="btn btn-permission icon-chevron-left disable" name="btnPTZ"
+                                                onmouseup="ptz_direction_event(this, PTZDirection.Stop)"
+                                                onmousedown="    ptz_direction_event(this, PTZDirection.Left)"></a></td>
+                                        <td></td>
+                                        <td><a class="btn btn-permission icon-chevron-right disable" name="btnPTZ"
+                                                onmouseup="ptz_direction_event(this, PTZDirection.Stop)"
+                                                onmousedown="    ptz_direction_event(this, PTZDirection.Right)"></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td><a class="btn btn-permission icon-chevron-down disable" name="btnPTZ"
+                                                onmouseup="ptz_direction_event(this, PTZDirection.Stop)"
+                                                onmousedown="    ptz_direction_event(this, PTZDirection.Down)"></a></td>
+                                        <td></td>
+                                    </tr>
+                                </table>
+                                <div class="pull-right btn btn-default-outline" id="stream"
+                                    style="margin-right:0px;margin-top:-34px;" onclick="stream_event(this)">主码流</div>
+                            </div>
+
+                            <!--<div class="col-md-4 lens zoom">
+                                <h4>镜头</h4>
+                                <a class="btn btn-primary-outline icon-minus"></a>
+                                <a class="btn btn-primary-outline icon-plus"></a>
+                            </div>
+                            <div class="col-md-4 lens focus">
+                                <h4>聚焦</h4>
+                                <a class="btn btn-primary-outline icon-minus"></a>
+                                <a class="btn btn-primary-outline icon-plus"></a>
+                            </div>
+                            <div class="col-md-4 lens iris">
+                                <h4>光圈</h4>
+                            </div>-->
+                            <div class="form-horizontal">
+                                <a class="btn btn-success lens zoom left disable" name="btnPTZ"
+                                    onmouseup="ptz_lens_event(this, PTZLens.Stop)"
+                                    onmousedown="    ptz_lens_event(this, PTZLens.ZoomWide)" title="拉远">
+                                    <i class="icon-minus pull-left"></i>
+                                    镜
+                                </a>
+                                <a class="btn btn-danger lens zoom right disable" name="btnPTZ"
+                                    onmouseup="ptz_lens_event(this, PTZLens.Stop)"
+                                    onmousedown="    ptz_lens_event(this, PTZLens.ZoomTele)" title="拉近">
+                                    <i class="icon-plus pull-right"></i>
+                                    头
+                                </a>
+                            </div>
+                            <div class="form-horizontal">
+                                <a class="btn btn-success lens focus left disable" name="btnPTZ"
+                                    onmouseup="ptz_lens_event(this, PTZLens.Stop)"
+                                    onmousedown="ptz_lens_event(this, PTZLens.FocusFar)" title="变远">
+                                    <i class="icon-minus pull-left"></i>
+                                    聚
+                                </a>
+                                <a class="btn btn-danger lens focus right disable" name="btnPTZ"
+                                    onmouseup="ptz_lens_event(this, PTZLens.Stop)"
+                                    onmousedown="ptz_lens_event(this, PTZLens.FocusNear)" title="变近">
+                                    <i class="icon-plus pull-right"></i>
+                                    焦
+                                </a>
+                            </div>
+
+                            <a class="btn btn-success lens focus left disable" name="btnPTZ"
+                                onmouseup="ptz_lens_event(this, PTZLens.Stop)"
+                                onmousedown="ptz_lens_event(this, PTZLens.IrisClose)" title="变远">
+                                <i class="icon-minus pull-left"></i>
+                                光
+                            </a>
+                            <a class="btn btn-danger lens focus right disable" name="btnPTZ"
+                                onmouseup="ptz_lens_event(this, PTZLens.Stop)"
+                                onmousedown="ptz_lens_event(this, PTZLens.IrisOpen)" title="变近">
+                                <i class="icon-plus pull-right"></i>
+                                圈
+                            </a>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab2">
+                        <div class="tab-pane" id="tab2">
+                            <div class="order-bar" id="divPlaybackOrder">
+                                <div class="pull-left" style="width:30%">
+                                    <div class="mouse_pointer orderBtn orderBtnId"
+                                        onclick="orderClick('Id', this, 'Playback')">
+                                        通道编号<i class="order-icon" style="margin-left:5px"></i>
+                                    </div>
+                                </div>
+                                <div class="pull-left" style="width:30%">
+                                    <div class="mouse_pointer orderBtn orderBtnName"
+                                        onclick="orderClick('Name', this, 'Playback')">
+                                        通道名称<i class="order-icon" style="margin-left:5px"></i>
+                                    </div>
+                                </div>
+                                <div style="clear:both"></div>
+                            </div>
+                            <div class="contact-list padded playback">
+                                <ul id="ulPlayback"></ul>
+                            </div>
+                            <div class="datetime padded">
+                                <form action="#" class="form-horizontal2">
+                                    <label>视频格式</label>
+                                    <select class="form-control" id="ddlDownloadFileFormat">
+                                        <option value="MP4">MP4</option>
+                                        <option value="AVI">AVI</option>
+                                    </select>
+                                </form>
+                                <form action="#" class="form-horizontal2">
+                                    <label>日期：</label>
+                                    <div class="input-group date datepicker" data-date-autoclose="true"
+                                        data-date-format="dd.mm.yyyy" data-date-start-view="2">
+                                        <input class="form-control" data-date-autoclose="true"
+                                            data-date-format="yyyy-mm-dd" id="txt_date" type="text"><span
+                                            class="input-group-addon"><i class="icon-calendar"></i></span></input>
+                                    </div>
+                                </form>
+                                <form action="#" class="form-horizontal2">
+                                    <label>开始时间</label>
+                                    <div class="input-group bootstrap-timepicker">
+                                        <input class="form-control" id="txt_begin_time" type="text"><span
+                                            class="input-group-addon">
+                                            <i class="icon-time"></i>
+                                        </span></input>
+                                    </div>
+                                </form>
+                                <form action="#" class="form-horizontal2">
+                                    <label>结束时间</label>
+                                    <div class="input-group bootstrap-timepicker">
+                                        <input class="form-control" id="txt_end_time" type="text"><span
+                                            class="input-group-addon">
+                                            <i class="icon-time"></i>
+                                        </span></input>
+                                    </div>
+                                </form>
+                                <div class="row">
+                                    <a class="btn btn-primary-outline pull-right"
+                                        onclick="playback_click(this)">开始回放</a>
+                                    <a class="btn btn-primary-outline pull-right" onclick="download_click(this)">下载</a>
+                                </div>
+                                <div style="text-align:right">
+                                    <span id="span_progress"></span>
+                                    <i class="icon-spinner icon-spin" id="icon_loading" style="display:none"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9" style="padding: 0 0;height:750px;">
+            <div class="map-nev">
+                <!--<a class='btn btn-xs btn-primary-outline widget-content' style='padding-left:14px;'><i class='icon-plus'></i></a>-->
+                <table>
+                    <tr>
+                        <td>
+                            <a class="icon-sign-blank btn btn-primary-outline"
+                                onclick="switch_screen(1); init_video(); return false;">
+
+                            </a>
+                        </td>
+                        <td>
+                            <a class="icon-th-large btn btn-primary-outline"
+                                onclick="switch_screen(2); init_video(); return false;">
+
+                            </a>
+                        </td>
+                        <td>
+                            <a class="icon-resize-full btn btn-primary-outline" onclick="all_full_screen()">
+
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="map" id="screen" style="height:700px;">
+                <div style="width:100%;height:100%;">
+                    <div id="divVideo0" class="player video selected" style="width:100%;height:100%;">
+                    </div>
+                    <div id="divVideo1" class="player video" style="width:100%;height:100%;">
+                    </div>
+                    <div id="divVideo2" class="player video" style="width:100%;height:100%;">
+                    </div>
+                    <div id="divVideo3" class="player video" style="width:100%;height:100%;">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="div_record_list" class="div_status_list">
+        </div>
+        <div id="div_record" class="status record"
+            onclick="ShowStatus(this, { divId: 'div_record_list', source: 'event/record/record_list.htm?Map=video', status: showRecord, name: 'showRecord' });">
+            <table width="100%">
+                <tr>
+                    <td class="icon">
+                        <a class="icon-bell-alt"></a>
+                    </td>
+                    <td>
+                        <a id="record_number">0</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>
+<script type="text/javascript">
+    var Property = {
+        Inputs: new Dictionary(),
+        Record: function (startDate, endDate, ComponentId) {
+            var list = tryCatch(function () {
+                return Client.Management().Event.Record(null, null, startDate, endDate, 1, 1);
+            });
+            if (list && list.Page) {
+                return list.Page.TotalRecordCount;
+            }
+            return 0;
+        },
+
+    }
+    var showRecord = false;
+    function status() {
+        var date = new Date();
+        date.setHours(0, 0, 0, 0);
+        var startDate = new Date();
+        startDate.setHours(0, 0, 0, 0);
+        startDate.setDate(date.getDate() - 1);
+        var endDate = new Date();
+        endDate.setDate(date.getDate() + 1);
+        endDate.setHours(0, 0, 0, 0);
+        getTag("record_number").innerHTML = Property.Record(startDate.toISOString(), endDate.toISOString());
+    }
+
+    document.body.onclick = function () {
+        showRecord = false;
+        $(".div_status_list").css("display", "none");
+    }
+    function ShowStatus(sender, args) {
+        Trigger = document.createElement("a");
+        Trigger.href = args.source;
+        showRecord = false;
+        $(".div_status_list").css("display", "none");
+
+        var div = getTag(args.divId);
+        div.innerHTML = "\n ";
+
+        var display = "none";
+        if (!args.status) {
+            display = "block";
+            var page = loadPage(args.source);
+            $("#" + args.divId).append($(page));
+        }
+        this[args.name] = !args.status;
+
+        div.style.display = display;
+        div.style.height = (sender.offsetTop - 140) + "px";
+        stopPropagation();
+    }
+
+
+    var deviceId = null;
+    var inputId = null;
+    var streamNo = 1;
+
+    function stream_event(sender) {
+        var btn = document.getElementById("stream");
+        if (streamNo == 1) {
+            streamNo = 2;
+            btn.innerHTML = "子码流";
+        }
+        else {
+            streamNo = 1;
+            btn.innerHTML = "主码流";
+        }
+        var selected = document.getElementsByClassName("text-ellipsis selected");
+        if (selected && selected.length > 0)
+            preview(selected[0]);
+    }
+
+    function ptz_direction_event(sender, args) {
+        var permission = player.Devices[inputId].Permission;
+        if (permission == VideoSourcePermissions.All || permission.indexOf(VideoSourcePermissions.PTZ) > -1) {
+            try {
+                var result = Client.Management().Device.Video.Input.PTZ.Directions(deviceId, inputId, args, 30);
+            }
+            catch (e) {
+
+            }
+        }
+    }
+
+    function ptz_lens_event(sender, args) {
+        var permission = player.Devices[inputId].Permission;
+        if (permission == VideoSourcePermissions.All || permission.indexOf(VideoSourcePermissions.PTZ) > -1) {
+            if (is.Boolean(sender.checked)) {
+                args = sender.checked ? PTZLens.IrisClose : PTZLens.IrisOpen;
+            }
+            try {
+                Client.Management().Device.Video.Input.PTZ.Lens(deviceId, inputId, args, 30);
+            }
+            catch (e) {
+
+            }
+        }
+    }
+
+
+    var wsPlayers = {};
+
+    var can_preview = true;
+
+    function preview(sender) {
+        if (!can_preview)
+            return false;
+
+        can_preview = false;
+
+        setTimeout(function () {
+            can_preview = true;
+        }, 200);
+
+
+        try {
+            var selected = $(".video.selected");
+            if (!selected && selected.length == 0)
+                return;
+
+            var div = selected[0];
+            var id = div.id;
+
+            $(".preview .selected").removeClass("selected");
+            sender.className += " selected";
+
+
+            inputId = sender.id;
+            deviceId = new Id(inputId).getDeviceId();
+
+            var PTZBtns = getTag("btnPTZ", getTagType.Name);
+            var permission = player.Devices[inputId].Permission;
+            if (permission == VideoSourcePermissions.All || permission.indexOf(VideoSourcePermissions.PTZ) > -1) {
+                for (var i = 0; i < PTZBtns.length; i++) {
+                    PTZBtns.removeClass("disable");
+                }
+            }
+            else {
+                for (var i = 0; i < PTZBtns.length; i++) {
+                    PTZBtns.addClass("disable");
+                }
+            }
+
+            // var uri = new Uri(sender.href);
+            var example = "ws://192.168.21.241:8800/ws/video/howellps/live/dev_id/slot/stream/live.mp4?user=howell&password=123456"
+
+            var params = sender.uri_params;
+            example = example.replace("dev_id", params.dev_id);
+            example = example.replace("slot", params.slot);
+            example = example.replace("stream", streamNo)
+            var uri = new Uri(example);
+            uri.Host = params.host;
+            uri.Port = params.port;
+            uri.Querys.user = params.user;
+            uri.Querys.password = params.password;
+
+            var height = div.offsetWidth / 16.0 * 9.0;
+
+            //var paddingTop = ((div.offsetHeight / mode - height) / mode) + "px";
+            //var paddingBottom = ((div.offsetHeight / mode - height) / mode) + "px";
+
+
+            if (wsPlayers[id]) {
+                if (wsPlayers[id].status == 255) {
+                    wsPlayers[id].url = uri.toString();
+                    wsPlayers[id].name = sender.innerText;
+                    wsPlayers[id].play();
+                }
+                else {
+                    wsPlayers[id].stop().then(() => {
+                        wsPlayers[id].url = uri.toString();
+                        wsPlayers[id].name = sender.innerText;
+                        wsPlayers[id].play();
+                    });
+                }
+            }
+            else {
+                wsPlayers[id] = new WSPlayer({
+                    elementId: id,
+                    url: uri.toString()
+                });
+                var size = getSize(div);
+                wsPlayers[id].clientWidth = size.width;
+                wsPlayers[id].clientHeight = size.height;
+                wsPlayers[id].name = sender.innerText;
+                wsPlayers[id].play();
+            }
+
+        } catch (ex) {
+            console.error(ex);
+        }
+        finally {
+            stopPropagation();
+            return false;
+        }
+
+    }
+
+    function playback_click(sender, args) {
+        try {
+            var div = $(".video.selected")[0];
+            if (!div)
+                return;
+
+
+            var divId = div.id;
+
+            var selected = $(".playback .selected")[0]
+            var href = selected.href;
+
+            href = new Uri(href);
+
+            var txtDate = getTag("txt_date");
+            var txtBeginTime = getTag("txt_begin_time");
+            var txtEndTime = getTag("txt_end_time");
+            var beginTime = new Date(Date.parse(txtDate.value.replace(/-/g, "/") + " " + txtBeginTime.value));
+            var endTime = new Date(Date.parse(txtDate.value.replace(/-/g, "/") + " " + txtEndTime.value));
+
+            href.Querys.user = username;
+            href.Querys.password = sid;
+
+            // href.Querys.beg = beginTime.toISOString();
+            // href.Querys.end = endTime.toISOString();
+
+            var url = href.toString();
+            url = url.replace("begin", beginTime.toISOString());
+            url = url.replace("end", endTime.toISOString());
+
+            this.href = href;
+
+            var height = div.offsetWidth / 16 * 9;
+            //div.parentElement.style.paddingTop = ((700 - height) / 2) + "px";
+
+
+            if (wsPlayers[divId]) {
+                if (wsPlayers[divId].status == 255) {
+                    wsPlayers[divId].url = url;
+                    wsPlayers[divId].name = selected.innerText;
+                    wsPlayers[divId].play();
+                }
+                else {
+                    wsPlayers[divId].stop().then(() => {
+                        wsPlayers[divId].url = url;
+                        wsPlayers[divId].name = selected.innerText;
+                        wsPlayers[divId].play();
+                    });
+                }
+            }
+            else {
+                wsPlayers[divId] = new WSPlayer({
+                    elementId: divId,
+                    url: url
+                })
+                var size = getSize(div);
+                wsPlayers[divId].clientWidth = size.width;
+                wsPlayers[divId].clientHeight = size.height;
+                wsPlayers[divId].name = selected.innerText;
+                wsPlayers[divId].play();
+            }
+
+        } catch (ex) {
+            console.error(ex);
+        }
+
+    }
+
+    function download_click(sender, args) {
+        var href = $(".selected")[0].href;
+        href = new Uri(href);
+
+        var txtDate = getTag("txt_date");
+        var txtBeginTime = getTag("txt_begin_time");
+        var txtEndTime = getTag("txt_end_time");
+        var beginTime = new Date(Date.parse(txtDate.value.replace(/-/g, "/") + " " + txtBeginTime.value));
+        var endTime = new Date(Date.parse(txtDate.value.replace(/-/g, "/") + " " + txtEndTime.value));
+        //var beginTime = Convert.ToDate(getTag("txt_begin_time").value);
+        //var endTime = Convert.ToDate(getTag("txt_end_time").value);
+        var taskId = '';
+        var span_progress = getTag("span_progress");
+        var icon_loading = getTag("span_progress");
+        var downloadFileFormat = getTag("ddlDownloadFileFormat").value;
+        tryCatch(function () {
+            taskId = Client.Download().Tasks.Create(href.Querys.dev_id, parseInt(href.Querys.slot), 1, beginTime.toISOString(), endTime.toISOString(), downloadFileFormat);
+        })
+        if (taskId) {
+            tryCatch(function () {
+                var timer = setInterval(function () {
+                    var task = Client.Download().Tasks.Get(taskId);
+                    if (task && task.Status.ProcessingProgress == 100) {
+                        span_progress.innerHTML = "文件已生成";
+                        icon_loading.style.display = "none";
+                        document.location = Client.Download().Tasks.Data(taskId);
+                        clearInterval(timer);
+                    }
+                    else if (task && task.Status.ProcessingProgress != 100) {
+                        icon_loading.style.display = "block";
+                        span_progress.innerHTML = "文件生成中 " + parseInt(task.Status.ProcessingProgress) + "%...";
+                    }
+                }, 1000)
+            })
+        }
+    }
+
+    var isdblclick = false;
+
+    function howell_jwplayer() {
+        this.Devices = getDevice();
+        this.OrderClass = {
+            desc: "icon-long-arrow-down",
+            asce: "icon-long-arrow-up"
+        }
+        function getDevice() {
+            var result = new Dictionary();
+            try {
+                var userId = getCookie("uid");
+                var inputs = Client.Security().User.Video.Input.List(userId);
+                for (var i = 0; i < inputs.VideoInputChannelPermission.length; i++) {
+                    var input = inputs.VideoInputChannelPermission[i];
+                    result[input.Id] = input;
+
+                    Property.Inputs[input.Id] = new Object();
+                    var nvrId = new Id(input.Id).getDeviceId();
+                    var association = Client.Management().Device.Video.Input.Association.Get(nvrId, input.Id);
+                    Property.Inputs[input.Id]["NvrId"] = nvrId;
+                    Property.Inputs[input.Id]["AssociationId"] = association.FromId;
+                    Property.Inputs[input.Id]["InputId"] = input.Id;
+                }
+
+            } catch (ex) {
+
+            }
+            return result;
+        }
+        this.order = function (name, desc) {
+            var arr = this.Devices.order(name, desc);
+            this.Devices = new Dictionary();
+            for (var i = 0; i < arr.length; i++) {
+                this.Devices[arr[i].Id] = arr[i];
+            }
+        }
+        this.toPreviewHtml = function () {
+            var ul = getTag("ulPreview");
+            this.Devices.forIn(function (channelId, value) {
+                var li = document.createElement("li");
+                //li.id = channelId;
+
+                var a = document.createElement("a");
+                a.id = channelId;
+                //var example = "ws://192.168.21.241:8800/ws/video/howell8000/live/dev_id/slot/stream/live.H265?user=howell&password=123456"
+                var example = "ws://192.168.21.241:8800/ws/video/howellps/live/dev_id/slot/stream/live.mp4?user=howell&password=123456"
+                var id = new Id(channelId);
+                var params = {
+                    host: Client.Host,
+                    port: Client.Port,
+                    dev_id: id.getDeviceId(),
+                    slot: parseInt(id.ModuleId.No),
+                    stream: streamNo,
+                    user: username,
+                    password: sid
+                }
+
+                example = example.replace("dev_id", params.dev_id);
+                example = example.replace("slot", params.slot);
+                example = example.replace("stream", params.stream)
+                var uri = new Uri(example);
+                uri.Host = params.host;
+                uri.Port = params.port;
+                uri.Querys.user = params.user;
+                uri.Querys.password = params.password;
+
+                a.uri_params = params;
+                a.className = "text-ellipsis";
+                a.href = uri.toString();//视频通道号modolnum;stream码流
+
+
+
+                //id/channel/stream/
+
+                // a.ondblclick = a.onclick = preview;
+                a.setAttribute("ondblclick", "return preview(this)");
+                a.setAttribute("onclick", "return preview(this)");
+
+                a.innerHTML = value.Name;
+                li.appendChild(a);
+                ul.appendChild(li);
+            });
+        }
+
+        this.toPlaybackHtml = function () {
+            var ul = getTag("ulPlayback");
+            this.Devices.forIn(function (channelId, value) {
+                var li = document.createElement("li");
+                var a = document.createElement("a");
+                a.id = "playback_" + channelId;
+                a.className = "";
+
+
+                // var example = "ws://192.168.21.241:8800/ws/video/howell8000/vod/dev_id/slot/stream/begin_end/vod.H265?user=howell&password=123456";
+                var example = "ws://192.168.21.241:8800/ws/video/howellps/vod/dev_id/slot/stream/begin_end/vod.mp4?user=howell&password=123456";
+                var id = new Id(channelId);
+                example = example.replace("dev_id", id.getDeviceId());
+                example = example.replace("slot", parseInt(id.ModuleId.No));
+                example = example.replace("stream", streamNo)
+                var uri = new Uri(example);
+                uri.Host = Client.Host;
+                uri.Port = Client.Port;
+
+                uri.Querys.user = username;
+                uri.Querys.password = sid;
+
+                a.className = "text-ellipsis";
+                a.href = uri.toString();
+
+
+                a.ondblclick = a.onclick = function () {
+                    $(".playback .selected").removeClass("selected");
+                    this.className += " selected";
+                    return false;
+                };
+                a.innerHTML = value.Name;
+                li.appendChild(a);
+                ul.appendChild(li);
+            });
+        }
+
+        this.orderPlaybackHtml = function (name, desc) {
+            this.clearPlaybackHtml();
+            this.order(name, desc);
+            this.toPlaybackHtml();
+            setCookie("playbackorderkey", name, null, 365);
+            setCookie("playbackorder", desc ? "desc" : "asce", null, 365);
+        }
+
+        this.orderPreviewHtml = function (name, desc) {
+            this.clearPreviewHtml();
+            this.order(name, desc);
+            this.toPreviewHtml();
+            setCookie("previeworderkey", name, null, 365);
+            setCookie("previeworder", desc ? "desc" : "asce", null, 365);
+        }
+
+        this.clearPlaybackHtml = function () {
+            var ul = getTag("ulPlayback");
+            ul.innerHTML = "";
+        }
+
+        this.clearPreviewHtml = function () {
+            var ul = getTag("ulPreview");
+            ul.innerHTML = "";
+        }
+    }
+
+    var username = "";
+    var sid = "";
+    var player = null;
+    //多画面模式 1：单画面；2：多画面
+    var mode = 1;
+    var IsFullScreen = function () {
+        var is = false;
+        this.get = function () {
+            return is;
+        }
+        this.set = function (val) {
+            if (is == val) return;
+            is = val;
+            if (onfullscreenchanged)
+                onfullscreenchanged(is);
+        }
+    }
+    var onfullscreenchanged = function (is) {
+        if (!is) {
+            var video = $(".video.selected");
+            video.css("width", beforeFullScreen.width).css("height", beforeFullScreen.height);
+
+
+            fullExit();
+        }
+        setTimeout(function () {
+            var videos = $(".video");
+            for (let i = 0; i < videos.length; i++) {
+                const element = videos[i];
+                if (wsPlayers[element.id]) {
+                    console.warn(isFullScreen.get())
+                    if (isFullScreen.get()) {
+                        var size = getSize(element);
+                        wsPlayers[element.id].resize(size.width, size.height);
+                    }
+                    else {
+                        wsPlayers[element.id].resize();
+                    }
+                }
+            }
+        }, 100)
+    }
+    var isFullScreen = new IsFullScreen();
+    var isEsc = true;
+
+    var beforeFullScreen = {
+        width: "100%",
+        height: "100%",
+        changed: false
+    };
+
+    function _load() {
+
+        username = getCookie("username")
+        sid = getCookie("sid");
+
+        player = new howell_jwplayer();
+
+        player.toPreviewHtml();
+        player.toPlaybackHtml();
+        $('#txt_date').datepicker({
+            format: "yyyy-mm-dd",
+        }).val(new Date().format("yyyy-MM-dd"));
+
+        var date = new Date();
+        $("#txt_end_time").timepicker({
+            minuteStep: 1,
+            showSeconds: true,
+            showMeridian: false,
+            defaultTime: date.getHours() + ":" + date.getMinutes() + ":" + "00"
+        });
+        date.setMinutes(date.getMinutes() - 5);
+        $("#txt_begin_time").timepicker({
+            minuteStep: 1,
+            showSeconds: true,
+            showMeridian: false,
+            defaultTime: date.getHours() + ":" + date.getMinutes() + ":" + "00"
+        });
+
+        status();
+        init_video();
+
+        window.onresize = function (e) {
+
+            //if (isFullScreen && beforeFullScreen.changed) {
+            //    var video = $(".video.selected");
+            //    video.css("width", beforeFullScreen.width).css("height", beforeFullScreen.height);
+            //    isFullScreen = false;
+            //}
+
+
+            ////onfullscreenchanged(isEsc)
+            ////isEsc = !isEsc;
+            //beforeFullScreen.changed = true;
+
+            if (!isdblclick && isFullScreen) {
+                //var video = $(".video.selected");
+                //video.css("width", beforeFullScreen.width).css("height", beforeFullScreen.height);
+                isFullScreen.set(false);
+            }
+
+            isdblclick = false;
+        }
+        var plackbackOrderName = getCookie("playbackorderkey") ? getCookie("playbackorderkey") : "Id";
+        var plackbackOrder = getCookie("playbackorder") ? getCookie("playbackorder") : "asce";
+        var previewOrderName = getCookie("previeworderkey") ? getCookie("previeworderkey") : "Id";
+        var previewOrder = getCookie("previeworder") ? getCookie("previeworder") : "asce";
+        initializationOrder(plackbackOrderName, plackbackOrder, "Playback");
+        initializationOrder(previewOrderName, previewOrder, "Preview");
+    }
+
+
+
+
+    function playbackWithEventRecord(record, inputId) {
+        document.getElementById("tabPlayback").click();
+        document.getElementById("playback_" + inputId).click();
+        var date = Convert.ToDate(record.AlarmTime);
+        document.getElementById("txt_date").value = date.format("yyyy-MM-dd");
+        document.getElementById("txt_begin_time").value = date.format("HH:mm:ss");
+        date.setMinutes(date.getMinutes() + 5, date.getSeconds(), 0);
+        document.getElementById("txt_end_time").value = date.format("HH:mm:ss");
+        playback_click();
+    }
+
+    function switch_screen(m) {
+        if (mode == m)
+            return;
+
+        mode = m;
+        var videos = $(".video");
+        for (var i = 0; i < videos.length; i++) {
+
+            var isSelected = $(videos[i]).hasClass("selected");
+
+            var value = isSelected ? 100 / mode : 50 * (mode - 1);
+
+            videos[i].style.width = value + "%";
+            videos[i].style.height = value + "%";
+
+
+            if (wsPlayers[videos[i].id]) {
+                var size = getSize(videos[i]);
+                wsPlayers[videos[i].id].clientWidth = size.width;
+                wsPlayers[videos[i].id].clientHeight = size.height;
+                wsPlayers[videos[i].id].resize();
+            }
+        }
+        beforeFullScreen.width = 100 / mode + "%";
+        beforeFullScreen.height = 100 / mode + "%";
+
+    }
+
+    function getSize(element) {
+        var allWidth = element.parentElement.offsetWidth;
+        var allHeight = element.parentElement.offsetHeight;
+        return {
+            width: Math.floor(parseFloat(1 / mode * allWidth)),
+            height: Math.ceil(parseFloat(1 / mode * allHeight))
+        };
+    }
+
+
+
+    function init_video() {
+
+        $(".video").click(function (e) {
+            $(".video").removeClass("selected");
+            e.currentTarget.className += " selected";
+        });
+    }
+
+
+    function all_full_screen() {
+        isdblclick = true;
+        var videos = $(".video");
+
+        videos.css("width", 100 / mode + "%").css("height", 100 / mode + "%");
+        var element = videos[0].parentElement;
+
+
+        for (let i = 0; i < videos.length; i++) {
+            if (wsPlayers[videos[i].id]) {
+                wsPlayers[videos[i].id].outsidefullscreen = true;
+            }    
+        }
+
+        full_screen(element);
+    }
+    function single_full_screen() {
+        var video = $(".video.selected");
+        beforeFullScreen.width = video[0].style.width;
+        beforeFullScreen.height = video[0].style.height;
+        beforeFullScreen.changed = false;
+        video.css("width", "100%").css("height", "100%");
+        full_screen(video[0]);
+
+        if (wsPlayers[videos[0].id]) {
+            var size = getSize(videos[0]);
+            wsPlayers[videos[0].id].resize(size.width, size.height);
+        }
+    }
+
+
+    function full_screen(element) {
+        isEsc = true;
+        var requestMethod = element.requestFullScreen || element.webkitRequestFullScreen || element.mozRequestFullScreen || element.msRequestFullScreen;
+        if (requestMethod) {
+            requestMethod.call(element);
+            isFullScreen.set(true);
+        } else if (typeof window.ActiveXObject !== "undefined") {
+            var wscript = new ActiveXObject("WScript.Shell");
+            if (wscript !== null) {
+                wscript.SendKeys("{F11}");
+                isFullScreen.set(true);
+            }
+
+        }
+    }
+
+    function fullExit() {
+        var element = document.documentElement;//若要全屏页面中div，var element= document.getElementById("divID");
+        //IE ActiveXObject
+        if (window.ActiveXObject) {
+            var WsShell = new ActiveXObject('WScript.Shell')
+            WsShell.SendKeys('{ESC}');
+        }
+        //HTML5 W3C 提议
+        else if (element.requestFullScreen) {
+            document.exitFullscreen();
+        }
+        //IE 11
+        else if (element.msRequestFullscreen) {
+            document.msExitFullscreen();
+        }
+        // Webkit (works in Safari5.1 and Chrome 15)
+        else if (element.webkitRequestFullScreen) {
+            document.webkitCancelFullScreen();
+        }
+        // Firefox (works in nightly)
+        else if (element.mozRequestFullScreen) {
+            document.mozCancelFullScreen();
+        }
+
+
+
+
+
+    }
+
+    //function VideoInputOrder(name, desc) {
+    //    var btns = document.getElementsByClassName("orderBtn");
+    //    for (var i = 0; i < btns.length; i++) {
+    //        if (btns[i].className.indexOf("hasNotOrder") < 0) {
+    //            $(btns[i]).addClass("hasNotOrder");
+    //        }
+    //    }
+    //    var icon = document.getElementById(name + "Icon");
+    //    Html.GroupList.VideoInput.order[name] = !Html.GroupList.VideoInput.order[name];
+    //    if (icon) {
+    //        if (icon.parentNode.className.indexOf("hasNotOrder") > -1)
+    //            $(icon.parentNode).removeClass("hasNotOrder");
+    //        $(icon).removeClass("icon-long-arrow-up");
+    //        $(icon).removeClass("icon-long-arrow-down");
+    //        var css = Html.GroupList.VideoInput.order[name] ? "icon-long-arrow-down" : "icon-long-arrow-up";
+    //        $(icon).addClass(css);
+    //    }
+    //    Html.GroupList.VideoInput.orderList(name, Html.GroupList.VideoInput.order[name]);
+    //}
+    function orderClick(name, element, type) {
+        var desc;
+        if ($(element).hasClass("order")) {
+            var icon = element.getElementsByClassName("order-icon")[0];
+            var iconCss = player.OrderClass.asce;
+            var removeCss = player.OrderClass.desc;
+            if ($(icon).hasClass(player.OrderClass.asce)) {
+                iconCss = player.OrderClass.desc;
+                removeCss = player.OrderClass.asce;
+                desc = true;
+            }
+            else {
+                desc = false;
+            }
+            $(icon).removeClass(removeCss);
+            $(icon).addClass(iconCss);
+        }
+        else {
+            $("#div" + type + "Order").find(".orderBtn").removeClass("order");
+            $("#div" + type + "Order").find(".order-icon").removeClass(player.OrderClass.asce);
+            $("#div" + type + "Order").find(".order-icon").removeClass(player.OrderClass.desc);
+            $(element).addClass("order");
+            $(element).find(".order-icon").addClass(player.OrderClass.asce);
+            desc = false;
+        }
+        player["order" + type + "Html"](name, desc);
+    }
+
+    function initializationOrder(name, order, type) {
+        var desc = true;
+        if (order == "asce")
+            desc = false;
+        $("#div" + type + "Order").find(".orderBtn" + name).addClass("order");
+        $("#div" + type + "Order").find(".order-icon").removeClass(player.OrderClass.asce);
+        $("#div" + type + "Order").find(".order-icon").removeClass(player.OrderClass.desc);
+        $("#div" + type + "Order").find(".orderBtn" + name).find(".order-icon").addClass(player.OrderClass[order]);
+        player["order" + type + "Html"](name, desc);
+    }
+
+    onload = _load;
+</script>

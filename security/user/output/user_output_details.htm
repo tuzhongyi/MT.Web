@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>修改输出通道关联输出通道权限</title>
+    <link rel="stylesheet" type="text/css" href="../../../css/howell.css" />
+    <link rel="stylesheet" type="text/css" href="../../../css/bootstrap/bootstrap-switch.css" />
+    <script type="text/javascript" src="../../../js/language/chinese.js"></script>
+    <script type="text/javascript" src="../../../js/jquery/jquery-1.10.2.min.js"></script><script src="../../../js/imported.js"></script>
+    <script type="text/javascript" src="../../../js/jquery/jquery-ui.js"></script>
+    <script type="text/javascript" src="../../../js/jquery/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="../../../js/bootstrap/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../../js/nav.js"></script>
+    
+    <script type="text/javascript" src="../../../js/jquery/jquery.confirm.js"></script>
+    <script type="text/javascript" src="../../../js/modernizr.custom.js"></script>
+    <script type="text/javascript" src="../../../js/md5.js"></script>
+    <script type="text/javascript" src="../../../js/howell.js/howell.js"></script>
+    <script type="text/javascript" src="../../../js/howell.js/digest.js"></script>
+    <script type="text/javascript" src="../../../js/howell.js/httpService.js"></script>
+    <script type="text/javascript" src="../../../js/client/security.js"></script>
+    <script type="text/javascript" src="../../../js/client/management.js"></script>
+    <script type="text/javascript" src="../../../js/client/enum.js"></script>
+    <script type="text/javascript" src="../../../js/client/struct.js"></script>
+    <script type="text/javascript" src="../../../js/howell.js/howell.control.js"></script>
+    <script type="text/javascript" src="../../../js/jquery/jquery.confirm.js"></script>
+    <script type="text/javascript" src="../../../js/bootstrap/bootstrap-switch.min.js"></script>
+    <script type="text/javascript" src="../../../js/background/security/background_user.event.js"></script>
+    <script type="text/javascript" src="../../../js/background/security/background_users.js"></script>
+    <script type="text/javascript" src="../../../js/background/security/user/output/background_user_outputs.js"></script>
+    <script type="text/javascript" src="../../../js/background/security/user/output/background_user_output_details.js"></script>
+    <script type="text/javascript" src="user_output_details.js"></script>
+
+    <script type="text/javascript">
+        Trigger = document.createElement("a");
+        Trigger.href = document.location + "?userId=00310101821111111000001000000000&outputId=00310101031111111000007000000000";
+        Property.OutputList.Association.value["00310101031111111000007000000000"] = Client.Security().User.Video.Output.Get("00310101821111111000001000000000", "00310101031111111000007000000000");
+        PageEvent.User.ModifyOutputListItem = function () {
+            alert("修改页面事件触发");
+        }
+    </script>
+</head>
+<body>
+    <div style="margin:0 auto; height:200px;width:500px">
+        <div class="row heading" style="color:#007aff;margin-left:10px;margin-top:10px;font-size:24px">
+            修改视频输出通道权限
+        </div>
+        <div class="widget-content padded" style="margin-top:15px">
+            <form action="#" class="form-horizontal">
+                <div class="form-group">
+                    <label class="control-label col-md-3">
+                        名称
+                    </label>
+                    <div class="col-md-7">
+                        <input class="form-control" type="text" id="txtPermissionName" />
+                    </div>
+                </div>
+                <!--<div class="form-group">
+                    <label class="control-label col-md-3">
+                        权限
+                    </label>
+                    <div class="col-md-7">
+                        <input class="form-control" type="text" id="txtPermissions" readonly="readonly" style="background-color:white;cursor:default" />
+                        <input type="hidden" id="subvalue" value="None" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">
+                    </label>
+                    <div class="col-md-9">
+                        <div class="checkbox_container">
+                            <label class="checkbox-inline checkbox_control" onclick="makeStop = false; PopoverWindow.CanClose = false;">
+                                <input type="checkbox" id="chkAll" onchange="getVideoOutSourcePermissionsCheckBox(this, 'All');" value="All" /><span></span>
+                            </label>
+                            <label class="checkbox_info">
+                                全部权限
+                            </label>
+                        </div>
+                    </div>
+                </div>-->
+            </form>
+        </div>
+        <div class="row">
+            <div class="form-group" style="margin-top:5px">
+                <label class="control-label col-md-6">
+                </label>
+                <div class="col-md-3">
+                    <a class="btn btn-primary" onclick="return btnDetailUser_Output_Click();">
+                        确&ensp;&ensp;定
+                    </a>
+                </div>
+                <div class="col-md-2">
+                    <a class="btn btn-primary" onclick="return AlertWindow.Close();">
+                        取&ensp;&ensp;消
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        user_output_detail_load();
+    </script>
+</body>
+</html>

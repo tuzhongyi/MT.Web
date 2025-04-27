@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title></title>
+
+</head>
+
+<body> 
+    <link rel="stylesheet" href="fr/record/load5.css">
+    <style> 
+
+        .datetimepicker-days .table-condensed-2 tbody tr:hover {
+            background-color: #96a2b4;
+        }
+
+        .datetimepicker-days .table-condensed-2 tbody tr:hover {
+            color: white;
+        }
+
+        .week-tr {
+            background-color: #003399;
+            color: white;
+        }
+
+        [class^="ti-"],
+        [class*=" ti-"] {
+            font-family: 'themify';
+            speak: none;
+            font-style: normal;
+            font-weight: normal;
+            font-variant: normal;
+            text-transform: none;
+            line-height: 1;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .c-datepicker__days>.c-datepicker__days-head>.c-datepicker__days-row>th {
+            text-align: center;
+        }
+
+        .modal-btns>a:hover {
+            color: #01c0c8 !important;
+        }
+
+        .oneDiv>.twoDiv {
+            max-height: 483px;
+            overflow: auto;
+        }
+
+        .report-table-td-date-w {
+            width: 16% !important;
+            /* border-left: 1px solid rgba(120,130,140,.13) !important; */
+        }
+
+        .report-select-label:hover {
+            background: rgba(120, 130, 140, 0.7) !important;
+        }
+
+        .report-select-btn:hover {
+            opacity: 0.9;
+        }
+
+        .report-table-td-data-w {
+            width: 8% !important;
+        }
+
+        .report-table-td-no-w {
+            width: 5% !important;
+        }
+
+        .report-table-td-info-w {
+            width: 30% !important;
+        }
+        .report-table-td-detail-info-w{
+            width: 5% !important;
+        }
+        .report-table-td-name-w{
+            width: 20% !important;
+        }
+        .f-b {
+            font-weight: bold;
+        }
+
+        .v-align-m {
+            vertical-align: middle;
+        }
+
+        .record-out:hover {
+            color: #269abc;
+        }
+
+        .vis-hide{
+            visibility:hidden;
+        }
+
+        #searchArea_R .dropdown-toggle::after {
+            margin-top: 6px;
+            float: right;
+        }
+
+        #searchArea_R .dropdown-menu li {
+            padding: 5px 12px;
+            font-size: 14px;
+        }
+
+        th > label {
+            margin-bottom: 0;
+        }
+    </style>
+
+    <link href="css/Ionicons/css/materialdesignicons.min.css" rel="stylesheet" />
+    <link href="css/bootstrap/bootstrap-material-datetimepicker.css" rel="stylesheet" />
+    <div>
+        <div class="row page-titles">
+            <div class="col-md-5 col-8 align-self-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="javascript:selectNav(this); loadContent('page', base64encode(setUrlRandomParams(navigation.index.home)))">
+                            <span language="home">主页</span>
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a>
+                            <span language="event">事件</span><span language="record">记录</span>
+                        </a>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <div class="page-title-occupying"></div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card loading-card pull-height fixed"> 
+                    <div class="card-body">
+                        <div class="card-title">
+                            <h3><span language="event">事件</span><span language="record">记录</span></h3>
+                        </div>
+                        <div class="row m-b-30">
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="col-10">
+                                        <label class=" control-label pull-left m-r-15" style="font-weight:bold;line-height: 35px;font-size: 15px;">选择时间</label>
+                                        <div class="input-group" style="float:left;width: 282px;">
+                                            <div class="input-group-addon cursor-pointer report-select-label" style="background:rgba(120, 130, 140, 0.5);" title="开始时间">
+                                                <i class="icon-calendar" style="color: white;"></i>
+                                            </div>
+                                            <input class="form-control cursor-pointer" id="txtStartDate" style="border: 1px solid rgba(120, 130, 140, 0.5);">
+                                        </div>
+                                        <label class=" control-label pull-left m-r-15 m-l-15" style="font-weight:bold;line-height: 35px;font-size: 15px;">--</label>
+                                        <div class="input-group" style="float:left;width: 282px;">
+                                            <div class="input-group-addon cursor-pointer report-select-label" style="background:rgba(120, 130, 140, 0.5);" title="结束时间">
+                                                <i class="icon-calendar" style="color: white;"></i>
+                                            </div>
+                                            <input class="form-control cursor-pointer" id="txtEndDate" style="width: 260px;height: 29px;border: 1px solid rgba(120, 130, 140, 0.5);">
+                                        </div>
+                                        <button style="margin-top:2px" class="btn waves-effect waves-light btn-info p-r-20 p-l-20 m-l-15" onclick="searchCilck()">
+                                            <i class="fa fa-search"></i> <span language="add">查询</span>
+                                        </button>
+                                    </div>
+                                    <div class="col-2 text-right">
+                                        <button type="button" class="btn pano-camera-list-btn m-l-10 btn-info dropdown-toggle dropdown-toggle-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="text-align:left;">
+                                            <label style="width: 63px;" class="pano-camera-btn-txt m-b-0" id="txtEventType">全部</label>
+                                        </button>
+                                        <div class="dropdown-menu pano-camera-list p-0" style="min-width: 103px;">
+                                            <a class="dropdown-item" href="#">全部</a>
+                                            <a class="dropdown-item" href="#">设备上线</a>
+                                            <a class="dropdown-item" href="#">设备下线</a>
+                                            <a class="dropdown-item" href="#">人脸识别</a>
+                                            <a class="dropdown-item" href="#">人脸比中</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="table-responsive records-table pdc-report-table">
+                            <table class="table" style="margin-bottom: 0px;">
+                                <tbody>
+                                    <tr style="background: rgba(120, 130, 140, 0.5);">
+                                        <th class="f-b report-table-td-no-w" style=" border-left: 1px solid rgba(120,130,140,.13)">序号</th>
+                                        <th class="report-table-td-date-w f-b">报警时间</th>
+                                        <th class="report-table-td-name-w f-b">报警设备</th>
+                                        <th class="report-table-td-data-w f-b">事件类型</th>
+                                        <th class="report-table-td-data-w f-b">重要级别</th>
+                                        <th class="report-table-td-data-w f-b">置信度</th>
+                                        <th class="report-table-td-info-w f-b" style="border-right: 1px solid rgba(120,130,140,.13)">描述信息
+                                        </th>
+                                        <th class="report-table-td-detail-info-w f-b">详情</th>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="oneDiv">
+                                <div class="twoDiv scrollbar-inner">
+                                    <table class="table table-bordered no-margin">
+                                        <tbody id="recordTable">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="fr/record/record.js?update=20180712"></script>
+    <script src="js/sweetalert.min.js?update=20180712"></script>
+    <script src="js/control/ModelWindowTabs.js?update=20180712"></script>
+
+    <script src="js/export/jquery.dataTables.min.js?update=20180712"></script>
+    <script src="js/export/dataTables.buttons.min.js?update=20180712"></script>
+    <script src="js/export/jszip.min.js?update=20180712" charset="UTF-8"></script>
+    <script src="js/export/buttons.html5.min.js?update=20180712" charset="UTF-8"></script>
+
+
+    <script src="js/export/dataExport.js?update=20180712" charset="UTF-8"></script>
+    <script type="text/javascript"> 
+
+        $(function () {
+            $('.twoDiv').slimScroll({
+                height: "450px"
+            });
+            $('#txtStartDate').datetimepicker({
+                format: 'yyyy-mm-dd',
+                weekStart: 1,
+                autoclose: true,
+                startView: 2,
+                minView: 2,
+                forceParse: false,
+                language: 'zh-CN',
+                initialDate: new Date(),
+            });
+            $('#txtStartDate').val(new Date().format('yyyy-MM-dd'));
+            $('#txtEndDate').datetimepicker({
+                format: 'yyyy-mm-dd',
+                weekStart: 1,
+                autoclose: true,
+                startView: 2,
+                minView: 2,
+                forceParse: false,
+                language: 'zh-CN',
+                initialDate: new Date(),
+            });
+            $('#txtEndDate').val(new Date().format('yyyy-MM-dd'));
+            loadPageCallBcak = function(){
+                closeFacePictureInfo();
+                var dateTimeDiv = document.getElementsByClassName("datetimepicker-dropdown-bottom-right");
+                while (dateTimeDiv.length > 0) {
+                    dateTimeDiv[0].parentNode.removeChild(dateTimeDiv[0]);
+                }
+            };
+        }) 
+    </script>
+</body>
+
+</html>

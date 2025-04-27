@@ -1,0 +1,116 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>录像时间</title>
+    <link href="css/font-awesome.css" rel="stylesheet" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+    <script src="js/enum.js"></script>
+    <script src="js/jquery-1.10.2.min.js"></script>
+    <script src="js/ext.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-timepicker.js"></script>
+    <script src="js/bootstrap-datepicker.js"></script>
+
+    <script src="js/base64.js"></script>
+    <script src="js/httpService.js"></script>
+    <script src="js/BaseClient.js"></script>
+    <script src="js/client.js"></script>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+    <style type="text/css">
+        .widget-container {
+            min-height: 0px;
+        }
+    </style>
+    <script type="text/javascript">
+        var id = "";
+        var username = "liudongqi";
+        var password = "liudongqi";
+        function _load() {
+            var uri = new Uri(document.location);
+            if (uri.Query && uri.Querys.id) {
+                id = uri.Querys.id;
+            }
+        }
+
+        function getHref(datetime) {
+            var beg = datetime.toISOString();
+            datetime.setMinutes(datetime.getMinutes() + 3);
+            var end = datetime.toISOString();
+
+            
+            
+            var no = 1;
+
+            var example_url = "http://127.0.0.1:8800/hls/Media/vod/" + id + "/" + no + "/2/" + beg + "_" + end + "/vod.m3u8?user=admin&password=12345";
+            var uri = new Uri(example_url);
+            uri.Host = Client.Host;
+            uri.Port = Client.HlsPort;
+            uri.Querys.user = username;
+            uri.Querys.password = password;
+
+            return uri.toString();
+        }
+
+        function playback(sender) {
+            var txtDate = $(".txt_date").val();
+            var txtTime = $(".txt_time").val();
+            var date = new Date(Date.parse(txtDate.replace(/-/g, "/") + " " + txtTime));
+            sender.href = getHref(date);
+            return true;
+        }
+
+        onload = _load;
+    </script>
+</head>
+<body>
+    <div class="modal-shiftfix">
+        <div class="container-fluid main-content">
+            <div class="page-title">
+                <h1>
+                    录像回放
+                </h1>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="widget-container padded">
+                        <form action="#" class="form-horizontal">
+                            <label>日期：</label>
+                            <div class="input-group date datepicker" data-date-autoclose="true" data-date-format="dd.mm.yyyy"
+                                 data-date-start-view="2">
+                                <input class="form-control txt_date" data-date-autoclose="true" data-date-format="yyyy-mm-dd" type="text" /><span class="input-group-addon"><i class="icon-calendar"></i></span></input>
+                            </div>
+                        </form>
+                        <form action="#" class="form-horizontal">
+                            <label>开始时间</label>
+                            <div class="input-group bootstrap-timepicker">
+                                <input class="form-control txt_time" type="text" /><span class="input-group-addon">
+                                    <i class="icon-time"></i>
+                                </span></input>
+                            </div>
+                        </form>
+                        <br />
+                        <a class="btn btn-primary pull-right" onclick="return playback(this)">确定</a>
+                        <br />
+                        <br />
+                        <script type="text/javascript">
+                            var date = new Date();
+                            date.setDate(date.getDate() - 1)
+                            $('.txt_date').datepicker({
+                                format: "yyyy-mm-dd",
+                            }).val(date.format("yyyy-MM-dd"));
+
+                            $(".txt_time").timepicker({
+                                minuteStep: 1,
+                                showSeconds: true,
+                                showMeridian: false
+                            });
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>客流统计系統</title>
+    <link rel="stylesheet" type="text/css" href="../../css/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/bootstrap/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="../../css/howell.font/howell.font.css">
+    <link href="../../css/isotope.css" rel="stylesheet" />
+    <link href="../../css/gridstack.css" rel="stylesheet" />
+    <link href="../../css/Ionicons/css/ionicons.min.css" rel="stylesheet" />
+    <link href="../../css/bootstrap-datetimepicker/bootstrap-datetimepicker-dark.css" rel="stylesheet" />
+    <link href="../../css/bootstrap-datetimepicker/bootstrap-datetimepicker.css" rel="stylesheet" />
+    <link href="../../css//bootstrap/bootstrap-tagsinput.css" rel="stylesheet" />
+    <link href="../../css/css-chart.css" rel="stylesheet" />
+    <link href="../../css/jquery.toast.css" rel="stylesheet" />
+    <link href="../../css/style.css" rel="stylesheet" />
+    <link href="../../css/colors/blue-dark.css" rel="stylesheet" />
+    <link href="../../css/template.css" rel="stylesheet" />
+    <link href="../../css/template2.css" rel="stylesheet" />
+    <link href="../../css/index.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="../../css/howell.css">
+    <link href="../../css/load5.css" rel="stylesheet" />
+    <link href="../../css/nestable.css" rel="stylesheet" />
+
+    <script src="../../js/jquery/jquery-1.10.2.min.js"></script>
+    <script src="../../js/jquery/jquery-ui.js"></script>
+    <script src="../../js/jquery/jquery.isotope.min.js"></script>
+    <script src="../../js/jquery/jquery.toast.js"></script>
+    <script src="../../js/jquery/jquery.slimscroll.js"></script>
+
+    <script type="text/javascript" src="../../js/bootstrap/popper.min.js"></script>
+    <script type="text/javascript" src="../../js/bootstrap/bootstrap.min.js"></script>
+
+    <script src="../../js/language.js"></script>
+    <script src="../../js/knockout-min.js"></script>
+    <script src="../../js/lodash.min.js"></script>
+    <script src="../../js/gridstack.js"></script>
+
+    <script src="../../js/language/chinese.js"></script>
+    <!-- <script src="../js/howell.js/howell.js"></script> -->
+    <script src="../../js/howell.js/howell.control.js"></script>
+    <script src="../../js/howell.js/howell.convert.js"></script>
+    <script src="../../js/howell.js/ext.js"></script>
+    <!-- <script src="../js/client/client.js"></script>
+    <script src="../js/client/pdc.js"></script> -->
+    <script src="../../js/echarts.common.min.js"></script>
+    <script src="../../js/jquery/jquery.easy-pie-chart.js"></script>
+    <script src="../../js/howell.js/howell.constant.js"></script>
+    <script src="../../js/howell.js/howell.xml.js"></script>
+    <script src="../../js/howell.js/guid.js"></script>
+    <script src="../../js/control/SmallCard.js"></script>
+    <script src="../../js/control/ModelWindow.js"></script>
+    <script src="../../js/control/Paging.js"></script>
+    <script src="../../js/control/Loading.js"></script>
+    <script src="../../template2.js"></script>
+    <script type="text/javascript" src="../../js/jquery/jquery.confirm.js"></script>
+    <script type="text/javascript" src="../../css/bootstrap-datetimepicker/bootstrap-datetimepicker.js"></script>
+    <script type="text/javascript" src="../../css/bootstrap-datetimepicker/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="../../js/jquery/jquery.nestable.js"></script>
+    <link rel="icon" href="../../img/bitbug_favicon.ico" type="image/x-icon" />
+</head>
+
+<!-- <body class="fix-header fix-sidebar card-no-border"> -->
+<body>
+    <style type="text/css">
+        #screen{
+            background-color:black;
+            height: calc(100% - 40px);
+            height: -webkit-calc(100% - 50px);
+            height: -moz-calc(100% - 50px);
+            width: 100%;
+        }
+    </style>
+    <script type="text/javascript" src="fr/monitor/monitor.js?update=20180712"></script>
+    <script type="text/javascript" src="jwplayer/jwplayer1.js?update=20180712"></script>
+    <div class="row page-titles">
+        <div class="col-md-5 col-8 align-self-center">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <span language="realtime">实时</span><span language="monitor">监控</span>
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="page-title-occupying"></div>
+    <div class="row screen-outer">
+        <div class="col-xlg-2 col-xl-3 col-lg-3 col-md-4 col-sm-12">
+            <div class="card row-span-5">
+                <div class="card-body" style="height:100%">
+                    <h3 class="card-title">摄像机列表</h3>
+                    <div class="myadmin-dd-empty dd" id="videoInputTreeList">
+                        <!-- <ol class="dd-list">
+                            <li class="dd-item dd3-item" data-id="15">
+                                <div class="dd-nodrag dd3-handle mdi mdi-file-video"></div>
+                                <div class="dd3-content">商场</div>
+                                <ol class="dd-list">
+                                    <li class="dd-item dd3-item" data-id="16">
+                                        <div class="dd-nodrag dd3-handle mdi mdi-video"></div>
+                                        <div class="dd3-content">1号门</div>
+                                    </li>
+                                    <li class="dd-item dd3-item" data-id="17">
+                                        <div class="dd-nodrag dd3-handle mdi mdi-video"></div>
+                                        <div class="dd3-content">2号门</div>
+                                    </li>
+                                    <li class="dd-item dd3-item" data-id="18">
+                                        <div class="dd-nodrag dd3-handle mdi mdi-video"></div>
+                                        <div class="dd3-content">停车场</div>
+                                    </li>
+                                </ol>
+                            </li>
+                        </ol> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xlg-6 col-xl-9 col-lg-9 col-md-8 col-sm-12">
+            <div class="row">
+                <div class="col-xlg-12 col-lg-12 col-md-12">
+                    <div class="card row-span-3">
+                        <div class="card-body" style="height:100%">
+                            <h3 class="card-title">实时预览</h3>
+                            <div class="map" id="screen">
+                                <div style="width:100%;height:100%;">
+                                    <div id="divVideo" class="video selected" style="width:100%;height:100%;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xlg-12 col-lg-12 col-md-12">
+                    <div class="card row-span-1">
+                        <div class="card-body p-b-0 p-t-15" style="height:100%">
+                            <h3 class="m-b-5">实时抓拍</h3>
+                            <div class="row" id="monitorPictureSnapListContainer">
+                                <div class="col-md-12">
+                                    <div class="row" style="margin-left:-7.5px;margin-right:-7.5px" id="monitorPictureSnapList">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xlg-4 col-xl-12 col-lg-12 col-md-12 col-sm-12 system-left-info">
+            <div class="row">
+                <div class="col-xlg-12 col-lg-12 col-md-12">
+                    <div class="card row-span-5">
+                        <div class="card-body p-b-0" style="height:100%">
+                            <h3 class="card-title">
+                                <span>实时</span><span>对比</span>
+                            </h3>
+                            <div id="monitorPictureContrastList">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(function () {
+            init_language();
+            monitorInit();
+        });
+    </script>
+    <!-- <div style="height:300px">
+    <div id="test" style="height:50%;border:1px solid;overflow:auto"> 
+        <div style="width:500px;height:500px"></div>
+    </div>
+</div> -->
+</body>
+</html>

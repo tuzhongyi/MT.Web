@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+</head>
+<body>
+    <div class="modal-shiftfix" style="width:1200px;height:700px;overflow-y:auto">
+        <div class="container-fluid main-content">
+            <div class="page-title">
+                <h1>
+                    流通道详细列表
+                </h1>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="widget-container fluid-height clearfix">
+                        <div class="widget-content padded clearfix" style="height:650px">
+                            <table class="table table-bordered table-striped" id="tableStreamings">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            通道编码
+                                        </th>
+                                        <th>
+                                            编码格式
+                                        </th>
+                                        <th>
+                                            分辨率
+                                        </th>
+                                        <th>
+                                            码率类型
+                                        </th>
+                                        <th>
+                                            码率上限
+                                        </th>
+                                        <th>
+                                            帧率
+                                        </th>
+                                        <th>
+                                            图像质量
+                                        </th>
+                                        <th>
+                                            访问地址
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        function init() {
+            var result = Property.StreamingList.load(Property.DeviceId, Html.Control.AlertWindow.Device.Input.Details.get().Id);
+            var streamings = new Array();
+            if (result) {
+                for (var id in result) {
+                    streamings.push(result[id]);
+                }
+            }
+            Html.Control.PopoverWindow["StreamingList"].fillTable(streamings);
+            
+            //document.getElementById("tableStreamings").style.tableLayout="fixed";
+
+        };
+    init();
+    </script>
+</body>
+</html>

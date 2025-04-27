@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>视频输出通道列表</title>
+</head>
+<body>
+    <link href="css/bootstrap/bootstrap-switch.css" rel="stylesheet" />
+    <script type="text/javascript" src="js/jquery/jquery.confirm.js"></script>
+    <script type="text/javascript" src="js/bootstrap/bootstrap-switch.min.js"></script>
+    <script type="text/javascript" src="js/client/management.js"></script>
+    <script type="text/javascript" src="js/client/security.js"></script>
+    <script type="text/javascript" src="js/modernizr.custom.js"></script>
+    <script type="text/javascript" src="js/background/management/background_device.event.js"></script>
+    <script type="text/javascript" src="js/background/management/device/background_device_video_outputs.js"></script>
+    <script type="text/javascript" src="management/device/video/device_video_outputs.js"></script>
+    <script type="text/javascript" src="management/device/video/output/device_video_output_details.js"></script>
+    <script type="text/javascript" src="js/background/management/device/video/output/background_device_video_output_users.js"></script>
+    <script type="text/javascript" src="management/device/video/output/device_video_output_users.js"></script>
+    <script type="text/javascript" src="js/background/management/device/video/output/user/background_device_video_output_user_permissions.js"></script>
+    <script type="text/javascript" src="management/device/video/output/user/device_video_output_user_permissions.js"></script>
+    <script type="text/javascript" src="js/background/management/device/video/output/background_device_video_output_departments.js"></script>
+    <script type="text/javascript" src="management/device/video/output/device_video_output_departments.js"></script>
+    <script type="text/javascript" src="js/background/management/device/video/output/department/background_device_video_output_department_permissions.js"></script>
+    <script type="text/javascript" src="management/device/video/output/department/device_video_output_department_permissions.js"></script>
+    <style type="text/css">
+        .presentation {
+            padding-left: 0;
+        }
+
+            .presentation li {
+                float: left;
+                margin-right: 12px;
+                list-style: none;
+            }
+
+            .presentation [class^="icon-"] {
+                cursor: default;
+            }
+
+        .device_video_output_list_ico {
+            font-size: 22px !important;
+            color: #007aff;
+        }
+    </style>
+    <div class="page-main row">
+        <div class="col-md-12">
+            <div class="widget-container fluid-height clearfix list-width padded background-min-height">
+                <div class="heading list-heading-maxdiv">
+                    <div class="form-group list-heading-div">
+                        &ensp;<i class="icon-desktop mouse_default device_video_output_list_ico"></i>
+                        <span>视频输出通道列表</span> <label class="list-count-lable">当前<span id="lblCurrentCount">0</span>条/共<span id="lblTotalCount">0</span>条</label><span class="pull-right" style="font-size:16px;margin-top:7px" id="listTitle"></span><i class="howell-icon-device title mouse_default pull-right parent-device-icon" style="margin-right:10px"></i>
+                    </div>
+                    <div>
+                        <ul class="presentation pull-left">
+                            <li><div class="icon-circle text-default" style="margin-right:4px"></div>未知</li>
+                            <li><div class="icon-circle text-success" style="margin-right:4px"></div>同轴电缆</li>
+                            <li><div class="icon-circle text-danger" style="margin-right:4px"></div>高清多媒体</li>
+                            <li><div class="icon-circle text-doderblue" style="margin-right:4px"></div>图形阵列</li>
+                            <li><div class="icon-circle text-taro" style="margin-right:4px"></div>数字化视像</li>
+                            <li><div class="icon-circle text-teal" style="margin-right:4px"></div>高清数字</li>
+                            <li><div class="icon-circle text-magenta" style="margin-right:4px"></div>数据总线</li>
+                        </ul>
+                        <div class="row">
+                            <div class="col-md-5 pull-right" style="padding-left:0px" id="divOperationControl">
+                                <a class='btn btn-xs btn-primary-outline pull-right div-xsgroup' style='font-size:14px;padding-left:14px;' onclick="batchRemoveVideoOutputs_Click(this)" title="删除">
+                                    <i class='icon-trash'></i>
+                                </a>
+                                <div id="btnAdd" title="添加输出通道">
+
+                                </div>
+                                <div class="btn-group  pull-right div-xsgroupdown" id="btn-operation">
+                                    <div class="btn btn-xs btn-primary btn-xsgroupdown dropdown-toggle" data-toggle="dropdown" id="operation">
+                                        选&ensp;择&ensp;<span class="caret"></span>
+                                    </div>
+                                    <ul class="dropdown-menu xsgroupdown-menu-ul">
+                                        <li class="mouse_pointer">
+                                            <a class="xsgroupdown-menu-ul-li-a" onclick="GroupList.Select.All(Info.ControlIdPrefix.Device.Video.Output.item, GroupListItem_SelectAll);">
+                                                全选
+                                            </a>
+                                        </li>
+                                        <li class="mouse_pointer">
+                                            <a class="xsgroupdown-menu-ul-li-a" onclick="GroupList.Select.Inverse(Info.ControlIdPrefix.Device.Video.Output.item);">
+                                                反选
+                                            </a>
+                                        </li>
+                                        <li class="mouse_pointer">
+                                            <a class="xsgroupdown-menu-ul-li-a" onclick="GroupList.Select.Cancel(Info.ControlIdPrefix.Device.Video.Output.item, GroupListItem_Cancel);">
+                                                取消
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="glistPanel">
+
+                </div>
+            </div>
+            <div class="col-md-12 lazyload-div" id="divLazyload">
+
+            </div>
+        </div>
+    </div>
+    <div id="sc"></div>
+    <a class="to-back" href="../../devices.htm">
+        <div class="pic"></div>
+    </a>
+    <script type="text/javascript">
+    $(function () {
+        device_video_outputs_load();
+    });
+    </script>
+</body>
+</html>

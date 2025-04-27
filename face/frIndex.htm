@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>人脸识别系統</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="css/howell.font/howell.font.css">
+    <link href="css/isotope.css" rel="stylesheet" />
+    <link href="css/gridstack.css" rel="stylesheet" />
+    <link href="css/Ionicons/css/ionicons.min.css" rel="stylesheet" />
+    <link href="css/bootstrap-datetimepicker/bootstrap-datetimepicker-dark.css" rel="stylesheet" />
+    <link href="css/bootstrap-datetimepicker/bootstrap-datetimepicker.css" rel="stylesheet" />
+    <link href="css//bootstrap/bootstrap-tagsinput.css" rel="stylesheet" />
+    <link href="css/css-chart.css" rel="stylesheet" />
+    <link href="css/jquery.toast.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+    <link href="css/colors/blue-dark.css" rel="stylesheet" />
+    <link href="css/template.css" rel="stylesheet" />
+    <link href="css/template2.css" rel="stylesheet" />
+    <link href="css/index.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="css/howell.css">
+    <link href="css/load5.css" rel="stylesheet" />
+    <link href="css/nestable.css" rel="stylesheet" />
+    <link type="text/css" href="css/jquery.jscrollpane.css" rel="stylesheet" media="all" />
+
+    <script src="js/jquery/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="js/jquery/jquery.mousewheel.js"></script>
+    <script type="text/javascript" src="js/jquery/jquery.jscrollpane.min.js"></script>
+    <script src="js/jquery/jquery-ui.js"></script>
+    <script src="js/jquery/jquery.isotope.min.js"></script>
+    <script src="js/jquery/jquery.toast.js"></script>
+    <script src="js/jquery/jquery.slimscroll.js"></script>
+
+    <script type="text/javascript" src="js/bootstrap/popper.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap/bootstrap.min.js"></script>
+
+    <script src="js/language.js"></script>
+    <script src="js/knockout-min.js"></script>
+    <script src="js/lodash.min.js"></script>
+    <script src="js/gridstack.js"></script>
+
+    <script src="js/language/chinese.js"></script>
+    <script src="js/howell.js/howell.js"></script>
+    <script src="js/howell.js/howell.control.js"></script>
+    <script src="js/howell.js/howell.convert.js"></script>
+    <script src="js/howell.js/ext.js"></script>
+    <script type="text/javascript" src="js/client/struct.js"></script>
+    <script type="text/javascript" src="js/client/enum.js"></script>
+    <script src="js/client/client.js"></script>
+    <script type="text/javascript" src="js/howell.js/webSocketServer.js"></script>
+    <script type="text/javascript" src="js/client/adc.js"></script>
+    <script src="js/echarts.common.min.js"></script>
+    <script src="js/jquery/jquery.easy-pie-chart.js"></script>
+    <script src="js/howell.js/howell.constant.js"></script>
+    <script src="js/howell.js/howell.xml.js"></script>
+    <script src="js/howell.js/guid.js"></script>
+    <script src="js/control/SmallCard.js"></script>
+    <script src="js/control/ModelWindow.js"></script>
+    <script src="js/control/Paging.js"></script>
+    <script src="js/control/Loading.js"></script>
+    <script src="template2.js"></script>
+    <script type="text/javascript" src="js/jquery/jquery.confirm.js"></script>
+    <script type="text/javascript" src="css/bootstrap-datetimepicker/bootstrap-datetimepicker.js"></script>
+    <script type="text/javascript" src="css/bootstrap-datetimepicker/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="js/jquery/jquery.nestable.js"></script>
+    <script src="frIndex.js"></script>
+    <link rel="icon" href="img/fd_favicon.ico" type="image/x-icon" />
+</head>
+
+<body class="fix-header fix-sidebar card-no-border">
+    <div class="main-wrapper">
+        <header class="topbar">
+            <nav class="navbar top-navbar navbar-expand-md navbar-light">
+                <div class="navbar-header" style="margin-left:10px;margin-right:40px;">
+                    <a class="navbar-brand text-white" href="javascript:selectNav(this);loadContent('page', base64encode(setUrlRandomParams(navigation.index.home)))">
+                        <!-- Logo icon -->
+                        <b>
+                            <i class="howell-icon-face-recognition-logo"></i>
+                        </b>
+                        <!--End Logo icon -->
+                        <!-- Logo text -->
+                        <span language="face">人脸</span><span language="recognition">识别</span><span language="system">系统</span>
+                    </a>
+                </div>
+                <div class="navbar-collapse">
+                    <!-- ============================================================== -->
+                    <!-- toggle and nav items -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav navbar-left mr-auto mt-md-0">
+                        <li class="dropdown nav-item">
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="javascript:selectNav(this); loadContent('page', base64encode(setUrlRandomParams(navigation.monitor)))">
+                                <i class="mdi mdi-video"></i><span language="video">视频</span>
+                            </a>
+                            <ul class="dropdown-menu integration-dropdown dropdown-content dropdown-user">
+                                <li>
+                                    <a href="javascript:selectNav(this); loadContent('page', base64encode(setUrlRandomParams(navigation.monitor)))">
+                                        <i class="mdi mdi-video"></i><span language="realtime">实时</span><span language="monitor">监控</span>
+                                    </a>
+                                </li>
+                                <!-- <li>
+                                    <a>
+                                        <i class="mdi mdi-video"></i><span language="video">视频</span><span language="playback">回放</span>
+                                    </a>
+                                </li> -->
+                            </ul>
+                        </li>
+                        <li class="dropdown nav-item">
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="javascript:selectNav(this); loadContent('page', base64encode(setUrlRandomParams(navigation.device.nvr.list)))">
+                                <i class="howell-icon-camera-face-recognition" style="font-size:24px"></i><span language="face">人脸</span><span language="device">设备</span>
+                            </a>
+                            <ul class="dropdown-menu integration-dropdown dropdown-content dropdown-user">
+                                <li>
+                                    <a href="javascript:selectNav(this); loadContent('page', base64encode(setUrlRandomParams(navigation.device.searching.list)))">
+                                        <i class="fa fa-search"></i><span language="search">搜索</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:selectNav(this); loadContent('page', base64encode(setUrlRandomParams(navigation.device.camera.list)))">
+                                        <i class="fa fa-list-ul"></i><span language="fore_end">前端</span><span language="device">设备</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:selectNav(this); loadContent('page', base64encode(setUrlRandomParams(navigation.device.nvr.list)))">
+                                        <i class="fa fa-list-ul"></i><span language="back_end">后端</span><span language="device">设备</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown nav-item">
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="javascript:selectNav(this); loadContent('page', base64encode(setUrlRandomParams(navigation.record.list)))">
+                                <i class="mdi mdi-bell"></i><span language="event">事件</span><span language="record">记录</span>
+                            </a>
+                        </li>
+                        <li class="dropdown nav-item">
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="javascript:selectNav(this); loadContent('page', base64encode(setUrlRandomParams(navigation.face.search.faceset)))">
+                                <i class="fa fa-search" style="font-size:22px"></i><span language="face">人脸</span><span language="query">查询</span>
+                            </a>
+                            <ul class="dropdown-menu integration-dropdown dropdown-content dropdown-user" style="width:180px">
+                                <li>
+                                    <a href="javascript:selectNav(this); loadContent('page', base64encode(setUrlRandomParams(navigation.face.search.faceset)))">
+                                        <i class="fa fa-search"></i><span language="query">查询</span><span language="static">静态</span><span language="library">库</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:selectNav(this); loadContent('page', base64encode(setUrlRandomParams(navigation.face.search.comparison.picture)))">
+                                        <i class="fa fa-search"></i><span language="according">按</span><span language="picture">图片</span><span language="query">查询</span><span language="dynamic">动态</span><span language="library">库</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:selectNav(this); loadContent('page', base64encode(setUrlRandomParams(navigation.face.search.comparison.face)))">
+                                        <i class="fa fa-search"></i><span language="according">按</span><span language="face">人脸</span><span language="query">查询</span><span language="dynamic">动态</span><span language="library">库</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown nav-item">
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="javascript:selectNav(this); loadContent('page', base64encode(setUrlRandomParams(navigation.set.alarm)))">
+                                <i class="fa fa-cogs"></i><span language="setting">设置</span>
+                            </a>
+                            <ul class="dropdown-menu integration-dropdown dropdown-content dropdown-user">
+                                <li>
+                                    <a href="javascript:selectNav(this); loadContent('page', base64encode(setUrlRandomParams(navigation.set.alarm)))">
+                                        <i class="fa fa-cog"></i><span language="alarm">报警</span><span language="setting">设置</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:selectNav(this); loadContent('page', base64encode(setUrlRandomParams(navigation.set.comparison)))">
+                                        <i class="fa fa-cog"></i><span language="face">人脸</span><span language="comparison">比对</span><span language="setting">设置</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown nav-item">
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark">
+                                <i class="mdi mdi-dots-horizontal"></i><span language="more">更多</span>
+                            </a>
+                            <ul class="dropdown-menu integration-dropdown dropdown-content dropdown-user">
+                                <li>
+                                    <a href="javascript:window.open(navigation.help);">
+                                        <i class="fa fa-question-circle"></i><span language="help">帮助</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav my-lg-0">
+                        <li class="nav-item dropdown" id="indexAlarmBtn">
+                            <a onclick="alarmBtnClick(this)" class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" id="2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> <i class="mdi mdi-bell"></i>
+                                <div class="notify"> <span class="heartbit count hide"></span> <span class="point count hide">0</span> </div>
+                            </a>
+                            <div class="dropdown-menu mailbox dropdown-menu-right scale-up" id="indexAlarmDiv" aria-labelledby="2">
+                                <div style="height:100%;" id="indexAlarmDiv2">
+                                    <div class="card m-b-0">
+                                        <div class="card-body p-b-0" style="height: 100%;">
+                                            <div id="indexAlarmList" style="overflow: hidden; width: auto; height: 100%;">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <div style="position: relative;width: 100%;height: 70px;display: block;vertical-align: baseline;float: none;"></div>
+        <div class="page-wrapper">
+            <div class="container-fluid" id="page">
+
+            </div>
+        </div>
+    </div>
+    <div class="shade" onclick="closeModelWindow()">
+    </div>
+    <div class="page-content" id="pdcIndexPageContent">
+    </div>
+    <div id="hidden-template" class="hide">
+    </div>
+    <div id="hidden-template2" class="hide">
+    </div>
+    <div id="facePictureInfo">
+    </div>
+</body>
+<script>
+    $(function () {
+        init_language();
+        indexInit();
+    });
+</script>
+
+</html>

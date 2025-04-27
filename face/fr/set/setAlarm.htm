@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+</head>
+
+<body>
+    <link href="controls/touchspin/jquery.bootstrap-touchspin.min.css" rel="stylesheet" />
+    <script src="controls/touchspin/jquery.bootstrap-touchspin.min.js"></script>
+    <script src="fr/set/setAlarm.js"></script>
+    <div class="row page-titles">
+        <div class="col-md-5 col-8 align-self-center">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="javascript:selectNav(this); loadContent('page', base64encode(setUrlRandomParams(navigation.index.home)))">
+                        <span language="home">主页</span>
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <span language="alarm">报警</span><span language="setting">设置</span>
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="page-title-occupying"></div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card row-span-5">
+                <div class="card-body">
+                    <h3 class="card-title">
+                        <span language="alarm">报警</span><span language="setting">设置</span>
+                    </h3>
+                    <div class="row">
+                        <div class="col-xlg-2 col-lg-3 col-md-4 col-sm-4 b-r b-r">
+                            <div class="inbox-panel">
+                                <ul class="p-r-10 list-group list-group-full scroll" style="overflow: hidden; width: auto; height: 100%;">
+                                    <li class="list-group-item config-menu auto-time-menu active">
+                                        <a class="m-r-5 m-l-5 " data-toggle="tab" role="tab" href="#settime">
+                                            <span language="alarm">报警</span><span language="prompt">提示</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="tab-content col-xlg-10 col-lg-9 col-md-8 col-sm-8">
+                            <div class="tab-pane active" id="settime" role="tabpanel" aria-expanded="true">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="m-l-20">
+                                            <div class="form-group">
+                                                <label for="example-text-input" class="col-form-label">
+                                                    <span language="auto">自动</span><span language="close">关闭</span>
+                                                </label>
+                                                <div class="switch  pull-right p-r-0">
+                                                    <label>
+                                                        <input type="checkbox" id="autoCloseCheck" checked="checked" onchange="autoCloseClick()">
+                                                        <span class="lever switch-col-light-blue"></span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-form-label"><span language="auto">自动</span><span language="close">关闭</span><span language="interval">间隔</span><span language="time">时间</span>
+                                                </label>
+                                                <input type="text" value="10" class="form-control input-small" id="autoCloseInterval">
+                                            </div>
+                                            <div class="form-group  m-t-60">
+                                                <div class="text-center col-md-12">
+                                                    <button onclick="alarmPromptSave();" class="btn btn-success waves-effect waves-light  p-l-20 p-r-20">
+                                                        <i class="mdi mdi-content-save"></i>
+                                                        <span language="save">保存</span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+            $(function () {
+                setAlarmInit();
+            });
+    </script>
+</body>
+</html>

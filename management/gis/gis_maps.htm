@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>软件平台信息</title>
+</head>
+<body>
+    <link rel="stylesheet" href="css/bootstrap/bootstrap-switch.css" />
+    <script type="text/javascript" src="js/client/management.js"></script>
+    <script type="text/javascript" src="js/jquery/jquery.confirm.js"></script>
+    <script type="text/javascript" src="js/modernizr.custom.js"></script>
+    <script type="text/javascript" src="js/bootstrap/bootstrap-switch.min.js"></script>
+    <script src="js/background/management/gis/background_gis_map.event.js"></script>
+    <script src="js/background/management/gis/background_gis_maps.js"></script>
+    <script src="management/gis/gis_maps.js"></script>
+    <script src="js/background/management/gis/map/background_gis_map_details.js"></script>
+    <script src="management/gis/map/gis_map_details.js"></script>
+    <script src="js/background/management/gis/map/background_gis_map_layers.js"></script>
+    <script src="management/gis/map/gis_map_layers.js"></script>
+    <script src="management/gis/map/layer/gis_map_layer_details.js"></script>
+    <style>
+        .gis_map_list_title_ico {
+            font-size: 25px !important;
+            color: #007aff;
+        }
+    </style>
+    <div class="page-main row">
+        <div class="col-md-12">
+            <div class="widget-container fluid-height clearfix list-width padded background-min-height">
+                <div class="heading list-heading-maxdiv">
+                    <div class="form-group list-heading-div">
+                        &ensp;<i class="icon-picture mouse_default gis_map_list_title_ico"></i>
+                        GIS地图信息 <label class="list-count-lable">当前<span id="lblCurrentCount">0</span>条/共<span id="lblTotalCount">0</span>条</label>
+                    </div>
+                    <div>
+                        <div class="row">
+                            <div class="col-md-6 pull-right" id="divOperationControl">
+                                <a class='btn btn-xs btn-primary-outline pull-right div-xsgroup button-img-size' onclick="batchRemoveGIS_Maps_Click(this)" title="删除">
+                                    <i class='icon-trash'></i>
+                                </a>
+                                <div id="btn-addGISMap" title="添加">
+
+                                </div>
+                                <div class="btn-group  pull-right div-xsgroupdown" id="btn-operation">
+                                    <div class="btn btn-xs btn-primary btn-xsgroupdown dropdown-toggle" data-toggle="dropdown" id="operation">
+                                        选&ensp;择&ensp;<span class="caret"></span>
+                                    </div>
+                                    <ul class="dropdown-menu xsgroupdown-menu-ul">
+                                        <li class="mouse_pointer">
+                                            <a class="xsgroupdown-menu-ul-li-a" onclick="GroupList.Select.All(GIS_Map_Info.ControlIdPrefix.GroupListItem, GIS_Map_GroupListItem_SelectAll);">
+                                                全选
+                                            </a>
+                                        </li>
+                                        <li class="mouse_pointer">
+                                            <a class="xsgroupdown-menu-ul-li-a" onclick="GroupList.Select.Inverse(GIS_Map_Info.ControlIdPrefix.GroupListItem);">
+                                                反选
+                                            </a>
+                                        </li>
+                                        <li class="mouse_pointer">
+                                            <a class="xsgroupdown-menu-ul-li-a" onclick="GroupList.Select.Cancel(GIS_Map_Info.ControlIdPrefix.GroupListItem, GIS_Map_GroupListItem_Cancel);">
+                                                取消
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="dList">
+
+                </div>
+            </div>
+            <div class="col-md-12 lazyload-div" id="divLazyload">
+
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(function () {
+            gis_map_list_load();
+        });
+    </script>
+</body>
+</html>
+<script type="text/javascript">
+    onload = gis_map_list_load;
+</script>

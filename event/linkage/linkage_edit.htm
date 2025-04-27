@@ -1,0 +1,216 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+</head>
+<body>
+    <style type="text/css">
+         .dropdown-menu{
+            z-index:10000;
+        }
+        .text_area {
+            border: 1px solid #ddd;
+            height: 26.1%;
+            width: 100%;
+        }
+
+        .font-set-div {
+            border-top: 1px solid #ddd;
+            border-left: 1px solid #ddd;
+            border-right: 1px solid silver;
+            border-bottom: 1px solid silver;
+            width: 100%;
+            padding: 5px 0 5px 10px;
+        }
+
+        .w_width {
+            width: 57px;
+            text-align: left;
+        }
+
+        .font-set-table {
+            border-collapse: collapse;
+            border-bottom: 1px solid silver;
+        }
+
+        .font-set-table-td {
+            border: 0;
+            padding: 2px 3px 3px 3px;
+            font-size: 12px;
+        }
+
+        .colorpicker-saturation {
+            width: 100px;
+            height: 100px;
+            background-image: url(../../img/saturation.png);
+            cursor: crosshair;
+            float: left;
+        }
+
+        .colorpicker-hue {
+            background-image: url(../../img/hue.png);
+        }
+
+        .colorpicker-color {
+            height: 10px;
+            margin-top: 5px;
+            clear: both;
+            background-image: url(../../img/alpha.png);
+            background-position: 0 100%;
+        }
+
+        .colorpicker-alpha {
+            background-image: url(../../img/alpha.png);
+            display: none;
+        }
+
+    </style>
+
+    <script type="text/javascript">
+    (function () {
+        $(document).ready(function () {
+            $("#cp2").colorpicker();
+        });
+    }).call(this);
+    </script>
+    <div class='edit_text_icon_div'></div><div style='font-size:24px;color:#007aff;float:left;margin-left:10px'>修改联动显示信息</div>
+    <div class="scrollable" style="height:545px;overflow-y:auto;margin-top:4px;margin-left:52px;width:426px;clear:both">
+        <div style="margin-top:10px;">设置字体:</div>
+        <div class="font-set-div">
+            <form id="ff">
+                <table cellpadding="0" cellspacing="0" class="font-set-table">
+                    <tr>
+                        <td class="font-set-table-td">
+                            字体:<br>
+                            <input class="w_width" style="width:137px" value="宋体" type="text" />
+                        </td>
+                        <td class="font-set-table-td">字形:<br><input value="normal" class="w_width" type="text" /></td>
+                        <td class="font-set-table-td">大小:<br><input type="text" value="14px" style="width:47px;" /></td>
+                        <td class="font-set-table-td">RGBA:<br><input data-color-format="rgba" id="cp2" type="text" value="rgba(0,0,0,1)" onblur="select_value(this.value, 3);"></td>
+                    <tr>
+                        <td class="font-set-table-td">
+                            <select size="6" class="w_width" style="width:137px" onchange="select_value(this.options[this.selectedIndex].value,0)">
+                                <option value="宋体" selected="selected">宋体
+                                <option value="方正舒体">方正舒体
+                                <option value="方正姚体">方正姚体
+                                <option value="华文行楷">华文行楷
+                                <option value="华文新魏">华文新魏
+                                <option value="仿宋_GB2312">仿宋_GB2312
+                                <option value="黑体">黑体
+                                <option value="华文彩云">华文彩云
+                                <option value="隶书">隶书
+                                <option value="华文中宋">华文中宋
+                                <option value="verdana">verdana
+                                <option value="Times New Roman">Times New Roman
+                                <option value="Fixedsys">Fixedsys
+                            </select>
+                        </td>
+                        <td class="font-set-table-td">
+                            <select size="6" class="w_width" onchange="select_value(this.options[this.selectedIndex].value,1)">
+                                <option value="normal" selected="selected">常规
+                                <option value="bold">粗体
+                            </select>
+                        </td>
+                        <td class="font-set-table-td">
+                            <select size="6" style="width:47px;" onchange="select_value(this.options[this.selectedIndex].value,2)">
+                                <option value="12px">12
+                                <option value="13px">13
+                                <option value="14px" selected="selected">14
+                                <option value="15px">15
+                                <option value="16px">16
+                                <option value="17px">17
+                                <option value="18px">18
+                                <option value="19px">19
+                                <option value="20px">20
+                                <option value="21px">21
+                                <option value="22px">22
+                                <option value="23px">23
+                                <option value="24px">24
+                                <option value="25px">25
+                                <option value="26px">26
+                                <option value="27px">27
+                                <option value="28px">28
+                                <option value="29px">29
+                                <option value="30px">30
+                                <option value="32px">32
+                                <option value="34px">34
+                                <option value="36px">36
+                                <option value="38px">38
+                                <option value="40px">40
+                            </select>
+                        </td>
+                </table>
+            </form>
+        </div>
+        <div style="margin-top:20px">
+            测试字符串:
+        </div>
+        <div id="show_words" class="text_area" style="overflow-y:auto;overflow-x:hidden;font-family:宋体;font-weight:normal;font-size:14px;color:rgba(0,0,0,1);"></div>
+        <div style="margin-top:20px">
+            请输入联动显示信息:
+        </div>
+        <textarea class="text_area" id="text_area" style="font-family:宋体;font-weight:normal;font-size:14px;" onkeyup="textarea_Onkeyup(this.value);"></textarea>
+    </div>
+    <div style="height:50px;margin-top:20px">
+        <a class="btn btn-primary div-xsgroup pull-right btn_linkage" style="margin-right:20px" onclick="AlertWindow.Close()">取&ensp;&ensp;消</a>
+        <a class="btn btn-primary div-xsgroup pull-right btn_linkage" onclick="saveEditText_OnClick();AlertWindow.Close();">保&ensp;&ensp;存</a>
+    </div>
+    <script type="text/javascript">
+        var Edit_Html = {
+            save: function () {
+                var text = new TextIdentifier();
+                text.Text = getTag("text_area").value;
+                var obj = document.getElementById("ff");
+                text.Font.FontFamily = obj.elements[0].value;
+                text.Font.Bold = obj.elements[1].value == "normal" ? false : true;
+                text.Font.FontSize = obj.elements[2].value.substr(0, obj.elements[2].value.length - 2);
+                text.Font.FontColor = convertRgbaToUint(obj.elements[3].value);
+                text.FontSpecified = true;
+                Html.Control.GroupList.batchEditText(text);
+            }
+        }
+    </script>
+    <script type="text/javascript">
+        function textarea_Onkeyup(value) {
+            var tag = getTag("show_words");
+            show_words.innerText = value;
+        }
+        function select_value(temp, num) {
+            var obj = document.getElementById("ff");
+            var str = new Array();
+            obj.elements[num].value = temp;
+            for (var i = 0; i < 4; i++) {
+                str[i] = obj.elements[i].value;
+            }
+            show_words.style.fontFamily = str[0];
+            show_words.style.fontWeight = str[1];
+            show_words.style.fontSize = str[2];
+            show_words.style.color = str[3];
+        }
+        function saveEditText_OnClick() {
+            Edit_Html.save();
+        }
+        function convertRgbaToUint(rgba) {
+            var str = rgba.split("(")[1];
+            str = str.substr(0, str.length - 1);
+            var arr = str.split(",");
+            arr[3] = arr[3] * 255;
+            arr[3] = Math.round(arr[3]);
+            var returnValue = "";
+            for (var i = 0; i < arr.length; i++) {
+                var str16 = parseInt(arr[i]).toString(16);
+                if (str16.length < 2) {
+                    str16 = "0" + str16;
+                }
+                if (i == 3) {
+                    returnValue = str16 + returnValue;
+                    continue;
+                }
+                returnValue = returnValue + str16;
+            }
+            return parseInt(returnValue, 16);
+        }
+    </script>
+</body>
+</html>

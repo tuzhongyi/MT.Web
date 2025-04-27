@@ -1,0 +1,74 @@
+<html>
+<head>
+    <script src="/jwplayer/jwplayer1.js"></script>
+    <style type="text/css">
+        table td {
+            padding: 10px 10px;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <td><div id='myplayer'></div></td>
+        </tr>
+		<tr>
+            <td><input id="url" style="width:100%"/>  </td>
+        </tr>
+		<tr>
+			<td>
+			<a onclick="play()">²¥·Å</a>
+			</td>
+		</tr>
+    </table>
+    
+    
+
+    <br /> 
+
+<script type='text/javascript'>
+
+var url = document.getElementById("url");
+
+url.value = "rtmp://"+document.location.hostname+"/stream?dev_id=00310101031111111000002000000000&slot=6&stream=1&mode=live&user=howell&password=e10adc3949ba59abbe56e057f20f883e"
+
+
+function play(){
+        jwplayer('myplayer').setup({
+            file: url.value,
+            height: 360,
+            width: 640,
+            autostart: true,
+            stretching: "exactfit",
+            rtmp: {
+                bufferlength: 0.1
+            }
+        });
+}
+		
+		function full_zero(value)
+		{
+			var str = value.toString();
+			if(str.length>1)
+				return value;
+			return "0"+value;
+		}
+		function date_format(date)
+		{
+			var year = date.getFullYear();
+			var month = date.getMonth()+1;
+			var day = date.getDate();
+			var hour = date.getHours()-8;
+			var minute = date.getMinutes();
+			var second = date.getSeconds();
+			return year+"-"+full_zero(month)+"-"+
+							full_zero(day)+"T"+
+							full_zero(hour)+":"+
+							full_zero(minute)+":"+
+							full_zero(second)+"Z";
+		}
+    </script>
+
+
+</body>
+</html>

@@ -1,0 +1,143 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>修改流通道</title>
+    <link rel="stylesheet" type="text/css" href="../../../../../css/howell.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../css/bootstrap/bootstrap-switch.css" />
+    <script type="text/javascript" src="../../../../../js/language/chinese.js"></script>
+    <script type="text/javascript" src="../../../../../js/jquery/jquery-1.10.2.min.js"></script>
+    <script src="../../../../../js/imported.js"></script>
+    <script type="text/javascript" src="../../../../../js/jquery/jquery-ui.js"></script>
+    <script type="text/javascript" src="../../../../../js/jquery/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="../../../../../js/bootstrap/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../../../../js/nav.js"></script>
+    
+    <script type="text/javascript" src="../../../../../js/jquery/jquery.confirm.js"></script>
+    <script type="text/javascript" src="../../../../../js/modernizr.custom.js"></script>
+    <script type="text/javascript" src="../../../../../js/md5.js"></script>
+    <script type="text/javascript" src="../../../../../js/howell.js/howell.js"></script>
+    <script type="text/javascript" src="../../../../../js/howell.js/digest.js"></script>
+    <script type="text/javascript" src="../../../../../js/howell.js/httpService.js"></script>
+    <script type="text/javascript" src="../../../../../js/client/security.js"></script>
+    <script type="text/javascript" src="../../../../../js/client/management.js"></script>
+    <script type="text/javascript" src="../../../../../js/client/enum.js"></script>
+    <script type="text/javascript" src="../../../../../js/client/struct.js"></script>
+    <script type="text/javascript" src="../../../../../js/howell.js/howell.control.js"></script>
+    <script type="text/javascript" src="../../../../../js/jquery/jquery.confirm.js"></script>
+    <script type="text/javascript" src="../../../../../js/bootstrap/bootstrap-switch.min.js"></script>
+    <script type="text/javascript" src="../../../../../js/background/security/background_input.event.js"></script>
+    <script type="text/javascript" src="../../../../../js/background/security/background_inputs.js"></script>
+    <script type="text/javascript" src="../../../../../js/background/security/input/streaming/background_input_streamings.js"></script>
+    <script type="text/javascript" src="../../../../../js/background/security/input/streaming/background_input_streaming_details.js"></script>
+    <script src="../../../../../js/background/management/device/video/input/streaming/background_device_video_input_streaming_details.js"></script>
+    <script type="text/javascript" src="device_video_input_streaming_details.htm"></script>
+   
+
+    <script type="text/javascript">
+        //Trigger = document.createElement("a");
+        //Trigger.href = document.location + "?inputId=00310101821111111000001000000000&streamingId=00310101031111111000007000000000";
+        //Property.StreamingList.Association.value["00310101031111111000007000000000"] = Client.Security().Input.Streaming.Get("00310101821111111000001000000000", "00310101031111111000007000000000");
+        //PageEvent.Input.ModifyStreamingListItem = function () {
+        //    alert("修改页面事件触发");
+        //}
+    </script>
+</head>
+<body>
+    <div style="margin:0 auto; height:590px;width:600px">
+        <div class="page-title">
+            <h3 class="list-heading-div">
+                <i class="icon-random list-heading-icon mouse_default"></i>
+                <label>修改流通道</label>
+            </h3>
+        </div>
+        <div class="widget-content padded" style="margin-top:25px">
+            <form action="#" class="form-horizontal">
+                <div class="form-group">
+                    <label class="control-label col-md-3">
+                        通道编码
+                    </label>
+                    <div class="col-md-7">
+                        <input class="form-control" type="text" id="txtNo" readonly="readonly"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">
+                        视频编码格式
+                    </label>
+                    <div class="col-md-7">
+                        <select class="form-control" id="ddlVideoCodecType"></select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">
+                        视频分辨率
+                    </label>
+                    <div class="col-md-7">
+                        <select class="form-control" id="ddlVideoResolution"></select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">
+                        视频码率控制类型
+                    </label>
+                    <div class="col-md-7">
+                        <select class="form-control" id="ddlVideoQualityControlType"></select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">
+                        码率上限 单位:Kbps
+                    </label>
+                    <div class="col-md-7">
+                        <input class="form-control" type="text" id="txtVideoBitrateUpperCap" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">
+                        帧率 单位:帧
+                    </label>
+                    <div class="col-md-7">
+                        <input class="form-control" type="text" id="txtFrameRate" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">
+                        图像质量
+                    </label>
+                    <div class="col-md-7">
+                        <input class="form-control" type="text" id="txtFixedQuality" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">
+                        视频流访问地址
+                    </label>
+                    <div class="col-md-7">
+                        <input class="form-control" type="text" id="txtUrl" />
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="row">
+            <div class="form-group" style="margin-top:5px">
+                <label class="control-label col-md-6">
+                </label>
+                <div class="col-md-3">
+                    <a class="btn btn-primary" onclick="return btnDetailInput_Streaming_Click();">
+                        确&ensp;&ensp;定
+                    </a>
+                </div>
+                <div class="col-md-2">
+                    <a class="btn btn-primary" onclick="return AlertWindow.Close();">
+                        取&ensp;&ensp;消
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        input_streaming_detail_load();
+    </script>
+</body>
+</html>

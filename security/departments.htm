@@ -1,0 +1,195 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>部门列表</title>
+    <link rel="stylesheet" type="text/css" href="../css/howell.css" />
+    <link rel="stylesheet" href="../css/bootstrap/bootstrap-switch.css" />
+    <script type="text/javascript" src="../js/language/chinese.js"></script>
+    <script type="text/javascript" src="../js/jquery/jquery-1.10.2.min.js"></script>
+    <script src="../js/imported.js"></script>
+    <script src="../js/imported.js"></script>
+    <script type="text/javascript" src="../js/jquery/jquery-ui.js"></script>
+    <script type="text/javascript" src="../js/bootstrap/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/jquery/jquery.confirm.js"></script>
+    <script type="text/javascript" src="../js/nav.js"></script>
+
+    <script type="text/javascript" src="../js/howell.js/howell.js"></script>
+    <script type="text/javascript" src="../js/client/struct.js"></script>
+    <script type="text/javascript" src="../js/client/security.js"></script>
+    <script type="text/javascript" src="../js/client/management.js"></script>
+    <!--<script type="text/javascript" src="../js/client/client.js"></script>-->
+    <script type="text/javascript" src="../js/howell.js/howell.control.js"></script>
+    <script type="text/javascript" src="../js/modernizr.custom.js"></script>
+    <script type="text/javascript" src="../js/bootstrap/bootstrap-switch.min.js"></script>
+    <script type="text/javascript" src="../js/background/security/background_department.event.js"></script>
+    <script type="text/javascript" src="../js/background/security/background_departments.js"></script>
+    <script type="text/javascript" src="../js/background/security/department/background_department_users.js"></script>
+    <script type="text/javascript" src="../js/background/security/department/background_department_details.js"></script>
+    <script type="text/javascript" src="../js/client/enum.js"></script>
+    <script type="text/javascript" src="department/department_details.js"></script>
+    <script type="text/javascript" src="departments.js"></script>
+    <script type="text/javascript" src="department/department_users.js"></script>
+    <script type="text/javascript" src="../js/background/security/department/background_department_devices.js"></script>
+    <script type="text/javascript" src="department/department_devices.js"></script>
+    <script type="text/javascript" src="../js/background/security/department/device/background_department_device_details.js"></script>
+    <script type="text/javascript" src="department/device/department_device_details.js"></script>
+    <script type="text/javascript" src="../js/background/security/department/device/background_department_device_permissions.js"></script>
+    <script type="text/javascript" src="department/device/department_device_permissions.js"></script>
+    <script type="text/javascript" src="../js/background/security/department/background_department_inputs.js"></script>
+    <script type="text/javascript" src="department/department_inputs.js"></script>
+    <script type="text/javascript" src="../js/background/security/department/input/background_department_input_details.js"></script>
+    <script type="text/javascript" src="department/input/department_input_details.js"></script>
+    <script type="text/javascript" src="../js/background/security/department/input/background_department_input_permissions.js"></script>
+    <script type="text/javascript" src="department/input/department_input_permissions.js"></script>
+    <script type="text/javascript" src="../js/background/security/department/background_department_ioinputs.js"></script>
+    <script type="text/javascript" src="department/department_ioinputs.js"></script>
+    <script type="text/javascript" src="../js/background/security/department/ioinput/background_department_ioinput_details.js"></script>
+    <script type="text/javascript" src="department/ioinput/department_ioinput_details.js"></script>
+    <script type="text/javascript" src="../js/background/security/department/ioinput/background_department_ioinput_permissions.js"></script>
+    <script type="text/javascript" src="department/ioinput/department_ioinput_permissions.js"></script>
+    <script type="text/javascript" src="../js/background/security/department/background_department_outputs.js"></script>
+    <script type="text/javascript" src="department/department_outputs.js"></script>
+    <script type="text/javascript" src="../js/background/security/department/output/background_department_output_details.js"></script>
+    <script type="text/javascript" src="department/output/department_output_details.js"></script>
+    <script type="text/javascript" src="../js/background/security/department/output/background_department_output_permissions.js"></script>
+    <script type="text/javascript" src="department/output/department_output_permissions.js"></script>
+    <script type="text/javascript" src="../js/background/security/department/background_department_iooutputs.js"></script>
+    <script type="text/javascript" src="department/department_iooutputs.js"></script>
+    <script type="text/javascript" src="../js/background/security/department/iooutput/background_department_iooutput_details.js"></script>
+    <script type="text/javascript" src="department/iooutput/department_iooutput_details.js"></script>
+    <script type="text/javascript" src="../js/background/security/department/iooutput/background_department_iooutput_permissions.js"></script>
+    <script type="text/javascript" src="department/iooutput/department_iooutput_permissions.js"></script>
+    <style>
+        .department_list_title_ico {
+            font-size: 22px !important;
+            color: #007aff;
+        }
+    </style>
+</head>
+<body>
+    <link rel="stylesheet" href="css/bootstrap/bootstrap-switch.css" />
+    <script type="text/javascript" src="js/jquery/jquery.confirm.js"></script>
+    <script type="text/javascript" src="js/client/management.js"></script>
+    <script type="text/javascript" src="js/modernizr.custom.js"></script>
+    <script type="text/javascript" src="js/bootstrap/bootstrap-switch.min.js"></script>
+    <script type="text/javascript" src="js/background/security/background_department.event.js"></script>
+    <script type="text/javascript" src="js/background/security/background_departments.js"></script>
+    <script type="text/javascript" src="js/background/security/department/background_department_users.js"></script>
+    <script type="text/javascript" src="js/background/security/department/background_department_details.js"></script>
+    <script type="text/javascript" src="security/department/department_details.js"></script>
+    <script type="text/javascript" src="security/departments.js"></script>
+    <script type="text/javascript" src="security/department/department_users.js"></script>
+    <script type="text/javascript" src="js/background/security/department/background_department_devices.js"></script>
+    <script type="text/javascript" src="security/department/department_devices.js"></script>
+    <script type="text/javascript" src="js/background/security/department/device/background_department_device_details.js"></script>
+    <script type="text/javascript" src="security/department/device/department_device_details.js"></script>
+    <script type="text/javascript" src="js/background/security/department/device/background_department_device_permissions.js"></script>
+    <script type="text/javascript" src="security/department/device/department_device_permissions.js"></script>
+    <script type="text/javascript" src="js/background/security/department/background_department_inputs.js"></script>
+    <script type="text/javascript" src="security/department/department_inputs.js"></script>
+    <script type="text/javascript" src="js/background/security/department/input/background_department_input_details.js"></script>
+    <script type="text/javascript" src="security/department/input/department_input_details.js"></script>
+    <script type="text/javascript" src="js/background/security/department/input/background_department_input_permissions.js"></script>
+    <script type="text/javascript" src="security/department/input/department_input_permissions.js"></script>
+    <script type="text/javascript" src="js/background/security/department/background_department_ioinputs.js"></script>
+    <script type="text/javascript" src="security/department/department_ioinputs.js"></script>
+    <script type="text/javascript" src="js/background/security/department/ioinput/background_department_ioinput_details.js"></script>
+    <script type="text/javascript" src="security/department/ioinput/department_ioinput_details.js"></script>
+    <script type="text/javascript" src="js/background/security/department/ioinput/background_department_ioinput_permissions.js"></script>
+    <script type="text/javascript" src="security/department/ioinput/department_ioinput_permissions.js"></script>
+    <script type="text/javascript" src="js/background/security/department/background_department_outputs.js"></script>
+    <script type="text/javascript" src="security/department/department_outputs.js"></script>
+    <script type="text/javascript" src="js/background/security/department/output/background_department_output_details.js"></script>
+    <script type="text/javascript" src="security/department/output/department_output_details.js"></script>
+    <script type="text/javascript" src="js/background/security/department/output/background_department_output_permissions.js"></script>
+    <script type="text/javascript" src="security/department/output/department_output_permissions.js"></script>
+    <script type="text/javascript" src="js/background/security/department/background_department_iooutputs.js"></script>
+    <script type="text/javascript" src="security/department/department_iooutputs.js"></script>
+    <script type="text/javascript" src="js/background/security/department/iooutput/background_department_iooutput_details.js"></script>
+    <script type="text/javascript" src="security/department/iooutput/department_iooutput_details.js"></script>
+    <script type="text/javascript" src="js/background/security/department/iooutput/background_department_iooutput_permissions.js"></script>
+    <script type="text/javascript" src="security/department/iooutput/department_iooutput_permissions.js"></script>
+    <style>
+        .department_list_title_ico {
+            font-size: 22px !important;
+            color: #007aff;
+        }
+    </style>
+    <div class="page-main row">
+        <div class="col-md-12">
+            <div class="widget-container fluid-height clearfix list-width padded background-min-height">
+                <div class="heading list-heading-maxdiv">
+                    <div class="form-group list-heading-div">
+                        &ensp;<i class="icon-group mouse_default department_list_title_ico"></i>
+                        部门列表 <label class="list-count-lable">当前<span id="lblCurrentCount">0</span>条/共<span id="lblTotalCount">0</span>条</label>
+                    </div>
+                    <div>
+                        <div class="pull-left">
+                            <a class="btn btn-xs btn-permission main list-permission-btn selected" id="All" onclick="return selectPermission_Click(this);">
+                                全部
+                            </a>
+                            <a class="btn btn-xs btn-permission main list-permission-btn Anonymous" id="Anonymous" onclick="return selectPermission_Click(this, 'Anonymous');">
+                                匿名用户
+                            </a>
+                            <a class="btn btn-xs btn-permission main list-permission-btn Operator" id="Operator" onclick="return selectPermission_Click(this, 'Operator');">
+                                操作者
+                            </a>
+                            <a class="btn btn-xs btn-permission main list-permission-btn Administrator" id="Administrator" onclick="return selectPermission_Click(this, 'Administrator');">
+                                管理员
+                            </a>
+                            <a class="btn btn-xs btn-permission main list-permission-btn Extended" id="Extended" onclick="return selectPermission_Click(this, 'Extended');">
+                                扩展用户
+                            </a>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 pull-right" id="divOperationControl">
+                                <a class='btn btn-xs btn-primary-outline pull-right div-xsgroup button-img-size' onclick="batchRemoveDepartments_Click(this)" title="删除">
+                                    <i class='icon-trash'></i>
+                                </a>
+                                <div id="btn-addDepartment" title="添加">
+
+                                </div>
+                                <div class="btn-group  pull-right div-xsgroupdown" id="btn-operation">
+                                    <div class="btn btn-xs btn-primary btn-xsgroupdown dropdown-toggle" data-toggle="dropdown" id="operation">
+                                        选&ensp;择&ensp;<span class="caret"></span>
+                                    </div>
+                                    <ul class="dropdown-menu xsgroupdown-menu-ul">
+                                        <li class="mouse_pointer">
+                                            <a class="xsgroupdown-menu-ul-li-a" onclick="GroupList.Select.All(Info.ControlIdPrefix.GroupListItem, GroupListItem_SelectAll);">
+                                                全选
+                                            </a>
+                                        </li>
+                                        <li class="mouse_pointer">
+                                            <a class="xsgroupdown-menu-ul-li-a" onclick="GroupList.Select.Inverse(Info.ControlIdPrefix.GroupListItem);">
+                                                反选
+                                            </a>
+                                        </li>
+                                        <li class="mouse_pointer">
+                                            <a class="xsgroupdown-menu-ul-li-a" onclick="GroupList.Select.Cancel(Info.ControlIdPrefix.GroupListItem, GroupListItem_Cancel);">
+                                                取消
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="dList">
+
+                </div>
+            </div>
+            <div class="col-md-12 lazyload-div" id="divLazyload">
+
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(function () {
+            security_department_list_load();
+        });
+    </script>
+</body>
+</html>

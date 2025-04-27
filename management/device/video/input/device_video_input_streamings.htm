@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>流通道列表</title>
+    <link href="../../../../css/howell.css" rel="stylesheet" />
+    <script type="text/javascript" src="../../../../js/language/chinese.js"></script>
+    <script type="text/javascript" src="../../../../js/jquery/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="../../../../js/imported.js"></script>
+    <script type="text/javascript" src="../../../../js/jquery/jquery-ui.js"></script>
+    <script type="text/javascript" src="../../../../js/jquery/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="../../../../js/bootstrap/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../../../js/nav.js"></script>
+    
+    <script type="text/javascript" src="../../../../js/jquery/jquery.confirm.js"></script>
+    <script type="text/javascript" src="../../../../js/modernizr.custom.js"></script>
+    <script type="text/javascript" src="../../../../js/md5.js"></script>
+    <script type="text/javascript" src="../../../../js/howell.js/howell.js"></script>
+    <script type="text/javascript" src="../../../../js/howell.js/digest.js"></script>
+    <script type="text/javascript" src="../../../../js/howell.js/httpService.js"></script>
+    <script type="text/javascript" src="../../../../js/client/management.js"></script>
+    <script type="text/javascript" src="../../../../js/client/security.js"></script>
+    <script type="text/javascript" src="../../../../js/client/enum.js"></script>
+    <script type="text/javascript" src="../../../../js/client/struct.js"></script>
+    <script type="text/javascript" src="../../../../js/client/client.js"></script>
+    <script type="text/javascript" src="../../../../js/howell.js/howell.control.js"></script>
+    <script type="text/javascript" src="../../../../js/jquery/jquery.confirm.js"></script>
+    <script type="text/javascript" src="../../../../js/bootstrap/bootstrap-switch.min.js"></script>
+    <script type="text/javascript" src="../../../../js/background/management/background_device.event.js"></script>
+    <script type="text/javascript" src="../../../../js/background/management/device/background_device_video_inputs.js"></script>
+    <script type="text/javascript" src="../../../../js/background/management/device/video/input/background_device_video_input_streamings.js"></script>
+    <script type="text/javascript" src="device_video_input_streamings.js"></script>
+    <!--<script type="text/javascript" src="../../../../js/background/management/device/video/input/user/background_device_video_input_user_permissions.js"></script>
+    <script type="text/javascript" src="user/device_video_input_user_permissions.js"></script>-->
+
+    <script>
+        
+        Trigger = document.createElement("a");
+        Trigger.href = "streaming/item.htm?inputId=00310101021111111000001000000000";
+        Info.ControlIdPrefix.Streaming.AlertUrl.permissions = "streaming/device_video_input_streaming_permissions.htm";
+    </script>
+
+</head>
+<body>
+    <!--已绑定列表-->
+    <div class="widget-container fluid-height clearfix association-frame mouse_default swith_control">
+        <div class="heading association-heading">
+            <i class="icon-random association-heading-icon mouse_default"></i>
+            <label>流通道列表</label><div class="association-heading-count-text">共 <label id="lbl_streaming_count">0</label> 条</div><a class="icon-search" style="font-size:16px;margin-left:30px" title="详细列表" id="btn_input_streaming_details_list" onclick="input_streaming_details_list_Click(this)">
+            </a>
+        </div>
+        <div class="widget-content padded clearfix association-list-container" style="height:550px;overflow-y:auto">
+            <div id="glist_streamings">
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var operationStreamingCanClose = true;
+        function device_video_input_streaming_list_load() {
+            getTag("btn_input_streaming_details_list").href = "input/streaming/device_video_input_streaming_details_list.htm?deviceId=" + Property.DeviceId + "&inputId=" + Html.Control.AlertWindow.Device.Input.Details.get().Id;
+            Html.Control.PopoverWindow.StreamingList.load(1);
+        }
+        function input_streaming_details_list_Click(sender, args) {
+            AlertWindow.Show(sender, -1);
+            return false;
+        }
+        device_video_input_streaming_list_load();
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../../css/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/bootstrap/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="../../css/howell.font/howell.font.css">
+    <link href="../../css/isotope.css" rel="stylesheet" />
+    <link href="../../css/gridstack.css" rel="stylesheet" />
+    <link href="../../css/Ionicons/css/ionicons.min.css" rel="stylesheet" />
+    <link href="../../css/bootstrap-datetimepicker/bootstrap-datetimepicker-dark.css" rel="stylesheet" />
+    <link href="../../css/bootstrap-datetimepicker/bootstrap-datetimepicker.css" rel="stylesheet" />
+    <link href="../../css//bootstrap/bootstrap-tagsinput.css" rel="stylesheet" />
+    <link href="../../css/css-chart.css" rel="stylesheet" />
+    <link href="../../css/jquery.toast.css" rel="stylesheet" />
+    <link href="../../css/style.css" rel="stylesheet" />
+    <link href="../../css/colors/blue-dark.css" rel="stylesheet" />
+    <link href="../../css/template.css" rel="stylesheet" />
+    <link href="../../css/template2.css" rel="stylesheet" />
+    <link href="../../css/index.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="../../css/howell.css">
+    <link href="../../css/load5.css" rel="stylesheet" />
+    <link href="../../css/nestable.css" rel="stylesheet" />
+
+    <script src="../../js/jquery/jquery-1.10.2.min.js"></script>
+    <script src="../../js/jquery/jquery-ui.js"></script>
+    <script src="../../js/jquery/jquery.isotope.min.js"></script>
+    <script src="../../js/jquery/jquery.toast.js"></script>
+    <script src="../../js/jquery/jquery.slimscroll.js"></script>
+
+    <script type="text/javascript" src="../../js/bootstrap/popper.min.js"></script>
+    <script type="text/javascript" src="../../js/bootstrap/bootstrap.min.js"></script>
+
+    <script src="../../js/language.js"></script>
+    <script src="../../js/knockout-min.js"></script>
+    <script src="../../js/lodash.min.js"></script>
+    <script src="../../js/gridstack.js"></script>
+
+    <script src="../../js/language/chinese.js"></script>
+    <!-- <script src="../js/howell.js/howell.js"></script> -->
+    <script src="../../js/howell.js/howell.control.js"></script>
+    <script src="../../js/howell.js/howell.convert.js"></script>
+    <script src="../../js/howell.js/ext.js"></script>
+    <!-- <script src="../js/client/client.js"></script>
+    <script src="../js/client/pdc.js"></script> -->
+    <script src="../../js/echarts.common.min.js"></script>
+    <script src="../../js/jquery/jquery.easy-pie-chart.js"></script>
+    <script src="../../js/howell.js/howell.constant.js"></script>
+    <script src="../../js/howell.js/howell.xml.js"></script>
+    <script src="../../js/howell.js/guid.js"></script>
+    <script src="../../js/control/SmallCard.js"></script>
+    <script src="../../js/control/ModelWindow.js"></script>
+    <script src="../../js/control/Paging.js"></script>
+    <script src="../../js/control/Loading.js"></script>
+    <script src="../../template2.js"></script>
+    <script type="text/javascript" src="../../js/jquery/jquery.confirm.js"></script>
+    <script type="text/javascript" src="../../css/bootstrap-datetimepicker/bootstrap-datetimepicker.js"></script>
+    <script type="text/javascript" src="../../css/bootstrap-datetimepicker/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="../../js/jquery/jquery.nestable.js"></script>
+    <link rel="icon" href="../../img/bitbug_favicon.ico" type="image/x-icon" />
+</head>
+
+<!-- <body class="fix-header fix-sidebar card-no-border"> -->
+<body>
+    <script src="fr/face/faceset_search.js?update=20180712"></script>
+    <div class="row page-titles">
+        <div class="col-md-5 col-8 align-self-center">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="javascript:selectNav(this); loadContent('page', base64encode(setUrlRandomParams(navigation.index.home)))">
+                        <span language="home">主页</span>
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <span language="query">查询</span><span language="static">静态</span><span language="library">库</span>
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="page-title-occupying"></div>
+    <div class="row screen-outer">
+        <div class="col-xlg-3 col-lg-3 col-md-3">
+            <div class="card row-span-5">
+                <div class="card-body">
+                    <h3 class="card-title"><span language="setting">设置</span><span language="query">查询</span><span language="condition">条件</span></h3>
+                    <div id="preview" class="text-center">
+                        <img id="imghead" class="upload_img" src="img/upload_picture.png" width="110" height="126" border="0" onclick="$('#previewImg').click();">
+                    </div>
+                    <div class="text-center m-t-5 m-b-10">
+                        <span>点击图片上传</span>
+                    </div>
+                    <input type="file" onchange="previewImage(this)" accept="image/x-png,image/gif,image/jpeg,image/bmp" style="display: none;" id="previewImg">
+                    <div class="row">
+                        <form class="form col-md-6">
+                            <div class="form-group">
+                                <label for="faceset_search_Device" class="control-label">
+                                    <span language="choose">选择</span><span language="device">设备</span>
+                                </label>
+                                <select class="form-control custom-select" data-placeholder="Choose a Device" tabindex="1" onchange="selectSearchDeviceOnchange(this)" id="faceset_search_Device">
+
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="faceset_search_Name" class="form-label">
+                                    <span language="full_name">姓名</span>
+                                </label>
+                                <input class="form-control" type="text" value="" id="faceset_search_Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="faceset_search_BornBeginTime" class="form-label">
+                                    <span language="birthday">生日</span><span language="start">开始</span><span language="date">日期</span>
+                                </label>
+                                <div class="input-group">
+                                    <div class="input-group-addon cursor-pointer report-select-label" style="background:rgba(120, 130, 140, 0.5);" onclick="$('#faceset_search_BornBeginTime').datetimepicker('show');" title="开始时间">
+                                        <i class="icon-calendar" style="color: white;"></i>
+                                    </div>
+                                    <input class="form-control cursor-pointer datetime-control" id="faceset_search_BornBeginTime">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="faceset_search_Province" class="control-label">
+                                    <span language="province">省份</span>
+                                </label>
+                                <input class="form-control" type="text" value="" id="faceset_search_Province">
+                            </div>
+                            <div class="form-group">
+                                <label for="faceset_search_CardType" class="control-label">
+                                    <span language="card_type">证件类型</span>
+                                </label>
+                                <input class="form-control" type="text" value="" id="faceset_search_CardType">
+                            </div>
+                            <!-- <div class="form-group">
+                                <label class="control-label"><span language="choose">选择</span><span language="device">设备</span></label>
+                                <label class="control-label"><i class="mdi mdi-video"></i></label>
+                            </div> -->
+                        </form>
+                        <form class="form col-md-6">
+                            <div class="form-group">
+                                <label for="faceset_search_FaceSet" class="control-label">
+                                    <span language="choose">选择</span><span language="face">人脸</span><span language="library">库</span>
+                                </label>
+                                <select class="form-control custom-select" data-placeholder="Choose a FaceSet" tabindex="1" id="faceset_search_FaceSet">
+                                    <option value="None"><span language="unlimited">不限</span></option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="faceset_search_Sex" class="control-label">
+                                    <span language="sex">性别</span>
+                                </label>
+                                <select class="form-control custom-select" data-placeholder="Choose a Sex" tabindex="1" id="faceset_search_Sex">
+                                    <option value="All"><span language="unlimited">不限</span></option>
+                                    <option value="Male"><span language="whitelist">男性</span></option>
+                                    <option value="Female"><span language="blacklist">女性</span></option>
+                                    <option value="None"><span language="secrecy">保密</span></option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="faceset_search_BornEndTime" class="form-label">
+                                    <span language="birthday">生日</span><span language="end">结束</span><span language="date">日期</span>
+                                </label>
+                                <div class="input-group">
+                                    <div class="input-group-addon cursor-pointer report-select-label" style="background:rgba(120, 130, 140, 0.5);" onclick="$('#faceset_search_BornEndTime').datetimepicker('show');" title="结束时间">
+                                        <i class="icon-calendar" style="color: white;"></i>
+                                    </div>
+                                    <input class="form-control cursor-pointer datetime-control" id="faceset_search_BornEndTime">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="faceset_search_City" class="control-label"><span language="city">城市</span></label>
+                                <input class="form-control" type="text" value="" id="faceset_search_City">
+                            </div>
+                            <div class="form-group">
+                                <label for="faceset_search_CardNumber" class="control-label"><span language="card_number">证件编号</span></label>
+                                <input class="form-control" type="text" value="" id="faceset_search_CardNumber">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="row card-bottom-btns-group">
+                        <div class="text-center" style="margin: auto;">    
+                            <button onclick="faceSetSearchCilik()" type="button" class="btn btn-success p-l-20 p-r-20 m-r-10">
+                                <i class="fa fa-search"></i>
+                                <span language="query">查询</span>
+                            </button>
+                            <button type="button" class="btn waves-effect waves-light btn-danger p-l-20 p-r-20" onclick="faceSetSearchCondition()">
+                                <i class="mdi mdi-close-circle"></i>
+                                <span language="empty">清空</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xlg-9 col-lg-9 col-md-9" id="divFaceList">
+            <div class="row">
+                <div class="col-xlg-12 col-lg-12 col-md-12">
+                    <div class="card pull-height row-span-5">
+                        <div class="card-body">
+                            <h3 class="card-title"><span language="query">查询</span><span language="result">结果</span></h3>
+                            <div class="row" id="list_body">
+                                <div class="col-12">
+                                    <div class="card-group" id="faceAppendDataList">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hide col-xlg-2 col-lg-2 col-md-2">
+            <div class="card row-span-5">
+                <div class="card-body" style="height:100%">
+                    <h3 class="card-title">人脸库列表</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var updateOutput = function(e) {
+            // var list = e.length ? e : $(e.target),
+            //     output = list.data('output');
+            // if (window.JSON) {
+            //     output.val(window.JSON.stringify(list.nestable('serialize'))); //, null, 2));
+            // } else {
+            //     output.val('JSON browser support required for this demo.');
+            // }
+        };
+        // $('#nestable2').nestable({
+        //     group: 1
+        // }).on('change', updateOutput);
+
+        // updateOutput($('#nestable2').data('output', $('#nestable2-output')));
+
+        $(function () {
+            // init_language();
+            // monitorInit();
+            $('.datetime-control').datetimepicker({
+                format: 'yyyy-mm-dd',
+                weekStart: 1,
+                autoclose: true,
+                startView: 2,
+                minView: 2,
+                forceParse: false,
+                language: 'zh-CN',
+                initialDate: "",
+            });
+            $('#list_body').slimScroll({
+                height: "91%"
+            });
+            faceSetSearchInit();
+        });
+    </script>
+</body>
+</html>

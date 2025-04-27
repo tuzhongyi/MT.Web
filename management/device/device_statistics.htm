@@ -1,0 +1,310 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>设备统计</title>
+    <link href="../../css/howell.css" rel="stylesheet" />
+    <script type="text/javascript" src="../../js/language/chinese.js"></script>
+    <script type="text/javascript" src="../../js/jquery/jquery-1.10.2.min.js"></script>
+    <script src="../../js/imported.js"></script>
+    <script type="text/javascript" src="../../js/jquery/jquery-ui.js"></script>
+    <script type="text/javascript" src="../../js/jquery/jquery.confirm.js"></script>
+    <script type="text/javascript" src="../../js/bootstrap/bootstrap.min.js"></script>
+    <script src="../../js/bootstrap/bootstrap-datepicker.js" charset="gb2312"></script>
+    <script type="text/javascript" src="../../js/modernizr.custom.js"></script>
+    <script src="../../js/howell.js/ext.js"></script>
+    <script type="text/javascript" src="../../js/howell.js/howell.js"></script>
+
+    <script type="text/javascript" src="../../js/nav.js"></script>
+    
+    <script type="text/javascript" src="../../js/highcharts.js"></script>
+    <script type="text/javascript" src="../../js/client/management.js"></script>
+    <script type="text/javascript" src="../../js/client/enum.js"></script>
+    <script type="text/javascript" src="../../js/client/struct.js"></script>
+    <script type="text/javascript" src="../../js/client/client.js"></script>
+    <script type="text/javascript" src="../../js/howell.js/howell.control.js"></script>
+    <script type="text/javascript" src="../../js/howell.js/guid.js"></script>
+    <script type="text/javascript" src="../../js/howell.js/howell.convert.js"></script>
+
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+          name="viewport" />
+</head>
+<body>
+    <script type="text/javascript" src="js/jquery/jquery.confirm.js"></script>
+    <script type="text/javascript" src="js/bootstrap/bootstrap-datepicker.js" charset="gb2312"></script>
+    <script type="text/javascript" src="js/modernizr.custom.js"></script>
+    <!--<script type="text/javascript" src="js/highcharts.js"></script>-->
+    <script type="text/javascript" src="js/client/management.js"></script>
+    <script type="text/javascript" src="js/howell.js/guid.js"></script>
+    <style type="text/css">
+        .chart {
+            height: 180px;
+            margin-bottom: 5px;
+        }
+    </style>
+    <div class="container-fluid main-content status-maxdiv">
+        <div class="row">
+            <div class="row">
+                <div class="widget-container fluid-height clearfix">
+                    <div class="status-title-div" style="margin-left:37px">
+                        <div class="icon-bar-chart">
+                        </div>
+                        <span class="status-title-div-span">
+                            设备信息统计
+                        </span>
+                    </div>
+                    <div class="status-deviceinfo-div row">
+                        <div class="status-devicename-div">
+                            <div class="howell-icon-device" style="margin-top:3px;float:left"></div>
+                            <label id="lblDeviceName" class="text-ellipsis">
+                                设备1
+                            </label>
+                        </div>
+
+                        <div class="col-md-1 pull-right">
+                            <a class="btn btn-primary" onclick="go_onclick(this)">统计</a>
+                        </div>
+                        <div class="col-md-3 pull-right">
+                            <div class="input-group date datepicker" data-date-autoclose="true" data-date-format="yyyy-mm-dd">
+                                <input id="day" class="form-control" type="text"><span class="input-group-addon"><i class="icon-calendar"></i></span></input>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="Temperature" class="col-md-12 chart">
+                    </div>
+                    <div id="Voltage" class="col-md-12 chart">
+                    </div>
+                    <div id="NetworkUsage" class="col-md-12 chart">
+                    </div>
+                    <div id="VideoConnectionNumber" class="col-md-12 chart">
+                    </div>
+                    <div id="NetworkSpeedRate" class="col-md-12 chart">
+                    </div>
+                    <div id="CpuUsage" class="col-md-12 chart">
+                    </div>
+                    <div id="MemoryUsage" class="col-md-12 chart">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="test"></div>
+    <script type="text/javascript">
+    function device_statistics_load() {
+        var url = new Uri(Trigger);
+        if (!url.Query) {
+            history.back();
+            return;
+        }
+        deviceId = url.Querys.deviceId;
+        //deviceId = "00310108011234567000001000000000";
+        var device = tryCatch(function () {
+            return Client.Management().Device.Get(deviceId);
+        });
+        if (device)
+            getTag("lblDeviceName").innerHTML = device.Name;
+
+        initChart("Temperature", "设备温度", "单位：℃", Logs.Temperature);
+        initChart("Voltage", "工作电压", "单位：V", Logs.Voltage);
+        initChart("NetworkUsage", "网络使用率", null, Logs.NetworkUsage);
+        initChart("VideoConnectionNumber", "当前视频连接数目", null, Logs.VideoConnectionNumber);
+        initChart("NetworkSpeedRate", "平均网络速度", "单位：Kbps", Logs.NetworkSpeedRate);
+        initChart("CpuUsage", "CPU使用率", null, Logs.CpuUsage);
+        initChart("MemoryUsage", "内存使用率", null, Logs.MemoryUsage);
+
+        $('.datepicker').datepicker().data("datepicker");
+    }
+
+    function go_onclick(sender, args) {
+        var day = getTag("day").value;
+        if (!day)
+            return;
+        go(this.deviceId, day);
+    }
+
+    </script>
+    <script type="text/javascript">
+        var deviceId;
+
+        var Logs = {
+            Time: new Array(),
+            CpuUsage: new Array(),
+            MemoryUsage: new Array(),
+            WorkingSeconds: new Array(),
+            Temperature: new Array(),
+            Pressure: new Array(),
+            Voltage: new Array(),
+            NetworkSpeedRate: new Array(),
+            NetworkUsage: new Array(),
+            VideoConnectionNumber: new Array(),
+            StorageMediumAbnormalNumber: new Array()
+        }
+
+        function test(deviceId) {
+            var list = new HeartbeatLogList();
+            var date = new Date(2015, 5, 17, 0, 0, 0);
+
+            for (var i = 0; i < 480; i++) {
+                var log = new HeartbeatLog();
+
+                for (var key in log) {
+                    log[key] = (Math.random() * 100);
+                }
+
+
+                log.Time = (new Date(date.getTime() + i * 3 * 1000 * 60)).toISOString();
+                list.HeartbeatLog.push(log);
+            }
+            return list;
+        }
+
+
+        function go(deviceId, day) {
+            var temp = new Date(day);
+            var begin = new Date(temp.getFullYear(), temp.getMonth(), temp.getDate(), 0, 0, 0);
+            var end = new Date(temp.getFullYear(), temp.getMonth(), temp.getDate(), 23, 59, 59);
+            var list = tryCatch(function () {
+                var response = Client.Management().Device.Heartbeat(deviceId, begin.toISOString(), end.toISOString());
+                //var response = test(deviceId);
+                var result = new Array();
+                if (response)
+                    result = response.HeartbeatLog;
+                return result;
+            });
+            for (var key in Logs) {
+                Logs[key] = new Array()
+            }
+            for (var i = 0; i < list.length; i++) {
+                var time = new Date();
+                time.fromJSON(list[i].Time);
+
+                for (var key in list[i]) {
+                    if (key == "Id" || key == "Time")
+                        continue;
+
+                    var value = list[i][key];
+                    //if (is.Number(value))
+                    //    value = value.toFixed(2);
+
+                    Logs[key].push({
+                        x: time.getTime() - time.getTimezoneOffset() * 1000 * 60,
+                        y: value
+                    });
+                }
+            }
+            initChart("Temperature", "设备温度", "单位：℃", Logs.Temperature);
+            initChart("Voltage", "工作电压", "单位：V", Logs.Voltage);
+            initChart("NetworkUsage", "网络使用率", null, Logs.NetworkUsage);
+            initChart("VideoConnectionNumber", "当前视频连接数目", null, Logs.VideoConnectionNumber);
+            initChart("NetworkSpeedRate", "平均网络速度", "单位：Kbps", Logs.NetworkSpeedRate);
+            initChart("CpuUsage", "CPU使用率", null, Logs.CpuUsage);
+            initChart("MemoryUsage", "内存使用率", null, Logs.MemoryUsage);
+        }
+
+
+        function initChart(id, title, subtitle, data, realFn) {
+            try {
+
+                $('#' + id).highcharts(
+                {
+                    chart:
+                    {
+                        type: 'spline',
+                        events:
+                        {
+                            load: function () {
+                                if (realFn) realFn(this.series);
+                            }
+                        }
+                    },
+                    title: {
+                        text: title
+                    },
+                    subtitle: {
+                        text: subtitle
+                    },
+                    xAxis:
+                    {
+                        type: 'datetime',
+                        tickPixelInterval: 120,
+                    },
+                    yAxis: {
+                        title: {
+                            text: ''
+                        },
+                        labels: {
+                            formatter: function () {
+                                return this.value;
+                            }
+                        },
+                        minorGridLineWidth: 0,
+                        alternateGridColor: null,
+                    },
+                    tooltip: {
+                        crosshairs: true,
+                        shared: false
+                    },
+
+                    legend: {
+                        enabled: false,
+                        layout: 'vertical',
+                        align: 'right',
+                        verticalAlign: 'middle',
+                        borderWidth: 0
+                    },
+                    exporting: {
+                        enabled: false
+                    },
+                    plotOptions: {
+                        spline: {
+                            lineWidth: 1,
+                            states: {
+                                hover: {
+                                    lineWidth: 1
+                                }
+                            },
+                            marker: {
+                                enabled: false
+                            }
+
+                        }
+                    },
+                    series:
+                    [{
+                        name: title,
+                        data: (function () {
+
+                            if (data && data.length > 0)
+                                return data;
+                            data = [];
+                            var time = (new Date()).getTime();
+
+                            var date = new Date();
+
+                            var today = new Date(date.getYear(), date.getMonth(), date.getDate(), 0, 0, 0);
+                            var hours = date.getHours();
+
+                            for (var i = 0; i < 23 + 1; i++) {
+                                data.push(
+                                    {
+                                        x: today.getTime() + i * 1000 * 60 * 60 - today.getTimezoneOffset() * 1000 * 60,
+                                        y: 0
+                                    }
+                                );
+                            }
+                            return data;
+                        })()
+                    }]
+                }
+                );
+            } catch (e) {
+
+            }
+        }
+        $(function () {
+            device_statistics_load();
+        });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,181 @@
+<html>
+<head>
+    <script src="/jwplayer/jwplayer.js"></script>
+    <link href="http://192.168.21.240:8800/css/bootstrap/bootstrap.min.css"><style type="text/css">
+        body {
+            height: 98%;
+            width: 99%;
+        }
+
+        .main {
+            width: 70%;
+            height: 70%;
+            position: relative;
+        }
+
+        .control {
+            opacity: 0.5;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        #myplayer {
+            top: 0;
+            left: 0;
+            position: absolute;
+        }
+
+        .control .left {
+            float: left;
+            height: 100%;
+            width: 40%;
+            opacity: 0.3;
+        }
+
+        .control .right {
+            float: right;
+            height: 100%;
+            width: 40%;
+            opacity: 0.3;
+        }
+
+        .control .bottom {
+            background-color: rgba(200,200,200,0.5);
+            position: relative;
+            top: 99%;
+            height: 1%;
+        }
+
+            .control .bottom:hover {
+                top: 80%;
+                height: 20%;
+            }
+
+                .control .bottom:hover table {
+                    display:table;
+                }
+
+        #message {
+            height: 200px;
+            border: solid 1px;
+            overflow: auto;
+        }
+
+
+
+        .control .bottom table {
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            display:none;
+            position: absolute;
+            text-align: center;
+        }
+
+        .control .btn {
+            width: 10px;
+            height: 10px;
+            cursor: pointer;
+            color: white;
+        }
+    </style>
+</head>
+<body unselectable="none" onselectstart="return false;">
+    <div class="main">
+        <div id='myplayer'>
+        </div>
+        <div class="control" id="control" onmouseover="">
+            <div class="left" onclick="move_left()"></div>
+            <div class="right" onclick="move_right()"></div>
+            <div class="bottom">
+                <div class="row"></div>
+                <div class="row">
+
+                    <div class="col-lg-8" >aa</div>
+                    <div class="col-lg-1">
+                        <a>¡ü</a>
+                    </div>
+                    <div class="col-lg-3">bb</div>
+                </div>
+                <div class="row"></div>
+            </div>
+        </div>
+    </div>
+    <div id="message"></div>
+    <script type='text/javascript'>
+        var host = "192.168.21.240";
+
+
+        jwplayer('myplayer').setup({
+            file: "rtmp://192.168.21.240/stream?dev_id=00310101031111111000001000000000&slot=8&stream=1&mode=live&user=howell&password=4377fa537b1c4c3fb6099efc7de6060b",
+            height: "100%",
+            width: "100%",
+            autostart: true,
+            stretching: "exactfit",
+            rtmp: {
+                bufferlength: 0.1
+            }
+        });
+
+        var control = document.getElementById("control");
+
+        control.onmousewheel = function (event) {
+            event = event || window.event;
+            zoom_change(event);
+        };
+
+        var message = document.getElementById("message");
+
+
+        function ShowMessage(text) {
+            if (text) {
+                message.innerHTML = "<div>" + text + "</div>" + message.innerHTML;
+            }
+        }
+
+        function move_left() {
+            ShowMessage("move_left");
+        }
+        function move_right() {
+            ShowMessage("move_right");
+        }
+        function zoom_change(e) {
+
+            if (e.wheelDelta < 0) {
+                ShowMessage("zoom_up");
+            }
+            else if (e.wheelDelta > 0) {
+                ShowMessage("zoom_down");
+            }
+
+            stopPropagation();
+        }
+
+
+        function stopPropagation(e) {
+            function getTopCallerArg(arg) {
+                if (!arg.callee.caller)
+                    return arg;
+                return getTopCallerArg(arg.callee.caller.arguments);
+            }
+            var evt = e || window.event || getTopCallerArg(arguments)[0];
+            if (evt.stopPropagation) { //W3C×èÖ¹Ã°ÅÝ·½·¨
+                evt.stopPropagation();
+            } else {
+                evt.cancelBubble = true; //IE×èÖ¹Ã°ÅÝ·½·¨
+            }
+            return false;
+        }
+    </script>
+
+
+
+
+
+</body>
+
+</html>
